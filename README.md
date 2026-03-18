@@ -33,6 +33,33 @@ scripts/             # Corpus ingestion and batch item generation
 tests/               # Test suite
 ```
 
+## Data: Parallel Corpora
+
+The platform uses sentence-aligned EN-FR parallel corpora from [OPUS](https://opus.nlpl.eu/). The ingestion script downloads pre-aligned Moses-format files and converts them to JSONL.
+
+```bash
+# Download all available corpora (10k segments each by default)
+uv run python scripts/ingest_corpus.py
+
+# Download a single corpus
+uv run python scripts/ingest_corpus.py --corpus europarl
+
+# Smaller sample for quick prototyping
+uv run python scripts/ingest_corpus.py --max-segments 500
+
+# Check what's downloaded
+uv run python scripts/ingest_corpus.py --list
+```
+
+| Corpus | OPUS Source | Domain | Segments |
+| ------ | ----------- | ------ | -------- |
+| `europarl` | [Europarl v8](https://opus.nlpl.eu/Europarl.php) | Parliamentary proceedings | ~2M available |
+| `dgt_tm` | [DGT v2019](https://opus.nlpl.eu/DGT.php) | EU legal translation memory | ~5M available |
+| `eurlex` | [EUbookshop v2](https://opus.nlpl.eu/EUbookshop.php) | EU legislation & publications | ~10M available |
+| `unpc` | [UNPC v1.0](https://opus.nlpl.eu/UNPC.php) | UN institutional documents | ~30M available |
+
+Data files are stored in `data/corpora/{corpus}/segments_en_fr.jsonl` (gitignored — regenerate with the script above).
+
 ## Architecture
 
 - **Data Layer**: EU/UN parallel corpora (Europarl, DGT-TM, EUR-Lex, UNPC) + IATE terminology

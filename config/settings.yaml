@@ -1,0 +1,56 @@
+# ToM-PE Global Configuration
+
+project:
+  name: "ToM-PE"
+  version: "0.1.0"
+  description: "Theory of Mind-Informed Platform for Scaffolded MT Post-Editing Training"
+
+# Default translation directions
+languages:
+  primary_source: "en"
+  primary_target: "fr"
+  directions:
+    - source: "en"
+      target: "fr"
+    - source: "fr"
+      target: "en"
+
+# Data paths
+data:
+  corpora_dir: "data/corpora"
+  terminology_dir: "data/terminology"
+  items_dir: "data/items"
+  sessions_dir: "data/sessions"
+  analytics_dir: "data/analytics"
+
+# Segment selection defaults
+segment_selection:
+  min_tokens: 10
+  max_tokens: 50
+  jaccard_dedup_threshold: 0.8
+
+# Error injection defaults
+error_injection:
+  clean_span_ratio: 0.25  # 20-30% clean spans
+  default_severity_distribution:
+    minor: 1
+    major: 2
+    critical: 0
+
+# QE validation thresholds
+qe_validation:
+  gemba_detection_rate_threshold: 0.8
+  authentic_confidence_threshold: 0.8
+
+# Scoring
+scoring:
+  iou_threshold: 0.5
+  mastery_threshold: 0.8
+  sustained_sessions_for_promotion: 3
+
+# Server
+server:
+  api_host: "0.0.0.0"
+  api_port: 8000
+  student_ui_port: 7860
+  teacher_ui_port: 8501

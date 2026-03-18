@@ -1,0 +1,41 @@
+# MT System Configuration
+# Store actual API keys in .env file, not here.
+
+mt_systems:
+  google:
+    enabled: false
+    type: "dedicated_mt"
+    # api_key sourced from GOOGLE_TRANSLATE_API_KEY env var
+
+  deepl:
+    enabled: false
+    type: "dedicated_mt"
+    # api_key sourced from DEEPL_API_KEY env var
+
+  nllb:
+    enabled: false
+    type: "dedicated_mt"
+    model: "facebook/nllb-200-distilled-600M"
+
+  gpt4:
+    enabled: false
+    type: "general_llm"
+    model: "gpt-4.1"
+    # api_key sourced from OPENAI_API_KEY env var
+
+  claude:
+    enabled: false
+    type: "general_llm"
+    model: "claude-sonnet-4-6"
+    # api_key sourced from ANTHROPIC_API_KEY env var
+
+  deepseek:
+    enabled: false
+    type: "general_llm"
+    model: "deepseek-chat"
+    # api_key sourced from DEEPSEEK_API_KEY env var
+
+# LLM used for error injection and explanation generation
+injection_llm:
+  provider: "openai"  # or "anthropic", "deepseek"
+  model: "gpt-4.1"

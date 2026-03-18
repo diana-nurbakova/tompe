@@ -1,0 +1,35 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment / secrets
+.env
+*.key
+credentials*.json
+
+# Data artifacts (large files)
+data/corpora/
+data/terminology/
+*.parquet
+*.h5
+
+# uv
+uv.lock
+
+# claude
+.claude/

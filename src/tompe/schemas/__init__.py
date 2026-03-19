@@ -1,13 +1,20 @@
 """ToM-PE data models (Pydantic schemas)."""
 
-from tompe.schemas.annotation import AnnotationConfig, ErrorAnnotation, MQM_COLORS
+from tompe.schemas.annotation import AnnotationConfig, ErrorAnnotation, RegionHint
+from tompe.schemas.competency import (
+    MasteryThreshold,
+    SkillDefinition,
+    StageDefinition,
+)
 from tompe.schemas.corpus import CorpusSegment, IATETerm, MTOutput
 from tompe.schemas.enums import (
     AnnotationLevel,
     ComparisonType,
     ItemPathway,
     MQMCategory,
+    PrimaryTag,
     Severity,
+    SkillID,
     TOMLevel,
 )
 from tompe.schemas.error import (
@@ -16,6 +23,7 @@ from tompe.schemas.error import (
     DetectedError,
     InjectedError,
     SystemBehaviorExplanation,
+    TechnicalExplanation,
 )
 from tompe.schemas.item import AssessmentItem, ItemMetadata
 from tompe.schemas.response import (
@@ -34,6 +42,14 @@ from tompe.schemas.scoring import (
     PerformanceTimeSeries,
     ScoringResult,
     StudentProfile,
+)
+from tompe.schemas.session import (
+    ClassGroup,
+    Exercise,
+    ExerciseAssignment,
+    ResearchConsent,
+    SessionToken,
+    StudentAccount,
 )
 
 __all__ = [
@@ -56,17 +72,30 @@ __all__ = [
     "Justification",
     "JustificationScore",
     "MQMCategory",
-    "MQM_COLORS",
+    "MasteryThreshold",
     "MTOutput",
     "PEWorthinessVerdict",
     "PerSystemEvaluation",
     "PerformanceTimeSeries",
+    "PrimaryTag",
+    "RegionHint",
     "ScoringResult",
     "Severity",
+    "SkillDefinition",
+    "SkillID",
+    "StageDefinition",
     "StudentProfile",
     "StudentResponse",
     "SystemBehaviorExplanation",
     "SystemRanking",
+    "TechnicalExplanation",
     "TOMLevel",
     "VerificationResponse",
+    # Session models
+    "ClassGroup",
+    "Exercise",
+    "ExerciseAssignment",
+    "ResearchConsent",
+    "SessionToken",
+    "StudentAccount",
 ]

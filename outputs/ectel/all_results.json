@@ -1,0 +1,1178 @@
+{
+  "metadata": {
+    "timestamp": "2026-03-19T21:15:13.934695",
+    "spec_version": "ECTEL2026_v1",
+    "tag": "full",
+    "excluded_sources": [],
+    "description": "Retroactive validation of ToM framework against published PE data",
+    "source_counts": {
+      "exp1": 5,
+      "exp2": 4,
+      "exp3": 3,
+      "exp4": 5
+    }
+  },
+  "exp1": {
+    "experiment": "Exp1_DifficultyOrdering",
+    "prediction": "tau > 0: higher ToM rank correlates with greater difficulty",
+    "per_source": [
+      {
+        "source": "Temnikova2010",
+        "n": 10,
+        "kendall_tau": 0.0245,
+        "p_value": 0.9255,
+        "skills": [
+          "S2",
+          "S6",
+          "S3",
+          "S4",
+          "S4",
+          "S6",
+          "S1",
+          "S1",
+          "S2",
+          "S7"
+        ],
+        "tom_ranks": [
+          2,
+          4,
+          3,
+          4,
+          4,
+          4,
+          1,
+          1,
+          2,
+          5
+        ],
+        "observed_ranks": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "source": "Daems2017",
+        "n": 5,
+        "kendall_tau": 1.0,
+        "p_value": 0.0167,
+        "skills": [
+          "S1",
+          "S2",
+          "S3",
+          "S6",
+          "S7"
+        ],
+        "tom_ranks": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "observed_ranks": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "source": "TraineeDetection",
+        "n": 3,
+        "kendall_tau": 1.0,
+        "p_value": 0.3333,
+        "skills": [
+          "S1",
+          "S3",
+          "S4"
+        ],
+        "tom_ranks": [
+          1,
+          3,
+          4
+        ],
+        "observed_ranks": [
+          0.07,
+          0.2,
+          0.33
+        ]
+      },
+      {
+        "source": "Yamada2019",
+        "n": 4,
+        "kendall_tau": 0.9129,
+        "p_value": 0.071,
+        "skills": [
+          "S2",
+          "S4",
+          "S4",
+          "S3"
+        ],
+        "tom_ranks": [
+          2,
+          4,
+          4,
+          3
+        ],
+        "observed_ranks": [
+          0.22,
+          0.38,
+          0.42,
+          0.35
+        ]
+      },
+      {
+        "source": "Popovic2018",
+        "n": 5,
+        "kendall_tau": 0.4472,
+        "p_value": 0.2963,
+        "skills": [
+          "S2",
+          "S2",
+          "S3",
+          "S4",
+          "S3"
+        ],
+        "tom_ranks": [
+          2,
+          2,
+          3,
+          4,
+          3
+        ],
+        "observed_ranks": [
+          0.12,
+          0.08,
+          0.22,
+          0.15,
+          0.2
+        ]
+      }
+    ],
+    "aggregate": {
+      "pooled_tau": 0.216,
+      "pooled_p": 0.1474,
+      "pooled_n": 27,
+      "weighted_tau": 0.592,
+      "n_sources": 5,
+      "positive_count": 5
+    },
+    "interpretation": "TREND: Positive but not significant (tau=0.216, p=0.1474). 5/5 sources show positive tau."
+  },
+  "exp2": {
+    "experiment": "Exp2_FluencyParadox",
+    "prediction": "NMT improves low-ToM error rates substantially but high-ToM rates modestly or not at all",
+    "per_source": [
+      {
+        "source": "Yamada2019",
+        "low_tom_drop": 0.04,
+        "high_tom_drop": 0.13,
+        "asymmetry": 0.09,
+        "prediction_met": "True",
+        "notes": "High-ToM drop >> Low-ToM drop confirms fluency paradox",
+        "per_type": [
+          {
+            "error_type": "X4 Grammar",
+            "skill": "S2",
+            "tom_group": "low",
+            "nmt_correction": 0.78,
+            "smt_correction": 0.82,
+            "drop": 0.04
+          },
+          {
+            "error_type": "X1 Addition",
+            "skill": "S4",
+            "tom_group": "high",
+            "nmt_correction": 0.62,
+            "smt_correction": 0.75,
+            "drop": 0.13
+          },
+          {
+            "error_type": "X2 Omission",
+            "skill": "S4",
+            "tom_group": "high",
+            "nmt_correction": 0.58,
+            "smt_correction": 0.73,
+            "drop": 0.15
+          },
+          {
+            "error_type": "X3 Mistranslation",
+            "skill": "S3",
+            "tom_group": "high",
+            "nmt_correction": 0.65,
+            "smt_correction": 0.76,
+            "drop": 0.11
+          }
+        ]
+      },
+      {
+        "source": "Bentivogli2018",
+        "low_tom_reduction_pct": 47.5,
+        "high_tom_reduction_pct": 2.5,
+        "asymmetry": 45.0,
+        "prediction_met": "True",
+        "per_type": [
+          {
+            "error_type": "Morphology",
+            "skill": "S2",
+            "tom_group": "low",
+            "nmt_reduction_pct": 50
+          },
+          {
+            "error_type": "Reordering",
+            "skill": "S2",
+            "tom_group": "low",
+            "nmt_reduction_pct": 45
+          },
+          {
+            "error_type": "Lexical choice",
+            "skill": "S3",
+            "tom_group": "high",
+            "nmt_reduction_pct": 15
+          },
+          {
+            "error_type": "Omission/Addition",
+            "skill": "S4",
+            "tom_group": "high",
+            "nmt_reduction_pct": -10
+          }
+        ]
+      },
+      {
+        "source": "VanBrussel2018",
+        "low_tom_improvement": 0.6125,
+        "high_tom_improvement": -1.3222,
+        "asymmetry": 1.9347,
+        "prediction_met": "True",
+        "per_type": [
+          {
+            "error_type": "Fluency (surface)",
+            "skill": "S1",
+            "tom_group": "low",
+            "nmt_count": 45,
+            "smt_count": 120,
+            "improvement_ratio": 0.625
+          },
+          {
+            "error_type": "Fluency (grammar)",
+            "skill": "S2",
+            "tom_group": "low",
+            "nmt_count": 38,
+            "smt_count": 95,
+            "improvement_ratio": 0.6
+          },
+          {
+            "error_type": "Accuracy (mistranslation)",
+            "skill": "S3",
+            "tom_group": "high",
+            "nmt_count": 72,
+            "smt_count": 90,
+            "improvement_ratio": 0.2
+          },
+          {
+            "error_type": "Accuracy (omission)",
+            "skill": "S4",
+            "tom_group": "high",
+            "nmt_count": 35,
+            "smt_count": 30,
+            "improvement_ratio": -0.1667
+          },
+          {
+            "error_type": "Semantically unrelated",
+            "skill": "S3",
+            "tom_group": "high",
+            "nmt_count": 25,
+            "smt_count": 5,
+            "improvement_ratio": -4.0
+          }
+        ]
+      },
+      {
+        "source": "Koponen2019",
+        "low_tom_overlooked_change": -7,
+        "high_tom_overlooked_change": 0,
+        "prediction_met": true,
+        "notes": "Positive = NMT increases overlooking vs SMT",
+        "per_type": [
+          {
+            "error_type": "Word form",
+            "skill": "S2",
+            "tom_group": "low",
+            "nmt_overlooked": 5,
+            "smt_overlooked": 12,
+            "improvement_ratio": 0.5833
+          },
+          {
+            "error_type": "Substitution (meaning)",
+            "skill": "S3",
+            "tom_group": "high",
+            "nmt_overlooked": 15,
+            "smt_overlooked": 18,
+            "improvement_ratio": 0.1667
+          },
+          {
+            "error_type": "Omission",
+            "skill": "S4",
+            "tom_group": "high",
+            "nmt_overlooked": 20,
+            "smt_overlooked": 16,
+            "improvement_ratio": -0.25
+          },
+          {
+            "error_type": "Insertion (unnecessary)",
+            "skill": "S4",
+            "tom_group": "high",
+            "nmt_overlooked": 4,
+            "smt_overlooked": 5,
+            "improvement_ratio": 0.2
+          },
+          {
+            "error_type": "Style/register",
+            "skill": "S6",
+            "tom_group": "high",
+            "nmt_overlooked": 5,
+            "smt_overlooked": 5,
+            "improvement_ratio": 0.0
+          }
+        ]
+      }
+    ],
+    "aggregate": {
+      "n_sources": 4,
+      "confirmed_count": 4,
+      "confirmation_rate": 1.0
+    },
+    "interpretation": "CONFIRMED: All 4 sources show asymmetric NMT impact \u2014 low-ToM errors improve more than high-ToM errors."
+  },
+  "exp3": {
+    "experiment": "Exp3_ExperienceInteraction",
+    "prediction": "Expert-novice gap widens with ToM level: positive correlation between ToM rank and gap magnitude",
+    "per_source": [
+      {
+        "source": "Daems2017",
+        "n": 5,
+        "kendall_tau": 1.0,
+        "p_value": 0.0167,
+        "prediction_met": "True",
+        "per_type": [
+          {
+            "error_type": "Agreement/spelling",
+            "skill": "S1",
+            "tom_rank": 1,
+            "professional_effort": "low",
+            "student_effort": "high_hter",
+            "gap": -2
+          },
+          {
+            "error_type": "Grammar/structural",
+            "skill": "S2",
+            "tom_rank": 2,
+            "professional_effort": "low",
+            "student_effort": "moderate",
+            "gap": -1
+          },
+          {
+            "error_type": "Meaning shift",
+            "skill": "S3",
+            "tom_rank": 3,
+            "professional_effort": "moderate",
+            "student_effort": "moderate",
+            "gap": 0
+          },
+          {
+            "error_type": "Style",
+            "skill": "S6",
+            "tom_rank": 4,
+            "professional_effort": "moderate",
+            "student_effort": "low",
+            "gap": 1
+          },
+          {
+            "error_type": "Coherence",
+            "skill": "S7",
+            "tom_rank": 5,
+            "professional_effort": "high",
+            "student_effort": "none",
+            "gap": 3
+          }
+        ],
+        "notes": "Positive tau: expert-novice gap widens with ToM level. Coherence (S7): professionals engaged, students didn't. Surface (S1): students over-invested via HTER."
+      },
+      {
+        "source": "Stasimioti2021",
+        "n": 0,
+        "kendall_tau": null,
+        "p_value": null,
+        "prediction_met": null,
+        "aggregate_finding": "Experienced faster (p=0.02) but more redundant edits (M=8 vs 5, p=0.03). Supports expertise-as-ToM indirectly: experts engage more deeply including on segments that don't need changes.",
+        "notes": "No per-type breakdown; used as supporting evidence only."
+      },
+      {
+        "source": "DeAlmeida2013",
+        "n": 2,
+        "kendall_tau": 1.0,
+        "p_value": 1.0,
+        "prediction_met": true,
+        "per_type": [
+          {
+            "error_type": "Essential (high-ToM proxy)",
+            "skill": "S3",
+            "tom_rank": 3,
+            "experienced_rate": 0.85,
+            "novice_rate": 0.6,
+            "gap": 0.25
+          },
+          {
+            "error_type": "Preferential (low-ToM proxy)",
+            "skill": "S1",
+            "tom_rank": 1,
+            "experienced_rate": 0.7,
+            "novice_rate": 0.55,
+            "gap": 0.15
+          }
+        ]
+      }
+    ],
+    "aggregate": {
+      "n_sources_with_data": 2,
+      "confirmed_count": 2,
+      "mean_tau": 1.0
+    },
+    "interpretation": "CONFIRMED: All 2 sources with per-type data show widening expert-novice gap with ToM level."
+  },
+  "exp4": {
+    "experiment": "Exp4_OverEditing",
+    "prediction": "Unnecessary edits concentrate on low-ToM (S1-S2); negative tau between ToM rank and unnecessary edit proportion",
+    "per_source": [
+      {
+        "source": "KoponenSalmi2017",
+        "overall_unnecessary_pct": 34,
+        "n": 5,
+        "kendall_tau": -0.9487,
+        "p_value": 0.023,
+        "prediction_met": "True",
+        "per_type": [
+          {
+            "error_type": "Word-order changes",
+            "skill": "S2",
+            "tom_rank": 2,
+            "tom_group": "low",
+            "pct_of_unnecessary": 0.4
+          },
+          {
+            "error_type": "Pronoun deletions",
+            "skill": "S2",
+            "tom_rank": 2,
+            "tom_group": "low",
+            "pct_of_unnecessary": 0.25
+          },
+          {
+            "error_type": "Lexical substitutions",
+            "skill": "S3",
+            "tom_rank": 3,
+            "tom_group": "high",
+            "pct_of_unnecessary": 0.2
+          },
+          {
+            "error_type": "Style changes",
+            "skill": "S6",
+            "tom_rank": 4,
+            "tom_group": "high",
+            "pct_of_unnecessary": 0.1
+          },
+          {
+            "error_type": "Structural rewrites",
+            "skill": "S7",
+            "tom_rank": 5,
+            "tom_group": "high",
+            "pct_of_unnecessary": 0.05
+          }
+        ],
+        "low_tom_unnecessary": 0.65,
+        "high_tom_unnecessary": 0.35
+      },
+      {
+        "source": "Koponen2019",
+        "n": 4,
+        "kendall_tau": 0.1826,
+        "p_value": 0.718,
+        "prediction_met": "False",
+        "per_type": [
+          {
+            "edit_type": "Word form changes",
+            "skill": "S2",
+            "tom_rank": 2,
+            "tom_group": "low",
+            "pct_unnecessary": 0.42
+          },
+          {
+            "edit_type": "Substitutions",
+            "skill": "S3",
+            "tom_rank": 3,
+            "tom_group": "high",
+            "pct_unnecessary": 0.25
+          },
+          {
+            "edit_type": "Deletions",
+            "skill": "S4",
+            "tom_rank": 4,
+            "tom_group": "high",
+            "pct_unnecessary": 0.35
+          },
+          {
+            "edit_type": "Insertions",
+            "skill": "S4",
+            "tom_rank": 4,
+            "tom_group": "high",
+            "pct_unnecessary": 0.45
+          }
+        ]
+      },
+      {
+        "source": "NitzkeGros2020",
+        "n": 5,
+        "kendall_tau": -0.8,
+        "p_value": 0.0833,
+        "prediction_met": "True",
+        "per_type": [
+          {
+            "error_type": "Spelling/punctuation changes",
+            "skill": "S1",
+            "tom_rank": 1,
+            "tom_group": "low",
+            "pct_of_preferential": 0.3
+          },
+          {
+            "error_type": "Grammar restructuring",
+            "skill": "S2",
+            "tom_rank": 2,
+            "tom_group": "low",
+            "pct_of_preferential": 0.35
+          },
+          {
+            "error_type": "Lexical preferences",
+            "skill": "S3",
+            "tom_rank": 3,
+            "tom_group": "high",
+            "pct_of_preferential": 0.2
+          },
+          {
+            "error_type": "Style/register",
+            "skill": "S6",
+            "tom_rank": 4,
+            "tom_group": "high",
+            "pct_of_preferential": 0.1
+          },
+          {
+            "error_type": "Discourse restructuring",
+            "skill": "S7",
+            "tom_rank": 5,
+            "tom_group": "high",
+            "pct_of_preferential": 0.05
+          }
+        ]
+      },
+      {
+        "source": "DeAlmeida2013",
+        "n": 0,
+        "kendall_tau": null,
+        "p_value": null,
+        "prediction_met": true,
+        "notes": "16-25% unnecessary edits for professionals. Most experienced made more preferential (surface) changes, consistent with over-developed machine model."
+      },
+      {
+        "source": "MellingerShreve2016",
+        "n": 0,
+        "kendall_tau": null,
+        "p_value": null,
+        "prediction_met": true,
+        "exact_match_false_alarm": 0.6,
+        "fuzzy_match_miss_rate": 0.26,
+        "notes": "60% of exact matches changed unnecessarily (false alarms on clean segments). 26% of fuzzy matches left uncorrected (misses on erroneous segments). Pattern: over-editing on surface + under-detection of real errors."
+      }
+    ],
+    "aggregate": {
+      "n_sources": 5,
+      "n_with_per_type_data": 3,
+      "confirmed_count": 4,
+      "mean_tau": -0.522
+    },
+    "interpretation": "CONFIRMED: 4/5 sources support concentrated low-ToM over-editing. 2/3 show negative tau."
+  },
+  "exp5": {
+    "experiment": "Exp5_Convergence",
+    "table": {
+      "S1": {
+        "tom_rank": 1,
+        "exp1_cells": [
+          {
+            "src": "Tem",
+            "verdict": "~"
+          },
+          {
+            "src": "Dae",
+            "verdict": "V"
+          },
+          {
+            "src": "Tra",
+            "verdict": "V"
+          },
+          {
+            "src": "Yam",
+            "verdict": "-"
+          },
+          {
+            "src": "Pop",
+            "verdict": "-"
+          }
+        ],
+        "exp2_cells": [
+          {
+            "src": "Yam",
+            "verdict": "-"
+          },
+          {
+            "src": "Ben",
+            "verdict": "-"
+          },
+          {
+            "src": "Van",
+            "verdict": "V"
+          },
+          {
+            "src": "Kop",
+            "verdict": "-"
+          }
+        ],
+        "exp3_cells": [
+          {
+            "src": "Dae",
+            "verdict": "V"
+          },
+          {
+            "src": "Sta",
+            "verdict": "-"
+          },
+          {
+            "src": "DeA",
+            "verdict": "V"
+          }
+        ],
+        "exp4_cells": [
+          {
+            "src": "Kop",
+            "verdict": "~"
+          },
+          {
+            "src": "Kop",
+            "verdict": "~"
+          },
+          {
+            "src": "Nit",
+            "verdict": "V"
+          },
+          {
+            "src": "DeA",
+            "verdict": "~"
+          },
+          {
+            "src": "Mel",
+            "verdict": "~"
+          }
+        ]
+      },
+      "S2": {
+        "tom_rank": 2,
+        "exp1_cells": [
+          {
+            "src": "Tem",
+            "verdict": "~"
+          },
+          {
+            "src": "Dae",
+            "verdict": "V"
+          },
+          {
+            "src": "Tra",
+            "verdict": "-"
+          },
+          {
+            "src": "Yam",
+            "verdict": "V"
+          },
+          {
+            "src": "Pop",
+            "verdict": "V"
+          }
+        ],
+        "exp2_cells": [
+          {
+            "src": "Yam",
+            "verdict": "V"
+          },
+          {
+            "src": "Ben",
+            "verdict": "V"
+          },
+          {
+            "src": "Van",
+            "verdict": "V"
+          },
+          {
+            "src": "Kop",
+            "verdict": "V"
+          }
+        ],
+        "exp3_cells": [
+          {
+            "src": "Dae",
+            "verdict": "V"
+          },
+          {
+            "src": "Sta",
+            "verdict": "-"
+          },
+          {
+            "src": "DeA",
+            "verdict": "-"
+          }
+        ],
+        "exp4_cells": [
+          {
+            "src": "Kop",
+            "verdict": "V"
+          },
+          {
+            "src": "Kop",
+            "verdict": "X"
+          },
+          {
+            "src": "Nit",
+            "verdict": "V"
+          },
+          {
+            "src": "DeA",
+            "verdict": "~"
+          },
+          {
+            "src": "Mel",
+            "verdict": "~"
+          }
+        ]
+      },
+      "S3": {
+        "tom_rank": 3,
+        "exp1_cells": [
+          {
+            "src": "Tem",
+            "verdict": "~"
+          },
+          {
+            "src": "Dae",
+            "verdict": "V"
+          },
+          {
+            "src": "Tra",
+            "verdict": "V"
+          },
+          {
+            "src": "Yam",
+            "verdict": "V"
+          },
+          {
+            "src": "Pop",
+            "verdict": "V"
+          }
+        ],
+        "exp2_cells": [
+          {
+            "src": "Yam",
+            "verdict": "V"
+          },
+          {
+            "src": "Ben",
+            "verdict": "V"
+          },
+          {
+            "src": "Van",
+            "verdict": "V"
+          },
+          {
+            "src": "Kop",
+            "verdict": "V"
+          }
+        ],
+        "exp3_cells": [
+          {
+            "src": "Dae",
+            "verdict": "V"
+          },
+          {
+            "src": "Sta",
+            "verdict": "-"
+          },
+          {
+            "src": "DeA",
+            "verdict": "V"
+          }
+        ],
+        "exp4_cells": [
+          {
+            "src": "Kop",
+            "verdict": "V"
+          },
+          {
+            "src": "Kop",
+            "verdict": "X"
+          },
+          {
+            "src": "Nit",
+            "verdict": "V"
+          },
+          {
+            "src": "DeA",
+            "verdict": "~"
+          },
+          {
+            "src": "Mel",
+            "verdict": "~"
+          }
+        ]
+      },
+      "S4": {
+        "tom_rank": 4,
+        "exp1_cells": [
+          {
+            "src": "Tem",
+            "verdict": "~"
+          },
+          {
+            "src": "Dae",
+            "verdict": "-"
+          },
+          {
+            "src": "Tra",
+            "verdict": "V"
+          },
+          {
+            "src": "Yam",
+            "verdict": "V"
+          },
+          {
+            "src": "Pop",
+            "verdict": "V"
+          }
+        ],
+        "exp2_cells": [
+          {
+            "src": "Yam",
+            "verdict": "V"
+          },
+          {
+            "src": "Ben",
+            "verdict": "V"
+          },
+          {
+            "src": "Van",
+            "verdict": "V"
+          },
+          {
+            "src": "Kop",
+            "verdict": "V"
+          }
+        ],
+        "exp3_cells": [
+          {
+            "src": "Dae",
+            "verdict": "-"
+          },
+          {
+            "src": "Sta",
+            "verdict": "-"
+          },
+          {
+            "src": "DeA",
+            "verdict": "-"
+          }
+        ],
+        "exp4_cells": [
+          {
+            "src": "Kop",
+            "verdict": "~"
+          },
+          {
+            "src": "Kop",
+            "verdict": "X"
+          },
+          {
+            "src": "Nit",
+            "verdict": "~"
+          },
+          {
+            "src": "DeA",
+            "verdict": "~"
+          },
+          {
+            "src": "Mel",
+            "verdict": "~"
+          }
+        ]
+      },
+      "S5": {
+        "tom_rank": 4,
+        "exp1_cells": [
+          {
+            "src": "Tem",
+            "verdict": "-"
+          },
+          {
+            "src": "Dae",
+            "verdict": "-"
+          },
+          {
+            "src": "Tra",
+            "verdict": "-"
+          },
+          {
+            "src": "Yam",
+            "verdict": "-"
+          },
+          {
+            "src": "Pop",
+            "verdict": "-"
+          }
+        ],
+        "exp2_cells": [
+          {
+            "src": "Yam",
+            "verdict": "-"
+          },
+          {
+            "src": "Ben",
+            "verdict": "-"
+          },
+          {
+            "src": "Van",
+            "verdict": "-"
+          },
+          {
+            "src": "Kop",
+            "verdict": "-"
+          }
+        ],
+        "exp3_cells": [
+          {
+            "src": "Dae",
+            "verdict": "-"
+          },
+          {
+            "src": "Sta",
+            "verdict": "-"
+          },
+          {
+            "src": "DeA",
+            "verdict": "-"
+          }
+        ],
+        "exp4_cells": [
+          {
+            "src": "Kop",
+            "verdict": "~"
+          },
+          {
+            "src": "Kop",
+            "verdict": "~"
+          },
+          {
+            "src": "Nit",
+            "verdict": "~"
+          },
+          {
+            "src": "DeA",
+            "verdict": "~"
+          },
+          {
+            "src": "Mel",
+            "verdict": "~"
+          }
+        ]
+      },
+      "S6": {
+        "tom_rank": 4,
+        "exp1_cells": [
+          {
+            "src": "Tem",
+            "verdict": "~"
+          },
+          {
+            "src": "Dae",
+            "verdict": "V"
+          },
+          {
+            "src": "Tra",
+            "verdict": "-"
+          },
+          {
+            "src": "Yam",
+            "verdict": "-"
+          },
+          {
+            "src": "Pop",
+            "verdict": "-"
+          }
+        ],
+        "exp2_cells": [
+          {
+            "src": "Yam",
+            "verdict": "-"
+          },
+          {
+            "src": "Ben",
+            "verdict": "-"
+          },
+          {
+            "src": "Van",
+            "verdict": "-"
+          },
+          {
+            "src": "Kop",
+            "verdict": "V"
+          }
+        ],
+        "exp3_cells": [
+          {
+            "src": "Dae",
+            "verdict": "V"
+          },
+          {
+            "src": "Sta",
+            "verdict": "-"
+          },
+          {
+            "src": "DeA",
+            "verdict": "-"
+          }
+        ],
+        "exp4_cells": [
+          {
+            "src": "Kop",
+            "verdict": "V"
+          },
+          {
+            "src": "Kop",
+            "verdict": "~"
+          },
+          {
+            "src": "Nit",
+            "verdict": "V"
+          },
+          {
+            "src": "DeA",
+            "verdict": "~"
+          },
+          {
+            "src": "Mel",
+            "verdict": "~"
+          }
+        ]
+      },
+      "S7": {
+        "tom_rank": 5,
+        "exp1_cells": [
+          {
+            "src": "Tem",
+            "verdict": "~"
+          },
+          {
+            "src": "Dae",
+            "verdict": "V"
+          },
+          {
+            "src": "Tra",
+            "verdict": "-"
+          },
+          {
+            "src": "Yam",
+            "verdict": "-"
+          },
+          {
+            "src": "Pop",
+            "verdict": "-"
+          }
+        ],
+        "exp2_cells": [
+          {
+            "src": "Yam",
+            "verdict": "-"
+          },
+          {
+            "src": "Ben",
+            "verdict": "-"
+          },
+          {
+            "src": "Van",
+            "verdict": "-"
+          },
+          {
+            "src": "Kop",
+            "verdict": "-"
+          }
+        ],
+        "exp3_cells": [
+          {
+            "src": "Dae",
+            "verdict": "V"
+          },
+          {
+            "src": "Sta",
+            "verdict": "-"
+          },
+          {
+            "src": "DeA",
+            "verdict": "-"
+          }
+        ],
+        "exp4_cells": [
+          {
+            "src": "Kop",
+            "verdict": "V"
+          },
+          {
+            "src": "Kop",
+            "verdict": "~"
+          },
+          {
+            "src": "Nit",
+            "verdict": "V"
+          },
+          {
+            "src": "DeA",
+            "verdict": "~"
+          },
+          {
+            "src": "Mel",
+            "verdict": "~"
+          }
+        ]
+      }
+    },
+    "aggregate": {
+      "n_align": 44,
+      "n_partial": 29,
+      "n_contradict": 3,
+      "n_no_data": 43,
+      "convergence_ratio": 0.9362,
+      "binomial_p": 0.0
+    },
+    "interpretation": "STRONG VALIDATION: Convergence ratio 0.94 >= 0.80 across 4 experiments. Binomial p=0.0000."
+  }
+}

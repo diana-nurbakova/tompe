@@ -3,39 +3,48 @@
 
 mt_systems:
   google:
-    enabled: false
+    enabled: true
     type: "dedicated_mt"
     # api_key sourced from GOOGLE_TRANSLATE_API_KEY env var
 
   deepl:
-    enabled: false
+    enabled: false  # Prepared — enable when DEEPL_AUTH_KEY is available
     type: "dedicated_mt"
-    # api_key sourced from DEEPL_API_KEY env var
-
-  nllb:
-    enabled: false
-    type: "dedicated_mt"
-    model: "facebook/nllb-200-distilled-600M"
+    use_pro: false  # Set to true for api.deepl.com (pro), false for api-free.deepl.com
+    # api_key sourced from DEEPL_AUTH_KEY env var
 
   gpt4:
-    enabled: false
+    enabled: true
     type: "general_llm"
+    provider: "openai"
     model: "gpt-4.1"
-    # api_key sourced from OPENAI_API_KEY env var
+    prompt_strategy: "zero_shot"
 
   claude:
-    enabled: false
+    enabled: true
     type: "general_llm"
+    provider: "anthropic"
     model: "claude-sonnet-4-6"
-    # api_key sourced from ANTHROPIC_API_KEY env var
+    prompt_strategy: "domain_context"
 
-  deepseek:
+  ollama:
+    enabled: true
+    type: "general_llm"
+    provider: "ollama"
+    model: "llama3"  # Model available on the remote Ollama server
+    prompt_strategy: "zero_shot"
+
+  together:
     enabled: false
     type: "general_llm"
-    model: "deepseek-chat"
-    # api_key sourced from DEEPSEEK_API_KEY env var
+    provider: "together"
+    model: "deepseek-v3"
+    prompt_strategy: "zero_shot"
 
 # LLM used for error injection and explanation generation
+# Can be any provider: openai, anthropic, ollama, together
 injection_llm:
-  provider: "openai"  # or "anthropic", "deepseek"
+  provider: "openai"
   model: "gpt-4.1"
+  temperature: 0.3
+  max_tokens: 4096

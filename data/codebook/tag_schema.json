@@ -1,0 +1,48 @@
+{
+  "version": "1.0.0",
+  "description": "Tag inventory for ToM-PE error injection validation (spec v1.1 §1.3)",
+  "primary_tags": {
+    "MISTRANSLATION": {
+      "mqm_dimension": "Accuracy",
+      "types": ["false_cognate", "word_sense", "number", "entity", "overly_literal", "overtranslation", "undertranslation", "ambiguity", "negation"]
+    },
+    "OMISSION": {
+      "mqm_dimension": "Accuracy",
+      "types": ["clause", "modifier", "discourse_marker", "partial"]
+    },
+    "ADDITION": {
+      "mqm_dimension": "Accuracy",
+      "types": ["hallucination", "explicitation", "qualifier"]
+    },
+    "UNTRANSLATED": {
+      "mqm_dimension": "Accuracy",
+      "types": ["untranslated"]
+    },
+    "GRAMMAR": {
+      "mqm_dimension": "Linguistic conventions",
+      "types": ["agreement_gender", "agreement_number", "tense", "article", "preposition", "word_order", "relative_pronoun"]
+    },
+    "TERMINOLOGY": {
+      "mqm_dimension": "Terminology",
+      "types": ["wrong_term", "inconsistent", "institutional"]
+    },
+    "STYLE": {
+      "mqm_dimension": "Style",
+      "types": ["awkward", "unidiomatic", "register_formal", "register_informal"]
+    },
+    "LOCALE": {
+      "mqm_dimension": "Locale conventions",
+      "types": ["date_format", "number_format", "currency_format", "time_format"]
+    },
+    "SPELLING": {
+      "mqm_dimension": "Fluency",
+      "types": ["spelling"]
+    },
+    "PUNCTUATION": {
+      "mqm_dimension": "Fluency",
+      "types": ["punctuation"]
+    }
+  },
+  "severity_levels": ["minor", "major", "critical"],
+  "tom_levels": ["1st_machine", "1st_author", "2nd_reader", "recursive"]
+}

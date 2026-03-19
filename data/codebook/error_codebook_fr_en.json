@@ -1,0 +1,135 @@
+{
+  "version": "1.0.0",
+  "language_pair": "fr-en",
+  "entries": [
+    {
+      "codebook_id": "ACC-MIST-FC-001",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "false_cognate",
+      "mqm_path": "Accuracy > Mistranslation > False Friend",
+      "severity_range": ["major", "critical"],
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "definition": "A word superficially similar in form to a word in the source language is used instead of the correct translation, producing an incorrect meaning transfer due to cognate interference.",
+      "boundary_not": "If the wrong word is not a cognate but simply the wrong synonym, use word_sense instead. If the word is domain-specific, consider TERMINOLOGY > wrong_term.",
+      "directions": ["fr_to_en", "en_to_fr"],
+      "examples": [
+        {
+          "direction": "fr_to_en",
+          "source": "Il assiste à la conférence depuis ce matin.",
+          "reference": "He has been attending the conference since this morning.",
+          "injected": "He has been <MISTRANSLATION type=\"false_cognate\" severity=\"major\" tom=\"1st_machine\" desc=\"assister à ≠ assist; means 'attend'\">assisting at</MISTRANSLATION> the conference since this morning.",
+          "explanation": {
+            "mt_interpretation": "The MT system mapped 'assiste à' to the English cognate 'assist at' due to surface-form similarity.",
+            "actual_meaning": "In French, 'assister à' means 'to attend' or 'be present at', not 'to help'.",
+            "reader_impact": "A reader would understand the subject is helping with the conference organization, not attending it.",
+            "correction_rationale": "'Assister à' translates to 'attend'. The false friend 'assist' means 'aider' in French."
+          }
+        },
+        {
+          "direction": "fr_to_en",
+          "source": "C'est une personne très sensible.",
+          "reference": "She is a very sensitive person.",
+          "injected": "She is a very <MISTRANSLATION type=\"false_cognate\" severity=\"major\" tom=\"1st_machine\" desc=\"sensible ≠ sensible; FR sensible = sensitive\">sensible</MISTRANSLATION> person.",
+          "explanation": {
+            "mt_interpretation": "The system preserved the surface form 'sensible' without translating it, since the word exists in both languages.",
+            "actual_meaning": "French 'sensible' means 'sensitive' or 'easily affected'. English 'sensible' means 'raisonnable'.",
+            "reader_impact": "A reader would think the person is practical and reasonable, not emotionally sensitive.",
+            "correction_rationale": "The correct translation is 'sensitive'. The English 'sensible' would be 'raisonnable' in French."
+          }
+        },
+        {
+          "direction": "fr_to_en",
+          "source": "Elle a éventuellement accepté de participer.",
+          "reference": "She possibly agreed to participate.",
+          "injected": "She <MISTRANSLATION type=\"false_cognate\" severity=\"major\" tom=\"1st_machine\" desc=\"éventuellement ≠ eventually; means 'possibly'\">eventually</MISTRANSLATION> agreed to participate.",
+          "explanation": {
+            "mt_interpretation": "The system mapped 'éventuellement' to its English lookalike 'eventually' based on form similarity.",
+            "actual_meaning": "'Éventuellement' in French means 'possibly' or 'if the case arises'. 'Eventually' means 'finalement'.",
+            "reader_impact": "A reader would understand she agreed after some delay, not that her agreement was uncertain.",
+            "correction_rationale": "Correct: 'possibly' or 'potentially'. 'Eventually' implies temporal progression, not possibility."
+          }
+        }
+      ]
+    },
+    {
+      "codebook_id": "FLU-GRAM-AG-001",
+      "primary_tag": "GRAMMAR",
+      "error_type": "agreement_gender",
+      "mqm_path": "Linguistic conventions > Grammar > Agreement > Gender",
+      "severity_range": ["minor", "major"],
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [],
+      "definition": "The past participle, adjective, or determiner fails to agree in grammatical gender with the noun or subject it modifies. Critical for EN→FR direction where English has no grammatical gender.",
+      "boundary_not": "If the error is in number agreement (singular/plural), use agreement_number. If the gender error changes meaning (e.g., 'le/la critique'), consider MISTRANSLATION > word_sense.",
+      "directions": ["en_to_fr"],
+      "examples": [
+        {
+          "direction": "en_to_fr",
+          "source": "She went to Paris yesterday.",
+          "reference": "Elle est allée à Paris hier.",
+          "injected": "Elle est <GRAMMAR type=\"agreement_gender\" severity=\"major\" tom=\"1st_machine\" desc=\"past participle must agree with feminine subject 'elle'\">allé</GRAMMAR> à Paris hier.",
+          "explanation": {
+            "mt_interpretation": "The MT system generated the masculine default form 'allé' instead of agreeing with the feminine subject 'elle'.",
+            "actual_meaning": "The source refers to a female subject ('she'). In French, past participles with 'être' must agree in gender.",
+            "reader_impact": "A reader would notice a grammatical error but might still understand the meaning. In formal texts, this signals poor quality.",
+            "correction_rationale": "'Allée' (feminine) is required because the subject 'elle' is feminine and the auxiliary is 'être'."
+          }
+        },
+        {
+          "direction": "en_to_fr",
+          "source": "The European directive must be transposed into national law.",
+          "reference": "La directive européenne doit être transposée en droit national.",
+          "injected": "La directive européenne doit être <GRAMMAR type=\"agreement_gender\" severity=\"minor\" tom=\"1st_machine\" desc=\"past participle must agree with feminine 'directive'\">transposé</GRAMMAR> en droit national.",
+          "explanation": {
+            "mt_interpretation": "The system defaulted to the masculine past participle form, ignoring the feminine gender of 'directive'.",
+            "actual_meaning": "'Directive' is feminine in French. Past participles with 'être' in passive constructions must agree with the subject.",
+            "reader_impact": "A native reader would notice the agreement error immediately, reducing trust in the translation quality.",
+            "correction_rationale": "'Transposée' (feminine) agrees with 'directive' (feminine noun) in this passive construction."
+          }
+        }
+      ]
+    },
+    {
+      "codebook_id": "ACC-OMIS-CL-001",
+      "primary_tag": "OMISSION",
+      "error_type": "clause",
+      "mqm_path": "Accuracy > Omission > Clause",
+      "severity_range": ["major", "critical"],
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "definition": "A subordinate clause, coordinate clause, or significant phrase from the source text is completely absent from the translation, resulting in information loss.",
+      "boundary_not": "If only a single modifier or adjective is dropped, use modifier instead. If a discourse connector is dropped without losing propositional content, use discourse_marker.",
+      "directions": ["fr_to_en", "en_to_fr"],
+      "examples": [
+        {
+          "direction": "fr_to_en",
+          "source": "Le ministre de la Santé et de la Prévention a annoncé de nouvelles mesures.",
+          "reference": "The Minister of Health and Prevention announced new measures.",
+          "injected": "The Minister of <OMISSION type=\"clause\" severity=\"major\" tom=\"1st_author\" desc=\"'and Prevention' dropped from ministerial title\">Health</OMISSION> announced new measures.",
+          "explanation": {
+            "mt_interpretation": "The NMT system compressed the long noun phrase, dropping the coordinated element 'et de la Prévention' while maintaining a fluent output.",
+            "actual_meaning": "The source refers to the Minister of Health AND Prevention — a specific ministerial portfolio covering both health services and preventive measures.",
+            "reader_impact": "A reader would not know this ministry also covers prevention policy, potentially misunderstanding the scope of the announced measures.",
+            "correction_rationale": "The full title 'Minister of Health and Prevention' must be preserved as it identifies a specific governmental role."
+          }
+        },
+        {
+          "direction": "fr_to_en",
+          "source": "Les États membres notifient la Commission sans délai.",
+          "reference": "Member States shall notify the Commission without delay.",
+          "injected": "Member States shall notify the <OMISSION type=\"clause\" severity=\"major\" tom=\"1st_author\" desc=\"temporal qualifier 'without delay' omitted from legal obligation\">Commission.</OMISSION>",
+          "explanation": {
+            "mt_interpretation": "The system produced a fluent translation but dropped the temporal qualifier 'sans délai', which is legally significant.",
+            "actual_meaning": "The source mandates notification 'without delay' — a specific temporal obligation in EU legal language.",
+            "reader_impact": "A reader would understand there is a notification requirement but not that it must be done immediately.",
+            "correction_rationale": "'Without delay' (sans délai) is a legal term imposing an urgency requirement that must be preserved."
+          }
+        }
+      ]
+    }
+  ]
+}

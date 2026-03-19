@@ -2,14 +2,14 @@
 
 from tompe.schemas import (
     AnnotationLevel,
-    AssessmentItem,
     ContrastiveExplanation,
     CorpusSegment,
     InjectedError,
-    ItemMetadata,
     ItemPathway,
     MQMCategory,
+    PrimaryTag,
     Severity,
+    SkillID,
     TOMLevel,
 )
 from tompe.schemas.annotation import AnnotationConfig
@@ -39,10 +39,11 @@ def test_injected_error_creation():
         span_end=20,
         original_text="adopté",
         injected_text="actué",
-        mqm_category=MQMCategory.ACCURACY,
-        mqm_subcategory="mistranslation",
+        primary_tag=PrimaryTag.MISTRANSLATION,
+        error_type="false_cognate",
         severity=Severity.MAJOR,
         tom_level=TOMLevel.FIRST_ORDER_MACHINE,
+        primary_skill=SkillID.S3,
         explanation=ContrastiveExplanation(
             mt_interpretation="The MT interpreted 'adopted' as a false cognate",
             actual_meaning="The source means 'adopted/passed (legislation)'",
@@ -50,8 +51,9 @@ def test_injected_error_creation():
             correction_rationale="'adopté' is the correct translation in legal context",
         ),
     )
-    assert error.mqm_category == MQMCategory.ACCURACY
+    assert error.primary_tag == PrimaryTag.MISTRANSLATION
     assert error.tom_level == TOMLevel.FIRST_ORDER_MACHINE
+    assert error.primary_skill == SkillID.S3
 
 
 def test_annotation_config_defaults():
@@ -60,9 +62,15 @@ def test_annotation_config_defaults():
     assert config.show_mqm_labels is False
 
 
-def test_mqm_enum_values():
+def test_primary_tag_enum_values():
+    assert PrimaryTag.MISTRANSLATION.value == "MISTRANSLATION"
+    assert PrimaryTag.GRAMMAR.value == "GRAMMAR"
+    assert len(PrimaryTag) == 10
+
+
+def test_mqm_category_legacy():
+    """Legacy MQMCategory should still work."""
     assert MQMCategory.ACCURACY.value == "accuracy"
-    assert MQMCategory.FLUENCY.value == "fluency"
     assert len(MQMCategory) == 5
 
 
@@ -70,3 +78,9 @@ def test_tom_level_enum_values():
     assert TOMLevel.FIRST_ORDER_MACHINE.value == "1st_machine"
     assert TOMLevel.RECURSIVE_MULTI.value == "recursive"
     assert len(TOMLevel) == 4
+
+
+def test_skill_id_enum():
+    assert SkillID.S1.value == "S1"
+    assert SkillID.S7.value == "S7"
+    assert len(SkillID) == 7

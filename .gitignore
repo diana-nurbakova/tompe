@@ -25,6 +25,7 @@ credentials*.json
 # Data artifacts (large files)
 data/corpora/
 data/terminology/
+data/wmt-mqm/
 *.parquet
 *.h5
 

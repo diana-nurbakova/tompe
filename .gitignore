@@ -34,3 +34,6 @@ uv.lock
 
 # claude
 .claude/
+
+# specs
+specs/

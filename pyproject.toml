@@ -45,6 +45,7 @@ experiments = [
 tompe-api = "tompe.services.api:main"
 tompe-student = "tompe.interfaces.student_app:main"
 tompe-teacher = "tompe.interfaces.teacher_app:main"
+tompe-study = "study.study_app:main"
 
 [tool.ruff]
 target-version = "py311"

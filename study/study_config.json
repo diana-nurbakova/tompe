@@ -1,0 +1,59 @@
+{
+  "study_id": "ectel2026_pilot",
+  "title": "MT Quality Evaluation Study",
+  "description": "Evaluating machine-translated texts from French to English.",
+  "status": "draft",
+  "created_at": "2026-03-21T10:00:00Z",
+  "open_from": "2026-03-27T08:00:00Z",
+  "close_at": "2026-04-02T23:59:00Z",
+  "segment_file": "segments/ectel2026_pilot.json",
+  "form_assignment": "random",
+  "consent": {
+    "title": "Informed Consent",
+    "text": "You are invited to participate in a research study on how people evaluate machine-translated texts.\n\nThis study is part of a research project investigating translation quality assessment. Your participation will help us understand how bilingual readers evaluate automatically translated content.",
+    "researcher_name": "[Name]",
+    "researcher_email": "[Email]",
+    "institution": "[University]",
+    "data_policy": "anonymous",
+    "withdrawal_text": "You may close the browser at any time to withdraw. Partial responses will be deleted."
+  },
+  "post_task_questions": [
+    {
+      "id": "lang_fr",
+      "type": "likert",
+      "text": "How would you rate your French reading ability?",
+      "scale": 5,
+      "labels": ["Beginner", "Elementary", "Intermediate", "Advanced", "Native/near-native"]
+    },
+    {
+      "id": "lang_en",
+      "type": "likert",
+      "text": "How would you rate your English reading ability?",
+      "scale": 5,
+      "labels": ["Beginner", "Elementary", "Intermediate", "Advanced", "Native/near-native"]
+    },
+    {
+      "id": "field",
+      "type": "text",
+      "text": "What is your field of study?"
+    },
+    {
+      "id": "study_level",
+      "type": "single_choice",
+      "text": "What is your current level of study?",
+      "options": ["L1/L2/L3 (undergraduate)", "M1/M2 (master's)", "Doctorat (PhD)", "Other"]
+    },
+    {
+      "id": "mt_usage",
+      "type": "single_choice",
+      "text": "How often do you use machine translation tools (Google Translate, DeepL, etc.)?",
+      "options": ["Daily", "Several times a week", "A few times a month", "Rarely", "Never"]
+    },
+    {
+      "id": "strategy",
+      "type": "textarea",
+      "text": "In a few words, describe the strategy you used to decide whether a translation was acceptable.",
+      "placeholder": "e.g., I read the English first, then compared with the French..."
+    }
+  ]
+}

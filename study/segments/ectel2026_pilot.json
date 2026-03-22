@@ -1,0 +1,271 @@
+{
+  "study_id": "ectel2026_pilot",
+  "source_lang": "fr",
+  "target_lang": "en",
+  "segments": [
+    {
+      "id": "seg01",
+      "source_text": "[PLACEHOLDER - L1 surface/grammar error segment]",
+      "target_text": "[PLACEHOLDER - translation with agreement error]",
+      "condition": "L1",
+      "error_type": "agreement",
+      "tom_level": 1,
+      "error_description": "[PLACEHOLDER - describe the injected error]",
+      "form_variant": null
+    },
+    {
+      "id": "seg02",
+      "source_text": "[PLACEHOLDER - L1 surface/grammar error segment]",
+      "target_text": "[PLACEHOLDER - translation with spelling error]",
+      "condition": "L1",
+      "error_type": "spelling",
+      "tom_level": 1,
+      "error_description": "[PLACEHOLDER]",
+      "form_variant": null
+    },
+    {
+      "id": "seg03",
+      "source_text": "[PLACEHOLDER - L1 surface/grammar error segment]",
+      "target_text": "[PLACEHOLDER - translation with punctuation error]",
+      "condition": "L1",
+      "error_type": "punctuation",
+      "tom_level": 1,
+      "error_description": "[PLACEHOLDER]",
+      "form_variant": null
+    },
+    {
+      "id": "seg04",
+      "source_text": "[PLACEHOLDER - L1 surface/grammar error segment]",
+      "target_text": "[PLACEHOLDER - translation with word order error]",
+      "condition": "L1",
+      "error_type": "word_order",
+      "tom_level": 1,
+      "error_description": "[PLACEHOLDER]",
+      "form_variant": null
+    },
+    {
+      "id": "seg05",
+      "source_text": "[PLACEHOLDER - L2 meaning error segment]",
+      "condition": "L2",
+      "error_type": "false_cognate",
+      "tom_level": 2,
+      "error_description": "[PLACEHOLDER - false cognate description]",
+      "form_variant": {
+        "A": {
+          "target_text": "[PLACEHOLDER - fluent false cognate translation]",
+          "fluency": "fluent"
+        },
+        "B": {
+          "target_text": "[PLACEHOLDER - disfluent false cognate translation]",
+          "fluency": "disfluent"
+        }
+      }
+    },
+    {
+      "id": "seg06",
+      "source_text": "[PLACEHOLDER - L2 meaning error segment]",
+      "condition": "L2",
+      "error_type": "false_cognate",
+      "tom_level": 2,
+      "error_description": "[PLACEHOLDER]",
+      "form_variant": {
+        "A": {
+          "target_text": "[PLACEHOLDER - fluent]",
+          "fluency": "fluent"
+        },
+        "B": {
+          "target_text": "[PLACEHOLDER - disfluent]",
+          "fluency": "disfluent"
+        }
+      }
+    },
+    {
+      "id": "seg07",
+      "source_text": "[PLACEHOLDER - L2 meaning error segment]",
+      "condition": "L2",
+      "error_type": "mistranslation",
+      "tom_level": 2,
+      "error_description": "[PLACEHOLDER]",
+      "form_variant": {
+        "A": {
+          "target_text": "[PLACEHOLDER - fluent]",
+          "fluency": "fluent"
+        },
+        "B": {
+          "target_text": "[PLACEHOLDER - disfluent]",
+          "fluency": "disfluent"
+        }
+      }
+    },
+    {
+      "id": "seg08",
+      "source_text": "[PLACEHOLDER - L2 meaning error segment]",
+      "condition": "L2",
+      "error_type": "mistranslation",
+      "tom_level": 2,
+      "error_description": "[PLACEHOLDER]",
+      "form_variant": {
+        "A": {
+          "target_text": "[PLACEHOLDER - fluent]",
+          "fluency": "fluent"
+        },
+        "B": {
+          "target_text": "[PLACEHOLDER - disfluent]",
+          "fluency": "disfluent"
+        }
+      }
+    },
+    {
+      "id": "seg09",
+      "source_text": "[PLACEHOLDER - L2 meaning error segment]",
+      "condition": "L2",
+      "error_type": "wrong_sense",
+      "tom_level": 2,
+      "error_description": "[PLACEHOLDER]",
+      "form_variant": {
+        "A": {
+          "target_text": "[PLACEHOLDER - fluent]",
+          "fluency": "fluent"
+        },
+        "B": {
+          "target_text": "[PLACEHOLDER - disfluent]",
+          "fluency": "disfluent"
+        }
+      }
+    },
+    {
+      "id": "seg10",
+      "source_text": "[PLACEHOLDER - L2 meaning error segment]",
+      "condition": "L2",
+      "error_type": "wrong_sense",
+      "tom_level": 2,
+      "error_description": "[PLACEHOLDER]",
+      "form_variant": {
+        "A": {
+          "target_text": "[PLACEHOLDER - fluent]",
+          "fluency": "fluent"
+        },
+        "B": {
+          "target_text": "[PLACEHOLDER - disfluent]",
+          "fluency": "disfluent"
+        }
+      }
+    },
+    {
+      "id": "seg11",
+      "source_text": "[PLACEHOLDER - L2 meaning error segment]",
+      "condition": "L2",
+      "error_type": "omission",
+      "tom_level": 2,
+      "error_description": "[PLACEHOLDER]",
+      "form_variant": {
+        "A": {
+          "target_text": "[PLACEHOLDER - fluent]",
+          "fluency": "fluent"
+        },
+        "B": {
+          "target_text": "[PLACEHOLDER - disfluent]",
+          "fluency": "disfluent"
+        }
+      }
+    },
+    {
+      "id": "seg12",
+      "source_text": "[PLACEHOLDER - L2 meaning error segment]",
+      "condition": "L2",
+      "error_type": "omission",
+      "tom_level": 2,
+      "error_description": "[PLACEHOLDER]",
+      "form_variant": {
+        "A": {
+          "target_text": "[PLACEHOLDER - fluent]",
+          "fluency": "fluent"
+        },
+        "B": {
+          "target_text": "[PLACEHOLDER - disfluent]",
+          "fluency": "disfluent"
+        }
+      }
+    },
+    {
+      "id": "seg13",
+      "source_text": "[PLACEHOLDER - L3 completeness error segment]",
+      "target_text": "[PLACEHOLDER - translation with omission]",
+      "condition": "L3",
+      "error_type": "omission",
+      "tom_level": 3,
+      "error_description": "[PLACEHOLDER]",
+      "form_variant": null
+    },
+    {
+      "id": "seg14",
+      "source_text": "[PLACEHOLDER - L3 completeness error segment]",
+      "target_text": "[PLACEHOLDER - translation with addition]",
+      "condition": "L3",
+      "error_type": "addition",
+      "tom_level": 3,
+      "error_description": "[PLACEHOLDER]",
+      "form_variant": null
+    },
+    {
+      "id": "seg15",
+      "source_text": "[PLACEHOLDER - L3 completeness error segment]",
+      "target_text": "[PLACEHOLDER - translation with register error]",
+      "condition": "L3",
+      "error_type": "register",
+      "tom_level": 3,
+      "error_description": "[PLACEHOLDER]",
+      "form_variant": null
+    },
+    {
+      "id": "seg16",
+      "source_text": "[PLACEHOLDER - L3 completeness error segment]",
+      "target_text": "[PLACEHOLDER - translation with terminology error]",
+      "condition": "L3",
+      "error_type": "terminology",
+      "tom_level": 3,
+      "error_description": "[PLACEHOLDER]",
+      "form_variant": null
+    },
+    {
+      "id": "seg17",
+      "source_text": "[PLACEHOLDER - clean segment]",
+      "target_text": "[PLACEHOLDER - correct translation]",
+      "condition": "clean",
+      "error_type": null,
+      "tom_level": null,
+      "error_description": null,
+      "form_variant": null
+    },
+    {
+      "id": "seg18",
+      "source_text": "[PLACEHOLDER - clean segment]",
+      "target_text": "[PLACEHOLDER - correct translation]",
+      "condition": "clean",
+      "error_type": null,
+      "tom_level": null,
+      "error_description": null,
+      "form_variant": null
+    },
+    {
+      "id": "seg19",
+      "source_text": "[PLACEHOLDER - clean segment]",
+      "target_text": "[PLACEHOLDER - correct translation]",
+      "condition": "clean",
+      "error_type": null,
+      "tom_level": null,
+      "error_description": null,
+      "form_variant": null
+    },
+    {
+      "id": "seg20",
+      "source_text": "[PLACEHOLDER - clean segment]",
+      "target_text": "[PLACEHOLDER - correct translation]",
+      "condition": "clean",
+      "error_type": null,
+      "tom_level": null,
+      "error_description": null,
+      "form_variant": null
+    }
+  ]
+}

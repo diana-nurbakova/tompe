@@ -164,18 +164,21 @@ def figure_f3_fisher_ratios(
     """Bar chart: Fisher discriminant ratio for each ground metric + baselines."""
     _setup_style()
 
-    # Select structured metrics + baselines
+    # Select structured metrics + baselines (including new Manhattan & JSD)
     display_order = [
+        "euclidean", "manhattan", "cosine", "jsd",
         "M1_trivial", "M5_linear", "M2_graph", "M3_weighted", "M4_2d",
-        "euclidean", "cosine",
     ]
     display_labels = [
+        "Euclidean", "Manhattan", "Cosine", "JSD",
         "M1 Trivial", "M5 Linear", "M2 Graph", "M3 Weighted", "M4 2D",
-        "Euclidean", "Cosine",
     ]
     ratios = [b1_results.get(k, {}).get("fisher_ratio", 0) for k in display_order]
 
-    colors = ["#ccc", "#aaa", "#2196F3", "#1976D2", "#0D47A1", "#FF9800", "#FF5722"]
+    colors = [
+        "#FF9800", "#FFC107", "#FF5722", "#E91E63",  # baselines
+        "#ccc", "#aaa", "#2196F3", "#1976D2", "#0D47A1",  # OT metrics
+    ]
 
     fig, ax = plt.subplots(figsize=(10, 5))
     bars = ax.bar(display_labels, ratios, color=colors, edgecolor="white")

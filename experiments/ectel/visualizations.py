@@ -331,3 +331,83 @@ def figure_exp4_overediting_bars(exp4_results: Dict, output_dir: Path) -> Path:
     fig.savefig(path, dpi=150, bbox_inches="tight")
     plt.close(fig)
     return path
+
+
+def figure_exp3b_learning_curves(exp3b_results: dict, output_dir: Path) -> Path:
+    """Learning curves by ToM level for Exp 3b (developmental gradient).
+
+    Left panel: learning curves (performance over sessions) per error type.
+    Right panel: phase improvement bar chart (early vs late by ToM level).
+    """
+    # Find the longitudinal source (Koponen2015)
+    longitudinal = None
+    for src in exp3b_results["per_source"]:
+        if src["source"] == "Koponen2015":
+            longitudinal = src
+            break
+
+    if not longitudinal:
+        return None
+
+    per_type = longitudinal["per_type"]
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
+
+    # ── Left panel: Learning curves ──
+    for entry in per_type:
+        skill = entry["skill"]
+        perf = entry["performance_by_session"]
+        sessions = list(range(1, len(perf) + 1))
+        color = SKILL_COLORS.get(skill, "#666666")
+        label = f"{skill} {entry['error_type']}"
+        ax1.plot(sessions, perf, "o-", color=color, label=label,
+                 linewidth=2, markersize=5)
+
+    # Mastery threshold line
+    ax1.axhline(0.80, color="gray", linestyle="--", alpha=0.5, linewidth=1)
+    ax1.text(0.6, 0.81, "Mastery threshold (0.80)", fontsize=7, color="gray",
+             alpha=0.7)
+
+    ax1.set_xlabel("Training Session", fontsize=10)
+    ax1.set_ylabel("Correct Edit Rate", fontsize=10)
+    ax1.set_title("Learning Curves by Error Type", fontsize=11, fontweight="bold")
+    ax1.legend(fontsize=7, loc="lower right")
+    ax1.grid(True, alpha=0.2)
+    ax1.set_ylim(0.15, 1.0)
+    ax1.set_xticks(range(1, longitudinal["n_sessions"] + 1))
+
+    # ── Right panel: Phase improvement bar chart ──
+    skills = [e["skill"] for e in per_type]
+    labels = [f"{e['skill']}\n{e['error_type'][:12]}" for e in per_type]
+    early_imps = [e["phases"]["early_improvement"] for e in per_type]
+    late_imps = [e["phases"]["late_improvement"] for e in per_type]
+
+    x = np.arange(len(skills))
+    width = 0.35
+
+    ax2.bar(x - width / 2, early_imps, width, label="Early improvement",
+            color=COLORS["low"], edgecolor="white")
+    ax2.bar(x + width / 2, late_imps, width, label="Late improvement",
+            color=COLORS["high"], edgecolor="white")
+
+    ax2.set_xticks(x)
+    ax2.set_xticklabels(labels, fontsize=8)
+    ax2.set_ylabel("Improvement Magnitude", fontsize=10)
+    ax2.set_title("Phase Improvement by Error Type", fontsize=11, fontweight="bold")
+    ax2.legend(fontsize=8)
+    ax2.grid(True, axis="y", alpha=0.2)
+
+    # Add tau annotation
+    methods = longitudinal["methods"]
+    tau_a = methods["A_mastery_session"]["kendall_tau"]
+    p_a = methods["A_mastery_session"]["p_value"]
+    fig.suptitle(
+        "Experiment 3b: Developmental ToM Gradient — "
+        r"Mastery ordering $\tau$" + f"={tau_a:.3f}, p={p_a:.3f}",
+        fontsize=13, fontweight="bold", y=1.02,
+    )
+
+    fig.tight_layout()
+    path = output_dir / "F_exp3b_developmental.png"
+    fig.savefig(path, dpi=150, bbox_inches="tight")
+    plt.close(fig)
+    return path

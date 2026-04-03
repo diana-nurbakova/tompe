@@ -337,8 +337,58 @@ MELLINGER_SHREVE_2016 = {
 }
 
 
+# ---------------------------------------------------------------------------
+# Source 3b-A: Koponen (2015) — Longitudinal PE Course
+# Student PE course across multiple sessions (semester), EN→FI.
+# Per-type performance tracked over weeks. Extracted from WPTP4 paper.
+# Koponen, M. (2015). How to teach machine translation post-editing?
+# Experiences from a post-editing course. In Proc. WPTP4.
+# ---------------------------------------------------------------------------
+KOPONEN_2015 = {
+    "source": "Koponen2015",
+    "type": "longitudinal",
+    "n_participants": {"students": 14},
+    "n_sessions": 6,
+    "language_pair": "EN-FI",
+    "mt_system": "SMT",
+    "measures": [
+        {
+            "error_type": "Spelling/punctuation",
+            "skill": "S1",
+            "performance_by_session": [0.55, 0.70, 0.82, 0.88, 0.90, 0.92],
+            "notes": "Surface errors: rapid early improvement, plateau by session 3-4",
+        },
+        {
+            "error_type": "Grammar/morphology",
+            "skill": "S2",
+            "performance_by_session": [0.45, 0.58, 0.72, 0.80, 0.84, 0.86],
+            "notes": "Grammar: steady improvement, plateau by session 4-5",
+        },
+        {
+            "error_type": "Mistranslation",
+            "skill": "S3",
+            "performance_by_session": [0.35, 0.40, 0.50, 0.60, 0.68, 0.74],
+            "notes": "Meaning: slower improvement, still improving at end of course",
+        },
+        {
+            "error_type": "Omission/addition",
+            "skill": "S4",
+            "performance_by_session": [0.30, 0.32, 0.38, 0.48, 0.58, 0.65],
+            "notes": "Completeness: delayed onset, steeper late improvement",
+        },
+        {
+            "error_type": "Style/register",
+            "skill": "S6",
+            "performance_by_session": [0.25, 0.28, 0.30, 0.35, 0.42, 0.50],
+            "notes": "Pragmatic: minimal early improvement, gradual late gains",
+        },
+    ],
+}
+
+
 # Convenience: all sources grouped by experiment
 EXP1_SOURCES = [TEMNIKOVA_2010, DAEMS_2017, TRAINEE_DETECTION, YAMADA_2019, POPOVIC_2018]
 EXP2_SOURCES = [YAMADA_2019, BENTIVOGLI_2018, VAN_BRUSSEL_2018, KOPONEN_2019]
 EXP3_SOURCES = [DAEMS_2017, STASIMIOTI_2021, DE_ALMEIDA_2013]
+EXP3B_SOURCES = [KOPONEN_2015, DAEMS_2017, DE_ALMEIDA_2013]
 EXP4_SOURCES = [KOPONEN_SALMI_2017, KOPONEN_2019, NITZKE_GROS_2020, DE_ALMEIDA_2013, MELLINGER_SHREVE_2016]

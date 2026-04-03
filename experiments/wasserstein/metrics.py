@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import numpy as np
 import ot
+from scipy.spatial.distance import cityblock, jensenshannon
 
 from .config import N_SKILLS, REG_ENTROPIC, SKILL_LABELS, TARGET_PROFILE
 
@@ -120,6 +121,32 @@ def cosine_distance(
     if norms < _EPS:
         return 1.0
     return float(1.0 - dot / norms)
+
+
+def manhattan_distance(
+    profile_a: dict[str, float] | np.ndarray,
+    profile_b: dict[str, float] | np.ndarray,
+) -> float:
+    """L1 distance between raw mastery vectors."""
+    a = profile_a if isinstance(profile_a, np.ndarray) else profile_to_array(profile_a)
+    b = profile_b if isinstance(profile_b, np.ndarray) else profile_to_array(profile_b)
+    return float(cityblock(a, b))
+
+
+def jsd_distance(
+    profile_a: dict[str, float] | np.ndarray,
+    profile_b: dict[str, float] | np.ndarray,
+) -> float:
+    """Square root of Jensen-Shannon divergence between normalised profiles."""
+    a = profile_a if isinstance(profile_a, np.ndarray) else profile_to_array(profile_a)
+    b = profile_b if isinstance(profile_b, np.ndarray) else profile_to_array(profile_b)
+    # Normalise to distributions (same as W1 pipeline)
+    a = np.maximum(a, _EPS)
+    b = np.maximum(b, _EPS)
+    a = a / a.sum()
+    b = b / b.sum()
+    # scipy.spatial.distance.jensenshannon returns sqrt(JSD) by default
+    return float(jensenshannon(a, b))
 
 
 # =============================================================================

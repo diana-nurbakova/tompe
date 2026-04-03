@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "timestamp": "2026-03-19T21:15:29.305985",
+    "timestamp": "2026-04-01T20:09:58.324399",
     "spec_version": "ECTEL2026_v1",
     "tag": "no_temnikova",
     "excluded_sources": [
@@ -11,6 +11,7 @@
       "exp1": 4,
       "exp2": 4,
       "exp3": 3,
+      "exp3b": 3,
       "exp4": 5
     }
   },
@@ -408,6 +409,230 @@
       "mean_tau": 1.0
     },
     "interpretation": "CONFIRMED: All 2 sources with per-type data show widening expert-novice gap with ToM level."
+  },
+  "exp3b": {
+    "experiment": "Exp3b_DevelopmentalGradient",
+    "prediction": "Low-ToM skills (S1-S2) mastered before high-ToM skills (S3+). Mastery session increases with ToM rank; early improvement steeper for low-ToM; late/early improvement ratio increases with ToM rank.",
+    "per_source": [
+      {
+        "source": "Koponen2015",
+        "n": 5,
+        "n_sessions": 6,
+        "methods": {
+          "A_mastery_session": {
+            "description": "First session at mastery threshold (0.80)",
+            "kendall_tau": 0.8819,
+            "p_value": 0.0459,
+            "prediction_met": true
+          },
+          "B_learning_curve": {
+            "description": "Early slope decreases with ToM rank (low-ToM learns faster early)",
+            "kendall_tau": -0.8889,
+            "p_value": 0.0374,
+            "prediction_met": true
+          },
+          "C_phase_improvement": {
+            "description": "Late/early improvement ratio increases with ToM rank",
+            "kendall_tau": 0.9487,
+            "p_value": 0.023,
+            "prediction_met": true
+          }
+        },
+        "per_type": [
+          {
+            "error_type": "Spelling/punctuation",
+            "skill": "S1",
+            "tom_rank": 1,
+            "performance_by_session": [
+              0.55,
+              0.7,
+              0.82,
+              0.88,
+              0.9,
+              0.92
+            ],
+            "mastery_session": 3,
+            "curve": {
+              "overall_slope": 0.0717,
+              "early_slope": 0.135,
+              "late_slope": 0.02,
+              "intercept": 0.544
+            },
+            "phases": {
+              "phase_means": [
+                0.625,
+                0.85,
+                0.91
+              ],
+              "early_improvement": 0.225,
+              "late_improvement": 0.06,
+              "ratio_late_to_early": 0.2667
+            }
+          },
+          {
+            "error_type": "Grammar/morphology",
+            "skill": "S2",
+            "tom_rank": 2,
+            "performance_by_session": [
+              0.45,
+              0.58,
+              0.72,
+              0.8,
+              0.84,
+              0.86
+            ],
+            "mastery_session": 4,
+            "curve": {
+              "overall_slope": 0.0831,
+              "early_slope": 0.135,
+              "late_slope": 0.03,
+              "intercept": 0.4173
+            },
+            "phases": {
+              "phase_means": [
+                0.515,
+                0.76,
+                0.85
+              ],
+              "early_improvement": 0.245,
+              "late_improvement": 0.09,
+              "ratio_late_to_early": 0.3673
+            }
+          },
+          {
+            "error_type": "Mistranslation",
+            "skill": "S3",
+            "tom_rank": 3,
+            "performance_by_session": [
+              0.35,
+              0.4,
+              0.5,
+              0.6,
+              0.68,
+              0.74
+            ],
+            "mastery_session": 7,
+            "curve": {
+              "overall_slope": 0.0826,
+              "early_slope": 0.075,
+              "late_slope": 0.07,
+              "intercept": 0.256
+            },
+            "phases": {
+              "phase_means": [
+                0.375,
+                0.55,
+                0.71
+              ],
+              "early_improvement": 0.175,
+              "late_improvement": 0.16,
+              "ratio_late_to_early": 0.9143
+            }
+          },
+          {
+            "error_type": "Omission/addition",
+            "skill": "S4",
+            "tom_rank": 4,
+            "performance_by_session": [
+              0.3,
+              0.32,
+              0.38,
+              0.48,
+              0.58,
+              0.65
+            ],
+            "mastery_session": 7,
+            "curve": {
+              "overall_slope": 0.0751,
+              "early_slope": 0.04,
+              "late_slope": 0.085,
+              "intercept": 0.1887
+            },
+            "phases": {
+              "phase_means": [
+                0.31,
+                0.43,
+                0.615
+              ],
+              "early_improvement": 0.12,
+              "late_improvement": 0.185,
+              "ratio_late_to_early": 1.5417
+            }
+          },
+          {
+            "error_type": "Style/register",
+            "skill": "S6",
+            "tom_rank": 4,
+            "performance_by_session": [
+              0.25,
+              0.28,
+              0.3,
+              0.35,
+              0.42,
+              0.5
+            ],
+            "mastery_session": 7,
+            "curve": {
+              "overall_slope": 0.0491,
+              "early_slope": 0.025,
+              "late_slope": 0.075,
+              "intercept": 0.178
+            },
+            "phases": {
+              "phase_means": [
+                0.265,
+                0.325,
+                0.46
+              ],
+              "early_improvement": 0.06,
+              "late_improvement": 0.135,
+              "ratio_late_to_early": 2.25
+            }
+          }
+        ],
+        "prediction_met": true,
+        "kendall_tau": 0.8819,
+        "p_value": 0.0459
+      },
+      {
+        "source": "CrossSectional_Reframing",
+        "description": "Method D: experience-gradient analysis (Daems 2017 + De Almeida 2013)",
+        "n": 2,
+        "kendall_tau": 1.0,
+        "p_value": 1.0,
+        "prediction_met": true,
+        "per_type": [
+          {
+            "source": "DeAlmeida2013",
+            "error_type": "Essential (high-ToM proxy)",
+            "skill": "S3",
+            "tom_rank": 3,
+            "expert_performance": 0.85,
+            "novice_performance": 0.6,
+            "expert_novice_ratio": 1.4167,
+            "gap": 0.25
+          },
+          {
+            "source": "DeAlmeida2013",
+            "error_type": "Preferential (low-ToM proxy)",
+            "skill": "S1",
+            "tom_rank": 1,
+            "expert_performance": 0.7,
+            "novice_performance": 0.55,
+            "expert_novice_ratio": 1.2727,
+            "gap": 0.15
+          }
+        ]
+      }
+    ],
+    "aggregate": {
+      "n_sources": 2,
+      "confirmed_count": 2,
+      "n_longitudinal_methods": 3,
+      "n_longitudinal_confirmed": 3,
+      "mean_tau": 0.9409
+    },
+    "interpretation": "CONFIRMED: All 3 longitudinal methods confirm developmental ordering follows ToM hierarchy. All 2 analyses show predicted pattern."
   },
   "exp4": {
     "experiment": "Exp4_OverEditing",

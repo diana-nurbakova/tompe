@@ -16,6 +16,8 @@ from .config import MQM_EXCLUDE, MQM_TO_SKILL, N_SKILLS, SKILL_LABELS
 from .ground_metrics import build_all_metrics
 from .metrics import (
     euclidean_distance,
+    jsd_distance,
+    manhattan_distance,
     pairwise_distances,
     profile_to_array,
     w1_balanced,
@@ -187,17 +189,33 @@ def analysis_a1_interrater_distances(
     Returns dict with Spearman correlations between W₁ and Euclidean rankings.
     """
     results = {}
+
+    # Pre-compute all pairwise baseline distances (metric-independent)
+    euc_distances = []
+    man_distances = []
+    jsd_dists = []
+    pair_keys = []  # track segment pairs for alignment
+
+    for _seg_key, rater_profiles in segment_profiles.items():
+        rater_ids = list(rater_profiles.keys())
+        for ri, rj in combinations(rater_ids, 2):
+            pi = rater_profiles[ri]
+            pj = rater_profiles[rj]
+            euc_distances.append(euclidean_distance(pi, pj))
+            man_distances.append(manhattan_distance(pi, pj))
+            jsd_dists.append(jsd_distance(pi, pj))
+            pair_keys.append((_seg_key, ri, rj))
+
+    n_pairs = len(euc_distances)
+
     for metric_name, cost_matrix in ground_metrics.items():
         w1_distances = []
-        euc_distances = []
-
         for _seg_key, rater_profiles in segment_profiles.items():
             rater_ids = list(rater_profiles.keys())
             for ri, rj in combinations(rater_ids, 2):
                 pi = rater_profiles[ri]
                 pj = rater_profiles[rj]
                 w1_distances.append(w1_balanced(pi, pj, cost_matrix))
-                euc_distances.append(euclidean_distance(pi, pj))
 
         if len(w1_distances) > 2:
             rho, p_val = stats.spearmanr(w1_distances, euc_distances)
@@ -210,6 +228,29 @@ def analysis_a1_interrater_distances(
                 "euc_mean": np.mean(euc_distances),
                 "euc_std": np.std(euc_distances),
             }
+
+    # Manhattan baseline: Spearman correlation with Euclidean ranking
+    if n_pairs > 2:
+        rho_man, p_man = stats.spearmanr(man_distances, euc_distances)
+        results["manhattan"] = {
+            "spearman_rho": float(rho_man),
+            "p_value": float(p_man),
+            "n_pairs": n_pairs,
+            "dist_mean": float(np.mean(man_distances)),
+            "dist_std": float(np.std(man_distances)),
+        }
+
+    # JSD baseline: Spearman correlation with Euclidean ranking
+    if n_pairs > 2:
+        rho_jsd, p_jsd = stats.spearmanr(jsd_dists, euc_distances)
+        results["jsd"] = {
+            "spearman_rho": float(rho_jsd),
+            "p_value": float(p_jsd),
+            "n_pairs": n_pairs,
+            "dist_mean": float(np.mean(jsd_dists)),
+            "dist_std": float(np.std(jsd_dists)),
+        }
+
     return results
 
 

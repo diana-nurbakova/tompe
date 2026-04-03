@@ -16,7 +16,10 @@ from .ground_metrics import build_all_metrics
 from .metrics import (
     cosine_distance,
     euclidean_distance,
+    jsd_distance,
+    manhattan_distance,
     mastery_gap,
+    normalize,
     pairwise_distances,
     profile_to_array,
     trajectory_efficiency,
@@ -86,6 +89,8 @@ def analysis_b1_archetype_discrimination(
     # Baselines
     results["euclidean"] = fisher_ratio("euclidean", euclidean_distance)
     results["cosine"] = fisher_ratio("cosine", cosine_distance)
+    results["manhattan"] = fisher_ratio("manhattan", manhattan_distance)
+    results["jsd"] = fisher_ratio("jsd", jsd_distance)
 
     return results
 
@@ -512,6 +517,93 @@ def _compute_fisher(groups: dict[str, list[float]]) -> float:
 
 
 # =============================================================================
+# B2/B3 baseline helpers: Manhattan & JSD
+# =============================================================================
+
+_EPS = 1e-8
+
+
+def _analysis_b2_baseline_trajectories(
+    students: list[StudentTrajectory],
+) -> dict[str, dict]:
+    """MasteryGap trajectories using Manhattan and JSD as distance to target."""
+    from .config import TARGET_PROFILE
+
+    target_arr = profile_to_array(TARGET_PROFILE)
+    # Normalised target for JSD
+    target_norm = np.maximum(target_arr, _EPS)
+    target_norm = target_norm / target_norm.sum()
+
+    results = {}
+    for metric_name, dist_fn in [("manhattan", manhattan_distance), ("jsd", jsd_distance)]:
+        student_results = {}
+        archetype_aucs: dict[str, list[float]] = {}
+
+        for student in students:
+            gaps = [dist_fn(p, TARGET_PROFILE) for p in student.profiles]
+            auc_mg = float(np.trapz(gaps))
+            student_results[student.student_id] = {
+                "archetype": student.archetype,
+                "mastery_gaps": gaps,
+                "auc_mg": auc_mg,
+            }
+            archetype_aucs.setdefault(student.archetype, []).append(auc_mg)
+
+        groups = [aucs for aucs in archetype_aucs.values() if len(aucs) >= 2]
+        if len(groups) >= 2:
+            h_stat, p_val = stats.kruskal(*groups)
+        else:
+            h_stat, p_val = 0.0, 1.0
+
+        results[metric_name] = {
+            "archetype_auc_means": {
+                k: float(np.mean(v)) for k, v in archetype_aucs.items()
+            },
+            "kruskal_wallis": {"H": float(h_stat), "p_value": float(p_val)},
+        }
+
+    return results
+
+
+def _analysis_b3_baseline_efficiency(
+    students: list[StudentTrajectory],
+) -> dict[str, dict]:
+    """Trajectory efficiency using Manhattan and JSD."""
+    results = {}
+
+    for metric_name, dist_fn in [("manhattan", manhattan_distance), ("jsd", jsd_distance)]:
+        archetype_effs: dict[str, list[float]] = {}
+
+        for student in students:
+            traj = student.profiles
+            if len(traj) < 2:
+                eff = 1.0
+            else:
+                direct = dist_fn(traj[0], traj[-1])
+                cumulative = sum(dist_fn(traj[t], traj[t + 1]) for t in range(len(traj) - 1))
+                eff = float(direct / cumulative) if cumulative > _EPS else 1.0
+            archetype_effs.setdefault(student.archetype, []).append(eff)
+
+        groups = [effs for effs in archetype_effs.values() if len(effs) >= 2]
+        if len(groups) >= 2:
+            f_stat, p_val = stats.f_oneway(*groups)
+        else:
+            f_stat, p_val = 0.0, 1.0
+
+        results[metric_name] = {
+            "archetype_means": {
+                k: float(np.mean(v)) for k, v in archetype_effs.items()
+            },
+            "archetype_stds": {
+                k: float(np.std(v)) for k, v in archetype_effs.items()
+            },
+            "anova": {"F": float(f_stat), "p_value": float(p_val)},
+        }
+
+    return results
+
+
+# =============================================================================
 # Full Track B pipeline
 # =============================================================================
 
@@ -542,9 +634,21 @@ def run_track_b(
     logger.info("Running B2: MasteryGap trajectories...")
     b2_results = analysis_b2_mastery_gap_trajectories(students, primary_metric)
 
+    # B2 baselines: Manhattan and JSD MasteryGap trajectories
+    logger.info("Running B2 baselines: Manhattan & JSD trajectories...")
+    b2_baselines = _analysis_b2_baseline_trajectories(students)
+    b2_results["manhattan"] = b2_baselines["manhattan"]
+    b2_results["jsd"] = b2_baselines["jsd"]
+
     # B3: Trajectory efficiency
     logger.info("Running B3: Trajectory efficiency...")
     b3_results = analysis_b3_trajectory_efficiency(students, primary_metric)
+
+    # B3 baselines: Manhattan and JSD trajectory efficiency
+    logger.info("Running B3 baselines: Manhattan & JSD efficiency...")
+    b3_baselines = _analysis_b3_baseline_efficiency(students)
+    b3_results["manhattan"] = b3_baselines["manhattan"]
+    b3_results["jsd"] = b3_baselines["jsd"]
 
     # B4: Barycenter
     logger.info("Running B4: Barycenter comparison...")

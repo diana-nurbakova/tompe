@@ -25,11 +25,12 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from experiments.ectel.data.published_data import (
-    EXP1_SOURCES, EXP2_SOURCES, EXP3_SOURCES, EXP4_SOURCES,
+    EXP1_SOURCES, EXP2_SOURCES, EXP3_SOURCES, EXP3B_SOURCES, EXP4_SOURCES,
 )
 from experiments.ectel import exp1_difficulty_ordering as exp1
 from experiments.ectel import exp2_fluency_paradox as exp2
 from experiments.ectel import exp3_experience_interaction as exp3
+from experiments.ectel import exp3b_developmental as exp3b
 from experiments.ectel import exp4_overediting as exp4
 from experiments.ectel import exp5_convergence as exp5
 from experiments.ectel import visualizations as viz
@@ -120,7 +121,7 @@ def print_summary(all_results: dict):
     print(title)
     print(sep)
 
-    for exp_key in ["exp1", "exp2", "exp3", "exp4", "exp5"]:
+    for exp_key in ["exp1", "exp2", "exp3", "exp3b", "exp4", "exp5"]:
         r = all_results[exp_key]
         print(f"\n{dash}")
         print(f"  {r['experiment']}")
@@ -164,6 +165,7 @@ def run(exclude: list[str] | None = None, tag: str = "full",
     exp1_sources = filter_sources(EXP1_SOURCES, exclude)
     exp2_sources = filter_sources(EXP2_SOURCES, exclude)
     exp3_sources = filter_sources(EXP3_SOURCES, exclude)
+    exp3b_sources = filter_sources(EXP3B_SOURCES, exclude)
     exp4_sources = filter_sources(EXP4_SOURCES, exclude)
 
     excluded_label = f" (excluding {', '.join(exclude)})" if exclude else ""
@@ -171,26 +173,31 @@ def run(exclude: list[str] | None = None, tag: str = "full",
 
     # Experiment 1
     src_count = len(exp1_sources)
-    print(f"[1/5] Experiment 1: ToM Ordering vs Difficulty Rankings ({src_count} sources)...")
+    print(f"[1/6] Experiment 1: ToM Ordering vs Difficulty Rankings ({src_count} sources)...")
     exp1_results = exp1.run_all(exp1_sources)
 
     # Experiment 2
     src_count = len(exp2_sources)
-    print(f"[2/5] Experiment 2: Fluency Paradox ({src_count} sources)...")
+    print(f"[2/6] Experiment 2: Fluency Paradox ({src_count} sources)...")
     exp2_results = exp2.run_all(exp2_sources)
 
     # Experiment 3
     src_count = len(exp3_sources)
-    print(f"[3/5] Experiment 3: Experience x ToM Interaction ({src_count} sources)...")
+    print(f"[3/6] Experiment 3: Experience x ToM Interaction ({src_count} sources)...")
     exp3_results = exp3.run_all(exp3_sources)
+
+    # Experiment 3b
+    src_count = len(exp3b_sources)
+    print(f"[4/6] Experiment 3b: Developmental ToM Gradient ({src_count} sources)...")
+    exp3b_results = exp3b.run_all(exp3b_sources)
 
     # Experiment 4
     src_count = len(exp4_sources)
-    print(f"[4/5] Experiment 4: Over-Editing as Misdirected ToM ({src_count} sources)...")
+    print(f"[5/6] Experiment 4: Over-Editing as Misdirected ToM ({src_count} sources)...")
     exp4_results = exp4.run_all(exp4_sources)
 
     # Experiment 5
-    print("[5/5] Experiment 5: Integrative Convergence...")
+    print("[6/6] Experiment 5: Integrative Convergence...")
     exp5_results = exp5.run_all(exp1_results, exp2_results, exp3_results, exp4_results)
 
     all_results = {
@@ -204,12 +211,14 @@ def run(exclude: list[str] | None = None, tag: str = "full",
                 "exp1": len(exp1_sources),
                 "exp2": len(exp2_sources),
                 "exp3": len(exp3_sources),
+                "exp3b": len(exp3b_sources),
                 "exp4": len(exp4_sources),
             },
         },
         "exp1": exp1_results,
         "exp2": exp2_results,
         "exp3": exp3_results,
+        "exp3b": exp3b_results,
         "exp4": exp4_results,
         "exp5": exp5_results,
     }
@@ -229,6 +238,9 @@ def run(exclude: list[str] | None = None, tag: str = "full",
     print(f"  F5: {f5}")
     f6 = viz.figure_f6_convergence_heatmap(exp5_results, output_dir)
     print(f"  F6: {f6}")
+    f_exp3b = viz.figure_exp3b_learning_curves(exp3b_results, output_dir)
+    if f_exp3b:
+        print(f"  Exp3b: {f_exp3b}")
     f_exp4 = viz.figure_exp4_overediting_bars(exp4_results, output_dir)
     if f_exp4:
         print(f"  Supp: {f_exp4}")

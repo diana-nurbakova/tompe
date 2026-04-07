@@ -1,0 +1,588 @@
+{
+  "metadata": {
+    "timestamp": "2026-04-07T12:24:07.415027",
+    "spec_version": "tom_validation_v1",
+    "dataset": "WMT 2020 MQM EN->DE",
+    "iou_threshold": 0.5,
+    "n_raw_errors": 64557,
+    "n_aligned_errors": 45936,
+    "n_tom_errors": 45936,
+    "skip_iou_variants": true
+  },
+  "descriptive": {
+    "per_level": {
+      "L0": {
+        "label": "L0",
+        "n_errors": 13586,
+        "mean_detection_rate": 0.5132,
+        "sd_detection_rate": 0.2476,
+        "median_detection_rate": 0.3333,
+        "count_1_of_3": 8315,
+        "count_2_of_3": 3212,
+        "count_3_of_3": 2059,
+        "pct_1_of_3": 61.2,
+        "pct_2_of_3": 23.6,
+        "pct_3_of_3": 15.2,
+        "n_major": 505,
+        "mean_det_major": 0.5723,
+        "n_minor": 12956,
+        "mean_det_minor": 0.5126,
+        "n_neutral": 125,
+        "mean_det_neutral": 0.3333
+      },
+      "L1": {
+        "label": "L1",
+        "n_errors": 1368,
+        "mean_detection_rate": 0.499,
+        "sd_detection_rate": 0.2395,
+        "median_detection_rate": 0.3333,
+        "count_1_of_3": 870,
+        "count_2_of_3": 316,
+        "count_3_of_3": 182,
+        "pct_1_of_3": 63.6,
+        "pct_2_of_3": 23.1,
+        "pct_3_of_3": 13.3,
+        "n_major": 242,
+        "mean_det_major": 0.6956,
+        "n_minor": 1061,
+        "mean_det_minor": 0.4643,
+        "n_neutral": 65,
+        "mean_det_neutral": 0.3333
+      },
+      "L2": {
+        "label": "L2",
+        "n_errors": 22002,
+        "mean_detection_rate": 0.462,
+        "sd_detection_rate": 0.2151,
+        "median_detection_rate": 0.3333,
+        "count_1_of_3": 15482,
+        "count_2_of_3": 4545,
+        "count_3_of_3": 1975,
+        "pct_1_of_3": 70.4,
+        "pct_2_of_3": 20.7,
+        "pct_3_of_3": 9.0,
+        "n_major": 5186,
+        "mean_det_major": 0.5765,
+        "n_minor": 16214,
+        "mean_det_minor": 0.4301,
+        "n_neutral": 602,
+        "mean_det_neutral": 0.3361
+      },
+      "L3": {
+        "label": "L3",
+        "n_errors": 8980,
+        "mean_detection_rate": 0.4112,
+        "sd_detection_rate": 0.167,
+        "median_detection_rate": 0.3333,
+        "count_1_of_3": 7204,
+        "count_2_of_3": 1453,
+        "count_3_of_3": 323,
+        "pct_1_of_3": 80.2,
+        "pct_2_of_3": 16.2,
+        "pct_3_of_3": 3.6,
+        "n_major": 569,
+        "mean_det_major": 0.5009,
+        "n_minor": 7823,
+        "mean_det_minor": 0.4103,
+        "n_neutral": 588,
+        "mean_det_neutral": 0.3373
+      }
+    },
+    "mapping_table": [
+      {
+        "category": "Accuracy/Addition",
+        "tom_level": 2,
+        "n": 1150,
+        "mean_det": 0.4142028985507246,
+        "tom_label": "L2"
+      },
+      {
+        "category": "Accuracy/Mistranslation",
+        "tom_level": 2,
+        "n": 14358,
+        "mean_det": 0.47792171611645073,
+        "tom_label": "L2"
+      },
+      {
+        "category": "Accuracy/Omission",
+        "tom_level": 2,
+        "n": 2209,
+        "mean_det": 0.3755847291383733,
+        "tom_label": "L2"
+      },
+      {
+        "category": "Accuracy/Untranslated text",
+        "tom_level": 1,
+        "n": 1368,
+        "mean_det": 0.49902534113060426,
+        "tom_label": "L1"
+      },
+      {
+        "category": "Fluency/Character encoding",
+        "tom_level": 0,
+        "n": 35,
+        "mean_det": 0.4952380952380952,
+        "tom_label": "L0"
+      },
+      {
+        "category": "Fluency/Grammar",
+        "tom_level": 0,
+        "n": 5334,
+        "mean_det": 0.42782152230971127,
+        "tom_label": "L0"
+      },
+      {
+        "category": "Fluency/Punctuation",
+        "tom_level": 0,
+        "n": 6924,
+        "mean_det": 0.5907953013672251,
+        "tom_label": "L0"
+      },
+      {
+        "category": "Fluency/Register",
+        "tom_level": 3,
+        "n": 299,
+        "mean_det": 0.4960981047937569,
+        "tom_label": "L3"
+      },
+      {
+        "category": "Fluency/Spelling",
+        "tom_level": 0,
+        "n": 1214,
+        "mean_det": 0.4503020318506315,
+        "tom_label": "L0"
+      },
+      {
+        "category": "Locale convention/Address format",
+        "tom_level": 3,
+        "n": 5,
+        "mean_det": 0.3333333333333333,
+        "tom_label": "L3"
+      },
+      {
+        "category": "Locale convention/Currency format",
+        "tom_level": 3,
+        "n": 146,
+        "mean_det": 0.4794520547945205,
+        "tom_label": "L3"
+      },
+      {
+        "category": "Locale convention/Date format",
+        "tom_level": 3,
+        "n": 12,
+        "mean_det": 0.3333333333333333,
+        "tom_label": "L3"
+      },
+      {
+        "category": "Locale convention/Time format",
+        "tom_level": 3,
+        "n": 10,
+        "mean_det": 0.36666666666666664,
+        "tom_label": "L3"
+      },
+      {
+        "category": "Non-translation!",
+        "tom_level": 0,
+        "n": 79,
+        "mean_det": 0.44725738396624465,
+        "tom_label": "L0"
+      },
+      {
+        "category": "Style/Awkward",
+        "tom_level": 3,
+        "n": 8508,
+        "mean_det": 0.40730293057514494,
+        "tom_label": "L3"
+      },
+      {
+        "category": "Terminology/Inappropriate for context",
+        "tom_level": 2,
+        "n": 4087,
+        "mean_det": 0.46953755811108394,
+        "tom_label": "L2"
+      },
+      {
+        "category": "Terminology/Inconsistent use of terminology",
+        "tom_level": 2,
+        "n": 198,
+        "mean_det": 0.3973063973063973,
+        "tom_label": "L2"
+      }
+    ]
+  },
+  "v1_jonckheere_terpstra": {
+    "experiment": "V1_Jonckheere_Terpstra",
+    "hypothesis": "H1: Detection rate decreases monotonically with ToM level",
+    "J_statistic": 380433016.0,
+    "p_value": 0.0,
+    "significant": true,
+    "kendall_tau_b": -0.1409,
+    "kendall_p": 0.0,
+    "group_means": {
+      "L0": 0.5131753275430591,
+      "L1": 0.49902534113060426,
+      "L2": 0.4620337545071659,
+      "L3": 0.4112472160356347
+    },
+    "group_sizes": {
+      "L0": 13586,
+      "L1": 1368,
+      "L2": 22002,
+      "L3": 8980
+    },
+    "direction": "decreasing",
+    "interpretation": "CONFIRMED: Significant monotonic decrease (J=380433016.0, p=0.0000, tau_b=-0.1409)"
+  },
+  "v2_kruskal_wallis": {
+    "experiment": "V2_Kruskal_Wallis",
+    "H_statistic": 1101.1747,
+    "p_value": 0.0,
+    "significant": true,
+    "df": 3,
+    "posthoc_dunn": [
+      {
+        "comparison": "L0 vs L2",
+        "z": 16.112,
+        "p_raw": 0.0,
+        "mean_rank_diff": 2331.26,
+        "p_adjusted": 0.0,
+        "significant": true
+      },
+      {
+        "comparison": "L0 vs L3",
+        "z": 26.3364,
+        "p_raw": 0.0,
+        "mean_rank_diff": 4749.7,
+        "p_adjusted": 0.0,
+        "significant": true
+      },
+      {
+        "comparison": "L1 vs L3",
+        "z": 10.7154,
+        "p_raw": 0.0,
+        "mean_rank_diff": 4124.04,
+        "p_adjusted": 0.0,
+        "significant": true
+      },
+      {
+        "comparison": "L2 vs L3",
+        "z": 14.5641,
+        "p_raw": 0.0,
+        "mean_rank_diff": 2418.44,
+        "p_adjusted": 0.0,
+        "significant": true
+      },
+      {
+        "comparison": "L1 vs L2",
+        "z": 4.6159,
+        "p_raw": 4e-06,
+        "mean_rank_diff": 1705.6,
+        "p_adjusted": 8e-06,
+        "significant": true
+      },
+      {
+        "comparison": "L0 vs L1",
+        "z": 1.6634,
+        "p_raw": 0.096242,
+        "mean_rank_diff": 625.66,
+        "p_adjusted": 0.096242,
+        "significant": false
+      }
+    ],
+    "interpretation": "SIGNIFICANT: H=1101.1747, p=0.0000. Significant pairwise differences: L0 vs L2, L0 vs L3, L1 vs L3, L2 vs L3, L1 vs L2"
+  },
+  "v3_ordinal_regression": {
+    "experiment": "V3_Ordinal_Regression",
+    "model": "Cumulative logit (proportional odds)",
+    "n": 45936,
+    "coefficients": {
+      "tom_linear": {
+        "coef": -0.3308,
+        "se": 0.0095,
+        "z": -34.7201,
+        "p": 0.0
+      },
+      "is_major": {
+        "coef": 1.1779,
+        "se": 0.0271,
+        "z": 43.4546,
+        "p": 0.0
+      },
+      "seg_len_z": {
+        "coef": -0.1681,
+        "se": 0.011,
+        "z": -15.3528,
+        "p": 0.0
+      },
+      "sys_qual_z": {
+        "coef": -0.3125,
+        "se": 0.011,
+        "z": -28.3557,
+        "p": 0.0
+      }
+    },
+    "log_likelihood": -35095.85,
+    "aic": 70203.71,
+    "bic": 70256.12,
+    "lr_test": {
+      "chi2": 1219.5119,
+      "df": 1,
+      "p_value": 0.0,
+      "significant": "True"
+    },
+    "note": "Fixed-effects approximation (no crossed random effects in Python statsmodels)",
+    "interpretation": "SIGNIFICANT: ToM level has a negative effect on detection count (\u03b2=-0.3308, p=0.0000). LR test: \u03c7\u00b2=1219.51, p=0.0000."
+  },
+  "v4_rater_logistic": {
+    "experiment": "V4_Rater_Logistic",
+    "n_observations": 120397,
+    "n_raters": 6,
+    "tom_main_effect": {
+      "coef": -0.217,
+      "p": 0.0
+    },
+    "rater_interaction_test": {
+      "wald_chi2": 229.4523,
+      "df": 5,
+      "p_value": 0.0,
+      "significant": true
+    },
+    "rater_tom_slopes": {
+      "rater1": -0.217,
+      "rater2": -0.1427,
+      "rater3": -0.1703,
+      "rater4": 0.0181,
+      "rater5": -0.0599,
+      "rater6": -0.1767
+    },
+    "pseudo_r2": 0.0172,
+    "log_likelihood": -81707.78,
+    "note": "Fixed-effects logistic regression with rater dummies and ToM\u00d7rater interactions",
+    "interpretation": "H3 SUPPORTED: Raters differ in ToM sensitivity (Wald \u03c7\u00b2=229.45, p=0.0000). Slopes range: -0.2170 to 0.0181."
+  },
+  "sensitivity": {
+    "S1_no_mistranslation": {
+      "v1": {
+        "experiment": "V1_Jonckheere_Terpstra",
+        "hypothesis": "H1: Detection rate decreases monotonically with ToM level",
+        "J_statistic": 192523838.5,
+        "p_value": 0.0,
+        "significant": true,
+        "kendall_tau_b": -0.1777,
+        "kendall_p": 0.0,
+        "group_means": {
+          "L0": 0.5131753275430591,
+          "L1": 0.49902534113060426,
+          "L2": 0.43219082504796785,
+          "L3": 0.4112472160356347
+        },
+        "group_sizes": {
+          "L0": 13586,
+          "L1": 1368,
+          "L2": 7644,
+          "L3": 8980
+        },
+        "direction": "decreasing",
+        "interpretation": "CONFIRMED: Significant monotonic decrease (J=192523838.5, p=0.0000, tau_b=-0.1777)"
+      },
+      "n_errors": 31578,
+      "significant": true,
+      "tau_b": -0.1777
+    },
+    "S2_binary_tom": {
+      "v1": {
+        "experiment": "V1_Jonckheere_Terpstra",
+        "hypothesis": "H1: Detection rate decreases monotonically with ToM level",
+        "J_statistic": 261657888.0,
+        "p_value": 0.0,
+        "significant": true,
+        "kendall_tau_b": -0.1258,
+        "kendall_p": 0.0,
+        "group_means": {
+          "L0": 0.5118808791404752,
+          "L1": 0.44731349385664787
+        },
+        "group_sizes": {
+          "L0": 14954,
+          "L1": 30982
+        },
+        "direction": "decreasing",
+        "interpretation": "CONFIRMED: Significant monotonic decrease (J=261657888.0, p=0.0000, tau_b=-0.1258)"
+      },
+      "n_errors": 45936,
+      "significant": true,
+      "tau_b": -0.1258
+    },
+    "S3_no_neutral": {
+      "v1": {
+        "experiment": "V1_Jonckheere_Terpstra",
+        "hypothesis": "H1: Detection rate decreases monotonically with ToM level",
+        "J_statistic": 355143615.0,
+        "p_value": 0.0,
+        "significant": true,
+        "kendall_tau_b": -0.1337,
+        "kendall_p": 0.0,
+        "group_means": {
+          "L0": 0.5148453557189906,
+          "L1": 0.5072908672294705,
+          "L2": 0.4655763239875389,
+          "L3": 0.41642834445503646
+        },
+        "group_sizes": {
+          "L0": 13461,
+          "L1": 1303,
+          "L2": 21400,
+          "L3": 8392
+        },
+        "direction": "decreasing",
+        "interpretation": "CONFIRMED: Significant monotonic decrease (J=355143615.0, p=0.0000, tau_b=-0.1337)"
+      },
+      "n_errors": 44556,
+      "significant": true,
+      "tau_b": -0.1337
+    },
+    "S4_major_only": {
+      "v1": {
+        "experiment": "V1_Jonckheere_Terpstra",
+        "hypothesis": "H1: Detection rate decreases monotonically with ToM level",
+        "J_statistic": 4071559.5,
+        "p_value": 0.0,
+        "significant": true,
+        "kendall_tau_b": -0.078,
+        "kendall_p": 0.0,
+        "group_means": {
+          "L0": 0.5722772277227722,
+          "L1": 0.6955922865013775,
+          "L2": 0.5764879804602133,
+          "L3": 0.5008787346221442
+        },
+        "group_sizes": {
+          "L0": 505,
+          "L1": 242,
+          "L2": 5186,
+          "L3": 569
+        },
+        "direction": "decreasing",
+        "interpretation": "CONFIRMED: Significant monotonic decrease (J=4071559.5, p=0.0000, tau_b=-0.0780)"
+      },
+      "n_errors": 6502,
+      "significant": true,
+      "tau_b": -0.078
+    },
+    "S7_no_human_ref": {
+      "v1": {
+        "experiment": "V1_Jonckheere_Terpstra",
+        "hypothesis": "H1: Detection rate decreases monotonically with ToM level",
+        "J_statistic": 244460453.0,
+        "p_value": 0.0,
+        "significant": true,
+        "kendall_tau_b": -0.1405,
+        "kendall_p": 0.0,
+        "group_means": {
+          "L0": 0.5293198962753418,
+          "L1": 0.5076271186440678,
+          "L2": 0.4793929987928953,
+          "L3": 0.42085769980506815
+        },
+        "group_sizes": {
+          "L0": 11312,
+          "L1": 1180,
+          "L2": 17397,
+          "L3": 6840
+        },
+        "direction": "decreasing",
+        "interpretation": "CONFIRMED: Significant monotonic decrease (J=244460453.0, p=0.0000, tau_b=-0.1405)"
+      },
+      "n_errors": 36729,
+      "significant": true,
+      "tau_b": -0.1405
+    },
+    "S5_iou_lenient": {
+      "skipped": true,
+      "reason": "No lenient IoU data"
+    },
+    "S6_iou_strict": {
+      "skipped": true,
+      "reason": "No strict IoU data"
+    },
+    "S8_per_system": {
+      "per_system": {
+        "Human-B.0": {
+          "significant": true,
+          "tau_b": -0.1673,
+          "p_value": 0.0,
+          "n_errors": 2531
+        },
+        "Human-P.0": {
+          "significant": true,
+          "tau_b": -0.0554,
+          "p_value": 9e-06,
+          "n_errors": 3787
+        },
+        "Huoshan_Translate.832": {
+          "significant": true,
+          "tau_b": -0.0519,
+          "p_value": 1.3e-05,
+          "n_errors": 4964
+        },
+        "OPPO.1535": {
+          "significant": true,
+          "tau_b": -0.0296,
+          "p_value": 0.010435,
+          "n_errors": 4604
+        },
+        "Online-A.1574": {
+          "significant": true,
+          "tau_b": -0.219,
+          "p_value": 0.0,
+          "n_errors": 6366
+        },
+        "Online-B.1590": {
+          "significant": true,
+          "tau_b": -0.2263,
+          "p_value": 0.0,
+          "n_errors": 5932
+        },
+        "Tencent_Translation.1520": {
+          "significant": true,
+          "tau_b": -0.0431,
+          "p_value": 0.000277,
+          "n_errors": 4795
+        },
+        "Tohoku-AIP-NTT.890": {
+          "significant": true,
+          "tau_b": -0.2295,
+          "p_value": 0.0,
+          "n_errors": 5422
+        },
+        "eTranslation.737": {
+          "significant": false,
+          "tau_b": -0.009,
+          "p_value": 0.237263,
+          "n_errors": 4646
+        },
+        "Human-A.0": {
+          "significant": true,
+          "tau_b": -0.0951,
+          "p_value": 0.0,
+          "n_errors": 2889
+        }
+      },
+      "n_systems": 10,
+      "n_significant": 9,
+      "significant": true
+    },
+    "_summary": {
+      "n_testable": 6,
+      "n_significant": 6,
+      "convergence_met": true,
+      "criterion": "V1 significant in primary + at least 5 of 8 sensitivity analyses"
+    }
+  },
+  "figures": {
+    "V1_boxplot": "C:\\Users\\dnurb\\Documents\\critical-thinking\\ToM-PE\\outputs\\tom_validation\\V1_detection_boxplot.png",
+    "V2_heatmap": "C:\\Users\\dnurb\\Documents\\critical-thinking\\ToM-PE\\outputs\\tom_validation\\V2_category_heatmap.png",
+    "V3_rater_slopes": "C:\\Users\\dnurb\\Documents\\critical-thinking\\ToM-PE\\outputs\\tom_validation\\V3_rater_slopes.png",
+    "sensitivity": "C:\\Users\\dnurb\\Documents\\critical-thinking\\ToM-PE\\outputs\\tom_validation\\sensitivity_summary.png"
+  }
+}

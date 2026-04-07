@@ -45,13 +45,19 @@ from experiments.tom_validation import test_trend
 from experiments.tom_validation import mixed_models
 from experiments.tom_validation import sensitivity
 from experiments.tom_validation import figures
+from experiments.tom_validation import r_runner
 
 
-def run(skip_iou_variants: bool = False, output_dir: Path | None = None) -> dict:
+def run(
+    skip_iou_variants: bool = False,
+    skip_r: bool = False,
+    output_dir: Path | None = None,
+) -> dict:
     """Run the full validation pipeline.
 
     Args:
         skip_iou_variants: Skip S5/S6 (lenient/strict IoU) for faster runs.
+        skip_r: Skip the R-based V3/V4 analyses (CLMM, GLMM with random slopes).
         output_dir: Override output directory.
 
     Returns:
@@ -122,12 +128,34 @@ def run(skip_iou_variants: bool = False, output_dir: Path | None = None) -> dict
     v3_results = mixed_models.run_v3(tom_df)
     mixed_models.print_v3(v3_results)
 
+    # V3 — R-based CLMM with crossed random effects (proper §5.4)
+    v3_r_results = None
+    if not skip_r:
+        print("\n[7b/10] Running V3 (R): CLMM with crossed random effects...")
+        v3_r_results = r_runner.run_clmm(
+            tom_csv=output_dir / "tom_errors.csv",
+            output_json=output_dir / "clmm_results.json",
+        )
+        if v3_r_results and not v3_r_results.get("skipped"):
+            print(f"  >> {v3_r_results.get('interpretation', '(no interpretation)')}")
+
     # ── Step 8: V4 — Rater-level logistic ────────────────────────────
     print("\n[8/10] Running V4: Rater-level logistic regression...")
     rater_df = assign_tom.build_rater_level_data(tom_df)
     rater_df.to_csv(output_dir / "rater_level_data.csv", index=False)
     v4_results = mixed_models.run_v4(rater_df)
     mixed_models.print_v4(v4_results)
+
+    # V4 — R-based GLMM with random slopes (proper §5.5)
+    v4_r_results = None
+    if not skip_r:
+        print("\n[8b/10] Running V4 (R): GLMM with random slopes...")
+        v4_r_results = r_runner.run_glmm(
+            rater_csv=output_dir / "rater_level_data.csv",
+            output_json=output_dir / "glmm_results.json",
+        )
+        if v4_r_results and not v4_r_results.get("skipped"):
+            print(f"  >> {v4_r_results.get('interpretation', '(no interpretation)')}")
 
     # ── Step 9: Sensitivity analyses ─────────────────────────────────
     print("\n[9/10] Running sensitivity analyses...")
@@ -175,7 +203,9 @@ def run(skip_iou_variants: bool = False, output_dir: Path | None = None) -> dict
         "v1_jonckheere_terpstra": v1_results,
         "v2_kruskal_wallis": v2_results,
         "v3_ordinal_regression": v3_results,
+        "v3_clmm_r": v3_r_results,
         "v4_rater_logistic": v4_results,
+        "v4_glmm_r": v4_r_results,
         "sensitivity": sens_results,
         "figures": fig_paths,
     }
@@ -203,12 +233,18 @@ def _print_summary(results: dict) -> None:
     v1 = results["v1_jonckheere_terpstra"]
     v2 = results["v2_kruskal_wallis"]
     v3 = results["v3_ordinal_regression"]
+    v3_r = results.get("v3_clmm_r")
     v4 = results["v4_rater_logistic"]
+    v4_r = results.get("v4_glmm_r")
     sens = results["sensitivity"]
 
     print(f"\n  H1 (monotonic decrease): {v1['interpretation']}")
-    print(f"  H2 (controlling covariates): {v3.get('interpretation', 'SKIPPED')}")
-    print(f"  H3 (rater variation): {v4.get('interpretation', 'SKIPPED')}")
+    print(f"  H2 (covariates, Python fixed-effects): {v3.get('interpretation', 'SKIPPED')}")
+    if v3_r and not v3_r.get("skipped"):
+        print(f"  H2 (covariates, R CLMM): {v3_r.get('interpretation', 'SKIPPED')}")
+    print(f"  H3 (rater variation, Python): {v4.get('interpretation', 'SKIPPED')}")
+    if v4_r and not v4_r.get("skipped"):
+        print(f"  H3 (rater variation, R GLMM): {v4_r.get('interpretation', 'SKIPPED')}")
 
     summary = sens.get("_summary", {})
     print(f"\n  Sensitivity convergence: {summary.get('n_significant', '?')}/"
@@ -238,11 +274,19 @@ def main():
         help="Skip lenient/strict IoU alignment (faster run)",
     )
     parser.add_argument(
+        "--skip-r", action="store_true",
+        help="Skip R-based V3/V4 analyses (CLMM, GLMM with random slopes)",
+    )
+    parser.add_argument(
         "--output-dir", type=Path, default=None,
         help="Override output directory",
     )
     args = parser.parse_args()
-    run(skip_iou_variants=args.skip_iou_variants, output_dir=args.output_dir)
+    run(
+        skip_iou_variants=args.skip_iou_variants,
+        skip_r=args.skip_r,
+        output_dir=args.output_dir,
+    )
 
 
 if __name__ == "__main__":

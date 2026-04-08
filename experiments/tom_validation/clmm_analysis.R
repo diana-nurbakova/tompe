@@ -96,14 +96,17 @@ for (nm in coef_names) {
   }
 }
 
-# Random effects variance components
-ranef_vars <- as.data.frame(VarCorr(full_model))
+# Random effects variance components — VarCorr returns a list of matrices for clmm
 random_effects <- list()
-for (i in seq_len(nrow(ranef_vars))) {
-  random_effects[[ranef_vars$grp[i]]] <- list(
-    variance = round(ranef_vars$vcov[i], 6),
-    std_dev  = round(ranef_vars$sdcor[i], 6)
-  )
+vc <- VarCorr(full_model)
+if (is.list(vc)) {
+  for (grp in names(vc)) {
+    var_val <- as.numeric(vc[[grp]][1, 1])
+    random_effects[[grp]] <- list(
+      variance = round(var_val, 6),
+      std_dev  = round(sqrt(var_val), 6)
+    )
+  }
 }
 
 # 95% CI for ToM linear coefficient

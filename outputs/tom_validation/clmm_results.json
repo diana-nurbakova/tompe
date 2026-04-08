@@ -1,0 +1,57 @@
+{
+  "experiment": "V3_CLMM_R",
+  "model": "Cumulative link mixed model (clmm)",
+  "formula": ["detection_count_ord ~ tom_linear + is_major + seg_len_z + sys_qual_z + ", "    (1 | system) + (1 | doc)"],
+  "n": 45936,
+  "log_likelihood": -34531.69,
+  "aic": 69079.37,
+  "bic": 69149.25,
+  "coefficients": {
+    "tom_linear": {
+      "coef": -0.3264,
+      "se": 0.0099,
+      "z": -33.073,
+      "p": 0
+    },
+    "is_major": {
+      "coef": 1.291,
+      "se": 0.0284,
+      "z": 45.3768,
+      "p": 0
+    },
+    "seg_len_z": {
+      "coef": -0.1522,
+      "se": 0.014,
+      "z": -10.8694,
+      "p": 0
+    },
+    "sys_qual_z": {
+      "coef": -0.3272,
+      "se": 0.0436,
+      "z": -7.4974,
+      "p": 0
+    }
+  },
+  "tom_linear_95ci": [-0.3458, -0.3071],
+  "random_effects": {
+    "doc": {
+      "variance": 0.1605,
+      "std_dev": 0.4006
+    },
+    "system": {
+      "variance": 0.0207,
+      "std_dev": 0.144
+    }
+  },
+  "lr_test": {
+    "chi2": 1106.0784,
+    "df": 1,
+    "p_value": 0,
+    "significant": true,
+    "full_loglik": -34531.69,
+    "reduced_loglik": -35084.73
+  },
+  "R_version": "R version 4.2.3 (2023-03-15 ucrt)",
+  "ordinal_version": "2023.12.4",
+  "interpretation": "SIGNIFICANT: ToM level has a negative effect on detection count (b=-0.3264, 95% CI [-0.3458, -0.3071], p<.001). LR test: chi2=1106.08 (df=1), p=0.000000."
+}

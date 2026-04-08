@@ -1,0 +1,73 @@
+{
+  "experiment": "V4_GLMM_R",
+  "model": "Logistic GLMM with random slopes",
+  "formula": ["detected ~ tom_level + is_major + seg_len_z + (1 + tom_level | ", "    rater) + (1 | system)"],
+  "n_observations": 120397,
+  "n_raters": 6,
+  "log_likelihood": -81669.68,
+  "aic": 163355.36,
+  "bic": 163432.94,
+  "fixed_effects": {
+    "(Intercept)": {
+      "coef": 0.2798,
+      "se": 0.089,
+      "z": 3.1435,
+      "p": 0.0017
+    },
+    "tom_level": {
+      "coef": -0.1215,
+      "se": 0.0327,
+      "z": -3.7179,
+      "p": 0.0002
+    },
+    "is_major": {
+      "coef": 0.4475,
+      "se": 0.0168,
+      "z": 26.607,
+      "p": 0
+    },
+    "seg_len_z": {
+      "coef": -0.1561,
+      "se": 0.0059,
+      "z": -26.3373,
+      "p": 0
+    }
+  },
+  "random_effects": {
+    "system_(Intercept)": {
+      "variance": 0.0113,
+      "std_dev": 0.1063
+    },
+    "rater_(Intercept)": {
+      "variance": 0.0402,
+      "std_dev": 0.2004
+    },
+    "rater_tom_level": {
+      "variance": 0.0062,
+      "std_dev": 0.0789
+    },
+    "rater_(Intercept)_tom_level": {
+      "variance": -0.007,
+      "std_dev": -0.4442
+    }
+  },
+  "rater_tom_slopes": {
+    "rater1": -0.2111,
+    "rater2": -0.1388,
+    "rater3": -0.166,
+    "rater4": 0.019,
+    "rater5": -0.06,
+    "rater6": -0.1719
+  },
+  "random_slope_lr_test": {
+    "chi2": 202.5495,
+    "df": 2,
+    "p_value_naive": 0,
+    "p_value_mixture": 0,
+    "significant": true,
+    "note": "p_value_mixture uses 50:50 chi-square mixture for boundary variance test"
+  },
+  "R_version": "R version 4.2.3 (2023-03-15 ucrt)",
+  "lme4_version": "1.1.35.3",
+  "interpretation": "H3 SUPPORTED: Significant random slopes for ToM by rater (chi2=202.55, p=0.0000). Slopes range: -0.2111 to 0.0190."
+}

@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "timestamp": "2026-04-07T12:24:07.415027",
+    "timestamp": "2026-04-07T18:18:52.575431",
     "spec_version": "tom_validation_v1",
     "dataset": "WMT 2020 MQM EN->DE",
     "iou_threshold": 0.5,
@@ -333,6 +333,69 @@
     "note": "Fixed-effects approximation (no crossed random effects in Python statsmodels)",
     "interpretation": "SIGNIFICANT: ToM level has a negative effect on detection count (\u03b2=-0.3308, p=0.0000). LR test: \u03c7\u00b2=1219.51, p=0.0000."
   },
+  "v3_clmm_r": {
+    "experiment": "V3_CLMM_R",
+    "model": "Cumulative link mixed model (clmm)",
+    "formula": [
+      "detection_count_ord ~ tom_linear + is_major + seg_len_z + sys_qual_z + ",
+      "    (1 | system) + (1 | doc)"
+    ],
+    "n": 45936,
+    "log_likelihood": -34531.69,
+    "aic": 69079.37,
+    "bic": 69149.25,
+    "coefficients": {
+      "tom_linear": {
+        "coef": -0.3264,
+        "se": 0.0099,
+        "z": -33.073,
+        "p": 0
+      },
+      "is_major": {
+        "coef": 1.291,
+        "se": 0.0284,
+        "z": 45.3768,
+        "p": 0
+      },
+      "seg_len_z": {
+        "coef": -0.1522,
+        "se": 0.014,
+        "z": -10.8694,
+        "p": 0
+      },
+      "sys_qual_z": {
+        "coef": -0.3272,
+        "se": 0.0436,
+        "z": -7.4974,
+        "p": 0
+      }
+    },
+    "tom_linear_95ci": [
+      -0.3458,
+      -0.3071
+    ],
+    "random_effects": {
+      "doc": {
+        "variance": 0.1605,
+        "std_dev": 0.4006
+      },
+      "system": {
+        "variance": 0.0207,
+        "std_dev": 0.144
+      }
+    },
+    "lr_test": {
+      "chi2": 1106.0784,
+      "df": 1,
+      "p_value": 0,
+      "significant": true,
+      "full_loglik": -34531.69,
+      "reduced_loglik": -35084.73
+    },
+    "R_version": "R version 4.2.3 (2023-03-15 ucrt)",
+    "ordinal_version": "2023.12.4",
+    "interpretation": "SIGNIFICANT: ToM level has a negative effect on detection count (b=-0.3264, 95% CI [-0.3458, -0.3071], p<.001). LR test: chi2=1106.08 (df=1), p=0.000000."
+  },
   "v4_rater_logistic": {
     "experiment": "V4_Rater_Logistic",
     "n_observations": 120397,
@@ -359,6 +422,82 @@
     "log_likelihood": -81707.78,
     "note": "Fixed-effects logistic regression with rater dummies and ToM\u00d7rater interactions",
     "interpretation": "H3 SUPPORTED: Raters differ in ToM sensitivity (Wald \u03c7\u00b2=229.45, p=0.0000). Slopes range: -0.2170 to 0.0181."
+  },
+  "v4_glmm_r": {
+    "experiment": "V4_GLMM_R",
+    "model": "Logistic GLMM with random slopes",
+    "formula": [
+      "detected ~ tom_level + is_major + seg_len_z + (1 + tom_level | ",
+      "    rater) + (1 | system)"
+    ],
+    "n_observations": 120397,
+    "n_raters": 6,
+    "log_likelihood": -81669.68,
+    "aic": 163355.36,
+    "bic": 163432.94,
+    "fixed_effects": {
+      "(Intercept)": {
+        "coef": 0.2798,
+        "se": 0.089,
+        "z": 3.1435,
+        "p": 0.0017
+      },
+      "tom_level": {
+        "coef": -0.1215,
+        "se": 0.0327,
+        "z": -3.7179,
+        "p": 0.0002
+      },
+      "is_major": {
+        "coef": 0.4475,
+        "se": 0.0168,
+        "z": 26.607,
+        "p": 0
+      },
+      "seg_len_z": {
+        "coef": -0.1561,
+        "se": 0.0059,
+        "z": -26.3373,
+        "p": 0
+      }
+    },
+    "random_effects": {
+      "system_(Intercept)": {
+        "variance": 0.0113,
+        "std_dev": 0.1063
+      },
+      "rater_(Intercept)": {
+        "variance": 0.0402,
+        "std_dev": 0.2004
+      },
+      "rater_tom_level": {
+        "variance": 0.0062,
+        "std_dev": 0.0789
+      },
+      "rater_(Intercept)_tom_level": {
+        "variance": -0.007,
+        "std_dev": -0.4442
+      }
+    },
+    "rater_tom_slopes": {
+      "rater1": -0.2111,
+      "rater2": -0.1388,
+      "rater3": -0.166,
+      "rater4": 0.019,
+      "rater5": -0.06,
+      "rater6": -0.1719
+    },
+    "random_slope_lr_test": {
+      "chi2": 202.5495,
+      "df": 2,
+      "p_value_naive": 0,
+      "p_value_mixture": 0,
+      "significant": true,
+      "note": "p_value_mixture uses 50:50 chi-square mixture for boundary variance test"
+    },
+    "R_version": "R version 4.2.3 (2023-03-15 ucrt)",
+    "lme4_version": "1.1.35.3",
+    "interpretation": "H3 SUPPORTED: Significant random slopes for ToM by rater (chi2=202.55, p=0.0000). Slopes range: -0.2111 to 0.0190."
   },
   "sensitivity": {
     "S1_no_mistranslation": {

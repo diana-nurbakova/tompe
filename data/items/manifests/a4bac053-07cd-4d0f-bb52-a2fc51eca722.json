@@ -1,0 +1,273 @@
+{
+  "item_id": "a4bac053-07cd-4d0f-bb52-a2fc51eca722",
+  "segment_id": "europarl-12c84eff34ec",
+  "source_text": "My question relates to something that will come up on Thursday and which I will then raise again.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Ma question demande un sujet très important que je soulèverai donc une nouvelle fois Thursday.",
+  "reference_translation": "Ma question porte sur un sujet qui est à l'ordre du jour du jeudi et que je soulèverai donc une nouvelle fois.",
+  "mt_system": "deepl",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "ffd95b45-d52d-4f0c-9d00-af22811e65e4",
+      "span_start": 22,
+      "span_end": 80,
+      "original_text": "un sujet qui est à l'ordre du jour du jeudi",
+      "injected_text": "un sujet très important qui est à l'ordre du jour du jeudi",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "overtranslation",
+      "severity": "minor",
+      "tom_level": "1st_author",
+      "primary_skill": "S3",
+      "secondary_skills": [
+        "S4"
+      ],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely inferred emphasis or importance where none was explicitly stated, possibly due to frequent collocations like 'important issue' in similar contexts.",
+        "actual_meaning": "The source simply refers to a topic scheduled for Thursday, without any mention of its importance or priority.",
+        "reader_impact": "A reader might believe the topic is especially significant, which adds unintended emphasis and could mislead about the author's intent.",
+        "correction_rationale": "The correct translation accurately reflects the original, conveying only the scheduling of the topic without introducing subjective evaluation or emphasis not found in the source."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems sometimes act like a storyteller who adds extra details to make a story sound more impressive, even if those details weren’t in the original. In this case, the system added 'très important' (very important) even though the source text didn’t say it, possibly to make the sentence sound more natural or emphatic in the target language.",
+        "architectural_cause": "Internally, the system tries to predict the most likely translation based on patterns it has seen in its training data. Sometimes, if it often sees phrases like 'important' paired with 'très important' in its examples, it might add those words even if they’re not needed, like following a habit.",
+        "pattern_generalization": "Students are likely to see similar overtranslation errors when the source sentence is simple or neutral, but the translation adds extra emphasis or descriptive words. Watch out for translations that seem to be 'over-explaining' or making things sound stronger than the original.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are trained to produce fluent, natural-sounding translations, which can make them more likely to add extra words for emphasis compared to LLMs, which may stick closer to the source wording."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Ma question porte sur <MISTRANSLATION type=\"overtranslation\" severity=\"minor\" tom=\"1st_author\" desc=\"Adds 'très important' not present in source\">un sujet très important qui est à l'ordre du jour du jeudi</MISTRANSLATION> et que je soulèverai donc une nouvelle fois.",
+      "brief_explanation": "Adds 'très important' not present in source"
+    },
+    {
+      "error_id": "9064a9af-e9d7-4dc4-9042-c14e4411c030",
+      "span_start": 46,
+      "span_end": 46,
+      "original_text": "qui est à l'ordre du jour du jeudi",
+      "injected_text": "",
+      "primary_tag": "OMISSION",
+      "error_type": "partial",
+      "severity": "major",
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely ignored or failed to recognize the importance of the temporal phrase 'on Thursday,' treating it as non-essential or redundant information.",
+        "actual_meaning": "The source text specifies that the question concerns an issue scheduled for discussion on Thursday, highlighting the timing as crucial context.",
+        "reader_impact": "Without the mention of Thursday, the reader loses the specific temporal reference, making it unclear when the topic will be addressed and potentially causing confusion about the sequence of events.",
+        "correction_rationale": "Including 'à l'ordre du jour du jeudi' preserves the essential temporal detail, ensuring the translation accurately conveys when the issue will be discussed, which is key for understanding the context."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems sometimes miss details like 'Thursday's agenda' because they focus on the main meaning and can overlook smaller but important pieces, much like someone summarizing a story and forgetting a key date. Just as people might skip over details when retelling something quickly, these systems can accidentally leave out time-related information.",
+        "architectural_cause": "Internally, the system tries to predict the most likely translation based on patterns it has seen before. If the training data often skips over specific dates or times, or if the system thinks they're not essential, it might leave them out to keep the sentence flowing smoothly.",
+        "pattern_generalization": "Students should watch for similar omissions when translating sentences that include dates, times, or other specific details, especially if they are tucked away in longer or more complex sentences.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are tuned for accuracy, but they can still miss details, while large language models may be even more likely to omit specifics if they focus more on general sense than precise facts."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Ma question porte sur un sujet très important <OMISSION type=\"partial\" severity=\"major\" tom=\"1st_author\" desc=\"Omission of Thursday's agenda removes crucial temporal detail\"></OMISSION> que je soulèverai donc une nouvelle fois.",
+      "brief_explanation": "Omission of Thursday's agenda removes crucial temporal detail"
+    },
+    {
+      "error_id": "bfb95d62-516a-405b-8305-cdb0e5447336",
+      "span_start": 12,
+      "span_end": 19,
+      "original_text": "porte sur",
+      "injected_text": "demande",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "word_sense",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [
+        "S5"
+      ],
+      "severity_range": [
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'relates to' as an act of requesting or asking, mapping it to the French 'demande' which means 'request' or 'ask'. It confused the topic focus of the question with the act of making a request.",
+        "actual_meaning": "The source means that the question is about a specific topic or subject that will be discussed on Thursday, not that the speaker is making a request. 'Relates to' indicates the subject matter, not an act of asking.",
+        "reader_impact": "A reader would misunderstand the sentence to mean that the speaker is making a request about Thursday, rather than referring to the subject of the question. This shifts the focus from the topic to an action, altering the intent of the statement.",
+        "correction_rationale": "The correct translation 'porte sur' accurately conveys that the question concerns or is about a particular subject, preserving the intended meaning of the original text. Using 'demande' would mislead the reader about the nature of the speaker's statement."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often misunderstand words or phrases that have more than one meaning, much like a person who only knows a word from one context might use it incorrectly in another. If the system sees 'porte sur' used with 'ask' more often in its training, it might assume that's always the right meaning, even when it's not.",
+        "architectural_cause": "Internally, the system relies on patterns it has seen in huge amounts of text, rather than truly understanding the meaning behind the words. If it sees 'porte sur' and 'demande' appearing together frequently, it might link them, even if that's not correct for every situation.",
+        "pattern_generalization": "Similar errors often show up when translating phrases or words that can mean different things depending on the sentence. Be cautious with idioms, set phrases, or words that are used differently in various contexts.",
+        "mt_system_specific": "Dedicated MT systems like DeepL tend to make these mistakes when they have learned strong patterns from their training data, while LLM-based systems might make slightly different errors depending on how much context they consider."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Ma question <MISTRANSLATION type=\"word_sense\" severity=\"major\" tom=\"1st_machine\" desc=\"Misinterprets 'porte sur' as 'demande', changing meaning to 'asks'.\">demande</MISTRANSLATION> un sujet très important  que je soulèverai donc une nouvelle fois.",
+      "brief_explanation": "Misinterprets 'porte sur' as 'demande', changing meaning to 'asks'."
+    },
+    {
+      "error_id": "fa0f5650-087a-418d-b64e-8c7c9c3d10c1",
+      "span_start": 85,
+      "span_end": 93,
+      "original_text": "jeudi",
+      "injected_text": "Thursday",
+      "primary_tag": "UNTRANSLATED",
+      "error_type": "untranslated",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "severity_range": [
+        "major",
+        "critical"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system left 'Thursday' untranslated, likely assuming it was a proper noun or not recognizing it as needing localization.",
+        "actual_meaning": "The source refers to 'Thursday' as a day of the week, which should be rendered in the target language as 'jeudi' to fit the linguistic and cultural context.",
+        "reader_impact": "A French reader encountering 'Thursday' in an otherwise French sentence might be confused or momentarily disrupted, as it breaks the flow and may not be immediately understood.",
+        "correction_rationale": "Translating 'Thursday' to 'jeudi' ensures linguistic consistency and clarity for the target audience, maintaining naturalness and comprehensibility in the translation."
+      },
+      "system_behavior": {
+        "error_mechanism": "Machine translation systems sometimes leave words or phrases untranslated, much like a person skimming a text might skip over unfamiliar or complex words. This can happen when the system doesn't recognize a word, or isn't confident about how to translate it, so it simply copies it over.",
+        "architectural_cause": "Internally, the system works by matching patterns it has seen during training. If a word or phrase is rare, new, or written in an unusual way, the system might not find a good match and decides to leave it as is, rather than risk making a mistake.",
+        "pattern_generalization": "You can expect to see this kind of error with brand names, technical terms, newly coined words, or text with typos or unusual spelling. Watch out for any content that might be outside the system's usual 'experience.'",
+        "mt_system_specific": "Dedicated MT systems like DeepL are more likely to leave unknown words untranslated, while newer language models (LLMs) may try to guess a translation even if they're unsure."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Ma question demande un sujet très important que je soulèverai donc une nouvelle fois <UNTRANSLATED type=\"untranslated\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">Thursday</UNTRANSLATED>.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "75129e62-7ea3-4383-b70d-2059cc368257",
+      "span_start": 85,
+      "span_end": 93,
+      "original_text": "jeudi",
+      "injected_text": "Thursday",
+      "primary_tag": "UNTRANSLATED",
+      "error_type": "untranslated",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "severity_range": [
+        "major",
+        "critical"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system left 'Thursday' untranslated, possibly assuming that proper nouns like days of the week do not require translation, or failing to recognize it as a translatable term.",
+        "actual_meaning": "The source refers to 'Thursday,' which should be rendered as 'jeudi' in French to maintain clarity and target language norms.",
+        "reader_impact": "A French reader encountering 'Thursday' in an otherwise French sentence may be confused or perceive the text as careless or incomplete, disrupting comprehension and flow.",
+        "correction_rationale": "Translating 'Thursday' as 'jeudi' is necessary for linguistic accuracy and to ensure the translation reads naturally to the target audience."
+      },
+      "system_behavior": {
+        "error_mechanism": "Machine translation systems sometimes skip words or phrases, leaving them untranslated, much like a person who misses a detail when reading quickly. This often happens when the system doesn't recognize a word or thinks it isn't important for the meaning.",
+        "architectural_cause": "Internally, the system breaks sentences into pieces it understands. If it encounters something unfamiliar or tricky to connect, it might simply ignore it, rather than risk making a wrong guess.",
+        "pattern_generalization": "You’re more likely to see untranslated words with brand names, new slang, rare terms, or unusual formatting. Watch for this especially in technical texts or creative writing.",
+        "mt_system_specific": "Dedicated MT systems like DeepL may leave words untranslated if they're out-of-vocabulary, while LLMs (like ChatGPT) might try to invent a translation even for unknown words."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Ma question demande un sujet très important que je soulèverai donc une nouvelle fois <UNTRANSLATED type=\"untranslated\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">Thursday</UNTRANSLATED>.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "analyst",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 5,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely inferred emphasis or importance where none was explicitly stated, possibly due to frequent collocations like 'important issue' in similar contexts.",
+      "actual_meaning": "The source simply refers to a topic scheduled for Thursday, without any mention of its importance or priority.",
+      "reader_impact": "A reader might believe the topic is especially significant, which adds unintended emphasis and could mislead about the author's intent.",
+      "correction_rationale": "The correct translation accurately reflects the original, conveying only the scheduling of the topic without introducing subjective evaluation or emphasis not found in the source."
+    },
+    {
+      "mt_interpretation": "The MT system likely ignored or failed to recognize the importance of the temporal phrase 'on Thursday,' treating it as non-essential or redundant information.",
+      "actual_meaning": "The source text specifies that the question concerns an issue scheduled for discussion on Thursday, highlighting the timing as crucial context.",
+      "reader_impact": "Without the mention of Thursday, the reader loses the specific temporal reference, making it unclear when the topic will be addressed and potentially causing confusion about the sequence of events.",
+      "correction_rationale": "Including 'à l'ordre du jour du jeudi' preserves the essential temporal detail, ensuring the translation accurately conveys when the issue will be discussed, which is key for understanding the context."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted 'relates to' as an act of requesting or asking, mapping it to the French 'demande' which means 'request' or 'ask'. It confused the topic focus of the question with the act of making a request.",
+      "actual_meaning": "The source means that the question is about a specific topic or subject that will be discussed on Thursday, not that the speaker is making a request. 'Relates to' indicates the subject matter, not an act of asking.",
+      "reader_impact": "A reader would misunderstand the sentence to mean that the speaker is making a request about Thursday, rather than referring to the subject of the question. This shifts the focus from the topic to an action, altering the intent of the statement.",
+      "correction_rationale": "The correct translation 'porte sur' accurately conveys that the question concerns or is about a particular subject, preserving the intended meaning of the original text. Using 'demande' would mislead the reader about the nature of the speaker's statement."
+    },
+    {
+      "mt_interpretation": "The MT system left 'Thursday' untranslated, likely assuming it was a proper noun or not recognizing it as needing localization.",
+      "actual_meaning": "The source refers to 'Thursday' as a day of the week, which should be rendered in the target language as 'jeudi' to fit the linguistic and cultural context.",
+      "reader_impact": "A French reader encountering 'Thursday' in an otherwise French sentence might be confused or momentarily disrupted, as it breaks the flow and may not be immediately understood.",
+      "correction_rationale": "Translating 'Thursday' to 'jeudi' ensures linguistic consistency and clarity for the target audience, maintaining naturalness and comprehensibility in the translation."
+    },
+    {
+      "mt_interpretation": "The MT system left 'Thursday' untranslated, possibly assuming that proper nouns like days of the week do not require translation, or failing to recognize it as a translatable term.",
+      "actual_meaning": "The source refers to 'Thursday,' which should be rendered as 'jeudi' in French to maintain clarity and target language norms.",
+      "reader_impact": "A French reader encountering 'Thursday' in an otherwise French sentence may be confused or perceive the text as careless or incomplete, disrupting comprehension and flow.",
+      "correction_rationale": "Translating 'Thursday' as 'jeudi' is necessary for linguistic accuracy and to ensure the translation reads naturally to the target audience."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems sometimes act like a storyteller who adds extra details to make a story sound more impressive, even if those details weren’t in the original. In this case, the system added 'très important' (very important) even though the source text didn’t say it, possibly to make the sentence sound more natural or emphatic in the target language.",
+      "architectural_cause": "Internally, the system tries to predict the most likely translation based on patterns it has seen in its training data. Sometimes, if it often sees phrases like 'important' paired with 'très important' in its examples, it might add those words even if they’re not needed, like following a habit.",
+      "pattern_generalization": "Students are likely to see similar overtranslation errors when the source sentence is simple or neutral, but the translation adds extra emphasis or descriptive words. Watch out for translations that seem to be 'over-explaining' or making things sound stronger than the original.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are trained to produce fluent, natural-sounding translations, which can make them more likely to add extra words for emphasis compared to LLMs, which may stick closer to the source wording."
+    },
+    {
+      "error_mechanism": "MT systems sometimes miss details like 'Thursday's agenda' because they focus on the main meaning and can overlook smaller but important pieces, much like someone summarizing a story and forgetting a key date. Just as people might skip over details when retelling something quickly, these systems can accidentally leave out time-related information.",
+      "architectural_cause": "Internally, the system tries to predict the most likely translation based on patterns it has seen before. If the training data often skips over specific dates or times, or if the system thinks they're not essential, it might leave them out to keep the sentence flowing smoothly.",
+      "pattern_generalization": "Students should watch for similar omissions when translating sentences that include dates, times, or other specific details, especially if they are tucked away in longer or more complex sentences.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are tuned for accuracy, but they can still miss details, while large language models may be even more likely to omit specifics if they focus more on general sense than precise facts."
+    },
+    {
+      "error_mechanism": "MT systems often misunderstand words or phrases that have more than one meaning, much like a person who only knows a word from one context might use it incorrectly in another. If the system sees 'porte sur' used with 'ask' more often in its training, it might assume that's always the right meaning, even when it's not.",
+      "architectural_cause": "Internally, the system relies on patterns it has seen in huge amounts of text, rather than truly understanding the meaning behind the words. If it sees 'porte sur' and 'demande' appearing together frequently, it might link them, even if that's not correct for every situation.",
+      "pattern_generalization": "Similar errors often show up when translating phrases or words that can mean different things depending on the sentence. Be cautious with idioms, set phrases, or words that are used differently in various contexts.",
+      "mt_system_specific": "Dedicated MT systems like DeepL tend to make these mistakes when they have learned strong patterns from their training data, while LLM-based systems might make slightly different errors depending on how much context they consider."
+    },
+    {
+      "error_mechanism": "Machine translation systems sometimes leave words or phrases untranslated, much like a person skimming a text might skip over unfamiliar or complex words. This can happen when the system doesn't recognize a word, or isn't confident about how to translate it, so it simply copies it over.",
+      "architectural_cause": "Internally, the system works by matching patterns it has seen during training. If a word or phrase is rare, new, or written in an unusual way, the system might not find a good match and decides to leave it as is, rather than risk making a mistake.",
+      "pattern_generalization": "You can expect to see this kind of error with brand names, technical terms, newly coined words, or text with typos or unusual spelling. Watch out for any content that might be outside the system's usual 'experience.'",
+      "mt_system_specific": "Dedicated MT systems like DeepL are more likely to leave unknown words untranslated, while newer language models (LLMs) may try to guess a translation even if they're unsure."
+    },
+    {
+      "error_mechanism": "Machine translation systems sometimes skip words or phrases, leaving them untranslated, much like a person who misses a detail when reading quickly. This often happens when the system doesn't recognize a word or thinks it isn't important for the meaning.",
+      "architectural_cause": "Internally, the system breaks sentences into pieces it understands. If it encounters something unfamiliar or tricky to connect, it might simply ignore it, rather than risk making a wrong guess.",
+      "pattern_generalization": "You’re more likely to see untranslated words with brand names, new slang, rare terms, or unusual formatting. Watch for this especially in technical texts or creative writing.",
+      "mt_system_specific": "Dedicated MT systems like DeepL may leave words untranslated if they're out-of-vocabulary, while LLMs (like ChatGPT) might try to invent a translation even for unknown words."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "analyst",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

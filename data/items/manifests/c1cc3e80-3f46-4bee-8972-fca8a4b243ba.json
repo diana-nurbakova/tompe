@@ -1,0 +1,274 @@
+{
+  "item_id": "c1cc3e80-3f46-4bee-8972-fca8a4b243ba",
+  "segment_id": "europarl-f79c610991d6",
+  "source_text": "If the House agrees, I shall do as Mr Evans has suggested.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Si l'Assemblée est d'accord, j'ai fait comme M. Evans a dit, comme il has suggested.",
+  "reference_translation": "Si l'Assemblée en est d'accord, je ferai comme M. Evans l'a suggéré.",
+  "mt_system": "gpt4",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "6288fccd-b0a0-4fad-a994-0fde06de6ea9",
+      "span_start": 32,
+      "span_end": 104,
+      "original_text": "je ferai comme M. Evans l'a suggéré",
+      "injected_text": "je suivrai exactement les instructions de M. Evans, comme il l'a suggéré",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "overtranslation",
+      "severity": "minor",
+      "tom_level": "1st_author",
+      "primary_skill": "S3",
+      "secondary_skills": [
+        "S4"
+      ],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'do as Mr Evans has suggested' as requiring a more explicit action, so it rendered it as 'I will exactly follow Mr Evans' instructions.'",
+        "actual_meaning": "The source simply means that the speaker will act in accordance with Mr Evans's suggestion, without specifying exactness or strict adherence to instructions.",
+        "reader_impact": "A reader may think that Mr Evans gave detailed instructions to be followed to the letter, rather than just making a suggestion, which changes the nuance of the original statement.",
+        "correction_rationale": "The correct translation preserves the intended vagueness of the original, accurately reflecting that the speaker will act as suggested, not necessarily follow explicit instructions."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems sometimes act like over-eager students who want to impress the teacher—they add extra information or explanations, even when it's not needed. This happens because the system tries to be helpful, but ends up including details that weren't in the original text.",
+        "architectural_cause": "Internally, the system doesn't truly understand meaning like a human does. Instead, it predicts what words tend to come next based on patterns it has seen before, so it sometimes 'fills in' with extra details if those often appear in similar situations during its training.",
+        "pattern_generalization": "You might see this kind of error when the original text is short, vague, or gives instructions—the system may add clarifications or specifics that weren't there. Watch for over-explained steps or extra warnings that don't match the source.",
+        "mt_system_specific": "General-purpose LLMs like GPT-4 are more likely to add extra details compared to dedicated MT systems, which are usually trained to stick closely to the source text."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Si l'Assemblée en est d'accord, <MISTRANSLATION type=\"overtranslation\" severity=\"minor\" tom=\"1st_author\" desc=\"Adds unnecessary detail about following instructions exactly\">je suivrai exactement les instructions de M. Evans, comme il l'a suggéré</MISTRANSLATION>.",
+      "brief_explanation": "Adds unnecessary detail about following instructions exactly"
+    },
+    {
+      "error_id": "da43dc6a-416f-4141-ba46-de25e95c4ce2",
+      "span_start": 32,
+      "span_end": 61,
+      "original_text": "je suivrai exactement les instructions de M. Evans,",
+      "injected_text": "je ferai comme M. Evans a dit",
+      "primary_tag": "STYLE",
+      "error_type": "register_informal",
+      "severity": "major",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system interpreted 'do as Mr Evans has suggested' as a casual instruction and rendered it informally as 'je ferai comme M. Evans a dit,' focusing on the action rather than the formal context.",
+        "actual_meaning": "The source expresses a formal commitment to follow Mr Evans's suggestion precisely, appropriate for a parliamentary setting.",
+        "reader_impact": "A reader may perceive the speaker as informal or disrespectful, as 'je ferai comme M. Evans a dit' lacks the necessary formality and precision, potentially undermining the seriousness of the commitment.",
+        "correction_rationale": "The correct translation, 'je suivrai exactement les instructions de M. Evans,' maintains the formal register and accurately conveys the intent to follow instructions, aligning with the source's tone and context."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often choose words or phrases that sound friendly or casual because they learn from lots of examples, many of which use informal language. It's like copying how people usually talk in everyday life, even when a formal tone is needed.",
+        "architectural_cause": "Inside, the system doesn't truly understand social situations or the need for formality; it just picks what seems most common or likely based on its training. If most examples it saw were informal, it'll lean toward that style, missing the subtle cues for when to be more formal.",
+        "pattern_generalization": "Students will notice similar mistakes when translating texts that require a specific level of politeness or professionalism, especially if the original text is neutral but the translation feels too casual.",
+        "mt_system_specific": "General-purpose LLMs like GPT-4 are more prone to this error than dedicated MT systems, because LLMs are trained on a wider mix of formal and informal content."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Si l'Assemblée en est d'accord, <STYLE type=\"register_informal\" severity=\"major\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">je ferai comme M. Evans a dit</STYLE>, comme il l'a suggéré.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "f4e92ade-809a-4edb-8b2f-e4c989bc2a40",
+      "span_start": 32,
+      "span_end": 41,
+      "original_text": "je ferai",
+      "injected_text": "j'ai fait",
+      "primary_tag": "GRAMMAR",
+      "error_type": "tense",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted the verb 'shall do' as referring to a completed action and chose the past tense 'j'ai fait' to express this in French.",
+        "actual_meaning": "The source sentence expresses a conditional future action: the speaker will act as Mr Evans suggested if the House agrees.",
+        "reader_impact": "A reader would understand 'j'ai fait' as meaning the speaker has already done what Mr Evans suggested, rather than planning to do it in the future. This misrepresents the speaker's intentions and the sequence of events.",
+        "correction_rationale": "The correct translation 'je ferai' accurately conveys the intended future action, preserving the conditional aspect and the correct temporal relationship between the agreement and the action."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up verb tenses because, like someone retelling a story they only half-remember, they focus more on matching the overall meaning than getting every detail right. If the context isn’t clear, the system might guess the wrong time frame, swapping 'will go' for 'went' without realizing how important that change is.",
+        "architectural_cause": "Internally, the system looks at patterns in millions of sentences and tries to predict the next word based on what it has seen before. If examples of future tense are less common or if the context is vague, the system might fall back on more frequent patterns, such as the past tense, even when it’s not correct.",
+        "pattern_generalization": "Students should watch for these errors in sentences where time isn’t clearly stated, or when the original sentence uses less common ways to talk about the future. Extra care is needed when translating plans, promises, or predictions.",
+        "mt_system_specific": "Dedicated MT systems are often better at handling tense because they are trained specifically for translation tasks, while general LLMs like GPT-4 may be less sensitive to these details."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Si l'Assemblée en est d'accord, <GRAMMAR type=\"tense\" severity=\"major\" tom=\"1st_machine\" desc=\"Future tense replaced with past, altering intended meaning\">j'ai fait</GRAMMAR> comme M. Evans a dit, comme il l'a suggéré.",
+      "brief_explanation": "Future tense replaced with past, altering intended meaning"
+    },
+    {
+      "error_id": "552fb998-d5d1-4421-a3f3-48053ba5df3e",
+      "span_start": 73,
+      "span_end": 86,
+      "original_text": "l'a suggéré",
+      "injected_text": "has suggested",
+      "primary_tag": "UNTRANSLATED",
+      "error_type": "untranslated",
+      "severity": "critical",
+      "tom_level": "1st_machine",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "severity_range": [
+        "major",
+        "critical"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system failed to translate 'has suggested' into French, possibly treating it as a proper noun or an untranslatable phrase, and left it unchanged in the output.",
+        "actual_meaning": "The source means that if the House agrees, the speaker will follow Mr Evans's suggestion, and this should be fully expressed in French.",
+        "reader_impact": "A French reader encountering 'has suggested' in the middle of the sentence would be confused, as it is an English phrase in an otherwise French context, disrupting comprehension and flow.",
+        "correction_rationale": "The correct translation 'l'a suggéré' accurately renders the verb phrase into French, maintaining grammatical coherence and ensuring the meaning is clear to the target audience."
+      },
+      "system_behavior": {
+        "error_mechanism": "Machine translation systems sometimes leave words or phrases untranslated, much like a person skipping a tricky word in a foreign language because they're unsure. This often happens when the system doesn't recognize the word or can't find a good match in its 'mental dictionary.'",
+        "architectural_cause": "Inside, the system reads and tries to match each word or phrase to what it has seen before. If it hasn't learned a translation for a certain word, or if the context is confusing, it might just leave it as is, hoping it's correct or at least understandable.",
+        "pattern_generalization": "You're more likely to see this error with rare words, names, technical terms, or brand-new expressions the system hasn't seen much during its training.",
+        "mt_system_specific": "Dedicated MT systems are usually better at handling untranslated words because they're trained specifically for translation tasks, while general-purpose LLMs like GPT-4 may skip more words since they're not focused solely on translation."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Si l'Assemblée en est d'accord, j'ai fait comme M. Evans a dit, comme il <UNTRANSLATED type=\"untranslated\" severity=\"critical\" tom=\"1st_machine\" desc=\"5-15 word explanation\">has suggested</UNTRANSLATED>.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "73f2c82c-e407-438e-a461-0e6a7196972d",
+      "span_start": 15,
+      "span_end": 27,
+      "original_text": "en est d'accord",
+      "injected_text": "est d'accord",
+      "primary_tag": "OMISSION",
+      "error_type": "modifier",
+      "severity": "minor",
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'the House agrees' as simply 'l'Assemblée est d'accord,' omitting the modifier 'en' because it didn't recognize its necessity in French idiomatic usage.",
+        "actual_meaning": "The source means 'if the House agrees to this specific proposal,' with 'en' referring to the suggestion just mentioned.",
+        "reader_impact": "A reader might think the House is agreeing in general, rather than specifically agreeing to the proposal, leading to a slight loss of precision.",
+        "correction_rationale": "'En est d'accord' correctly includes the pronoun 'en' to specify agreement with the mentioned suggestion, maintaining the reference and clarity present in the source."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often miss modifiers, like adjectives or adverbs, because they focus on the main parts of a sentence and may overlook the 'extra details' that give more meaning—like forgetting to mention 'red' when describing 'a red apple.' It's similar to summarizing a story and leaving out small but important details.",
+        "architectural_cause": "Internally, these systems break down sentences into pieces and try to match them with patterns they've seen before. If the training examples didn't highlight the importance of certain modifiers, the system might skip them, thinking they're less important than the main nouns or verbs.",
+        "pattern_generalization": "Students will often see this kind of error when the modifier is subtle, less common, or doesn't change the main meaning of the sentence. Pay extra attention to descriptive words and phrases, especially in complex or information-rich sentences.",
+        "mt_system_specific": "Dedicated MT systems, trained specifically for translation, are usually better at keeping modifiers than general-purpose LLMs, which may skip them more often because they aren't focused only on translation accuracy."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Si l'Assemblée <OMISSION type=\"modifier\" severity=\"minor\" tom=\"1st_author\" desc=\"5-15 word explanation\">est d'accord</OMISSION>, j'ai fait comme M. Evans a dit, comme il has suggested.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "analyst",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 5,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely interpreted 'do as Mr Evans has suggested' as requiring a more explicit action, so it rendered it as 'I will exactly follow Mr Evans' instructions.'",
+      "actual_meaning": "The source simply means that the speaker will act in accordance with Mr Evans's suggestion, without specifying exactness or strict adherence to instructions.",
+      "reader_impact": "A reader may think that Mr Evans gave detailed instructions to be followed to the letter, rather than just making a suggestion, which changes the nuance of the original statement.",
+      "correction_rationale": "The correct translation preserves the intended vagueness of the original, accurately reflecting that the speaker will act as suggested, not necessarily follow explicit instructions."
+    },
+    {
+      "mt_interpretation": "The MT system interpreted 'do as Mr Evans has suggested' as a casual instruction and rendered it informally as 'je ferai comme M. Evans a dit,' focusing on the action rather than the formal context.",
+      "actual_meaning": "The source expresses a formal commitment to follow Mr Evans's suggestion precisely, appropriate for a parliamentary setting.",
+      "reader_impact": "A reader may perceive the speaker as informal or disrespectful, as 'je ferai comme M. Evans a dit' lacks the necessary formality and precision, potentially undermining the seriousness of the commitment.",
+      "correction_rationale": "The correct translation, 'je suivrai exactement les instructions de M. Evans,' maintains the formal register and accurately conveys the intent to follow instructions, aligning with the source's tone and context."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted the verb 'shall do' as referring to a completed action and chose the past tense 'j'ai fait' to express this in French.",
+      "actual_meaning": "The source sentence expresses a conditional future action: the speaker will act as Mr Evans suggested if the House agrees.",
+      "reader_impact": "A reader would understand 'j'ai fait' as meaning the speaker has already done what Mr Evans suggested, rather than planning to do it in the future. This misrepresents the speaker's intentions and the sequence of events.",
+      "correction_rationale": "The correct translation 'je ferai' accurately conveys the intended future action, preserving the conditional aspect and the correct temporal relationship between the agreement and the action."
+    },
+    {
+      "mt_interpretation": "The MT system failed to translate 'has suggested' into French, possibly treating it as a proper noun or an untranslatable phrase, and left it unchanged in the output.",
+      "actual_meaning": "The source means that if the House agrees, the speaker will follow Mr Evans's suggestion, and this should be fully expressed in French.",
+      "reader_impact": "A French reader encountering 'has suggested' in the middle of the sentence would be confused, as it is an English phrase in an otherwise French context, disrupting comprehension and flow.",
+      "correction_rationale": "The correct translation 'l'a suggéré' accurately renders the verb phrase into French, maintaining grammatical coherence and ensuring the meaning is clear to the target audience."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted 'the House agrees' as simply 'l'Assemblée est d'accord,' omitting the modifier 'en' because it didn't recognize its necessity in French idiomatic usage.",
+      "actual_meaning": "The source means 'if the House agrees to this specific proposal,' with 'en' referring to the suggestion just mentioned.",
+      "reader_impact": "A reader might think the House is agreeing in general, rather than specifically agreeing to the proposal, leading to a slight loss of precision.",
+      "correction_rationale": "'En est d'accord' correctly includes the pronoun 'en' to specify agreement with the mentioned suggestion, maintaining the reference and clarity present in the source."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems sometimes act like over-eager students who want to impress the teacher—they add extra information or explanations, even when it's not needed. This happens because the system tries to be helpful, but ends up including details that weren't in the original text.",
+      "architectural_cause": "Internally, the system doesn't truly understand meaning like a human does. Instead, it predicts what words tend to come next based on patterns it has seen before, so it sometimes 'fills in' with extra details if those often appear in similar situations during its training.",
+      "pattern_generalization": "You might see this kind of error when the original text is short, vague, or gives instructions—the system may add clarifications or specifics that weren't there. Watch for over-explained steps or extra warnings that don't match the source.",
+      "mt_system_specific": "General-purpose LLMs like GPT-4 are more likely to add extra details compared to dedicated MT systems, which are usually trained to stick closely to the source text."
+    },
+    {
+      "error_mechanism": "MT systems often choose words or phrases that sound friendly or casual because they learn from lots of examples, many of which use informal language. It's like copying how people usually talk in everyday life, even when a formal tone is needed.",
+      "architectural_cause": "Inside, the system doesn't truly understand social situations or the need for formality; it just picks what seems most common or likely based on its training. If most examples it saw were informal, it'll lean toward that style, missing the subtle cues for when to be more formal.",
+      "pattern_generalization": "Students will notice similar mistakes when translating texts that require a specific level of politeness or professionalism, especially if the original text is neutral but the translation feels too casual.",
+      "mt_system_specific": "General-purpose LLMs like GPT-4 are more prone to this error than dedicated MT systems, because LLMs are trained on a wider mix of formal and informal content."
+    },
+    {
+      "error_mechanism": "MT systems often mix up verb tenses because, like someone retelling a story they only half-remember, they focus more on matching the overall meaning than getting every detail right. If the context isn’t clear, the system might guess the wrong time frame, swapping 'will go' for 'went' without realizing how important that change is.",
+      "architectural_cause": "Internally, the system looks at patterns in millions of sentences and tries to predict the next word based on what it has seen before. If examples of future tense are less common or if the context is vague, the system might fall back on more frequent patterns, such as the past tense, even when it’s not correct.",
+      "pattern_generalization": "Students should watch for these errors in sentences where time isn’t clearly stated, or when the original sentence uses less common ways to talk about the future. Extra care is needed when translating plans, promises, or predictions.",
+      "mt_system_specific": "Dedicated MT systems are often better at handling tense because they are trained specifically for translation tasks, while general LLMs like GPT-4 may be less sensitive to these details."
+    },
+    {
+      "error_mechanism": "Machine translation systems sometimes leave words or phrases untranslated, much like a person skipping a tricky word in a foreign language because they're unsure. This often happens when the system doesn't recognize the word or can't find a good match in its 'mental dictionary.'",
+      "architectural_cause": "Inside, the system reads and tries to match each word or phrase to what it has seen before. If it hasn't learned a translation for a certain word, or if the context is confusing, it might just leave it as is, hoping it's correct or at least understandable.",
+      "pattern_generalization": "You're more likely to see this error with rare words, names, technical terms, or brand-new expressions the system hasn't seen much during its training.",
+      "mt_system_specific": "Dedicated MT systems are usually better at handling untranslated words because they're trained specifically for translation tasks, while general-purpose LLMs like GPT-4 may skip more words since they're not focused solely on translation."
+    },
+    {
+      "error_mechanism": "MT systems often miss modifiers, like adjectives or adverbs, because they focus on the main parts of a sentence and may overlook the 'extra details' that give more meaning—like forgetting to mention 'red' when describing 'a red apple.' It's similar to summarizing a story and leaving out small but important details.",
+      "architectural_cause": "Internally, these systems break down sentences into pieces and try to match them with patterns they've seen before. If the training examples didn't highlight the importance of certain modifiers, the system might skip them, thinking they're less important than the main nouns or verbs.",
+      "pattern_generalization": "Students will often see this kind of error when the modifier is subtle, less common, or doesn't change the main meaning of the sentence. Pay extra attention to descriptive words and phrases, especially in complex or information-rich sentences.",
+      "mt_system_specific": "Dedicated MT systems, trained specifically for translation, are usually better at keeping modifiers than general-purpose LLMs, which may skip them more often because they aren't focused only on translation accuracy."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "analyst",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

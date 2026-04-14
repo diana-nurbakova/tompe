@@ -1,0 +1,270 @@
+{
+  "item_id": "a0013665-181f-4bf7-988b-9597383fe5aa",
+  "segment_id": "europarl-915b45dda4d8",
+  "source_text": "In the meantime, I should like to observe a minute' s silence, as a number of Members have requested, on behalf of all the victims concerned, particularly those of the terrible storms, in the various countries of the European Union.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "En attendant, je souhaiterais, comme un certain nombre de collègues me l'ont demandé, que nous n'observions pas une minute de silence pour toutes les victmes, terrible storms notamment, dans les différents pays de l'Union européenne qui ont été touchés.",
+  "reference_translation": "En attendant, je souhaiterais, comme un certain nombre de collègues me l'ont demandé, que nous observions une minute de silence pour toutes les victimes, des tempêtes notamment, dans les différents pays de l'Union européenne qui ont été touchés.",
+  "mt_system": "deepl",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "37d743aa-9d97-428d-bbf1-26a415b4c0a7",
+      "span_start": 154,
+      "span_end": 186,
+      "original_text": "des tempêtes notamment",
+      "injected_text": "des tempêtes violentes notamment",
+      "primary_tag": "ADDITION",
+      "error_type": "qualifier",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S4",
+      "secondary_skills": [
+        "S6"
+      ],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'terrible storms' as 'tempêtes violentes,' assuming 'terrible' must be rendered as 'violent' to convey intensity.",
+        "actual_meaning": "The source uses 'terrible storms' in a general sense, meaning severe or disastrous storms without specifying 'violent' as a technical qualifier.",
+        "reader_impact": "A reader might think that only victims of 'violent' storms are included, potentially excluding other types of severe weather events and narrowing the intended scope.",
+        "correction_rationale": "The correct translation, 'des tempêtes notamment,' accurately reflects the inclusive intent of the source, avoiding unnecessary specification and keeping the meaning broad and faithful to the original."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often add extra qualifiers, like unnecessary adjectives or adverbs, because they try to make the translation sound more natural or detailed, much like someone telling a story who adds a few extra details for emphasis. Sometimes the system guesses what it thinks should be there, even if the original text didn’t include it.",
+        "architectural_cause": "Internally, the system looks for patterns in millions of examples and tries to predict what words usually go together. If it often sees certain qualifiers used in similar sentences, it may add them even when they’re not needed, because it’s following its learned habits rather than checking the exact meaning.",
+        "pattern_generalization": "Students should watch out for this error when translating texts where the original is simple and direct, but the translation seems to add extra descriptive words. This is especially common in sentences about people, objects, or actions.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are trained to stick closely to patterns in their training data, so they may add qualifiers more consistently. LLMs might do this less often, as they can be more flexible and context-aware, but both can make this mistake."
+      },
+      "technical_explanation": null,
+      "xml_tag": "En attendant, je souhaiterais, comme un certain nombre de collègues me l'ont demandé, que nous observions une minute de silence pour toutes les victimes, <ADDITION type=\"qualifier\" severity=\"minor\" tom=\"1st_machine\" desc=\"5-15 word explanation\">des tempêtes violentes notamment</ADDITION>, dans les différents pays de l'Union européenne qui ont été touchés.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "1ce79ce8-9f26-404b-a7b8-c1e4446d6fb8",
+      "span_start": 154,
+      "span_end": 169,
+      "original_text": "tempêtes violentes",
+      "injected_text": "terrible storms",
+      "primary_tag": "UNTRANSLATED",
+      "error_type": "untranslated",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "severity_range": [
+        "major",
+        "critical"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system retained the English phrase 'terrible storms' in the French output, likely failing to recognize it needed translation or confusing it with a possible proper noun.",
+        "actual_meaning": "The source refers to severe or violent storms ('tempêtes violentes'), not using the English phrase in the French sentence.",
+        "reader_impact": "A French reader encountering 'terrible storms' in an otherwise French sentence may be confused, disrupted, or mistakenly believe it refers to a specific event or term, reducing comprehension and fluency.",
+        "correction_rationale": "The correct translation, 'tempêtes violentes,' accurately conveys the intended meaning in natural French, ensuring clarity and maintaining the integrity of the message for the target audience."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems sometimes leave words or phrases untranslated, like a chef forgetting to add a key ingredient to a dish. This often happens when the system isn't sure how to handle a word, so it leaves it as is rather than risk a wrong translation.",
+        "architectural_cause": "Internally, the system tries to match words and phrases to its learned examples. If it hasn't seen a certain word or doesn't recognize it, it may skip translating it, especially if it thinks the word might be a name or something that shouldn't change.",
+        "pattern_generalization": "You’ll often see this with rare words, new terms, or unusual phrases the system hasn’t seen before. Watch for this especially with technical language, slang, or creative expressions.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are more likely to leave words untranslated when unsure, while LLMs may attempt a guess or produce a more creative output."
+      },
+      "technical_explanation": null,
+      "xml_tag": "En attendant, je souhaiterais, comme un certain nombre de collègues me l'ont demandé, que nous observions une minute de silence pour toutes les victimes, <UNTRANSLATED type=\"untranslated\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">terrible storms</UNTRANSLATED> notamment, dans les différents pays de l'Union européenne qui ont été touchés.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "889f3998-ba84-4cc8-93d8-2b7341250b0c",
+      "span_start": 144,
+      "span_end": 151,
+      "original_text": "victims",
+      "injected_text": "victors",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "false_cognate",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "severity_range": [
+        "major",
+        "critical"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely identified the French word 'victimes' and mistakenly matched it with the English false friend 'victors', assuming a similar spelling indicated similar meaning.",
+        "actual_meaning": "The source text refers to holding a minute of silence for all the people who suffered or died (the victims), especially those affected by storms in EU countries.",
+        "reader_impact": "A reader would wrongly believe that the silence is being observed for 'victors'—winners or conquerors—which is nonsensical and deeply inappropriate in the context of a tragedy.",
+        "correction_rationale": "The correct translation is 'victims' because 'victimes' in French refers to people who have suffered harm or loss, not to those who have won or achieved victory; accurate translation preserves the intended respect and solemnity."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often confuse words that look or sound similar across languages, like 'victimes' in French and 'victors' in English. It's a bit like mistaking a distant cousin for your sibling at a family reunion because they have similar features.",
+        "architectural_cause": "Inside, the system relies heavily on patterns it has seen in its training data. When it spots a familiar-looking word, it sometimes jumps to the wrong conclusion, especially if the word closely resembles another word in the target language.",
+        "pattern_generalization": "Students should watch out for these errors with words that are spelled similarly in both languages but have different meanings—these are classic 'false friends.' They often pop up with common nouns and adjectives.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are trained specifically for translation, so they might make this mistake less often than general-purpose language models, but the risk remains whenever false friends are common in the data."
+      },
+      "technical_explanation": null,
+      "xml_tag": "En attendant, je souhaiterais, comme un certain nombre de collègues me l'ont demandé, que nous observions une minute de silence pour toutes les <MISTRANSLATION type=\"false_cognate\" severity=\"major\" tom=\"1st_machine\" desc=\"French 'victimes' mistranslated as 'victors', a false friend error\">victors</MISTRANSLATION>, terrible storms notamment, dans les différents pays de l'Union européenne qui ont été touchés.",
+      "brief_explanation": "French 'victimes' mistranslated as 'victors', a false friend error"
+    },
+    {
+      "error_id": "c0f1f23b-efba-4a2f-b15a-1d198982a0cb",
+      "span_start": 86,
+      "span_end": 133,
+      "original_text": "que nous observions une minute de silence",
+      "injected_text": "que nous n'observions pas une minute de silence",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "negation",
+      "severity": "critical",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "severity_range": [
+        "critical"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system misinterpreted the structure and inserted a negation ('n'observions pas'), possibly due to confusion with the subjunctive construction, resulting in the opposite meaning.",
+        "actual_meaning": "The source expresses a request to observe a minute of silence in honor of the victims, especially those affected by storms across the EU.",
+        "reader_impact": "A reader would understand that the speaker is requesting NOT to observe a minute of silence, which is the opposite of the intended respectful gesture and could cause confusion or offense.",
+        "correction_rationale": "The correct translation omits the negation and accurately renders the intended request to observe a minute of silence, preserving the respectful and solemn intent of the original message."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up negation because they focus on patterns in language rather than true understanding. It's a bit like copying homework without fully grasping the meaning—sometimes the 'not' gets left out or put in the wrong place, flipping the meaning.",
+        "architectural_cause": "Internally, the system breaks sentences into chunks and tries to match them to similar examples it has seen before. If it hasn't seen enough examples with negation, or if the structure is unusual, it may miss or misplace words like 'not,' leading to the opposite meaning.",
+        "pattern_generalization": "Students should watch out for this error whenever a sentence contains words like 'not,' 'never,' or other forms of negation, especially in longer or more complex sentences.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are trained to handle standard translation tasks, but they can still miss subtle cues in negation. Large language models may handle unusual negation better, but can also invent or overlook negation depending on how the prompt is written."
+      },
+      "technical_explanation": null,
+      "xml_tag": "En attendant, je souhaiterais, comme un certain nombre de collègues me l'ont demandé, <MISTRANSLATION type=\"negation\" severity=\"critical\" tom=\"1st_machine\" desc=\"Negation flips request to opposite meaning\">que nous n'observions pas une minute de silence</MISTRANSLATION> pour toutes les victors, terrible storms notamment, dans les différents pays de l'Union européenne qui ont été touchés.",
+      "brief_explanation": "Negation flips request to opposite meaning"
+    },
+    {
+      "error_id": "682c287a-f6d4-40f6-8337-a8d51c4afdc8",
+      "span_start": 150,
+      "span_end": 157,
+      "original_text": "victims",
+      "injected_text": "victmes",
+      "primary_tag": "SPELLING",
+      "error_type": "spelling",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S1",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely attempted to translate 'victims' but produced a typographical error, outputting 'victmes' instead of the correct French 'victimes.'",
+        "actual_meaning": "The source refers to all people who have suffered or lost their lives, especially due to storms, in various EU countries.",
+        "reader_impact": "A French reader will recognize 'victmes' as a misspelling, which may momentarily interrupt comprehension and reduce the perceived quality or professionalism of the translation.",
+        "correction_rationale": "The correct word in French is 'victimes,' which preserves clarity and maintains the standard spelling, ensuring the translation is accurate and professional."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems can misspell words because they rely on patterns they've seen before. It's like someone who learns new words by reading quickly—sometimes they guess how a word is spelled based on similar words, but guess wrong.",
+        "architectural_cause": "Inside, the system breaks down words into smaller pieces or letters and tries to put them back together. If it hasn't seen a word often or gets confused by similar-looking words, it can mix up the letters or choose the wrong spelling.",
+        "pattern_generalization": "These errors are more likely with rare words, names, or words that look or sound similar to others. Watch out for unusual vocabulary or new terms—these are spelling trouble spots.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are generally better at spelling than LLMs, but both can make mistakes with uncommon or new words."
+      },
+      "technical_explanation": null,
+      "xml_tag": "En attendant, je souhaiterais, comme un certain nombre de collègues me l'ont demandé, que nous n'observions pas une minute de silence pour toutes les <SPELLING type=\"spelling\" severity=\"minor\" tom=\"1st_machine\" desc=\"5-15 word explanation\">victmes</SPELLING>, terrible storms notamment, dans les différents pays de l'Union européenne qui ont été touchés.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "analyst",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 5,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely interpreted 'terrible storms' as 'tempêtes violentes,' assuming 'terrible' must be rendered as 'violent' to convey intensity.",
+      "actual_meaning": "The source uses 'terrible storms' in a general sense, meaning severe or disastrous storms without specifying 'violent' as a technical qualifier.",
+      "reader_impact": "A reader might think that only victims of 'violent' storms are included, potentially excluding other types of severe weather events and narrowing the intended scope.",
+      "correction_rationale": "The correct translation, 'des tempêtes notamment,' accurately reflects the inclusive intent of the source, avoiding unnecessary specification and keeping the meaning broad and faithful to the original."
+    },
+    {
+      "mt_interpretation": "The MT system retained the English phrase 'terrible storms' in the French output, likely failing to recognize it needed translation or confusing it with a possible proper noun.",
+      "actual_meaning": "The source refers to severe or violent storms ('tempêtes violentes'), not using the English phrase in the French sentence.",
+      "reader_impact": "A French reader encountering 'terrible storms' in an otherwise French sentence may be confused, disrupted, or mistakenly believe it refers to a specific event or term, reducing comprehension and fluency.",
+      "correction_rationale": "The correct translation, 'tempêtes violentes,' accurately conveys the intended meaning in natural French, ensuring clarity and maintaining the integrity of the message for the target audience."
+    },
+    {
+      "mt_interpretation": "The MT system likely identified the French word 'victimes' and mistakenly matched it with the English false friend 'victors', assuming a similar spelling indicated similar meaning.",
+      "actual_meaning": "The source text refers to holding a minute of silence for all the people who suffered or died (the victims), especially those affected by storms in EU countries.",
+      "reader_impact": "A reader would wrongly believe that the silence is being observed for 'victors'—winners or conquerors—which is nonsensical and deeply inappropriate in the context of a tragedy.",
+      "correction_rationale": "The correct translation is 'victims' because 'victimes' in French refers to people who have suffered harm or loss, not to those who have won or achieved victory; accurate translation preserves the intended respect and solemnity."
+    },
+    {
+      "mt_interpretation": "The MT system misinterpreted the structure and inserted a negation ('n'observions pas'), possibly due to confusion with the subjunctive construction, resulting in the opposite meaning.",
+      "actual_meaning": "The source expresses a request to observe a minute of silence in honor of the victims, especially those affected by storms across the EU.",
+      "reader_impact": "A reader would understand that the speaker is requesting NOT to observe a minute of silence, which is the opposite of the intended respectful gesture and could cause confusion or offense.",
+      "correction_rationale": "The correct translation omits the negation and accurately renders the intended request to observe a minute of silence, preserving the respectful and solemn intent of the original message."
+    },
+    {
+      "mt_interpretation": "The MT system likely attempted to translate 'victims' but produced a typographical error, outputting 'victmes' instead of the correct French 'victimes.'",
+      "actual_meaning": "The source refers to all people who have suffered or lost their lives, especially due to storms, in various EU countries.",
+      "reader_impact": "A French reader will recognize 'victmes' as a misspelling, which may momentarily interrupt comprehension and reduce the perceived quality or professionalism of the translation.",
+      "correction_rationale": "The correct word in French is 'victimes,' which preserves clarity and maintains the standard spelling, ensuring the translation is accurate and professional."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often add extra qualifiers, like unnecessary adjectives or adverbs, because they try to make the translation sound more natural or detailed, much like someone telling a story who adds a few extra details for emphasis. Sometimes the system guesses what it thinks should be there, even if the original text didn’t include it.",
+      "architectural_cause": "Internally, the system looks for patterns in millions of examples and tries to predict what words usually go together. If it often sees certain qualifiers used in similar sentences, it may add them even when they’re not needed, because it’s following its learned habits rather than checking the exact meaning.",
+      "pattern_generalization": "Students should watch out for this error when translating texts where the original is simple and direct, but the translation seems to add extra descriptive words. This is especially common in sentences about people, objects, or actions.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are trained to stick closely to patterns in their training data, so they may add qualifiers more consistently. LLMs might do this less often, as they can be more flexible and context-aware, but both can make this mistake."
+    },
+    {
+      "error_mechanism": "MT systems sometimes leave words or phrases untranslated, like a chef forgetting to add a key ingredient to a dish. This often happens when the system isn't sure how to handle a word, so it leaves it as is rather than risk a wrong translation.",
+      "architectural_cause": "Internally, the system tries to match words and phrases to its learned examples. If it hasn't seen a certain word or doesn't recognize it, it may skip translating it, especially if it thinks the word might be a name or something that shouldn't change.",
+      "pattern_generalization": "You’ll often see this with rare words, new terms, or unusual phrases the system hasn’t seen before. Watch for this especially with technical language, slang, or creative expressions.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are more likely to leave words untranslated when unsure, while LLMs may attempt a guess or produce a more creative output."
+    },
+    {
+      "error_mechanism": "MT systems often confuse words that look or sound similar across languages, like 'victimes' in French and 'victors' in English. It's a bit like mistaking a distant cousin for your sibling at a family reunion because they have similar features.",
+      "architectural_cause": "Inside, the system relies heavily on patterns it has seen in its training data. When it spots a familiar-looking word, it sometimes jumps to the wrong conclusion, especially if the word closely resembles another word in the target language.",
+      "pattern_generalization": "Students should watch out for these errors with words that are spelled similarly in both languages but have different meanings—these are classic 'false friends.' They often pop up with common nouns and adjectives.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are trained specifically for translation, so they might make this mistake less often than general-purpose language models, but the risk remains whenever false friends are common in the data."
+    },
+    {
+      "error_mechanism": "MT systems often mix up negation because they focus on patterns in language rather than true understanding. It's a bit like copying homework without fully grasping the meaning—sometimes the 'not' gets left out or put in the wrong place, flipping the meaning.",
+      "architectural_cause": "Internally, the system breaks sentences into chunks and tries to match them to similar examples it has seen before. If it hasn't seen enough examples with negation, or if the structure is unusual, it may miss or misplace words like 'not,' leading to the opposite meaning.",
+      "pattern_generalization": "Students should watch out for this error whenever a sentence contains words like 'not,' 'never,' or other forms of negation, especially in longer or more complex sentences.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are trained to handle standard translation tasks, but they can still miss subtle cues in negation. Large language models may handle unusual negation better, but can also invent or overlook negation depending on how the prompt is written."
+    },
+    {
+      "error_mechanism": "MT systems can misspell words because they rely on patterns they've seen before. It's like someone who learns new words by reading quickly—sometimes they guess how a word is spelled based on similar words, but guess wrong.",
+      "architectural_cause": "Inside, the system breaks down words into smaller pieces or letters and tries to put them back together. If it hasn't seen a word often or gets confused by similar-looking words, it can mix up the letters or choose the wrong spelling.",
+      "pattern_generalization": "These errors are more likely with rare words, names, or words that look or sound similar to others. Watch out for unusual vocabulary or new terms—these are spelling trouble spots.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are generally better at spelling than LLMs, but both can make mistakes with uncommon or new words."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "analyst",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

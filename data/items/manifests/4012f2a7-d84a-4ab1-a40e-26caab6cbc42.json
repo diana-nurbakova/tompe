@@ -1,0 +1,270 @@
+{
+  "item_id": "4012f2a7-d84a-4ab1-a40e-26caab6cbc42",
+  "segment_id": "europarl-e54de29885ec",
+  "source_text": "I declare resumed the session of the European Parliament adjourned on Friday 17 December 1999, and I would like once again to wish you a happy new year in the hope that you enjoyed a pleasant festive period.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes souhaits en espérant que vous n'avez pas passé de merveilleuses et reposantes vacances à la maison.",
+  "reference_translation": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes vux en espérant que vous avez passé de bonnes vacances.",
+  "mt_system": "deepl",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "c82cf2c8-66c1-43b1-a466-220fc8c2d72a",
+      "span_start": 148,
+      "span_end": 227,
+      "original_text": "espérant que vous avez passé de bonnes vacances",
+      "injected_text": "espérant que vous avez passé de merveilleuses et reposantes vacances en famille",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "overtranslation",
+      "severity": "minor",
+      "tom_level": "1st_author",
+      "primary_skill": "S3",
+      "secondary_skills": [
+        "S4"
+      ],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely identified 'pleasant festive period' and tried to enrich it, rendering it as 'merveilleuses et reposantes vacances en famille' to sound more positive and specific.",
+        "actual_meaning": "The source simply wishes the audience that they enjoyed a pleasant holiday period, without specifying the nature of the holidays or implying family or rest.",
+        "reader_impact": "A reader may think the speaker is being unusually personal or specific, suggesting family time and rest, which is not present in the original text.",
+        "correction_rationale": "The correct translation maintains the neutral and general tone of the source, avoiding unnecessary embellishments or assumptions about the nature of the holidays."
+      },
+      "system_behavior": {
+        "error_mechanism": "Overtranslation happens when the MT system adds extra words or repeats ideas that weren’t in the original text. It’s like a student who tries too hard to explain something and ends up making it longer than needed.",
+        "architectural_cause": "Internally, the system guesses what comes next based on patterns it has seen before. Sometimes, it thinks repeating or expanding on a phrase makes the translation more natural, even if it wasn’t in the source.",
+        "pattern_generalization": "Students will often see overtranslation with phrases that are common or idiomatic, or when the source text is short and the system tries to 'fill in' what it thinks is missing.",
+        "mt_system_specific": "Dedicated MT systems like DeepL can be more prone to overtranslation because they are trained to maximize fluency and completeness, while LLMs may be more cautious and stick closer to the source wording."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes vux en <MISTRANSLATION type=\"overtranslation\" severity=\"minor\" tom=\"1st_author\" desc=\"5-15 word explanation\">espérant que vous avez passé de merveilleuses et reposantes vacances en famille</MISTRANSLATION>.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "1cf892a8-b6be-408e-ab35-b583eef1fd0c",
+      "span_start": 217,
+      "span_end": 228,
+      "original_text": "en famille",
+      "injected_text": "à la maison",
+      "primary_tag": "STYLE",
+      "error_type": "unidiomatic",
+      "severity": "minor",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system interpreted 'festive period' as time spent 'at home,' leading it to use 'à la maison,' a literal and spatial phrase.",
+        "actual_meaning": "The source wishes that the audience enjoyed the holidays, typically understood as time spent 'with family,' not necessarily at home.",
+        "reader_impact": "A reader may think the speaker is specifically emphasizing being at home during the holidays, which is not the intended nuance.",
+        "correction_rationale": "'En famille' is an idiomatic French expression for spending the holidays with loved ones, matching the social and cultural context of the original message."
+      },
+      "system_behavior": {
+        "error_mechanism": "Machine translation systems often sound a bit odd because they piece together words and phrases based on patterns they've seen, rather than truly understanding style or natural flow. It's like someone who learned a language from textbooks but hasn't spent much time chatting with native speakers—they get the words right, but the way they say things can feel stiff or unusual.",
+        "architectural_cause": "Internally, these systems work by matching input sentences to examples they've seen before and then building a translation from those matches. They don't have a sense of what 'sounds natural' in the target language, so they might miss idiomatic expressions or common ways of saying things.",
+        "pattern_generalization": "You’ll often see these errors with phrases that have a special way of being said in the target language, or when the original text uses informal or creative language. Watch out when translating everyday expressions or conversational phrases.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are trained to be accurate and fast, but they may not adapt to unusual styles or creative language as well as newer AI models like LLMs, which sometimes produce more natural-sounding text."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes vux en espérant que vous avez passé de merveilleuses et reposantes vacances <STYLE type=\"unidiomatic\" severity=\"minor\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">à la maison</STYLE>.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "b7a9fa76-69ab-4686-85dd-450c6377efc7",
+      "span_start": 141,
+      "span_end": 145,
+      "original_text": "vux",
+      "injected_text": "veux",
+      "primary_tag": "SPELLING",
+      "error_type": "spelling",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S1",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'vux' as a misspelling and automatically replaced it with the much more common word 'veux' (I want).",
+        "actual_meaning": "The source actually intends to express 'mes vœux', meaning 'my wishes' or 'greetings', as is customary in New Year's messages.",
+        "reader_impact": "A reader would misread 'veux' as 'I want', making the sentence confusing or nonsensical, as it would seem the speaker is expressing a desire rather than offering wishes.",
+        "correction_rationale": "The correct word is 'vœux' (wishes), which fits the context of offering New Year greetings; 'veux' (want) is a different verb and changes the meaning entirely."
+      },
+      "system_behavior": {
+        "error_mechanism": "Machine translation systems can sometimes misspell words because they are like people typing quickly—they might pick a word that looks or sounds similar to the right one. Sometimes, the system confuses words that are spelled almost the same, especially if they're used in similar situations.",
+        "architectural_cause": "Internally, the system relies on huge amounts of examples to guess what word comes next. If it hasn't seen a word often, or if two words are very close in spelling, it might mix them up, just like someone glancing quickly at a page.",
+        "pattern_generalization": "You’re more likely to see spelling mistakes with rare words, names, or technical terms, and when the source text is unclear or contains typos itself.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are usually better at spelling than general-purpose language models, but both can still make these mistakes, especially with unusual or new words."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes <SPELLING type=\"spelling\" severity=\"minor\" tom=\"1st_machine\" desc=\"5-15 word explanation\">veux</SPELLING> en espérant que vous avez passé de merveilleuses et reposantes vacances à la maison.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "5ed3af69-2cfe-4ff3-892b-14037c30c72b",
+      "span_start": 146,
+      "span_end": 235,
+      "original_text": "en espérant que vous avez passé de merveilleuses et reposantes vacances à la maison",
+      "injected_text": "en espérant que vous n'avez pas passé de merveilleuses et reposantes vacances à la maison",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "negation",
+      "severity": "critical",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "severity_range": [
+        "critical"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely misinterpreted the structure and introduced an unintended negation, rendering the wish as if the speaker hopes the audience did not have a wonderful and restful holiday at home.",
+        "actual_meaning": "The source expresses a positive wish, hoping that the audience did enjoy a wonderful and restful holiday at home.",
+        "reader_impact": "A reader would wrongly understand that the speaker is expressing hope that the audience did not have a pleasant holiday, which is the opposite of the intended goodwill and could be perceived as rude or sarcastic.",
+        "correction_rationale": "The correct translation maintains the positive sentiment of the original by omitting the negation, accurately conveying the speaker's warm wishes for a happy and restful holiday."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often get confused with negation, like mistakenly adding a 'not' when none is needed. It's similar to someone mishearing a wish and thinking you said 'I don't want cake' instead of 'I want cake,' flipping the meaning completely.",
+        "architectural_cause": "Internally, the system tries to match patterns it has seen before, but sometimes it mixes up examples with and without negation. Because it relies on statistical patterns rather than true understanding, it can easily slip in a 'not' where it doesn't belong.",
+        "pattern_generalization": "You might notice similar errors when translating sentences with wishes, hopes, or polite requests, especially when the source sentence is positive but could be misunderstood. Always double-check negation in translations of nuanced or emotional statements.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are trained on large datasets and may repeat these mistakes more often, while LLMs can sometimes handle context better but are not immune to the same confusion."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes veux <MISTRANSLATION type=\"negation\" severity=\"critical\" tom=\"1st_machine\" desc=\"Negation added, reversing the intended positive wish\">en espérant que vous n'avez pas passé de merveilleuses et reposantes vacances à la maison</MISTRANSLATION>.",
+      "brief_explanation": "Negation added, reversing the intended positive wish"
+    },
+    {
+      "error_id": "9e44f928-dad7-41ff-bce2-72f1fbd2165d",
+      "span_start": 132,
+      "span_end": 149,
+      "original_text": "tous mes vœux",
+      "injected_text": "tous mes souhaits",
+      "primary_tag": "STYLE",
+      "error_type": "unidiomatic",
+      "severity": "minor",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely mapped 'wishes' directly to 'souhaits,' aiming for a literal translation of 'I wish you' as 'je vous souhaite' or 'tous mes souhaits.'",
+        "actual_meaning": "The source expresses a conventional New Year's greeting, which in French is idiomatically conveyed as 'tous mes vœux.'",
+        "reader_impact": "A reader would find 'tous mes souhaits' odd or unidiomatic, possibly perceiving the greeting as awkward or non-native.",
+        "correction_rationale": "'Tous mes vœux' is the established French expression for offering best wishes, especially for the New Year, making it the stylistically and culturally appropriate choice."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often produce unidiomatic language because they focus on matching patterns they've seen before, like someone who learns phrases from a textbook but doesn't pick up on the natural way people actually speak. This means their translations can sound awkward or 'off' even if the grammar and words are correct.",
+        "architectural_cause": "Internally, the system tries to predict the most likely translation based on huge amounts of past examples. It doesn't truly 'understand' the flow or style of natural speech, so it can miss the subtle choices that make language sound natural to native speakers.",
+        "pattern_generalization": "Students should watch for these errors in phrases or sentences that have more than one way to say them, especially with idioms or common sayings. Pay close attention when the original text includes expressions that don't translate word-for-word.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are trained to translate as accurately as possible, but they may miss out on the latest slang or conversational styles that LLMs, which are exposed to more varied text, might pick up."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle <STYLE type=\"unidiomatic\" severity=\"minor\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">tous mes souhaits</STYLE> en espérant que vous n'avez pas passé de merveilleuses et reposantes vacances à la maison.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "analyst",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 5,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely identified 'pleasant festive period' and tried to enrich it, rendering it as 'merveilleuses et reposantes vacances en famille' to sound more positive and specific.",
+      "actual_meaning": "The source simply wishes the audience that they enjoyed a pleasant holiday period, without specifying the nature of the holidays or implying family or rest.",
+      "reader_impact": "A reader may think the speaker is being unusually personal or specific, suggesting family time and rest, which is not present in the original text.",
+      "correction_rationale": "The correct translation maintains the neutral and general tone of the source, avoiding unnecessary embellishments or assumptions about the nature of the holidays."
+    },
+    {
+      "mt_interpretation": "The MT system interpreted 'festive period' as time spent 'at home,' leading it to use 'à la maison,' a literal and spatial phrase.",
+      "actual_meaning": "The source wishes that the audience enjoyed the holidays, typically understood as time spent 'with family,' not necessarily at home.",
+      "reader_impact": "A reader may think the speaker is specifically emphasizing being at home during the holidays, which is not the intended nuance.",
+      "correction_rationale": "'En famille' is an idiomatic French expression for spending the holidays with loved ones, matching the social and cultural context of the original message."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted 'vux' as a misspelling and automatically replaced it with the much more common word 'veux' (I want).",
+      "actual_meaning": "The source actually intends to express 'mes vœux', meaning 'my wishes' or 'greetings', as is customary in New Year's messages.",
+      "reader_impact": "A reader would misread 'veux' as 'I want', making the sentence confusing or nonsensical, as it would seem the speaker is expressing a desire rather than offering wishes.",
+      "correction_rationale": "The correct word is 'vœux' (wishes), which fits the context of offering New Year greetings; 'veux' (want) is a different verb and changes the meaning entirely."
+    },
+    {
+      "mt_interpretation": "The MT system likely misinterpreted the structure and introduced an unintended negation, rendering the wish as if the speaker hopes the audience did not have a wonderful and restful holiday at home.",
+      "actual_meaning": "The source expresses a positive wish, hoping that the audience did enjoy a wonderful and restful holiday at home.",
+      "reader_impact": "A reader would wrongly understand that the speaker is expressing hope that the audience did not have a pleasant holiday, which is the opposite of the intended goodwill and could be perceived as rude or sarcastic.",
+      "correction_rationale": "The correct translation maintains the positive sentiment of the original by omitting the negation, accurately conveying the speaker's warm wishes for a happy and restful holiday."
+    },
+    {
+      "mt_interpretation": "The MT system likely mapped 'wishes' directly to 'souhaits,' aiming for a literal translation of 'I wish you' as 'je vous souhaite' or 'tous mes souhaits.'",
+      "actual_meaning": "The source expresses a conventional New Year's greeting, which in French is idiomatically conveyed as 'tous mes vœux.'",
+      "reader_impact": "A reader would find 'tous mes souhaits' odd or unidiomatic, possibly perceiving the greeting as awkward or non-native.",
+      "correction_rationale": "'Tous mes vœux' is the established French expression for offering best wishes, especially for the New Year, making it the stylistically and culturally appropriate choice."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "Overtranslation happens when the MT system adds extra words or repeats ideas that weren’t in the original text. It’s like a student who tries too hard to explain something and ends up making it longer than needed.",
+      "architectural_cause": "Internally, the system guesses what comes next based on patterns it has seen before. Sometimes, it thinks repeating or expanding on a phrase makes the translation more natural, even if it wasn’t in the source.",
+      "pattern_generalization": "Students will often see overtranslation with phrases that are common or idiomatic, or when the source text is short and the system tries to 'fill in' what it thinks is missing.",
+      "mt_system_specific": "Dedicated MT systems like DeepL can be more prone to overtranslation because they are trained to maximize fluency and completeness, while LLMs may be more cautious and stick closer to the source wording."
+    },
+    {
+      "error_mechanism": "Machine translation systems often sound a bit odd because they piece together words and phrases based on patterns they've seen, rather than truly understanding style or natural flow. It's like someone who learned a language from textbooks but hasn't spent much time chatting with native speakers—they get the words right, but the way they say things can feel stiff or unusual.",
+      "architectural_cause": "Internally, these systems work by matching input sentences to examples they've seen before and then building a translation from those matches. They don't have a sense of what 'sounds natural' in the target language, so they might miss idiomatic expressions or common ways of saying things.",
+      "pattern_generalization": "You’ll often see these errors with phrases that have a special way of being said in the target language, or when the original text uses informal or creative language. Watch out when translating everyday expressions or conversational phrases.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are trained to be accurate and fast, but they may not adapt to unusual styles or creative language as well as newer AI models like LLMs, which sometimes produce more natural-sounding text."
+    },
+    {
+      "error_mechanism": "Machine translation systems can sometimes misspell words because they are like people typing quickly—they might pick a word that looks or sounds similar to the right one. Sometimes, the system confuses words that are spelled almost the same, especially if they're used in similar situations.",
+      "architectural_cause": "Internally, the system relies on huge amounts of examples to guess what word comes next. If it hasn't seen a word often, or if two words are very close in spelling, it might mix them up, just like someone glancing quickly at a page.",
+      "pattern_generalization": "You’re more likely to see spelling mistakes with rare words, names, or technical terms, and when the source text is unclear or contains typos itself.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are usually better at spelling than general-purpose language models, but both can still make these mistakes, especially with unusual or new words."
+    },
+    {
+      "error_mechanism": "MT systems often get confused with negation, like mistakenly adding a 'not' when none is needed. It's similar to someone mishearing a wish and thinking you said 'I don't want cake' instead of 'I want cake,' flipping the meaning completely.",
+      "architectural_cause": "Internally, the system tries to match patterns it has seen before, but sometimes it mixes up examples with and without negation. Because it relies on statistical patterns rather than true understanding, it can easily slip in a 'not' where it doesn't belong.",
+      "pattern_generalization": "You might notice similar errors when translating sentences with wishes, hopes, or polite requests, especially when the source sentence is positive but could be misunderstood. Always double-check negation in translations of nuanced or emotional statements.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are trained on large datasets and may repeat these mistakes more often, while LLMs can sometimes handle context better but are not immune to the same confusion."
+    },
+    {
+      "error_mechanism": "MT systems often produce unidiomatic language because they focus on matching patterns they've seen before, like someone who learns phrases from a textbook but doesn't pick up on the natural way people actually speak. This means their translations can sound awkward or 'off' even if the grammar and words are correct.",
+      "architectural_cause": "Internally, the system tries to predict the most likely translation based on huge amounts of past examples. It doesn't truly 'understand' the flow or style of natural speech, so it can miss the subtle choices that make language sound natural to native speakers.",
+      "pattern_generalization": "Students should watch for these errors in phrases or sentences that have more than one way to say them, especially with idioms or common sayings. Pay close attention when the original text includes expressions that don't translate word-for-word.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are trained to translate as accurately as possible, but they may miss out on the latest slang or conversational styles that LLMs, which are exposed to more varied text, might pick up."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "analyst",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

@@ -1,0 +1,36 @@
+{
+  "response_id": "50cbdf35-8d37-4e77-8274-40c4fb04c062",
+  "session_id": "677b0f9a-9fe6-49f6-8bd7-fce89afa2c11",
+  "item_id": "2b7b69cf-d456-4a6a-981d-3520ec047d3c",
+  "student_id": "1a133069-aee9-4328-bcd8-63348d2e9a56",
+  "mode": "evaluation",
+  "timestamp": "2026-04-14T22:25:57.984304",
+  "time_spent_seconds": 145.9,
+  "identified_errors": [
+    {
+      "span_start": 31,
+      "span_end": 52,
+      "student_mqm_category": "accuracy",
+      "student_severity": "major",
+      "confidence": "medium"
+    }
+  ],
+  "edited_text": null,
+  "verification_responses": null,
+  "comparison_type": null,
+  "per_system_evaluations": null,
+  "system_rankings": null,
+  "pe_worthiness": null,
+  "justification_format": "free_text",
+  "justifications": [
+    {
+      "error_id": null,
+      "format": "structured",
+      "text": null,
+      "mt_misunderstanding": "\"dans le prochain jour\" is given in a singular form while the source text uses plural \"few days\". This might be due to the fequent use of \"prochain jour\"",
+      "author_intent": "to indicate that the debates are requested in the upcoming days",
+      "reader_impact": "the debates are requested to be organised the next day",
+      "tom_perspective": null
+    }
+  ]
+}

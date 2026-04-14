@@ -1,0 +1,275 @@
+{
+  "item_id": "4479db86-7211-4c5d-b3f3-72f22fa10d5b",
+  "segment_id": "europarl-fb6e3c1dbc20",
+  "source_text": "Yes, Mr Evans, I feel an initiative of the type you have just suggested would be entirely appropriate.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Oui, Monsieur Evans, je pense qu'une initiative dans la direction que vous venez de suggérer lors de la réunion d'aujourd'hui concernant la politique agricole serait tout à fait appropriée.",
+  "reference_translation": "Oui, Monsieur Evans, je pense qu'une initiative dans le sens que vous venez de suggérer serait tout à fait appropriée.",
+  "mt_system": "claude",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "f2709183-75c8-4fad-a9d7-af4f68c90d59",
+      "span_start": 95,
+      "span_end": 117,
+      "original_text": "tout à fait appropriée",
+      "injected_text": "appropriée tout à fait",
+      "primary_tag": "GRAMMAR",
+      "error_type": "word_order",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely tried to translate word-for-word, placing 'tout à fait' after 'appropriée' to mirror English word order, not accounting for French adverbial placement.",
+        "actual_meaning": "The source expresses that the suggested initiative would be 'entirely appropriate,' emphasizing the degree of appropriateness.",
+        "reader_impact": "A reader might find 'appropriée tout à fait' awkward or confusing, potentially questioning the fluency or even the meaning of the sentence.",
+        "correction_rationale": "In French, 'tout à fait' should precede the adjective it modifies ('appropriée'), so 'tout à fait appropriée' is the natural and grammatically correct order."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems sometimes mix up word order because they learn patterns from lots of examples, but languages organize sentences differently. It's like trying to put together a puzzle using pieces from two different sets—the shapes don't always fit the same way.",
+        "architectural_cause": "Internally, the system tries to predict the next word based on what it has seen before, sometimes copying the order from the original language. If the system doesn't fully understand the rules for changing word order, it can easily put words in the wrong spots.",
+        "pattern_generalization": "Similar errors often happen with questions, adjectives, or when translating between languages with different sentence structures. Watch out when word order in your source and target languages is not the same.",
+        "mt_system_specific": "General-purpose LLMs like Claude are more likely to make these errors than dedicated MT systems, because they aren't as specialized in learning language-specific word order rules."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Oui, Monsieur Evans, je pense qu'une initiative dans le sens que vous venez de suggérer serait <GRAMMAR type=\"word_order\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">appropriée tout à fait</GRAMMAR>.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "acd2417e-11f9-463d-a4b5-55c7ca7ae058",
+      "span_start": 88,
+      "span_end": 120,
+      "original_text": "",
+      "injected_text": "concernant la politique agricole",
+      "primary_tag": "ADDITION",
+      "error_type": "hallucination",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S4",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "major",
+        "critical"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely inferred from context or prior data that the initiative was related to 'agricultural policy' and thus added 'concernant la politique agricole' to specify the domain.",
+        "actual_meaning": "The source text refers to an initiative of the type just suggested by Mr Evans, without specifying any particular domain or topic.",
+        "reader_impact": "A reader would incorrectly believe that the initiative specifically concerns agricultural policy, which is not stated in the original text and could lead to misunderstanding the scope of the discussion.",
+        "correction_rationale": "The correct translation accurately reflects the open-ended nature of the original statement, avoiding the introduction of unwarranted specifics and preserving the intended meaning."
+      },
+      "system_behavior": {
+        "error_mechanism": "Imagine a student who, when unsure of an answer, makes up details that sound convincing. MT systems sometimes do the same—they fill in gaps with information that fits the style or topic, even if it wasn’t in the original text.",
+        "architectural_cause": "Internally, these systems are designed to predict what words should come next based on patterns they’ve seen before. If the system isn’t sure or the input is unclear, it may invent details to keep the sentence flowing smoothly, rather than leaving a blank or stopping.",
+        "pattern_generalization": "You’ll often see this kind of error when the source text is vague, incomplete, or contains unusual phrases. Watch out for translations that seem to add facts or explanations not present in the original.",
+        "mt_system_specific": "General-purpose language models like LLMs are more likely to hallucinate than dedicated MT systems, because they’re trained to generate text broadly and may prioritize fluency over strict accuracy."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Oui, Monsieur Evans, je pense qu'une initiative dans le sens que vous venez de suggérer <ADDITION type=\"hallucination\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">concernant la politique agricole</ADDITION> serait appropriée tout à fait.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "fddd8ef2-3ef1-4633-834b-eac6a787b6a4",
+      "span_start": 48,
+      "span_end": 69,
+      "original_text": "dans le sens que",
+      "injected_text": "dans la direction que",
+      "primary_tag": "TERMINOLOGY",
+      "error_type": "inconsistent",
+      "severity": "minor",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S5",
+      "secondary_skills": [
+        "S7"
+      ],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system associated 'type' with a physical or directional sense and chose 'dans la direction que' as a literal translation for 'in the direction that.'",
+        "actual_meaning": "The source refers to an initiative aligned with the intention or spirit of the suggestion, not a physical direction.",
+        "reader_impact": "A reader might interpret 'dans la direction que' as referring to a physical or spatial direction, leading to confusion about the intended meaning.",
+        "correction_rationale": "'Dans le sens que' is the established idiomatic expression in French for 'in the sense that' or 'in the manner that,' accurately conveying the intended alignment of ideas."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often act like students who haven't made a personal glossary—they might use different words for the same term in one text, especially if the word has several possible translations. Without remembering their earlier choices, they can switch terms mid-way, leading to inconsistency.",
+        "architectural_cause": "Internally, these systems process each sentence or part of the text mostly on its own, without a strong memory of earlier choices. They don't always keep track of which specific words they've already used, so they might pick a different translation each time.",
+        "pattern_generalization": "You’ll see this kind of error most often in texts with repeated technical terms, product names, or phrases that need to stay exactly the same throughout. Watch for it in manuals, contracts, and scientific papers.",
+        "mt_system_specific": "LLMs like Claude are even more likely to make this mistake than specialized MT systems, because they aren’t designed to handle terminology lists or enforce consistency as strictly."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Oui, Monsieur Evans, je pense qu'une initiative <TERMINOLOGY type=\"inconsistent\" severity=\"minor\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">dans la direction que</TERMINOLOGY> vous venez de suggérer concernant la politique agricole serait appropriée tout à fait.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "cbc2e12c-2f3a-4cca-bd0f-1803285cc717",
+      "span_start": 48,
+      "span_end": 125,
+      "original_text": "dans la direction que vous venez de suggérer",
+      "injected_text": "dans la direction que vous venez de suggérer lors de la réunion d'aujourd'hui",
+      "primary_tag": "ADDITION",
+      "error_type": "explicitation",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S4",
+      "secondary_skills": [
+        "S6"
+      ],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system inferred that specifying 'today's meeting' would clarify when the suggestion was made, so it added 'lors de la réunion d'aujourd'hui' to make the context more explicit.",
+        "actual_meaning": "The source simply refers to the suggestion Mr. Evans just made, without specifying when or where it was made. There is no mention of a meeting or its timing.",
+        "reader_impact": "A reader may assume that the suggestion was specifically made during a meeting held today, introducing unnecessary detail and potentially causing confusion about the setting.",
+        "correction_rationale": "The correct translation avoids adding information not present in the source, maintaining fidelity by only referring to the suggestion just made, as in the original text."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often add extra explanations because they're like helpful tour guides who want to make sure you understand everything, sometimes giving you more detail than the original speaker intended. They may 'over-explain' to fill in what they think might be missing or unclear.",
+        "architectural_cause": "Internally, the system tries to predict what a good translation should look like based on its training. If it has often seen certain ideas explained more fully in one language than another, it might automatically add those details, thinking that's what a good translation does.",
+        "pattern_generalization": "You can expect this kind of error when translating between languages or cultures where one tends to be more explicit or detailed than the other. Watch out for this when the source text is brief or leaves things unsaid.",
+        "mt_system_specific": "LLMs like Claude are especially prone to this because they are trained to be helpful and thorough, while dedicated MT systems are usually more focused on sticking closely to the original wording."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Oui, Monsieur Evans, je pense qu'une initiative <ADDITION type=\"explicitation\" severity=\"minor\" tom=\"1st_machine\" desc=\"5-15 word explanation\">dans la direction que vous venez de suggérer lors de la réunion d'aujourd'hui</ADDITION> concernant la politique agricole serait appropriée tout à fait.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "691d85f5-a461-4f83-8235-37acbcc77c32",
+      "span_start": 166,
+      "span_end": 188,
+      "original_text": "serait appropriée tout à fait",
+      "injected_text": "tout à fait appropriée",
+      "primary_tag": "STYLE",
+      "error_type": "unidiomatic",
+      "severity": "major",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system rendered 'entirely appropriate' as 'tout à fait appropriée,' following a common word order in French for intensifiers and adjectives.",
+        "actual_meaning": "The source means that such an initiative would be completely appropriate, emphasizing the suitability of the suggestion.",
+        "reader_impact": "A French reader would find 'tout à fait appropriée' acceptable, but the phrase is stylistically unidiomatic in this context, which might distract or signal non-native usage.",
+        "correction_rationale": "In formal French, the standard and idiomatic order is 'serait appropriée tout à fait,' which better matches the expected style and maintains naturalness in the target language."
+      },
+      "system_behavior": {
+        "error_mechanism": "Machine translation systems often choose words or phrases that are technically correct, but sound odd or unnatural to native speakers. It's like when someone learns a language from a textbook—they might use the right words, but not the way real people actually speak.",
+        "architectural_cause": "The system learns by looking at lots of examples of translations and tries to find patterns. However, it doesn't truly 'feel' what sounds natural; it just picks what seems statistically likely, which can sometimes miss the subtle touches that make language feel authentic.",
+        "pattern_generalization": "These errors often show up in everyday phrases, idioms, or when translating informal speech. If a translation sounds stiff or a bit off, it's probably this kind of error.",
+        "mt_system_specific": "Large language models like Claude may make more of these errors than dedicated MT systems, because they are trained on broader data and might not focus as much on natural phrasing in specific language pairs."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Oui, Monsieur Evans, je pense qu'une initiative dans la direction que vous venez de suggérer lors de la réunion d'aujourd'hui concernant la politique agricole serait <STYLE type=\"unidiomatic\" severity=\"major\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">tout à fait appropriée</STYLE>.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "analyst",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 5,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely tried to translate word-for-word, placing 'tout à fait' after 'appropriée' to mirror English word order, not accounting for French adverbial placement.",
+      "actual_meaning": "The source expresses that the suggested initiative would be 'entirely appropriate,' emphasizing the degree of appropriateness.",
+      "reader_impact": "A reader might find 'appropriée tout à fait' awkward or confusing, potentially questioning the fluency or even the meaning of the sentence.",
+      "correction_rationale": "In French, 'tout à fait' should precede the adjective it modifies ('appropriée'), so 'tout à fait appropriée' is the natural and grammatically correct order."
+    },
+    {
+      "mt_interpretation": "The MT system likely inferred from context or prior data that the initiative was related to 'agricultural policy' and thus added 'concernant la politique agricole' to specify the domain.",
+      "actual_meaning": "The source text refers to an initiative of the type just suggested by Mr Evans, without specifying any particular domain or topic.",
+      "reader_impact": "A reader would incorrectly believe that the initiative specifically concerns agricultural policy, which is not stated in the original text and could lead to misunderstanding the scope of the discussion.",
+      "correction_rationale": "The correct translation accurately reflects the open-ended nature of the original statement, avoiding the introduction of unwarranted specifics and preserving the intended meaning."
+    },
+    {
+      "mt_interpretation": "The MT system associated 'type' with a physical or directional sense and chose 'dans la direction que' as a literal translation for 'in the direction that.'",
+      "actual_meaning": "The source refers to an initiative aligned with the intention or spirit of the suggestion, not a physical direction.",
+      "reader_impact": "A reader might interpret 'dans la direction que' as referring to a physical or spatial direction, leading to confusion about the intended meaning.",
+      "correction_rationale": "'Dans le sens que' is the established idiomatic expression in French for 'in the sense that' or 'in the manner that,' accurately conveying the intended alignment of ideas."
+    },
+    {
+      "mt_interpretation": "The MT system inferred that specifying 'today's meeting' would clarify when the suggestion was made, so it added 'lors de la réunion d'aujourd'hui' to make the context more explicit.",
+      "actual_meaning": "The source simply refers to the suggestion Mr. Evans just made, without specifying when or where it was made. There is no mention of a meeting or its timing.",
+      "reader_impact": "A reader may assume that the suggestion was specifically made during a meeting held today, introducing unnecessary detail and potentially causing confusion about the setting.",
+      "correction_rationale": "The correct translation avoids adding information not present in the source, maintaining fidelity by only referring to the suggestion just made, as in the original text."
+    },
+    {
+      "mt_interpretation": "The MT system rendered 'entirely appropriate' as 'tout à fait appropriée,' following a common word order in French for intensifiers and adjectives.",
+      "actual_meaning": "The source means that such an initiative would be completely appropriate, emphasizing the suitability of the suggestion.",
+      "reader_impact": "A French reader would find 'tout à fait appropriée' acceptable, but the phrase is stylistically unidiomatic in this context, which might distract or signal non-native usage.",
+      "correction_rationale": "In formal French, the standard and idiomatic order is 'serait appropriée tout à fait,' which better matches the expected style and maintains naturalness in the target language."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems sometimes mix up word order because they learn patterns from lots of examples, but languages organize sentences differently. It's like trying to put together a puzzle using pieces from two different sets—the shapes don't always fit the same way.",
+      "architectural_cause": "Internally, the system tries to predict the next word based on what it has seen before, sometimes copying the order from the original language. If the system doesn't fully understand the rules for changing word order, it can easily put words in the wrong spots.",
+      "pattern_generalization": "Similar errors often happen with questions, adjectives, or when translating between languages with different sentence structures. Watch out when word order in your source and target languages is not the same.",
+      "mt_system_specific": "General-purpose LLMs like Claude are more likely to make these errors than dedicated MT systems, because they aren't as specialized in learning language-specific word order rules."
+    },
+    {
+      "error_mechanism": "Imagine a student who, when unsure of an answer, makes up details that sound convincing. MT systems sometimes do the same—they fill in gaps with information that fits the style or topic, even if it wasn’t in the original text.",
+      "architectural_cause": "Internally, these systems are designed to predict what words should come next based on patterns they’ve seen before. If the system isn’t sure or the input is unclear, it may invent details to keep the sentence flowing smoothly, rather than leaving a blank or stopping.",
+      "pattern_generalization": "You’ll often see this kind of error when the source text is vague, incomplete, or contains unusual phrases. Watch out for translations that seem to add facts or explanations not present in the original.",
+      "mt_system_specific": "General-purpose language models like LLMs are more likely to hallucinate than dedicated MT systems, because they’re trained to generate text broadly and may prioritize fluency over strict accuracy."
+    },
+    {
+      "error_mechanism": "MT systems often act like students who haven't made a personal glossary—they might use different words for the same term in one text, especially if the word has several possible translations. Without remembering their earlier choices, they can switch terms mid-way, leading to inconsistency.",
+      "architectural_cause": "Internally, these systems process each sentence or part of the text mostly on its own, without a strong memory of earlier choices. They don't always keep track of which specific words they've already used, so they might pick a different translation each time.",
+      "pattern_generalization": "You’ll see this kind of error most often in texts with repeated technical terms, product names, or phrases that need to stay exactly the same throughout. Watch for it in manuals, contracts, and scientific papers.",
+      "mt_system_specific": "LLMs like Claude are even more likely to make this mistake than specialized MT systems, because they aren’t designed to handle terminology lists or enforce consistency as strictly."
+    },
+    {
+      "error_mechanism": "MT systems often add extra explanations because they're like helpful tour guides who want to make sure you understand everything, sometimes giving you more detail than the original speaker intended. They may 'over-explain' to fill in what they think might be missing or unclear.",
+      "architectural_cause": "Internally, the system tries to predict what a good translation should look like based on its training. If it has often seen certain ideas explained more fully in one language than another, it might automatically add those details, thinking that's what a good translation does.",
+      "pattern_generalization": "You can expect this kind of error when translating between languages or cultures where one tends to be more explicit or detailed than the other. Watch out for this when the source text is brief or leaves things unsaid.",
+      "mt_system_specific": "LLMs like Claude are especially prone to this because they are trained to be helpful and thorough, while dedicated MT systems are usually more focused on sticking closely to the original wording."
+    },
+    {
+      "error_mechanism": "Machine translation systems often choose words or phrases that are technically correct, but sound odd or unnatural to native speakers. It's like when someone learns a language from a textbook—they might use the right words, but not the way real people actually speak.",
+      "architectural_cause": "The system learns by looking at lots of examples of translations and tries to find patterns. However, it doesn't truly 'feel' what sounds natural; it just picks what seems statistically likely, which can sometimes miss the subtle touches that make language feel authentic.",
+      "pattern_generalization": "These errors often show up in everyday phrases, idioms, or when translating informal speech. If a translation sounds stiff or a bit off, it's probably this kind of error.",
+      "mt_system_specific": "Large language models like Claude may make more of these errors than dedicated MT systems, because they are trained on broader data and might not focus as much on natural phrasing in specific language pairs."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "analyst",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

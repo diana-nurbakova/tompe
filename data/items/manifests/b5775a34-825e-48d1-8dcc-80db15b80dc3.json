@@ -1,0 +1,269 @@
+{
+  "item_id": "b5775a34-825e-48d1-8dcc-80db15b80dc3",
+  "segment_id": "europarl-8778e3c7fe2e",
+  "source_text": "The Cunha report on multiannual guidance programmes comes before Parliament on Thursday and contains a proposal in paragraph 6 that a form of quota penalties should be introduced for countries which fail to meet their fleet reduction targets annually.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Le paragraphe 6 sur les programmes d'orientation pluriannuels du rapport Cunha, qui sera présenté devant le Parlement ce jeudi, propose d'introduire des sanctions applicables aux pays .",
+  "reference_translation": "Le paragraphe 6 du rapport Cunha sur les programmes d'orientation pluriannuels, qui sera soumis au Parlement ce jeudi, propose d'introduire des sanctions applicables aux pays qui ne respectent pas les objectifs annuels de réduction de leur flotte.",
+  "mt_system": "deepl",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "bab72c48-7290-4991-8e7a-cdcb21f90474",
+      "span_start": 211,
+      "span_end": 238,
+      "original_text": "annuels de réduction de leur flotte",
+      "injected_text": "de réduction de leur flotte",
+      "primary_tag": "OMISSION",
+      "error_type": "partial",
+      "severity": "major",
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'fleet reduction targets annually' as simply 'fleet reduction targets,' omitting the annual aspect and focusing only on the reduction itself.",
+        "actual_meaning": "The source text specifies that countries must meet their fleet reduction targets every year, not just in general; the requirement is explicitly annual.",
+        "reader_impact": "A reader would misunderstand the requirement as a one-time or overall obligation to reduce fleet size, rather than an expectation to achieve specific reductions each year.",
+        "correction_rationale": "Including 'annuels' accurately conveys the periodic, yearly nature of the targets, ensuring the translation reflects the policy's intended frequency and preventing misinterpretation of the compliance criteria."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems sometimes miss words like 'annuels' because they focus on the main message and may overlook details that seem less central. It's like someone summarizing a story and forgetting to mention how often something happens, even though it's important.",
+        "architectural_cause": "Internally, the system tries to predict the most likely translation based on patterns it has seen before. If it often sees requirements without mention of frequency, or if 'annual' is sometimes dropped in similar sentences, the system might skip it here too.",
+        "pattern_generalization": "Students should watch for omissions of words that describe how often, how much, or when something happens—especially adjectives and adverbs that add specific details. Such errors are common with modifiers that seem 'extra' but are actually crucial.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are more likely to omit such details than LLMs, which tend to be more verbose and cautious about leaving information out."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Le paragraphe 6 du rapport Cunha sur les programmes d'orientation pluriannuels, qui sera soumis au Parlement ce jeudi, propose d'introduire des sanctions applicables aux pays qui ne respectent pas les objectifs <OMISSION type=\"partial\" severity=\"major\" tom=\"1st_author\" desc=\"Omission of 'annuels' removes annual periodicity from the requirement\">de réduction de leur flotte</OMISSION>.",
+      "brief_explanation": "Omission of 'annuels' removes annual periodicity from the requirement"
+    },
+    {
+      "error_id": "139407de-0c64-4dd3-a50d-ce4f1b796858",
+      "span_start": 179,
+      "span_end": 189,
+      "original_text": "ne respectent pas",
+      "injected_text": "respectent",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "negation",
+      "severity": "critical",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "severity_range": [
+        "critical"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely overlooked or misprocessed the negation in 'fail to meet,' rendering it as 'respectent' (comply) instead of 'ne respectent pas' (do not comply), thus reversing the intended meaning.",
+        "actual_meaning": "The source text states that penalties should be introduced for countries that do not meet their fleet reduction targets each year, emphasizing non-compliance.",
+        "reader_impact": "A reader would incorrectly believe that countries complying with their targets would be penalized, which is the opposite of the intended message and could cause confusion about the policy.",
+        "correction_rationale": "The correct translation must include the negation ('ne respectent pas') to accurately convey that only non-compliant countries are subject to penalties, preserving the original meaning and intent."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often miss or drop negation words like 'not,' which can flip the meaning of a sentence. It's a bit like forgetting to add the 'no' in a recipe—'add sugar' instead of 'do not add sugar' changes the result completely.",
+        "architectural_cause": "Internally, the system tries to guess the meaning of each part of a sentence based on patterns it has seen before. If it hasn't seen enough examples where negation is crucial, it might overlook small but important words like 'not,' leading to the wrong meaning.",
+        "pattern_generalization": "Similar errors tend to happen in sentences with subtle or complex negation, especially if the negative word is far from the main verb or buried in a longer sentence. Watch out for any translation where the presence or absence of 'not' or similar words changes the sense.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are trained to focus on sentence-level meaning, but they can still miss negation. Large language models (LLMs) sometimes handle negation better because they are trained on broader contexts, but both can make this mistake."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Le paragraphe 6 du rapport Cunha sur les programmes d'orientation pluriannuels, qui sera soumis au Parlement ce jeudi, propose d'introduire des sanctions applicables aux pays qui <MISTRANSLATION type=\"negation\" severity=\"critical\" tom=\"1st_machine\" desc=\"Negation omitted, reversing intended meaning of non-compliance\">respectent</MISTRANSLATION> les objectifs de réduction de leur flotte.",
+      "brief_explanation": "Negation omitted, reversing intended meaning of non-compliance"
+    },
+    {
+      "error_id": "05e7a009-a714-4af8-b391-d98257b53ac6",
+      "span_start": 16,
+      "span_end": 78,
+      "original_text": "du rapport Cunha sur les programmes d'orientation pluriannuels",
+      "injected_text": "sur les programmes d'orientation pluriannuels du rapport Cunha",
+      "primary_tag": "GRAMMAR",
+      "error_type": "word_order",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted the phrase as 'the multiannual guidance programmes of the Cunha report,' treating 'du rapport Cunha' as modifying 'programmes d'orientation pluriannuels.'",
+        "actual_meaning": "The source means 'the Cunha report on multiannual guidance programmes,' where the report is about the programmes, not that the programmes belong to the report.",
+        "reader_impact": "A reader might think that the programmes are part of or authored by the Cunha report, rather than understanding that the report is about these programmes.",
+        "correction_rationale": "The correct translation places 'du rapport Cunha' immediately after 'Le paragraphe 6,' clarifying that it is the report (not the programmes) that is being discussed, which accurately reflects the source's intended meaning."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often get word order wrong because they focus on matching pieces of meaning, like rearranging puzzle pieces that don't always fit the same way in every language. Sometimes, they follow the word order of the source language too closely, leading to awkward or incorrect sentences.",
+        "architectural_cause": "Internally, the system learns patterns from millions of examples, but it doesn't truly 'understand' grammar like a human does. It predicts the next word based on what it's seen before, so if the training data has mixed word orders or tricky sentence structures, the system can get confused and put words in the wrong order.",
+        "pattern_generalization": "Students will see these errors most often with sentences that have unusual structures, long phrases, or when translating between languages with very different word orders (like English and German). Pay extra attention to translations of complex or formal sentences.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are trained specifically for translation, so they usually handle word order better than general-purpose AI models, but both can make mistakes, especially with complex sentences."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Le paragraphe 6 <GRAMMAR type=\"word_order\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">sur les programmes d'orientation pluriannuels du rapport Cunha</GRAMMAR>, qui sera soumis au Parlement ce jeudi, propose d'introduire des sanctions applicables aux pays qui respectent les objectifs de réduction de leur flotte.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "6d421ed3-e7cb-4e2b-9103-1889e0204f2b",
+      "span_start": 174,
+      "span_end": 175,
+      "original_text": "qui respectent les objectifs de réduction de leur flotte",
+      "injected_text": " ",
+      "primary_tag": "OMISSION",
+      "error_type": "clause",
+      "severity": "major",
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "severity_range": [
+        "major",
+        "critical"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system omitted the clause specifying the condition for penalties, possibly interpreting the sentence as complete without it or failing to track the subordinate structure.",
+        "actual_meaning": "The source states that penalties should be introduced for countries that do not meet their annual fleet reduction targets, making the condition for penalties explicit.",
+        "reader_impact": "A reader would not understand who is subject to penalties or under what circumstances, leading to confusion about the proposal's intent and scope.",
+        "correction_rationale": "Including the clause 'qui ne respectent pas les objectifs annuels de réduction de leur flotte' is essential to accurately convey the conditional nature of the penalties described in the source text."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems sometimes skip entire clauses, a bit like someone retelling a story but forgetting a whole sentence. This often happens when the sentence is long or complicated, and the system loses track of all the parts it needs to include.",
+        "architectural_cause": "Internally, the system tries to 'pay attention' to each part of the sentence, but with long or tricky sentences, it may focus more on the main idea and miss out on some details. Since it predicts one piece at a time, it can accidentally leave out a chunk if it doesn't see a clear connection to the rest.",
+        "pattern_generalization": "Watch out for omissions when translating complex or multi-clause sentences, especially if the sentence is unusually long or has lots of commas. Double-check that all ideas from the original are present in the translation.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are generally trained to handle sentences as a whole, but they can still miss clauses, especially in dense or complicated text. Large language models may be more prone to this when translating longer passages, as they sometimes lose track of sentence structure."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Le paragraphe 6 sur les programmes d'orientation pluriannuels du rapport Cunha, qui sera soumis au Parlement ce jeudi, propose d'introduire des sanctions applicables aux pays<OMISSION type=\"clause\" severity=\"major\" tom=\"1st_author\" desc=\"5-15 word explanation\"> </OMISSION>.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "a2e2d143-1856-4af7-8d22-a3e8ff98fc7b",
+      "span_start": 84,
+      "span_end": 126,
+      "original_text": "sera soumis au Parlement ce jeudi",
+      "injected_text": "sera présenté devant le Parlement ce jeudi",
+      "primary_tag": "STYLE",
+      "error_type": "awkward",
+      "severity": "minor",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely associated 'comes before Parliament' with the more literal 'sera présenté devant le Parlement', focusing on the act of presentation as a physical event.",
+        "actual_meaning": "The source means that the report will be officially submitted or brought before Parliament for consideration on Thursday, not merely presented in a literal sense.",
+        "reader_impact": "A reader may interpret 'sera présenté devant le Parlement' as a formal presentation or speech, rather than the official submission or tabling of the report, creating a slightly awkward or less precise understanding.",
+        "correction_rationale": "'Sera soumis au Parlement' correctly captures the procedural nuance of submitting a document to Parliament for deliberation, which matches the institutional context and avoids the awkwardness of a literal presentation."
+      },
+      "system_behavior": {
+        "error_mechanism": "Machine translation systems can sound awkward because they often piece together sentences like following a recipe without really tasting the result. They might use correct words and grammar, but the end product can feel unnatural, like a robot reading lines from a script.",
+        "architectural_cause": "Internally, the system looks at lots of examples from its training data and tries to predict what words usually go together, but it doesn’t truly understand style or flow. It builds sentences based on patterns it has seen, not by thinking about what sounds natural to a human.",
+        "pattern_generalization": "You’ll often notice awkward phrasing when the source sentence has a unique style, humor, or idioms, or when the system hasn’t seen similar examples before. Pay extra attention to sentences that sound fine in the original but feel stiff or odd in the translation.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are better at sticking to the original meaning, but may sound more mechanical, while LLMs can sometimes produce smoother, more natural text but risk drifting away from the source content."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Le paragraphe 6 sur les programmes d'orientation pluriannuels du rapport Cunha, qui <STYLE type=\"awkward\" severity=\"minor\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">sera présenté devant le Parlement ce jeudi</STYLE>, propose d'introduire des sanctions applicables aux pays .",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "analyst",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 5,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely interpreted 'fleet reduction targets annually' as simply 'fleet reduction targets,' omitting the annual aspect and focusing only on the reduction itself.",
+      "actual_meaning": "The source text specifies that countries must meet their fleet reduction targets every year, not just in general; the requirement is explicitly annual.",
+      "reader_impact": "A reader would misunderstand the requirement as a one-time or overall obligation to reduce fleet size, rather than an expectation to achieve specific reductions each year.",
+      "correction_rationale": "Including 'annuels' accurately conveys the periodic, yearly nature of the targets, ensuring the translation reflects the policy's intended frequency and preventing misinterpretation of the compliance criteria."
+    },
+    {
+      "mt_interpretation": "The MT system likely overlooked or misprocessed the negation in 'fail to meet,' rendering it as 'respectent' (comply) instead of 'ne respectent pas' (do not comply), thus reversing the intended meaning.",
+      "actual_meaning": "The source text states that penalties should be introduced for countries that do not meet their fleet reduction targets each year, emphasizing non-compliance.",
+      "reader_impact": "A reader would incorrectly believe that countries complying with their targets would be penalized, which is the opposite of the intended message and could cause confusion about the policy.",
+      "correction_rationale": "The correct translation must include the negation ('ne respectent pas') to accurately convey that only non-compliant countries are subject to penalties, preserving the original meaning and intent."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted the phrase as 'the multiannual guidance programmes of the Cunha report,' treating 'du rapport Cunha' as modifying 'programmes d'orientation pluriannuels.'",
+      "actual_meaning": "The source means 'the Cunha report on multiannual guidance programmes,' where the report is about the programmes, not that the programmes belong to the report.",
+      "reader_impact": "A reader might think that the programmes are part of or authored by the Cunha report, rather than understanding that the report is about these programmes.",
+      "correction_rationale": "The correct translation places 'du rapport Cunha' immediately after 'Le paragraphe 6,' clarifying that it is the report (not the programmes) that is being discussed, which accurately reflects the source's intended meaning."
+    },
+    {
+      "mt_interpretation": "The MT system omitted the clause specifying the condition for penalties, possibly interpreting the sentence as complete without it or failing to track the subordinate structure.",
+      "actual_meaning": "The source states that penalties should be introduced for countries that do not meet their annual fleet reduction targets, making the condition for penalties explicit.",
+      "reader_impact": "A reader would not understand who is subject to penalties or under what circumstances, leading to confusion about the proposal's intent and scope.",
+      "correction_rationale": "Including the clause 'qui ne respectent pas les objectifs annuels de réduction de leur flotte' is essential to accurately convey the conditional nature of the penalties described in the source text."
+    },
+    {
+      "mt_interpretation": "The MT system likely associated 'comes before Parliament' with the more literal 'sera présenté devant le Parlement', focusing on the act of presentation as a physical event.",
+      "actual_meaning": "The source means that the report will be officially submitted or brought before Parliament for consideration on Thursday, not merely presented in a literal sense.",
+      "reader_impact": "A reader may interpret 'sera présenté devant le Parlement' as a formal presentation or speech, rather than the official submission or tabling of the report, creating a slightly awkward or less precise understanding.",
+      "correction_rationale": "'Sera soumis au Parlement' correctly captures the procedural nuance of submitting a document to Parliament for deliberation, which matches the institutional context and avoids the awkwardness of a literal presentation."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems sometimes miss words like 'annuels' because they focus on the main message and may overlook details that seem less central. It's like someone summarizing a story and forgetting to mention how often something happens, even though it's important.",
+      "architectural_cause": "Internally, the system tries to predict the most likely translation based on patterns it has seen before. If it often sees requirements without mention of frequency, or if 'annual' is sometimes dropped in similar sentences, the system might skip it here too.",
+      "pattern_generalization": "Students should watch for omissions of words that describe how often, how much, or when something happens—especially adjectives and adverbs that add specific details. Such errors are common with modifiers that seem 'extra' but are actually crucial.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are more likely to omit such details than LLMs, which tend to be more verbose and cautious about leaving information out."
+    },
+    {
+      "error_mechanism": "MT systems often miss or drop negation words like 'not,' which can flip the meaning of a sentence. It's a bit like forgetting to add the 'no' in a recipe—'add sugar' instead of 'do not add sugar' changes the result completely.",
+      "architectural_cause": "Internally, the system tries to guess the meaning of each part of a sentence based on patterns it has seen before. If it hasn't seen enough examples where negation is crucial, it might overlook small but important words like 'not,' leading to the wrong meaning.",
+      "pattern_generalization": "Similar errors tend to happen in sentences with subtle or complex negation, especially if the negative word is far from the main verb or buried in a longer sentence. Watch out for any translation where the presence or absence of 'not' or similar words changes the sense.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are trained to focus on sentence-level meaning, but they can still miss negation. Large language models (LLMs) sometimes handle negation better because they are trained on broader contexts, but both can make this mistake."
+    },
+    {
+      "error_mechanism": "MT systems often get word order wrong because they focus on matching pieces of meaning, like rearranging puzzle pieces that don't always fit the same way in every language. Sometimes, they follow the word order of the source language too closely, leading to awkward or incorrect sentences.",
+      "architectural_cause": "Internally, the system learns patterns from millions of examples, but it doesn't truly 'understand' grammar like a human does. It predicts the next word based on what it's seen before, so if the training data has mixed word orders or tricky sentence structures, the system can get confused and put words in the wrong order.",
+      "pattern_generalization": "Students will see these errors most often with sentences that have unusual structures, long phrases, or when translating between languages with very different word orders (like English and German). Pay extra attention to translations of complex or formal sentences.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are trained specifically for translation, so they usually handle word order better than general-purpose AI models, but both can make mistakes, especially with complex sentences."
+    },
+    {
+      "error_mechanism": "MT systems sometimes skip entire clauses, a bit like someone retelling a story but forgetting a whole sentence. This often happens when the sentence is long or complicated, and the system loses track of all the parts it needs to include.",
+      "architectural_cause": "Internally, the system tries to 'pay attention' to each part of the sentence, but with long or tricky sentences, it may focus more on the main idea and miss out on some details. Since it predicts one piece at a time, it can accidentally leave out a chunk if it doesn't see a clear connection to the rest.",
+      "pattern_generalization": "Watch out for omissions when translating complex or multi-clause sentences, especially if the sentence is unusually long or has lots of commas. Double-check that all ideas from the original are present in the translation.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are generally trained to handle sentences as a whole, but they can still miss clauses, especially in dense or complicated text. Large language models may be more prone to this when translating longer passages, as they sometimes lose track of sentence structure."
+    },
+    {
+      "error_mechanism": "Machine translation systems can sound awkward because they often piece together sentences like following a recipe without really tasting the result. They might use correct words and grammar, but the end product can feel unnatural, like a robot reading lines from a script.",
+      "architectural_cause": "Internally, the system looks at lots of examples from its training data and tries to predict what words usually go together, but it doesn’t truly understand style or flow. It builds sentences based on patterns it has seen, not by thinking about what sounds natural to a human.",
+      "pattern_generalization": "You’ll often notice awkward phrasing when the source sentence has a unique style, humor, or idioms, or when the system hasn’t seen similar examples before. Pay extra attention to sentences that sound fine in the original but feel stiff or odd in the translation.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are better at sticking to the original meaning, but may sound more mechanical, while LLMs can sometimes produce smoother, more natural text but risk drifting away from the source content."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "analyst",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

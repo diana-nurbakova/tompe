@@ -1,9 +1,9 @@
 {
-  "exercise_id": "16a0326d-556d-4f67-9872-f9884333a903",
+  "exercise_id": "2ab9ed9f-0982-44a9-91c8-0b651f7a3951",
   "name": "Fluency Trap",
   "description": "",
   "mode": "evaluation",
-  "level": "navigator",
+  "level": "analyst",
   "item_ids": [
     "0005f83e-7258-4638-81cd-b4f97ae5a42c",
     "2b7b69cf-d456-4a6a-981d-3520ec047d3c",
@@ -11,13 +11,14 @@
   ],
   "justification_type": "structured",
   "clean_segment_ratio": 0.0,
-  "false_annotation_ratio": 0.25,
+  "false_annotation_ratio": 0.0,
   "item_ordering": "random",
   "assigned_to_class": "46d1f755-c478-442d-be24-4d5e5588b59b",
   "assigned_to_students": [
+    "1a133069-aee9-4328-bcd8-63348d2e9a56",
     "2ba2e35c-36e8-409b-b95f-9ce0de6d43c8"
   ],
   "domain": "",
   "direction": "",
-  "created_at": "2026-04-14T00:00:03.848139"
+  "created_at": "2026-04-14T16:54:13.384219"
 }

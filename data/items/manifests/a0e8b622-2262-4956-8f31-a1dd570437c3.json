@@ -81,7 +81,7 @@
   "clean_spans": [],
   "annotations": [],
   "annotation_config": {
-    "level": "independent",
+    "level": "analyst",
     "show_mqm_labels": false,
     "show_severity": false,
     "show_tom_hints": false,
@@ -129,7 +129,7 @@
     "mqm_profile": {},
     "estimated_time_minutes": 3.0,
     "has_clean_segments": false,
-    "scaffolding_level": "independent",
+    "scaffolding_level": "analyst",
     "pathway": "controlled",
     "translation_direction": "en→fr"
   },

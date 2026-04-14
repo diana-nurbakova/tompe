@@ -1,0 +1,11 @@
+{
+  "class_id": "2bf42a65-8a69-4292-934b-c6e931c26ac5",
+  "class_name": "Default Class",
+  "teacher_id": "default",
+  "default_levels": [
+    "navigator",
+    "scout",
+    "analyst"
+  ],
+  "created_at": "2026-04-14T12:22:01.623658"
+}

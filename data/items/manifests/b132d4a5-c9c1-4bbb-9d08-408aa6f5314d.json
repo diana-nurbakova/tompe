@@ -1,0 +1,273 @@
+{
+  "item_id": "b132d4a5-c9c1-4bbb-9d08-408aa6f5314d",
+  "segment_id": "europarl-915b45dda4d8",
+  "source_text": "In the meantime, I should like to observe a minute' s silence, as a number of Members have requested, on behalf of all the victims concerned, particularly those of the terrible storms, in the various countries of the European Union.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "En attendant, je souhaiterais, comme plusieurs collègues me l'ont demandé, une minute de silence que nous observions pour toutes les victimes, des tempêtes, dans les différents pays de l'European Union qui sont touchés.",
+  "reference_translation": "En attendant, je souhaiterais, comme un certain nombre de collègues me l'ont demandé, que nous observions une minute de silence pour toutes les victimes, des tempêtes notamment, dans les différents pays de l'Union européenne qui ont été touchés.",
+  "mt_system": "gpt4",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "c8c31297-630d-4cf8-86cb-1259e3468ec2",
+      "span_start": 86,
+      "span_end": 127,
+      "original_text": "que nous observions une minute de silence",
+      "injected_text": "une minute de silence que nous observions",
+      "primary_tag": "GRAMMAR",
+      "error_type": "word_order",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely tried to translate the English structure literally, placing 'une minute de silence' before 'que nous observions' as in English, without adapting to French syntax.",
+        "actual_meaning": "The source requests that the group collectively observe a minute of silence, with the verb phrase 'que nous observions' introducing the intended action.",
+        "reader_impact": "A reader might be confused by the unusual word order, interpreting 'une minute de silence que nous observions' as a noun phrase rather than a request or suggestion, making the sentence unclear or ungrammatical.",
+        "correction_rationale": "In French, the subjunctive clause 'que nous observions une minute de silence' is needed to express the wish or request properly; switching the order breaks the grammatical structure and obscures the intended meaning."
+      },
+      "system_behavior": {
+        "error_mechanism": "Machine translation systems can sometimes mix up word order, like a person who knows the right words but forgets the correct way to arrange them in a sentence. This happens because different languages have different rules for word order, and the system doesn’t always pick up on the subtle differences.",
+        "architectural_cause": "Internally, the system looks for patterns in massive amounts of text, but it doesn’t truly understand grammar the way humans do. It tries to guess the most likely order of words based on examples it has seen, which can lead to mistakes when the rules are more complicated or unusual.",
+        "pattern_generalization": "You’ll often see these errors when translating between languages with very different sentence structures, or in longer, more complex sentences. Pay extra attention when the original and target languages arrange subjects, verbs, and objects differently.",
+        "mt_system_specific": "Dedicated MT systems are usually better at handling word order because they're trained specifically for translation, while general-purpose LLMs like GPT-4 might make more word order mistakes since they aren’t focused just on translation."
+      },
+      "technical_explanation": null,
+      "xml_tag": "En attendant, je souhaiterais, comme un certain nombre de collègues me l'ont demandé, <GRAMMAR type=\"word_order\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">une minute de silence que nous observions</GRAMMAR> pour toutes les victimes, des tempêtes notamment, dans les différents pays de l'Union européenne qui ont été touchés.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "0c01e320-179c-46a4-a516-26b4e854df59",
+      "span_start": 225,
+      "span_end": 241,
+      "original_text": "qui ont été touchés",
+      "injected_text": "qui sont touchés",
+      "primary_tag": "GRAMMAR",
+      "error_type": "tense",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'have been affected' as an ongoing situation, rendering it in the present tense 'qui sont touchés' to indicate countries that are currently affected.",
+        "actual_meaning": "The source refers to countries that have already been affected by the storms, emphasizing that the impact occurred in the past, not necessarily ongoing.",
+        "reader_impact": "A reader might think that the storms are still actively affecting these countries, rather than understanding that the statement is about past events and their victims.",
+        "correction_rationale": "The correct translation 'qui ont été touchés' accurately conveys the past participle passive, indicating that the countries were affected in the past, aligning with the original English tense and meaning."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often confuse verb forms like present tense and past participle because, like someone learning a new language, they rely on patterns they've seen before. If the system sees the present tense used more often in similar sentences, it might pick that form, even if the context calls for the passive past participle.",
+        "architectural_cause": "Internally, the system predicts each word based on what words usually come before and after it in its training data. If it hasn't seen enough examples of the passive past participle in similar contexts, it may default to the more common present tense form.",
+        "pattern_generalization": "Students should watch for these errors especially in sentences where English uses passive voice or complex verb tenses, as the system may oversimplify and choose the more familiar verb form.",
+        "mt_system_specific": "LLMs like GPT-4, which are trained on general text, may make this mistake more often than dedicated MT systems, which are specifically trained to handle grammatical details in translation."
+      },
+      "technical_explanation": null,
+      "xml_tag": "En attendant, je souhaiterais, comme un certain nombre de collègues me l'ont demandé, une minute de silence que nous observions pour toutes les victimes, des tempêtes notamment, dans les différents pays de l'Union européenne <GRAMMAR type=\"tense\" severity=\"minor\" tom=\"1st_machine\" desc=\"Present tense used instead of past participle passive\">qui sont touchés</GRAMMAR>.",
+      "brief_explanation": "Present tense used instead of past participle passive"
+    },
+    {
+      "error_id": "82142c17-8c9e-4a12-a6f0-bca4884ef0a1",
+      "span_start": 154,
+      "span_end": 166,
+      "original_text": "des tempêtes notamment",
+      "injected_text": "des tempêtes",
+      "primary_tag": "OMISSION",
+      "error_type": "modifier",
+      "severity": "major",
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system rendered 'des tempêtes' as 'of the storms,' omitting 'notamment,' likely interpreting the storms as the sole or primary victims without emphasizing them as a particular example.",
+        "actual_meaning": "The source means that the minute of silence is for all victims, with a special mention of those affected by the terrible storms, but not exclusively for them.",
+        "reader_impact": "A reader would think the victims are only those of the storms, missing the fact that the storms are just a notable example among various causes of victimhood.",
+        "correction_rationale": "Including 'notamment' clarifies that the storms are a specific example among all victims, preserving the nuance and accuracy of the original message."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often skip modifiers, like adjectives or adverbs, because they focus on the main parts of a sentence, much like someone summarizing a story and leaving out smaller details. These words can seem less important to the system, so it sometimes drops them to keep things simple.",
+        "architectural_cause": "Inside, the system reads and predicts words based on patterns it has seen before. If modifiers don’t appear often or seem less essential in its training examples, the system may ignore them, especially when trying to make quick or confident guesses.",
+        "pattern_generalization": "You’ll notice similar errors when sentences have extra details, descriptions, or clarifying words—especially in longer or more complex sentences. Watch out for missing adjectives, adverbs, or phrases that add nuance.",
+        "mt_system_specific": "General-purpose LLMs like GPT-4 may make this error more often than dedicated MT systems, which are more focused on preserving all parts of the original sentence, including modifiers."
+      },
+      "technical_explanation": null,
+      "xml_tag": "En attendant, je souhaiterais, comme un certain nombre de collègues me l'ont demandé, une minute de silence que nous observions pour toutes les victimes, <OMISSION type=\"modifier\" severity=\"major\" tom=\"1st_author\" desc=\"5-15 word explanation\">des tempêtes</OMISSION>, dans les différents pays de l'Union européenne qui sont touchés.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "cd1c291d-f509-4b49-8009-b4b0bf4f9770",
+      "span_start": 198,
+      "span_end": 212,
+      "original_text": "Union européenne",
+      "injected_text": "European Union",
+      "primary_tag": "UNTRANSLATED",
+      "error_type": "untranslated",
+      "severity": "critical",
+      "tom_level": "1st_machine",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "severity_range": [
+        "major",
+        "critical"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely failed to recognize 'European Union' as a phrase requiring translation, leaving it in English instead of converting it to French.",
+        "actual_meaning": "The source text refers specifically to the 'Union européenne,' the official French term for the European Union, which should be localized for French readers.",
+        "reader_impact": "A French reader encountering 'European Union' in an otherwise French sentence may find it jarring, confusing, or perceive the translation as incomplete or unprofessional.",
+        "correction_rationale": "Using 'Union européenne' ensures terminological accuracy, maintains linguistic coherence, and aligns with standard French usage for this political entity."
+      },
+      "system_behavior": {
+        "error_mechanism": "Sometimes, machine translation systems leave words or phrases untranslated, almost like a student skipping a tricky word on a test. This often happens when the system isn't sure what the word means or can't find a good match in its 'memory.'",
+        "architectural_cause": "Internally, the system works by predicting the next word based on patterns it has seen before. If it hasn't seen a certain word or phrase often enough, it may simply copy it over instead of translating, hoping that it's a proper name or something that should stay the same.",
+        "pattern_generalization": "You'll often see this error with rare words, technical terms, or brand names, especially if they're not common in the training data. Watch out for unusual or specialized vocabulary that the system might not recognize.",
+        "mt_system_specific": "Large language models like GPT-4 are more likely to leave things untranslated compared to dedicated MT systems, which are trained specifically for translation and may have more strategies to handle unknown words."
+      },
+      "technical_explanation": null,
+      "xml_tag": "En attendant, je souhaiterais, comme un certain nombre de collègues me l'ont demandé, une minute de silence que nous observions pour toutes les victimes, des tempêtes, dans les différents pays de l'<UNTRANSLATED type=\"untranslated\" severity=\"critical\" tom=\"1st_machine\" desc=\"5-15 word explanation\">European Union</UNTRANSLATED> qui sont touchés.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "e62d7948-55ab-4943-ba5f-77a29bc4911e",
+      "span_start": 37,
+      "span_end": 56,
+      "original_text": "un certain nombre de collègues",
+      "injected_text": "plusieurs collègues",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "number",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system interpreted 'a number of Members' as 'plusieurs collègues,' equating it to 'several colleagues' in French, focusing on a loosely quantitative meaning.",
+        "actual_meaning": "The source phrase 'a number of Members' is a formal parliamentary expression meaning 'some Members,' without specifying an exact count and often used for politeness or formality.",
+        "reader_impact": "A reader would interpret 'plusieurs collègues' as a more casual and possibly larger or more specific group, missing the formal and vague nuance of the original phrase.",
+        "correction_rationale": "The correct translation, 'un certain nombre de collègues,' preserves the formal, indeterminate quantity intended in the source, matching the register and nuance of parliamentary language."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up numbers or translate them incorrectly because they treat numbers like any other word, not as special symbols with fixed meanings. It's a bit like copying a phone number by ear—if you don't pay extra attention, it's easy to swap or drop a digit.",
+        "architectural_cause": "Internally, the system breaks down sentences into small pieces and looks for patterns based on what it has seen before. Since numbers can appear in many different forms and contexts, the system might not always recognize their importance or keep them unchanged.",
+        "pattern_generalization": "Similar errors are likely when numbers appear in unusual formats, are part of dates, measurements, or when they're surrounded by unfamiliar words. Watch out for numbers in technical texts, addresses, or statistics.",
+        "mt_system_specific": "Dedicated MT systems are often better at handling numbers because they're trained specifically for translation tasks, while general-purpose LLMs like GPT-4 may be less careful with numbers since they handle a wider range of text types."
+      },
+      "technical_explanation": null,
+      "xml_tag": "En attendant, je souhaiterais, comme <MISTRANSLATION type=\"number\" severity=\"minor\" tom=\"1st_machine\" desc=\"5-15 word explanation\">plusieurs collègues</MISTRANSLATION> me l'ont demandé, une minute de silence que nous observions pour toutes les victimes, des tempêtes, dans les différents pays de l'European Union qui sont touchés.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "analyst",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 5,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely tried to translate the English structure literally, placing 'une minute de silence' before 'que nous observions' as in English, without adapting to French syntax.",
+      "actual_meaning": "The source requests that the group collectively observe a minute of silence, with the verb phrase 'que nous observions' introducing the intended action.",
+      "reader_impact": "A reader might be confused by the unusual word order, interpreting 'une minute de silence que nous observions' as a noun phrase rather than a request or suggestion, making the sentence unclear or ungrammatical.",
+      "correction_rationale": "In French, the subjunctive clause 'que nous observions une minute de silence' is needed to express the wish or request properly; switching the order breaks the grammatical structure and obscures the intended meaning."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted 'have been affected' as an ongoing situation, rendering it in the present tense 'qui sont touchés' to indicate countries that are currently affected.",
+      "actual_meaning": "The source refers to countries that have already been affected by the storms, emphasizing that the impact occurred in the past, not necessarily ongoing.",
+      "reader_impact": "A reader might think that the storms are still actively affecting these countries, rather than understanding that the statement is about past events and their victims.",
+      "correction_rationale": "The correct translation 'qui ont été touchés' accurately conveys the past participle passive, indicating that the countries were affected in the past, aligning with the original English tense and meaning."
+    },
+    {
+      "mt_interpretation": "The MT system rendered 'des tempêtes' as 'of the storms,' omitting 'notamment,' likely interpreting the storms as the sole or primary victims without emphasizing them as a particular example.",
+      "actual_meaning": "The source means that the minute of silence is for all victims, with a special mention of those affected by the terrible storms, but not exclusively for them.",
+      "reader_impact": "A reader would think the victims are only those of the storms, missing the fact that the storms are just a notable example among various causes of victimhood.",
+      "correction_rationale": "Including 'notamment' clarifies that the storms are a specific example among all victims, preserving the nuance and accuracy of the original message."
+    },
+    {
+      "mt_interpretation": "The MT system likely failed to recognize 'European Union' as a phrase requiring translation, leaving it in English instead of converting it to French.",
+      "actual_meaning": "The source text refers specifically to the 'Union européenne,' the official French term for the European Union, which should be localized for French readers.",
+      "reader_impact": "A French reader encountering 'European Union' in an otherwise French sentence may find it jarring, confusing, or perceive the translation as incomplete or unprofessional.",
+      "correction_rationale": "Using 'Union européenne' ensures terminological accuracy, maintains linguistic coherence, and aligns with standard French usage for this political entity."
+    },
+    {
+      "mt_interpretation": "The MT system interpreted 'a number of Members' as 'plusieurs collègues,' equating it to 'several colleagues' in French, focusing on a loosely quantitative meaning.",
+      "actual_meaning": "The source phrase 'a number of Members' is a formal parliamentary expression meaning 'some Members,' without specifying an exact count and often used for politeness or formality.",
+      "reader_impact": "A reader would interpret 'plusieurs collègues' as a more casual and possibly larger or more specific group, missing the formal and vague nuance of the original phrase.",
+      "correction_rationale": "The correct translation, 'un certain nombre de collègues,' preserves the formal, indeterminate quantity intended in the source, matching the register and nuance of parliamentary language."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "Machine translation systems can sometimes mix up word order, like a person who knows the right words but forgets the correct way to arrange them in a sentence. This happens because different languages have different rules for word order, and the system doesn’t always pick up on the subtle differences.",
+      "architectural_cause": "Internally, the system looks for patterns in massive amounts of text, but it doesn’t truly understand grammar the way humans do. It tries to guess the most likely order of words based on examples it has seen, which can lead to mistakes when the rules are more complicated or unusual.",
+      "pattern_generalization": "You’ll often see these errors when translating between languages with very different sentence structures, or in longer, more complex sentences. Pay extra attention when the original and target languages arrange subjects, verbs, and objects differently.",
+      "mt_system_specific": "Dedicated MT systems are usually better at handling word order because they're trained specifically for translation, while general-purpose LLMs like GPT-4 might make more word order mistakes since they aren’t focused just on translation."
+    },
+    {
+      "error_mechanism": "MT systems often confuse verb forms like present tense and past participle because, like someone learning a new language, they rely on patterns they've seen before. If the system sees the present tense used more often in similar sentences, it might pick that form, even if the context calls for the passive past participle.",
+      "architectural_cause": "Internally, the system predicts each word based on what words usually come before and after it in its training data. If it hasn't seen enough examples of the passive past participle in similar contexts, it may default to the more common present tense form.",
+      "pattern_generalization": "Students should watch for these errors especially in sentences where English uses passive voice or complex verb tenses, as the system may oversimplify and choose the more familiar verb form.",
+      "mt_system_specific": "LLMs like GPT-4, which are trained on general text, may make this mistake more often than dedicated MT systems, which are specifically trained to handle grammatical details in translation."
+    },
+    {
+      "error_mechanism": "MT systems often skip modifiers, like adjectives or adverbs, because they focus on the main parts of a sentence, much like someone summarizing a story and leaving out smaller details. These words can seem less important to the system, so it sometimes drops them to keep things simple.",
+      "architectural_cause": "Inside, the system reads and predicts words based on patterns it has seen before. If modifiers don’t appear often or seem less essential in its training examples, the system may ignore them, especially when trying to make quick or confident guesses.",
+      "pattern_generalization": "You’ll notice similar errors when sentences have extra details, descriptions, or clarifying words—especially in longer or more complex sentences. Watch out for missing adjectives, adverbs, or phrases that add nuance.",
+      "mt_system_specific": "General-purpose LLMs like GPT-4 may make this error more often than dedicated MT systems, which are more focused on preserving all parts of the original sentence, including modifiers."
+    },
+    {
+      "error_mechanism": "Sometimes, machine translation systems leave words or phrases untranslated, almost like a student skipping a tricky word on a test. This often happens when the system isn't sure what the word means or can't find a good match in its 'memory.'",
+      "architectural_cause": "Internally, the system works by predicting the next word based on patterns it has seen before. If it hasn't seen a certain word or phrase often enough, it may simply copy it over instead of translating, hoping that it's a proper name or something that should stay the same.",
+      "pattern_generalization": "You'll often see this error with rare words, technical terms, or brand names, especially if they're not common in the training data. Watch out for unusual or specialized vocabulary that the system might not recognize.",
+      "mt_system_specific": "Large language models like GPT-4 are more likely to leave things untranslated compared to dedicated MT systems, which are trained specifically for translation and may have more strategies to handle unknown words."
+    },
+    {
+      "error_mechanism": "MT systems often mix up numbers or translate them incorrectly because they treat numbers like any other word, not as special symbols with fixed meanings. It's a bit like copying a phone number by ear—if you don't pay extra attention, it's easy to swap or drop a digit.",
+      "architectural_cause": "Internally, the system breaks down sentences into small pieces and looks for patterns based on what it has seen before. Since numbers can appear in many different forms and contexts, the system might not always recognize their importance or keep them unchanged.",
+      "pattern_generalization": "Similar errors are likely when numbers appear in unusual formats, are part of dates, measurements, or when they're surrounded by unfamiliar words. Watch out for numbers in technical texts, addresses, or statistics.",
+      "mt_system_specific": "Dedicated MT systems are often better at handling numbers because they're trained specifically for translation tasks, while general-purpose LLMs like GPT-4 may be less careful with numbers since they handle a wider range of text types."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "analyst",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

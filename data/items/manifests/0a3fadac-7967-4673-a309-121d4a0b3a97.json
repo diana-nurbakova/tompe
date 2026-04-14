@@ -1,0 +1,274 @@
+{
+  "item_id": "0a3fadac-7967-4673-a309-121d4a0b3a97",
+  "segment_id": "europarl-07e9c46bedd9",
+  "source_text": "I would like your advice about Rule 143 concerning inadmissibility.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Je veux te demander un conseil au sujet de l'article 134 et de la procédure disciplinaire, que à propos de l'irrecevabilité.",
+  "reference_translation": "Je voudrais vous demander un conseil au sujet de l'article 143, qui concerne l'irrecevabilité.",
+  "mt_system": "gpt4",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "393fe136-c42a-4e57-8893-0c043162bb01",
+      "span_start": 0,
+      "span_end": 30,
+      "original_text": "Je voudrais vous demander un conseil",
+      "injected_text": "Je veux te demander un conseil",
+      "primary_tag": "STYLE",
+      "error_type": "register_formal",
+      "severity": "major",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system rendered 'I would like' as 'Je veux' and chose the informal 'te' pronoun, possibly interpreting the sentence as a direct, casual request.",
+        "actual_meaning": "The source expresses a polite and formal request for advice about Rule 143 and is likely addressed to a professional or official counterpart.",
+        "reader_impact": "A reader would perceive the message as abrupt and overly familiar, which could be inappropriate or disrespectful in a formal or professional context.",
+        "correction_rationale": "The correct translation uses 'Je voudrais' and 'vous,' which convey the intended politeness and formality, aligning with professional communication norms in French."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often slip up with formality, like a person who can't always tell when to use 'sir' or 'dude.' They may not fully grasp the social setting, so their word choices might sound too casual or too stiff for the situation.",
+        "architectural_cause": "These systems learn from huge amounts of text, mixing formal and informal styles. Since they don't truly understand context or social cues, they sometimes pick the wrong tone, much like someone guessing how to speak in a new environment.",
+        "pattern_generalization": "Expect this mistake when the original text is very formal or informal, or when the system hasn't seen enough examples of the right tone. Pay special attention in legal, academic, or customer service translations.",
+        "mt_system_specific": "General-purpose LLMs like GPT-4 are more likely to mix up formality than dedicated MT systems, which are often trained to pay closer attention to tone and register."
+      },
+      "technical_explanation": null,
+      "xml_tag": "<STYLE type=\"register_formal\" severity=\"major\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">Je veux te demander un conseil</STYLE> au sujet de l'article 143, qui concerne l'irrecevabilité.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "0877e58e-04e4-4453-b04f-86d2334e6b2b",
+      "span_start": 43,
+      "span_end": 56,
+      "original_text": "l'article 143",
+      "injected_text": "l'article 134",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "number",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely misread or mismatched the number '143' with '134', possibly due to a pattern or training data confusion between similar numbers in legal contexts.",
+        "actual_meaning": "The source text specifically refers to Rule 143, which is an explicit legal reference and must be preserved exactly in translation.",
+        "reader_impact": "A reader would be misled to consult or consider Article 134 instead of 143, potentially resulting in misunderstanding or misapplication of the relevant legal rule.",
+        "correction_rationale": "The correct translation must retain the exact article number ('143') to ensure the legal reference is accurate and unambiguous, as changing the number alters the meaning and could cause serious errors."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems can mix up numbers in legal article references much like a person who skims a document and accidentally copies the wrong number. Since these systems don't truly 'understand' the importance of each number, they might treat them as just another word to swap or adjust.",
+        "architectural_cause": "Internally, the system looks for patterns in language and tries to predict what comes next based on examples it has seen. If it hasn't learned that a specific number is crucial, it might swap it out for a more common or expected one, especially if numbers nearby look similar.",
+        "pattern_generalization": "You’ll often see this kind of mistake in texts where numbers are key, like laws, contracts, or technical manuals. Pay extra attention whenever the meaning depends on getting a number exactly right.",
+        "mt_system_specific": "Dedicated MT systems trained on legal texts are usually better at handling article numbers because they've seen more legal examples, while general-purpose LLMs like GPT-4 are more likely to make these mistakes."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je veux te demander un conseil au sujet de <MISTRANSLATION type=\"number\" severity=\"major\" tom=\"1st_machine\" desc=\"Article number mistranslated, changing legal reference\">l'article 134</MISTRANSLATION>, qui concerne l'irrecevabilité.",
+      "brief_explanation": "Article number mistranslated, changing legal reference"
+    },
+    {
+      "error_id": "7a26f138-d76a-45b4-ab05-7db70d23b22b",
+      "span_start": 58,
+      "span_end": 87,
+      "original_text": "qui concerne l'irrecevabilité",
+      "injected_text": "que concerne l'irrecevabilité",
+      "primary_tag": "GRAMMAR",
+      "error_type": "relative_pronoun",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely selected 'que' as the relative pronoun because it is commonly used to introduce relative clauses and may have matched it to the English 'that.'",
+        "actual_meaning": "The source refers to Rule 143, which is specifically about inadmissibility, so the relative clause should indicate that Rule 143 concerns this topic.",
+        "reader_impact": "A French reader may find 'que concerne l'irrecevabilité' ungrammatical or confusing, as 'que' is not the correct pronoun here and disrupts the sentence's clarity.",
+        "correction_rationale": "In French, 'qui' is the correct relative pronoun when referring to the subject of the relative clause ('l'article 143'), making 'qui concerne l'irrecevabilité' the grammatically correct and clear choice."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up relative pronouns like 'who,' 'which,' or 'that,' similar to how a non-native speaker might confuse them if they're not sure about the rules. The system tries to guess which word fits best based on patterns it has seen, but sometimes picks the wrong one, especially when sentences are complicated.",
+        "architectural_cause": "Internally, the system works by predicting the next word based on what it has seen in millions of examples. It doesn't truly understand grammar rules, so it relies on patterns, which means it can miss subtle differences between similar words like relative pronouns.",
+        "pattern_generalization": "You’ll often see these mistakes in sentences where the pronoun refers to people versus things, or where the sentence structure is tricky. Watch out for long or complex sentences—these are common spots for this error.",
+        "mt_system_specific": "Large language models like GPT-4 may make this error more often than dedicated MT systems, because they aren't focused solely on translation and may not be as strict with grammar rules."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je veux te demander un conseil au sujet de l'article 134, <GRAMMAR type=\"relative_pronoun\" severity=\"minor\" tom=\"1st_machine\" desc=\"5-15 word explanation\">que concerne l'irrecevabilité</GRAMMAR>.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "929c0e1e-990c-477e-bc76-980b83f5de96",
+      "span_start": 62,
+      "span_end": 73,
+      "original_text": "concernant",
+      "injected_text": "à propos de",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "ambiguity",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "severity_range": [
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'concerning' as a general preposition and chose the more generic 'à propos de' to convey the relationship between Rule 143 and inadmissibility.",
+        "actual_meaning": "The source specifically means that Rule 143 deals with or regulates issues of inadmissibility, indicating a direct and formal connection.",
+        "reader_impact": "A reader may think Rule 143 is only loosely related to inadmissibility, rather than understanding it as the rule that directly addresses it, leading to confusion about the legal relevance.",
+        "correction_rationale": "'Concernant' accurately reflects the formal, direct relationship between Rule 143 and inadmissibility, whereas 'à propos de' is too vague and informal for legal or official contexts."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often struggle with words or phrases that have more than one meaning, like 'bank' (which could mean a riverbank or a financial institution). It's like a person hearing a word without enough clues and guessing the wrong meaning because the context isn't clear enough.",
+        "architectural_cause": "Inside, the system looks at the words around the ambiguous term to make its best guess, but if the clues are weak or missing, it can easily pick the wrong meaning. It doesn't truly 'understand' the situation the way a human does, so it relies on patterns it's seen before.",
+        "pattern_generalization": "Students can expect similar errors whenever the source text contains words or expressions with multiple meanings, especially if the surrounding sentences don't make the intended meaning obvious.",
+        "mt_system_specific": "General-purpose LLMs like GPT-4 may make this mistake more often than dedicated MT systems, because they aren't trained specifically for translation and may not focus as much on context clues in the source language."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je veux te demander un conseil au sujet de l'article 134, que <MISTRANSLATION type=\"ambiguity\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">à propos de</MISTRANSLATION> l'irrecevabilité.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "ee7736eb-18c0-46ce-8367-fd4c06004c77",
+      "span_start": 31,
+      "span_end": 123,
+      "original_text": "au sujet de l'article 134, que à propos de l'irrecevabilité",
+      "injected_text": "au sujet de l'article 134 et de la procédure disciplinaire, que à propos de l'irrecevabilité",
+      "primary_tag": "ADDITION",
+      "error_type": "hallucination",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S4",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "major",
+        "critical"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely inferred that 'Rule 143' involves both 'procedure disciplinaire' and 'inadmissibility,' perhaps due to training data associating rules with multiple legal topics.",
+        "actual_meaning": "The source text only requests advice about Rule 143 specifically in relation to inadmissibility, without mentioning any disciplinary procedure.",
+        "reader_impact": "A reader would mistakenly believe that Rule 143 covers both inadmissibility and disciplinary procedures, potentially leading to confusion about the rule's scope.",
+        "correction_rationale": "The correct translation restricts the discussion to inadmissibility, accurately reflecting the source and avoiding the introduction of unrelated legal topics."
+      },
+      "system_behavior": {
+        "error_mechanism": "Machine translation systems sometimes \"hallucinate\"—they add information that wasn't in the original text. It's a bit like a student who, unsure of the answer, fills in the gaps with their best guess, sometimes inventing details to make their response sound more complete.",
+        "architectural_cause": "Internally, the system tries to predict the next word based on patterns it has seen before. If it's not confident or the input is unclear, it may 'improvise' by adding plausible-sounding but incorrect information, just as someone might do when trying to sound fluent in a language they're still learning.",
+        "pattern_generalization": "These errors often happen with unusual topics, incomplete sentences, or when the input text is confusing. Students should watch for extra details or facts in the translation that weren’t present in the original.",
+        "mt_system_specific": "Dedicated MT systems are usually more focused on translating only what's there, while general LLMs like GPT-4 are more likely to elaborate or add information, since they're trained to generate text in many situations."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je veux te demander un conseil <ADDITION type=\"hallucination\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">au sujet de l'article 134 et de la procédure disciplinaire, que à propos de l'irrecevabilité</ADDITION>.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "analyst",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 5,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system rendered 'I would like' as 'Je veux' and chose the informal 'te' pronoun, possibly interpreting the sentence as a direct, casual request.",
+      "actual_meaning": "The source expresses a polite and formal request for advice about Rule 143 and is likely addressed to a professional or official counterpart.",
+      "reader_impact": "A reader would perceive the message as abrupt and overly familiar, which could be inappropriate or disrespectful in a formal or professional context.",
+      "correction_rationale": "The correct translation uses 'Je voudrais' and 'vous,' which convey the intended politeness and formality, aligning with professional communication norms in French."
+    },
+    {
+      "mt_interpretation": "The MT system likely misread or mismatched the number '143' with '134', possibly due to a pattern or training data confusion between similar numbers in legal contexts.",
+      "actual_meaning": "The source text specifically refers to Rule 143, which is an explicit legal reference and must be preserved exactly in translation.",
+      "reader_impact": "A reader would be misled to consult or consider Article 134 instead of 143, potentially resulting in misunderstanding or misapplication of the relevant legal rule.",
+      "correction_rationale": "The correct translation must retain the exact article number ('143') to ensure the legal reference is accurate and unambiguous, as changing the number alters the meaning and could cause serious errors."
+    },
+    {
+      "mt_interpretation": "The MT system likely selected 'que' as the relative pronoun because it is commonly used to introduce relative clauses and may have matched it to the English 'that.'",
+      "actual_meaning": "The source refers to Rule 143, which is specifically about inadmissibility, so the relative clause should indicate that Rule 143 concerns this topic.",
+      "reader_impact": "A French reader may find 'que concerne l'irrecevabilité' ungrammatical or confusing, as 'que' is not the correct pronoun here and disrupts the sentence's clarity.",
+      "correction_rationale": "In French, 'qui' is the correct relative pronoun when referring to the subject of the relative clause ('l'article 143'), making 'qui concerne l'irrecevabilité' the grammatically correct and clear choice."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted 'concerning' as a general preposition and chose the more generic 'à propos de' to convey the relationship between Rule 143 and inadmissibility.",
+      "actual_meaning": "The source specifically means that Rule 143 deals with or regulates issues of inadmissibility, indicating a direct and formal connection.",
+      "reader_impact": "A reader may think Rule 143 is only loosely related to inadmissibility, rather than understanding it as the rule that directly addresses it, leading to confusion about the legal relevance.",
+      "correction_rationale": "'Concernant' accurately reflects the formal, direct relationship between Rule 143 and inadmissibility, whereas 'à propos de' is too vague and informal for legal or official contexts."
+    },
+    {
+      "mt_interpretation": "The MT system likely inferred that 'Rule 143' involves both 'procedure disciplinaire' and 'inadmissibility,' perhaps due to training data associating rules with multiple legal topics.",
+      "actual_meaning": "The source text only requests advice about Rule 143 specifically in relation to inadmissibility, without mentioning any disciplinary procedure.",
+      "reader_impact": "A reader would mistakenly believe that Rule 143 covers both inadmissibility and disciplinary procedures, potentially leading to confusion about the rule's scope.",
+      "correction_rationale": "The correct translation restricts the discussion to inadmissibility, accurately reflecting the source and avoiding the introduction of unrelated legal topics."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often slip up with formality, like a person who can't always tell when to use 'sir' or 'dude.' They may not fully grasp the social setting, so their word choices might sound too casual or too stiff for the situation.",
+      "architectural_cause": "These systems learn from huge amounts of text, mixing formal and informal styles. Since they don't truly understand context or social cues, they sometimes pick the wrong tone, much like someone guessing how to speak in a new environment.",
+      "pattern_generalization": "Expect this mistake when the original text is very formal or informal, or when the system hasn't seen enough examples of the right tone. Pay special attention in legal, academic, or customer service translations.",
+      "mt_system_specific": "General-purpose LLMs like GPT-4 are more likely to mix up formality than dedicated MT systems, which are often trained to pay closer attention to tone and register."
+    },
+    {
+      "error_mechanism": "MT systems can mix up numbers in legal article references much like a person who skims a document and accidentally copies the wrong number. Since these systems don't truly 'understand' the importance of each number, they might treat them as just another word to swap or adjust.",
+      "architectural_cause": "Internally, the system looks for patterns in language and tries to predict what comes next based on examples it has seen. If it hasn't learned that a specific number is crucial, it might swap it out for a more common or expected one, especially if numbers nearby look similar.",
+      "pattern_generalization": "You’ll often see this kind of mistake in texts where numbers are key, like laws, contracts, or technical manuals. Pay extra attention whenever the meaning depends on getting a number exactly right.",
+      "mt_system_specific": "Dedicated MT systems trained on legal texts are usually better at handling article numbers because they've seen more legal examples, while general-purpose LLMs like GPT-4 are more likely to make these mistakes."
+    },
+    {
+      "error_mechanism": "MT systems often mix up relative pronouns like 'who,' 'which,' or 'that,' similar to how a non-native speaker might confuse them if they're not sure about the rules. The system tries to guess which word fits best based on patterns it has seen, but sometimes picks the wrong one, especially when sentences are complicated.",
+      "architectural_cause": "Internally, the system works by predicting the next word based on what it has seen in millions of examples. It doesn't truly understand grammar rules, so it relies on patterns, which means it can miss subtle differences between similar words like relative pronouns.",
+      "pattern_generalization": "You’ll often see these mistakes in sentences where the pronoun refers to people versus things, or where the sentence structure is tricky. Watch out for long or complex sentences—these are common spots for this error.",
+      "mt_system_specific": "Large language models like GPT-4 may make this error more often than dedicated MT systems, because they aren't focused solely on translation and may not be as strict with grammar rules."
+    },
+    {
+      "error_mechanism": "MT systems often struggle with words or phrases that have more than one meaning, like 'bank' (which could mean a riverbank or a financial institution). It's like a person hearing a word without enough clues and guessing the wrong meaning because the context isn't clear enough.",
+      "architectural_cause": "Inside, the system looks at the words around the ambiguous term to make its best guess, but if the clues are weak or missing, it can easily pick the wrong meaning. It doesn't truly 'understand' the situation the way a human does, so it relies on patterns it's seen before.",
+      "pattern_generalization": "Students can expect similar errors whenever the source text contains words or expressions with multiple meanings, especially if the surrounding sentences don't make the intended meaning obvious.",
+      "mt_system_specific": "General-purpose LLMs like GPT-4 may make this mistake more often than dedicated MT systems, because they aren't trained specifically for translation and may not focus as much on context clues in the source language."
+    },
+    {
+      "error_mechanism": "Machine translation systems sometimes \"hallucinate\"—they add information that wasn't in the original text. It's a bit like a student who, unsure of the answer, fills in the gaps with their best guess, sometimes inventing details to make their response sound more complete.",
+      "architectural_cause": "Internally, the system tries to predict the next word based on patterns it has seen before. If it's not confident or the input is unclear, it may 'improvise' by adding plausible-sounding but incorrect information, just as someone might do when trying to sound fluent in a language they're still learning.",
+      "pattern_generalization": "These errors often happen with unusual topics, incomplete sentences, or when the input text is confusing. Students should watch for extra details or facts in the translation that weren’t present in the original.",
+      "mt_system_specific": "Dedicated MT systems are usually more focused on translating only what's there, while general LLMs like GPT-4 are more likely to elaborate or add information, since they're trained to generate text in many situations."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "analyst",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

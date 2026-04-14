@@ -919,6 +919,32 @@ def _page_class_management():
         _class_create_form()
 
 
+def _assign_class_exercises_to_student(student_id: str, class_id: str):
+    """Auto-assign all exercises for a class to a new student."""
+    exercises = exercises_store.list_all(
+        Exercise,
+        filter_fn=lambda ex: getattr(ex, "assigned_to_class", None) == class_id,
+    )
+    for ex in exercises:
+        # Check if assignment already exists
+        existing = assignments_store.list_all(
+            ExerciseAssignment,
+            filter_fn=lambda a, eid=ex.exercise_id, sid=student_id: (
+                a.exercise_id == eid and a.student_id == sid
+            ),
+        )
+        if not existing:
+            assignment = ExerciseAssignment(
+                assignment_id=str(uuid4()),
+                exercise_id=ex.exercise_id,
+                student_id=student_id,
+            )
+            assignments_store.save(assignment)
+            if student_id not in ex.assigned_to_students:
+                ex.assigned_to_students.append(student_id)
+                exercises_store.save(ex)
+
+
 def _class_students_view():
     """Student accounts management."""
     classes = list_classes()
@@ -945,12 +971,13 @@ def _class_students_view():
             created = 0
             for row in reader:
                 try:
-                    create_account(
+                    acct = create_account(
                         username=row["username"].strip(),
                         display_name=row["display_name"].strip(),
                         password=row["password"].strip(),
                         class_id=class_id,
                     )
+                    _assign_class_exercises_to_student(acct.student_id, class_id)
                     created += 1
                 except (ValueError, KeyError):
                     continue
@@ -966,7 +993,8 @@ def _class_students_view():
             if st.form_submit_button("Create Account"):
                 if new_username and new_display and new_password:
                     try:
-                        create_account(new_username, new_display, new_password, class_id)
+                        acct = create_account(new_username, new_display, new_password, class_id)
+                        _assign_class_exercises_to_student(acct.student_id, class_id)
                         st.success(f"Created account for {new_display}.")
                         st.session_state["show_add_student"] = False
                         st.rerun()
@@ -1734,9 +1762,9 @@ def _settings_launch_controls():
     else:
         st.warning("Student app is not running")
 
-    col1, col2 = st.columns(2)
+    col1, col2, col3, col4 = st.columns(4)
     with col1:
-        if st.button("Start Student App", type="primary"):
+        if st.button("Start (local)", type="primary", disabled=student_running):
             try:
                 subprocess.Popen(
                     ["uv", "run", "tompe-student"],
@@ -1744,11 +1772,59 @@ def _settings_launch_controls():
                     creationflags=subprocess.CREATE_NEW_PROCESS_GROUP
                     if os.name == "nt" else 0,
                 )
-                st.success("Student app starting... Wait a few seconds then refresh.")
+                import time as _time
+                st.success("Student app starting...")
+                _time.sleep(5)
+                st.rerun()
             except Exception as e:
                 st.error(f"Failed to start: {e}")
     with col2:
-        st.text_input("Student URL", value="http://localhost:7860", disabled=True)
+        if st.button("Start (share link)", disabled=student_running):
+            try:
+                subprocess.Popen(
+                    ["uv", "run", "tompe-student", "--share"],
+                    cwd=str(Path(__file__).resolve().parent.parent.parent.parent),
+                    creationflags=subprocess.CREATE_NEW_PROCESS_GROUP
+                    if os.name == "nt" else 0,
+                )
+                import time as _time
+                st.success("Student app starting with share link...")
+                _time.sleep(5)
+                st.rerun()
+            except Exception as e:
+                st.error(f"Failed to start: {e}")
+    with col3:
+        if st.button("Stop Student App", disabled=not student_running):
+            try:
+                import signal
+                # Find the process on port 7860 and kill it
+                if os.name == "nt":
+                    result = subprocess.run(
+                        ["netstat", "-ano"],
+                        capture_output=True, text=True,
+                    )
+                    for line in result.stdout.splitlines():
+                        if ":7860" in line and "LISTENING" in line:
+                            pid = line.strip().split()[-1]
+                            subprocess.run(["taskkill", "/F", "/PID", pid], capture_output=True)
+                            st.success(f"Student app stopped (PID {pid}).")
+                            break
+                    else:
+                        st.warning("Could not find student app process.")
+                else:
+                    subprocess.run(["fuser", "-k", "7860/tcp"], capture_output=True)
+                    st.success("Student app stopped.")
+                st.rerun()
+            except Exception as e:
+                st.error(f"Failed to stop: {e}")
+    with col4:
+        st.text_input("Local URL", value="http://localhost:7860", disabled=True)
+
+    # Show share link if available
+    share_link = st.session_state.get("share_link")
+    if share_link:
+        st.success(f"Share link: **{share_link}**")
+        st.code(share_link, language=None)
 
     st.divider()
     st.subheader("API Server")
@@ -1764,13 +1840,6 @@ def _settings_launch_controls():
         st.success("API server is running at http://localhost:8000")
     else:
         st.warning("API server is not running. Start it with: `uv run tompe-api`")
-
-    st.divider()
-    st.subheader("Share Link")
-    st.caption(
-        "To create a public URL for student access (useful for remote classes), "
-        "restart the student app with `share=True` in the launch configuration."
-    )
 
 
 def _settings_api_credentials():

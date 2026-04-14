@@ -1,0 +1,36 @@
+{
+  "response_id": "afc69028-baa0-4ca8-9c99-4ff4e783d695",
+  "session_id": "23b309fb-afbd-464c-815e-36f38988ca47",
+  "item_id": "2b7b69cf-d456-4a6a-981d-3520ec047d3c",
+  "student_id": "1a133069-aee9-4328-bcd8-63348d2e9a56",
+  "mode": "evaluation",
+  "timestamp": "2026-04-14T22:02:57.622231",
+  "time_spent_seconds": 234.4,
+  "identified_errors": [
+    {
+      "span_start": 31,
+      "span_end": 52,
+      "student_mqm_category": "fluency",
+      "student_severity": "major",
+      "confidence": "medium"
+    }
+  ],
+  "edited_text": null,
+  "verification_responses": null,
+  "comparison_type": null,
+  "per_system_evaluations": null,
+  "system_rankings": null,
+  "pe_worthiness": null,
+  "justification_format": "free_text",
+  "justifications": [
+    {
+      "error_id": null,
+      "format": "structured",
+      "text": null,
+      "mt_misunderstanding": "a singular form instead of plural is used due to high frequency use of \"prochain jour\"",
+      "author_intent": "to indicate that the debates are requested to be organised in the upcoming days",
+      "reader_impact": "the debates are requested be held the next day",
+      "tom_perspective": null
+    }
+  ]
+}

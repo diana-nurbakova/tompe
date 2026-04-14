@@ -1,0 +1,275 @@
+{
+  "item_id": "c5016c02-21f0-4359-9af7-e9fdc49b092b",
+  "segment_id": "europarl-58eae60d5b7a",
+  "source_text": "Although, as you will have seen, the dreaded 'millennium bug' failed to materialise, still the people in a number of countries suffered a series of natural disasters that truly were dreadful.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Comme vous avez pu le constater, le grand \"bogue de l'an 2000\" ne s'est pas produit. En revanche, les clients et employés d'un certain nombre de nos pays ont été victimes de catastrophes naturelles qui ont été vraiment horribles et dévastatrices.",
+  "reference_translation": "Comme vous avez pu le constater, le grand \"bogue de l'an 2000\" ne s'est pas produit. En revanche, les citoyens d'un certain nombre de nos pays ont été victimes de catastrophes naturelles qui ont vraiment été terribles.",
+  "mt_system": "claude",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "fab8560b-54e8-4265-abba-05f1bd3f98bf",
+      "span_start": 195,
+      "span_end": 219,
+      "original_text": "vraiment été terribles",
+      "injected_text": "été absolument terribles",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "overtranslation",
+      "severity": "minor",
+      "tom_level": "1st_author",
+      "primary_skill": "S3",
+      "secondary_skills": [
+        "S4"
+      ],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'truly were dreadful' as requiring a strong intensifier, choosing 'absolument' to emphasize the severity of the disasters.",
+        "actual_meaning": "The source uses 'truly' to confirm the reality and seriousness of the disasters, not to exaggerate their intensity.",
+        "reader_impact": "A reader may perceive 'absolument terribles' as an overstatement, making the text sound less natural or more dramatic than intended.",
+        "correction_rationale": "'Vraiment été terribles' accurately conveys the intended emphasis without exaggeration, matching the tone and strength of the original English phrase."
+      },
+      "system_behavior": {
+        "error_mechanism": "Overtranslation happens when the machine repeats or adds information that wasn’t in the original text. It’s like a student who’s so eager to explain that they end up saying the same thing twice or including extra details, thinking it will help.",
+        "architectural_cause": "Internally, the system tries to match patterns it has seen in its training data. Sometimes, it ‘thinks’ adding more words will make the translation sound more natural or complete, even if that means repeating itself or inventing details.",
+        "pattern_generalization": "You’ll often see overtranslation with short, simple sentences or when the source text is vague, since the system tries to fill in gaps. Watch out for this when translating between languages with different ways of expressing ideas.",
+        "mt_system_specific": "Large language models like Claude may overtranslate more than dedicated MT systems, because they are trained to generate longer, more conversational text, not just direct translations."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Comme vous avez pu le constater, le grand \"bogue de l'an 2000\" ne s'est pas produit. En revanche, les citoyens d'un certain nombre de nos pays ont été victimes de catastrophes naturelles qui ont <MISTRANSLATION type=\"overtranslation\" severity=\"minor\" tom=\"1st_author\" desc=\"5-15 word explanation\">été absolument terribles</MISTRANSLATION>.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "7a032826-b177-48bc-bbdf-c648ef34f895",
+      "span_start": 102,
+      "span_end": 109,
+      "original_text": "citoyens",
+      "injected_text": "clients",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "false_cognate",
+      "severity": "critical",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "severity_range": [
+        "major",
+        "critical"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely saw the English word 'people' and, due to a false cognate, chose 'clients' as a possible translation, confusing it with 'citizens' or 'people' in general.",
+        "actual_meaning": "The source refers to the citizens or inhabitants of several countries, not customers or clients.",
+        "reader_impact": "A reader would incorrectly understand that the victims were 'clients' (possibly of a business), which distorts the meaning and context of the sentence.",
+        "correction_rationale": "'Citoyens' accurately conveys the idea of members of a nation or community, aligning with the intended meaning of 'people' in the context of natural disasters affecting populations, not customers."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often confuse words that look or sound similar in different languages, like 'actual' in English and 'actual' in Spanish, which mean different things. It's a bit like mistaking a lookalike for your friend in a crowd—similar appearance, but not the same person.",
+        "architectural_cause": "Internally, the system relies on patterns it has seen in its training data, matching words that appear related. If two words are spelled or pronounced alike across languages, the system may assume they share the same meaning even when they don't.",
+        "pattern_generalization": "These errors often happen with words that share roots or spellings across languages but have different meanings. Be especially cautious with familiar-looking words when reviewing machine translations.",
+        "mt_system_specific": "Large language models like Claude are more prone to this error than dedicated MT systems, because they rely more on general language patterns and less on specialized translation data."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Comme vous avez pu le constater, le grand \"bogue de l'an 2000\" ne s'est pas produit. En revanche, les <MISTRANSLATION type=\"false_cognate\" severity=\"critical\" tom=\"1st_machine\" desc=\"5-15 word explanation\">clients</MISTRANSLATION> d'un certain nombre de nos pays ont été victimes de catastrophes naturelles qui ont été absolument terribles.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "7faee2ea-1141-4468-b9bc-336d425feb0c",
+      "span_start": 98,
+      "span_end": 121,
+      "original_text": "les clients",
+      "injected_text": "les clients et employés",
+      "primary_tag": "ADDITION",
+      "error_type": "hallucination",
+      "severity": "critical",
+      "tom_level": "1st_machine",
+      "primary_skill": "S4",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "major",
+        "critical"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system may have associated 'people' with common collocations like 'clients and employees,' possibly due to training data from business contexts.",
+        "actual_meaning": "The source refers generally to people in various countries who suffered natural disasters, without specifying any group like clients or employees.",
+        "reader_impact": "A reader would incorrectly believe that only clients and employees were affected by the disasters, narrowing the scope of the tragedy and distorting the message.",
+        "correction_rationale": "The correct translation should use a general term like 'citoyens' or 'personnes' to accurately reflect the broad, unspecific reference to people in the source text."
+      },
+      "system_behavior": {
+        "error_mechanism": "Machine translation systems sometimes 'imagine' details that aren't in the original text, a bit like someone filling in gaps in a story when they can't remember all the facts. This happens because the system tries to be helpful and complete, but it can end up adding things that don't belong.",
+        "architectural_cause": "Internally, these systems work by predicting what words should come next based on patterns they've seen in lots of texts. If the system isn't sure, it may guess and include extra information that sounds right, even if it's not in the original sentence.",
+        "pattern_generalization": "Students might notice these errors when the source text is vague, incomplete, or about topics the system has seen a lot of examples for. Watch out for translations that seem too detailed or include facts not found in the original.",
+        "mt_system_specific": "Large language models like Claude are more likely to add extra information than dedicated MT systems, because they are trained to generate fluent and informative text, not just translate word-for-word."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Comme vous avez pu le constater, le grand \"bogue de l'an 2000\" ne s'est pas produit. En revanche, <ADDITION type=\"hallucination\" severity=\"critical\" tom=\"1st_machine\" desc=\"5-15 word explanation\">les clients et employés</ADDITION> d'un certain nombre de nos pays ont été victimes de catastrophes naturelles qui ont été absolument terribles.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "7f03fbf8-317c-4a87-b3a1-2dcc21e0fada",
+      "span_start": 210,
+      "span_end": 247,
+      "original_text": "absolument terribles",
+      "injected_text": "absolument horribles et dévastatrices",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "overtranslation",
+      "severity": "minor",
+      "tom_level": "1st_author",
+      "primary_skill": "S3",
+      "secondary_skills": [
+        "S4"
+      ],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'truly were dreadful' as requiring a stronger, more explicit description, thus adding 'dévastatrices' to intensify the sense of disaster.",
+        "actual_meaning": "The source simply emphasizes that the natural disasters were very bad or terrible, without specifying their exact nature or using multiple adjectives.",
+        "reader_impact": "A reader might infer that the disasters were not only terrible but also specifically devastating and horrifying, which overstates the original tone and meaning.",
+        "correction_rationale": "The correct translation should match the intensity and focus of the source, using 'absolument terribles' to convey strong negativity without unnecessarily adding descriptors that exaggerate the original message."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often 'over-translate' by adding words or details that weren't in the original, a bit like someone retelling a story and making it sound more dramatic than it really was. This usually happens because the system tries to make the translation sound natural or impressive, but ends up exaggerating.",
+        "architectural_cause": "Internally, the system predicts each word based on patterns it has seen in lots of texts, not just the sentence in front of it. Sometimes, it 'guesses' that strong words like 'devastating' should be included, because they often appear in similar contexts, even if they weren't in the original sentence.",
+        "pattern_generalization": "Students should watch for overtranslation when the original text uses neutral or mild language, especially in emotional or dramatic topics. If the translation sounds stronger or more intense than the source, this type of error may have occurred.",
+        "mt_system_specific": "Large language models like Claude are especially prone to this because they're trained to generate fluent, engaging text, while dedicated MT systems may stick closer to the original wording but can still make similar mistakes."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Comme vous avez pu le constater, le grand \"bogue de l'an 2000\" ne s'est pas produit. En revanche, les clients et employés d'un certain nombre de nos pays ont été victimes de catastrophes naturelles qui ont été <MISTRANSLATION type=\"overtranslation\" severity=\"minor\" tom=\"1st_author\" desc=\"Adds 'dévastatrices', exaggerating original intensity\">absolument horribles et dévastatrices</MISTRANSLATION>.",
+      "brief_explanation": "Adds 'dévastatrices', exaggerating original intensity"
+    },
+    {
+      "error_id": "370b30a7-29fa-49f8-9fa4-181e6433715b",
+      "span_start": 210,
+      "span_end": 245,
+      "original_text": "absolument horribles et dévastatrices",
+      "injected_text": "vraiment horribles et dévastatrices",
+      "primary_tag": "STYLE",
+      "error_type": "unidiomatic",
+      "severity": "minor",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system selected 'vraiment' as a straightforward equivalent of 'truly,' aiming for a literal translation and focusing on direct word-to-word correspondence.",
+        "actual_meaning": "The source uses 'truly' to emphasize the severity of the disasters, suggesting they were absolutely dreadful, not just somewhat so.",
+        "reader_impact": "A French reader may find 'vraiment horribles' somewhat weak or colloquial in this context, which lessens the intended emphasis and sounds less formal or forceful than the original.",
+        "correction_rationale": "'Absolument horribles' is a more idiomatic and emphatic way in French to convey the idea of something being truly dreadful, preserving both the intensity and register of the source text."
+      },
+      "system_behavior": {
+        "error_mechanism": "Machine translation systems often sound a bit awkward because they sometimes choose words or phrases that are technically correct but not how a native speaker would say it. It's like a tourist using a phrasebook—they might get the message across, but it doesn't always sound natural.",
+        "architectural_cause": "Internally, the system looks for patterns in lots of translated sentences, but it doesn't really 'feel' the language the way a human does. It picks what seems to fit based on statistics, not on a sense of what sounds smooth or idiomatic.",
+        "pattern_generalization": "You’ll notice these errors especially in everyday expressions, sayings, or when translating casual conversations. If something sounds stiff or slightly off, it’s likely one of these cases.",
+        "mt_system_specific": "General-purpose language models like LLMs are even more likely to make these mistakes than dedicated translation systems, because they haven't been trained as deeply on real translation examples."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Comme vous avez pu le constater, le grand \"bogue de l'an 2000\" ne s'est pas produit. En revanche, les clients et employés d'un certain nombre de nos pays ont été victimes de catastrophes naturelles qui ont été <STYLE type=\"unidiomatic\" severity=\"minor\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">vraiment horribles et dévastatrices</STYLE>.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "analyst",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 5,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely interpreted 'truly were dreadful' as requiring a strong intensifier, choosing 'absolument' to emphasize the severity of the disasters.",
+      "actual_meaning": "The source uses 'truly' to confirm the reality and seriousness of the disasters, not to exaggerate their intensity.",
+      "reader_impact": "A reader may perceive 'absolument terribles' as an overstatement, making the text sound less natural or more dramatic than intended.",
+      "correction_rationale": "'Vraiment été terribles' accurately conveys the intended emphasis without exaggeration, matching the tone and strength of the original English phrase."
+    },
+    {
+      "mt_interpretation": "The MT system likely saw the English word 'people' and, due to a false cognate, chose 'clients' as a possible translation, confusing it with 'citizens' or 'people' in general.",
+      "actual_meaning": "The source refers to the citizens or inhabitants of several countries, not customers or clients.",
+      "reader_impact": "A reader would incorrectly understand that the victims were 'clients' (possibly of a business), which distorts the meaning and context of the sentence.",
+      "correction_rationale": "'Citoyens' accurately conveys the idea of members of a nation or community, aligning with the intended meaning of 'people' in the context of natural disasters affecting populations, not customers."
+    },
+    {
+      "mt_interpretation": "The MT system may have associated 'people' with common collocations like 'clients and employees,' possibly due to training data from business contexts.",
+      "actual_meaning": "The source refers generally to people in various countries who suffered natural disasters, without specifying any group like clients or employees.",
+      "reader_impact": "A reader would incorrectly believe that only clients and employees were affected by the disasters, narrowing the scope of the tragedy and distorting the message.",
+      "correction_rationale": "The correct translation should use a general term like 'citoyens' or 'personnes' to accurately reflect the broad, unspecific reference to people in the source text."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted 'truly were dreadful' as requiring a stronger, more explicit description, thus adding 'dévastatrices' to intensify the sense of disaster.",
+      "actual_meaning": "The source simply emphasizes that the natural disasters were very bad or terrible, without specifying their exact nature or using multiple adjectives.",
+      "reader_impact": "A reader might infer that the disasters were not only terrible but also specifically devastating and horrifying, which overstates the original tone and meaning.",
+      "correction_rationale": "The correct translation should match the intensity and focus of the source, using 'absolument terribles' to convey strong negativity without unnecessarily adding descriptors that exaggerate the original message."
+    },
+    {
+      "mt_interpretation": "The MT system selected 'vraiment' as a straightforward equivalent of 'truly,' aiming for a literal translation and focusing on direct word-to-word correspondence.",
+      "actual_meaning": "The source uses 'truly' to emphasize the severity of the disasters, suggesting they were absolutely dreadful, not just somewhat so.",
+      "reader_impact": "A French reader may find 'vraiment horribles' somewhat weak or colloquial in this context, which lessens the intended emphasis and sounds less formal or forceful than the original.",
+      "correction_rationale": "'Absolument horribles' is a more idiomatic and emphatic way in French to convey the idea of something being truly dreadful, preserving both the intensity and register of the source text."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "Overtranslation happens when the machine repeats or adds information that wasn’t in the original text. It’s like a student who’s so eager to explain that they end up saying the same thing twice or including extra details, thinking it will help.",
+      "architectural_cause": "Internally, the system tries to match patterns it has seen in its training data. Sometimes, it ‘thinks’ adding more words will make the translation sound more natural or complete, even if that means repeating itself or inventing details.",
+      "pattern_generalization": "You’ll often see overtranslation with short, simple sentences or when the source text is vague, since the system tries to fill in gaps. Watch out for this when translating between languages with different ways of expressing ideas.",
+      "mt_system_specific": "Large language models like Claude may overtranslate more than dedicated MT systems, because they are trained to generate longer, more conversational text, not just direct translations."
+    },
+    {
+      "error_mechanism": "MT systems often confuse words that look or sound similar in different languages, like 'actual' in English and 'actual' in Spanish, which mean different things. It's a bit like mistaking a lookalike for your friend in a crowd—similar appearance, but not the same person.",
+      "architectural_cause": "Internally, the system relies on patterns it has seen in its training data, matching words that appear related. If two words are spelled or pronounced alike across languages, the system may assume they share the same meaning even when they don't.",
+      "pattern_generalization": "These errors often happen with words that share roots or spellings across languages but have different meanings. Be especially cautious with familiar-looking words when reviewing machine translations.",
+      "mt_system_specific": "Large language models like Claude are more prone to this error than dedicated MT systems, because they rely more on general language patterns and less on specialized translation data."
+    },
+    {
+      "error_mechanism": "Machine translation systems sometimes 'imagine' details that aren't in the original text, a bit like someone filling in gaps in a story when they can't remember all the facts. This happens because the system tries to be helpful and complete, but it can end up adding things that don't belong.",
+      "architectural_cause": "Internally, these systems work by predicting what words should come next based on patterns they've seen in lots of texts. If the system isn't sure, it may guess and include extra information that sounds right, even if it's not in the original sentence.",
+      "pattern_generalization": "Students might notice these errors when the source text is vague, incomplete, or about topics the system has seen a lot of examples for. Watch out for translations that seem too detailed or include facts not found in the original.",
+      "mt_system_specific": "Large language models like Claude are more likely to add extra information than dedicated MT systems, because they are trained to generate fluent and informative text, not just translate word-for-word."
+    },
+    {
+      "error_mechanism": "MT systems often 'over-translate' by adding words or details that weren't in the original, a bit like someone retelling a story and making it sound more dramatic than it really was. This usually happens because the system tries to make the translation sound natural or impressive, but ends up exaggerating.",
+      "architectural_cause": "Internally, the system predicts each word based on patterns it has seen in lots of texts, not just the sentence in front of it. Sometimes, it 'guesses' that strong words like 'devastating' should be included, because they often appear in similar contexts, even if they weren't in the original sentence.",
+      "pattern_generalization": "Students should watch for overtranslation when the original text uses neutral or mild language, especially in emotional or dramatic topics. If the translation sounds stronger or more intense than the source, this type of error may have occurred.",
+      "mt_system_specific": "Large language models like Claude are especially prone to this because they're trained to generate fluent, engaging text, while dedicated MT systems may stick closer to the original wording but can still make similar mistakes."
+    },
+    {
+      "error_mechanism": "Machine translation systems often sound a bit awkward because they sometimes choose words or phrases that are technically correct but not how a native speaker would say it. It's like a tourist using a phrasebook—they might get the message across, but it doesn't always sound natural.",
+      "architectural_cause": "Internally, the system looks for patterns in lots of translated sentences, but it doesn't really 'feel' the language the way a human does. It picks what seems to fit based on statistics, not on a sense of what sounds smooth or idiomatic.",
+      "pattern_generalization": "You’ll notice these errors especially in everyday expressions, sayings, or when translating casual conversations. If something sounds stiff or slightly off, it’s likely one of these cases.",
+      "mt_system_specific": "General-purpose language models like LLMs are even more likely to make these mistakes than dedicated translation systems, because they haven't been trained as deeply on real translation examples."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "analyst",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

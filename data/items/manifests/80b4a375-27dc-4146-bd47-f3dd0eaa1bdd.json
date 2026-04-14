@@ -1,0 +1,276 @@
+{
+  "item_id": "80b4a375-27dc-4146-bd47-f3dd0eaa1bdd",
+  "segment_id": "europarl-12c84eff34ec",
+  "source_text": "My question relates to something that will come up on Thursday and which I will then raise again.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Ma question porte sur un sujet qui pourrait avoir lieu jeudi et qui a déjà été approuvé à l'unanimité en commission, et que je soulèverai  une nouvelle fois.",
+  "reference_translation": "Ma question porte sur un sujet qui est à l'ordre du jour du jeudi et que je soulèverai donc une nouvelle fois.",
+  "mt_system": "claude",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "c62ddf5a-7609-4910-95e2-5d7994c69179",
+      "span_start": 65,
+      "span_end": 66,
+      "original_text": "",
+      "injected_text": ",",
+      "primary_tag": "PUNCTUATION",
+      "error_type": "punctuation",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S1",
+      "secondary_skills": [
+        "S6"
+      ],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely inserted a comma to mirror English punctuation patterns or to segment the sentence for clarity, following English norms.",
+        "actual_meaning": "The source sentence contains a continuous thought and does not require a comma in French; it describes a question that will arise on Thursday and will be raised again.",
+        "reader_impact": "A French reader might be momentarily confused by the unnecessary comma, potentially disrupting the flow and coherence of the sentence.",
+        "correction_rationale": "In French, the sentence should flow without a comma in this structure, maintaining natural syntax and clarity as in the reference translation."
+      },
+      "system_behavior": {
+        "error_mechanism": "Machine translation systems often treat punctuation like a puzzle piece that can be moved around, sometimes putting it in the wrong spot or leaving it out. This happens because, unlike humans, the system doesn’t truly understand the meaning behind the punctuation marks.",
+        "architectural_cause": "Inside, the system works by predicting the next word or symbol based on patterns it has seen before. It doesn’t have a special sense for punctuation, so if the training data was inconsistent, it might not always know when or where to use a comma, period, or other marks.",
+        "pattern_generalization": "You’ll often see these errors when translating sentences with unusual punctuation, lots of commas, or dialogue. Pay special attention to sentences where punctuation changes the meaning or flow.",
+        "mt_system_specific": "General-purpose language models like LLMs may make more punctuation mistakes than dedicated MT systems, which are trained more carefully on translation rules and punctuation usage."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Ma question porte sur un sujet qui est à l'ordre du jour du jeudi<PUNCTUATION type=\"punctuation\" severity=\"minor\" tom=\"1st_machine\" desc=\"5-15 word explanation\">,</PUNCTUATION> et que je soulèverai donc une nouvelle fois.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "c506fdff-32c1-4fb5-8dba-a96efc1c45b5",
+      "span_start": 66,
+      "span_end": 105,
+      "original_text": "",
+      "injected_text": "et qui a déjà été discuté en commission",
+      "primary_tag": "ADDITION",
+      "error_type": "hallucination",
+      "severity": "critical",
+      "tom_level": "1st_machine",
+      "primary_skill": "S4",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "major",
+        "critical"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely inferred from context that the topic had already been discussed in committee, perhaps due to frequent parliamentary phrasing or training data bias.",
+        "actual_meaning": "The source only states that the topic will come up on Thursday and will be raised again then; it does not mention any prior discussion in committee.",
+        "reader_impact": "A reader would wrongly believe that the topic has already been discussed in committee, which adds information not present in the original and could change perceptions of the issue's history.",
+        "correction_rationale": "The correct translation accurately reflects the source by not introducing any mention of previous committee discussion, thus preserving the original meaning and intent."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems sometimes 'hallucinate' by adding information that wasn’t in the original text, a bit like a student who tries to sound knowledgeable by making up details. The system is aiming to produce a fluent, complete sentence, but sometimes it fills in gaps with its own guesses.",
+        "architectural_cause": "Internally, these systems work by predicting the next word based on patterns they've seen before. If the original text is unclear or unusual, the system might rely too much on what it 'expects' rather than what’s actually there, leading to invented content.",
+        "pattern_generalization": "You’re more likely to see this when the source text is vague, incomplete, or uses rare expressions. Watch out for this especially in summaries or creative texts.",
+        "mt_system_specific": "Large language models like Claude are more prone to hallucination than dedicated MT systems, because they are trained to generate text in many situations, not just translation."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Ma question porte sur un sujet qui est à l'ordre du jour du jeudi <ADDITION type=\"hallucination\" severity=\"critical\" tom=\"1st_machine\" desc=\"5-15 word explanation\">et qui a déjà été discuté en commission</ADDITION>, et que je soulèverai donc une nouvelle fois.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "0af6daa5-5f3e-4d0f-ba2c-c0a7778bc6cf",
+      "span_start": 128,
+      "span_end": 128,
+      "original_text": "donc",
+      "injected_text": "",
+      "primary_tag": "OMISSION",
+      "error_type": "discourse_marker",
+      "severity": "minor",
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [
+        "S7"
+      ],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely considered the sentence understandable without the discourse marker 'donc,' viewing it as optional or redundant in French.",
+        "actual_meaning": "The source uses 'then' to explicitly link the action of raising the topic again to the timing (Thursday), emphasizing a logical sequence.",
+        "reader_impact": "Without 'donc,' the French sentence loses the explicit logical connection, making the repetition seem less intentional or causally linked to Thursday's event.",
+        "correction_rationale": "Including 'donc' mirrors the source's discourse structure, clearly signaling to the reader that the speaker's action is a direct consequence of the Thursday event."
+      },
+      "system_behavior": {
+        "error_mechanism": "Machine translation systems often skip small linking words like 'however' or 'therefore' because they focus on the main message, a bit like someone summarizing a story and leaving out connecting phrases. These words can seem less important compared to the main content, so they're sometimes dropped.",
+        "architectural_cause": "Internally, the system tries to match patterns between sentences in different languages. If it doesn't see a strong link between a discourse marker and the rest of the sentence, it might decide it's safe to leave it out, especially if similar examples in its training data did so.",
+        "pattern_generalization": "Students should watch for missing connecting words, especially in longer or more complex sentences where the flow between ideas is important. These omissions are more likely when the marker is subtle or not always required in the target language.",
+        "mt_system_specific": "LLMs like Claude may drop discourse markers more often than dedicated machine translation systems, because they aren't trained specifically to preserve every linking word in translations."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Ma question porte sur un sujet qui est à l'ordre du jour du jeudi et qui a déjà été discuté en commission, et que je soulèverai <OMISSION type=\"discourse_marker\" severity=\"minor\" tom=\"1st_author\" desc=\"5-15 word explanation\"></OMISSION> une nouvelle fois.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "af54456b-b9c4-42b3-a935-5ab8837ed4d6",
+      "span_start": 31,
+      "span_end": 60,
+      "original_text": "qui est à l'ordre du jour du jeudi",
+      "injected_text": "qui pourrait avoir lieu jeudi",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "ambiguity",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "severity_range": [
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'something that will come up on Thursday' as an event that might possibly happen on Thursday, leading it to choose a formulation expressing uncertainty ('pourrait avoir lieu jeudi').",
+        "actual_meaning": "The source text actually refers to a specific item that is already scheduled to be on Thursday's agenda, indicating certainty and official planning.",
+        "reader_impact": "A reader would misunderstand the situation as being uncertain or tentative, thinking the subject might or might not be discussed on Thursday, rather than knowing it is definitely planned for that day.",
+        "correction_rationale": "The correct translation ('qui est à l'ordre du jour du jeudi') accurately conveys that the topic is formally placed on Thursday's agenda, preserving the intended certainty and context of the original text."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often trip up on ambiguous words or phrases, much like how a person might get confused if someone says 'bank' without saying whether they mean a river bank or a place for money. When the original sentence isn't clear, the system has to guess the meaning, which can lead to it introducing uncertainty or choosing the wrong interpretation.",
+        "architectural_cause": "Inside, the system doesn't truly 'understand' the situation—it's matching patterns from huge amounts of text it has seen before. If it finds examples where the meaning was unclear, it might copy that uncertainty into its translation, instead of confidently picking the right meaning based on context.",
+        "pattern_generalization": "Students should watch out for mistranslations whenever the original text has words or phrases with more than one possible meaning, especially if the surrounding context doesn't make it clear. These errors are common with dates, times, or words that can mean different things depending on the situation.",
+        "mt_system_specific": "Large language models like Claude are often more cautious and may hedge or add uncertainty, while dedicated MT systems might pick one meaning and stick with it, even if it's wrong."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Ma question porte sur un sujet <MISTRANSLATION type=\"ambiguity\" severity=\"major\" tom=\"1st_machine\" desc=\"Introduces uncertainty about Thursday's agenda status\">qui pourrait avoir lieu jeudi</MISTRANSLATION> et qui a déjà été discuté en commission, et que je soulèverai  une nouvelle fois.",
+      "brief_explanation": "Introduces uncertainty about Thursday's agenda status"
+    },
+    {
+      "error_id": "f5ba7e5e-3fc5-4a18-ac6c-7beeff241c6e",
+      "span_start": 61,
+      "span_end": 115,
+      "original_text": "et qui a déjà été discuté en commission",
+      "injected_text": "et qui a déjà été approuvé à l'unanimité en commission",
+      "primary_tag": "ADDITION",
+      "error_type": "hallucination",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S4",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "major",
+        "critical"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely inferred that the topic had not only been discussed but also unanimously approved in committee, possibly due to exposure to similar phrases in its training data.",
+        "actual_meaning": "The source text states only that the topic will come up on Thursday and that the speaker will raise it again, with no mention of approval or unanimity.",
+        "reader_impact": "A reader would wrongly believe that the topic has already received unanimous approval in committee, which could mislead them about its current status or level of support.",
+        "correction_rationale": "The correct translation should avoid adding information not present in the source text; mentioning 'unanimous approval' is a hallucination and changes the meaning, so only the discussion in committee should be referenced."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems sometimes 'make things up' because, like a student trying to fill in blanks during a test, they want to give a complete answer even if they're unsure. They may add information that sounds right but isn't in the original text.",
+        "architectural_cause": "Internally, these systems work by predicting what should come next based on patterns they've seen before, not by truly understanding the meaning. If the original text is unclear or missing details, the system might guess and add extra information to make the sentence seem more natural.",
+        "pattern_generalization": "Watch for this kind of error when the source text is vague, incomplete, or contains unusual phrases. It's especially common with complex topics or when the system hasn't seen similar examples before.",
+        "mt_system_specific": "Dedicated MT systems are usually more careful about sticking closely to the source text, while general-purpose LLMs like Claude may be more likely to add extra details or explanations that weren't there."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Ma question porte sur un sujet qui pourrait avoir lieu jeudi <ADDITION type=\"hallucination\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">et qui a déjà été approuvé à l'unanimité en commission</ADDITION>, et que je soulèverai  une nouvelle fois.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "analyst",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 5,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely inserted a comma to mirror English punctuation patterns or to segment the sentence for clarity, following English norms.",
+      "actual_meaning": "The source sentence contains a continuous thought and does not require a comma in French; it describes a question that will arise on Thursday and will be raised again.",
+      "reader_impact": "A French reader might be momentarily confused by the unnecessary comma, potentially disrupting the flow and coherence of the sentence.",
+      "correction_rationale": "In French, the sentence should flow without a comma in this structure, maintaining natural syntax and clarity as in the reference translation."
+    },
+    {
+      "mt_interpretation": "The MT system likely inferred from context that the topic had already been discussed in committee, perhaps due to frequent parliamentary phrasing or training data bias.",
+      "actual_meaning": "The source only states that the topic will come up on Thursday and will be raised again then; it does not mention any prior discussion in committee.",
+      "reader_impact": "A reader would wrongly believe that the topic has already been discussed in committee, which adds information not present in the original and could change perceptions of the issue's history.",
+      "correction_rationale": "The correct translation accurately reflects the source by not introducing any mention of previous committee discussion, thus preserving the original meaning and intent."
+    },
+    {
+      "mt_interpretation": "The MT system likely considered the sentence understandable without the discourse marker 'donc,' viewing it as optional or redundant in French.",
+      "actual_meaning": "The source uses 'then' to explicitly link the action of raising the topic again to the timing (Thursday), emphasizing a logical sequence.",
+      "reader_impact": "Without 'donc,' the French sentence loses the explicit logical connection, making the repetition seem less intentional or causally linked to Thursday's event.",
+      "correction_rationale": "Including 'donc' mirrors the source's discourse structure, clearly signaling to the reader that the speaker's action is a direct consequence of the Thursday event."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted 'something that will come up on Thursday' as an event that might possibly happen on Thursday, leading it to choose a formulation expressing uncertainty ('pourrait avoir lieu jeudi').",
+      "actual_meaning": "The source text actually refers to a specific item that is already scheduled to be on Thursday's agenda, indicating certainty and official planning.",
+      "reader_impact": "A reader would misunderstand the situation as being uncertain or tentative, thinking the subject might or might not be discussed on Thursday, rather than knowing it is definitely planned for that day.",
+      "correction_rationale": "The correct translation ('qui est à l'ordre du jour du jeudi') accurately conveys that the topic is formally placed on Thursday's agenda, preserving the intended certainty and context of the original text."
+    },
+    {
+      "mt_interpretation": "The MT system likely inferred that the topic had not only been discussed but also unanimously approved in committee, possibly due to exposure to similar phrases in its training data.",
+      "actual_meaning": "The source text states only that the topic will come up on Thursday and that the speaker will raise it again, with no mention of approval or unanimity.",
+      "reader_impact": "A reader would wrongly believe that the topic has already received unanimous approval in committee, which could mislead them about its current status or level of support.",
+      "correction_rationale": "The correct translation should avoid adding information not present in the source text; mentioning 'unanimous approval' is a hallucination and changes the meaning, so only the discussion in committee should be referenced."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "Machine translation systems often treat punctuation like a puzzle piece that can be moved around, sometimes putting it in the wrong spot or leaving it out. This happens because, unlike humans, the system doesn’t truly understand the meaning behind the punctuation marks.",
+      "architectural_cause": "Inside, the system works by predicting the next word or symbol based on patterns it has seen before. It doesn’t have a special sense for punctuation, so if the training data was inconsistent, it might not always know when or where to use a comma, period, or other marks.",
+      "pattern_generalization": "You’ll often see these errors when translating sentences with unusual punctuation, lots of commas, or dialogue. Pay special attention to sentences where punctuation changes the meaning or flow.",
+      "mt_system_specific": "General-purpose language models like LLMs may make more punctuation mistakes than dedicated MT systems, which are trained more carefully on translation rules and punctuation usage."
+    },
+    {
+      "error_mechanism": "MT systems sometimes 'hallucinate' by adding information that wasn’t in the original text, a bit like a student who tries to sound knowledgeable by making up details. The system is aiming to produce a fluent, complete sentence, but sometimes it fills in gaps with its own guesses.",
+      "architectural_cause": "Internally, these systems work by predicting the next word based on patterns they've seen before. If the original text is unclear or unusual, the system might rely too much on what it 'expects' rather than what’s actually there, leading to invented content.",
+      "pattern_generalization": "You’re more likely to see this when the source text is vague, incomplete, or uses rare expressions. Watch out for this especially in summaries or creative texts.",
+      "mt_system_specific": "Large language models like Claude are more prone to hallucination than dedicated MT systems, because they are trained to generate text in many situations, not just translation."
+    },
+    {
+      "error_mechanism": "Machine translation systems often skip small linking words like 'however' or 'therefore' because they focus on the main message, a bit like someone summarizing a story and leaving out connecting phrases. These words can seem less important compared to the main content, so they're sometimes dropped.",
+      "architectural_cause": "Internally, the system tries to match patterns between sentences in different languages. If it doesn't see a strong link between a discourse marker and the rest of the sentence, it might decide it's safe to leave it out, especially if similar examples in its training data did so.",
+      "pattern_generalization": "Students should watch for missing connecting words, especially in longer or more complex sentences where the flow between ideas is important. These omissions are more likely when the marker is subtle or not always required in the target language.",
+      "mt_system_specific": "LLMs like Claude may drop discourse markers more often than dedicated machine translation systems, because they aren't trained specifically to preserve every linking word in translations."
+    },
+    {
+      "error_mechanism": "MT systems often trip up on ambiguous words or phrases, much like how a person might get confused if someone says 'bank' without saying whether they mean a river bank or a place for money. When the original sentence isn't clear, the system has to guess the meaning, which can lead to it introducing uncertainty or choosing the wrong interpretation.",
+      "architectural_cause": "Inside, the system doesn't truly 'understand' the situation—it's matching patterns from huge amounts of text it has seen before. If it finds examples where the meaning was unclear, it might copy that uncertainty into its translation, instead of confidently picking the right meaning based on context.",
+      "pattern_generalization": "Students should watch out for mistranslations whenever the original text has words or phrases with more than one possible meaning, especially if the surrounding context doesn't make it clear. These errors are common with dates, times, or words that can mean different things depending on the situation.",
+      "mt_system_specific": "Large language models like Claude are often more cautious and may hedge or add uncertainty, while dedicated MT systems might pick one meaning and stick with it, even if it's wrong."
+    },
+    {
+      "error_mechanism": "MT systems sometimes 'make things up' because, like a student trying to fill in blanks during a test, they want to give a complete answer even if they're unsure. They may add information that sounds right but isn't in the original text.",
+      "architectural_cause": "Internally, these systems work by predicting what should come next based on patterns they've seen before, not by truly understanding the meaning. If the original text is unclear or missing details, the system might guess and add extra information to make the sentence seem more natural.",
+      "pattern_generalization": "Watch for this kind of error when the source text is vague, incomplete, or contains unusual phrases. It's especially common with complex topics or when the system hasn't seen similar examples before.",
+      "mt_system_specific": "Dedicated MT systems are usually more careful about sticking closely to the source text, while general-purpose LLMs like Claude may be more likely to add extra details or explanations that weren't there."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "analyst",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

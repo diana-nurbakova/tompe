@@ -1,0 +1,274 @@
+{
+  "item_id": "26735cff-5cc1-4324-a96c-4546d675fca6",
+  "segment_id": "europarl-8778e3c7fe2e",
+  "source_text": "The Cunha report on multiannual guidance programmes comes before Parliament on Thursday and contains a proposal in paragraph 6 that a form of quota penalties should be introduced for countries which fail to meet their fleet reduction targets annually.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Le paragraphe 6 du rapport Cunha sur les programmes d'orientation pluriannuels, au Parlement ce jeudi, propose d'introduire des sanctions applicables aux pays qui ne respectent pas les objectifs de réduction de leur flotte.",
+  "reference_translation": "Le paragraphe 6 du rapport Cunha sur les programmes d'orientation pluriannuels, qui sera soumis au Parlement ce jeudi, propose d'introduire des sanctions applicables aux pays qui ne respectent pas les objectifs annuels de réduction de leur flotte.",
+  "mt_system": "claude",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "c6bff30e-8636-456c-becf-4401c8c2e49d",
+      "span_start": 80,
+      "span_end": 119,
+      "original_text": "qui sera soumis au Parlement ce jeudi",
+      "injected_text": "qu'il sera soumis au Parlement ce jeudi",
+      "primary_tag": "GRAMMAR",
+      "error_type": "relative_pronoun",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted the clause as needing a demonstrative pronoun, inserting 'qu'il' to refer back to 'le rapport Cunha', perhaps overgeneralizing from English relative structures.",
+        "actual_meaning": "The source text specifies that the Cunha report, which will be submitted to Parliament on Thursday, contains a proposal. The relative pronoun 'qui' correctly links the report to the action of being submitted.",
+        "reader_impact": "A reader encountering 'qu'il sera soumis' may be confused, as the pronoun 'il' creates ambiguity about what is being submitted, disrupting the sentence's flow and clarity.",
+        "correction_rationale": "The correct translation uses 'qui' as a relative pronoun to clearly and grammatically link 'le rapport Cunha' to the subordinate clause, ensuring the sentence is coherent and unambiguous."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems sometimes mix up words like 'which' or 'who' (relative pronouns) with words like 'this' or 'that' (demonstrative pronouns) because they can look or sound similar in some contexts. It's a bit like confusing a screwdriver and a chisel because both have handles and are used with your hands, but they serve different purposes.",
+        "architectural_cause": "Inside, the system tries to guess the best word based on patterns it has seen in its training data. If it hasn't seen enough clear examples, or if the sentence structure is tricky, it might pick a word that fits the general shape but not the exact meaning—like choosing the wrong puzzle piece because it's the right color but the wrong shape.",
+        "pattern_generalization": "Students can expect this error especially in complex sentences where it's not obvious which word connects the clauses, or when translating languages that use these pronouns differently. Pay extra attention when you see sentences with 'who,' 'which,' or 'that.'",
+        "mt_system_specific": "Large language models like Claude may make this error more often than specialized MT systems, because they haven't been trained specifically to handle the fine details of translation grammar."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Le paragraphe 6 du rapport Cunha sur les programmes d'orientation pluriannuels, <GRAMMAR type=\"relative_pronoun\" severity=\"major\" tom=\"1st_machine\" desc=\"Relative pronoun replaced by incorrect demonstrative pronoun\">qu'il sera soumis au Parlement ce jeudi</GRAMMAR>, propose d'introduire des sanctions applicables aux pays qui ne respectent pas les objectifs annuels de réduction de leur flotte.",
+      "brief_explanation": "Relative pronoun replaced by incorrect demonstrative pronoun"
+    },
+    {
+      "error_id": "7761ef07-d819-4ba6-9bfe-84054aecfe32",
+      "span_start": 80,
+      "span_end": 122,
+      "original_text": "qu'il sera soumis au Parlement ce jeudi",
+      "injected_text": "qu'il va être soumis au Parlement ce jeudi",
+      "primary_tag": "STYLE",
+      "error_type": "unidiomatic",
+      "severity": "minor",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'comes before Parliament on Thursday' as a straightforward future event and rendered it with the near-future construction 'va être soumis'.",
+        "actual_meaning": "The source indicates a scheduled, formal event in parliamentary procedure, best expressed in French with 'sera soumis' to convey the official, planned nature.",
+        "reader_impact": "A French reader might find 'va être soumis' slightly informal or awkward in this context, making the sentence feel less official or precise.",
+        "correction_rationale": "'Sera soumis' aligns with formal register and standard usage for scheduled parliamentary actions, maintaining idiomatic and stylistic appropriateness in French."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often produce unidiomatic language because they focus on matching words and phrases from their training data, rather than truly 'thinking' like a native speaker. It's like someone who learned a language from textbooks—they might get the grammar right but say things in ways that sound odd or unnatural.",
+        "architectural_cause": "The system works by predicting the most likely next word or phrase based on patterns it has seen before. It doesn't have a sense of what 'sounds right' to a native speaker, so it can miss subtle cultural or stylistic cues that make language feel natural.",
+        "pattern_generalization": "Students will often see these errors in idioms, common sayings, or when the source text uses informal or conversational language. Watch for translations that are technically correct but just don't 'feel' right in the target language.",
+        "mt_system_specific": "General-purpose LLMs like Claude are more prone to this than dedicated MT systems, which may be trained with more examples of natural, idiomatic translations."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Le paragraphe 6 du rapport Cunha sur les programmes d'orientation pluriannuels, <STYLE type=\"unidiomatic\" severity=\"minor\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">qu'il va être soumis au Parlement ce jeudi</STYLE>, propose d'introduire des sanctions applicables aux pays qui ne respectent pas les objectifs annuels de réduction de leur flotte.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "b9ca049f-970e-44cc-af2b-31eb66e2d0ed",
+      "span_start": 216,
+      "span_end": 243,
+      "original_text": "annuels de réduction de leur flotte",
+      "injected_text": "de réduction de leur flotte",
+      "primary_tag": "OMISSION",
+      "error_type": "partial",
+      "severity": "major",
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely saw 'fleet reduction targets annually' and rendered it as 'objectifs de réduction de leur flotte', omitting 'annuels' because it may have considered the annual aspect implicit or unnecessary.",
+        "actual_meaning": "The source text specifies that the fleet reduction targets are set and assessed on an annual basis, making the timing of compliance (every year) explicit and essential.",
+        "reader_impact": "A reader would interpret the translation as referring to general fleet reduction targets, without realizing that these targets must be met every year, thus missing the recurring, annual requirement.",
+        "correction_rationale": "The correct translation includes 'annuels', which accurately conveys that the reduction targets are annual, preserving the original meaning and ensuring the reader understands the frequency of the obligation."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems sometimes skip words like 'annuels' because they focus on the main meaning and may overlook details that seem less important, like time frames or frequency. It's a bit like someone summarizing a story and forgetting to mention that something happens every year, not just once.",
+        "architectural_cause": "Internally, the system tries to predict the most likely translation based on patterns it has seen before. If it hasn't learned to pay close attention to words about timing or repetition, it might leave them out, especially if the sentence still makes sense without them.",
+        "pattern_generalization": "Students should watch for missing words that describe when or how often something happens, especially with words like 'annual', 'monthly', or 'daily'. These omissions often occur in sentences with lots of information packed together.",
+        "mt_system_specific": "Language models like Claude, which are trained for general conversation, may miss these details more often than systems built specifically for translation, which are usually better at preserving every part of the original sentence."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Le paragraphe 6 du rapport Cunha sur les programmes d'orientation pluriannuels, qu'il va être soumis au Parlement ce jeudi, propose d'introduire des sanctions applicables aux pays qui ne respectent pas les objectifs <OMISSION type=\"partial\" severity=\"major\" tom=\"1st_author\" desc=\"Omitted 'annuels', losing annual requirement for targets\">de réduction de leur flotte</OMISSION>.",
+      "brief_explanation": "Omitted 'annuels', losing annual requirement for targets"
+    },
+    {
+      "error_id": "af6fedb5-9751-4365-a045-72bcc16d4be2",
+      "span_start": 80,
+      "span_end": 101,
+      "original_text": "qu'il va être soumis au Parlement ce jeudi",
+      "injected_text": "au Parlement ce jeudi",
+      "primary_tag": "OMISSION",
+      "error_type": "discourse_marker",
+      "severity": "minor",
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [
+        "S7"
+      ],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely focused on conveying the main event (the report and its submission to Parliament) and omitted the temporal discourse marker, perhaps deeming it redundant or unimportant.",
+        "actual_meaning": "The source specifies that the report is scheduled to be submitted to Parliament on Thursday, emphasizing the timing of the event.",
+        "reader_impact": "A reader may not realize that the submission is a future event, potentially misunderstanding the timeline and thinking the report is already before Parliament.",
+        "correction_rationale": "Including 'qu'il va être soumis' accurately reflects the future action and maintains the temporal clarity present in the source, ensuring readers understand the sequence of events."
+      },
+      "system_behavior": {
+        "error_mechanism": "Machine translation systems often skip small linking words or phrases—like 'however' or 'meanwhile'—because these words don't change the main meaning of a sentence. It's a bit like someone telling a story and leaving out 'by the way' or 'on the other hand' to get to the main point faster.",
+        "architectural_cause": "Internally, these systems focus on the most important words that carry meaning, sometimes treating connectors as less important. Since the system tries to match patterns from millions of examples, it may miss words that don't seem essential to the main message.",
+        "pattern_generalization": "You'll often see this kind of omission when the original sentence has linking words that are subtle or not directly tied to the main action. Watch out for sentences that start with 'however', 'meanwhile', or 'therefore'—these are at higher risk.",
+        "mt_system_specific": "Large language models like Claude may omit discourse markers more often than dedicated translation systems, since they aren't trained specifically to preserve every subtle connector in translation."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Le paragraphe 6 du rapport Cunha sur les programmes d'orientation pluriannuels, <OMISSION type=\"discourse_marker\" severity=\"minor\" tom=\"1st_author\" desc=\"5-15 word explanation\">au Parlement ce jeudi</OMISSION>, propose d'introduire des sanctions applicables aux pays qui ne respectent pas les objectifs de réduction de leur flotte.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "5f564b45-3f17-49cf-8a36-831d7dc2cc20",
+      "span_start": 150,
+      "span_end": 222,
+      "original_text": "aux pays qui ne respectent pas les objectifs de réduction de leur flotte annuellement",
+      "injected_text": "aux pays qui ne respectent pas les objectifs de réduction de leur flotte",
+      "primary_tag": "OMISSION",
+      "error_type": "clause",
+      "severity": "critical",
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "severity_range": [
+        "major",
+        "critical"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted the sentence as referring to countries not meeting fleet reduction targets in general, omitting the specific annual requirement.",
+        "actual_meaning": "The source text specifies that countries must meet their fleet reduction targets every year, not just overall or at some undefined time.",
+        "reader_impact": "A reader might think that penalties apply whenever countries fail to meet their reduction targets, without realizing that the requirement is for annual compliance, which lessens the perceived strictness of the policy.",
+        "correction_rationale": "Including 'annuellement' clarifies that the targets must be met each year, accurately reflecting the original text's emphasis on annual compliance and ensuring the translation conveys the intended policy detail."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems sometimes skip over whole clauses because they try to summarize or simplify what they read, a bit like someone retelling a story but forgetting a small detail. If a sentence is long or complicated, the system might miss a part, especially if it thinks that part is less important.",
+        "architectural_cause": "Inside, the system reads text chunk by chunk, and it tries to predict what comes next. If its attention drifts or it doesn't see the skipped clause as essential, it can accidentally leave it out, just like a distracted reader might.",
+        "pattern_generalization": "These errors often happen with sentences that are complex or have extra information set off by commas or dashes. Watch out for long sentences with multiple ideas packed together.",
+        "mt_system_specific": "Dedicated MT systems are usually trained to translate every detail, so they tend to omit less than general LLMs like Claude, which sometimes focus more on overall meaning than on strict completeness."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Le paragraphe 6 du rapport Cunha sur les programmes d'orientation pluriannuels, au Parlement ce jeudi, propose d'introduire des sanctions applicables <OMISSION type=\"clause\" severity=\"critical\" tom=\"1st_author\" desc=\"5-15 word explanation\">aux pays qui ne respectent pas les objectifs de réduction de leur flotte</OMISSION>.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "analyst",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 5,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely interpreted the clause as needing a demonstrative pronoun, inserting 'qu'il' to refer back to 'le rapport Cunha', perhaps overgeneralizing from English relative structures.",
+      "actual_meaning": "The source text specifies that the Cunha report, which will be submitted to Parliament on Thursday, contains a proposal. The relative pronoun 'qui' correctly links the report to the action of being submitted.",
+      "reader_impact": "A reader encountering 'qu'il sera soumis' may be confused, as the pronoun 'il' creates ambiguity about what is being submitted, disrupting the sentence's flow and clarity.",
+      "correction_rationale": "The correct translation uses 'qui' as a relative pronoun to clearly and grammatically link 'le rapport Cunha' to the subordinate clause, ensuring the sentence is coherent and unambiguous."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted 'comes before Parliament on Thursday' as a straightforward future event and rendered it with the near-future construction 'va être soumis'.",
+      "actual_meaning": "The source indicates a scheduled, formal event in parliamentary procedure, best expressed in French with 'sera soumis' to convey the official, planned nature.",
+      "reader_impact": "A French reader might find 'va être soumis' slightly informal or awkward in this context, making the sentence feel less official or precise.",
+      "correction_rationale": "'Sera soumis' aligns with formal register and standard usage for scheduled parliamentary actions, maintaining idiomatic and stylistic appropriateness in French."
+    },
+    {
+      "mt_interpretation": "The MT system likely saw 'fleet reduction targets annually' and rendered it as 'objectifs de réduction de leur flotte', omitting 'annuels' because it may have considered the annual aspect implicit or unnecessary.",
+      "actual_meaning": "The source text specifies that the fleet reduction targets are set and assessed on an annual basis, making the timing of compliance (every year) explicit and essential.",
+      "reader_impact": "A reader would interpret the translation as referring to general fleet reduction targets, without realizing that these targets must be met every year, thus missing the recurring, annual requirement.",
+      "correction_rationale": "The correct translation includes 'annuels', which accurately conveys that the reduction targets are annual, preserving the original meaning and ensuring the reader understands the frequency of the obligation."
+    },
+    {
+      "mt_interpretation": "The MT system likely focused on conveying the main event (the report and its submission to Parliament) and omitted the temporal discourse marker, perhaps deeming it redundant or unimportant.",
+      "actual_meaning": "The source specifies that the report is scheduled to be submitted to Parliament on Thursday, emphasizing the timing of the event.",
+      "reader_impact": "A reader may not realize that the submission is a future event, potentially misunderstanding the timeline and thinking the report is already before Parliament.",
+      "correction_rationale": "Including 'qu'il va être soumis' accurately reflects the future action and maintains the temporal clarity present in the source, ensuring readers understand the sequence of events."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted the sentence as referring to countries not meeting fleet reduction targets in general, omitting the specific annual requirement.",
+      "actual_meaning": "The source text specifies that countries must meet their fleet reduction targets every year, not just overall or at some undefined time.",
+      "reader_impact": "A reader might think that penalties apply whenever countries fail to meet their reduction targets, without realizing that the requirement is for annual compliance, which lessens the perceived strictness of the policy.",
+      "correction_rationale": "Including 'annuellement' clarifies that the targets must be met each year, accurately reflecting the original text's emphasis on annual compliance and ensuring the translation conveys the intended policy detail."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems sometimes mix up words like 'which' or 'who' (relative pronouns) with words like 'this' or 'that' (demonstrative pronouns) because they can look or sound similar in some contexts. It's a bit like confusing a screwdriver and a chisel because both have handles and are used with your hands, but they serve different purposes.",
+      "architectural_cause": "Inside, the system tries to guess the best word based on patterns it has seen in its training data. If it hasn't seen enough clear examples, or if the sentence structure is tricky, it might pick a word that fits the general shape but not the exact meaning—like choosing the wrong puzzle piece because it's the right color but the wrong shape.",
+      "pattern_generalization": "Students can expect this error especially in complex sentences where it's not obvious which word connects the clauses, or when translating languages that use these pronouns differently. Pay extra attention when you see sentences with 'who,' 'which,' or 'that.'",
+      "mt_system_specific": "Large language models like Claude may make this error more often than specialized MT systems, because they haven't been trained specifically to handle the fine details of translation grammar."
+    },
+    {
+      "error_mechanism": "MT systems often produce unidiomatic language because they focus on matching words and phrases from their training data, rather than truly 'thinking' like a native speaker. It's like someone who learned a language from textbooks—they might get the grammar right but say things in ways that sound odd or unnatural.",
+      "architectural_cause": "The system works by predicting the most likely next word or phrase based on patterns it has seen before. It doesn't have a sense of what 'sounds right' to a native speaker, so it can miss subtle cultural or stylistic cues that make language feel natural.",
+      "pattern_generalization": "Students will often see these errors in idioms, common sayings, or when the source text uses informal or conversational language. Watch for translations that are technically correct but just don't 'feel' right in the target language.",
+      "mt_system_specific": "General-purpose LLMs like Claude are more prone to this than dedicated MT systems, which may be trained with more examples of natural, idiomatic translations."
+    },
+    {
+      "error_mechanism": "MT systems sometimes skip words like 'annuels' because they focus on the main meaning and may overlook details that seem less important, like time frames or frequency. It's a bit like someone summarizing a story and forgetting to mention that something happens every year, not just once.",
+      "architectural_cause": "Internally, the system tries to predict the most likely translation based on patterns it has seen before. If it hasn't learned to pay close attention to words about timing or repetition, it might leave them out, especially if the sentence still makes sense without them.",
+      "pattern_generalization": "Students should watch for missing words that describe when or how often something happens, especially with words like 'annual', 'monthly', or 'daily'. These omissions often occur in sentences with lots of information packed together.",
+      "mt_system_specific": "Language models like Claude, which are trained for general conversation, may miss these details more often than systems built specifically for translation, which are usually better at preserving every part of the original sentence."
+    },
+    {
+      "error_mechanism": "Machine translation systems often skip small linking words or phrases—like 'however' or 'meanwhile'—because these words don't change the main meaning of a sentence. It's a bit like someone telling a story and leaving out 'by the way' or 'on the other hand' to get to the main point faster.",
+      "architectural_cause": "Internally, these systems focus on the most important words that carry meaning, sometimes treating connectors as less important. Since the system tries to match patterns from millions of examples, it may miss words that don't seem essential to the main message.",
+      "pattern_generalization": "You'll often see this kind of omission when the original sentence has linking words that are subtle or not directly tied to the main action. Watch out for sentences that start with 'however', 'meanwhile', or 'therefore'—these are at higher risk.",
+      "mt_system_specific": "Large language models like Claude may omit discourse markers more often than dedicated translation systems, since they aren't trained specifically to preserve every subtle connector in translation."
+    },
+    {
+      "error_mechanism": "MT systems sometimes skip over whole clauses because they try to summarize or simplify what they read, a bit like someone retelling a story but forgetting a small detail. If a sentence is long or complicated, the system might miss a part, especially if it thinks that part is less important.",
+      "architectural_cause": "Inside, the system reads text chunk by chunk, and it tries to predict what comes next. If its attention drifts or it doesn't see the skipped clause as essential, it can accidentally leave it out, just like a distracted reader might.",
+      "pattern_generalization": "These errors often happen with sentences that are complex or have extra information set off by commas or dashes. Watch out for long sentences with multiple ideas packed together.",
+      "mt_system_specific": "Dedicated MT systems are usually trained to translate every detail, so they tend to omit less than general LLMs like Claude, which sometimes focus more on overall meaning than on strict completeness."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "analyst",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

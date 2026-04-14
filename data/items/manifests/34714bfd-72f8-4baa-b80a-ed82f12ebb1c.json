@@ -1,0 +1,273 @@
+{
+  "item_id": "34714bfd-72f8-4baa-b80a-ed82f12ebb1c",
+  "segment_id": "europarl-58eae60d5b7a",
+  "source_text": "Although, as you will have seen, the dreaded 'millennium bug' failed to materialise, still the people in a number of countries suffered a series of natural disasters that truly were dreadful.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Comme tu as pu le voir, le grand \"bogue de l'an 2000\" ne s'est pas produit. En revanche, les gens dans plusieurs de nos pays ont été victimes de catastrophes naturelles que ont été redoutable.",
+  "reference_translation": "Comme vous avez pu le constater, le grand \"bogue de l'an 2000\" ne s'est pas produit. En revanche, les citoyens d'un certain nombre de nos pays ont été victimes de catastrophes naturelles qui ont vraiment été terribles.",
+  "mt_system": "gpt4",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "cff40cdb-6839-4f10-9fab-8e12f3c625ce",
+      "span_start": 195,
+      "span_end": 208,
+      "original_text": "vraiment été terribles",
+      "injected_text": "été terribles",
+      "primary_tag": "OMISSION",
+      "error_type": "partial",
+      "severity": "minor",
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'truly were dreadful' as simply 'were dreadful,' omitting the intensifier because it may have considered it redundant or missed its emphasis.",
+        "actual_meaning": "The source emphasizes the severity of the disasters by using 'truly,' indicating they were not just dreadful but exceptionally so.",
+        "reader_impact": "A reader of the MT output would understand that the disasters were dreadful, but would miss the extra emphasis on their severity, potentially underestimating their impact.",
+        "correction_rationale": "The correct translation includes 'vraiment,' preserving the intensifier from the source and accurately conveying the heightened degree of how terrible the disasters were."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often skip intensifiers like 'very' or 'extremely' because they focus on getting the main meaning across, a bit like someone retelling a story but leaving out the dramatic details. These words may seem less important to the system, so they sometimes get lost in translation.",
+        "architectural_cause": "Inside, the system tries to match words and phrases from one language to another based on patterns it has seen before. If it hasn't noticed that intensifiers add extra force, it might drop them, thinking the sentence still makes sense without them.",
+        "pattern_generalization": "Similar errors can happen whenever the original text uses words to add emphasis or emotion—especially with words like 'so', 'really', or 'absolutely.' Watch for this when translating sentences that are meant to sound strong or emotional.",
+        "mt_system_specific": "Dedicated MT systems trained just for translation may be slightly better at keeping these words, while general LLMs like GPT-4 sometimes overlook them because they're not focused only on translation."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Comme vous avez pu le constater, le grand \"bogue de l'an 2000\" ne s'est pas produit. En revanche, les citoyens d'un certain nombre de nos pays ont été victimes de catastrophes naturelles qui ont <OMISSION type=\"partial\" severity=\"minor\" tom=\"1st_author\" desc=\"Omission of intensifier reduces emphasis on how terrible\">été terribles</OMISSION>.",
+      "brief_explanation": "Omission of intensifier reduces emphasis on how terrible"
+    },
+    {
+      "error_id": "8edfe4af-ba31-44a8-9c5c-3fa7a5f9ecc3",
+      "span_start": 98,
+      "span_end": 133,
+      "original_text": "les citoyens d'un certain nombre de nos pays",
+      "injected_text": "les gens dans plusieurs de nos pays",
+      "primary_tag": "STYLE",
+      "error_type": "unidiomatic",
+      "severity": "major",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'people in a number of countries' literally and rendered it as 'les gens dans plusieurs de nos pays,' focusing on a word-for-word mapping.",
+        "actual_meaning": "The source refers specifically to 'citizens' (not just 'people') in several of 'our' countries, emphasizing membership and shared identity within a defined group.",
+        "reader_impact": "A reader may perceive the translation as informal and vague, potentially misunderstanding the scope and the intended sense of community or citizenship implied in the original.",
+        "correction_rationale": "The correct translation, 'les citoyens d'un certain nombre de nos pays,' uses the precise and idiomatic term for 'citizens' and the appropriate structure to convey both the specificity and the formal tone of the source."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often sound a bit 'off' because they piece together words based on patterns they've seen, not on a deep understanding of what sounds natural to a native speaker. It's like following a recipe exactly, but missing the little touches a home cook adds to make a dish truly authentic.",
+        "architectural_cause": "Internally, the system predicts the next word or phrase based on what’s most likely, given its training data. It doesn’t have a real sense of the subtle style choices or cultural habits that make language feel natural, so its sentences can end up sounding stiff or awkward.",
+        "pattern_generalization": "You’ll often notice these errors with idioms, common sayings, or phrases that have a special 'flavor' in the target language. Watch out whenever the translation feels correct but just a bit unnatural or 'translated.'",
+        "mt_system_specific": "Dedicated MT systems trained on lots of real translations may make fewer of these errors than general-purpose LLMs, which learn from a wider range of text and may miss the stylistic details specific to translation."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Comme vous avez pu le constater, le grand \"bogue de l'an 2000\" ne s'est pas produit. En revanche, <STYLE type=\"unidiomatic\" severity=\"major\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">les gens dans plusieurs de nos pays</STYLE> ont été victimes de catastrophes naturelles qui ont été terribles.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "eb5440d2-263e-4679-a517-55e7e8f27d94",
+      "span_start": 0,
+      "span_end": 22,
+      "original_text": "Comme vous avez pu le constater",
+      "injected_text": "Comme tu as pu le voir",
+      "primary_tag": "STYLE",
+      "error_type": "register_informal",
+      "severity": "major",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'as you will have seen' as a casual, direct address and rendered it with the informal 'tu' and the colloquial phrase 'tu as pu le voir.'",
+        "actual_meaning": "The source is addressing a general or formal audience, using a polite and neutral register appropriate for written or official communication.",
+        "reader_impact": "A French reader would find the informal 'tu' inappropriate and overly familiar in this context, which undermines the formal tone and may reduce the credibility of the message.",
+        "correction_rationale": "The correct translation, 'Comme vous avez pu le constater,' uses the formal 'vous' and a phrase suited to formal written discourse, maintaining the appropriate register and respect for the audience."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often use informal language because they learn from a huge mix of texts, much like someone who picks up phrases from movies, chats, and books without always knowing what’s appropriate. They might not realize when a formal tone is needed, so they sometimes sound too casual.",
+        "architectural_cause": "Inside, the system predicts the next word based on patterns it has seen, not on understanding social rules or formality. It doesn't truly 'know' when to switch between formal and informal, so it may use the wrong register if it has seen more examples of casual speech.",
+        "pattern_generalization": "You’ll notice this mistake most when the source text is formal, but the translation feels too friendly or relaxed. Watch for it in business, academic, or official documents.",
+        "mt_system_specific": "LLMs like GPT-4 are even more prone to this than dedicated MT systems, since they are trained on a broader range of text types, not just translations."
+      },
+      "technical_explanation": null,
+      "xml_tag": "<STYLE type=\"register_informal\" severity=\"major\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">Comme tu as pu le voir</STYLE>, le grand \"bogue de l'an 2000\" ne s'est pas produit. En revanche, les gens dans plusieurs de nos pays ont été victimes de catastrophes naturelles qui ont été terribles.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "7557cc16-089e-4226-b648-8cfe339bdea7",
+      "span_start": 169,
+      "span_end": 190,
+      "original_text": "qui ont été terribles",
+      "injected_text": "que ont été terribles",
+      "primary_tag": "GRAMMAR",
+      "error_type": "relative_pronoun",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely selected 'que' as the relative pronoun, perhaps due to confusion between 'que' and 'qui' in French, or by following a pattern where 'que' is often used as a connector.",
+        "actual_meaning": "The source refers to natural disasters 'that were dreadful,' which in French requires the subject relative pronoun 'qui' because 'catastrophes naturelles' is the subject of 'ont été terribles.'",
+        "reader_impact": "A French reader would immediately notice 'que ont été terribles' as ungrammatical, causing confusion and disrupting comprehension of the sentence.",
+        "correction_rationale": "'Qui' is the correct relative pronoun here because it refers back to the subject ('catastrophes naturelles') of the verb 'ont été terribles,' ensuring grammatical and semantic accuracy."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up relative pronouns like 'who,' 'which,' or 'that' because they rely on patterns from vast amounts of text. It's like someone quickly skimming sentences and sometimes grabbing the wrong connecting word, especially when the sentence is long or complicated.",
+        "architectural_cause": "Internally, these systems predict each word based on what they've seen before, not by deeply understanding grammar rules. They can miss the subtle cues that tell a human which pronoun fits best, especially if the context is tricky or unusual.",
+        "pattern_generalization": "Students will notice similar mistakes in sentences where it's unclear what the pronoun refers to, or when people, animals, or things are mixed together. Watch for errors when translating complex or lengthy sentences with multiple nouns.",
+        "mt_system_specific": "Dedicated MT systems are often better at these pronoun choices because they're trained specifically for translation, while general-purpose LLMs like GPT-4 may be less precise."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Comme tu as pu le voir, le grand \"bogue de l'an 2000\" ne s'est pas produit. En revanche, les gens dans plusieurs de nos pays ont été victimes de catastrophes naturelles <GRAMMAR type=\"relative_pronoun\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">que ont été terribles</GRAMMAR>.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "4d2d55cb-d29c-44ea-995b-7b7e5cbe20ef",
+      "span_start": 181,
+      "span_end": 191,
+      "original_text": "terribles",
+      "injected_text": "redoutable",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "false_cognate",
+      "severity": "critical",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "severity_range": [
+        "major",
+        "critical"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely matched 'dreadful' with the French 'redoutable' due to their similar meanings and appearances as false cognates.",
+        "actual_meaning": "The source intends to say that the natural disasters were 'terrible' in the sense of being devastating or horrific, not merely 'formidable' or 'fearsome.'",
+        "reader_impact": "A French reader would interpret 'redoutable' as 'formidable' or 'impressive,' which downplays the true severity and emotional impact of the disasters.",
+        "correction_rationale": "'Terribles' accurately conveys the sense of horror and devastation in French, aligning with the source's emotional intensity, while 'redoutable' misleads by suggesting only something to be feared or respected."
+      },
+      "system_behavior": {
+        "error_mechanism": "Machine translation systems can mistake words that look or sound similar in two languages, even if their meanings are different—like confusing 'actual' in English with 'actual' in Spanish, which actually means 'current.' It's a bit like assuming two people with the same last name are related, when they're not.",
+        "architectural_cause": "Internally, the system relies on patterns it has seen in its training data. If it often sees similar-looking words paired together, it learns to match them, sometimes ignoring their true meanings.",
+        "pattern_generalization": "These errors often pop up with words that look or sound alike across languages, especially with so-called 'false friends.' Be extra careful when translating familiar-looking words between languages.",
+        "mt_system_specific": "Large language models like GPT-4, which are trained on vast amounts of general text, may be more likely to make this error than systems trained specifically for translation, which may have more safeguards against false friends."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Comme tu as pu le voir, le grand \"bogue de l'an 2000\" ne s'est pas produit. En revanche, les gens dans plusieurs de nos pays ont été victimes de catastrophes naturelles que ont été <MISTRANSLATION type=\"false_cognate\" severity=\"critical\" tom=\"1st_machine\" desc=\"5-15 word explanation\">redoutable</MISTRANSLATION>.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "analyst",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 5,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely interpreted 'truly were dreadful' as simply 'were dreadful,' omitting the intensifier because it may have considered it redundant or missed its emphasis.",
+      "actual_meaning": "The source emphasizes the severity of the disasters by using 'truly,' indicating they were not just dreadful but exceptionally so.",
+      "reader_impact": "A reader of the MT output would understand that the disasters were dreadful, but would miss the extra emphasis on their severity, potentially underestimating their impact.",
+      "correction_rationale": "The correct translation includes 'vraiment,' preserving the intensifier from the source and accurately conveying the heightened degree of how terrible the disasters were."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted 'people in a number of countries' literally and rendered it as 'les gens dans plusieurs de nos pays,' focusing on a word-for-word mapping.",
+      "actual_meaning": "The source refers specifically to 'citizens' (not just 'people') in several of 'our' countries, emphasizing membership and shared identity within a defined group.",
+      "reader_impact": "A reader may perceive the translation as informal and vague, potentially misunderstanding the scope and the intended sense of community or citizenship implied in the original.",
+      "correction_rationale": "The correct translation, 'les citoyens d'un certain nombre de nos pays,' uses the precise and idiomatic term for 'citizens' and the appropriate structure to convey both the specificity and the formal tone of the source."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted 'as you will have seen' as a casual, direct address and rendered it with the informal 'tu' and the colloquial phrase 'tu as pu le voir.'",
+      "actual_meaning": "The source is addressing a general or formal audience, using a polite and neutral register appropriate for written or official communication.",
+      "reader_impact": "A French reader would find the informal 'tu' inappropriate and overly familiar in this context, which undermines the formal tone and may reduce the credibility of the message.",
+      "correction_rationale": "The correct translation, 'Comme vous avez pu le constater,' uses the formal 'vous' and a phrase suited to formal written discourse, maintaining the appropriate register and respect for the audience."
+    },
+    {
+      "mt_interpretation": "The MT system likely selected 'que' as the relative pronoun, perhaps due to confusion between 'que' and 'qui' in French, or by following a pattern where 'que' is often used as a connector.",
+      "actual_meaning": "The source refers to natural disasters 'that were dreadful,' which in French requires the subject relative pronoun 'qui' because 'catastrophes naturelles' is the subject of 'ont été terribles.'",
+      "reader_impact": "A French reader would immediately notice 'que ont été terribles' as ungrammatical, causing confusion and disrupting comprehension of the sentence.",
+      "correction_rationale": "'Qui' is the correct relative pronoun here because it refers back to the subject ('catastrophes naturelles') of the verb 'ont été terribles,' ensuring grammatical and semantic accuracy."
+    },
+    {
+      "mt_interpretation": "The MT system likely matched 'dreadful' with the French 'redoutable' due to their similar meanings and appearances as false cognates.",
+      "actual_meaning": "The source intends to say that the natural disasters were 'terrible' in the sense of being devastating or horrific, not merely 'formidable' or 'fearsome.'",
+      "reader_impact": "A French reader would interpret 'redoutable' as 'formidable' or 'impressive,' which downplays the true severity and emotional impact of the disasters.",
+      "correction_rationale": "'Terribles' accurately conveys the sense of horror and devastation in French, aligning with the source's emotional intensity, while 'redoutable' misleads by suggesting only something to be feared or respected."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often skip intensifiers like 'very' or 'extremely' because they focus on getting the main meaning across, a bit like someone retelling a story but leaving out the dramatic details. These words may seem less important to the system, so they sometimes get lost in translation.",
+      "architectural_cause": "Inside, the system tries to match words and phrases from one language to another based on patterns it has seen before. If it hasn't noticed that intensifiers add extra force, it might drop them, thinking the sentence still makes sense without them.",
+      "pattern_generalization": "Similar errors can happen whenever the original text uses words to add emphasis or emotion—especially with words like 'so', 'really', or 'absolutely.' Watch for this when translating sentences that are meant to sound strong or emotional.",
+      "mt_system_specific": "Dedicated MT systems trained just for translation may be slightly better at keeping these words, while general LLMs like GPT-4 sometimes overlook them because they're not focused only on translation."
+    },
+    {
+      "error_mechanism": "MT systems often sound a bit 'off' because they piece together words based on patterns they've seen, not on a deep understanding of what sounds natural to a native speaker. It's like following a recipe exactly, but missing the little touches a home cook adds to make a dish truly authentic.",
+      "architectural_cause": "Internally, the system predicts the next word or phrase based on what’s most likely, given its training data. It doesn’t have a real sense of the subtle style choices or cultural habits that make language feel natural, so its sentences can end up sounding stiff or awkward.",
+      "pattern_generalization": "You’ll often notice these errors with idioms, common sayings, or phrases that have a special 'flavor' in the target language. Watch out whenever the translation feels correct but just a bit unnatural or 'translated.'",
+      "mt_system_specific": "Dedicated MT systems trained on lots of real translations may make fewer of these errors than general-purpose LLMs, which learn from a wider range of text and may miss the stylistic details specific to translation."
+    },
+    {
+      "error_mechanism": "MT systems often use informal language because they learn from a huge mix of texts, much like someone who picks up phrases from movies, chats, and books without always knowing what’s appropriate. They might not realize when a formal tone is needed, so they sometimes sound too casual.",
+      "architectural_cause": "Inside, the system predicts the next word based on patterns it has seen, not on understanding social rules or formality. It doesn't truly 'know' when to switch between formal and informal, so it may use the wrong register if it has seen more examples of casual speech.",
+      "pattern_generalization": "You’ll notice this mistake most when the source text is formal, but the translation feels too friendly or relaxed. Watch for it in business, academic, or official documents.",
+      "mt_system_specific": "LLMs like GPT-4 are even more prone to this than dedicated MT systems, since they are trained on a broader range of text types, not just translations."
+    },
+    {
+      "error_mechanism": "MT systems often mix up relative pronouns like 'who,' 'which,' or 'that' because they rely on patterns from vast amounts of text. It's like someone quickly skimming sentences and sometimes grabbing the wrong connecting word, especially when the sentence is long or complicated.",
+      "architectural_cause": "Internally, these systems predict each word based on what they've seen before, not by deeply understanding grammar rules. They can miss the subtle cues that tell a human which pronoun fits best, especially if the context is tricky or unusual.",
+      "pattern_generalization": "Students will notice similar mistakes in sentences where it's unclear what the pronoun refers to, or when people, animals, or things are mixed together. Watch for errors when translating complex or lengthy sentences with multiple nouns.",
+      "mt_system_specific": "Dedicated MT systems are often better at these pronoun choices because they're trained specifically for translation, while general-purpose LLMs like GPT-4 may be less precise."
+    },
+    {
+      "error_mechanism": "Machine translation systems can mistake words that look or sound similar in two languages, even if their meanings are different—like confusing 'actual' in English with 'actual' in Spanish, which actually means 'current.' It's a bit like assuming two people with the same last name are related, when they're not.",
+      "architectural_cause": "Internally, the system relies on patterns it has seen in its training data. If it often sees similar-looking words paired together, it learns to match them, sometimes ignoring their true meanings.",
+      "pattern_generalization": "These errors often pop up with words that look or sound alike across languages, especially with so-called 'false friends.' Be extra careful when translating familiar-looking words between languages.",
+      "mt_system_specific": "Large language models like GPT-4, which are trained on vast amounts of general text, may be more likely to make this error than systems trained specifically for translation, which may have more safeguards against false friends."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "analyst",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

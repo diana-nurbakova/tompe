@@ -1,0 +1,274 @@
+{
+  "item_id": "bf250a8a-6b79-4622-9065-bf7c18b92e36",
+  "segment_id": "europarl-12c84eff34ec",
+  "source_text": "My question relates to something that will come up on Thursday and which I will then raise again.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Ma question porte sur un subject qui est qui sera soulevé jeudi et que je soulèverai   une nouvelle fois.",
+  "reference_translation": "Ma question porte sur un sujet qui est à l'ordre du jour du jeudi et que je soulèverai donc une nouvelle fois.",
+  "mt_system": "gpt4",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "28e59763-362d-453a-8716-733eecac5771",
+      "span_start": 39,
+      "span_end": 56,
+      "original_text": "à l'ordre du jour du jeudi",
+      "injected_text": "qui viendra jeudi",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "overly_literal",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [
+        "S6"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system interpreted 'something that will come up on Thursday' too literally, rendering it as 'qui viendra jeudi' ('which will come on Thursday'), focusing only on the temporal aspect.",
+        "actual_meaning": "The source refers to an item scheduled for discussion on Thursday's agenda, not simply something that will occur or arrive on Thursday.",
+        "reader_impact": "A reader would misunderstand and think the question is about something physically arriving or happening on Thursday, rather than an agenda item set for discussion.",
+        "correction_rationale": "The correct translation 'à l'ordre du jour du jeudi' accurately conveys that the topic is formally listed for Thursday's agenda, preserving the institutional context and intended meaning."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often make overly literal translations because they treat words like puzzle pieces, matching each piece exactly instead of considering the bigger picture. It's like translating a joke word-for-word and losing the humor, because the system doesn't always grasp the intended meaning or context.",
+        "architectural_cause": "Internally, these systems rely on patterns they've seen before, focusing on direct word matches rather than the overall message. They don't 'understand' language like humans do—they look for the most likely word-by-word choices based on their training.",
+        "pattern_generalization": "You can expect overly literal errors when a phrase has an idiom, metaphor, or cultural reference that doesn't translate directly. Watch out for sentences where a word-for-word translation sounds odd or unnatural in the target language.",
+        "mt_system_specific": "General-purpose LLMs like GPT-4 may make more literal mistakes than dedicated MT systems, because they aren't specialized for translation and may miss subtle language nuances."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Ma question porte sur un sujet qui est <MISTRANSLATION type=\"overly_literal\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">qui viendra jeudi</MISTRANSLATION> et que je soulèverai donc une nouvelle fois.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "0ea33420-2ba3-4459-aa7a-b40fe2ebdca5",
+      "span_start": 51,
+      "span_end": 70,
+      "original_text": "jeudi",
+      "injected_text": "la session plénière",
+      "primary_tag": "TERMINOLOGY",
+      "error_type": "institutional",
+      "severity": "major",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S5",
+      "secondary_skills": [],
+      "severity_range": [
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely associated 'Thursday' with 'la session plénière' because plenary sessions often occur on Thursdays in institutional contexts, so it substituted the specific day with the institutional event.",
+        "actual_meaning": "The source specifically refers to 'Thursday' as the day when the topic will come up, not to any particular event or session.",
+        "reader_impact": "A reader would believe the question is about the plenary session itself, rather than about something scheduled for Thursday, potentially missing the temporal specificity.",
+        "correction_rationale": "The correct translation ('jeudi') preserves the original's reference to the specific day, accurately conveying the intended timing without introducing institutional assumptions."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often confuse official or institutional terms because they rely on patterns they've seen before, not on deep knowledge of specific organizations. It's like someone who has read a lot about hospitals but never worked in one—they might mix up job titles or department names.",
+        "architectural_cause": "The system learns by analyzing huge amounts of text and guessing what words usually go together, but it doesn't understand the special meanings certain terms have in specific institutions. So, it may pick a word that seems right in general, but isn't the official term used by that institution.",
+        "pattern_generalization": "Similar errors often happen with names of organizations, job titles, or procedures that have a unique or formal meaning. Be especially careful when translating texts related to government, education, or large companies.",
+        "mt_system_specific": "Dedicated MT systems trained on official documents or specific domains usually make fewer of these mistakes than general-purpose LLMs like GPT-4, because they've seen more examples of the correct terminology."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Ma question porte sur un sujet qui est qui viendra <TERMINOLOGY type=\"institutional\" severity=\"major\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">la session plénière</TERMINOLOGY> et que je soulèverai donc une nouvelle fois.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "61dd973f-dda6-442a-ba20-c15bb6fe24a8",
+      "span_start": 92,
+      "span_end": 93,
+      "original_text": "donc",
+      "injected_text": " ",
+      "primary_tag": "OMISSION",
+      "error_type": "discourse_marker",
+      "severity": "minor",
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [
+        "S7"
+      ],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely overlooked the discourse marker 'donc', treating it as optional or redundant in the French sentence structure.",
+        "actual_meaning": "The source emphasizes that the question will be raised again specifically because the topic will come up on Thursday, making 'therefore' ('donc') necessary to show this logical connection.",
+        "reader_impact": "Without 'donc', the reader may not understand the causal relationship between the topic's appearance on Thursday and the act of raising the question again, potentially missing the intended emphasis.",
+        "correction_rationale": "Including 'donc' preserves the logical and temporal link between the two actions, accurately reflecting the reasoning in the source text and maintaining coherence for the reader."
+      },
+      "system_behavior": {
+        "error_mechanism": "Machine translation systems often skip small words or phrases like 'however' or 'therefore' because they seem less important to the main meaning, much like how someone might leave out connecting words when summarizing a story quickly.",
+        "architectural_cause": "Inside, the system focuses on the main ideas and may treat linking words as optional, especially if it has seen many examples where these words are dropped or used inconsistently. It doesn't always recognize that these little words are important for the flow and logic of the text.",
+        "pattern_generalization": "Students will often see this kind of omission in long sentences or complex paragraphs, especially where connecting words tie together different ideas or points.",
+        "mt_system_specific": "Large language models like GPT-4 may skip discourse markers more often than dedicated translation systems, because they are trained on a wider range of texts and may not prioritize these words as much in translation tasks."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Ma question porte sur un sujet qui est qui viendra la session plénière et que je soulèverai <OMISSION type=\"discourse_marker\" severity=\"minor\" tom=\"1st_author\" desc=\"5-15 word explanation\"> </OMISSION> une nouvelle fois.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "475b6f36-7844-49c5-8d12-8a20188a2d0a",
+      "span_start": 43,
+      "span_end": 61,
+      "original_text": "viendra la session plénière",
+      "injected_text": "sera soulevé jeudi",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "word_sense",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [
+        "S5"
+      ],
+      "severity_range": [
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system interpreted 'come up' as 'be raised', assuming it refers to the speaker actively bringing up the topic on Thursday.",
+        "actual_meaning": "The source means that the topic is scheduled to appear on the agenda or be discussed during the plenary session on Thursday, not that the speaker will personally raise it at that time.",
+        "reader_impact": "A reader would misunderstand and think the speaker is the one initiating the discussion on Thursday, rather than the topic naturally arising as part of the scheduled proceedings.",
+        "correction_rationale": "The correct translation reflects that the subject is on the agenda and will arise during the plenary session, accurately conveying the passive, scheduled nature of the event rather than an active intervention by the speaker."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often confuse words or phrases that have more than one meaning, like 'come up.' It's similar to how someone learning a new language might mix up 'bank' as a place for money and 'bank' of a river if they don't have enough context. Without clear clues, the system guesses which meaning fits, and sometimes it picks the wrong one.",
+        "architectural_cause": "Inside, the system relies on patterns it has seen in its training data to decide what words mean. If it has seen 'come up' used in different ways, it tries to choose based on the surrounding words, but it doesn't truly 'understand' the situation. This can lead it to pick a meaning that seems likely, even if it's not the right one for this context.",
+        "pattern_generalization": "Similar errors often happen with words or phrases that have multiple meanings, especially if the context isn't clear or if the phrase is used in an unusual way. Watch for this with idioms or common expressions that can be interpreted in more than one way.",
+        "mt_system_specific": "Dedicated MT systems are sometimes better at these distinctions because they are trained mostly on translation data, while general-purpose LLMs like GPT-4 may mix up senses more often since they learn from broader, less focused texts."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Ma question porte sur un sujet qui est qui <MISTRANSLATION type=\"word_sense\" severity=\"major\" tom=\"1st_machine\" desc=\"MT confuses 'come up' with 'be raised' on Thursday\">sera soulevé jeudi</MISTRANSLATION> et que je soulèverai   une nouvelle fois.",
+      "brief_explanation": "MT confuses 'come up' with 'be raised' on Thursday"
+    },
+    {
+      "error_id": "4e2430f0-7b61-40db-8f95-75e14693c918",
+      "span_start": 25,
+      "span_end": 32,
+      "original_text": "sujet",
+      "injected_text": "subject",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "false_cognate",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "severity_range": [
+        "major",
+        "critical"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system recognized 'something' as a potential 'subject' and, seeing the similarity between English 'subject' and French 'subject', it selected the direct cognate without considering context.",
+        "actual_meaning": "The source refers to an agenda item or topic to be discussed, not a grammatical or academic 'subject'.",
+        "reader_impact": "A French reader would interpret 'subject' as a literal English word or might be confused, as it does not fit the context of meetings or discussions, leading to misunderstanding of the intended meaning.",
+        "correction_rationale": "The correct translation 'sujet' is the appropriate French term for a topic or item under discussion, conveying the intended meaning in the context of a meeting or agenda."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems sometimes mistake words that look similar in two languages for having the same meaning, like confusing 'actual' in English with 'actual' in Spanish, which really means 'current.' It's a bit like seeing someone who looks like your friend from behind and calling out their name, only to realize it's a stranger. The system 'recognizes' the word's appearance but misses the true meaning in context.",
+        "architectural_cause": "Inside, the system relies heavily on patterns it has seen in its training data, so if two words look alike across languages, it often assumes they mean the same thing. It doesn't have real-world understanding, so it can't always tell when a word is a 'false friend'—words that look similar but mean different things.",
+        "pattern_generalization": "Students should watch out for this error with words that share roots or spellings across languages, especially with common 'false friends.' These errors are more likely when the surrounding context doesn't make the intended meaning completely clear.",
+        "mt_system_specific": "Dedicated MT systems are often trained with more parallel translation data, sometimes making them a bit better at catching false friends. General LLMs like GPT-4 may be more prone to this error since they rely more on general language patterns than on specific translation experience."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Ma question porte sur un <MISTRANSLATION type=\"false_cognate\" severity=\"major\" tom=\"1st_machine\" desc=\"MT system chose English cognate, not contextual equivalent\">subject</MISTRANSLATION> qui est qui sera soulevé jeudi et que je soulèverai   une nouvelle fois.",
+      "brief_explanation": "MT system chose English cognate, not contextual equivalent"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "analyst",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 5,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system interpreted 'something that will come up on Thursday' too literally, rendering it as 'qui viendra jeudi' ('which will come on Thursday'), focusing only on the temporal aspect.",
+      "actual_meaning": "The source refers to an item scheduled for discussion on Thursday's agenda, not simply something that will occur or arrive on Thursday.",
+      "reader_impact": "A reader would misunderstand and think the question is about something physically arriving or happening on Thursday, rather than an agenda item set for discussion.",
+      "correction_rationale": "The correct translation 'à l'ordre du jour du jeudi' accurately conveys that the topic is formally listed for Thursday's agenda, preserving the institutional context and intended meaning."
+    },
+    {
+      "mt_interpretation": "The MT system likely associated 'Thursday' with 'la session plénière' because plenary sessions often occur on Thursdays in institutional contexts, so it substituted the specific day with the institutional event.",
+      "actual_meaning": "The source specifically refers to 'Thursday' as the day when the topic will come up, not to any particular event or session.",
+      "reader_impact": "A reader would believe the question is about the plenary session itself, rather than about something scheduled for Thursday, potentially missing the temporal specificity.",
+      "correction_rationale": "The correct translation ('jeudi') preserves the original's reference to the specific day, accurately conveying the intended timing without introducing institutional assumptions."
+    },
+    {
+      "mt_interpretation": "The MT system likely overlooked the discourse marker 'donc', treating it as optional or redundant in the French sentence structure.",
+      "actual_meaning": "The source emphasizes that the question will be raised again specifically because the topic will come up on Thursday, making 'therefore' ('donc') necessary to show this logical connection.",
+      "reader_impact": "Without 'donc', the reader may not understand the causal relationship between the topic's appearance on Thursday and the act of raising the question again, potentially missing the intended emphasis.",
+      "correction_rationale": "Including 'donc' preserves the logical and temporal link between the two actions, accurately reflecting the reasoning in the source text and maintaining coherence for the reader."
+    },
+    {
+      "mt_interpretation": "The MT system interpreted 'come up' as 'be raised', assuming it refers to the speaker actively bringing up the topic on Thursday.",
+      "actual_meaning": "The source means that the topic is scheduled to appear on the agenda or be discussed during the plenary session on Thursday, not that the speaker will personally raise it at that time.",
+      "reader_impact": "A reader would misunderstand and think the speaker is the one initiating the discussion on Thursday, rather than the topic naturally arising as part of the scheduled proceedings.",
+      "correction_rationale": "The correct translation reflects that the subject is on the agenda and will arise during the plenary session, accurately conveying the passive, scheduled nature of the event rather than an active intervention by the speaker."
+    },
+    {
+      "mt_interpretation": "The MT system recognized 'something' as a potential 'subject' and, seeing the similarity between English 'subject' and French 'subject', it selected the direct cognate without considering context.",
+      "actual_meaning": "The source refers to an agenda item or topic to be discussed, not a grammatical or academic 'subject'.",
+      "reader_impact": "A French reader would interpret 'subject' as a literal English word or might be confused, as it does not fit the context of meetings or discussions, leading to misunderstanding of the intended meaning.",
+      "correction_rationale": "The correct translation 'sujet' is the appropriate French term for a topic or item under discussion, conveying the intended meaning in the context of a meeting or agenda."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often make overly literal translations because they treat words like puzzle pieces, matching each piece exactly instead of considering the bigger picture. It's like translating a joke word-for-word and losing the humor, because the system doesn't always grasp the intended meaning or context.",
+      "architectural_cause": "Internally, these systems rely on patterns they've seen before, focusing on direct word matches rather than the overall message. They don't 'understand' language like humans do—they look for the most likely word-by-word choices based on their training.",
+      "pattern_generalization": "You can expect overly literal errors when a phrase has an idiom, metaphor, or cultural reference that doesn't translate directly. Watch out for sentences where a word-for-word translation sounds odd or unnatural in the target language.",
+      "mt_system_specific": "General-purpose LLMs like GPT-4 may make more literal mistakes than dedicated MT systems, because they aren't specialized for translation and may miss subtle language nuances."
+    },
+    {
+      "error_mechanism": "MT systems often confuse official or institutional terms because they rely on patterns they've seen before, not on deep knowledge of specific organizations. It's like someone who has read a lot about hospitals but never worked in one—they might mix up job titles or department names.",
+      "architectural_cause": "The system learns by analyzing huge amounts of text and guessing what words usually go together, but it doesn't understand the special meanings certain terms have in specific institutions. So, it may pick a word that seems right in general, but isn't the official term used by that institution.",
+      "pattern_generalization": "Similar errors often happen with names of organizations, job titles, or procedures that have a unique or formal meaning. Be especially careful when translating texts related to government, education, or large companies.",
+      "mt_system_specific": "Dedicated MT systems trained on official documents or specific domains usually make fewer of these mistakes than general-purpose LLMs like GPT-4, because they've seen more examples of the correct terminology."
+    },
+    {
+      "error_mechanism": "Machine translation systems often skip small words or phrases like 'however' or 'therefore' because they seem less important to the main meaning, much like how someone might leave out connecting words when summarizing a story quickly.",
+      "architectural_cause": "Inside, the system focuses on the main ideas and may treat linking words as optional, especially if it has seen many examples where these words are dropped or used inconsistently. It doesn't always recognize that these little words are important for the flow and logic of the text.",
+      "pattern_generalization": "Students will often see this kind of omission in long sentences or complex paragraphs, especially where connecting words tie together different ideas or points.",
+      "mt_system_specific": "Large language models like GPT-4 may skip discourse markers more often than dedicated translation systems, because they are trained on a wider range of texts and may not prioritize these words as much in translation tasks."
+    },
+    {
+      "error_mechanism": "MT systems often confuse words or phrases that have more than one meaning, like 'come up.' It's similar to how someone learning a new language might mix up 'bank' as a place for money and 'bank' of a river if they don't have enough context. Without clear clues, the system guesses which meaning fits, and sometimes it picks the wrong one.",
+      "architectural_cause": "Inside, the system relies on patterns it has seen in its training data to decide what words mean. If it has seen 'come up' used in different ways, it tries to choose based on the surrounding words, but it doesn't truly 'understand' the situation. This can lead it to pick a meaning that seems likely, even if it's not the right one for this context.",
+      "pattern_generalization": "Similar errors often happen with words or phrases that have multiple meanings, especially if the context isn't clear or if the phrase is used in an unusual way. Watch for this with idioms or common expressions that can be interpreted in more than one way.",
+      "mt_system_specific": "Dedicated MT systems are sometimes better at these distinctions because they are trained mostly on translation data, while general-purpose LLMs like GPT-4 may mix up senses more often since they learn from broader, less focused texts."
+    },
+    {
+      "error_mechanism": "MT systems sometimes mistake words that look similar in two languages for having the same meaning, like confusing 'actual' in English with 'actual' in Spanish, which really means 'current.' It's a bit like seeing someone who looks like your friend from behind and calling out their name, only to realize it's a stranger. The system 'recognizes' the word's appearance but misses the true meaning in context.",
+      "architectural_cause": "Inside, the system relies heavily on patterns it has seen in its training data, so if two words look alike across languages, it often assumes they mean the same thing. It doesn't have real-world understanding, so it can't always tell when a word is a 'false friend'—words that look similar but mean different things.",
+      "pattern_generalization": "Students should watch out for this error with words that share roots or spellings across languages, especially with common 'false friends.' These errors are more likely when the surrounding context doesn't make the intended meaning completely clear.",
+      "mt_system_specific": "Dedicated MT systems are often trained with more parallel translation data, sometimes making them a bit better at catching false friends. General LLMs like GPT-4 may be more prone to this error since they rely more on general language patterns than on specific translation experience."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "analyst",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

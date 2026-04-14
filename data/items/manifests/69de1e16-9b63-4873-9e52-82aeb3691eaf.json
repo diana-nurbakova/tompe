@@ -1,0 +1,273 @@
+{
+  "item_id": "69de1e16-9b63-4873-9e52-82aeb3691eaf",
+  "segment_id": "europarl-fb6e3c1dbc20",
+  "source_text": "Yes, Mr Evans, I feel an initiative of the type you have just suggested would be entirely appropriate.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Oui, M. Evans, je pense qu'des initiatives que vous venez de suggérer ne sera pas du tout appropriée.",
+  "reference_translation": "Oui, Monsieur Evans, je pense qu'une initiative dans le sens que vous venez de suggérer serait tout à fait appropriée.",
+  "mt_system": "gpt4",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "ca1372c7-1eb5-4f1e-b7f9-6a60fcfa3f88",
+      "span_start": 5,
+      "span_end": 13,
+      "original_text": "Monsieur Evans",
+      "injected_text": "M. Evans",
+      "primary_tag": "STYLE",
+      "error_type": "register_informal",
+      "severity": "minor",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'Mr Evans' as a standard title and chose the common abbreviation 'M. Evans' for French, focusing on brevity and typical usage in less formal contexts.",
+        "actual_meaning": "The source text uses a formal address, explicitly saying 'Mr Evans' to show respect and politeness in a formal setting.",
+        "reader_impact": "A French reader may interpret 'M. Evans' as slightly less formal or more business-like, potentially missing the higher level of politeness intended in the original context.",
+        "correction_rationale": "Spelling out 'Monsieur Evans' preserves the formal register and politeness of the source, which is especially important in official or diplomatic communication."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often make register errors, like using informal language when formal is needed, because they learn from huge amounts of text with mixed styles. It's like a person who watches all kinds of movies and sometimes mixes up when to use slang or polite speech.",
+        "architectural_cause": "Internally, the system doesn't truly 'understand' the social setting—it's matching patterns from its training data. Without clear signals about the desired tone, it defaults to what it has seen most often or most recently.",
+        "pattern_generalization": "Students will notice similar errors when translating texts that require a specific level of formality, especially if the prompt or context doesn't spell out the expected tone.",
+        "mt_system_specific": "Dedicated MT systems trained on formal documents may make this mistake less often, while general-purpose LLMs like GPT-4 are more likely to mix registers because they cover a wider range of text types."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Oui, <STYLE type=\"register_informal\" severity=\"minor\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">M. Evans</STYLE>, je pense qu'une initiative dans le sens que vous venez de suggérer serait tout à fait appropriée.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "9cc39632-061b-4e22-8ecc-86be64ea20c8",
+      "span_start": 82,
+      "span_end": 86,
+      "original_text": "serait",
+      "injected_text": "sera",
+      "primary_tag": "GRAMMAR",
+      "error_type": "tense",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'would be' as a simple future tense and chose 'sera' to indicate a future action.",
+        "actual_meaning": "The source uses 'would be' to express a hypothetical or polite suggestion, which requires the conditional mood in French ('serait').",
+        "reader_impact": "A reader might interpret 'sera' as a definite statement about the future, rather than a tentative or polite proposal, making the speaker sound more assertive or certain than intended.",
+        "correction_rationale": "The conditional 'serait' accurately reflects the hypothetical or polite nuance of 'would be' in the source, maintaining the intended tone and meaning."
+      },
+      "system_behavior": {
+        "error_mechanism": "Machine translation systems often mix up future tense and the conditional mood because these forms can look very similar in many languages. It's a bit like confusing 'if it rains, I would stay home' with 'if it rains, I will stay home'—the difference is subtle and depends on understanding the situation, not just the words.",
+        "architectural_cause": "Internally, these systems rely on patterns they've seen in large amounts of text. If the system can't clearly tell whether the sentence is talking about a possible situation or a definite future event, it might pick the wrong tense, especially if both forms appear often in similar contexts.",
+        "pattern_generalization": "Students are likely to see similar errors when the source sentence hints at possibilities or hypothetical situations, especially in sentences starting with 'if' or expressing wishes. Pay extra attention whenever the meaning depends on uncertainty or conditions.",
+        "mt_system_specific": "General-purpose language models like GPT-4 may make this mistake more often than translation systems designed specifically for one language pair, since dedicated MT systems are usually trained to handle these subtle grammar differences more carefully."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Oui, M. Evans, je pense qu'une initiative dans le sens que vous venez de suggérer <GRAMMAR type=\"tense\" severity=\"minor\" tom=\"1st_machine\" desc=\"Future tense used instead of conditional mood\">sera</GRAMMAR> tout à fait appropriée.",
+      "brief_explanation": "Future tense used instead of conditional mood"
+    },
+    {
+      "error_id": "58a3c521-580a-4040-a725-71a885498954",
+      "span_start": 42,
+      "span_end": 68,
+      "original_text": "dans le sens que vous venez de suggérer",
+      "injected_text": "que vous venez de suggérer",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "undertranslation",
+      "severity": "minor",
+      "tom_level": "1st_author",
+      "primary_skill": "S3",
+      "secondary_skills": [
+        "S4"
+      ],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'an initiative of the type you have just suggested' as simply 'the initiative you have just suggested,' omitting the nuance of 'the type' or 'in the sense of.'",
+        "actual_meaning": "The source means not the exact initiative suggested, but an initiative in the same vein or of the same kind as the one suggested by Mr Evans.",
+        "reader_impact": "A reader might think that the speaker is endorsing exactly the initiative proposed by Mr Evans, rather than any initiative of that general type, thus narrowing the meaning.",
+        "correction_rationale": "Including 'dans le sens que' preserves the broader meaning of the original, indicating that any similar initiative would be appropriate, not just the specific one mentioned."
+      },
+      "system_behavior": {
+        "error_mechanism": "Undertranslation happens when the system leaves out some details or parts of the original message, like telling a story but skipping a few important scenes. This can occur because the system tries to keep things short and simple, sometimes missing the full meaning.",
+        "architectural_cause": "The system reads the input and predicts what comes next, much like finishing someone’s sentence. If it thinks certain words or ideas aren’t essential, it might leave them out, especially if similar examples in its training data did the same.",
+        "pattern_generalization": "You’ll often see this when the original text is long, complex, or includes extra details. Pay special attention to lists, explanations, or sentences with several ideas packed in.",
+        "mt_system_specific": "General-purpose LLMs like GPT-4 tend to undertranslate more than dedicated MT systems, because they prioritize fluent, natural-sounding text over strict completeness."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Oui, M. Evans, je pense qu'une initiative <MISTRANSLATION type=\"undertranslation\" severity=\"minor\" tom=\"1st_author\" desc=\"5-15 word explanation\">que vous venez de suggérer</MISTRANSLATION> sera tout à fait appropriée.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "41019f29-3ea1-47f0-a26b-0d37331b4eef",
+      "span_start": 69,
+      "span_end": 99,
+      "original_text": "sera tout à fait appropriée",
+      "injected_text": "ne sera pas du tout appropriée",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "negation",
+      "severity": "critical",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "severity_range": [
+        "critical"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely misread the sentence structure or polarity, incorrectly inserting a negation and rendering the phrase as 'will not be at all appropriate.'",
+        "actual_meaning": "The source text expresses strong approval, stating that the suggested initiative would be entirely appropriate.",
+        "reader_impact": "A reader would misunderstand the speaker's intent, believing they strongly disapprove of the initiative when in fact they support it.",
+        "correction_rationale": "The correct translation must preserve the positive evaluation from the source, accurately conveying that the initiative is seen as entirely appropriate, not the opposite."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often miss or flip negation (like turning 'not happy' into 'happy') because they focus on the main words and sometimes overlook small but crucial words like 'not.' It's like reading a recipe and missing the word 'no' in 'no salt,' which completely changes the dish.",
+        "architectural_cause": "Internally, the system pays most attention to the patterns and common word pairings it has seen before, so if it sees 'happy' a lot, it might default to that even when 'not' is present. The system doesn't truly 'understand' the meaning—it's matching patterns, so subtle changes like negation can get lost.",
+        "pattern_generalization": "Students should watch out for this error when the sentence has words like 'not,' 'never,' or 'without,' especially if they're close to words with strong meanings. Double-check any sentence where a small word could flip the meaning.",
+        "mt_system_specific": "General-purpose LLMs like GPT-4 can be even more prone to missing negation than systems built specifically for translation, because they aren't always tuned to catch these tiny but important words."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Oui, M. Evans, je pense qu'une initiative que vous venez de suggérer <MISTRANSLATION type=\"negation\" severity=\"critical\" tom=\"1st_machine\" desc=\"5-15 word explanation\">ne sera pas du tout appropriée</MISTRANSLATION>.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "16580a69-b8f1-4c3b-89e0-f73cf0c23449",
+      "span_start": 27,
+      "span_end": 42,
+      "original_text": "une initiative",
+      "injected_text": "des initiatives",
+      "primary_tag": "GRAMMAR",
+      "error_type": "agreement_number",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'an initiative' as referring to multiple possible actions, thus rendering it as 'des initiatives' in the plural.",
+        "actual_meaning": "The source text specifically refers to a single initiative, not multiple ones, emphasizing a particular proposal just suggested by Mr Evans.",
+        "reader_impact": "A reader would think that several initiatives were being discussed or suggested, potentially misunderstanding the scope and focus of the statement.",
+        "correction_rationale": "The correct translation uses the singular 'une initiative' to accurately reflect the singular nature of the proposal in the source, maintaining fidelity and clarity."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up singular and plural forms because they rely on patterns they've seen before, much like someone learning a new language by copying phrases from a book. If the system has mostly seen 'initiatives' in its training, it might use the plural even when the singular 'initiative' is correct.",
+        "architectural_cause": "Inside, the system doesn't truly 'understand' grammar rules like a human does. Instead, it predicts the next word based on what usually comes next in similar sentences, so it can easily slip up if the context is a bit different from what it's seen before.",
+        "pattern_generalization": "Students should watch out for these errors especially with words that can be both singular and plural, or when the subject changes in a sentence. These mistakes are common when translating between languages with different ways of marking singular and plural.",
+        "mt_system_specific": "Large language models like GPT-4 are more prone to this error than dedicated MT systems, since they focus on general language patterns rather than strict translation rules."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Oui, M. Evans, je pense qu'<GRAMMAR type=\"agreement_number\" severity=\"minor\" tom=\"1st_machine\" desc=\"Plural used instead of singular for initiative\">des initiatives</GRAMMAR> que vous venez de suggérer ne sera pas du tout appropriée.",
+      "brief_explanation": "Plural used instead of singular for initiative"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "analyst",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 5,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely interpreted 'Mr Evans' as a standard title and chose the common abbreviation 'M. Evans' for French, focusing on brevity and typical usage in less formal contexts.",
+      "actual_meaning": "The source text uses a formal address, explicitly saying 'Mr Evans' to show respect and politeness in a formal setting.",
+      "reader_impact": "A French reader may interpret 'M. Evans' as slightly less formal or more business-like, potentially missing the higher level of politeness intended in the original context.",
+      "correction_rationale": "Spelling out 'Monsieur Evans' preserves the formal register and politeness of the source, which is especially important in official or diplomatic communication."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted 'would be' as a simple future tense and chose 'sera' to indicate a future action.",
+      "actual_meaning": "The source uses 'would be' to express a hypothetical or polite suggestion, which requires the conditional mood in French ('serait').",
+      "reader_impact": "A reader might interpret 'sera' as a definite statement about the future, rather than a tentative or polite proposal, making the speaker sound more assertive or certain than intended.",
+      "correction_rationale": "The conditional 'serait' accurately reflects the hypothetical or polite nuance of 'would be' in the source, maintaining the intended tone and meaning."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted 'an initiative of the type you have just suggested' as simply 'the initiative you have just suggested,' omitting the nuance of 'the type' or 'in the sense of.'",
+      "actual_meaning": "The source means not the exact initiative suggested, but an initiative in the same vein or of the same kind as the one suggested by Mr Evans.",
+      "reader_impact": "A reader might think that the speaker is endorsing exactly the initiative proposed by Mr Evans, rather than any initiative of that general type, thus narrowing the meaning.",
+      "correction_rationale": "Including 'dans le sens que' preserves the broader meaning of the original, indicating that any similar initiative would be appropriate, not just the specific one mentioned."
+    },
+    {
+      "mt_interpretation": "The MT system likely misread the sentence structure or polarity, incorrectly inserting a negation and rendering the phrase as 'will not be at all appropriate.'",
+      "actual_meaning": "The source text expresses strong approval, stating that the suggested initiative would be entirely appropriate.",
+      "reader_impact": "A reader would misunderstand the speaker's intent, believing they strongly disapprove of the initiative when in fact they support it.",
+      "correction_rationale": "The correct translation must preserve the positive evaluation from the source, accurately conveying that the initiative is seen as entirely appropriate, not the opposite."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted 'an initiative' as referring to multiple possible actions, thus rendering it as 'des initiatives' in the plural.",
+      "actual_meaning": "The source text specifically refers to a single initiative, not multiple ones, emphasizing a particular proposal just suggested by Mr Evans.",
+      "reader_impact": "A reader would think that several initiatives were being discussed or suggested, potentially misunderstanding the scope and focus of the statement.",
+      "correction_rationale": "The correct translation uses the singular 'une initiative' to accurately reflect the singular nature of the proposal in the source, maintaining fidelity and clarity."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often make register errors, like using informal language when formal is needed, because they learn from huge amounts of text with mixed styles. It's like a person who watches all kinds of movies and sometimes mixes up when to use slang or polite speech.",
+      "architectural_cause": "Internally, the system doesn't truly 'understand' the social setting—it's matching patterns from its training data. Without clear signals about the desired tone, it defaults to what it has seen most often or most recently.",
+      "pattern_generalization": "Students will notice similar errors when translating texts that require a specific level of formality, especially if the prompt or context doesn't spell out the expected tone.",
+      "mt_system_specific": "Dedicated MT systems trained on formal documents may make this mistake less often, while general-purpose LLMs like GPT-4 are more likely to mix registers because they cover a wider range of text types."
+    },
+    {
+      "error_mechanism": "Machine translation systems often mix up future tense and the conditional mood because these forms can look very similar in many languages. It's a bit like confusing 'if it rains, I would stay home' with 'if it rains, I will stay home'—the difference is subtle and depends on understanding the situation, not just the words.",
+      "architectural_cause": "Internally, these systems rely on patterns they've seen in large amounts of text. If the system can't clearly tell whether the sentence is talking about a possible situation or a definite future event, it might pick the wrong tense, especially if both forms appear often in similar contexts.",
+      "pattern_generalization": "Students are likely to see similar errors when the source sentence hints at possibilities or hypothetical situations, especially in sentences starting with 'if' or expressing wishes. Pay extra attention whenever the meaning depends on uncertainty or conditions.",
+      "mt_system_specific": "General-purpose language models like GPT-4 may make this mistake more often than translation systems designed specifically for one language pair, since dedicated MT systems are usually trained to handle these subtle grammar differences more carefully."
+    },
+    {
+      "error_mechanism": "Undertranslation happens when the system leaves out some details or parts of the original message, like telling a story but skipping a few important scenes. This can occur because the system tries to keep things short and simple, sometimes missing the full meaning.",
+      "architectural_cause": "The system reads the input and predicts what comes next, much like finishing someone’s sentence. If it thinks certain words or ideas aren’t essential, it might leave them out, especially if similar examples in its training data did the same.",
+      "pattern_generalization": "You’ll often see this when the original text is long, complex, or includes extra details. Pay special attention to lists, explanations, or sentences with several ideas packed in.",
+      "mt_system_specific": "General-purpose LLMs like GPT-4 tend to undertranslate more than dedicated MT systems, because they prioritize fluent, natural-sounding text over strict completeness."
+    },
+    {
+      "error_mechanism": "MT systems often miss or flip negation (like turning 'not happy' into 'happy') because they focus on the main words and sometimes overlook small but crucial words like 'not.' It's like reading a recipe and missing the word 'no' in 'no salt,' which completely changes the dish.",
+      "architectural_cause": "Internally, the system pays most attention to the patterns and common word pairings it has seen before, so if it sees 'happy' a lot, it might default to that even when 'not' is present. The system doesn't truly 'understand' the meaning—it's matching patterns, so subtle changes like negation can get lost.",
+      "pattern_generalization": "Students should watch out for this error when the sentence has words like 'not,' 'never,' or 'without,' especially if they're close to words with strong meanings. Double-check any sentence where a small word could flip the meaning.",
+      "mt_system_specific": "General-purpose LLMs like GPT-4 can be even more prone to missing negation than systems built specifically for translation, because they aren't always tuned to catch these tiny but important words."
+    },
+    {
+      "error_mechanism": "MT systems often mix up singular and plural forms because they rely on patterns they've seen before, much like someone learning a new language by copying phrases from a book. If the system has mostly seen 'initiatives' in its training, it might use the plural even when the singular 'initiative' is correct.",
+      "architectural_cause": "Inside, the system doesn't truly 'understand' grammar rules like a human does. Instead, it predicts the next word based on what usually comes next in similar sentences, so it can easily slip up if the context is a bit different from what it's seen before.",
+      "pattern_generalization": "Students should watch out for these errors especially with words that can be both singular and plural, or when the subject changes in a sentence. These mistakes are common when translating between languages with different ways of marking singular and plural.",
+      "mt_system_specific": "Large language models like GPT-4 are more prone to this error than dedicated MT systems, since they focus on general language patterns rather than strict translation rules."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "analyst",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

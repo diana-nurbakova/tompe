@@ -1,0 +1,275 @@
+{
+  "item_id": "7d5b43b1-a2ed-47c6-bb1b-080dc7785242",
+  "segment_id": "europarl-e54de29885ec",
+  "source_text": "I declare resumed the session of the European Parliament adjourned on Friday 17 December 1999, and I would like once again to wish you a happy new year in the hope that you enjoyed a pleasant festive period.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Je déclare reprise la session du Parlement européen qui a été interrompue le vendredi 17 décembre dernier et je vous renouvelle à l'espoir que vous avez passé de bonnes et joyeuses fêtes .",
+  "reference_translation": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes vux en espérant que vous avez passé de bonnes vacances.",
+  "mt_system": "gpt4",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "b268b04b-8b52-49e1-a94c-e7ee0e8360e2",
+      "span_start": 145,
+      "span_end": 145,
+      "original_text": "en espérant que vous avez passé de bonnes vacances",
+      "injected_text": "",
+      "primary_tag": "OMISSION",
+      "error_type": "partial",
+      "severity": "major",
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely considered the subordinate clause about enjoying the holidays as non-essential or redundant, so it omitted this detail in the translation.",
+        "actual_meaning": "The source text includes a goodwill wish, expressing the speaker's hope that the audience enjoyed their festive period, which is an important part of the message's tone and intent.",
+        "reader_impact": "A reader of the MT output would miss the speaker's personal touch and goodwill, perceiving the message as more formal and less warm or considerate than intended.",
+        "correction_rationale": "The correct translation retains the subordinate clause about the holidays, accurately conveying the speaker's intent and preserving the friendly, inclusive tone of the original message."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often skip over less obvious details, like a subordinate clause about holidays, much like someone retelling a story and forgetting a side note that seems less important. The system focuses on the main message and can accidentally leave out extra information that adds nuance or warmth.",
+        "architectural_cause": "Internally, the system processes text in chunks and tries to predict the most likely translation for each part. If a detail seems less central to the main idea, the system might not give it enough weight, causing it to drop that part entirely.",
+        "pattern_generalization": "Students can expect similar omissions when the original sentence has extra information tucked into side clauses, especially if it expresses politeness, background, or good intentions. Watch for sentences where the author adds asides or softeners.",
+        "mt_system_specific": "Dedicated MT systems trained specifically for translation may handle these details better because they are tuned to preserve meaning and tone, while general-purpose LLMs like GPT-4 may overlook them more often."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes vux <OMISSION type=\"partial\" severity=\"major\" tom=\"1st_author\" desc=\"Subordinate clause about holidays omitted, losing author's goodwill intent.\"></OMISSION>.",
+      "brief_explanation": "Subordinate clause about holidays omitted, losing author's goodwill intent."
+    },
+    {
+      "error_id": "0fd758b7-0bc0-4ccc-81d0-cc3f387fb9ce",
+      "span_start": 56,
+      "span_end": 73,
+      "original_text": "avait été interrompue",
+      "injected_text": "a été interrompue",
+      "primary_tag": "GRAMMAR",
+      "error_type": "tense",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted the verb 'adjourned' as a simple past event and rendered it with the passé composé 'a été interrompue', focusing on the action being completed in the past.",
+        "actual_meaning": "The source refers to a session that had already been adjourned before the current moment, indicating a past action relative to another past event, which requires the plus-que-parfait 'avait été interrompue'.",
+        "reader_impact": "A French reader would interpret 'a été interrompue' as if the session was interrupted more recently or at the same time as the current declaration, leading to confusion about the sequence of events.",
+        "correction_rationale": "The plus-que-parfait 'avait été interrompue' correctly situates the interruption before the current declaration, preserving the intended temporal relationship between the two past actions."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up tenses like passé composé and plus-que-parfait because they look for patterns in the text, much like someone following a recipe without fully understanding the story behind it. If both tenses appear in similar places in examples they've seen, the system might choose the more common one, even if it's not the best fit for the situation.",
+        "architectural_cause": "Internally, the system tries to guess the most likely tense based on what it has seen in its training data, rather than understanding the full timeline of events. It doesn’t truly grasp the sequence of actions, but instead relies on statistical clues and common patterns.",
+        "pattern_generalization": "Students can expect similar errors when the difference between tenses depends on subtle clues about timing or sequence, especially in storytelling or reporting past events. Watch out for tense confusion when the context requires a clear distinction between two past actions.",
+        "mt_system_specific": "General-purpose LLMs like GPT-4 may make this mistake more often than dedicated MT systems, because they are trained on broader data and may not specialize in the fine details of tense usage in translation."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je déclare reprise la session du Parlement européen qui <GRAMMAR type=\"tense\" severity=\"major\" tom=\"1st_machine\" desc=\"Incorrect tense: passé composé instead of plus-que-parfait\">a été interrompue</GRAMMAR> le vendredi 17 décembre dernier et je vous renouvelle tous mes vux .",
+      "brief_explanation": "Incorrect tense: passé composé instead of plus-que-parfait"
+    },
+    {
+      "error_id": "956f61f5-5844-4c9a-a404-8f9fcc8e0759",
+      "span_start": 128,
+      "span_end": 169,
+      "original_text": "tous mes vux",
+      "injected_text": "que vous n'avez pas passé de bonnes fêtes",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "negation",
+      "severity": "critical",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "severity_range": [
+        "critical"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system appears to have misread the sentence structure, introducing an unintended negation ('n'avez pas passé') and thus reversing the sentiment of the well-wishing phrase.",
+        "actual_meaning": "The source text expresses a positive wish, hoping that the audience enjoyed their festive period and extending New Year’s greetings.",
+        "reader_impact": "A reader of the mistranslation would believe the speaker is hoping the audience did not enjoy their holidays, which is not only incorrect but also potentially offensive and confusing in this formal context.",
+        "correction_rationale": "The correct translation ('tous mes vœux' and 'en espérant que vous avez passé de bonnes vacances') accurately conveys the speaker’s positive intentions and maintains the original polite and celebratory tone."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems sometimes get confused by negation, like someone mishearing 'I don't like apples' as 'I like apples.' They may flip the meaning by accident, especially if the sentence structure is tricky or if words like 'not' are in unusual places.",
+        "architectural_cause": "These systems learn by seeing lots of examples and guessing what comes next, much like finishing someone else's sentence. If they haven't seen enough examples with similar negation, they might miss the 'not' or put it in the wrong place, changing the meaning entirely.",
+        "pattern_generalization": "Watch out for sentences with negatives (like 'not,' 'never,' or 'no one'), especially when the sentence is long or complicated. These errors often pop up when the negative word is separated from the verb or main idea.",
+        "mt_system_specific": "LLMs like GPT-4, which are trained for general language tasks, may be more likely to mishandle negation than dedicated MT systems, which are trained specifically on translation pairs and may handle such patterns more reliably."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je déclare reprise la session du Parlement européen qui a été interrompue le vendredi 17 décembre dernier et je vous renouvelle <MISTRANSLATION type=\"negation\" severity=\"critical\" tom=\"1st_machine\" desc=\"Negation introduced; now wishes audience did not enjoy holidays\">que vous n'avez pas passé de bonnes fêtes</MISTRANSLATION> .",
+      "brief_explanation": "Negation introduced; now wishes audience did not enjoy holidays"
+    },
+    {
+      "error_id": "1ac4c429-5e47-49fc-bdf7-7fd7c0715c43",
+      "span_start": 128,
+      "span_end": 174,
+      "original_text": "en l'espoir que vous avez passé de bonnes fêtes",
+      "injected_text": "à l'espoir que vous avez passé de bonnes fêtes",
+      "primary_tag": "GRAMMAR",
+      "error_type": "preposition",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely translated 'in the hope' too literally, mapping the English preposition 'in' to the French 'à', resulting in 'à l'espoir', which is not idiomatic or grammatical.",
+        "actual_meaning": "The source expresses a wish that the audience enjoyed the holidays, using the idiomatic phrase 'in the hope that'.",
+        "reader_impact": "A French reader would find 'à l'espoir' jarring and ungrammatical, potentially causing confusion or making the sentence seem non-native or machine-generated.",
+        "correction_rationale": "The correct preposition in French is 'en l'espoir que' or, more idiomatically, 'dans l'espoir que', which accurately conveys the intended meaning and is grammatically correct."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often make mistakes with prepositions because they try to match words and phrases based on patterns they've seen before, rather than deeply understanding the rules. It's a bit like someone learning a language by copying sentences from a phrasebook—they might choose a preposition that sounds right but isn't correct in every situation.",
+        "architectural_cause": "Internally, the system predicts the next word by looking at which words often appear together in large amounts of text. It doesn't truly 'know' the rules of grammar, so it can pick a preposition that is statistically common, even if it's not the right one for that phrase.",
+        "pattern_generalization": "You can expect to see this kind of error especially with fixed expressions or idioms, where the correct preposition doesn't follow a logical pattern and must simply be memorized.",
+        "mt_system_specific": "Dedicated MT systems trained specifically for translation may make fewer of these errors than general-purpose language models like GPT-4, because they are more focused on matching correct phrase patterns between languages."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je déclare reprise la session du Parlement européen qui a été interrompue le vendredi 17 décembre dernier et je vous renouvelle <GRAMMAR type=\"preposition\" severity=\"major\" tom=\"1st_machine\" desc=\"Incorrect preposition; 'à l'espoir' is ungrammatical in French\">à l'espoir que vous avez passé de bonnes fêtes</GRAMMAR> .",
+      "brief_explanation": "Incorrect preposition; 'à l'espoir' is ungrammatical in French"
+    },
+    {
+      "error_id": "8535437c-b3d6-48c9-9781-c124aa7bf898",
+      "span_start": 162,
+      "span_end": 186,
+      "original_text": "bonnes fêtes",
+      "injected_text": "bonnes et joyeuses fêtes",
+      "primary_tag": "ADDITION",
+      "error_type": "qualifier",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S4",
+      "secondary_skills": [
+        "S6"
+      ],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'pleasant festive period' as requiring both 'bonnes' and 'joyeuses' to fully capture the positive sentiment, resulting in the redundant phrase 'bonnes et joyeuses fêtes.'",
+        "actual_meaning": "The source simply wishes the audience well for the festive season, using a conventional and concise phrase equivalent to 'bonnes fêtes.'",
+        "reader_impact": "A reader might find 'bonnes et joyeuses fêtes' overly emphatic or stylistically awkward, as it redundantly combines two similar qualifiers, which is uncommon in formal French greetings.",
+        "correction_rationale": "The correct translation uses the standard French expression 'bonnes fêtes,' which accurately and idiomatically conveys the intended seasonal well-wishes without unnecessary repetition."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often add extra qualifiers—like unnecessary adjectives or phrases—because they try to be thorough, a bit like someone who over-explains to make sure they’re understood. This can lead to redundancies, where the system repeats information or adds more detail than needed.",
+        "architectural_cause": "Internally, these systems learn by looking for patterns in huge amounts of text. If they notice that certain qualifiers often appear together, they might combine them even if it makes the sentence repetitive, as they don't always understand what is essential versus what is extra.",
+        "pattern_generalization": "Students are likely to see similar errors when the source text has qualifiers or descriptive phrases, especially if these are common in training data. Watch out for sentences that feel wordy or where information seems to be repeated in different ways.",
+        "mt_system_specific": "Dedicated MT systems are usually more focused on faithful translation and may be less likely to add unnecessary qualifiers, while general-purpose LLMs like GPT-4 sometimes 'overdo it' by trying to make the text sound complete or natural."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je déclare reprise la session du Parlement européen qui a été interrompue le vendredi 17 décembre dernier et je vous renouvelle à l'espoir que vous avez passé de <ADDITION type=\"qualifier\" severity=\"minor\" tom=\"1st_machine\" desc=\"Extra qualifier added, making phrase redundant\">bonnes et joyeuses fêtes</ADDITION> .",
+      "brief_explanation": "Extra qualifier added, making phrase redundant"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "analyst",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 5,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely considered the subordinate clause about enjoying the holidays as non-essential or redundant, so it omitted this detail in the translation.",
+      "actual_meaning": "The source text includes a goodwill wish, expressing the speaker's hope that the audience enjoyed their festive period, which is an important part of the message's tone and intent.",
+      "reader_impact": "A reader of the MT output would miss the speaker's personal touch and goodwill, perceiving the message as more formal and less warm or considerate than intended.",
+      "correction_rationale": "The correct translation retains the subordinate clause about the holidays, accurately conveying the speaker's intent and preserving the friendly, inclusive tone of the original message."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted the verb 'adjourned' as a simple past event and rendered it with the passé composé 'a été interrompue', focusing on the action being completed in the past.",
+      "actual_meaning": "The source refers to a session that had already been adjourned before the current moment, indicating a past action relative to another past event, which requires the plus-que-parfait 'avait été interrompue'.",
+      "reader_impact": "A French reader would interpret 'a été interrompue' as if the session was interrupted more recently or at the same time as the current declaration, leading to confusion about the sequence of events.",
+      "correction_rationale": "The plus-que-parfait 'avait été interrompue' correctly situates the interruption before the current declaration, preserving the intended temporal relationship between the two past actions."
+    },
+    {
+      "mt_interpretation": "The MT system appears to have misread the sentence structure, introducing an unintended negation ('n'avez pas passé') and thus reversing the sentiment of the well-wishing phrase.",
+      "actual_meaning": "The source text expresses a positive wish, hoping that the audience enjoyed their festive period and extending New Year’s greetings.",
+      "reader_impact": "A reader of the mistranslation would believe the speaker is hoping the audience did not enjoy their holidays, which is not only incorrect but also potentially offensive and confusing in this formal context.",
+      "correction_rationale": "The correct translation ('tous mes vœux' and 'en espérant que vous avez passé de bonnes vacances') accurately conveys the speaker’s positive intentions and maintains the original polite and celebratory tone."
+    },
+    {
+      "mt_interpretation": "The MT system likely translated 'in the hope' too literally, mapping the English preposition 'in' to the French 'à', resulting in 'à l'espoir', which is not idiomatic or grammatical.",
+      "actual_meaning": "The source expresses a wish that the audience enjoyed the holidays, using the idiomatic phrase 'in the hope that'.",
+      "reader_impact": "A French reader would find 'à l'espoir' jarring and ungrammatical, potentially causing confusion or making the sentence seem non-native or machine-generated.",
+      "correction_rationale": "The correct preposition in French is 'en l'espoir que' or, more idiomatically, 'dans l'espoir que', which accurately conveys the intended meaning and is grammatically correct."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted 'pleasant festive period' as requiring both 'bonnes' and 'joyeuses' to fully capture the positive sentiment, resulting in the redundant phrase 'bonnes et joyeuses fêtes.'",
+      "actual_meaning": "The source simply wishes the audience well for the festive season, using a conventional and concise phrase equivalent to 'bonnes fêtes.'",
+      "reader_impact": "A reader might find 'bonnes et joyeuses fêtes' overly emphatic or stylistically awkward, as it redundantly combines two similar qualifiers, which is uncommon in formal French greetings.",
+      "correction_rationale": "The correct translation uses the standard French expression 'bonnes fêtes,' which accurately and idiomatically conveys the intended seasonal well-wishes without unnecessary repetition."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often skip over less obvious details, like a subordinate clause about holidays, much like someone retelling a story and forgetting a side note that seems less important. The system focuses on the main message and can accidentally leave out extra information that adds nuance or warmth.",
+      "architectural_cause": "Internally, the system processes text in chunks and tries to predict the most likely translation for each part. If a detail seems less central to the main idea, the system might not give it enough weight, causing it to drop that part entirely.",
+      "pattern_generalization": "Students can expect similar omissions when the original sentence has extra information tucked into side clauses, especially if it expresses politeness, background, or good intentions. Watch for sentences where the author adds asides or softeners.",
+      "mt_system_specific": "Dedicated MT systems trained specifically for translation may handle these details better because they are tuned to preserve meaning and tone, while general-purpose LLMs like GPT-4 may overlook them more often."
+    },
+    {
+      "error_mechanism": "MT systems often mix up tenses like passé composé and plus-que-parfait because they look for patterns in the text, much like someone following a recipe without fully understanding the story behind it. If both tenses appear in similar places in examples they've seen, the system might choose the more common one, even if it's not the best fit for the situation.",
+      "architectural_cause": "Internally, the system tries to guess the most likely tense based on what it has seen in its training data, rather than understanding the full timeline of events. It doesn’t truly grasp the sequence of actions, but instead relies on statistical clues and common patterns.",
+      "pattern_generalization": "Students can expect similar errors when the difference between tenses depends on subtle clues about timing or sequence, especially in storytelling or reporting past events. Watch out for tense confusion when the context requires a clear distinction between two past actions.",
+      "mt_system_specific": "General-purpose LLMs like GPT-4 may make this mistake more often than dedicated MT systems, because they are trained on broader data and may not specialize in the fine details of tense usage in translation."
+    },
+    {
+      "error_mechanism": "MT systems sometimes get confused by negation, like someone mishearing 'I don't like apples' as 'I like apples.' They may flip the meaning by accident, especially if the sentence structure is tricky or if words like 'not' are in unusual places.",
+      "architectural_cause": "These systems learn by seeing lots of examples and guessing what comes next, much like finishing someone else's sentence. If they haven't seen enough examples with similar negation, they might miss the 'not' or put it in the wrong place, changing the meaning entirely.",
+      "pattern_generalization": "Watch out for sentences with negatives (like 'not,' 'never,' or 'no one'), especially when the sentence is long or complicated. These errors often pop up when the negative word is separated from the verb or main idea.",
+      "mt_system_specific": "LLMs like GPT-4, which are trained for general language tasks, may be more likely to mishandle negation than dedicated MT systems, which are trained specifically on translation pairs and may handle such patterns more reliably."
+    },
+    {
+      "error_mechanism": "MT systems often make mistakes with prepositions because they try to match words and phrases based on patterns they've seen before, rather than deeply understanding the rules. It's a bit like someone learning a language by copying sentences from a phrasebook—they might choose a preposition that sounds right but isn't correct in every situation.",
+      "architectural_cause": "Internally, the system predicts the next word by looking at which words often appear together in large amounts of text. It doesn't truly 'know' the rules of grammar, so it can pick a preposition that is statistically common, even if it's not the right one for that phrase.",
+      "pattern_generalization": "You can expect to see this kind of error especially with fixed expressions or idioms, where the correct preposition doesn't follow a logical pattern and must simply be memorized.",
+      "mt_system_specific": "Dedicated MT systems trained specifically for translation may make fewer of these errors than general-purpose language models like GPT-4, because they are more focused on matching correct phrase patterns between languages."
+    },
+    {
+      "error_mechanism": "MT systems often add extra qualifiers—like unnecessary adjectives or phrases—because they try to be thorough, a bit like someone who over-explains to make sure they’re understood. This can lead to redundancies, where the system repeats information or adds more detail than needed.",
+      "architectural_cause": "Internally, these systems learn by looking for patterns in huge amounts of text. If they notice that certain qualifiers often appear together, they might combine them even if it makes the sentence repetitive, as they don't always understand what is essential versus what is extra.",
+      "pattern_generalization": "Students are likely to see similar errors when the source text has qualifiers or descriptive phrases, especially if these are common in training data. Watch out for sentences that feel wordy or where information seems to be repeated in different ways.",
+      "mt_system_specific": "Dedicated MT systems are usually more focused on faithful translation and may be less likely to add unnecessary qualifiers, while general-purpose LLMs like GPT-4 sometimes 'overdo it' by trying to make the text sound complete or natural."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "analyst",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

@@ -1,0 +1,272 @@
+{
+  "item_id": "ab60f9a8-41a5-487f-bb4f-e21cb3d04bc3",
+  "segment_id": "europarl-07e9c46bedd9",
+  "source_text": "I would like your advice about Rule 143 concerning inadmissibility.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Je voudrais solliciter votre avis sur la règle 143  laquelle concerne l'admissibilité.",
+  "reference_translation": "Je voudrais vous demander un conseil au sujet de l'article 143, qui concerne l'irrecevabilité.",
+  "mt_system": "claude",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "b64f1db1-71fb-4d77-8787-035ffe9958dd",
+      "span_start": 77,
+      "span_end": 92,
+      "original_text": "l'irrecevabilité",
+      "injected_text": "la recevabilité",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "negation",
+      "severity": "critical",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "severity_range": [
+        "critical"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'inadmissibility' as 'recevabilité', overlooking the crucial negation prefix and thus rendering the opposite meaning.",
+        "actual_meaning": "The source is specifically asking about Rule 143 regarding cases or items that are not admissible, i.e., 'inadmissibility'.",
+        "reader_impact": "A reader would misunderstand the legal context, believing the rule concerns what is admissible rather than what is not, which could lead to serious misinterpretation of the legal advice or decision.",
+        "correction_rationale": "The correct translation, 'l'irrecevabilité', preserves the negation from the source and accurately conveys that the rule deals with inadmissibility, maintaining the intended legal meaning."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often miss negation, like forgetting a 'not' or a negative prefix, because they focus on matching big chunks of meaning and sometimes skip over small but crucial words. It's a bit like a person reading too fast and missing the word 'not' in a sentence, leading to the opposite meaning.",
+        "architectural_cause": "The system learns by looking at lots of examples and tries to predict what comes next, but it doesn't always pay special attention to tiny words like 'not' that can change the whole meaning. Since these words are short and sometimes easy to overlook, the system might accidentally drop them if it thinks the rest of the sentence makes sense without them.",
+        "pattern_generalization": "Similar errors often happen in sentences where a single word flips the meaning, especially in legal, medical, or technical texts where precision is vital. Be extra careful when translating sentences with words like 'not,' 'never,' 'without,' or any prefixes that indicate negation.",
+        "mt_system_specific": "General-purpose LLMs like Claude may make this mistake more often than dedicated MT systems, because they aren't as strictly trained on translation accuracy and may pay less attention to small but important words."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je voudrais vous demander un conseil au sujet de l'article 143, qui concerne <MISTRANSLATION type=\"negation\" severity=\"critical\" tom=\"1st_machine\" desc=\"Negation prefix omitted, reversing legal meaning\">la recevabilité</MISTRANSLATION>.",
+      "brief_explanation": "Negation prefix omitted, reversing legal meaning"
+    },
+    {
+      "error_id": "396e9ff7-20fb-4988-bea6-ddafab2357b4",
+      "span_start": 37,
+      "span_end": 62,
+      "original_text": "au sujet de l'article 143",
+      "injected_text": "de l'article 143 au sujet",
+      "primary_tag": "GRAMMAR",
+      "error_type": "word_order",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely followed the English word order too closely, placing 'au sujet' at the end of the phrase to mirror 'about Rule 143.'",
+        "actual_meaning": "The source means the speaker wants advice regarding Rule 143, specifically about its inadmissibility aspect.",
+        "reader_impact": "A French reader would find 'de l'article 143 au sujet' confusing and ungrammatical, making it unclear what is being discussed or referenced.",
+        "correction_rationale": "In French, the prepositional phrase 'au sujet de l'article 143' must come together at the beginning to clearly indicate the topic, ensuring grammatical correctness and clarity."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often get word order wrong because they're like someone translating word-by-word, not always knowing the natural flow of the target language. They might mix up the order, especially when languages have very different sentence structures, like German and English.",
+        "architectural_cause": "Internally, the system looks for patterns in huge amounts of text, but doesn't always 'understand' grammar rules the way a human does. It sometimes strings words together in the most statistically likely order, which isn't always correct for every sentence.",
+        "pattern_generalization": "You’ll often see these errors when the source and target languages arrange subjects, verbs, and objects differently, or with long sentences that have lots of clauses.",
+        "mt_system_specific": "General LLMs like Claude may make more word order mistakes than systems trained specifically for translation, since they aren't as deeply focused on the rules of each language pair."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je voudrais vous demander un conseil <GRAMMAR type=\"word_order\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">de l'article 143 au sujet</GRAMMAR>, qui concerne la recevabilité.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "b1c3491e-4151-4069-8f60-e7d4775805df",
+      "span_start": 40,
+      "span_end": 49,
+      "original_text": "article 143",
+      "injected_text": "Règle 143",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "overly_literal",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [
+        "S6"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system recognized 'Rule 143' as a literal phrase and translated 'Rule' to 'Règle,' following a word-for-word approach without considering legal terminology.",
+        "actual_meaning": "In this context, 'Rule 143' refers to a specific article or provision within a legal or regulatory document, which is conventionally translated as 'article 143' in French legal language.",
+        "reader_impact": "A French reader would interpret 'Règle 143' as a generic or informal rule, rather than an official legal article, leading to confusion about the document's formality and authority.",
+        "correction_rationale": "The term 'article' is the standard and precise term used in French legal documents to refer to numbered provisions, ensuring clarity and proper reference to the legal text."
+      },
+      "system_behavior": {
+        "error_mechanism": "Machine translation systems often translate word-for-word, like someone following a recipe without tasting the food. They focus on matching words and phrases directly, sometimes missing the intended meaning or natural flow of the sentence.",
+        "architectural_cause": "Internally, these systems learn from huge amounts of example sentences, picking up patterns of how words are usually paired. However, they don't truly 'understand' context or idioms, so they may stick too closely to the original wording instead of choosing a more natural or idiomatic translation.",
+        "pattern_generalization": "You can expect overly literal errors with idioms, sayings, or phrases that don't translate directly, and when the source has unusual wording. Watch for these especially in creative or informal texts.",
+        "mt_system_specific": "Large language models like Claude may be more prone to literal translations in unfamiliar topics, while dedicated MT systems sometimes handle common phrases better due to focused training."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je voudrais vous demander un conseil de <MISTRANSLATION type=\"overly_literal\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">Règle 143</MISTRANSLATION> au sujet, qui concerne la recevabilité.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "55340935-2f35-4305-a944-9429d82b9fd6",
+      "span_start": 0,
+      "span_end": 95,
+      "original_text": "Je voudrais vous demander un conseil de Règle 143 au sujet, qui concerne la recevabilité.",
+      "injected_text": "Je voudrais solliciter votre avis sur la règle 143 à propos, laquelle concerne l'admissibilité.",
+      "primary_tag": "STYLE",
+      "error_type": "awkward",
+      "severity": "minor",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system interpreted 'I would like your advice' as 'Je voudrais solliciter votre avis' and rendered 'about Rule 143 concerning inadmissibility' as 'sur la règle 143 à propos, laquelle concerne l'admissibilité,' focusing on literal word choices and structure.",
+        "actual_meaning": "The source is a polite request for advice specifically regarding Rule 143, which deals with the concept of inadmissibility.",
+        "reader_impact": "A French reader may find the phrasing awkward and less formal, and may be confused by 'admissibilité' instead of 'irrecevabilité,' possibly misunderstanding the legal nuance.",
+        "correction_rationale": "The corrected translation uses standard legal and polite French ('demander un conseil au sujet de l'article 143, qui concerne l'irrecevabilité'), ensuring clarity, accurate terminology, and natural style for the target audience."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often produce awkward sentences because they focus on putting words together in ways they've seen before, like someone piecing together a puzzle without always checking if the final picture looks natural. They might choose phrases that technically fit but sound odd to a native speaker, much like a non-native speaker who follows grammar rules but misses the flow of everyday conversation.",
+        "architectural_cause": "Internally, these systems work by predicting the next most likely word or phrase based on huge amounts of previous examples. However, they don't truly 'feel' the language, so they can miss the subtle rhythm and naturalness that comes from real human experience.",
+        "pattern_generalization": "Students can expect to see awkward phrasing when the source sentence is complex, uses idioms, or when the system hasn't seen similar sentences often in its training data. Pay extra attention to sentences that sound stiff or unnatural, even if they are grammatically correct.",
+        "mt_system_specific": "Dedicated MT systems trained only for translation may produce slightly less awkwardness than general LLMs, as they are more focused on natural-sounding output in the target language."
+      },
+      "technical_explanation": null,
+      "xml_tag": "<STYLE type=\"awkward\" severity=\"minor\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">Je voudrais solliciter votre avis sur la règle 143 à propos, laquelle concerne l'admissibilité.</STYLE>",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "d297e80e-a906-46dc-819c-a2ec8f47209f",
+      "span_start": 51,
+      "span_end": 51,
+      "original_text": "à propos,",
+      "injected_text": "",
+      "primary_tag": "OMISSION",
+      "error_type": "discourse_marker",
+      "severity": "minor",
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [
+        "S7"
+      ],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely considered the discourse marker 'about' as optional or unimportant, so it omitted 'à propos' in the translation.",
+        "actual_meaning": "The source uses 'about' to clearly indicate that the advice sought is specifically regarding Rule 143 and its topic of inadmissibility.",
+        "reader_impact": "Without the discourse marker, the reader may find the sentence abrupt or less clear about the connection between the advice and Rule 143, possibly leading to confusion about the focus of the request.",
+        "correction_rationale": "Including 'à propos' or a similar discourse marker in French accurately conveys the intended relationship between seeking advice and the specific subject, maintaining clarity and cohesion in the translation."
+      },
+      "system_behavior": {
+        "error_mechanism": "Machine translation systems often skip small connecting words, like 'however' or 'therefore,' because they focus on the main meaning and sometimes treat these words as less important, like someone retelling a story and leaving out the 'by the way' parts. These little words help sentences flow, but the system may overlook them if it thinks they don’t change the core message.",
+        "architectural_cause": "Inside, the system looks for patterns and matches words or phrases that carry the most information. Since discourse markers are short and can seem less essential, the system may not always recognize their role in guiding the reader through the text’s logic.",
+        "pattern_generalization": "You’ll often see this mistake when the original sentence uses words that link ideas or show contrast, especially at the start of sentences. Pay extra attention when translating texts with lots of connecting phrases or logical transitions.",
+        "mt_system_specific": "LLMs like Claude may be even more likely to skip these words than dedicated MT systems, because they focus on overall meaning rather than precise sentence structure."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je voudrais solliciter votre avis sur la règle 143 <OMISSION type=\"discourse_marker\" severity=\"minor\" tom=\"1st_author\" desc=\"5-15 word explanation\"></OMISSION> laquelle concerne l'admissibilité.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "analyst",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 5,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely interpreted 'inadmissibility' as 'recevabilité', overlooking the crucial negation prefix and thus rendering the opposite meaning.",
+      "actual_meaning": "The source is specifically asking about Rule 143 regarding cases or items that are not admissible, i.e., 'inadmissibility'.",
+      "reader_impact": "A reader would misunderstand the legal context, believing the rule concerns what is admissible rather than what is not, which could lead to serious misinterpretation of the legal advice or decision.",
+      "correction_rationale": "The correct translation, 'l'irrecevabilité', preserves the negation from the source and accurately conveys that the rule deals with inadmissibility, maintaining the intended legal meaning."
+    },
+    {
+      "mt_interpretation": "The MT system likely followed the English word order too closely, placing 'au sujet' at the end of the phrase to mirror 'about Rule 143.'",
+      "actual_meaning": "The source means the speaker wants advice regarding Rule 143, specifically about its inadmissibility aspect.",
+      "reader_impact": "A French reader would find 'de l'article 143 au sujet' confusing and ungrammatical, making it unclear what is being discussed or referenced.",
+      "correction_rationale": "In French, the prepositional phrase 'au sujet de l'article 143' must come together at the beginning to clearly indicate the topic, ensuring grammatical correctness and clarity."
+    },
+    {
+      "mt_interpretation": "The MT system recognized 'Rule 143' as a literal phrase and translated 'Rule' to 'Règle,' following a word-for-word approach without considering legal terminology.",
+      "actual_meaning": "In this context, 'Rule 143' refers to a specific article or provision within a legal or regulatory document, which is conventionally translated as 'article 143' in French legal language.",
+      "reader_impact": "A French reader would interpret 'Règle 143' as a generic or informal rule, rather than an official legal article, leading to confusion about the document's formality and authority.",
+      "correction_rationale": "The term 'article' is the standard and precise term used in French legal documents to refer to numbered provisions, ensuring clarity and proper reference to the legal text."
+    },
+    {
+      "mt_interpretation": "The MT system interpreted 'I would like your advice' as 'Je voudrais solliciter votre avis' and rendered 'about Rule 143 concerning inadmissibility' as 'sur la règle 143 à propos, laquelle concerne l'admissibilité,' focusing on literal word choices and structure.",
+      "actual_meaning": "The source is a polite request for advice specifically regarding Rule 143, which deals with the concept of inadmissibility.",
+      "reader_impact": "A French reader may find the phrasing awkward and less formal, and may be confused by 'admissibilité' instead of 'irrecevabilité,' possibly misunderstanding the legal nuance.",
+      "correction_rationale": "The corrected translation uses standard legal and polite French ('demander un conseil au sujet de l'article 143, qui concerne l'irrecevabilité'), ensuring clarity, accurate terminology, and natural style for the target audience."
+    },
+    {
+      "mt_interpretation": "The MT system likely considered the discourse marker 'about' as optional or unimportant, so it omitted 'à propos' in the translation.",
+      "actual_meaning": "The source uses 'about' to clearly indicate that the advice sought is specifically regarding Rule 143 and its topic of inadmissibility.",
+      "reader_impact": "Without the discourse marker, the reader may find the sentence abrupt or less clear about the connection between the advice and Rule 143, possibly leading to confusion about the focus of the request.",
+      "correction_rationale": "Including 'à propos' or a similar discourse marker in French accurately conveys the intended relationship between seeking advice and the specific subject, maintaining clarity and cohesion in the translation."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often miss negation, like forgetting a 'not' or a negative prefix, because they focus on matching big chunks of meaning and sometimes skip over small but crucial words. It's a bit like a person reading too fast and missing the word 'not' in a sentence, leading to the opposite meaning.",
+      "architectural_cause": "The system learns by looking at lots of examples and tries to predict what comes next, but it doesn't always pay special attention to tiny words like 'not' that can change the whole meaning. Since these words are short and sometimes easy to overlook, the system might accidentally drop them if it thinks the rest of the sentence makes sense without them.",
+      "pattern_generalization": "Similar errors often happen in sentences where a single word flips the meaning, especially in legal, medical, or technical texts where precision is vital. Be extra careful when translating sentences with words like 'not,' 'never,' 'without,' or any prefixes that indicate negation.",
+      "mt_system_specific": "General-purpose LLMs like Claude may make this mistake more often than dedicated MT systems, because they aren't as strictly trained on translation accuracy and may pay less attention to small but important words."
+    },
+    {
+      "error_mechanism": "MT systems often get word order wrong because they're like someone translating word-by-word, not always knowing the natural flow of the target language. They might mix up the order, especially when languages have very different sentence structures, like German and English.",
+      "architectural_cause": "Internally, the system looks for patterns in huge amounts of text, but doesn't always 'understand' grammar rules the way a human does. It sometimes strings words together in the most statistically likely order, which isn't always correct for every sentence.",
+      "pattern_generalization": "You’ll often see these errors when the source and target languages arrange subjects, verbs, and objects differently, or with long sentences that have lots of clauses.",
+      "mt_system_specific": "General LLMs like Claude may make more word order mistakes than systems trained specifically for translation, since they aren't as deeply focused on the rules of each language pair."
+    },
+    {
+      "error_mechanism": "Machine translation systems often translate word-for-word, like someone following a recipe without tasting the food. They focus on matching words and phrases directly, sometimes missing the intended meaning or natural flow of the sentence.",
+      "architectural_cause": "Internally, these systems learn from huge amounts of example sentences, picking up patterns of how words are usually paired. However, they don't truly 'understand' context or idioms, so they may stick too closely to the original wording instead of choosing a more natural or idiomatic translation.",
+      "pattern_generalization": "You can expect overly literal errors with idioms, sayings, or phrases that don't translate directly, and when the source has unusual wording. Watch for these especially in creative or informal texts.",
+      "mt_system_specific": "Large language models like Claude may be more prone to literal translations in unfamiliar topics, while dedicated MT systems sometimes handle common phrases better due to focused training."
+    },
+    {
+      "error_mechanism": "MT systems often produce awkward sentences because they focus on putting words together in ways they've seen before, like someone piecing together a puzzle without always checking if the final picture looks natural. They might choose phrases that technically fit but sound odd to a native speaker, much like a non-native speaker who follows grammar rules but misses the flow of everyday conversation.",
+      "architectural_cause": "Internally, these systems work by predicting the next most likely word or phrase based on huge amounts of previous examples. However, they don't truly 'feel' the language, so they can miss the subtle rhythm and naturalness that comes from real human experience.",
+      "pattern_generalization": "Students can expect to see awkward phrasing when the source sentence is complex, uses idioms, or when the system hasn't seen similar sentences often in its training data. Pay extra attention to sentences that sound stiff or unnatural, even if they are grammatically correct.",
+      "mt_system_specific": "Dedicated MT systems trained only for translation may produce slightly less awkwardness than general LLMs, as they are more focused on natural-sounding output in the target language."
+    },
+    {
+      "error_mechanism": "Machine translation systems often skip small connecting words, like 'however' or 'therefore,' because they focus on the main meaning and sometimes treat these words as less important, like someone retelling a story and leaving out the 'by the way' parts. These little words help sentences flow, but the system may overlook them if it thinks they don’t change the core message.",
+      "architectural_cause": "Inside, the system looks for patterns and matches words or phrases that carry the most information. Since discourse markers are short and can seem less essential, the system may not always recognize their role in guiding the reader through the text’s logic.",
+      "pattern_generalization": "You’ll often see this mistake when the original sentence uses words that link ideas or show contrast, especially at the start of sentences. Pay extra attention when translating texts with lots of connecting phrases or logical transitions.",
+      "mt_system_specific": "LLMs like Claude may be even more likely to skip these words than dedicated MT systems, because they focus on overall meaning rather than precise sentence structure."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "analyst",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

@@ -7,6 +7,7 @@ Supports L0-L3 scaffolding levels, evaluation and post-editing modes.
 
 import json
 import time
+from pathlib import Path
 from typing import Any
 from uuid import uuid4
 
@@ -264,6 +265,14 @@ def _build_feedback_html(feedback_data: dict) -> str:
     return html
 
 
+_BADGES_DIR = str(Path(__file__).resolve().parent.parent.parent.parent / "assets" / "badges")
+
+
+def _badge_path(filename: str) -> str:
+    """Return the Gradio file-serving URL for a badge image."""
+    return f"file={_BADGES_DIR}/{filename}"
+
+
 def _build_badge_collection_html(badge_data: dict) -> str:
     """Build HTML for the Badge Collection panel in My Progress."""
     if not badge_data:
@@ -277,10 +286,10 @@ def _build_badge_collection_html(badge_data: dict) -> str:
     html += '<h4 style="color:#6b7280;font-size:14px;text-transform:uppercase;letter-spacing:1px;">Progression</h4>'
     html += '<div style="display:flex;gap:12px;flex-wrap:wrap;">'
     prog_icons = {
-        "navigator": "assets/badges/scaffolding_navigator.jpg",
-        "scout": "assets/badges/scaffolding_scout.jpg",
-        "analyst": "assets/badges/scaffolding_analyst.jpg",
-        "expert": "assets/badges/scaffolding_expert.jpg",
+        "navigator": _badge_path("scaffolding_navigator.jpg"),
+        "scout": _badge_path("scaffolding_scout.jpg"),
+        "analyst": _badge_path("scaffolding_analyst.jpg"),
+        "expert": _badge_path("scaffolding_expert.jpg"),
     }
     prog_colors = {"navigator": "#E69F00", "scout": "#009E73", "analyst": "#0072B2", "expert": "#D4AF37"}
     for badge in badge_data.get("progression", []):
@@ -295,7 +304,7 @@ def _build_badge_collection_html(badge_data: dict) -> str:
         html += f'''
         <div style="text-align:center;width:72px;" title="{name}{" — Earned!" if earned else " — Locked"}">
             <div style="position:relative;width:64px;height:64px;margin:0 auto 4px;">
-                <img src="file/{prog_icons.get(bid, "")}" style="width:64px;height:64px;border-radius:50%;
+                <img src="{prog_icons.get(bid, "")}" style="width:64px;height:64px;border-radius:50%;
                     border:3px solid {border_color};opacity:{opacity};filter:{filter_css};object-fit:cover;" />
                 {lock_icon}
             </div>
@@ -309,6 +318,19 @@ def _build_badge_collection_html(badge_data: dict) -> str:
     html += '<div style="display:flex;gap:12px;flex-wrap:wrap;">'
     tier_colors = {"bronze": "#B87333", "silver": "#C0C0C0", "gold": "#D4AF37"}
     tier_labels = {"bronze": "B", "silver": "S", "gold": "G"}
+    # Map badge_id → file name prefix (without tier suffix)
+    spec_file_map = {
+        "accuracy_hunter": "accuracy",
+        "gap_finder": "gapfinder",
+        "surplus_spotter": "surplusspotter",
+        "code_switcher": "codeswitcher",
+        "grammar_guard": "grammarguard",
+        "sharp_eye": "sharpeye",
+        "punctuation_pro": "punctuationpro",
+        "term_specialist": "termspecialist",
+        "style_sentinel": "stylesentinel",
+        "locale_expert": "localeexpert",
+    }
     for badge in badge_data.get("specialisation", []):
         bid = badge["badge_id"]
         name = badge["display_name"]
@@ -319,7 +341,8 @@ def _build_badge_collection_html(badge_data: dict) -> str:
 
         # Determine icon path based on tier
         icon_tier = highest if highest else "bronze"
-        icon_path = f"assets/badges/specialisation_{bid.replace('_', '')}_{icon_tier}.jpg"
+        file_prefix = spec_file_map.get(bid, bid.replace("_", ""))
+        icon_path = _badge_path(f"specialisation_{file_prefix}_{icon_tier}.jpg")
 
         earned = highest is not None
         border_color = tier_colors.get(highest, "#4A4A4A") if earned else "#4A4A4A"
@@ -348,7 +371,7 @@ def _build_badge_collection_html(badge_data: dict) -> str:
         html += f'''
         <div style="text-align:center;width:72px;" title="{tooltip}">
             <div style="position:relative;width:64px;height:64px;margin:0 auto 4px;">
-                <img src="file/{icon_path}" style="width:64px;height:64px;border-radius:50%;
+                <img src="{icon_path}" style="width:64px;height:64px;border-radius:50%;
                     border:3px solid {border_color};opacity:{opacity};filter:{filter_css};object-fit:cover;" />
                 {lock_icon}{tier_badge}
             </div>
@@ -362,9 +385,9 @@ def _build_badge_collection_html(badge_data: dict) -> str:
     html += '<h4 style="color:#6b7280;font-size:14px;text-transform:uppercase;letter-spacing:1px;">Achievements</h4>'
     html += '<div style="display:flex;gap:12px;flex-wrap:wrap;">'
     behav_icons = {
-        "false_positive_discipline": "assets/badges/behaviour_falsepositivediscipline.jpg",
-        "clean_sheet": "assets/badges/behaviour_cleansheet.jpg",
-        "trap_detector": "assets/badges/behaviour_trapdetector.jpg",
+        "false_positive_discipline": _badge_path("behaviour_falsepositivediscipline.jpg"),
+        "clean_sheet": _badge_path("behaviour_cleansheet.jpg"),
+        "trap_detector": _badge_path("behaviour_trapdetector.jpg"),
     }
     behav_colors = {"false_positive_discipline": "#CC79A7", "clean_sheet": "#D4AF37", "trap_detector": "#D55E00"}
     for badge in badge_data.get("behaviour", []):
@@ -391,7 +414,7 @@ def _build_badge_collection_html(badge_data: dict) -> str:
         html += f'''
         <div style="text-align:center;width:72px;" title="{name}{" — Earned!" if earned else " — " + badge.get("description", "")}">
             <div style="position:relative;width:64px;height:64px;margin:0 auto 4px;">
-                <img src="file/{behav_icons.get(bid, "")}" style="width:64px;height:64px;border-radius:50%;
+                <img src="{behav_icons.get(bid, "")}" style="width:64px;height:64px;border-radius:50%;
                     border:3px solid {border_color};opacity:{opacity};filter:{filter_css};object-fit:cover;" />
                 {lock_icon}{counter}
             </div>
@@ -441,7 +464,7 @@ def _build_skill_radar_html(skill_data: dict, current_level: str = "navigator") 
     mastery_r = max_r * 0.98
 
     # Build SVG
-    svg = f'<svg viewBox="0 0 300 300" width="300" height="300" xmlns="http://www.w3.org/2000/svg">'
+    svg = f'<svg viewBox="-50 -30 400 360" width="400" height="360" xmlns="http://www.w3.org/2000/svg">'
 
     # Background grid circles
     for frac in [0.25, 0.5, 0.75, 1.0]:
@@ -459,14 +482,14 @@ def _build_skill_radar_html(skill_data: dict, current_level: str = "navigator") 
         svg += f'<line x1="{cx}" y1="{cy}" x2="{x_end}" y2="{y_end}" stroke="#d1d5db" stroke-width="0.5"/>'
 
         # Label position (slightly beyond the axis)
-        lx = cx + (max_r + 22) * _math.cos(angle)
-        ly = cy + (max_r + 22) * _math.sin(angle)
+        lx = cx + (max_r + 30) * _math.cos(angle)
+        ly = cy + (max_r + 30) * _math.sin(angle)
         anchor = "middle"
         if _math.cos(angle) > 0.3:
             anchor = "start"
         elif _math.cos(angle) < -0.3:
             anchor = "end"
-        svg += f'<text x="{lx}" y="{ly}" text-anchor="{anchor}" dominant-baseline="central" font-size="8" fill="#6b7280" font-family="system-ui">{skill_id}</text>'
+        svg += f'<text x="{lx}" y="{ly}" text-anchor="{anchor}" dominant-baseline="central" font-size="8" fill="#6b7280" font-family="system-ui">{skill_id} {label}</text>'
 
     # Data polygon
     points = []
@@ -542,18 +565,26 @@ def _build_badge_notification_html(badge_result: dict) -> str:
         # Try to find badge icon
         icon_path = ""
         if category == "progression":
-            icon_path = f"assets/badges/scaffolding_{badge['badge_id']}.jpg"
+            icon_path = _badge_path(f"scaffolding_{badge['badge_id']}.jpg")
         elif category == "specialisation":
-            icon_path = f"assets/badges/specialisation_{badge['badge_id'].replace('_', '')}_{tier}.jpg"
+            spec_file_map = {
+                "accuracy_hunter": "accuracy", "gap_finder": "gapfinder",
+                "surplus_spotter": "surplusspotter", "code_switcher": "codeswitcher",
+                "grammar_guard": "grammarguard", "sharp_eye": "sharpeye",
+                "punctuation_pro": "punctuationpro", "term_specialist": "termspecialist",
+                "style_sentinel": "stylesentinel", "locale_expert": "localeexpert",
+            }
+            prefix = spec_file_map.get(badge["badge_id"], badge["badge_id"].replace("_", ""))
+            icon_path = _badge_path(f"specialisation_{prefix}_{tier}.jpg")
         elif category == "behaviour":
-            icon_path = f"assets/badges/behaviour_{badge['badge_id'].replace('_', '')}.jpg"
+            icon_path = _badge_path(f"behaviour_{badge['badge_id'].replace('_', '')}.jpg")
 
         html += f'''
         <div style="background:linear-gradient(135deg,#1B2838,#2d3748);border:2px solid {tier_color};
             border-radius:12px;padding:16px;margin-top:12px;display:flex;align-items:center;gap:16px;
             animation:badgeFadeIn 0.5s ease-out;">
             <div style="flex-shrink:0;">
-                <img src="file/{icon_path}" style="width:64px;height:64px;border-radius:50%;
+                <img src="{icon_path}" style="width:64px;height:64px;border-radius:50%;
                     border:3px solid {tier_color};object-fit:cover;"
                     onerror="this.style.display='none'" />
             </div>
@@ -706,133 +737,153 @@ def build_student_app() -> gr.Blocks:
                         )
                         next_btn = gr.Button("Next >", size="sm", scale=1)
 
-                    # Phase indicator
-                    phase_html = gr.HTML(
-                        '<div class="phase-indicator" style="text-align:center;">'
-                        '<strong style="color:#3b82f6;">1 Annotate</strong> -> '
-                        '2 Justify -> 3 Feedback</div>'
-                    )
+                    # Phase indicator (kept as hidden state for handler compatibility)
+                    phase_html = gr.HTML("", visible=False)
 
                     # Task description
                     task_desc = gr.Markdown("")
 
-                    # Source text
-                    gr.Markdown("### Source Text")
-                    source_html = gr.HTML("")
+                    # Source + Translation side by side
+                    with gr.Row():
+                        with gr.Column():
+                            gr.Markdown("### Source Text")
+                            source_html = gr.HTML("")
+                        with gr.Column():
+                            gr.Markdown("### Translation")
+                            translation_html = gr.HTML("")
 
-                    # Translation text with span selector
-                    gr.Markdown("### Translation")
-                    translation_html = gr.HTML("")
-
-                    # Hidden textbox for span selection JS → Python communication
+                    # Textbox for span selection JS → Python communication
                     span_output = gr.Textbox(
-                        visible=False, elem_id="span-output-main", label="span_output"
+                        elem_id="span-output-main",
+                        label="Selected text (drag and drop from translation, or type the error text)",
+                        lines=1, max_lines=1, interactive=True,
+                        placeholder="Drag text from the translation here, or type the error text...",
                     )
 
                     # Annotation chips
                     chips_html = gr.HTML("")
 
-                    # ── Error Types Guide (collapsible) ──────────────────
-                    with gr.Accordion("Error Types Guide", open=False):
-                        gr.HTML(_build_error_guide_html())
+                    # ── Phase panels using Tabs (Gradio 6 compatible) ────
+                    with gr.Tabs(elem_id="phase-tabs") as phase_tabs:
+                        # ── Classification panel (Phase 1) ──────────────
+                        with gr.TabItem("1. Annotate", id=10) as classification_panel:
+                            # Error Types Guide (collapsible)
+                            with gr.Accordion("Error Types Guide", open=False):
+                                gr.HTML(_build_error_guide_html())
 
-                    # ── Classification panel (Phase 1) ───────────────────
-                    with gr.Column(visible=True) as classification_panel:
-                        selection_label = gr.Markdown(
-                            "*Select text in the translation above to mark an error.*"
-                        )
+                            selection_label = gr.Markdown(
+                                "*Drag and drop text from the translation into the field above, then classify the error.*"
+                            )
 
-                        # Category pills
-                        gr.Markdown("**Error Category:**")
-                        with gr.Row():
-                            cat_buttons = {}
+                            # Category pills with colored dots
+                            gr.Markdown("**Error Category:**")
+                            pill_css_parts = []
                             for tag in STUDENT_PILL_CATEGORIES:
-                                label = TAG_LABELS.get(tag, tag)
-                                cat_buttons[tag] = gr.Button(
-                                    f"● {label}",
-                                    size="sm",
-                                    elem_classes=["pill-btn"],
+                                dot_color = TAG_COLORS.get(tag, {}).get("dot", "#666")
+                                safe_id = tag.replace(".", "_").lower() if isinstance(tag, str) else str(tag).replace(".", "_").lower()
+                                pill_css_parts.append(
+                                    f'#pill-{safe_id} {{ border-left: 4px solid {dot_color} !important; }}'
+                                )
+                            gr.HTML(f'<style>{"".join(pill_css_parts)}</style>')
+
+                            with gr.Row():
+                                cat_buttons = {}
+                                for tag in STUDENT_PILL_CATEGORIES:
+                                    label = TAG_LABELS.get(tag, tag)
+                                    dot_color = TAG_COLORS.get(tag, {}).get("dot", "#666")
+                                    safe_id = tag.replace(".", "_").lower() if isinstance(tag, str) else str(tag).replace(".", "_").lower()
+                                    cat_buttons[tag] = gr.Button(
+                                        f"● {label}",
+                                        size="sm",
+                                        elem_classes=["pill-btn"],
+                                        elem_id=f"pill-{safe_id}",
+                                    )
+
+                            selected_category = gr.State(None)
+
+                            subtype_label = gr.Markdown("", visible=False)
+                            subtype_dropdown = gr.Dropdown(
+                                label="Subtype", choices=[], visible=False, interactive=True
+                            )
+
+                            severity_radio = gr.Radio(
+                                choices=["minor", "major", "critical"],
+                                label="Severity",
+                                value="major",
+                            )
+
+                            with gr.Row():
+                                add_error_btn = gr.Button("Add Error", variant="primary")
+                                cancel_btn = gr.Button("Cancel")
+
+                            errors_summary_html = gr.HTML(
+                                '<div style="color:#9ca3af;font-size:14px;padding:8px 0;">'
+                                'No errors marked yet. Select text above to annotate.</div>'
+                            )
+
+                            with gr.Row():
+                                proceed_justify_btn = gr.Button(
+                                    "Proceed to Justification ->",
+                                    variant="primary",
                                 )
 
-                        selected_category = gr.State(None)
-
-                        # Subtypes (shown after category selection)
-                        subtype_label = gr.Markdown("", visible=False)
-                        subtype_dropdown = gr.Dropdown(
-                            label="Subtype", choices=[], visible=False, interactive=True
-                        )
-
-                        # Severity
-                        severity_radio = gr.Radio(
-                            choices=["minor", "major", "critical"],
-                            label="Severity",
-                            value="major",
-                        )
-
-                        with gr.Row():
-                            add_error_btn = gr.Button("Add Error", variant="primary")
-                            cancel_btn = gr.Button("Cancel")
-
-                        with gr.Row():
-                            proceed_justify_btn = gr.Button(
-                                "Proceed to Justification ->",
-                                variant="primary",
+                        # ── Justification panel (Phase 2) ───────────────
+                        with gr.TabItem("2. Justify", id=11) as justification_panel:
+                            gr.HTML(
+                                '<div style="background:#eff6ff;border:2px solid #3b82f6;'
+                                'border-radius:8px;padding:16px;margin-bottom:12px;">'
+                                '<h3 style="margin:0 0 8px 0;color:#1d4ed8;">Justify Your Reasoning</h3>'
+                                '<p style="margin:0;color:#374151;">'
+                                'Before seeing the feedback, explain your reasoning for each annotation.</p>'
+                                '</div>'
                             )
 
-                    # ── Justification panel (Phase 2) ────────────────────
-                    with gr.Column(visible=False) as justification_panel:
-                        gr.Markdown("### Justify Your Reasoning")
-                        gr.Markdown(
-                            "*Before seeing the feedback, explain your reasoning for each annotation.*"
-                        )
+                            # Mode A: Free-text
+                            with gr.Column(visible=True) as justify_freetext:
+                                justify_text = gr.Textbox(
+                                    label="Explain your reasoning",
+                                    lines=4,
+                                    placeholder=(
+                                        "What did the MT system misunderstand? "
+                                        "What was the author's intent? "
+                                        "How would a reader misinterpret this?"
+                                    ),
+                                )
 
-                        # Mode A: Free-text
-                        with gr.Column(visible=True) as justify_freetext:
-                            justify_text = gr.Textbox(
-                                label="Explain your reasoning",
-                                lines=4,
-                                placeholder=(
-                                    "What did the MT system misunderstand? "
-                                    "What was the author's intent? "
-                                    "How would a reader misinterpret this?"
-                                ),
+                            # Mode B: Structured ToM
+                            with gr.Column(visible=False) as justify_structured:
+                                justify_mt = gr.Textbox(
+                                    label="What did the MT system misunderstand?",
+                                    lines=2,
+                                    placeholder="The MT system likely interpreted...",
+                                )
+                                justify_author = gr.Textbox(
+                                    label="What was the author's actual intent?",
+                                    lines=2,
+                                    placeholder="The author meant...",
+                                )
+                                justify_reader = gr.Textbox(
+                                    label="How would a reader misinterpret this?",
+                                    lines=2,
+                                    placeholder="A reader would think...",
+                                )
+
+                            # Confidence rating (spec requirement)
+                            confidence_slider = gr.Slider(
+                                minimum=1, maximum=5, step=1, value=3,
+                                label="How confident are you in your annotations? (1 = not at all, 5 = very confident)",
                             )
 
-                        # Mode B: Structured ToM
-                        with gr.Column(visible=False) as justify_structured:
-                            justify_mt = gr.Textbox(
-                                label="What did the MT system misunderstand?",
-                                lines=2,
-                                placeholder="The MT system likely interpreted...",
-                            )
-                            justify_author = gr.Textbox(
-                                label="What was the author's actual intent?",
-                                lines=2,
-                                placeholder="The author meant...",
-                            )
-                            justify_reader = gr.Textbox(
-                                label="How would a reader misinterpret this?",
-                                lines=2,
-                                placeholder="A reader would think...",
+                            submit_justify_btn = gr.Button(
+                                "Submit & See Feedback", variant="primary"
                             )
 
-                        # Confidence rating (spec requirement)
-                        confidence_slider = gr.Slider(
-                            minimum=1, maximum=5, step=1, value=3,
-                            label="How confident are you in your annotations? (1 = not at all, 5 = very confident)",
-                        )
-
-                        submit_justify_btn = gr.Button(
-                            "Submit & See Feedback", variant="primary"
-                        )
-
-                    # ── Feedback panel (Phase 3) ─────────────────────────
-                    with gr.Column(visible=False) as feedback_panel:
-                        gr.Markdown("### Feedback")
-                        feedback_html = gr.HTML("")
-                        next_item_btn = gr.Button(
-                            "Next Item ->", variant="primary"
-                        )
+                        # ── Feedback panel (Phase 3) ─────────────────
+                        with gr.TabItem("3. Feedback", id=12) as feedback_panel:
+                            feedback_html = gr.HTML("")
+                            next_item_btn = gr.Button(
+                                "Next Item ->", variant="primary"
+                            )
 
                     # ── Post-editing panel ───────────────────────────────
                     with gr.Column(visible=False) as pe_panel:
@@ -983,7 +1034,7 @@ def build_student_app() -> gr.Blocks:
         def handle_start_exercise(selected_json, student_info):
             """Start or continue an exercise."""
             if not selected_json:
-                return [gr.update()] * 19
+                return [gr.update()] * 18
 
             data = json.loads(selected_json)
             assignment = data["assignment"]
@@ -992,7 +1043,7 @@ def build_student_app() -> gr.Blocks:
             item_ids = exercise.get("item_ids", [])
 
             if not item_ids:
-                return [gr.update()] * 19
+                return [gr.update()] * 18
 
             # Load the current item
             try:
@@ -1001,7 +1052,7 @@ def build_student_app() -> gr.Blocks:
                 item = None
 
             if not item:
-                return [gr.update()] * 19
+                return [gr.update()] * 18
 
             # Update assignment status
             if assignment["status"] == "not_started":
@@ -1023,17 +1074,18 @@ def build_student_app() -> gr.Blocks:
                 ),
                 "scout": (
                     "Approximate error regions are highlighted in yellow. Within each region, "
-                    "**select the exact error span** by clicking and dragging. Then classify the "
-                    "error type, assign a severity, and explain your reasoning."
+                    "**drag and drop the exact error text** into the 'Selected text' field below. "
+                    "Then classify the error type, assign a severity, and explain your reasoning."
                 ),
                 "analyst": (
-                    "Read the source text and translation carefully. **Select any text you believe "
-                    "contains an error** by clicking and dragging. Classify each error by type and "
-                    "severity, then explain your reasoning."
+                    "Read the source text and translation carefully. **Drag and drop any text you "
+                    "believe contains an error** from the translation into the 'Selected text' field "
+                    "below. Classify each error by type and severity, then explain your reasoning."
                 ),
                 "expert": (
-                    "Evaluate this translation independently. Note: some segments may be error-free "
-                    "— marking a correct segment as erroneous counts against your score."
+                    "Evaluate this translation independently. **Drag and drop suspected errors** from "
+                    "the translation into the 'Selected text' field. Note: some segments may be "
+                    "error-free — marking a correct segment as erroneous counts against your score."
                 ),
             }
             if mode == "postediting":
@@ -1117,41 +1169,40 @@ def build_student_app() -> gr.Blocks:
                 gr.update(value=progress),  # progress_html
                 [],  # annotations_state reset
                 gr.update(value=""),  # chips_html
-                gr.update(visible=not show_pe),  # classification_panel
-                gr.update(visible=False),  # justification_panel
-                gr.update(visible=False),  # feedback_panel
+                gr.update(selected=10),  # phase_tabs → Annotate tab
                 gr.update(visible=show_pe),  # pe_panel
                 gr.update(value=presented_text if show_pe else ""),  # pe_textbox
                 "annotate",  # current_phase
                 time.time(),  # item_start_time
+                gr.update(value=_build_errors_summary([])),  # errors_summary_html
             )
 
         def handle_span_selection(span_data, annotations, current_item):
             """Handle text selection from the span selector JS."""
             if not span_data:
-                return annotations, gr.update(), gr.update(), gr.update()
+                return annotations, gr.update(), gr.update(), gr.update(), None
 
             try:
                 data = json.loads(span_data)
             except json.JSONDecodeError:
-                return annotations, gr.update(), gr.update(), gr.update()
+                return annotations, gr.update(), gr.update(), gr.update(), None
 
             # Handle annotation removal
             if "remove" in data:
                 ann_id = data["remove"]
                 annotations = [a for a in annotations if a.get("annotation_id") != ann_id]
-                # Re-render
                 text = current_item.get("presented_text", "") if current_item else ""
                 html = render_text_with_highlights(text, annotations)
                 chips = render_annotation_chips(annotations)
-                return annotations, gr.update(value=html), gr.update(value=chips), gr.update()
+                return annotations, gr.update(value=html), gr.update(value=chips), gr.update(), None
 
-            # New selection
+            # New selection — store in current_selection state
             return (
                 annotations,
                 gr.update(),
                 gr.update(),
                 gr.update(value=f'Classify: **"{data.get("text", "")[:50]}"**'),
+                data,  # Store parsed selection in current_selection
             )
 
         def handle_category_click(tag, current_sel, span_data):
@@ -1163,20 +1214,64 @@ def build_student_app() -> gr.Blocks:
                 gr.update(visible=bool(subtypes)),
             )
 
+        def _build_errors_summary(annotations):
+            """Build a visible summary of all annotated errors."""
+            if not annotations:
+                return (
+                    '<div style="color:#9ca3af;font-size:14px;padding:8px 0;">'
+                    'No errors marked yet. Select text above to annotate.</div>'
+                )
+            html = '<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;margin:8px 0;">'
+            html += f'<div style="font-weight:600;margin-bottom:8px;">Annotated Errors ({len(annotations)}):</div>'
+            for i, ann in enumerate(annotations):
+                tag = ann.get("primary_tag", "")
+                label = TAG_LABELS.get(tag, tag)
+                dot_color = TAG_COLORS.get(tag, {}).get("dot", "#666")
+                bg_color = TAG_COLORS.get(tag, {}).get("highlight", "#f0f0f0")
+                span_text = ann.get("span_text", "")[:40]
+                subtype = ann.get("error_type", "")
+                sev = ann.get("severity", "")
+                html += (
+                    f'<div style="display:flex;align-items:center;gap:8px;padding:6px 8px;'
+                    f'margin-bottom:4px;background:{bg_color};border-radius:6px;border-left:4px solid {dot_color};">'
+                    f'<span style="font-weight:600;color:{dot_color};">{i+1}.</span> '
+                    f'<span style="font-weight:600;">{label}</span>'
+                )
+                if subtype:
+                    html += f' <span style="color:#6b7280;">({subtype})</span>'
+                html += f' — <em>"{span_text}"</em>'
+                html += f' <span style="color:#6b7280;margin-left:auto;">[{sev}]</span>'
+                html += '</div>'
+            html += '</div>'
+            return html
+
         def handle_add_error(
-            category, subtype, severity, span_data, annotations, current_item
+            category, subtype, severity, selection_data, span_data, annotations, current_item
         ):
             """Add a classified error annotation."""
-            if not span_data or not category:
-                return annotations, gr.update(), gr.update(), gr.update(), gr.update()
+            no_change = annotations, gr.update(), gr.update(), gr.update(), gr.update(), gr.update()
 
-            try:
-                data = json.loads(span_data)
-            except json.JSONDecodeError:
-                return annotations, gr.update(), gr.update(), gr.update(), gr.update()
+            # Try current_selection state first (from JS span selector)
+            data = selection_data
+            if not data and span_data:
+                # Try parsing as JSON (from JS span selector)
+                try:
+                    parsed = json.loads(span_data)
+                    if "remove" not in parsed and "start" in parsed:
+                        data = parsed
+                except (json.JSONDecodeError, TypeError):
+                    pass
 
-            if "remove" in data:
-                return annotations, gr.update(), gr.update(), gr.update(), gr.update()
+                # Fall back: plain text — find it in the translation
+                if not data and span_data.strip() and current_item:
+                    text = current_item.get("presented_text", "")
+                    search = span_data.strip()
+                    idx = text.find(search)
+                    if idx >= 0:
+                        data = {"start": idx, "end": idx + len(search), "text": search}
+
+            if not data or not category:
+                return no_change
 
             ann = {
                 "annotation_id": str(uuid4()),
@@ -1192,6 +1287,7 @@ def build_student_app() -> gr.Blocks:
             text = current_item.get("presented_text", "") if current_item else ""
             html = render_text_with_highlights(text, annotations)
             chips = render_annotation_chips(annotations)
+            summary = _build_errors_summary(annotations)
 
             return (
                 annotations,
@@ -1199,6 +1295,7 @@ def build_student_app() -> gr.Blocks:
                 gr.update(value=chips),
                 gr.update(value=""),  # Clear span output
                 gr.update(value="*Select more text or proceed to justification.*"),
+                gr.update(value=summary),
             )
 
         def handle_proceed_to_justify(annotations, current_exercise):
@@ -1211,8 +1308,7 @@ def build_student_app() -> gr.Blocks:
             show_struct = just_type in ("structured", "both")
 
             return (
-                gr.update(visible=False),  # hide classification
-                gr.update(visible=True),  # show justification
+                gr.update(selected=11),  # switch phase_tabs to Justify tab
                 gr.update(visible=show_free),
                 gr.update(visible=show_struct),
                 "justify",
@@ -1233,12 +1329,14 @@ def build_student_app() -> gr.Blocks:
         ):
             """Submit annotations + justifications and get feedback."""
             if not current_item:
-                return gr.update(), gr.update(), gr.update(), None, gr.update(), gr.update()
+                return gr.update(), gr.update(), None, gr.update(), gr.update()
 
             mode = current_exercise.get("mode", "evaluation") if current_exercise else "evaluation"
             item_id = current_item.get("item_id", "")
 
             # Build identified errors from annotations
+            confidence_map = {1: "low", 2: "low", 3: "medium", 4: "high", 5: "high"}
+            conf_label = confidence_map.get(int(confidence_val), "medium")
             identified = []
             for ann in annotations:
                 identified.append({
@@ -1246,7 +1344,7 @@ def build_student_app() -> gr.Blocks:
                     "span_end": ann["span_end"],
                     "student_mqm_category": _tag_to_mqm(ann.get("primary_tag", "")),
                     "student_severity": ann.get("severity", "major"),
-                    "confidence": int(confidence_val),
+                    "confidence": conf_label,
                 })
 
             # Calculate elapsed time
@@ -1259,12 +1357,11 @@ def build_student_app() -> gr.Blocks:
                     mode=mode,
                     identified_errors=identified,
                     time_spent_seconds=time_spent,
-                    confidence=int(confidence_val),
                 )
                 response_id = resp.get("response_id")
             except Exception as e:
                 return (
-                    gr.update(), gr.update(), gr.update(), None,
+                    gr.update(), gr.update(), None,
                     gr.update(value=f'<div style="color:red;">Error: {e}</div>'),
                     gr.update(),
                 )
@@ -1304,18 +1401,11 @@ def build_student_app() -> gr.Blocks:
                     feedback_content = f'<div style="color:#6b7280;">Feedback unavailable: {e}</div>'
 
             return (
-                gr.update(visible=False),  # hide justification
-                gr.update(visible=True),  # show feedback
+                gr.Tabs(selected=12),  # switch phase_tabs to Feedback tab
                 "feedback",  # phase
                 response_id,
                 gr.update(value=feedback_content),
-                gr.update(
-                    value=(
-                        '<div class="phase-indicator" style="text-align:center;">'
-                        "1 Annotate -> 2 Justify -> "
-                        '<strong style="color:#3b82f6;">3 Feedback</strong></div>'
-                    )
-                ),
+                gr.update(),  # phase_html (hidden)
             )
 
         def handle_next_item(
@@ -1323,7 +1413,7 @@ def build_student_app() -> gr.Blocks:
         ):
             """Advance to the next item in the exercise."""
             if not current_exercise:
-                return [gr.update()] * 13
+                return [gr.update()] * 18
 
             item_ids = current_exercise.get("item_ids", [])
             next_idx = current_item_idx + 1
@@ -1341,10 +1431,8 @@ def build_student_app() -> gr.Blocks:
                 return (
                     next_idx,
                     gr.update(value="<h3>Exercise Complete!</h3><p>Great work. Return to the Exercises tab to see your results.</p>"),
-                    gr.update(visible=False),
-                    gr.update(visible=False),
-                    gr.update(visible=False),
-                    gr.update(visible=False),
+                    gr.update(selected=10),  # phase_tabs → Annotate
+                    gr.update(),  # current_item
                     gr.update(value=""),
                     gr.update(value=""),
                     [],  # annotations_state
@@ -1352,13 +1440,20 @@ def build_student_app() -> gr.Blocks:
                     "annotate",  # current_phase
                     gr.update(),  # phase_html
                     None,  # item_start_time
+                    gr.update(value=_build_errors_summary([])),  # errors_summary_html
+                    gr.update(value=""),  # span_output clear
+                    gr.update(value=""),  # justify_text
+                    gr.update(value=""),  # justify_mt
+                    gr.update(value=""),  # justify_author
+                    gr.update(value=""),  # justify_reader
+                    gr.update(value=3),  # confidence_slider
                 )
 
             # Load next item
             try:
                 item = api.get_item(item_ids[next_idx])
             except Exception:
-                return [gr.update()] * 13
+                return [gr.update()] * 18
 
             # Update assignment
             if current_assignment:
@@ -1377,9 +1472,7 @@ def build_student_app() -> gr.Blocks:
             return (
                 next_idx,
                 gr.update(value=render_text_with_highlights(text, [])),
-                gr.update(visible=True),  # classification
-                gr.update(visible=False),  # justification
-                gr.update(visible=False),  # feedback
+                gr.update(selected=10),  # phase_tabs → Annotate
                 item,
                 gr.update(
                     value=f'<div style="font-family:Georgia,serif;font-size:16px;line-height:1.8;padding:16px;background:#f9fafb;border-radius:8px;">{source}</div>'
@@ -1398,6 +1491,13 @@ def build_student_app() -> gr.Blocks:
                     )
                 ),
                 time.time(),  # item_start_time
+                gr.update(value=_build_errors_summary([])),  # errors_summary_html
+                gr.update(value=""),  # span_output clear
+                gr.update(value=""),  # justify_text
+                gr.update(value=""),  # justify_mt
+                gr.update(value=""),  # justify_author
+                gr.update(value=""),  # justify_reader
+                gr.update(value=3),  # confidence_slider
             )
 
         def handle_refresh_progress(student_info):
@@ -1498,9 +1598,8 @@ def build_student_app() -> gr.Blocks:
                 current_item, current_item_idx, exercise_header,
                 task_desc, source_html, translation_html,
                 progress_html, annotations_state, chips_html,
-                classification_panel, justification_panel,
-                feedback_panel, pe_panel, pe_textbox, current_phase,
-                item_start_time,
+                phase_tabs, pe_panel, pe_textbox, current_phase,
+                item_start_time, errors_summary_html,
             ],
         )
 
@@ -1508,38 +1607,50 @@ def build_student_app() -> gr.Blocks:
         span_output.change(
             handle_span_selection,
             inputs=[span_output, annotations_state, current_item],
-            outputs=[annotations_state, translation_html, chips_html, selection_label],
+            outputs=[annotations_state, translation_html, chips_html, selection_label, current_selection],
         )
 
-        # Category pill buttons
+        # Category pill buttons — use fn with default arg to avoid closure issue
+        def _make_category_handler(tag_value):
+            def _handler():
+                subtypes = SUBTYPES.get(tag_value, [])
+                return (
+                    tag_value,
+                    gr.update(visible=bool(subtypes), choices=subtypes, value=subtypes[0] if subtypes else None),
+                    gr.update(visible=bool(subtypes)),
+                )
+            return _handler
+
         for tag, btn in cat_buttons.items():
             btn.click(
-                lambda t=tag: handle_category_click(t, None, None),
+                _make_category_handler(tag),
                 outputs=[selected_category, subtype_dropdown, subtype_label],
+                queue=False,
             )
 
         add_error_btn.click(
             handle_add_error,
             inputs=[
                 selected_category, subtype_dropdown, severity_radio,
-                span_output, annotations_state, current_item,
+                current_selection, span_output, annotations_state, current_item,
             ],
             outputs=[
                 annotations_state, translation_html, chips_html,
-                span_output, selection_label,
+                span_output, selection_label, errors_summary_html,
             ],
         )
 
         cancel_btn.click(
             lambda: (gr.update(value=""), gr.update(value="*Select text to annotate.*")),
             outputs=[span_output, selection_label],
+            queue=False,
         )
 
         proceed_justify_btn.click(
             handle_proceed_to_justify,
             inputs=[annotations_state, current_exercise],
             outputs=[
-                classification_panel, justification_panel,
+                phase_tabs,
                 justify_freetext, justify_structured,
                 current_phase, phase_html,
             ],
@@ -1553,7 +1664,7 @@ def build_student_app() -> gr.Blocks:
                 annotations_state, current_item, current_exercise, student_info,
             ],
             outputs=[
-                justification_panel, feedback_panel,
+                phase_tabs,
                 current_phase, current_response_id,
                 feedback_html, phase_html,
             ],
@@ -1564,16 +1675,25 @@ def build_student_app() -> gr.Blocks:
             inputs=[current_item_idx, current_exercise, current_assignment, student_info],
             outputs=[
                 current_item_idx, translation_html,
-                classification_panel, justification_panel,
-                feedback_panel, current_item,
+                phase_tabs, current_item,
                 source_html, progress_html,
                 annotations_state, chips_html,
                 current_phase, phase_html,
-                item_start_time,
+                item_start_time, errors_summary_html,
+                span_output,
+                justify_text, justify_mt, justify_author, justify_reader,
+                confidence_slider,
             ],
         )
 
         refresh_progress_btn.click(
+            handle_refresh_progress,
+            inputs=[student_info],
+            outputs=[progress_content],
+        )
+
+        # Auto-load progress when My Progress tab is selected
+        main_tabs.select(
             handle_refresh_progress,
             inputs=[student_info],
             outputs=[progress_content],
@@ -1601,7 +1721,12 @@ def _tag_to_mqm(tag: str) -> str:
 
 def main():
     """Launch the student interface."""
+    import argparse
     from pathlib import Path
+
+    parser = argparse.ArgumentParser(description="ToM-PE Student App")
+    parser.add_argument("--share", action="store_true", help="Create a public Gradio share link")
+    args = parser.parse_args()
 
     project_root = Path(__file__).resolve().parent.parent.parent.parent
     assets_dir = str(project_root / "assets")
@@ -1610,6 +1735,7 @@ def main():
     app.launch(
         server_name="127.0.0.1",
         server_port=7860,
+        share=args.share,
         allowed_paths=[assets_dir],
         theme=gr.themes.Soft(),
         css="""

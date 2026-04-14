@@ -107,10 +107,7 @@ SPAN_SELECTOR_JS = """
 <script>
 (function() {
     const container = document.getElementById('span-text-{widget_id}');
-    const output = document.getElementById('span-output-{widget_id}');
-    if (!container || !output) return;
-
-    let isSelecting = false;
+    if (!container) return;
 
     container.addEventListener('mouseup', function(e) {
         const selection = window.getSelection();
@@ -140,19 +137,39 @@ SPAN_SELECTOR_JS = """
         if (startOffset >= 0 && endOffset > startOffset) {
             const selectedText = selection.toString().trim();
             if (selectedText.length > 0) {
-                const data = JSON.stringify({
-                    start: startOffset,
-                    end: endOffset,
-                    text: selectedText
-                });
-                // Write to hidden textarea and trigger change event
-                const textarea = output.querySelector('textarea');
+                // Find the textarea in span-output-{widget_id} — try multiple selectors
+                let textarea = null;
+                const output = document.getElementById('span-output-{widget_id}');
+                if (output) {
+                    textarea = output.querySelector('textarea') || output.querySelector('input');
+                }
+                // Fallback: search by label text
+                if (!textarea) {
+                    document.querySelectorAll('textarea').forEach(function(ta) {
+                        if (ta.closest('[data-testid]') && ta.value !== undefined) {
+                            const label = ta.closest('.gradio-textbox, .gradio-group');
+                            if (label && label.textContent.includes('Selected text')) {
+                                textarea = ta;
+                            }
+                        }
+                    });
+                }
                 if (textarea) {
+                    // Set value using native setter to trigger React/Gradio state
                     const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
                         window.HTMLTextAreaElement.prototype, 'value'
                     ).set;
-                    nativeInputValueSetter.call(textarea, data);
+                    nativeInputValueSetter.call(textarea, selectedText);
                     textarea.dispatchEvent(new Event('input', { bubbles: true }));
+                    textarea.dispatchEvent(new Event('change', { bubbles: true }));
+                    // Also try the input element setter
+                    try {
+                        const inputSetter = Object.getOwnPropertyDescriptor(
+                            window.HTMLInputElement.prototype, 'value'
+                        ).set;
+                        inputSetter.call(textarea, selectedText);
+                        textarea.dispatchEvent(new Event('input', { bubbles: true }));
+                    } catch(e) {}
                 }
             }
         }
@@ -236,8 +253,10 @@ def render_text_with_highlights(
             )
 
         html_parts.append(
-            f'<span class="error-highlight" style="background:{bg}" '
-            f'data-ann-id="{ann_id}">'
+            f'<span class="error-highlight" style="background:{bg};cursor:pointer;" '
+            f'data-ann-id="{ann_id}" '
+            f'title="Double-click to select this text for annotation" '
+            f'ondblclick="fillSelectedText_{widget_id}(this.textContent.replace(/×$/, \'\').trim())">'
             f'{span_text}{remove_btn}</span>{badge}'
         )
         last_end = end

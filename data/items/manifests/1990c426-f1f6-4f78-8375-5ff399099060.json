@@ -1,0 +1,275 @@
+{
+  "item_id": "1990c426-f1f6-4f78-8375-5ff399099060",
+  "segment_id": "europarl-f79c610991d6",
+  "source_text": "If the House agrees, I shall do as Mr Evans has suggested.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Si la House accepte, je ferai comme que M. Evans l'avait suggéré.",
+  "reference_translation": "Si l'Assemblée en est d'accord, je ferai comme M. Evans l'a suggéré.",
+  "mt_system": "claude",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "07781788-2fcf-4f99-a38b-c14405effd1b",
+      "span_start": 3,
+      "span_end": 12,
+      "original_text": "l'Assemblée",
+      "injected_text": "la Maison",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "false_cognate",
+      "severity": "critical",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "severity_range": [
+        "major",
+        "critical"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'the House' literally as 'la Maison,' following the most common, everyday meaning of the English word 'house.'",
+        "actual_meaning": "In the parliamentary context, 'the House' refers to a legislative body, specifically 'l'Assemblée' in French, not a physical building or home.",
+        "reader_impact": "A reader would misunderstand 'la Maison' as referring to a physical house or building, leading to confusion about the context and undermining the parliamentary meaning.",
+        "correction_rationale": "The correct translation, 'l'Assemblée,' accurately conveys the institutional meaning of 'the House' in this context, ensuring the reader understands it refers to a legislative assembly."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mistake words that look or sound similar in two languages, like 'actual' in English and 'actual' in Spanish, but which actually mean different things. It's like seeing someone who looks like your friend from behind and calling out to them, only to realize it's a stranger.",
+        "architectural_cause": "Internally, the system relies on patterns it has seen in its training data. When it spots a familiar-looking word, it guesses the translation based on surface similarities rather than deeper meaning, leading to these mix-ups.",
+        "pattern_generalization": "Students should watch for these errors when words in both languages look or sound alike but have different meanings. These are especially common with short, common words and in technical or academic texts.",
+        "mt_system_specific": "Dedicated MT systems are sometimes better at catching these mistakes because they are trained specifically on translation data, while general LLMs may fall for these errors more often since they focus on language in general."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Si <MISTRANSLATION type=\"false_cognate\" severity=\"critical\" tom=\"1st_machine\" desc=\"5-15 word explanation\">la Maison</MISTRANSLATION> en est d'accord, je ferai comme M. Evans l'a suggéré.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "ca9d3775-c398-4ff0-adc0-9ce99612bda0",
+      "span_start": 54,
+      "span_end": 69,
+      "original_text": "l'a suggéré",
+      "injected_text": "l'avait suggéré",
+      "primary_tag": "GRAMMAR",
+      "error_type": "tense",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted the English present perfect 'has suggested' as requiring the French past perfect 'avait suggéré', perhaps due to confusion over tense correspondence.",
+        "actual_meaning": "The source indicates that Mr Evans's suggestion is recent and relevant to the current decision, so the present perfect in French ('a suggéré') is appropriate.",
+        "reader_impact": "A reader might think Mr Evans's suggestion happened much earlier, before another past event, making it seem less immediate or relevant to the current context.",
+        "correction_rationale": "The present perfect ('a suggéré') in French matches the English present perfect and accurately conveys the recency and relevance of the suggestion to the ongoing discussion."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up tenses like past perfect and present perfect because they rely on patterns in the data they've seen, much like a student who sometimes confuses similar grammar rules after reading lots of examples. If the difference between tenses is subtle, the system might pick the wrong one, especially if both are common in translations.",
+        "architectural_cause": "Internally, the system doesn't truly 'understand' the timeline of events; it just predicts which tense seems most likely based on the words around it. Since both tenses can appear in similar contexts, the system sometimes grabs the wrong one, like picking the wrong tool from a box of similar-looking wrenches.",
+        "pattern_generalization": "Students can expect similar errors when translating sentences with time references that are close together or ambiguous, or when the source language uses tenses differently than French. Watch out for tense confusion in complex narratives or when translating from languages with fewer tense distinctions.",
+        "mt_system_specific": null
+      },
+      "technical_explanation": null,
+      "xml_tag": "Si la Maison en est d'accord, je ferai comme M. Evans <GRAMMAR type=\"tense\" severity=\"major\" tom=\"1st_machine\" desc=\"Past perfect used instead of present perfect in French\">l'avait suggéré</GRAMMAR>.",
+      "brief_explanation": "Past perfect used instead of present perfect in French"
+    },
+    {
+      "error_id": "bac600ac-cdf4-481b-8305-c26f48b52a87",
+      "span_start": 39,
+      "span_end": 73,
+      "original_text": "comme M. Evans l'avait suggéré",
+      "injected_text": "comme que M. Evans l'avait suggéré",
+      "primary_tag": "GRAMMAR",
+      "error_type": "relative_pronoun",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely mapped the English 'as' to 'comme que', directly transferring the structure from English to French without recognizing that 'que' is unnecessary after 'comme' in this context.",
+        "actual_meaning": "The source means: 'If the Assembly agrees, I will do as Mr Evans suggested,' using 'as' to indicate 'in the manner that.'",
+        "reader_impact": "A French reader would find 'comme que' ungrammatical and awkward, which may cause confusion or disrupt the flow of understanding, as it is not a valid expression in French.",
+        "correction_rationale": "The correct translation uses only 'comme' to convey 'as,' since 'comme que' is not used in standard French; adding 'que' is an English interference and should be avoided for grammatical accuracy."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often make mistakes with words like 'que' after 'comme' because they try to match structures from English too closely. It's like translating word-for-word without realizing that certain phrases work differently in each language, leading to extra or unnecessary words.",
+        "architectural_cause": "Internally, the system learns patterns by seeing lots of examples, but it doesn't truly understand grammar rules. If it often sees 'that' after 'like' in English, it might wrongly add 'que' after 'comme' in French, following the pattern rather than the actual rule.",
+        "pattern_generalization": "Students can expect similar errors whenever English uses connecting words (like 'that') that aren't needed in the target language. Watch out for phrases where English and French connect ideas differently.",
+        "mt_system_specific": "LLMs like Claude are more likely to make this error because they aren't trained specifically for translation, while dedicated MT systems may handle these grammar points better due to more focused training."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Si la Maison en est d'accord, je ferai <GRAMMAR type=\"relative_pronoun\" severity=\"minor\" tom=\"1st_machine\" desc=\"Unnecessary 'que' after 'comme' due to English interference\">comme que M. Evans l'avait suggéré</GRAMMAR>.",
+      "brief_explanation": "Unnecessary 'que' after 'comme' due to English interference"
+    },
+    {
+      "error_id": "f0cbc556-c958-4fac-949b-d865a30d506c",
+      "span_start": 0,
+      "span_end": 20,
+      "original_text": "Si la Maison en est d'accord",
+      "injected_text": "Si la maison accepte",
+      "primary_tag": "STYLE",
+      "error_type": "unidiomatic",
+      "severity": "major",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system interpreted 'the House agrees' as a straightforward acceptance, translating it literally as 'la maison accepte'. It treated 'House' as a generic noun rather than a parliamentary body.",
+        "actual_meaning": "The source refers to a formal decision by a parliamentary assembly ('the House'), not a physical house or simple acceptance. It means the parliamentary body gives its agreement.",
+        "reader_impact": "A reader would misunderstand 'la maison accepte' as referring to a physical house accepting something, making the sentence sound odd and unidiomatic in a parliamentary context.",
+        "correction_rationale": "'Si l'Assemblée en est d'accord' is the correct idiomatic expression in French for parliamentary agreement, accurately reflecting the institutional context and natural usage."
+      },
+      "system_behavior": {
+        "error_mechanism": "Machine translation systems can sound awkward or unnatural, like someone using correct words but odd phrasing, because they don’t always pick up on the subtle ways native speakers express ideas. It’s a bit like following a recipe exactly but missing the special touches that make a dish taste homemade.",
+        "architectural_cause": "Internally, these systems learn from lots of examples, but they mainly focus on matching patterns and may not fully grasp the cultural or stylistic habits of fluent speakers. As a result, they might choose combinations of words that are technically correct but not how people usually say things.",
+        "pattern_generalization": "You’ll often see these errors with phrases, idioms, or common expressions—especially when the source language has a different way of saying something than the target language. Pay extra attention when translating informal speech or creative writing.",
+        "mt_system_specific": "General-purpose language models like LLMs may struggle more with idiomatic language than specialized MT systems, which are often trained to better handle these stylistic details."
+      },
+      "technical_explanation": null,
+      "xml_tag": "<STYLE type=\"unidiomatic\" severity=\"major\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">Si la maison accepte</STYLE>, je ferai comme que M. Evans l'avait suggéré.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "8849b9a8-1813-44a9-a212-1a99bc04e9a9",
+      "span_start": 6,
+      "span_end": 11,
+      "original_text": "maison",
+      "injected_text": "House",
+      "primary_tag": "UNTRANSLATED",
+      "error_type": "untranslated",
+      "severity": "critical",
+      "tom_level": "1st_machine",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "severity_range": [
+        "major",
+        "critical"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system left 'House' untranslated, likely treating it as a proper noun or not recognizing its parliamentary sense in this context.",
+        "actual_meaning": "'House' here refers to a legislative assembly, specifically the parliamentary body, not a physical building or a generic house.",
+        "reader_impact": "A French reader would see 'House' in the French text and may not understand it refers to 'Assemblée', causing confusion about the subject of the sentence.",
+        "correction_rationale": "The correct translation replaces 'House' with 'Assemblée', the standard French term for a legislative body, ensuring clarity and correct meaning for the target audience."
+      },
+      "system_behavior": {
+        "error_mechanism": "Sometimes, the system simply skips over a word or phrase, leaving it in the original language. This can happen if the system doesn't recognize the word, or if it thinks it's a name or something that shouldn't be translated—like how you might leave a foreign word in a sentence if you're unsure what it means.",
+        "architectural_cause": "Internally, the system tries to predict each next word based on patterns it has seen before. If it doesn't find a good match or isn't confident, it may just copy the word over rather than risk a mistake, sort of like playing it safe when unsure.",
+        "pattern_generalization": "You'll often see this when the text includes rare words, technical terms, or phrases that don't appear often in training data. Watch out for brand names, new slang, or specialized vocabulary.",
+        "mt_system_specific": "Dedicated MT systems are sometimes better at handling rare words because they've been trained on more translation pairs, while general LLMs might leave more untranslated words since they haven't focused as much on direct translation."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Si la <UNTRANSLATED type=\"untranslated\" severity=\"critical\" tom=\"1st_machine\" desc=\"5-15 word explanation\">House</UNTRANSLATED> accepte, je ferai comme que M. Evans l'avait suggéré.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "analyst",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 5,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely interpreted 'the House' literally as 'la Maison,' following the most common, everyday meaning of the English word 'house.'",
+      "actual_meaning": "In the parliamentary context, 'the House' refers to a legislative body, specifically 'l'Assemblée' in French, not a physical building or home.",
+      "reader_impact": "A reader would misunderstand 'la Maison' as referring to a physical house or building, leading to confusion about the context and undermining the parliamentary meaning.",
+      "correction_rationale": "The correct translation, 'l'Assemblée,' accurately conveys the institutional meaning of 'the House' in this context, ensuring the reader understands it refers to a legislative assembly."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted the English present perfect 'has suggested' as requiring the French past perfect 'avait suggéré', perhaps due to confusion over tense correspondence.",
+      "actual_meaning": "The source indicates that Mr Evans's suggestion is recent and relevant to the current decision, so the present perfect in French ('a suggéré') is appropriate.",
+      "reader_impact": "A reader might think Mr Evans's suggestion happened much earlier, before another past event, making it seem less immediate or relevant to the current context.",
+      "correction_rationale": "The present perfect ('a suggéré') in French matches the English present perfect and accurately conveys the recency and relevance of the suggestion to the ongoing discussion."
+    },
+    {
+      "mt_interpretation": "The MT system likely mapped the English 'as' to 'comme que', directly transferring the structure from English to French without recognizing that 'que' is unnecessary after 'comme' in this context.",
+      "actual_meaning": "The source means: 'If the Assembly agrees, I will do as Mr Evans suggested,' using 'as' to indicate 'in the manner that.'",
+      "reader_impact": "A French reader would find 'comme que' ungrammatical and awkward, which may cause confusion or disrupt the flow of understanding, as it is not a valid expression in French.",
+      "correction_rationale": "The correct translation uses only 'comme' to convey 'as,' since 'comme que' is not used in standard French; adding 'que' is an English interference and should be avoided for grammatical accuracy."
+    },
+    {
+      "mt_interpretation": "The MT system interpreted 'the House agrees' as a straightforward acceptance, translating it literally as 'la maison accepte'. It treated 'House' as a generic noun rather than a parliamentary body.",
+      "actual_meaning": "The source refers to a formal decision by a parliamentary assembly ('the House'), not a physical house or simple acceptance. It means the parliamentary body gives its agreement.",
+      "reader_impact": "A reader would misunderstand 'la maison accepte' as referring to a physical house accepting something, making the sentence sound odd and unidiomatic in a parliamentary context.",
+      "correction_rationale": "'Si l'Assemblée en est d'accord' is the correct idiomatic expression in French for parliamentary agreement, accurately reflecting the institutional context and natural usage."
+    },
+    {
+      "mt_interpretation": "The MT system left 'House' untranslated, likely treating it as a proper noun or not recognizing its parliamentary sense in this context.",
+      "actual_meaning": "'House' here refers to a legislative assembly, specifically the parliamentary body, not a physical building or a generic house.",
+      "reader_impact": "A French reader would see 'House' in the French text and may not understand it refers to 'Assemblée', causing confusion about the subject of the sentence.",
+      "correction_rationale": "The correct translation replaces 'House' with 'Assemblée', the standard French term for a legislative body, ensuring clarity and correct meaning for the target audience."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often mistake words that look or sound similar in two languages, like 'actual' in English and 'actual' in Spanish, but which actually mean different things. It's like seeing someone who looks like your friend from behind and calling out to them, only to realize it's a stranger.",
+      "architectural_cause": "Internally, the system relies on patterns it has seen in its training data. When it spots a familiar-looking word, it guesses the translation based on surface similarities rather than deeper meaning, leading to these mix-ups.",
+      "pattern_generalization": "Students should watch for these errors when words in both languages look or sound alike but have different meanings. These are especially common with short, common words and in technical or academic texts.",
+      "mt_system_specific": "Dedicated MT systems are sometimes better at catching these mistakes because they are trained specifically on translation data, while general LLMs may fall for these errors more often since they focus on language in general."
+    },
+    {
+      "error_mechanism": "MT systems often mix up tenses like past perfect and present perfect because they rely on patterns in the data they've seen, much like a student who sometimes confuses similar grammar rules after reading lots of examples. If the difference between tenses is subtle, the system might pick the wrong one, especially if both are common in translations.",
+      "architectural_cause": "Internally, the system doesn't truly 'understand' the timeline of events; it just predicts which tense seems most likely based on the words around it. Since both tenses can appear in similar contexts, the system sometimes grabs the wrong one, like picking the wrong tool from a box of similar-looking wrenches.",
+      "pattern_generalization": "Students can expect similar errors when translating sentences with time references that are close together or ambiguous, or when the source language uses tenses differently than French. Watch out for tense confusion in complex narratives or when translating from languages with fewer tense distinctions.",
+      "mt_system_specific": null
+    },
+    {
+      "error_mechanism": "MT systems often make mistakes with words like 'que' after 'comme' because they try to match structures from English too closely. It's like translating word-for-word without realizing that certain phrases work differently in each language, leading to extra or unnecessary words.",
+      "architectural_cause": "Internally, the system learns patterns by seeing lots of examples, but it doesn't truly understand grammar rules. If it often sees 'that' after 'like' in English, it might wrongly add 'que' after 'comme' in French, following the pattern rather than the actual rule.",
+      "pattern_generalization": "Students can expect similar errors whenever English uses connecting words (like 'that') that aren't needed in the target language. Watch out for phrases where English and French connect ideas differently.",
+      "mt_system_specific": "LLMs like Claude are more likely to make this error because they aren't trained specifically for translation, while dedicated MT systems may handle these grammar points better due to more focused training."
+    },
+    {
+      "error_mechanism": "Machine translation systems can sound awkward or unnatural, like someone using correct words but odd phrasing, because they don’t always pick up on the subtle ways native speakers express ideas. It’s a bit like following a recipe exactly but missing the special touches that make a dish taste homemade.",
+      "architectural_cause": "Internally, these systems learn from lots of examples, but they mainly focus on matching patterns and may not fully grasp the cultural or stylistic habits of fluent speakers. As a result, they might choose combinations of words that are technically correct but not how people usually say things.",
+      "pattern_generalization": "You’ll often see these errors with phrases, idioms, or common expressions—especially when the source language has a different way of saying something than the target language. Pay extra attention when translating informal speech or creative writing.",
+      "mt_system_specific": "General-purpose language models like LLMs may struggle more with idiomatic language than specialized MT systems, which are often trained to better handle these stylistic details."
+    },
+    {
+      "error_mechanism": "Sometimes, the system simply skips over a word or phrase, leaving it in the original language. This can happen if the system doesn't recognize the word, or if it thinks it's a name or something that shouldn't be translated—like how you might leave a foreign word in a sentence if you're unsure what it means.",
+      "architectural_cause": "Internally, the system tries to predict each next word based on patterns it has seen before. If it doesn't find a good match or isn't confident, it may just copy the word over rather than risk a mistake, sort of like playing it safe when unsure.",
+      "pattern_generalization": "You'll often see this when the text includes rare words, technical terms, or phrases that don't appear often in training data. Watch out for brand names, new slang, or specialized vocabulary.",
+      "mt_system_specific": "Dedicated MT systems are sometimes better at handling rare words because they've been trained on more translation pairs, while general LLMs might leave more untranslated words since they haven't focused as much on direct translation."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "analyst",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

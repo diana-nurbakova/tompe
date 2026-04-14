@@ -1,0 +1,21 @@
+{
+  "student_id": "42f361e1-95b5-4391-9f10-715b3773fbb9",
+  "username": "test_ft",
+  "display_name": "Test Fluency",
+  "password_hash": "$2b$12$xWNWlJyJfXd/6YaHHuNyv.3Q6bajcwUvdBMPu0CdVvi.sq3GAc6lO",
+  "class_id": "2bf42a65-8a69-4292-934b-c6e931c26ac5",
+  "created_at": "2026-04-14T12:22:40.072748",
+  "is_active": true,
+  "current_level": "navigator",
+  "allowed_levels": [
+    "navigator"
+  ],
+  "consent": {
+    "consent_version": "1.0",
+    "tier1_research_data": true,
+    "tier2_publication_excerpts": true,
+    "timestamp": "2026-04-14T13:07:17.887300",
+    "withdrawn": false,
+    "withdrawn_at": null
+  }
+}

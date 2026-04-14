@@ -26,10 +26,13 @@ def prepare_feedback(
     """
     student_errors = response.identified_errors or []
     ground_truth = item.errors
+    item_text = item.presented_text or ""
 
     # Match student errors to ground truth (same logic as scoring)
     gt_matched_by: dict[int, int] = {}  # gt_idx -> student_idx
     student_matched: dict[int, int] = {}  # student_idx -> gt_idx
+
+    iou_threshold = 0.3
 
     for s_idx, s_err in enumerate(student_errors):
         best_iou = 0.0
@@ -41,10 +44,20 @@ def prepare_feedback(
                 (s_err.span_start, s_err.span_end),
                 (gt_err.span_start, gt_err.span_end),
             )
+            # Text-overlap fallback
+            if iou < iou_threshold:
+                student_text = item_text[s_err.span_start:s_err.span_end].lower().strip()
+                gt_text = ""
+                if hasattr(gt_err, "injected_text") and gt_err.injected_text:
+                    gt_text = gt_err.injected_text.lower().strip()
+                elif hasattr(gt_err, "original_text") and gt_err.original_text:
+                    gt_text = gt_err.original_text.lower().strip()
+                if student_text and gt_text and (student_text in gt_text or gt_text in student_text):
+                    iou = max(iou, iou_threshold)
             if iou > best_iou:
                 best_iou = iou
                 best_gt_idx = gt_idx
-        if best_iou >= 0.5 and best_gt_idx >= 0:
+        if best_iou >= iou_threshold and best_gt_idx >= 0:
             gt_matched_by[best_gt_idx] = s_idx
             student_matched[s_idx] = best_gt_idx
 

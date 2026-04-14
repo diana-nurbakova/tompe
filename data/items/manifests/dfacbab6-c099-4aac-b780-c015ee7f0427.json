@@ -1,0 +1,273 @@
+{
+  "item_id": "dfacbab6-c099-4aac-b780-c015ee7f0427",
+  "segment_id": "europarl-e54de29885ec",
+  "source_text": "I declare resumed the session of the European Parliament adjourned on Friday 17 December 1999, and I would like once again to wish you a happy new year in the hope that you enjoyed a pleasant festive period.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Je déclare reprise la session du Parlement européen que avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes voeux en espérant que vous avez passé une période.",
+  "reference_translation": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes vux en espérant que vous avez passé de bonnes vacances.",
+  "mt_system": "claude",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "936fb547-1893-403c-82f4-11c8a5d10cd5",
+      "span_start": 187,
+      "span_end": 192,
+      "original_text": "vacances",
+      "injected_text": "fêtes",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "word_sense",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [
+        "S5"
+      ],
+      "severity_range": [
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely associated 'festive period' with 'fêtes', interpreting it as a reference to celebrations or holidays in general, and selected the most direct equivalent.",
+        "actual_meaning": "The source text refers to the entire holiday period around the New Year, not just the celebrations themselves, but the full vacation break ('vacances').",
+        "reader_impact": "A French reader would interpret 'fêtes' as only the specific celebration days (like Christmas or New Year's Eve), missing the broader sense of an extended holiday period that 'vacances' conveys.",
+        "correction_rationale": "'Vacances' accurately reflects the intended meaning of 'festive period' as an extended time off, while 'fêtes' narrows the meaning to specific events, thus failing to capture the full context."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up words that have several meanings, like 'holiday' meaning both a festive celebration and a vacation period. It's a bit like a person who hears the word 'bat' and isn't sure if you mean the animal or a baseball bat, so they guess based on what they've seen most often.",
+        "architectural_cause": "Internally, the system tries to predict the best word based on examples it's seen in its training. If it has seen 'holiday' used more often to mean 'celebration' in similar sentences, it might pick that meaning, even if the context actually calls for 'vacation.'",
+        "pattern_generalization": "You can expect similar errors whenever a word in the source language has more than one meaning, especially if both meanings are common. Pay extra attention to context when translating words like 'bank,' 'light,' or 'season.'",
+        "mt_system_specific": "Dedicated MT systems trained on lots of translation pairs may make this mistake less often, since they've seen more examples of the correct meaning in context. LLMs like Claude, trained on a wider mix of texts, might confuse senses more easily."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes vux en espérant que vous avez passé de bonnes <MISTRANSLATION type=\"word_sense\" severity=\"major\" tom=\"1st_machine\" desc=\"Used 'fêtes' (celebrations) instead of 'vacances' (holiday period)\">fêtes</MISTRANSLATION>.",
+      "brief_explanation": "Used 'fêtes' (celebrations) instead of 'vacances' (holiday period)"
+    },
+    {
+      "error_id": "1fd34108-d105-485b-b097-454cb882e31c",
+      "span_start": 52,
+      "span_end": 77,
+      "original_text": "qui avait été interrompue",
+      "injected_text": "que avait été interrompue",
+      "primary_tag": "GRAMMAR",
+      "error_type": "relative_pronoun",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely selected 'que' as a generic relative pronoun without considering the gender and function of the antecedent 'la session.'",
+        "actual_meaning": "The source refers specifically to 'the session' (a feminine noun), which requires the feminine relative pronoun 'qui' to indicate the subject of the relative clause.",
+        "reader_impact": "A reader would notice the grammatical error ('que avait été interrompue') and may be momentarily confused, as 'que' is not the correct subject relative pronoun for 'la session,' reducing the text's fluency and professionalism.",
+        "correction_rationale": "'Qui' is the appropriate subject relative pronoun for feminine nouns like 'la session,' ensuring grammatical agreement and clarity in the sentence structure."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up relative pronouns like 'who,' 'which,' or 'that' because they rely on patterns in large amounts of text, not real understanding. It's a bit like a student who memorizes example sentences but sometimes picks the wrong connecting word when writing their own.",
+        "architectural_cause": "Inside, the system looks for the most likely word based on examples it has seen, rather than truly knowing grammar rules. It doesn't really 'know' what each pronoun refers to, so it might choose one that sounds right but is grammatically off.",
+        "pattern_generalization": "These errors often happen in longer or more complex sentences, especially when there are several nouns that could be connected. Watch for them when translating sentences with clauses that describe people or things.",
+        "mt_system_specific": "Dedicated MT systems trained specifically for translation usually make fewer of these mistakes than general-purpose LLMs, because they're more focused on grammar patterns between languages."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je déclare reprise la session du Parlement européen <GRAMMAR type=\"relative_pronoun\" severity=\"minor\" tom=\"1st_machine\" desc=\"5-15 word explanation\">que avait été interrompue</GRAMMAR> le vendredi 17 décembre dernier et je vous renouvelle tous mes vux en espérant que vous avez passé de bonnes fêtes.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "80b0c212-8316-4686-9d3a-01b14477322e",
+      "span_start": 182,
+      "span_end": 197,
+      "original_text": "de bonnes fêtes",
+      "injected_text": "période festive",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "false_cognate",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "severity_range": [
+        "major",
+        "critical"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system recognized 'festive period' as a direct equivalent and rendered it literally as 'période festive,' relying on surface similarity between the English and French phrases.",
+        "actual_meaning": "The source refers specifically to the holiday season, commonly expressed in French as 'de bonnes fêtes' or 'de bonnes vacances,' not as a generic festive time.",
+        "reader_impact": "A French reader may find 'période festive' awkward, unnatural, or unclear, and might not immediately associate it with the holiday season or traditional greetings.",
+        "correction_rationale": "'De bonnes fêtes' is the idiomatic and culturally appropriate way to refer to the holiday season in French, ensuring the intended seasonal greeting and register are conveyed."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mistake words that look or sound similar in two languages, like 'library' in English and 'librarie' in French (which actually means 'bookstore'). It's like confusing twins just because they wear the same clothes, even though they have different personalities.",
+        "architectural_cause": "The system relies on patterns it has seen in its training data, so when it spots familiar-looking words in both languages, it assumes they mean the same thing. Internally, it doesn't truly 'understand' the words, but matches them by appearance and context, leading to these mix-ups.",
+        "pattern_generalization": "You can expect similar errors with words that look or sound alike across languages but have different meanings. Pay special attention to these 'false friends' when reviewing machine translations.",
+        "mt_system_specific": "Dedicated MT systems are usually trained with more translation data and might be better at avoiding these mistakes, while general LLMs like Claude are more prone to them because they focus on language patterns broadly, not just translation accuracy."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je déclare reprise la session du Parlement européen que avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes vœux en espérant que vous avez passé une <MISTRANSLATION type=\"false_cognate\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">période festive</MISTRANSLATION>.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "60e61d98-9bc6-4b42-9b13-b18d6df4c3d6",
+      "span_start": 182,
+      "span_end": 189,
+      "original_text": "période festive",
+      "injected_text": "période",
+      "primary_tag": "OMISSION",
+      "error_type": "modifier",
+      "severity": "minor",
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'festive period' simply as 'period,' omitting the adjective because it considered it non-essential or struggled to find an equivalent in the target language.",
+        "actual_meaning": "The source text refers specifically to the holiday season, emphasizing its celebratory and festive nature, not just any period of time.",
+        "reader_impact": "A reader would understand 'période' as a generic time frame, missing the nuance that this was a special, festive period such as the holidays, thus losing the intended seasonal greeting.",
+        "correction_rationale": "Including 'festive' ('période festive') accurately conveys the specific time of year and the celebratory context, preserving the nuance and intent of the original message."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often skip descriptive words like 'festive' because they focus on the main meaning of a sentence, sometimes treating extra details as less important. It's a bit like someone retelling a story and leaving out colorful adjectives to make it shorter or simpler, even though those words add important flavor.",
+        "architectural_cause": "Inside, the system tries to predict the most likely translation based on patterns it has seen before. If adjectives like 'festive' don't appear as often or seem less essential in similar sentences, the system may decide to leave them out to keep things clear and concise.",
+        "pattern_generalization": "You might notice this kind of omission with adjectives or adverbs that add nuance, especially when the main idea can still be understood without them. Pay extra attention when translating sentences that use descriptive language to set a mood or tone.",
+        "mt_system_specific": "LLMs like Claude, which are trained on more general data, may be more likely to drop subtle modifiers than dedicated MT systems, which are often more careful about keeping all details from the source text."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je déclare reprise la session du Parlement européen que avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes vœux en espérant que vous avez passé une <OMISSION type=\"modifier\" severity=\"minor\" tom=\"1st_author\" desc=\"Adjective 'festive' omitted, losing nuance about the holiday season\">période</OMISSION>.",
+      "brief_explanation": "Adjective 'festive' omitted, losing nuance about the holiday season"
+    },
+    {
+      "error_id": "d0dbf10e-2519-485f-b278-8ea901389c41",
+      "span_start": 141,
+      "span_end": 146,
+      "original_text": "vœux",
+      "injected_text": "voeux",
+      "primary_tag": "SPELLING",
+      "error_type": "spelling",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S1",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system recognized the word 'vœux' (wishes) but rendered it as 'voeux' without the ligature, treating it as a simple spelling variant.",
+        "actual_meaning": "The source conveys the speaker's renewed wishes for the new year, using the proper French term 'vœux'.",
+        "reader_impact": "A French reader would understand the word, but the missing ligature ('œ') is a minor spelling error that may be perceived as careless or non-standard, especially in formal contexts.",
+        "correction_rationale": "The correct spelling 'vœux' with the ligature is standard in French, especially in formal writing; using it ensures linguistic accuracy and maintains the register expected in parliamentary discourse."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems sometimes misspell words because, like a person typing quickly, they might mix up letters or pick a word that looks similar to the correct one. They rely on patterns they've seen before, so if a word is rare or unusual, mistakes are more likely.",
+        "architectural_cause": "Inside, the system predicts each word based on what it has learned from reading lots of text. If it hasn't seen a word often or gets confused by similar-looking words, it can guess the spelling wrong, especially for names or uncommon terms.",
+        "pattern_generalization": "You’ll often see these errors with rare words, new slang, or names that aren’t used much in the training data. Be extra careful when translating technical terms or unfamiliar names.",
+        "mt_system_specific": "Dedicated MT systems are usually better at spelling common words in their target language, while general LLMs like Claude may make more spelling errors because they aren’t focused solely on translation."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je déclare reprise la session du Parlement européen que avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes <SPELLING type=\"spelling\" severity=\"minor\" tom=\"1st_machine\" desc=\"5-15 word explanation\">voeux</SPELLING> en espérant que vous avez passé une période.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "analyst",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 5,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely associated 'festive period' with 'fêtes', interpreting it as a reference to celebrations or holidays in general, and selected the most direct equivalent.",
+      "actual_meaning": "The source text refers to the entire holiday period around the New Year, not just the celebrations themselves, but the full vacation break ('vacances').",
+      "reader_impact": "A French reader would interpret 'fêtes' as only the specific celebration days (like Christmas or New Year's Eve), missing the broader sense of an extended holiday period that 'vacances' conveys.",
+      "correction_rationale": "'Vacances' accurately reflects the intended meaning of 'festive period' as an extended time off, while 'fêtes' narrows the meaning to specific events, thus failing to capture the full context."
+    },
+    {
+      "mt_interpretation": "The MT system likely selected 'que' as a generic relative pronoun without considering the gender and function of the antecedent 'la session.'",
+      "actual_meaning": "The source refers specifically to 'the session' (a feminine noun), which requires the feminine relative pronoun 'qui' to indicate the subject of the relative clause.",
+      "reader_impact": "A reader would notice the grammatical error ('que avait été interrompue') and may be momentarily confused, as 'que' is not the correct subject relative pronoun for 'la session,' reducing the text's fluency and professionalism.",
+      "correction_rationale": "'Qui' is the appropriate subject relative pronoun for feminine nouns like 'la session,' ensuring grammatical agreement and clarity in the sentence structure."
+    },
+    {
+      "mt_interpretation": "The MT system recognized 'festive period' as a direct equivalent and rendered it literally as 'période festive,' relying on surface similarity between the English and French phrases.",
+      "actual_meaning": "The source refers specifically to the holiday season, commonly expressed in French as 'de bonnes fêtes' or 'de bonnes vacances,' not as a generic festive time.",
+      "reader_impact": "A French reader may find 'période festive' awkward, unnatural, or unclear, and might not immediately associate it with the holiday season or traditional greetings.",
+      "correction_rationale": "'De bonnes fêtes' is the idiomatic and culturally appropriate way to refer to the holiday season in French, ensuring the intended seasonal greeting and register are conveyed."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted 'festive period' simply as 'period,' omitting the adjective because it considered it non-essential or struggled to find an equivalent in the target language.",
+      "actual_meaning": "The source text refers specifically to the holiday season, emphasizing its celebratory and festive nature, not just any period of time.",
+      "reader_impact": "A reader would understand 'période' as a generic time frame, missing the nuance that this was a special, festive period such as the holidays, thus losing the intended seasonal greeting.",
+      "correction_rationale": "Including 'festive' ('période festive') accurately conveys the specific time of year and the celebratory context, preserving the nuance and intent of the original message."
+    },
+    {
+      "mt_interpretation": "The MT system recognized the word 'vœux' (wishes) but rendered it as 'voeux' without the ligature, treating it as a simple spelling variant.",
+      "actual_meaning": "The source conveys the speaker's renewed wishes for the new year, using the proper French term 'vœux'.",
+      "reader_impact": "A French reader would understand the word, but the missing ligature ('œ') is a minor spelling error that may be perceived as careless or non-standard, especially in formal contexts.",
+      "correction_rationale": "The correct spelling 'vœux' with the ligature is standard in French, especially in formal writing; using it ensures linguistic accuracy and maintains the register expected in parliamentary discourse."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often mix up words that have several meanings, like 'holiday' meaning both a festive celebration and a vacation period. It's a bit like a person who hears the word 'bat' and isn't sure if you mean the animal or a baseball bat, so they guess based on what they've seen most often.",
+      "architectural_cause": "Internally, the system tries to predict the best word based on examples it's seen in its training. If it has seen 'holiday' used more often to mean 'celebration' in similar sentences, it might pick that meaning, even if the context actually calls for 'vacation.'",
+      "pattern_generalization": "You can expect similar errors whenever a word in the source language has more than one meaning, especially if both meanings are common. Pay extra attention to context when translating words like 'bank,' 'light,' or 'season.'",
+      "mt_system_specific": "Dedicated MT systems trained on lots of translation pairs may make this mistake less often, since they've seen more examples of the correct meaning in context. LLMs like Claude, trained on a wider mix of texts, might confuse senses more easily."
+    },
+    {
+      "error_mechanism": "MT systems often mix up relative pronouns like 'who,' 'which,' or 'that' because they rely on patterns in large amounts of text, not real understanding. It's a bit like a student who memorizes example sentences but sometimes picks the wrong connecting word when writing their own.",
+      "architectural_cause": "Inside, the system looks for the most likely word based on examples it has seen, rather than truly knowing grammar rules. It doesn't really 'know' what each pronoun refers to, so it might choose one that sounds right but is grammatically off.",
+      "pattern_generalization": "These errors often happen in longer or more complex sentences, especially when there are several nouns that could be connected. Watch for them when translating sentences with clauses that describe people or things.",
+      "mt_system_specific": "Dedicated MT systems trained specifically for translation usually make fewer of these mistakes than general-purpose LLMs, because they're more focused on grammar patterns between languages."
+    },
+    {
+      "error_mechanism": "MT systems often mistake words that look or sound similar in two languages, like 'library' in English and 'librarie' in French (which actually means 'bookstore'). It's like confusing twins just because they wear the same clothes, even though they have different personalities.",
+      "architectural_cause": "The system relies on patterns it has seen in its training data, so when it spots familiar-looking words in both languages, it assumes they mean the same thing. Internally, it doesn't truly 'understand' the words, but matches them by appearance and context, leading to these mix-ups.",
+      "pattern_generalization": "You can expect similar errors with words that look or sound alike across languages but have different meanings. Pay special attention to these 'false friends' when reviewing machine translations.",
+      "mt_system_specific": "Dedicated MT systems are usually trained with more translation data and might be better at avoiding these mistakes, while general LLMs like Claude are more prone to them because they focus on language patterns broadly, not just translation accuracy."
+    },
+    {
+      "error_mechanism": "MT systems often skip descriptive words like 'festive' because they focus on the main meaning of a sentence, sometimes treating extra details as less important. It's a bit like someone retelling a story and leaving out colorful adjectives to make it shorter or simpler, even though those words add important flavor.",
+      "architectural_cause": "Inside, the system tries to predict the most likely translation based on patterns it has seen before. If adjectives like 'festive' don't appear as often or seem less essential in similar sentences, the system may decide to leave them out to keep things clear and concise.",
+      "pattern_generalization": "You might notice this kind of omission with adjectives or adverbs that add nuance, especially when the main idea can still be understood without them. Pay extra attention when translating sentences that use descriptive language to set a mood or tone.",
+      "mt_system_specific": "LLMs like Claude, which are trained on more general data, may be more likely to drop subtle modifiers than dedicated MT systems, which are often more careful about keeping all details from the source text."
+    },
+    {
+      "error_mechanism": "MT systems sometimes misspell words because, like a person typing quickly, they might mix up letters or pick a word that looks similar to the correct one. They rely on patterns they've seen before, so if a word is rare or unusual, mistakes are more likely.",
+      "architectural_cause": "Inside, the system predicts each word based on what it has learned from reading lots of text. If it hasn't seen a word often or gets confused by similar-looking words, it can guess the spelling wrong, especially for names or uncommon terms.",
+      "pattern_generalization": "You’ll often see these errors with rare words, new slang, or names that aren’t used much in the training data. Be extra careful when translating technical terms or unfamiliar names.",
+      "mt_system_specific": "Dedicated MT systems are usually better at spelling common words in their target language, while general LLMs like Claude may make more spelling errors because they aren’t focused solely on translation."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "analyst",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

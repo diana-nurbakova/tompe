@@ -1,0 +1,274 @@
+{
+  "item_id": "c7b994e5-794f-4720-b9cf-b0fef35bf619",
+  "segment_id": "europarl-fb6e3c1dbc20",
+  "source_text": "Yes, Mr Evans, I feel an initiative of the type you have just suggested would be entirely appropriate.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Oui, Monsieur Evans, je pense qu'initiative dans le sens que vous veniez de suggérer serait tout à fait appropriée.",
+  "reference_translation": "Oui, Monsieur Evans, je pense qu'une initiative dans le sens que vous venez de suggérer serait tout à fait appropriée.",
+  "mt_system": "deepl",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "7135d3a0-e1ef-4adc-b6da-fdad38049515",
+      "span_start": 33,
+      "span_end": 48,
+      "original_text": "une initiative",
+      "injected_text": "des initiatives",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "number",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system interpreted 'an initiative' as plural, rendering it as 'des initiatives' and suggesting multiple actions rather than a single proposal.",
+        "actual_meaning": "The source refers specifically to one initiative of the type suggested by Mr Evans, not to several.",
+        "reader_impact": "A reader would believe that several initiatives are being discussed or endorsed, rather than a single, specific one.",
+        "correction_rationale": "The correct translation uses the singular 'une initiative,' accurately reflecting the singular intent of the original English sentence."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems can mix up numbers because they often focus on patterns in the words around the numbers rather than the numbers themselves. It's like copying a recipe but accidentally writing '2 cups' instead of '3 cups' because you're paying more attention to the ingredients than the exact amounts.",
+        "architectural_cause": "Internally, the system treats numbers much like any other word, so it doesn't always give them special attention. Since it relies on examples from its training data, it might pick the most common number it has seen in similar sentences, even if that's not correct for your specific case.",
+        "pattern_generalization": "Students should watch out for number errors in sentences with measurements, dates, prices, or any specific figures. These mistakes are more likely when the number is unusual or not commonly seen in everyday language.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are trained to translate accurately, but they can still slip up with numbers. Large language models (LLMs) might make even more number mistakes because they focus more on general language patterns than on precise details."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Oui, Monsieur Evans, je pense qu'<MISTRANSLATION type=\"number\" severity=\"minor\" tom=\"1st_machine\" desc=\"5-15 word explanation\">des initiatives</MISTRANSLATION> dans le sens que vous venez de suggérer serait tout à fait appropriée.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "cd93564e-f6c1-4303-a41c-1f2c146d2e3d",
+      "span_start": 66,
+      "span_end": 89,
+      "original_text": "vous venez de suggérer",
+      "injected_text": "vous veniez de suggérer",
+      "primary_tag": "GRAMMAR",
+      "error_type": "tense",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted the phrase as requiring a subjunctive mood, perhaps due to confusion with structures that trigger the subjunctive in French, and thus selected 'veniez' instead of the indicative 'venez'.",
+        "actual_meaning": "The source text refers directly to what Mr Evans has just suggested, using the present indicative to state a fact about his recent action.",
+        "reader_impact": "A reader might interpret 'veniez' as introducing doubt, unreality, or a hypothetical situation, which could make the statement seem less direct or certain than intended.",
+        "correction_rationale": "The present indicative 'venez' is required here to accurately convey the factual and immediate nature of the suggestion, aligning the French tense and mood with the source English statement."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems sometimes mix up tenses, like choosing the subjunctive instead of the present, because they rely on patterns they've seen before—much like a student who memorizes common phrases but sometimes uses them in the wrong situation. If the system has seen the subjunctive used a lot in similar sentences, it may pick it even when the present would be correct.",
+        "architectural_cause": "Internally, the system doesn't truly 'understand' grammar rules the way humans do; it predicts the next word based on what sounds most likely from its training data. If it has seen the subjunctive form often following certain words or structures, it might default to that, even if the context calls for the present tense.",
+        "pattern_generalization": "Students should watch for these errors especially in sentences where mood or intent is subtle, such as desires, doubts, or indirect speech. The system is more likely to slip up when the difference between tenses is small but important.",
+        "mt_system_specific": "Dedicated MT systems like DeepL can be more consistent but may still repeat this error if their training data favors one tense over another; LLMs might make similar mistakes, but sometimes offer more varied suggestions due to broader training."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Oui, Monsieur Evans, je pense qu'des initiatives dans le sens que <GRAMMAR type=\"tense\" severity=\"major\" tom=\"1st_machine\" desc=\"Incorrect tense: uses subjunctive instead of present indicative\">vous veniez de suggérer</GRAMMAR> serait tout à fait appropriée.",
+      "brief_explanation": "Incorrect tense: uses subjunctive instead of present indicative"
+    },
+    {
+      "error_id": "ef2a0274-8da9-45b7-bffe-87041fb9517b",
+      "span_start": 33,
+      "span_end": 43,
+      "original_text": "initiatives",
+      "injected_text": "initiative",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "false_cognate",
+      "severity": "critical",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "severity_range": [
+        "major",
+        "critical"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'initiative' as referring to someone's personal drive or proactiveness, rather than a specific action or measure being proposed.",
+        "actual_meaning": "The source actually refers to a proposed measure or action ('an initiative') of the type Mr Evans suggested, not to personal qualities or motivation.",
+        "reader_impact": "A reader might misunderstand the sentence as praising Mr Evans's personal drive or initiative, rather than supporting a concrete proposal or action.",
+        "correction_rationale": "The correct translation ('une initiative') accurately conveys the idea of a specific proposed measure, aligning with the original intent and avoiding confusion with personal qualities."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often get tripped up by words that look or sound similar in two languages but mean different things, like 'initiative' in French and English. It's like seeing a familiar face in a crowd and waving, only to realize it's someone else who just looks similar.",
+        "architectural_cause": "Inside, the system relies on patterns it has seen in its training data. If it often sees 'initiative' used to mean 'personal drive' in English, it might assume that's always the case, missing the context where it means 'measure' or 'action.'",
+        "pattern_generalization": "You can expect similar mistakes whenever a word in one language resembles a word in another but carries a different meaning—these are called 'false friends.' Pay extra attention to common lookalikes that have multiple meanings.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are trained to be fast and accurate but can still fall for these traps, while LLMs might be slightly better at picking up context but are not immune to the same error."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Oui, Monsieur Evans, je pense qu'<MISTRANSLATION type=\"false_cognate\" severity=\"critical\" tom=\"1st_machine\" desc=\"French 'initiative' misread as 'personal drive' not 'measure'\">initiative</MISTRANSLATION> dans le sens que vous veniez de suggérer serait tout à fait appropriée.",
+      "brief_explanation": "French 'initiative' misread as 'personal drive' not 'measure'"
+    },
+    {
+      "error_id": "518b2ae0-d63a-480f-b9e6-8acca69c9cd4",
+      "span_start": 92,
+      "span_end": 125,
+      "original_text": "tout à fait appropriée",
+      "injected_text": "absolument tout à fait appropriée",
+      "primary_tag": "ADDITION",
+      "error_type": "qualifier",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S4",
+      "secondary_skills": [
+        "S6"
+      ],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'entirely appropriate' as requiring extra emphasis, so it added both 'absolument' and 'tout à fait' to intensify the qualifier.",
+        "actual_meaning": "The source means that the initiative is fully or wholly appropriate, not doubly emphasized or exaggerated.",
+        "reader_impact": "A reader might perceive the phrase 'absolument tout à fait appropriée' as redundant or overly emphatic, making the sentence sound unnatural or awkward in French.",
+        "correction_rationale": "The correct translation uses only 'tout à fait appropriée', which accurately conveys the intended emphasis from the source without unnecessary repetition or exaggeration."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems sometimes add extra qualifiers—like unnecessary adjectives or details—because they try to make the translation sound natural or match patterns they’ve seen before. It’s like someone retelling a story and adding little details to fill in gaps, even if those details weren’t in the original.",
+        "architectural_cause": "Internally, the system predicts each word based on what it has learned from millions of examples. If it often sees certain qualifiers together with a word, it might add them even when the source doesn’t have them, because it expects that’s what usually comes next.",
+        "pattern_generalization": "Students can expect similar errors when the source text is neutral or simple, but the system has learned to make sentences more descriptive or detailed based on its training.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are trained specifically on translation data, so they may be more likely to add qualifiers that are common in their training languages. LLMs may do this less predictably, sometimes adding even more creative or unrelated qualifiers."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Oui, Monsieur Evans, je pense qu'initiative dans le sens que vous veniez de suggérer serait <ADDITION type=\"qualifier\" severity=\"minor\" tom=\"1st_machine\" desc=\"5-15 word explanation\">absolument tout à fait appropriée</ADDITION>.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "40b4e052-baff-4985-8ba6-3a8e167c0727",
+      "span_start": 92,
+      "span_end": 114,
+      "original_text": "absolument tout à fait appropriée",
+      "injected_text": "tout à fait appropriée",
+      "primary_tag": "OMISSION",
+      "error_type": "modifier",
+      "severity": "minor",
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely treated 'absolument tout à fait appropriée' as redundant and opted to render only 'tout à fait appropriée' for conciseness, omitting 'absolument.'",
+        "actual_meaning": "The source emphasizes the appropriateness of the initiative by using two intensifiers, indicating it is not just appropriate but absolutely and entirely so.",
+        "reader_impact": "A reader would perceive the initiative as simply 'entirely appropriate,' missing the extra emphasis and strength conveyed by 'absolutely.'",
+        "correction_rationale": "Including both 'absolument' and 'tout à fait' in the translation preserves the full emphasis of the original, accurately reflecting the speaker's strong endorsement."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often miss modifiers, like adjectives or adverbs, because they focus on the main message and sometimes overlook the details, much like someone summarizing a story and skipping over the small but important parts. If the modifier seems less important or is placed in an unexpected spot, the system may simply leave it out.",
+        "architectural_cause": "Internally, the system tries to match patterns it has seen before, and if the modifier doesn't strongly connect to the main words or is rare in its training data, it might not recognize its importance. The system doesn't truly 'understand' meaning, so it sometimes drops words that seem extra or optional based on its learned patterns.",
+        "pattern_generalization": "Students can expect similar errors when modifiers are subtle, placed far from the words they modify, or when the modifier's meaning is unusual or less common. Pay extra attention to sentences with descriptive words that could be easily skipped.",
+        "mt_system_specific": "Dedicated MT systems like DeepL may omit modifiers more often than LLMs, which are trained to generate more detailed and context-aware text. LLMs sometimes do a better job at keeping these details, but they can still make similar mistakes."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Oui, Monsieur Evans, je pense qu'initiative dans le sens que vous veniez de suggérer serait <OMISSION type=\"modifier\" severity=\"minor\" tom=\"1st_author\" desc=\"5-15 word explanation\">tout à fait appropriée</OMISSION>.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "analyst",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 5,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system interpreted 'an initiative' as plural, rendering it as 'des initiatives' and suggesting multiple actions rather than a single proposal.",
+      "actual_meaning": "The source refers specifically to one initiative of the type suggested by Mr Evans, not to several.",
+      "reader_impact": "A reader would believe that several initiatives are being discussed or endorsed, rather than a single, specific one.",
+      "correction_rationale": "The correct translation uses the singular 'une initiative,' accurately reflecting the singular intent of the original English sentence."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted the phrase as requiring a subjunctive mood, perhaps due to confusion with structures that trigger the subjunctive in French, and thus selected 'veniez' instead of the indicative 'venez'.",
+      "actual_meaning": "The source text refers directly to what Mr Evans has just suggested, using the present indicative to state a fact about his recent action.",
+      "reader_impact": "A reader might interpret 'veniez' as introducing doubt, unreality, or a hypothetical situation, which could make the statement seem less direct or certain than intended.",
+      "correction_rationale": "The present indicative 'venez' is required here to accurately convey the factual and immediate nature of the suggestion, aligning the French tense and mood with the source English statement."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted 'initiative' as referring to someone's personal drive or proactiveness, rather than a specific action or measure being proposed.",
+      "actual_meaning": "The source actually refers to a proposed measure or action ('an initiative') of the type Mr Evans suggested, not to personal qualities or motivation.",
+      "reader_impact": "A reader might misunderstand the sentence as praising Mr Evans's personal drive or initiative, rather than supporting a concrete proposal or action.",
+      "correction_rationale": "The correct translation ('une initiative') accurately conveys the idea of a specific proposed measure, aligning with the original intent and avoiding confusion with personal qualities."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted 'entirely appropriate' as requiring extra emphasis, so it added both 'absolument' and 'tout à fait' to intensify the qualifier.",
+      "actual_meaning": "The source means that the initiative is fully or wholly appropriate, not doubly emphasized or exaggerated.",
+      "reader_impact": "A reader might perceive the phrase 'absolument tout à fait appropriée' as redundant or overly emphatic, making the sentence sound unnatural or awkward in French.",
+      "correction_rationale": "The correct translation uses only 'tout à fait appropriée', which accurately conveys the intended emphasis from the source without unnecessary repetition or exaggeration."
+    },
+    {
+      "mt_interpretation": "The MT system likely treated 'absolument tout à fait appropriée' as redundant and opted to render only 'tout à fait appropriée' for conciseness, omitting 'absolument.'",
+      "actual_meaning": "The source emphasizes the appropriateness of the initiative by using two intensifiers, indicating it is not just appropriate but absolutely and entirely so.",
+      "reader_impact": "A reader would perceive the initiative as simply 'entirely appropriate,' missing the extra emphasis and strength conveyed by 'absolutely.'",
+      "correction_rationale": "Including both 'absolument' and 'tout à fait' in the translation preserves the full emphasis of the original, accurately reflecting the speaker's strong endorsement."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems can mix up numbers because they often focus on patterns in the words around the numbers rather than the numbers themselves. It's like copying a recipe but accidentally writing '2 cups' instead of '3 cups' because you're paying more attention to the ingredients than the exact amounts.",
+      "architectural_cause": "Internally, the system treats numbers much like any other word, so it doesn't always give them special attention. Since it relies on examples from its training data, it might pick the most common number it has seen in similar sentences, even if that's not correct for your specific case.",
+      "pattern_generalization": "Students should watch out for number errors in sentences with measurements, dates, prices, or any specific figures. These mistakes are more likely when the number is unusual or not commonly seen in everyday language.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are trained to translate accurately, but they can still slip up with numbers. Large language models (LLMs) might make even more number mistakes because they focus more on general language patterns than on precise details."
+    },
+    {
+      "error_mechanism": "MT systems sometimes mix up tenses, like choosing the subjunctive instead of the present, because they rely on patterns they've seen before—much like a student who memorizes common phrases but sometimes uses them in the wrong situation. If the system has seen the subjunctive used a lot in similar sentences, it may pick it even when the present would be correct.",
+      "architectural_cause": "Internally, the system doesn't truly 'understand' grammar rules the way humans do; it predicts the next word based on what sounds most likely from its training data. If it has seen the subjunctive form often following certain words or structures, it might default to that, even if the context calls for the present tense.",
+      "pattern_generalization": "Students should watch for these errors especially in sentences where mood or intent is subtle, such as desires, doubts, or indirect speech. The system is more likely to slip up when the difference between tenses is small but important.",
+      "mt_system_specific": "Dedicated MT systems like DeepL can be more consistent but may still repeat this error if their training data favors one tense over another; LLMs might make similar mistakes, but sometimes offer more varied suggestions due to broader training."
+    },
+    {
+      "error_mechanism": "MT systems often get tripped up by words that look or sound similar in two languages but mean different things, like 'initiative' in French and English. It's like seeing a familiar face in a crowd and waving, only to realize it's someone else who just looks similar.",
+      "architectural_cause": "Inside, the system relies on patterns it has seen in its training data. If it often sees 'initiative' used to mean 'personal drive' in English, it might assume that's always the case, missing the context where it means 'measure' or 'action.'",
+      "pattern_generalization": "You can expect similar mistakes whenever a word in one language resembles a word in another but carries a different meaning—these are called 'false friends.' Pay extra attention to common lookalikes that have multiple meanings.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are trained to be fast and accurate but can still fall for these traps, while LLMs might be slightly better at picking up context but are not immune to the same error."
+    },
+    {
+      "error_mechanism": "MT systems sometimes add extra qualifiers—like unnecessary adjectives or details—because they try to make the translation sound natural or match patterns they’ve seen before. It’s like someone retelling a story and adding little details to fill in gaps, even if those details weren’t in the original.",
+      "architectural_cause": "Internally, the system predicts each word based on what it has learned from millions of examples. If it often sees certain qualifiers together with a word, it might add them even when the source doesn’t have them, because it expects that’s what usually comes next.",
+      "pattern_generalization": "Students can expect similar errors when the source text is neutral or simple, but the system has learned to make sentences more descriptive or detailed based on its training.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are trained specifically on translation data, so they may be more likely to add qualifiers that are common in their training languages. LLMs may do this less predictably, sometimes adding even more creative or unrelated qualifiers."
+    },
+    {
+      "error_mechanism": "MT systems often miss modifiers, like adjectives or adverbs, because they focus on the main message and sometimes overlook the details, much like someone summarizing a story and skipping over the small but important parts. If the modifier seems less important or is placed in an unexpected spot, the system may simply leave it out.",
+      "architectural_cause": "Internally, the system tries to match patterns it has seen before, and if the modifier doesn't strongly connect to the main words or is rare in its training data, it might not recognize its importance. The system doesn't truly 'understand' meaning, so it sometimes drops words that seem extra or optional based on its learned patterns.",
+      "pattern_generalization": "Students can expect similar errors when modifiers are subtle, placed far from the words they modify, or when the modifier's meaning is unusual or less common. Pay extra attention to sentences with descriptive words that could be easily skipped.",
+      "mt_system_specific": "Dedicated MT systems like DeepL may omit modifiers more often than LLMs, which are trained to generate more detailed and context-aware text. LLMs sometimes do a better job at keeping these details, but they can still make similar mistakes."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "analyst",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

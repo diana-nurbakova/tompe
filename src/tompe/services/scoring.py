@@ -33,14 +33,33 @@ def compute_span_iou(span_a: tuple[int, int], span_b: tuple[int, int]) -> float:
     return intersection / union if union > 0 else 0.0
 
 
+def _text_overlap(s_start, s_end, gt_err, item_text: str) -> bool:
+    """Check if student span overlaps with ground truth error text (fuzzy)."""
+    student_text = item_text[s_start:s_end].lower().strip()
+    gt_text = ""
+    if hasattr(gt_err, "injected_text") and gt_err.injected_text:
+        gt_text = gt_err.injected_text.lower().strip()
+    elif hasattr(gt_err, "original_text") and gt_err.original_text:
+        gt_text = gt_err.original_text.lower().strip()
+    if not student_text or not gt_text:
+        return False
+    # Check if one contains the other or significant overlap
+    return student_text in gt_text or gt_text in student_text
+
+
 def score_evaluation_response(
     response: StudentResponse,
     item: AssessmentItem,
-    iou_threshold: float = 0.5,
+    iou_threshold: float = 0.3,
 ) -> ScoringResult:
-    """Score an evaluation-mode response using IoU-based span matching."""
+    """Score an evaluation-mode response using IoU-based span matching.
+
+    Uses a lower IoU threshold (0.3) with text-overlap fallback to be
+    more forgiving of imprecise student selections.
+    """
     ground_truth = item.errors
     student_errors = response.identified_errors or []
+    item_text = item.presented_text or ""
 
     # Track which ground-truth errors are matched
     gt_matched = [False] * len(ground_truth)
@@ -57,6 +76,10 @@ def score_evaluation_response(
                 (s_err.span_start, s_err.span_end),
                 (gt_err.span_start, gt_err.span_end),
             )
+            # Also try text-based matching as fallback
+            if iou < iou_threshold:
+                if _text_overlap(s_err.span_start, s_err.span_end, gt_err, item_text):
+                    iou = max(iou, iou_threshold)  # Boost to threshold
             if iou > best_iou:
                 best_iou = iou
                 best_gt_idx = gt_idx

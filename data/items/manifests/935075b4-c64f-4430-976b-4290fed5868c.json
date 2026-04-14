@@ -1,0 +1,184 @@
+{
+  "item_id": "935075b4-c64f-4430-976b-4290fed5868c",
+  "segment_id": "europarl-8778e3c7fe2e",
+  "source_text": "The Cunha report on multiannual guidance programmes comes before Parliament on Thursday and contains a proposal in paragraph 6 that a form of quota penalties should be introduced for countries which fail to meet their fleet reduction targets annually.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Le paragraphe 6 du rapport Cunha sur les programmes d'orientation pluriannuels, qui sera soumis au Parlement ce jeudi, veut mettre des pénalités de quota applicables aux pays qui ne respectent pas les objectifs annuels de réduction de leur flotte.",
+  "reference_translation": "Le paragraphe 6 du rapport Cunha sur les programmes d'orientation pluriannuels, qui sera soumis au Parlement ce jeudi, propose d'introduire des sanctions applicables aux pays qui ne respectent pas les objectifs annuels de réduction de leur flotte.",
+  "mt_system": "claude",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "eef54804-eb83-4d48-92d4-9f4157e70b55",
+      "span_start": 144,
+      "span_end": 177,
+      "original_text": "sanctions applicables",
+      "injected_text": "sanctions financières applicables",
+      "primary_tag": "ADDITION",
+      "error_type": "explicitation",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S4",
+      "secondary_skills": [
+        "S6"
+      ],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system interpreted 'quota penalties' as specifically referring to financial penalties, leading it to add 'financières' to clarify the type of sanctions.",
+        "actual_meaning": "The source text refers more generally to any form of penalties (not just financial) that could be imposed on countries failing to meet fleet reduction targets.",
+        "reader_impact": "A reader would assume that only financial sanctions are being considered, potentially overlooking other forms of penalties (such as operational or administrative measures).",
+        "correction_rationale": "The correct translation 'sanctions applicables' maintains the generality of the original, accurately reflecting the source's lack of specification about the type of penalties."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often add extra explanations or details because they're trying to be helpful, much like a friend who gives you more background information than you asked for. They sometimes 'over-explain' because they want to make sure you understand, even if the original text was more concise.",
+        "architectural_cause": "Internally, the system has learned from lots of examples where translations include clarifications, so it sometimes thinks adding details is the right move. It doesn't truly 'understand' what should be left unsaid, so it errs on the side of being explicit rather than risking confusion.",
+        "pattern_generalization": "You’ll often see these errors when the source text is short, vague, or uses words that could have multiple meanings. Pay extra attention when translating simple statements or cultural references.",
+        "mt_system_specific": "LLMs like Claude are especially prone to this because they're trained to be helpful in conversations, while dedicated MT systems may stick closer to the original wording."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Le paragraphe 6 du rapport Cunha sur les programmes d'orientation pluriannuels, qui sera soumis au Parlement ce jeudi, propose d'introduire des <ADDITION type=\"explicitation\" severity=\"minor\" tom=\"1st_machine\" desc=\"5-15 word explanation\">sanctions financières applicables</ADDITION> aux pays qui ne respectent pas les objectifs annuels de réduction de leur flotte.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "a8b21164-d681-4dc0-ba28-e85c34099f1d",
+      "span_start": 144,
+      "span_end": 162,
+      "original_text": "sanctions financières",
+      "injected_text": "pénalités de quota",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "overly_literal",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [
+        "S6"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system saw 'quota penalties' and translated it literally as 'pénalités de quota,' focusing on the surface structure of the phrase.",
+        "actual_meaning": "The source refers to financial sanctions imposed on countries that do not meet their annual fleet reduction targets, not specifically penalties on quotas themselves.",
+        "reader_impact": "A reader may think that the penalties are directly related to fishing quotas rather than understanding they are financial sanctions for not reducing fleet size.",
+        "correction_rationale": "'Sanctions financières' accurately conveys the intended meaning of financial penalties, aligning with the context of enforcing compliance through monetary measures rather than quota adjustments."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often translate word by word, like someone using a dictionary without thinking about the bigger meaning. This can lead to translations that sound strange or unnatural, because the system sticks too closely to the original wording.",
+        "architectural_cause": "Inside, the system tries to match words and phrases it has seen before, focusing on surface patterns rather than deeper meaning. It doesn’t always understand idioms or context, so it may choose the most direct translation, even if it’s not the best choice in the new language.",
+        "pattern_generalization": "You’ll see these literal errors with idioms, cultural expressions, or phrases that don’t translate directly. Be alert when the original uses figurative language or common sayings.",
+        "mt_system_specific": "LLMs like Claude may be more prone to this error than dedicated MT systems, because they weren't trained specifically for translation and may not recognize when a literal translation sounds odd."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Le paragraphe 6 du rapport Cunha sur les programmes d'orientation pluriannuels, qui sera soumis au Parlement ce jeudi, propose d'introduire des <MISTRANSLATION type=\"overly_literal\" severity=\"minor\" tom=\"1st_machine\" desc=\"5-15 word explanation\">pénalités de quota</MISTRANSLATION> applicables aux pays qui ne respectent pas les objectifs annuels de réduction de leur flotte.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "b2c20626-8d3a-41f6-94a5-1e63149d32aa",
+      "span_start": 119,
+      "span_end": 130,
+      "original_text": "propose d'introduire",
+      "injected_text": "veut mettre",
+      "primary_tag": "STYLE",
+      "error_type": "register_formal",
+      "severity": "major",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system interpreted 'contains a proposal... that' as expressing a desire or intention, leading it to use 'veut mettre' ('wants to put') instead of a more formal, neutral construction.",
+        "actual_meaning": "The source states that the report formally proposes the introduction of penalties, not that it wants or intends to do so personally.",
+        "reader_impact": "A reader would interpret 'veut mettre' as the report having a subjective desire or intention, which reduces the formality and objectivity expected in official documents.",
+        "correction_rationale": "'Propose d'introduire' accurately conveys the formal, procedural act of making a proposal within an institutional context, maintaining the necessary register and neutrality."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up formal and informal language because they learn by copying patterns from large amounts of text, much like a child repeating phrases they've overheard without always knowing when they're appropriate. If most examples they've seen use casual language, they'll tend to do the same, even in situations that need more formality.",
+        "architectural_cause": "Inside, the system doesn't truly understand social rules or context; it just predicts the next word based on what it's seen before. Without a clear signal that a formal tone is needed, it may default to whatever style is most common in its training data.",
+        "pattern_generalization": "You can expect these errors when translating things like business emails, official documents, or academic texts—any time the situation clearly calls for formal language.",
+        "mt_system_specific": "Dedicated MT systems trained on lots of formal documents usually handle this better than general-purpose LLMs, which see a wider mix of styles and may default to informal language more often."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Le paragraphe 6 du rapport Cunha sur les programmes d'orientation pluriannuels, qui sera soumis au Parlement ce jeudi, <STYLE type=\"register_formal\" severity=\"major\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">veut mettre</STYLE> des pénalités de quota applicables aux pays qui ne respectent pas les objectifs annuels de réduction de leur flotte.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 4,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system interpreted 'quota penalties' as specifically referring to financial penalties, leading it to add 'financières' to clarify the type of sanctions.",
+      "actual_meaning": "The source text refers more generally to any form of penalties (not just financial) that could be imposed on countries failing to meet fleet reduction targets.",
+      "reader_impact": "A reader would assume that only financial sanctions are being considered, potentially overlooking other forms of penalties (such as operational or administrative measures).",
+      "correction_rationale": "The correct translation 'sanctions applicables' maintains the generality of the original, accurately reflecting the source's lack of specification about the type of penalties."
+    },
+    {
+      "mt_interpretation": "The MT system saw 'quota penalties' and translated it literally as 'pénalités de quota,' focusing on the surface structure of the phrase.",
+      "actual_meaning": "The source refers to financial sanctions imposed on countries that do not meet their annual fleet reduction targets, not specifically penalties on quotas themselves.",
+      "reader_impact": "A reader may think that the penalties are directly related to fishing quotas rather than understanding they are financial sanctions for not reducing fleet size.",
+      "correction_rationale": "'Sanctions financières' accurately conveys the intended meaning of financial penalties, aligning with the context of enforcing compliance through monetary measures rather than quota adjustments."
+    },
+    {
+      "mt_interpretation": "The MT system interpreted 'contains a proposal... that' as expressing a desire or intention, leading it to use 'veut mettre' ('wants to put') instead of a more formal, neutral construction.",
+      "actual_meaning": "The source states that the report formally proposes the introduction of penalties, not that it wants or intends to do so personally.",
+      "reader_impact": "A reader would interpret 'veut mettre' as the report having a subjective desire or intention, which reduces the formality and objectivity expected in official documents.",
+      "correction_rationale": "'Propose d'introduire' accurately conveys the formal, procedural act of making a proposal within an institutional context, maintaining the necessary register and neutrality."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often add extra explanations or details because they're trying to be helpful, much like a friend who gives you more background information than you asked for. They sometimes 'over-explain' because they want to make sure you understand, even if the original text was more concise.",
+      "architectural_cause": "Internally, the system has learned from lots of examples where translations include clarifications, so it sometimes thinks adding details is the right move. It doesn't truly 'understand' what should be left unsaid, so it errs on the side of being explicit rather than risking confusion.",
+      "pattern_generalization": "You’ll often see these errors when the source text is short, vague, or uses words that could have multiple meanings. Pay extra attention when translating simple statements or cultural references.",
+      "mt_system_specific": "LLMs like Claude are especially prone to this because they're trained to be helpful in conversations, while dedicated MT systems may stick closer to the original wording."
+    },
+    {
+      "error_mechanism": "MT systems often translate word by word, like someone using a dictionary without thinking about the bigger meaning. This can lead to translations that sound strange or unnatural, because the system sticks too closely to the original wording.",
+      "architectural_cause": "Inside, the system tries to match words and phrases it has seen before, focusing on surface patterns rather than deeper meaning. It doesn’t always understand idioms or context, so it may choose the most direct translation, even if it’s not the best choice in the new language.",
+      "pattern_generalization": "You’ll see these literal errors with idioms, cultural expressions, or phrases that don’t translate directly. Be alert when the original uses figurative language or common sayings.",
+      "mt_system_specific": "LLMs like Claude may be more prone to this error than dedicated MT systems, because they weren't trained specifically for translation and may not recognize when a literal translation sounds odd."
+    },
+    {
+      "error_mechanism": "MT systems often mix up formal and informal language because they learn by copying patterns from large amounts of text, much like a child repeating phrases they've overheard without always knowing when they're appropriate. If most examples they've seen use casual language, they'll tend to do the same, even in situations that need more formality.",
+      "architectural_cause": "Inside, the system doesn't truly understand social rules or context; it just predicts the next word based on what it's seen before. Without a clear signal that a formal tone is needed, it may default to whatever style is most common in its training data.",
+      "pattern_generalization": "You can expect these errors when translating things like business emails, official documents, or academic texts—any time the situation clearly calls for formal language.",
+      "mt_system_specific": "Dedicated MT systems trained on lots of formal documents usually handle this better than general-purpose LLMs, which see a wider mix of styles and may default to informal language more often."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

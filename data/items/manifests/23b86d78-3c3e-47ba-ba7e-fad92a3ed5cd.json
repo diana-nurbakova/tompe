@@ -1,0 +1,138 @@
+{
+  "item_id": "23b86d78-3c3e-47ba-ba7e-fad92a3ed5cd",
+  "segment_id": "europarl-62c435241d98",
+  "source_text": "You have requested a debate on this subject in the course of the next few days, during this part-session.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Vous souhaitez un débat à ce sujet dans les prochains jours, au cours de cette période de séance.",
+  "reference_translation": "Vous avez souhaité un débat à ce sujet dans les prochains jours, au cours de cette période de session.",
+  "mt_system": "gpt4",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "6ed72358-be0d-4272-9164-01d13e404487",
+      "span_start": 5,
+      "span_end": 14,
+      "original_text": "avez souhaité",
+      "injected_text": "souhaitez",
+      "primary_tag": "GRAMMAR",
+      "error_type": "tense",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted the verb 'have requested' as a present tense action, translating it as 'souhaitez' (you wish), focusing on the immediate state rather than the completed request.",
+        "actual_meaning": "The source sentence refers to a completed action in the past: the person already made the request for a debate to take place in the coming days.",
+        "reader_impact": "A reader would misunderstand the timing, believing that the request is being made now or is ongoing, rather than something that has already happened, which could create confusion about the sequence of events.",
+        "correction_rationale": "The correct translation uses the past participle 'avez souhaité' to accurately reflect the completed nature of the request, preserving the temporal relationship intended in the source text."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up tenses, like using present instead of past, because they focus on patterns and context clues rather than truly understanding time. It's a bit like a tourist learning phrases from a guidebook—they might use the right words, but sometimes put them in the wrong tense if the clues aren't clear.",
+        "architectural_cause": "Internally, the system looks at the words around a verb to guess which tense fits best, but it doesn't have a real sense of time or events. If the sentence doesn't clearly signal that the action is finished, the system may default to the present tense, which is more common in many texts.",
+        "pattern_generalization": "You’ll often see this error when the original sentence hints at a completed action, but without clear time markers (like 'yesterday' or 'last year'). Pay extra attention when translating stories or reports about past events.",
+        "mt_system_specific": "Compared to dedicated MT systems, general-purpose LLMs like GPT-4 may make this mistake more often, since they are trained on a wider range of texts and not specifically tuned for translation accuracy."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Vous <GRAMMAR type=\"tense\" severity=\"major\" tom=\"1st_machine\" desc=\"Present tense used instead of completed action\">souhaitez</GRAMMAR> un débat à ce sujet dans les prochains jours, au cours de cette période de session.",
+      "brief_explanation": "Present tense used instead of completed action"
+    },
+    {
+      "error_id": "b0599ef7-d96b-462c-b3f8-4145e968d8d7",
+      "span_start": 79,
+      "span_end": 96,
+      "original_text": "période de session",
+      "injected_text": "période de séance",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "false_cognate",
+      "severity": "critical",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "severity_range": [
+        "major",
+        "critical"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely associated 'part-session' with the French 'séance,' a false cognate that often means 'session' or 'meeting,' leading it to select 'période de séance.'",
+        "actual_meaning": "The source refers to the broader timeframe of the parliamentary 'session period,' not an individual meeting or sitting.",
+        "reader_impact": "A reader may think the debate is scheduled within a single meeting ('séance'), rather than within the longer 'session' that spans multiple days, causing confusion about the timing.",
+        "correction_rationale": "'Période de session' accurately reflects the parliamentary context, denoting the full session period, while 'séance' would incorrectly limit the timeframe to a single sitting."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mistake words that look or sound similar in two languages for having the same meaning, much like a traveler confusing 'actual' in English with 'actual' in Spanish, which actually means 'current.' These 'false friends' can easily trick the system, especially when the rest of the sentence doesn't give clear clues.",
+        "architectural_cause": "Internally, the system relies on patterns it has seen in its training data. If two words appear similar across languages, the system may assume they mean the same thing, because it doesn't truly 'understand' the words—it matches based on surface similarities and context.",
+        "pattern_generalization": "Students should watch for these errors with words that look or sound almost the same in both languages, especially in short or ambiguous sentences.",
+        "mt_system_specific": "Dedicated MT systems trained specifically for translation may make this mistake less often than general-purpose models like LLMs, because they are more focused on language pairs and their unique quirks."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Vous souhaitez un débat à ce sujet dans les prochains jours, au cours de cette <MISTRANSLATION type=\"false_cognate\" severity=\"critical\" tom=\"1st_machine\" desc=\"5-15 word explanation\">période de séance</MISTRANSLATION>.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 3,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely interpreted the verb 'have requested' as a present tense action, translating it as 'souhaitez' (you wish), focusing on the immediate state rather than the completed request.",
+      "actual_meaning": "The source sentence refers to a completed action in the past: the person already made the request for a debate to take place in the coming days.",
+      "reader_impact": "A reader would misunderstand the timing, believing that the request is being made now or is ongoing, rather than something that has already happened, which could create confusion about the sequence of events.",
+      "correction_rationale": "The correct translation uses the past participle 'avez souhaité' to accurately reflect the completed nature of the request, preserving the temporal relationship intended in the source text."
+    },
+    {
+      "mt_interpretation": "The MT system likely associated 'part-session' with the French 'séance,' a false cognate that often means 'session' or 'meeting,' leading it to select 'période de séance.'",
+      "actual_meaning": "The source refers to the broader timeframe of the parliamentary 'session period,' not an individual meeting or sitting.",
+      "reader_impact": "A reader may think the debate is scheduled within a single meeting ('séance'), rather than within the longer 'session' that spans multiple days, causing confusion about the timing.",
+      "correction_rationale": "'Période de session' accurately reflects the parliamentary context, denoting the full session period, while 'séance' would incorrectly limit the timeframe to a single sitting."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often mix up tenses, like using present instead of past, because they focus on patterns and context clues rather than truly understanding time. It's a bit like a tourist learning phrases from a guidebook—they might use the right words, but sometimes put them in the wrong tense if the clues aren't clear.",
+      "architectural_cause": "Internally, the system looks at the words around a verb to guess which tense fits best, but it doesn't have a real sense of time or events. If the sentence doesn't clearly signal that the action is finished, the system may default to the present tense, which is more common in many texts.",
+      "pattern_generalization": "You’ll often see this error when the original sentence hints at a completed action, but without clear time markers (like 'yesterday' or 'last year'). Pay extra attention when translating stories or reports about past events.",
+      "mt_system_specific": "Compared to dedicated MT systems, general-purpose LLMs like GPT-4 may make this mistake more often, since they are trained on a wider range of texts and not specifically tuned for translation accuracy."
+    },
+    {
+      "error_mechanism": "MT systems often mistake words that look or sound similar in two languages for having the same meaning, much like a traveler confusing 'actual' in English with 'actual' in Spanish, which actually means 'current.' These 'false friends' can easily trick the system, especially when the rest of the sentence doesn't give clear clues.",
+      "architectural_cause": "Internally, the system relies on patterns it has seen in its training data. If two words appear similar across languages, the system may assume they mean the same thing, because it doesn't truly 'understand' the words—it matches based on surface similarities and context.",
+      "pattern_generalization": "Students should watch for these errors with words that look or sound almost the same in both languages, especially in short or ambiguous sentences.",
+      "mt_system_specific": "Dedicated MT systems trained specifically for translation may make this mistake less often than general-purpose models like LLMs, because they are more focused on language pairs and their unique quirks."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

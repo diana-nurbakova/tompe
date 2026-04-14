@@ -43,6 +43,10 @@ from tompe.services.datastore import (
     items_store,
     responses_store,
 )
+from tompe.services.badges import (
+    get_badge_summary,
+    process_badges_and_xp,
+)
 from tompe.services.feedback import prepare_feedback
 from tompe.services.scoring import (
     score_evaluation_response,
@@ -106,7 +110,7 @@ class CreateExerciseRequest(BaseModel):
     name: str
     description: str = ""
     mode: str = "evaluation"
-    level: AnnotationLevel = AnnotationLevel.INDEPENDENT
+    level: AnnotationLevel = AnnotationLevel.ANALYST
     item_ids: list[str] = []
     justification_type: str = "free_text"
     clean_segment_ratio: float = 0.0
@@ -662,8 +666,84 @@ async def api_get_feedback(response_id: str):
     # Save scoring result
     feedback_store.save(scoring)
 
+    # Process badges and XP
+    # Determine scaffolding level and ToM level for XP multipliers
+    scaffolding_level = "analyst"  # default
+    exercise = None
+    # Try to find the exercise for this response via assignments
+    student_assignments = assignments_store.list_all(
+        ExerciseAssignment,
+        filter_fn=lambda a: a.student_id == response.student_id,
+    )
+    for asgn in student_assignments:
+        ex = exercises_store.get(asgn.exercise_id, Exercise)
+        if ex and response.item_id in ex.item_ids:
+            exercise = ex
+            scaffolding_level = ex.level.value if hasattr(ex.level, 'value') else str(ex.level)
+            break
+
+    # Determine dominant ToM level from item errors
+    tom_level = "1st_machine"
+    if item.errors:
+        from collections import Counter
+        tom_counts = Counter(
+            e.tom_level.value if hasattr(e.tom_level, 'value') else str(e.tom_level)
+            for e in item.errors if hasattr(e, 'tom_level')
+        )
+        if tom_counts:
+            tom_level = tom_counts.most_common(1)[0][0]
+
+    # Count category and severity matches from scoring
+    matched_categories = []
+    category_matches = 0
+    severity_matches = 0
+    if response.identified_errors and item.errors:
+        from tompe.services.scoring import compute_span_iou
+        for s_err in response.identified_errors:
+            for gt_err in item.errors:
+                iou = compute_span_iou(
+                    (s_err.span_start, s_err.span_end),
+                    (gt_err.span_start, gt_err.span_end),
+                )
+                if iou >= 0.5:
+                    tag = gt_err.primary_tag.value if hasattr(gt_err.primary_tag, 'value') else str(gt_err.primary_tag)
+                    matched_categories.append(tag)
+                    if hasattr(s_err, 'student_mqm_category') and hasattr(gt_err, 'primary_tag'):
+                        student_cat = s_err.student_mqm_category
+                        if student_cat and str(student_cat).upper() == tag.upper():
+                            category_matches += 1
+                    if hasattr(s_err, 'student_severity') and hasattr(gt_err, 'severity'):
+                        if str(s_err.student_severity) == str(gt_err.severity):
+                            severity_matches += 1
+                    break
+
+    # Count completed exercises at this level for progression badges
+    completed_at_level = 0
+    for asgn in student_assignments:
+        if asgn.status == "completed":
+            ex = exercises_store.get(asgn.exercise_id, Exercise)
+            if ex and (ex.level.value if hasattr(ex.level, 'value') else str(ex.level)) == scaffolding_level:
+                completed_at_level += 1
+
+    exercise_id = exercise.exercise_id if exercise else ""
+    n_items = len(exercise.item_ids) if exercise else 1
+
+    badge_result = process_badges_and_xp(
+        student_id=response.student_id,
+        scoring=scoring,
+        scaffolding_level=scaffolding_level,
+        tom_level=tom_level,
+        exercise_id=exercise_id,
+        matched_categories=matched_categories,
+        category_matches=category_matches,
+        severity_matches=severity_matches,
+        n_items=n_items,
+        completed_exercises_at_level=completed_at_level,
+    )
+
     # Build feedback payload
     feedback = prepare_feedback(response, item, scoring)
+    feedback["badges"] = badge_result
     return feedback
 
 
@@ -694,6 +774,9 @@ async def api_get_progress(student_id: str):
         if student_scores else 0.0
     )
 
+    # Include badge summary
+    badge_summary = get_badge_summary(student_id)
+
     return {
         "student_id": student_id,
         "display_name": student.display_name,
@@ -701,7 +784,17 @@ async def api_get_progress(student_id: str):
         "total_sessions": total_sessions,
         "avg_detection_rate": round(avg_f1 * 100, 1),
         "scores": [s.model_dump() for s in student_scores],
+        "badges": badge_summary,
     }
+
+
+@app.get("/api/badges/{student_id}")
+async def api_get_badges(student_id: str):
+    """Get badge summary for a student."""
+    student = get_student(student_id)
+    if not student:
+        raise HTTPException(status_code=404, detail="Student not found")
+    return get_badge_summary(student_id)
 
 
 # ── Analytics endpoints ──────────────────────────────────────────────────────

@@ -1,0 +1,183 @@
+{
+  "item_id": "33a350b2-3153-4cea-be48-d20a1b22fc89",
+  "segment_id": "europarl-8778e3c7fe2e",
+  "source_text": "The Cunha report on multiannual guidance programmes comes before Parliament on Thursday and contains a proposal in paragraph 6 that a form of quota penalties should be introduced for countries which fail to meet their fleet reduction targets annually.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Le paragraphe 6 du rapport Cunha sur les programmes d'orientation pluriannuels, qui sera soumis au Parlement ce jeudi, propose d'introduire des pénalités financières de quota aux pays qui ne respectent pas les objectifs annuels de réduction de leur équipe.",
+  "reference_translation": "Le paragraphe 6 du rapport Cunha sur les programmes d'orientation pluriannuels, qui sera soumis au Parlement ce jeudi, propose d'introduire des sanctions applicables aux pays qui ne respectent pas les objectifs annuels de réduction de leur flotte.",
+  "mt_system": "gpt4",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "eb38f30b-42c8-417b-a987-7fb1c2da9fee",
+      "span_start": 144,
+      "span_end": 162,
+      "original_text": "sanctions applicables",
+      "injected_text": "pénalités de quota",
+      "primary_tag": "STYLE",
+      "error_type": "unidiomatic",
+      "severity": "minor",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system identified 'quota penalties' as a literal term and rendered it as 'pénalités de quota,' directly translating each element.",
+        "actual_meaning": "The source refers to sanctions or penalties applied to countries not meeting their annual fleet reduction targets, without specifying a particular type or mechanism.",
+        "reader_impact": "A reader may infer that there is a specific, technical penalty system called 'pénalités de quota,' which may not exist or be idiomatic in French legislative language.",
+        "correction_rationale": "'Sanctions applicables' is a more idiomatic and accurate rendering in French, capturing the general idea of enforceable penalties without introducing awkward or misleading terminology."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often sound a bit 'off' because they follow patterns from their training data, like someone who learns a language from books but rarely speaks with native speakers. They might choose words or phrases that are technically correct but not how people naturally say things.",
+        "architectural_cause": "Inside, the system picks words based on what it has seen most often, not always on what feels 'right' to a native speaker. It doesn’t truly understand the flow or style of everyday conversation, so it sometimes puts together sentences that feel awkward or unusual.",
+        "pattern_generalization": "You’ll notice these errors most when the source text uses idioms, slang, or casual expressions, or when the translation just doesn’t 'sound natural.' Watch for sentences that seem stiff or unlike what you’d hear in real life.",
+        "mt_system_specific": "LLMs like GPT-4 can be more prone to this than dedicated MT systems, because they are trained on a wide range of texts, not just translations or natural conversations."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Le paragraphe 6 du rapport Cunha sur les programmes d'orientation pluriannuels, qui sera soumis au Parlement ce jeudi, propose d'introduire des <STYLE type=\"unidiomatic\" severity=\"minor\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">pénalités de quota</STYLE> aux pays qui ne respectent pas les objectifs annuels de réduction de leur flotte.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "6d6c177a-0349-4253-b96e-6e785c04bf98",
+      "span_start": 237,
+      "span_end": 243,
+      "original_text": "flotte",
+      "injected_text": "équipe",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "word_sense",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [
+        "S5"
+      ],
+      "severity_range": [
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'fleet' as 'team,' choosing 'équipe' due to the common sports or organizational sense of the word in English.",
+        "actual_meaning": "In this context, 'fleet' refers to a group of ships (naval or fishing), so the correct translation is 'flotte.'",
+        "reader_impact": "A reader would incorrectly think the penalties apply to countries not reducing their 'teams' rather than their ship fleets, leading to confusion about the subject matter.",
+        "correction_rationale": "'Flotte' is the precise term for a group of ships in French, matching the maritime context of the source; 'équipe' would be a mistranslation as it refers to teams of people, not vessels."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up words that have several meanings, much like a person guessing the meaning of a word from a short text message without enough context. Without clear clues, the system may pick the wrong meaning, leading to a mistranslation.",
+        "architectural_cause": "Internally, the system looks for patterns in the words around the tricky word to guess which meaning fits best. If the surrounding words don't make it obvious, the system may rely on the most common meaning it has seen during training, even if that's not the right one here.",
+        "pattern_generalization": "Similar errors often happen with words that have multiple meanings or double meanings, especially in short sentences or when the topic isn't clear. Watch out for these mistakes in headlines, captions, or out-of-context phrases.",
+        "mt_system_specific": "Large language models like GPT-4 can be more prone to this error than specialized translation systems, since they are trained on a wider variety of text and may not focus as much on precise translation as dedicated MT systems."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Le paragraphe 6 du rapport Cunha sur les programmes d'orientation pluriannuels, qui sera soumis au Parlement ce jeudi, propose d'introduire des pénalités de quota aux pays qui ne respectent pas les objectifs annuels de réduction de leur <MISTRANSLATION type=\"word_sense\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">équipe</MISTRANSLATION>.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "89a0ef3f-df24-4316-a9f3-45e9a6bf676d",
+      "span_start": 140,
+      "span_end": 174,
+      "original_text": "des pénalités de quota",
+      "injected_text": "des pénalités financières de quota",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "overtranslation",
+      "severity": "minor",
+      "tom_level": "1st_author",
+      "primary_skill": "S3",
+      "secondary_skills": [
+        "S4"
+      ],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely assumed that 'quota penalties' refers specifically to financial penalties related to quotas, so it added 'financières' to clarify the nature of the penalty.",
+        "actual_meaning": "The source text refers more generally to penalties related to quotas, which could take various forms, not just financial ones.",
+        "reader_impact": "A reader would think only monetary sanctions are possible, missing the broader scope of potential penalties such as reductions in quota or other administrative measures.",
+        "correction_rationale": "The correct translation omits 'financières' to accurately reflect the general term 'quota penalties,' leaving the type of penalty unspecified as in the original."
+      },
+      "system_behavior": {
+        "error_mechanism": "Overtranslation happens when the system adds extra words or repeats ideas that weren't in the original text. It's a bit like someone retelling a story and throwing in extra details, thinking it makes things clearer, but actually changing the meaning.",
+        "architectural_cause": "Internally, the system tries to guess what comes next, based on patterns it has seen before. Sometimes, it thinks repeating or expanding on a point is helpful, especially if similar sentences in its training data did so.",
+        "pattern_generalization": "You might see this error when translating short, simple sentences or when the original is vague and the system 'fills in' the gaps. Watch out for places where the translation seems longer or more detailed than the source.",
+        "mt_system_specific": "General-purpose LLMs like GPT-4 are more prone to overtranslation than dedicated MT systems, because they are trained to be helpful and chatty, not just accurate."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Le paragraphe 6 du rapport Cunha sur les programmes d'orientation pluriannuels, qui sera soumis au Parlement ce jeudi, propose d'introduire <MISTRANSLATION type=\"overtranslation\" severity=\"minor\" tom=\"1st_author\" desc=\"5-15 word explanation\">des pénalités financières de quota</MISTRANSLATION> aux pays qui ne respectent pas les objectifs annuels de réduction de leur équipe.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 4,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system identified 'quota penalties' as a literal term and rendered it as 'pénalités de quota,' directly translating each element.",
+      "actual_meaning": "The source refers to sanctions or penalties applied to countries not meeting their annual fleet reduction targets, without specifying a particular type or mechanism.",
+      "reader_impact": "A reader may infer that there is a specific, technical penalty system called 'pénalités de quota,' which may not exist or be idiomatic in French legislative language.",
+      "correction_rationale": "'Sanctions applicables' is a more idiomatic and accurate rendering in French, capturing the general idea of enforceable penalties without introducing awkward or misleading terminology."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted 'fleet' as 'team,' choosing 'équipe' due to the common sports or organizational sense of the word in English.",
+      "actual_meaning": "In this context, 'fleet' refers to a group of ships (naval or fishing), so the correct translation is 'flotte.'",
+      "reader_impact": "A reader would incorrectly think the penalties apply to countries not reducing their 'teams' rather than their ship fleets, leading to confusion about the subject matter.",
+      "correction_rationale": "'Flotte' is the precise term for a group of ships in French, matching the maritime context of the source; 'équipe' would be a mistranslation as it refers to teams of people, not vessels."
+    },
+    {
+      "mt_interpretation": "The MT system likely assumed that 'quota penalties' refers specifically to financial penalties related to quotas, so it added 'financières' to clarify the nature of the penalty.",
+      "actual_meaning": "The source text refers more generally to penalties related to quotas, which could take various forms, not just financial ones.",
+      "reader_impact": "A reader would think only monetary sanctions are possible, missing the broader scope of potential penalties such as reductions in quota or other administrative measures.",
+      "correction_rationale": "The correct translation omits 'financières' to accurately reflect the general term 'quota penalties,' leaving the type of penalty unspecified as in the original."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often sound a bit 'off' because they follow patterns from their training data, like someone who learns a language from books but rarely speaks with native speakers. They might choose words or phrases that are technically correct but not how people naturally say things.",
+      "architectural_cause": "Inside, the system picks words based on what it has seen most often, not always on what feels 'right' to a native speaker. It doesn’t truly understand the flow or style of everyday conversation, so it sometimes puts together sentences that feel awkward or unusual.",
+      "pattern_generalization": "You’ll notice these errors most when the source text uses idioms, slang, or casual expressions, or when the translation just doesn’t 'sound natural.' Watch for sentences that seem stiff or unlike what you’d hear in real life.",
+      "mt_system_specific": "LLMs like GPT-4 can be more prone to this than dedicated MT systems, because they are trained on a wide range of texts, not just translations or natural conversations."
+    },
+    {
+      "error_mechanism": "MT systems often mix up words that have several meanings, much like a person guessing the meaning of a word from a short text message without enough context. Without clear clues, the system may pick the wrong meaning, leading to a mistranslation.",
+      "architectural_cause": "Internally, the system looks for patterns in the words around the tricky word to guess which meaning fits best. If the surrounding words don't make it obvious, the system may rely on the most common meaning it has seen during training, even if that's not the right one here.",
+      "pattern_generalization": "Similar errors often happen with words that have multiple meanings or double meanings, especially in short sentences or when the topic isn't clear. Watch out for these mistakes in headlines, captions, or out-of-context phrases.",
+      "mt_system_specific": "Large language models like GPT-4 can be more prone to this error than specialized translation systems, since they are trained on a wider variety of text and may not focus as much on precise translation as dedicated MT systems."
+    },
+    {
+      "error_mechanism": "Overtranslation happens when the system adds extra words or repeats ideas that weren't in the original text. It's a bit like someone retelling a story and throwing in extra details, thinking it makes things clearer, but actually changing the meaning.",
+      "architectural_cause": "Internally, the system tries to guess what comes next, based on patterns it has seen before. Sometimes, it thinks repeating or expanding on a point is helpful, especially if similar sentences in its training data did so.",
+      "pattern_generalization": "You might see this error when translating short, simple sentences or when the original is vague and the system 'fills in' the gaps. Watch out for places where the translation seems longer or more detailed than the source.",
+      "mt_system_specific": "General-purpose LLMs like GPT-4 are more prone to overtranslation than dedicated MT systems, because they are trained to be helpful and chatty, not just accurate."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

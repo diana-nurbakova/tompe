@@ -3,14 +3,14 @@
 
 mt_systems:
   google:
-    enabled: true
+    enabled: false
     type: "dedicated_mt"
     # api_key sourced from GOOGLE_TRANSLATE_API_KEY env var
 
   deepl:
-    enabled: false  # Prepared — enable when DEEPL_AUTH_KEY is available
+    enabled: true
     type: "dedicated_mt"
-    use_pro: false  # Set to true for api.deepl.com (pro), false for api-free.deepl.com
+    use_pro: true  # Set to true for api.deepl.com (pro), false for api-free.deepl.com
     # api_key sourced from DEEPL_AUTH_KEY env var
 
   gpt4:
@@ -35,10 +35,10 @@ mt_systems:
     prompt_strategy: "zero_shot"
 
   together:
-    enabled: false
+    enabled: true
     type: "general_llm"
     provider: "together"
-    model: "deepseek-v3"
+    model: "deepseek-ai/DeepSeek-V3"
     prompt_strategy: "zero_shot"
 
 # LLM used for error injection and explanation generation

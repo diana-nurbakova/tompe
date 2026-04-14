@@ -1,0 +1,182 @@
+{
+  "item_id": "d33816e6-c8da-4e3d-9135-7d7538965db8",
+  "segment_id": "europarl-e54de29885ec",
+  "source_text": "I declare resumed the session of the European Parliament adjourned on Friday 17 December 1999, and I would like once again to wish you a happy new year in the hope that you enjoyed a pleasant festive period.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous souhaite encore une fois une bonne année en espérant que vous avez passé de bonnes vacances.",
+  "reference_translation": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes vux en espérant que vous avez passé de bonnes vacances.",
+  "mt_system": "claude",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "ee17c000-45fc-481c-a27b-722254a2271b",
+      "span_start": 177,
+      "span_end": 203,
+      "original_text": "de bonnes vacances",
+      "injected_text": "de bonnes vacances de Noël",
+      "primary_tag": "ADDITION",
+      "error_type": "explicitation",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S4",
+      "secondary_skills": [
+        "S6"
+      ],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely inferred that the 'festive period' specifically referred to Christmas, so it made this explicit by adding 'de Noël' to 'de bonnes vacances.'",
+        "actual_meaning": "The source simply wishes that the audience enjoyed a pleasant festive period, without specifying which holiday, to include all possible celebrations.",
+        "reader_impact": "A reader might believe that only Christmas holidays are being referenced, potentially excluding those who celebrated other holidays during the festive period.",
+        "correction_rationale": "The correct translation 'de bonnes vacances' maintains the intended inclusivity and neutrality of the original, avoiding unnecessary specification and ensuring all festivities are encompassed."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often add extra explanations because they're trying to be helpful, like a friend who gives you more background than you asked for. They sometimes think the reader needs more information, so they spell things out even when the original didn't.",
+        "architectural_cause": "Internally, the system looks for patterns in the data it has seen. If it has often seen certain words or phrases explained in translations, it learns to add those explanations automatically, even if the original text didn't include them.",
+        "pattern_generalization": "You might see these errors when translating sentences with terms or ideas that could be unclear, or when the system 'thinks' the reader needs extra help. Watch for this especially with technical or culture-specific words.",
+        "mt_system_specific": "Large language models like Claude tend to add explanations more often than dedicated MT systems, because they're trained to be helpful in conversations, not just to translate word-for-word."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes vux en espérant que vous avez passé <ADDITION type=\"explicitation\" severity=\"minor\" tom=\"1st_machine\" desc=\"5-15 word explanation\">de bonnes vacances de Noël</ADDITION>.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "5f45daba-8af6-480d-9e07-659e9543e533",
+      "span_start": 177,
+      "span_end": 195,
+      "original_text": "de bonnes vacances de Noël",
+      "injected_text": "de bonnes vacances",
+      "primary_tag": "OMISSION",
+      "error_type": "modifier",
+      "severity": "major",
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'festive period' as simply 'vacances' (holidays), omitting the specific reference to Christmas ('Noël'). It generalized the term, possibly due to insufficient context or training data linking 'festive period' with Christmas in this context.",
+        "actual_meaning": "The source text specifically refers to the Christmas holiday period, not just any holidays. The intent is to wish a happy new year in the context of the recently celebrated Christmas festivities.",
+        "reader_impact": "A reader might think the reference is to any generic holidays, missing the cultural and temporal specificity of Christmas. This could reduce the intended warmth and relevance of the greeting for the time of year.",
+        "correction_rationale": "The correct translation ('de bonnes vacances de Noël') accurately conveys the specific festive period referenced, maintaining the original's cultural and temporal nuance. This ensures that the reader understands the greeting relates to the Christmas holidays, not just any vacation."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often skip modifiers—words that add detail—because they focus on the main message, like someone retelling a story and leaving out small but important details. These systems sometimes 'trim the fat,' not realizing that modifiers can change the meaning.",
+        "architectural_cause": "Internally, the system reads and writes sentences by predicting what comes next, and it may overlook less frequent or less obvious words. If the training data often leaves out modifiers, the system learns to do the same, thinking it's normal.",
+        "pattern_generalization": "Similar errors are likely when sentences have extra details, especially adjectives or adverbs, or when the original language uses more description than the target language. Watch for this when translating texts that rely on subtle differences in meaning.",
+        "mt_system_specific": "Dedicated MT systems are often better at keeping modifiers because they are trained specifically for translation, while general-purpose LLMs may skip them more often since they're not focused only on translation tasks."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes vux en espérant que vous avez passé <OMISSION type=\"modifier\" severity=\"major\" tom=\"1st_author\" desc=\"5-15 word explanation\">de bonnes vacances</OMISSION>.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "25480d78-15fd-4329-9e20-4ae4db6506c1",
+      "span_start": 113,
+      "span_end": 161,
+      "original_text": "je vous renouvelle tous mes vux",
+      "injected_text": "je vous souhaite encore une fois une bonne année",
+      "primary_tag": "STYLE",
+      "error_type": "register_formal",
+      "severity": "major",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system interpreted 'wish you a happy new year' literally and rendered it as 'je vous souhaite encore une fois une bonne année', focusing only on the surface greeting.",
+        "actual_meaning": "The source expresses a formal renewal of good wishes for the new year, using a register appropriate for an official parliamentary context.",
+        "reader_impact": "A reader would perceive the translation as informal and repetitive, missing the formal, ceremonial tone expected in parliamentary proceedings.",
+        "correction_rationale": "The correct translation, 'je vous renouvelle tous mes vœux', preserves the formal register and the act of renewing wishes, aligning with the institutional context and intended politeness."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often miss the right level of formality, like someone wearing jeans to a fancy dinner because they didn’t notice the dress code. They usually pick words and phrases that are common, not necessarily the most polite or formal.",
+        "architectural_cause": "Internally, the system learns from lots of examples, but it doesn’t always recognize which situations call for formal language. It tends to use the style that appears most often in its training, unless it’s clearly told to do otherwise.",
+        "pattern_generalization": "You’ll see this error when translating texts meant for official, academic, or polite situations—especially when the original is more formal than everyday speech. Watch for it in letters, reports, or speeches.",
+        "mt_system_specific": "LLMs like Claude may struggle more with register because they’re trained on a wide mix of text, while dedicated MT systems can be tuned for specific formal styles."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et <STYLE type=\"register_formal\" severity=\"major\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">je vous souhaite encore une fois une bonne année</STYLE> en espérant que vous avez passé de bonnes vacances.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 4,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely inferred that the 'festive period' specifically referred to Christmas, so it made this explicit by adding 'de Noël' to 'de bonnes vacances.'",
+      "actual_meaning": "The source simply wishes that the audience enjoyed a pleasant festive period, without specifying which holiday, to include all possible celebrations.",
+      "reader_impact": "A reader might believe that only Christmas holidays are being referenced, potentially excluding those who celebrated other holidays during the festive period.",
+      "correction_rationale": "The correct translation 'de bonnes vacances' maintains the intended inclusivity and neutrality of the original, avoiding unnecessary specification and ensuring all festivities are encompassed."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted 'festive period' as simply 'vacances' (holidays), omitting the specific reference to Christmas ('Noël'). It generalized the term, possibly due to insufficient context or training data linking 'festive period' with Christmas in this context.",
+      "actual_meaning": "The source text specifically refers to the Christmas holiday period, not just any holidays. The intent is to wish a happy new year in the context of the recently celebrated Christmas festivities.",
+      "reader_impact": "A reader might think the reference is to any generic holidays, missing the cultural and temporal specificity of Christmas. This could reduce the intended warmth and relevance of the greeting for the time of year.",
+      "correction_rationale": "The correct translation ('de bonnes vacances de Noël') accurately conveys the specific festive period referenced, maintaining the original's cultural and temporal nuance. This ensures that the reader understands the greeting relates to the Christmas holidays, not just any vacation."
+    },
+    {
+      "mt_interpretation": "The MT system interpreted 'wish you a happy new year' literally and rendered it as 'je vous souhaite encore une fois une bonne année', focusing only on the surface greeting.",
+      "actual_meaning": "The source expresses a formal renewal of good wishes for the new year, using a register appropriate for an official parliamentary context.",
+      "reader_impact": "A reader would perceive the translation as informal and repetitive, missing the formal, ceremonial tone expected in parliamentary proceedings.",
+      "correction_rationale": "The correct translation, 'je vous renouvelle tous mes vœux', preserves the formal register and the act of renewing wishes, aligning with the institutional context and intended politeness."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often add extra explanations because they're trying to be helpful, like a friend who gives you more background than you asked for. They sometimes think the reader needs more information, so they spell things out even when the original didn't.",
+      "architectural_cause": "Internally, the system looks for patterns in the data it has seen. If it has often seen certain words or phrases explained in translations, it learns to add those explanations automatically, even if the original text didn't include them.",
+      "pattern_generalization": "You might see these errors when translating sentences with terms or ideas that could be unclear, or when the system 'thinks' the reader needs extra help. Watch for this especially with technical or culture-specific words.",
+      "mt_system_specific": "Large language models like Claude tend to add explanations more often than dedicated MT systems, because they're trained to be helpful in conversations, not just to translate word-for-word."
+    },
+    {
+      "error_mechanism": "MT systems often skip modifiers—words that add detail—because they focus on the main message, like someone retelling a story and leaving out small but important details. These systems sometimes 'trim the fat,' not realizing that modifiers can change the meaning.",
+      "architectural_cause": "Internally, the system reads and writes sentences by predicting what comes next, and it may overlook less frequent or less obvious words. If the training data often leaves out modifiers, the system learns to do the same, thinking it's normal.",
+      "pattern_generalization": "Similar errors are likely when sentences have extra details, especially adjectives or adverbs, or when the original language uses more description than the target language. Watch for this when translating texts that rely on subtle differences in meaning.",
+      "mt_system_specific": "Dedicated MT systems are often better at keeping modifiers because they are trained specifically for translation, while general-purpose LLMs may skip them more often since they're not focused only on translation tasks."
+    },
+    {
+      "error_mechanism": "MT systems often miss the right level of formality, like someone wearing jeans to a fancy dinner because they didn’t notice the dress code. They usually pick words and phrases that are common, not necessarily the most polite or formal.",
+      "architectural_cause": "Internally, the system learns from lots of examples, but it doesn’t always recognize which situations call for formal language. It tends to use the style that appears most often in its training, unless it’s clearly told to do otherwise.",
+      "pattern_generalization": "You’ll see this error when translating texts meant for official, academic, or polite situations—especially when the original is more formal than everyday speech. Watch for it in letters, reports, or speeches.",
+      "mt_system_specific": "LLMs like Claude may struggle more with register because they’re trained on a wide mix of text, while dedicated MT systems can be tuned for specific formal styles."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

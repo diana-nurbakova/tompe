@@ -1,0 +1,138 @@
+{
+  "item_id": "4ba55072-e55d-4b09-af51-3c702c2c1b40",
+  "segment_id": "europarl-fad45e9d0c6b",
+  "source_text": "You will be aware from the press and television that there have been a number of bomb explosions and killings in Sri Lanka.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Vous avez probablement appris dans la presse que plusieurs attentats à la bombe et crimes ont été perpétrés au Sri Lanka.",
+  "reference_translation": "Vous avez probablement appris par la presse et par la télévision que plusieurs attentats à la bombe et crimes ont été perpétrés au Sri Lanka.",
+  "mt_system": "deepl",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "ad191434-7cdc-4ee6-a692-e3752862e44e",
+      "span_start": 30,
+      "span_end": 66,
+      "original_text": "par la presse et par la télévision",
+      "injected_text": "dans la presse et dans la télévision",
+      "primary_tag": "GRAMMAR",
+      "error_type": "preposition",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely treated 'from the press and television' as 'dans la presse et dans la télévision,' literally translating 'from' as 'in' due to structural similarities or common mappings.",
+        "actual_meaning": "The source means that the information was learned via the media (press and television) as channels of communication, not as locations where the events occurred.",
+        "reader_impact": "A reader might wrongly think the events happened inside the press or television, or that the information is physically located there, leading to confusion about the context.",
+        "correction_rationale": "'Par la presse et par la télévision' correctly expresses that the information was conveyed through these media, using the appropriate French preposition for means or channels of communication."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up prepositions because, like someone learning a new language, they rely on patterns they've seen before. If a preposition is used differently in the source and target languages, the system may pick the wrong one, just as a non-native speaker might.",
+        "architectural_cause": "Internally, the system works by predicting the next word based on previous examples, not by understanding grammar rules the way humans do. This means it sometimes chooses a preposition that 'sounds right' statistically, even if it's not correct in the specific context.",
+        "pattern_generalization": "Students can expect these errors especially when translating phrases where prepositions don't match directly between languages, or when the sentence structure is unusual.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are trained specifically for translation and may make fewer preposition errors than general-purpose language models, but both can struggle with tricky or uncommon phrasing."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Vous avez probablement appris <GRAMMAR type=\"preposition\" severity=\"minor\" tom=\"1st_machine\" desc=\"5-15 word explanation\">dans la presse et dans la télévision</GRAMMAR> que plusieurs attentats à la bombe et crimes ont été perpétrés au Sri Lanka.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "bdaf3106-3b3e-4ec6-a584-7d0d70d203ad",
+      "span_start": 30,
+      "span_end": 44,
+      "original_text": "dans la presse et dans la télévision",
+      "injected_text": "dans la presse",
+      "primary_tag": "OMISSION",
+      "error_type": "partial",
+      "severity": "minor",
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely focused on 'the press' as the main source of information and omitted 'television,' possibly treating it as redundant or less important.",
+        "actual_meaning": "The source text clearly states that both the press and television are sources from which the information was learned, emphasizing multiple media channels.",
+        "reader_impact": "A reader might believe that the information was only reported in the press and not on television, missing the intended emphasis on widespread media coverage.",
+        "correction_rationale": "Including both 'la presse' and 'la télévision' accurately reflects the source's reference to multiple media, ensuring completeness and preserving the intended meaning."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems sometimes miss parts of a sentence, like forgetting to pack all the items when moving. They might leave out less obvious details, especially if those details seem less important based on what the system has seen before.",
+        "architectural_cause": "Inside, the system reads the sentence and tries to guess what matters most. If it decides a word or phrase isn't crucial, it might skip it to make the translation sound smoother or more natural, even if something small gets left behind.",
+        "pattern_generalization": "These omissions are more likely with long or complex sentences, or when the original has extra details the system hasn't seen often. Watch out for this when translating instructions, lists, or sentences with lots of information.",
+        "mt_system_specific": "Dedicated MT systems like DeepL may omit details to keep translations fluent, while LLMs (like ChatGPT) often try to include everything, sometimes at the cost of sounding less natural."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Vous avez probablement appris <OMISSION type=\"partial\" severity=\"minor\" tom=\"1st_author\" desc=\"5-15 word explanation\">dans la presse</OMISSION> que plusieurs attentats à la bombe et crimes ont été perpétrés au Sri Lanka.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 3,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely treated 'from the press and television' as 'dans la presse et dans la télévision,' literally translating 'from' as 'in' due to structural similarities or common mappings.",
+      "actual_meaning": "The source means that the information was learned via the media (press and television) as channels of communication, not as locations where the events occurred.",
+      "reader_impact": "A reader might wrongly think the events happened inside the press or television, or that the information is physically located there, leading to confusion about the context.",
+      "correction_rationale": "'Par la presse et par la télévision' correctly expresses that the information was conveyed through these media, using the appropriate French preposition for means or channels of communication."
+    },
+    {
+      "mt_interpretation": "The MT system likely focused on 'the press' as the main source of information and omitted 'television,' possibly treating it as redundant or less important.",
+      "actual_meaning": "The source text clearly states that both the press and television are sources from which the information was learned, emphasizing multiple media channels.",
+      "reader_impact": "A reader might believe that the information was only reported in the press and not on television, missing the intended emphasis on widespread media coverage.",
+      "correction_rationale": "Including both 'la presse' and 'la télévision' accurately reflects the source's reference to multiple media, ensuring completeness and preserving the intended meaning."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often mix up prepositions because, like someone learning a new language, they rely on patterns they've seen before. If a preposition is used differently in the source and target languages, the system may pick the wrong one, just as a non-native speaker might.",
+      "architectural_cause": "Internally, the system works by predicting the next word based on previous examples, not by understanding grammar rules the way humans do. This means it sometimes chooses a preposition that 'sounds right' statistically, even if it's not correct in the specific context.",
+      "pattern_generalization": "Students can expect these errors especially when translating phrases where prepositions don't match directly between languages, or when the sentence structure is unusual.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are trained specifically for translation and may make fewer preposition errors than general-purpose language models, but both can struggle with tricky or uncommon phrasing."
+    },
+    {
+      "error_mechanism": "MT systems sometimes miss parts of a sentence, like forgetting to pack all the items when moving. They might leave out less obvious details, especially if those details seem less important based on what the system has seen before.",
+      "architectural_cause": "Inside, the system reads the sentence and tries to guess what matters most. If it decides a word or phrase isn't crucial, it might skip it to make the translation sound smoother or more natural, even if something small gets left behind.",
+      "pattern_generalization": "These omissions are more likely with long or complex sentences, or when the original has extra details the system hasn't seen often. Watch out for this when translating instructions, lists, or sentences with lots of information.",
+      "mt_system_specific": "Dedicated MT systems like DeepL may omit details to keep translations fluent, while LLMs (like ChatGPT) often try to include everything, sometimes at the cost of sounding less natural."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

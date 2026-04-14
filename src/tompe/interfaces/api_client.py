@@ -164,6 +164,17 @@ class ToMPEClient:
             )
         return self._handle_response(resp)
 
+    # ── Badges ────────────────────────────────────────────────────────────
+
+    def get_badges(self, student_id: str) -> dict:
+        """Get badge summary for a student."""
+        with httpx.Client(timeout=10) as client:
+            resp = client.get(
+                self._url(f"/api/badges/{student_id}"),
+                headers=self._headers,
+            )
+        return self._handle_response(resp)
+
     # ── Progress ─────────────────────────────────────────────────────────
 
     def get_progress(self, student_id: str) -> dict:

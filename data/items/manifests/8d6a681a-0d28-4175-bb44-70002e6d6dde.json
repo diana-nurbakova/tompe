@@ -1,0 +1,184 @@
+{
+  "item_id": "8d6a681a-0d28-4175-bb44-70002e6d6dde",
+  "segment_id": "europarl-fb6e3c1dbc20",
+  "source_text": "Yes, Mr Evans, I feel an initiative of the type you have just suggested would be entirely appropriate.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Oui, Monsieur Evans, je pense qu'une initiative à la direction que vous venez de suggérer seraient tout à fait appropriée.",
+  "reference_translation": "Oui, Monsieur Evans, je pense qu'une initiative dans le sens que vous venez de suggérer serait tout à fait appropriée.",
+  "mt_system": "claude",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "d62de86f-8110-4788-8ff0-85028bb5eeec",
+      "span_start": 48,
+      "span_end": 92,
+      "original_text": "dans le sens que vous venez de suggérer",
+      "injected_text": "dans la direction que vous venez de suggérer",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "word_sense",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [
+        "S5"
+      ],
+      "severity_range": [
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system interpreted 'type' and 'way' as referring to a physical or spatial direction, leading it to choose 'direction' instead of a more abstract sense.",
+        "actual_meaning": "The source text refers to the manner or approach suggested by Mr Evans, not a physical direction. It means an initiative in the same way or sense as suggested.",
+        "reader_impact": "A French reader might interpret 'dans la direction que vous venez de suggérer' as a literal or spatial direction, causing confusion about the nature of the initiative and making the statement sound odd or nonsensical.",
+        "correction_rationale": "'Dans le sens que vous venez de suggérer' correctly conveys the intended abstract meaning of 'sense' or 'manner', aligning with the source's reference to approach rather than physical direction."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often stumble when a word has more than one meaning, like 'way' meaning both a direction and a manner of doing something. It's a bit like a person hearing the word 'bat' and not knowing if you mean the animal or the baseball equipment—they pick the most common or obvious meaning, which isn't always right.",
+        "architectural_cause": "Internally, the system looks at patterns in huge amounts of text and tries to guess which meaning fits best based on surrounding words. If it hasn't seen enough examples of the less common meaning, it defaults to the more familiar one, much like someone guessing the answer on a multiple-choice test.",
+        "pattern_generalization": "You’ll often see these errors with words that have several meanings, especially if the sentence doesn’t provide strong clues about which sense is intended. Watch out for this in short sentences or when context is limited.",
+        "mt_system_specific": "Dedicated MT systems are usually a bit better at this because they're trained on lots of parallel translations, but LLMs like Claude can be more error-prone since they focus on general language patterns rather than translation-specific examples."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Oui, Monsieur Evans, je pense qu'une initiative <MISTRANSLATION type=\"word_sense\" severity=\"major\" tom=\"1st_machine\" desc=\"Sense mistranslated as physical direction, not manner or way\">dans la direction que vous venez de suggérer</MISTRANSLATION> serait tout à fait appropriée.",
+      "brief_explanation": "Sense mistranslated as physical direction, not manner or way"
+    },
+    {
+      "error_id": "83e074f3-b685-40db-8792-ed1971ca073e",
+      "span_start": 93,
+      "span_end": 101,
+      "original_text": "serait",
+      "injected_text": "seraient",
+      "primary_tag": "GRAMMAR",
+      "error_type": "agreement_number",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'une initiative' as a plural noun or mistakenly aligned it with a plural subject, resulting in the verb 'seraient' (plural).",
+        "actual_meaning": "The source refers to a single initiative, so the verb should be singular ('serait') to match the singular subject.",
+        "reader_impact": "A reader might assume that multiple initiatives are being discussed, leading to confusion about the number of actions being proposed or endorsed.",
+        "correction_rationale": "The correct translation uses 'serait' because 'initiative' is singular in French, so subject-verb agreement requires the singular form of the verb."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems can sometimes miss the connection between the subject and the verb, a bit like someone skimming a sentence and not noticing that 'the cat' needs 'runs' instead of 'run.' This happens especially when the subject and verb are separated by other words, making it easy to lose track of which form matches.",
+        "architectural_cause": "Internally, the system looks at patterns in lots of sentences but doesn't always 'understand' grammar rules the way people do. It predicts the next word based on what it has seen before, so if it's seen both 'the cat runs' and 'the cats run,' it might mix them up if the sentence is complicated or unusual.",
+        "pattern_generalization": "Students will often see this kind of error when the subject and verb are far apart, or when the sentence structure is tricky. Pay extra attention to long sentences and those with interruptions between the subject and verb.",
+        "mt_system_specific": "Large language models like Claude may be more prone to this error than dedicated MT systems, because they are trained more broadly and may not focus as closely on grammatical agreement."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Oui, Monsieur Evans, je pense qu'une initiative dans la direction que vous venez de suggérer <GRAMMAR type=\"agreement_number\" severity=\"major\" tom=\"1st_machine\" desc=\"Verb is plural but subject is singular, causing number mismatch\">seraient</GRAMMAR> tout à fait appropriée.",
+      "brief_explanation": "Verb is plural but subject is singular, causing number mismatch"
+    },
+    {
+      "error_id": "673577f1-c168-44b6-ac00-9656736c5cea",
+      "span_start": 48,
+      "span_end": 62,
+      "original_text": "dans la direction",
+      "injected_text": "à la direction",
+      "primary_tag": "GRAMMAR",
+      "error_type": "preposition",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'of the type' too literally and mapped it to 'à la direction', treating 'direction' as a physical or organizational entity.",
+        "actual_meaning": "The source means an initiative 'in the direction' or 'along the lines' of what was just suggested, referring to the general approach or manner, not a literal direction or department.",
+        "reader_impact": "A French reader would misunderstand 'à la direction' as referring to the management or leadership, not the intended sense of following a suggested approach.",
+        "correction_rationale": "'Dans la direction' correctly conveys the figurative meaning of following a certain line or approach, matching the nuance of the English source."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often get prepositions wrong because they rely on patterns they've seen before, much like someone learning a new language by copying sentences from a phrasebook. If the context is unusual or subtle, the system might pick a preposition that 'sounds right' but isn't quite correct for the situation.",
+        "architectural_cause": "Internally, the system predicts each word based on what usually comes next in similar sentences. It doesn't truly understand the deeper meaning or rules behind prepositions, so it sometimes chooses the most common or familiar one, even if it's not the best fit.",
+        "pattern_generalization": "Students will see these errors most often in sentences where the choice of preposition depends on specific context or idiomatic usage, especially with verbs or phrases that don't translate directly word-for-word.",
+        "mt_system_specific": "Dedicated MT systems trained on lots of translation examples may handle prepositions a bit better than general LLMs, but both can struggle when context is tricky or the phrase is unusual."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Oui, Monsieur Evans, je pense qu'une initiative <GRAMMAR type=\"preposition\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">à la direction</GRAMMAR> que vous venez de suggérer seraient tout à fait appropriée.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 4,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system interpreted 'type' and 'way' as referring to a physical or spatial direction, leading it to choose 'direction' instead of a more abstract sense.",
+      "actual_meaning": "The source text refers to the manner or approach suggested by Mr Evans, not a physical direction. It means an initiative in the same way or sense as suggested.",
+      "reader_impact": "A French reader might interpret 'dans la direction que vous venez de suggérer' as a literal or spatial direction, causing confusion about the nature of the initiative and making the statement sound odd or nonsensical.",
+      "correction_rationale": "'Dans le sens que vous venez de suggérer' correctly conveys the intended abstract meaning of 'sense' or 'manner', aligning with the source's reference to approach rather than physical direction."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted 'une initiative' as a plural noun or mistakenly aligned it with a plural subject, resulting in the verb 'seraient' (plural).",
+      "actual_meaning": "The source refers to a single initiative, so the verb should be singular ('serait') to match the singular subject.",
+      "reader_impact": "A reader might assume that multiple initiatives are being discussed, leading to confusion about the number of actions being proposed or endorsed.",
+      "correction_rationale": "The correct translation uses 'serait' because 'initiative' is singular in French, so subject-verb agreement requires the singular form of the verb."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted 'of the type' too literally and mapped it to 'à la direction', treating 'direction' as a physical or organizational entity.",
+      "actual_meaning": "The source means an initiative 'in the direction' or 'along the lines' of what was just suggested, referring to the general approach or manner, not a literal direction or department.",
+      "reader_impact": "A French reader would misunderstand 'à la direction' as referring to the management or leadership, not the intended sense of following a suggested approach.",
+      "correction_rationale": "'Dans la direction' correctly conveys the figurative meaning of following a certain line or approach, matching the nuance of the English source."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often stumble when a word has more than one meaning, like 'way' meaning both a direction and a manner of doing something. It's a bit like a person hearing the word 'bat' and not knowing if you mean the animal or the baseball equipment—they pick the most common or obvious meaning, which isn't always right.",
+      "architectural_cause": "Internally, the system looks at patterns in huge amounts of text and tries to guess which meaning fits best based on surrounding words. If it hasn't seen enough examples of the less common meaning, it defaults to the more familiar one, much like someone guessing the answer on a multiple-choice test.",
+      "pattern_generalization": "You’ll often see these errors with words that have several meanings, especially if the sentence doesn’t provide strong clues about which sense is intended. Watch out for this in short sentences or when context is limited.",
+      "mt_system_specific": "Dedicated MT systems are usually a bit better at this because they're trained on lots of parallel translations, but LLMs like Claude can be more error-prone since they focus on general language patterns rather than translation-specific examples."
+    },
+    {
+      "error_mechanism": "MT systems can sometimes miss the connection between the subject and the verb, a bit like someone skimming a sentence and not noticing that 'the cat' needs 'runs' instead of 'run.' This happens especially when the subject and verb are separated by other words, making it easy to lose track of which form matches.",
+      "architectural_cause": "Internally, the system looks at patterns in lots of sentences but doesn't always 'understand' grammar rules the way people do. It predicts the next word based on what it has seen before, so if it's seen both 'the cat runs' and 'the cats run,' it might mix them up if the sentence is complicated or unusual.",
+      "pattern_generalization": "Students will often see this kind of error when the subject and verb are far apart, or when the sentence structure is tricky. Pay extra attention to long sentences and those with interruptions between the subject and verb.",
+      "mt_system_specific": "Large language models like Claude may be more prone to this error than dedicated MT systems, because they are trained more broadly and may not focus as closely on grammatical agreement."
+    },
+    {
+      "error_mechanism": "MT systems often get prepositions wrong because they rely on patterns they've seen before, much like someone learning a new language by copying sentences from a phrasebook. If the context is unusual or subtle, the system might pick a preposition that 'sounds right' but isn't quite correct for the situation.",
+      "architectural_cause": "Internally, the system predicts each word based on what usually comes next in similar sentences. It doesn't truly understand the deeper meaning or rules behind prepositions, so it sometimes chooses the most common or familiar one, even if it's not the best fit.",
+      "pattern_generalization": "Students will see these errors most often in sentences where the choice of preposition depends on specific context or idiomatic usage, especially with verbs or phrases that don't translate directly word-for-word.",
+      "mt_system_specific": "Dedicated MT systems trained on lots of translation examples may handle prepositions a bit better than general LLMs, but both can struggle when context is tricky or the phrase is unusual."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

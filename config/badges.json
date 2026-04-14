@@ -1,0 +1,198 @@
+{
+  "badge_definitions": {
+    "progression": [
+      {
+        "badge_id": "navigator",
+        "display_name": "Navigator",
+        "description": "Complete your first exercise at Navigator level",
+        "icon_path": "assets/badges/scaffolding_navigator.jpg",
+        "accent_color": "#E69F00"
+      },
+      {
+        "badge_id": "scout",
+        "display_name": "Scout",
+        "description": "Reach Scout level — mastery at Navigator confirmed",
+        "icon_path": "assets/badges/scaffolding_scout.jpg",
+        "accent_color": "#009E73"
+      },
+      {
+        "badge_id": "analyst",
+        "display_name": "Analyst",
+        "description": "Reach Analyst level — mastery at Scout confirmed",
+        "icon_path": "assets/badges/scaffolding_analyst.jpg",
+        "accent_color": "#0072B2"
+      },
+      {
+        "badge_id": "expert",
+        "display_name": "Expert",
+        "description": "Reach Expert level — mastery at Analyst confirmed",
+        "icon_path": "assets/badges/scaffolding_expert.jpg",
+        "accent_color": "#D4AF37"
+      }
+    ],
+    "specialisation": [
+      {
+        "badge_id": "accuracy_hunter",
+        "display_name": "Accuracy Hunter",
+        "mqm_tag": "MISTRANSLATION",
+        "description": "Detect mistranslation errors",
+        "icon_paths": {
+          "bronze": "assets/badges/specialisation_accuracy_bronze.jpg",
+          "silver": "assets/badges/specialisation_accuracy_silver.jpg",
+          "gold": "assets/badges/specialisation_accuracy_gold.jpg"
+        },
+        "thresholds": [10, 25, 50]
+      },
+      {
+        "badge_id": "gap_finder",
+        "display_name": "Gap Finder",
+        "mqm_tag": "OMISSION",
+        "description": "Detect omission errors",
+        "icon_paths": {
+          "bronze": "assets/badges/specialisation_gapfinder_bronze.jpg",
+          "silver": "assets/badges/specialisation_gapfinder_silver.jpg",
+          "gold": "assets/badges/specialisation_gapfinder_gold.jpg"
+        },
+        "thresholds": [10, 25, 50]
+      },
+      {
+        "badge_id": "surplus_spotter",
+        "display_name": "Surplus Spotter",
+        "mqm_tag": "ADDITION",
+        "description": "Detect addition errors",
+        "icon_paths": {
+          "bronze": "assets/badges/specialisation_surplusspotter_bronze.jpg",
+          "silver": "assets/badges/specialisation_surplusspotter_silver.jpg",
+          "gold": "assets/badges/specialisation_surplusspotter_gold.jpg"
+        },
+        "thresholds": [8, 20, 40]
+      },
+      {
+        "badge_id": "code_switcher",
+        "display_name": "Code Switcher",
+        "mqm_tag": "UNTRANSLATED",
+        "description": "Detect untranslated text",
+        "icon_paths": {
+          "bronze": "assets/badges/specialisation_codeswitcher_bronze.jpg",
+          "silver": "assets/badges/specialisation_codeswitcher_silver.jpg",
+          "gold": "assets/badges/specialisation_codeswitcher_gold.jpg"
+        },
+        "thresholds": [5, 15, 30]
+      },
+      {
+        "badge_id": "grammar_guard",
+        "display_name": "Grammar Guard",
+        "mqm_tag": "GRAMMAR",
+        "description": "Detect grammar errors",
+        "icon_paths": {
+          "bronze": "assets/badges/specialisation_grammarguard_bronze.jpg",
+          "silver": "assets/badges/specialisation_grammarguard_silver.jpg",
+          "gold": "assets/badges/specialisation_grammarguard_gold.jpg"
+        },
+        "thresholds": [10, 25, 50]
+      },
+      {
+        "badge_id": "sharp_eye",
+        "display_name": "Sharp Eye",
+        "mqm_tag": "SPELLING",
+        "description": "Detect spelling errors",
+        "icon_paths": {
+          "bronze": "assets/badges/specialisation_sharpeye_bronze.jpg",
+          "silver": "assets/badges/specialisation_sharpeye_silver.jpg",
+          "gold": "assets/badges/specialisation_sharpeye_gold.jpg"
+        },
+        "thresholds": [8, 20, 40]
+      },
+      {
+        "badge_id": "punctuation_pro",
+        "display_name": "Punctuation Pro",
+        "mqm_tag": "PUNCTUATION",
+        "description": "Detect punctuation errors",
+        "icon_paths": {
+          "bronze": "assets/badges/specialisation_punctuationpro_bronze.jpg",
+          "silver": "assets/badges/specialisation_punctuationpro_silver.jpg",
+          "gold": "assets/badges/specialisation_punctuationpro_gold.jpg"
+        },
+        "thresholds": [8, 20, 40]
+      },
+      {
+        "badge_id": "term_specialist",
+        "display_name": "Term Specialist",
+        "mqm_tag": "TERMINOLOGY",
+        "description": "Detect terminology errors",
+        "icon_paths": {
+          "bronze": "assets/badges/specialisation_termspecialist_bronze.jpg",
+          "silver": "assets/badges/specialisation_termspecialist_silver.jpg",
+          "gold": "assets/badges/specialisation_termspecialist_gold.jpg"
+        },
+        "thresholds": [8, 20, 40]
+      },
+      {
+        "badge_id": "style_sentinel",
+        "display_name": "Style Sentinel",
+        "mqm_tag": "STYLE",
+        "description": "Detect style errors",
+        "icon_paths": {
+          "bronze": "assets/badges/specialisation_stylesentinel_bronze.jpg",
+          "silver": "assets/badges/specialisation_stylesentinel_silver.jpg",
+          "gold": "assets/badges/specialisation_stylesentinel_gold.jpg"
+        },
+        "thresholds": [8, 20, 40]
+      },
+      {
+        "badge_id": "locale_expert",
+        "display_name": "Locale Expert",
+        "mqm_tag": "LOCALE",
+        "description": "Detect locale convention errors",
+        "icon_paths": {
+          "bronze": "assets/badges/specialisation_localeexpert_bronze.jpg",
+          "silver": "assets/badges/specialisation_localeexpert_silver.jpg",
+          "gold": "assets/badges/specialisation_localeexpert_gold.jpg"
+        },
+        "thresholds": [5, 15, 30]
+      }
+    ],
+    "behaviour": [
+      {
+        "badge_id": "false_positive_discipline",
+        "display_name": "False Positive Discipline",
+        "description": "Complete an Expert exercise (5+ items) with zero false positives",
+        "icon_path": "assets/badges/behaviour_falsepositivediscipline.jpg",
+        "accent_color": "#CC79A7"
+      },
+      {
+        "badge_id": "clean_sheet",
+        "display_name": "Clean Sheet",
+        "description": "Score 100% on a segment: all errors detected, correct categories, zero false positives",
+        "icon_path": "assets/badges/behaviour_cleansheet.jpg",
+        "accent_color": "#D4AF37",
+        "repeatable": true
+      },
+      {
+        "badge_id": "trap_detector",
+        "display_name": "Trap Detector",
+        "description": "Correctly dispute 10 or more false annotations at Navigator level",
+        "icon_path": "assets/badges/behaviour_trapdetector.jpg",
+        "accent_color": "#D55E00"
+      }
+    ]
+  },
+  "xp_config": {
+    "base_detection": 10,
+    "base_category_match": 5,
+    "base_severity_match": 3,
+    "false_positive_penalty": -5,
+    "tom_multipliers": {
+      "1st_machine": 1.0,
+      "1st_author": 1.25,
+      "2nd_reader": 1.5,
+      "recursive": 2.0
+    },
+    "scaffolding_multipliers": {
+      "navigator": 0.5,
+      "scout": 1.0,
+      "analyst": 1.5,
+      "expert": 2.0
+    }
+  }
+}

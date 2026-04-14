@@ -1,0 +1,184 @@
+{
+  "item_id": "72ef7563-2635-49b5-b1c3-199758ba7788",
+  "segment_id": "europarl-62c435241d98",
+  "source_text": "You have requested a debate on this subject in the course of the next few days, during this part-session.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Vous avez souhaité un débat à ce sujet dans les prochains jours, cette partie-session.",
+  "reference_translation": "Vous avez souhaité un débat à ce sujet dans les prochains jours, au cours de cette période de session.",
+  "mt_system": "gpt4",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "c7e87503-d364-4f63-9342-19f061691c04",
+      "span_start": 83,
+      "span_end": 100,
+      "original_text": "période de session",
+      "injected_text": "période de séance",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "false_cognate",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "severity_range": [
+        "major",
+        "critical"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely associated 'session' with the French 'séance,' which is a common false cognate, and thus rendered 'part-session' as 'période de séance.'",
+        "actual_meaning": "The source refers to a specific period within a parliamentary or institutional session, which in French is accurately expressed as 'période de session.'",
+        "reader_impact": "A reader would misunderstand 'période de séance' as referring to a single meeting or sitting, rather than the broader timeframe of a session, leading to confusion about the scheduling.",
+        "correction_rationale": "'Période de session' is the established term in parliamentary contexts for a session period, whereas 'séance' refers to individual sittings; using the correct term preserves the intended institutional meaning."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mistake words that look or sound similar in two languages, much like a person might assume 'actual' in English means 'aktuell' in German because they seem alike. They're fooled by the surface resemblance, not realizing the meanings are different.",
+        "architectural_cause": "Internally, these systems rely on patterns found in large amounts of text and often guess that similar-looking words match up. They don't truly understand the meaning behind the words, so they can be tricked by these 'false friends.'",
+        "pattern_generalization": "You can expect these errors when words in two languages look or sound alike but have different meanings—especially with words that come from the same roots but have changed over time. Watch out for familiar-looking words that might not mean what you expect.",
+        "mt_system_specific": "Large language models like GPT-4, trained on general text, may make this error more often than dedicated MT systems, which are sometimes better tuned to avoid common false friends."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Vous avez souhaité un débat à ce sujet dans les prochains jours, au cours de cette <MISTRANSLATION type=\"false_cognate\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">période de séance</MISTRANSLATION>.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "525c8d51-726c-454f-bf66-78b457750c71",
+      "span_start": 65,
+      "span_end": 88,
+      "original_text": "au cours de cette période de séance",
+      "injected_text": "cette période de séance",
+      "primary_tag": "OMISSION",
+      "error_type": "discourse_marker",
+      "severity": "minor",
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [
+        "S7"
+      ],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'during this part-session' as simply referring to 'this period of session,' omitting the discourse marker 'au cours de' that signals the timing within the session.",
+        "actual_meaning": "The source emphasizes that the debate should occur within the timeframe of the current session, using 'during' to specify when within the broader event the debate should happen.",
+        "reader_impact": "A reader may miss the temporal nuance and see the phrase as just referencing the session period, not specifically indicating that the debate is to happen within that timeframe.",
+        "correction_rationale": "The correct translation includes 'au cours de' to accurately convey the temporal relationship and ensure the reader understands the debate is to take place during, not just at some point in, the session."
+      },
+      "system_behavior": {
+        "error_mechanism": "Machine translation systems often skip over small connecting words or phrases, like 'however' or 'therefore,' because they focus more on the main message. It's like someone retelling a story and forgetting to mention the 'meanwhile' or 'on the other hand' parts that help connect ideas smoothly.",
+        "architectural_cause": "These systems work by predicting the most likely next word or phrase, and sometimes they see discourse markers as less important or easily left out. Since these markers don't always change the core meaning, the system may overlook them to keep translations brief and direct.",
+        "pattern_generalization": "Students may notice similar omissions when the original text uses subtle or less common linking words, especially when sentences are complex or ideas shift. Pay extra attention to places where the flow of ideas depends on these small words.",
+        "mt_system_specific": "Dedicated MT systems trained specifically for translation tend to handle these connecting words better, as they're designed to preserve the structure and flow of the original. General-purpose language models like GPT-4 may miss them more often since they're not focused just on translation."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Vous avez souhaité un débat à ce sujet dans les prochains jours, <OMISSION type=\"discourse_marker\" severity=\"minor\" tom=\"1st_author\" desc=\"5-15 word explanation\">cette période de séance</OMISSION>.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "145b61da-4972-43ff-82ba-408f2ca08001",
+      "span_start": 65,
+      "span_end": 85,
+      "original_text": "cette période de séance",
+      "injected_text": "cette partie-session",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "overly_literal",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [
+        "S6"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely identified 'part-session' as a direct, literal equivalent of the English term and rendered it as 'partie-session' in French, mimicking the structure without considering idiomatic usage.",
+        "actual_meaning": "The source refers to the specific period or duration of the current parliamentary session, not a subdivided session or 'part-session.'",
+        "reader_impact": "A French reader may be confused by 'partie-session,' a non-standard and awkward phrase, potentially leading them to misunderstand the timing or structure of the session.",
+        "correction_rationale": "'Période de session' is the accepted and idiomatic French term for this context, accurately conveying the intended meaning of the original without introducing unnatural phrasing."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often translate word-for-word, like someone following a recipe without tasting the food. They focus on matching each ingredient (word) exactly, which can miss the intended flavor or meaning of the whole sentence.",
+        "architectural_cause": "Internally, the system looks for the closest dictionary matches between languages, rather than understanding the full context or idiomatic expressions. It treats language more like a puzzle to be solved by fitting pieces together, rather than as a conversation to be interpreted.",
+        "pattern_generalization": "Students will often see overly literal translations with idioms, fixed phrases, or sentences where the meaning can't be guessed just from the individual words. Watch out for phrases that sound unnatural or don't make sense in the target language.",
+        "mt_system_specific": "LLMs like GPT-4 may be even more literal than specialized MT systems, because they are trained for general tasks and may not always recognize translation-specific nuances."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Vous avez souhaité un débat à ce sujet dans les prochains jours, <MISTRANSLATION type=\"overly_literal\" severity=\"minor\" tom=\"1st_machine\" desc=\"5-15 word explanation\">cette partie-session</MISTRANSLATION>.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 4,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely associated 'session' with the French 'séance,' which is a common false cognate, and thus rendered 'part-session' as 'période de séance.'",
+      "actual_meaning": "The source refers to a specific period within a parliamentary or institutional session, which in French is accurately expressed as 'période de session.'",
+      "reader_impact": "A reader would misunderstand 'période de séance' as referring to a single meeting or sitting, rather than the broader timeframe of a session, leading to confusion about the scheduling.",
+      "correction_rationale": "'Période de session' is the established term in parliamentary contexts for a session period, whereas 'séance' refers to individual sittings; using the correct term preserves the intended institutional meaning."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted 'during this part-session' as simply referring to 'this period of session,' omitting the discourse marker 'au cours de' that signals the timing within the session.",
+      "actual_meaning": "The source emphasizes that the debate should occur within the timeframe of the current session, using 'during' to specify when within the broader event the debate should happen.",
+      "reader_impact": "A reader may miss the temporal nuance and see the phrase as just referencing the session period, not specifically indicating that the debate is to happen within that timeframe.",
+      "correction_rationale": "The correct translation includes 'au cours de' to accurately convey the temporal relationship and ensure the reader understands the debate is to take place during, not just at some point in, the session."
+    },
+    {
+      "mt_interpretation": "The MT system likely identified 'part-session' as a direct, literal equivalent of the English term and rendered it as 'partie-session' in French, mimicking the structure without considering idiomatic usage.",
+      "actual_meaning": "The source refers to the specific period or duration of the current parliamentary session, not a subdivided session or 'part-session.'",
+      "reader_impact": "A French reader may be confused by 'partie-session,' a non-standard and awkward phrase, potentially leading them to misunderstand the timing or structure of the session.",
+      "correction_rationale": "'Période de session' is the accepted and idiomatic French term for this context, accurately conveying the intended meaning of the original without introducing unnatural phrasing."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often mistake words that look or sound similar in two languages, much like a person might assume 'actual' in English means 'aktuell' in German because they seem alike. They're fooled by the surface resemblance, not realizing the meanings are different.",
+      "architectural_cause": "Internally, these systems rely on patterns found in large amounts of text and often guess that similar-looking words match up. They don't truly understand the meaning behind the words, so they can be tricked by these 'false friends.'",
+      "pattern_generalization": "You can expect these errors when words in two languages look or sound alike but have different meanings—especially with words that come from the same roots but have changed over time. Watch out for familiar-looking words that might not mean what you expect.",
+      "mt_system_specific": "Large language models like GPT-4, trained on general text, may make this error more often than dedicated MT systems, which are sometimes better tuned to avoid common false friends."
+    },
+    {
+      "error_mechanism": "Machine translation systems often skip over small connecting words or phrases, like 'however' or 'therefore,' because they focus more on the main message. It's like someone retelling a story and forgetting to mention the 'meanwhile' or 'on the other hand' parts that help connect ideas smoothly.",
+      "architectural_cause": "These systems work by predicting the most likely next word or phrase, and sometimes they see discourse markers as less important or easily left out. Since these markers don't always change the core meaning, the system may overlook them to keep translations brief and direct.",
+      "pattern_generalization": "Students may notice similar omissions when the original text uses subtle or less common linking words, especially when sentences are complex or ideas shift. Pay extra attention to places where the flow of ideas depends on these small words.",
+      "mt_system_specific": "Dedicated MT systems trained specifically for translation tend to handle these connecting words better, as they're designed to preserve the structure and flow of the original. General-purpose language models like GPT-4 may miss them more often since they're not focused just on translation."
+    },
+    {
+      "error_mechanism": "MT systems often translate word-for-word, like someone following a recipe without tasting the food. They focus on matching each ingredient (word) exactly, which can miss the intended flavor or meaning of the whole sentence.",
+      "architectural_cause": "Internally, the system looks for the closest dictionary matches between languages, rather than understanding the full context or idiomatic expressions. It treats language more like a puzzle to be solved by fitting pieces together, rather than as a conversation to be interpreted.",
+      "pattern_generalization": "Students will often see overly literal translations with idioms, fixed phrases, or sentences where the meaning can't be guessed just from the individual words. Watch out for phrases that sound unnatural or don't make sense in the target language.",
+      "mt_system_specific": "LLMs like GPT-4 may be even more literal than specialized MT systems, because they are trained for general tasks and may not always recognize translation-specific nuances."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

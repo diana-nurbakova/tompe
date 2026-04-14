@@ -80,24 +80,6 @@ DAEMS_2017 = {
     ],
 }
 
-# ---------------------------------------------------------------------------
-# Source 1C: ES→EN Trainee Detection Rates
-# Empirical compendium detection rates for trainees.
-# ---------------------------------------------------------------------------
-TRAINEE_DETECTION = {
-    "source": "TraineeDetection",
-    "n_participants": None,
-    "language_pair": "ES-EN",
-    "mt_system": "generic",
-    "measures": [
-        {"error_type": "Syntax errors", "skill": "S1",
-         "detection_rate": 0.93, "notes": "Also covers S2"},
-        {"error_type": "Mistranslation", "skill": "S3",
-         "detection_rate": 0.80, "notes": ""},
-        {"error_type": "Omission", "skill": "S4",
-         "detection_rate": 0.67, "notes": ""},
-    ],
-}
 
 # ---------------------------------------------------------------------------
 # Source 1D: Yamada (2019) — Student Correction Rates
@@ -387,7 +369,7 @@ KOPONEN_2015 = {
 
 
 # Convenience: all sources grouped by experiment
-EXP1_SOURCES = [TEMNIKOVA_2010, DAEMS_2017, TRAINEE_DETECTION, YAMADA_2019, POPOVIC_2018]
+EXP1_SOURCES = [TEMNIKOVA_2010, DAEMS_2017, YAMADA_2019, POPOVIC_2018]
 EXP2_SOURCES = [YAMADA_2019, BENTIVOGLI_2018, VAN_BRUSSEL_2018, KOPONEN_2019]
 EXP3_SOURCES = [DAEMS_2017, STASIMIOTI_2021, DE_ALMEIDA_2013]
 EXP3B_SOURCES = [KOPONEN_2015, DAEMS_2017, DE_ALMEIDA_2013]

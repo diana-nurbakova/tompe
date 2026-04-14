@@ -1,0 +1,136 @@
+{
+  "item_id": "7c161579-637f-4385-bc08-40323d74d414",
+  "segment_id": "europarl-62c435241d98",
+  "source_text": "You have requested a debate on this subject in the course of the next few days, during this part-session.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Vous avez souhaité un débat à ce sujet dans le prochain jour, au cours de cette commission.",
+  "reference_translation": "Vous avez souhaité un débat à ce sujet dans les prochains jours, au cours de cette période de session.",
+  "mt_system": "claude",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "6ad80646-8680-42a3-b6b8-89e4fbc649c8",
+      "span_start": 44,
+      "span_end": 60,
+      "original_text": "les prochains jours",
+      "injected_text": "le prochain jour",
+      "primary_tag": "GRAMMAR",
+      "error_type": "agreement_number",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'the next few days' as a single upcoming day, resulting in the singular 'le prochain jour.' It failed to capture the plural nuance of 'prochains jours.'",
+        "actual_meaning": "The source refers to a period spanning several days within the current part-session, not just one specific day. It emphasizes flexibility within a multi-day timeframe.",
+        "reader_impact": "A reader would understand that the debate is scheduled for only one specific upcoming day, rather than having the possibility across several days. This narrows the intended scheduling window and could cause confusion in planning.",
+        "correction_rationale": "The correct translation, 'les prochains jours,' accurately reflects the plural nature of the timeframe in the source text, preserving the intended flexibility and scope for scheduling the debate."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up singular and plural forms because they rely on patterns in the data they've seen, much like someone learning a new language by copying phrases from a book. If the system hasn't seen enough examples or if the sentence is tricky, it might choose the wrong form, just as a language learner might guess incorrectly.",
+        "architectural_cause": "Internally, the system predicts each word one after another, looking at the surrounding words for clues. If the clues are unclear or the system hasn't learned the rule well, it might default to the more common or simpler form, leading to number agreement mistakes.",
+        "pattern_generalization": "Students should watch for these errors when translating sentences with lists, quantities, or references to time periods, as these often confuse the system. Plural-to-singular mix-ups are especially common when the context doesn't strongly signal which is correct.",
+        "mt_system_specific": "LLMs like Claude, which are trained on a wide range of text, may be more prone to these errors than specialized MT systems, since they aren't focused solely on translation rules and patterns."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Vous avez souhaité un débat à ce sujet dans <GRAMMAR type=\"agreement_number\" severity=\"minor\" tom=\"1st_machine\" desc=\"Plural replaced with singular, narrowing the timeframe\">le prochain jour</GRAMMAR>, au cours de cette période de session.",
+      "brief_explanation": "Plural replaced with singular, narrowing the timeframe"
+    },
+    {
+      "error_id": "8e1ef92d-22b2-44e7-b315-175611ed02ff",
+      "span_start": 74,
+      "span_end": 90,
+      "original_text": "cette période de session",
+      "injected_text": "cette commission",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "entity",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely associated 'part-session' with 'commission', a common institutional term, and substituted it automatically, perhaps due to similar contexts in its training data.",
+        "actual_meaning": "The source refers to a specific period within a parliamentary session, not to a commission or committee.",
+        "reader_impact": "A reader would believe the debate is scheduled during a commission meeting, rather than during the current session period, leading to confusion about timing and context.",
+        "correction_rationale": "'Cette période de session' accurately reflects the temporal scope of 'part-session', whereas 'cette commission' misidentifies the institutional setting, changing the meaning entirely."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mistranslate entities—like names of people, places, or organizations—because they sometimes confuse them with regular words or don't recognize them as special. It's a bit like someone reading a list of names in a foreign language and accidentally thinking one is just a common word, not realizing it's actually a person's name.",
+        "architectural_cause": "These systems learn from vast amounts of text, spotting patterns and guessing what comes next based on examples they've seen. If an entity is rare or looks similar to an everyday word, the system might not treat it with the care it deserves, leading to mistakes.",
+        "pattern_generalization": "Students should watch for this error when the text includes unusual names, less common places, or organizations that might not appear often in general writing. These errors are especially likely if the entity looks or sounds like a regular word.",
+        "mt_system_specific": "Large language models like Claude are trained on broader data and might be more likely to guess or invent entities, while dedicated MT systems are sometimes better at copying names as they appear, though both can make these mistakes."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Vous avez souhaité un débat à ce sujet dans le prochain jour, au cours de <MISTRANSLATION type=\"entity\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">cette commission</MISTRANSLATION>.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 3,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely interpreted 'the next few days' as a single upcoming day, resulting in the singular 'le prochain jour.' It failed to capture the plural nuance of 'prochains jours.'",
+      "actual_meaning": "The source refers to a period spanning several days within the current part-session, not just one specific day. It emphasizes flexibility within a multi-day timeframe.",
+      "reader_impact": "A reader would understand that the debate is scheduled for only one specific upcoming day, rather than having the possibility across several days. This narrows the intended scheduling window and could cause confusion in planning.",
+      "correction_rationale": "The correct translation, 'les prochains jours,' accurately reflects the plural nature of the timeframe in the source text, preserving the intended flexibility and scope for scheduling the debate."
+    },
+    {
+      "mt_interpretation": "The MT system likely associated 'part-session' with 'commission', a common institutional term, and substituted it automatically, perhaps due to similar contexts in its training data.",
+      "actual_meaning": "The source refers to a specific period within a parliamentary session, not to a commission or committee.",
+      "reader_impact": "A reader would believe the debate is scheduled during a commission meeting, rather than during the current session period, leading to confusion about timing and context.",
+      "correction_rationale": "'Cette période de session' accurately reflects the temporal scope of 'part-session', whereas 'cette commission' misidentifies the institutional setting, changing the meaning entirely."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often mix up singular and plural forms because they rely on patterns in the data they've seen, much like someone learning a new language by copying phrases from a book. If the system hasn't seen enough examples or if the sentence is tricky, it might choose the wrong form, just as a language learner might guess incorrectly.",
+      "architectural_cause": "Internally, the system predicts each word one after another, looking at the surrounding words for clues. If the clues are unclear or the system hasn't learned the rule well, it might default to the more common or simpler form, leading to number agreement mistakes.",
+      "pattern_generalization": "Students should watch for these errors when translating sentences with lists, quantities, or references to time periods, as these often confuse the system. Plural-to-singular mix-ups are especially common when the context doesn't strongly signal which is correct.",
+      "mt_system_specific": "LLMs like Claude, which are trained on a wide range of text, may be more prone to these errors than specialized MT systems, since they aren't focused solely on translation rules and patterns."
+    },
+    {
+      "error_mechanism": "MT systems often mistranslate entities—like names of people, places, or organizations—because they sometimes confuse them with regular words or don't recognize them as special. It's a bit like someone reading a list of names in a foreign language and accidentally thinking one is just a common word, not realizing it's actually a person's name.",
+      "architectural_cause": "These systems learn from vast amounts of text, spotting patterns and guessing what comes next based on examples they've seen. If an entity is rare or looks similar to an everyday word, the system might not treat it with the care it deserves, leading to mistakes.",
+      "pattern_generalization": "Students should watch for this error when the text includes unusual names, less common places, or organizations that might not appear often in general writing. These errors are especially likely if the entity looks or sounds like a regular word.",
+      "mt_system_specific": "Large language models like Claude are trained on broader data and might be more likely to guess or invent entities, while dedicated MT systems are sometimes better at copying names as they appear, though both can make these mistakes."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

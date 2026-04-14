@@ -167,7 +167,7 @@ def render_text_with_highlights(
     text: str,
     annotations: list[dict[str, Any]],
     widget_id: str = "main",
-    level: str = "independent",
+    level: str = "analyst",
 ) -> str:
     """Render translation text with colored error highlights.
 
@@ -180,7 +180,7 @@ def render_text_with_highlights(
             - (optional) mqm_label, severity_label, tom_hint: for L0
             - (optional) is_region_hint: True for L1 yellow regions
         widget_id: Unique ID for the widget instance.
-        level: Scaffolding level ("navigator", "guided", "independent", "expert").
+        level: Scaffolding level ("navigator", "scout", "analyst", "expert").
 
     Returns:
         Complete HTML string with CSS, text, and JS.
@@ -229,7 +229,7 @@ def render_text_with_highlights(
             )
 
         remove_btn = ""
-        if level in ("independent", "expert", "guided"):
+        if level in ("analyst", "expert", "scout"):
             remove_btn = (
                 f'<button class="remove-btn" '
                 f'onclick="removeAnnotation_{widget_id}(\'{ann_id}\')">&times;</button>'

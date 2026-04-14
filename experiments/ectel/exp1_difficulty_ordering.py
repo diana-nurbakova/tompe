@@ -48,16 +48,6 @@ def _extract_daems(source: dict) -> Tuple[List[str], List[int], List[float]]:
     return skills, tom_ranks, diff_ranks
 
 
-def _extract_trainee(source: dict) -> Tuple[List[str], List[int], List[float]]:
-    """Extract from trainee detection rates — invert so higher = harder."""
-    skills, tom_ranks, diff_ranks = [], [], []
-    for m in source["measures"]:
-        skills.append(m["skill"])
-        tom_ranks.append(SKILL_TO_TOM_RANK[m["skill"]])
-        # Invert: lower detection = harder = higher rank
-        diff_ranks.append(1.0 - m["detection_rate"])
-    return skills, tom_ranks, diff_ranks
-
 
 def _extract_yamada(source: dict) -> Tuple[List[str], List[int], List[float]]:
     """Extract from Yamada — use (1 - NMT correction rate) as difficulty."""
@@ -82,7 +72,6 @@ def _extract_popovic(source: dict) -> Tuple[List[str], List[int], List[float]]:
 _EXTRACTORS = {
     "Temnikova2010": _extract_temnikova,
     "Daems2017": _extract_daems,
-    "TraineeDetection": _extract_trainee,
     "Yamada2019": _extract_yamada,
     "Popovic2018": _extract_popovic,
 }

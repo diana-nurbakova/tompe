@@ -1,0 +1,180 @@
+{
+  "item_id": "463439f7-3856-4d0c-9533-dad59e92df94",
+  "segment_id": "europarl-07e9c46bedd9",
+  "source_text": "I would like your advice about Rule 143 concerning inadmissibility.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Je voudrais vous demander un conseil au sujet de la règle 143.",
+  "reference_translation": "Je voudrais vous demander un conseil au sujet de l'article 143, qui concerne l'irrecevabilité.",
+  "mt_system": "gpt4",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "d8b22377-8eec-40ea-9522-0eab46de8c2a",
+      "span_start": 49,
+      "span_end": 103,
+      "original_text": "l'article 143, qui concerne l'irrecevabilité",
+      "injected_text": "l'article 143, qui pourrait concerner l'irrecevabilité",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "ambiguity",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "severity_range": [
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'concerning' as expressing possibility, resulting in 'qui pourrait concerner' ('which could concern'), introducing ambiguity about whether Rule 143 actually addresses inadmissibility.",
+        "actual_meaning": "The source text clearly states that Rule 143 addresses inadmissibility, not that it might address it. The rule is definitively about inadmissibility.",
+        "reader_impact": "A reader would wrongly assume that the connection between Rule 143 and inadmissibility is uncertain or only potential, possibly leading to confusion about the rule's scope.",
+        "correction_rationale": "The correct translation, 'qui concerne l'irrecevabilité', accurately reflects the definitive link made in the source text between Rule 143 and inadmissibility, avoiding any unintended ambiguity."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often stumble with ambiguous words or phrases, much like someone hearing a word with two meanings and picking the wrong one based on limited clues. Without enough context, the system has to make its best guess, which can easily lead to the wrong choice.",
+        "architectural_cause": "Internally, the system looks at patterns in the words around the ambiguous term to decide its meaning. If the surrounding words don't clearly point to one meaning, the system can't 'ask for clarification' and just picks what seems most likely from its training.",
+        "pattern_generalization": "Expect similar mistakes whenever a word or phrase has multiple meanings and the context isn't crystal clear. Watch out for sentences where a human would also need to pause and think about which meaning fits best.",
+        "mt_system_specific": "Large general-purpose LLMs like GPT-4 may be even more prone to this than dedicated MT engines, because they aren't specialized in handling translation-specific clues for ambiguity."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je voudrais vous demander un conseil au sujet de <MISTRANSLATION type=\"ambiguity\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">l'article 143, qui pourrait concerner l'irrecevabilité</MISTRANSLATION>.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "40229751-5e5d-42c8-a4f7-2c3a2e131016",
+      "span_start": 37,
+      "span_end": 62,
+      "original_text": "au sujet de l'article 143, qui pourrait concerner l'irrecevabilité",
+      "injected_text": "au sujet de l'article 143",
+      "primary_tag": "OMISSION",
+      "error_type": "partial",
+      "severity": "major",
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'Rule 143 concerning inadmissibility' as simply 'Rule 143,' omitting the detail about inadmissibility, possibly due to focusing only on the main noun phrase.",
+        "actual_meaning": "The source text specifically asks for advice about Rule 143 in the context of its connection to inadmissibility, not just the rule itself.",
+        "reader_impact": "A reader would not understand that inadmissibility is the focus, potentially missing the legal context or the relevance of the rule to the issue at hand.",
+        "correction_rationale": "Including 'qui concerne l'irrecevabilité' accurately conveys the specific aspect of Rule 143 being discussed, ensuring the reader understands the full context and intent of the inquiry."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems sometimes leave out parts of the original text, a bit like someone retelling a story but forgetting a detail or two. This can happen when the system focuses on the main message and skips over less obvious information.",
+        "architectural_cause": "Internally, the system tries to predict what comes next based on patterns it has seen before. If a detail seems less important or unusual, the system might decide not to include it, thinking it's not necessary for understanding.",
+        "pattern_generalization": "Similar omissions often occur with longer or more complex sentences, or when the original text has extra details that don't seem essential. Watch out for this especially in summaries or explanations.",
+        "mt_system_specific": "Dedicated MT systems are usually better at keeping all the details, while general-purpose LLMs like GPT-4 may skip information more often because they're trained to be concise and general."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je voudrais vous demander un conseil <OMISSION type=\"partial\" severity=\"major\" tom=\"1st_author\" desc=\"5-15 word explanation\">au sujet de l'article 143</OMISSION>.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "21681dd3-db90-4bc8-8124-53a756dd5f53",
+      "span_start": 49,
+      "span_end": 61,
+      "original_text": "l'article 143",
+      "injected_text": "la règle 143",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "entity",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely matched 'Rule 143' directly to 'la règle 143', assuming a literal correspondence between 'rule' and 'règle' in French.",
+        "actual_meaning": "The source refers specifically to 'Article 143', which is a formal section or clause in a legal or regulatory document, not a general rule.",
+        "reader_impact": "A French reader would interpret 'la règle 143' as an informal or generic rule, potentially misunderstanding the legal or official nature of the reference and missing its connection to a specific article in a legal text.",
+        "correction_rationale": "'L'article 143' is the standard way to reference numbered sections in French legal or official documents, ensuring clarity and proper identification of the referenced provision."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up or misinterpret names of people, places, or organizations, much like someone skimming a story and confusing characters or locations. This happens because the system may not always recognize that certain words are meant to be kept as they are, rather than translated or changed.",
+        "architectural_cause": "Inside, the system processes sentences by looking for patterns in huge amounts of text, rather than truly understanding the meaning of each word. As a result, it can sometimes treat unique names as ordinary words and try to translate or adapt them incorrectly.",
+        "pattern_generalization": "Similar mistakes often happen with unfamiliar or rare names, or when names look like regular words in either language. Be especially careful with proper nouns and double-check them in the output.",
+        "mt_system_specific": "General-purpose LLMs like GPT-4 are more likely to make these errors than dedicated translation systems, which are usually better at spotting and preserving names."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je voudrais vous demander un conseil au sujet de <MISTRANSLATION type=\"entity\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">la règle 143</MISTRANSLATION>.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 4,
+  "domain": "parliamentary",
+  "item_status": "published",
+  "teacher_notes": "",
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely interpreted 'concerning' as expressing possibility, resulting in 'qui pourrait concerner' ('which could concern'), introducing ambiguity about whether Rule 143 actually addresses inadmissibility.",
+      "actual_meaning": "The source text clearly states that Rule 143 addresses inadmissibility, not that it might address it. The rule is definitively about inadmissibility.",
+      "reader_impact": "A reader would wrongly assume that the connection between Rule 143 and inadmissibility is uncertain or only potential, possibly leading to confusion about the rule's scope.",
+      "correction_rationale": "The correct translation, 'qui concerne l'irrecevabilité', accurately reflects the definitive link made in the source text between Rule 143 and inadmissibility, avoiding any unintended ambiguity."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted 'Rule 143 concerning inadmissibility' as simply 'Rule 143,' omitting the detail about inadmissibility, possibly due to focusing only on the main noun phrase.",
+      "actual_meaning": "The source text specifically asks for advice about Rule 143 in the context of its connection to inadmissibility, not just the rule itself.",
+      "reader_impact": "A reader would not understand that inadmissibility is the focus, potentially missing the legal context or the relevance of the rule to the issue at hand.",
+      "correction_rationale": "Including 'qui concerne l'irrecevabilité' accurately conveys the specific aspect of Rule 143 being discussed, ensuring the reader understands the full context and intent of the inquiry."
+    },
+    {
+      "mt_interpretation": "The MT system likely matched 'Rule 143' directly to 'la règle 143', assuming a literal correspondence between 'rule' and 'règle' in French.",
+      "actual_meaning": "The source refers specifically to 'Article 143', which is a formal section or clause in a legal or regulatory document, not a general rule.",
+      "reader_impact": "A French reader would interpret 'la règle 143' as an informal or generic rule, potentially misunderstanding the legal or official nature of the reference and missing its connection to a specific article in a legal text.",
+      "correction_rationale": "'L'article 143' is the standard way to reference numbered sections in French legal or official documents, ensuring clarity and proper identification of the referenced provision."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often stumble with ambiguous words or phrases, much like someone hearing a word with two meanings and picking the wrong one based on limited clues. Without enough context, the system has to make its best guess, which can easily lead to the wrong choice.",
+      "architectural_cause": "Internally, the system looks at patterns in the words around the ambiguous term to decide its meaning. If the surrounding words don't clearly point to one meaning, the system can't 'ask for clarification' and just picks what seems most likely from its training.",
+      "pattern_generalization": "Expect similar mistakes whenever a word or phrase has multiple meanings and the context isn't crystal clear. Watch out for sentences where a human would also need to pause and think about which meaning fits best.",
+      "mt_system_specific": "Large general-purpose LLMs like GPT-4 may be even more prone to this than dedicated MT engines, because they aren't specialized in handling translation-specific clues for ambiguity."
+    },
+    {
+      "error_mechanism": "MT systems sometimes leave out parts of the original text, a bit like someone retelling a story but forgetting a detail or two. This can happen when the system focuses on the main message and skips over less obvious information.",
+      "architectural_cause": "Internally, the system tries to predict what comes next based on patterns it has seen before. If a detail seems less important or unusual, the system might decide not to include it, thinking it's not necessary for understanding.",
+      "pattern_generalization": "Similar omissions often occur with longer or more complex sentences, or when the original text has extra details that don't seem essential. Watch out for this especially in summaries or explanations.",
+      "mt_system_specific": "Dedicated MT systems are usually better at keeping all the details, while general-purpose LLMs like GPT-4 may skip information more often because they're trained to be concise and general."
+    },
+    {
+      "error_mechanism": "MT systems often mix up or misinterpret names of people, places, or organizations, much like someone skimming a story and confusing characters or locations. This happens because the system may not always recognize that certain words are meant to be kept as they are, rather than translated or changed.",
+      "architectural_cause": "Inside, the system processes sentences by looking for patterns in huge amounts of text, rather than truly understanding the meaning of each word. As a result, it can sometimes treat unique names as ordinary words and try to translate or adapt them incorrectly.",
+      "pattern_generalization": "Similar mistakes often happen with unfamiliar or rare names, or when names look like regular words in either language. Be especially careful with proper nouns and double-check them in the output.",
+      "mt_system_specific": "General-purpose LLMs like GPT-4 are more likely to make these errors than dedicated translation systems, which are usually better at spotting and preserving names."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

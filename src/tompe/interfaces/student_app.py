@@ -6,6 +6,7 @@ Supports L0-L3 scaffolding levels, evaluation and post-editing modes.
 """
 
 import json
+import time
 from typing import Any
 from uuid import uuid4
 
@@ -87,7 +88,7 @@ ERROR_GUIDE: dict[str, dict[str, str]] = {
 def _build_exercise_card(assignment: dict, exercise: dict) -> str:
     """Build HTML card for an exercise in the list view."""
     status = assignment.get("status", "not_started")
-    level = exercise.get("level", "independent")
+    level = exercise.get("level", "analyst")
     mode = exercise.get("mode", "evaluation")
     name = exercise.get("name", "Unnamed Exercise")
     n_items = len(exercise.get("item_ids", []))
@@ -97,8 +98,8 @@ def _build_exercise_card(assignment: dict, exercise: dict) -> str:
     current = assignment.get("current_item_index", 0)
 
     level_labels = {
-        "navigator": "L0 Navigator", "guided": "L1 Guided",
-        "independent": "L2 Independent", "expert": "L3 Expert",
+        "navigator": "L0 Navigator", "scout": "L1 Scout",
+        "analyst": "L2 Analyst", "expert": "L3 Expert",
     }
     mode_labels = {"evaluation": "Evaluation", "postediting": "Post-Editing", "both": "Both"}
 
@@ -263,6 +264,313 @@ def _build_feedback_html(feedback_data: dict) -> str:
     return html
 
 
+def _build_badge_collection_html(badge_data: dict) -> str:
+    """Build HTML for the Badge Collection panel in My Progress."""
+    if not badge_data:
+        return ""
+
+    html = '<div style="font-family:system-ui;padding:16px;background:#f8fafc;border-radius:12px;margin-bottom:16px;">'
+    html += '<h3 style="margin-top:0;">My Badges</h3>'
+
+    # Progression badges
+    html += '<div style="margin-bottom:20px;">'
+    html += '<h4 style="color:#6b7280;font-size:14px;text-transform:uppercase;letter-spacing:1px;">Progression</h4>'
+    html += '<div style="display:flex;gap:12px;flex-wrap:wrap;">'
+    prog_icons = {
+        "navigator": "assets/badges/scaffolding_navigator.jpg",
+        "scout": "assets/badges/scaffolding_scout.jpg",
+        "analyst": "assets/badges/scaffolding_analyst.jpg",
+        "expert": "assets/badges/scaffolding_expert.jpg",
+    }
+    prog_colors = {"navigator": "#E69F00", "scout": "#009E73", "analyst": "#0072B2", "expert": "#D4AF37"}
+    for badge in badge_data.get("progression", []):
+        bid = badge["badge_id"]
+        earned = badge["earned"]
+        name = badge["display_name"]
+        color = prog_colors.get(bid, "#D4AF37")
+        opacity = "1" if earned else "0.35"
+        border_color = color if earned else "#4A4A4A"
+        filter_css = "none" if earned else "grayscale(100%)"
+        lock_icon = "" if earned else '<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:20px;opacity:0.7;">&#128274;</div>'
+        html += f'''
+        <div style="text-align:center;width:72px;" title="{name}{" — Earned!" if earned else " — Locked"}">
+            <div style="position:relative;width:64px;height:64px;margin:0 auto 4px;">
+                <img src="file/{prog_icons.get(bid, "")}" style="width:64px;height:64px;border-radius:50%;
+                    border:3px solid {border_color};opacity:{opacity};filter:{filter_css};object-fit:cover;" />
+                {lock_icon}
+            </div>
+            <div style="font-size:11px;font-weight:600;color:{'#1B2838' if earned else '#9ca3af'};">{name}</div>
+        </div>'''
+    html += '</div></div>'
+
+    # Specialisation badges
+    html += '<div style="margin-bottom:20px;">'
+    html += '<h4 style="color:#6b7280;font-size:14px;text-transform:uppercase;letter-spacing:1px;">Specialisation</h4>'
+    html += '<div style="display:flex;gap:12px;flex-wrap:wrap;">'
+    tier_colors = {"bronze": "#B87333", "silver": "#C0C0C0", "gold": "#D4AF37"}
+    tier_labels = {"bronze": "B", "silver": "S", "gold": "G"}
+    for badge in badge_data.get("specialisation", []):
+        bid = badge["badge_id"]
+        name = badge["display_name"]
+        highest = badge.get("highest_tier")
+        count = badge.get("current_count", 0)
+        next_thresh = badge.get("next_threshold")
+        next_tier = badge.get("next_tier")
+
+        # Determine icon path based on tier
+        icon_tier = highest if highest else "bronze"
+        icon_path = f"assets/badges/specialisation_{bid.replace('_', '')}_{icon_tier}.jpg"
+
+        earned = highest is not None
+        border_color = tier_colors.get(highest, "#4A4A4A") if earned else "#4A4A4A"
+        opacity = "1" if earned else "0.35"
+        filter_css = "none" if earned else "grayscale(100%)"
+        lock_icon = "" if earned else '<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:16px;opacity:0.7;">&#128274;</div>'
+
+        # Tier indicator
+        tier_badge = ""
+        if highest:
+            tier_badge = f'<div style="position:absolute;top:-2px;right:-2px;width:18px;height:18px;border-radius:50%;background:{tier_colors[highest]};color:white;font-size:10px;font-weight:bold;display:flex;align-items:center;justify-content:center;">{tier_labels[highest]}</div>'
+
+        # Progress text
+        progress_text = ""
+        if next_thresh is not None:
+            progress_text = f'<div style="font-size:10px;color:#9ca3af;">{count}/{next_thresh}</div>'
+        elif highest == "gold":
+            progress_text = f'<div style="font-size:10px;color:#D4AF37;">MAX</div>'
+
+        tooltip = f"{name}"
+        if highest:
+            tooltip += f" ({highest.title()})"
+        if next_thresh:
+            tooltip += f" — {count}/{next_thresh} toward {next_tier}"
+
+        html += f'''
+        <div style="text-align:center;width:72px;" title="{tooltip}">
+            <div style="position:relative;width:64px;height:64px;margin:0 auto 4px;">
+                <img src="file/{icon_path}" style="width:64px;height:64px;border-radius:50%;
+                    border:3px solid {border_color};opacity:{opacity};filter:{filter_css};object-fit:cover;" />
+                {lock_icon}{tier_badge}
+            </div>
+            <div style="font-size:10px;font-weight:600;color:{'#1B2838' if earned else '#9ca3af'};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{name}</div>
+            {progress_text}
+        </div>'''
+    html += '</div></div>'
+
+    # Behaviour badges
+    html += '<div style="margin-bottom:16px;">'
+    html += '<h4 style="color:#6b7280;font-size:14px;text-transform:uppercase;letter-spacing:1px;">Achievements</h4>'
+    html += '<div style="display:flex;gap:12px;flex-wrap:wrap;">'
+    behav_icons = {
+        "false_positive_discipline": "assets/badges/behaviour_falsepositivediscipline.jpg",
+        "clean_sheet": "assets/badges/behaviour_cleansheet.jpg",
+        "trap_detector": "assets/badges/behaviour_trapdetector.jpg",
+    }
+    behav_colors = {"false_positive_discipline": "#CC79A7", "clean_sheet": "#D4AF37", "trap_detector": "#D55E00"}
+    for badge in badge_data.get("behaviour", []):
+        bid = badge["badge_id"]
+        name = badge["display_name"]
+        earned = badge["earned"]
+        color = behav_colors.get(bid, "#CC79A7")
+        opacity = "1" if earned else "0.35"
+        border_color = color if earned else "#4A4A4A"
+        filter_css = "none" if earned else "grayscale(100%)"
+        lock_icon = "" if earned else '<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:16px;opacity:0.7;">&#128274;</div>'
+
+        # Clean sheet counter
+        counter = ""
+        if bid == "clean_sheet" and earned and badge.get("count", 1) > 1:
+            counter = f'<div style="position:absolute;bottom:-2px;right:-2px;min-width:18px;height:18px;border-radius:9px;background:#D4AF37;color:white;font-size:10px;font-weight:bold;display:flex;align-items:center;justify-content:center;padding:0 4px;">&times;{badge["count"]}</div>'
+
+        # Progress for trap detector
+        progress_text = ""
+        if bid == "trap_detector" and not earned:
+            prog = badge.get("progress", 0)
+            progress_text = f'<div style="font-size:10px;color:#9ca3af;">{prog}/10</div>'
+
+        html += f'''
+        <div style="text-align:center;width:72px;" title="{name}{" — Earned!" if earned else " — " + badge.get("description", "")}">
+            <div style="position:relative;width:64px;height:64px;margin:0 auto 4px;">
+                <img src="file/{behav_icons.get(bid, "")}" style="width:64px;height:64px;border-radius:50%;
+                    border:3px solid {border_color};opacity:{opacity};filter:{filter_css};object-fit:cover;" />
+                {lock_icon}{counter}
+            </div>
+            <div style="font-size:10px;font-weight:600;color:{'#1B2838' if earned else '#9ca3af'};">{name}</div>
+            {progress_text}
+        </div>'''
+    html += '</div></div>'
+
+    # Total XP
+    total_xp = badge_data.get("total_xp", 0)
+    html += f'''
+    <div style="text-align:center;padding:12px;background:linear-gradient(135deg,#1B2838,#2d3748);
+        border-radius:8px;color:white;">
+        <div style="font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#D4AF37;margin-bottom:4px;">Total XP</div>
+        <div style="font-size:28px;font-weight:bold;color:#D4AF37;">{total_xp:,}</div>
+    </div>'''
+
+    html += '</div>'
+    return html
+
+
+def _build_skill_radar_html(skill_data: dict, current_level: str = "navigator") -> str:
+    """Build SVG skill radar chart for the 7 competency skills."""
+    if not skill_data:
+        return ""
+
+    skills = [
+        ("S1", "Surface form"),
+        ("S2", "Grammar"),
+        ("S3", "Lexical accuracy"),
+        ("S4", "Completeness"),
+        ("S5", "Terminology"),
+        ("S6", "Style & register"),
+        ("S7", "Contextual coherence"),
+    ]
+
+    level_colors = {
+        "navigator": "#E69F00", "scout": "#009E73",
+        "analyst": "#0072B2", "expert": "#D4AF37",
+    }
+    fill_color = level_colors.get(current_level, "#3b82f6")
+
+    import math as _math
+    n = len(skills)
+    cx, cy = 150, 150
+    max_r = 110
+    mastery_r = max_r * 0.98
+
+    # Build SVG
+    svg = f'<svg viewBox="0 0 300 300" width="300" height="300" xmlns="http://www.w3.org/2000/svg">'
+
+    # Background grid circles
+    for frac in [0.25, 0.5, 0.75, 1.0]:
+        r = max_r * frac
+        svg += f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="none" stroke="#e5e7eb" stroke-width="0.5"/>'
+
+    # Mastery threshold dashed circle
+    svg += f'<circle cx="{cx}" cy="{cy}" r="{mastery_r}" fill="none" stroke="#D4AF37" stroke-width="1" stroke-dasharray="4,3" opacity="0.6"/>'
+
+    # Axis lines and labels
+    for i, (skill_id, label) in enumerate(skills):
+        angle = -_math.pi / 2 + (2 * _math.pi * i / n)
+        x_end = cx + max_r * _math.cos(angle)
+        y_end = cy + max_r * _math.sin(angle)
+        svg += f'<line x1="{cx}" y1="{cy}" x2="{x_end}" y2="{y_end}" stroke="#d1d5db" stroke-width="0.5"/>'
+
+        # Label position (slightly beyond the axis)
+        lx = cx + (max_r + 22) * _math.cos(angle)
+        ly = cy + (max_r + 22) * _math.sin(angle)
+        anchor = "middle"
+        if _math.cos(angle) > 0.3:
+            anchor = "start"
+        elif _math.cos(angle) < -0.3:
+            anchor = "end"
+        svg += f'<text x="{lx}" y="{ly}" text-anchor="{anchor}" dominant-baseline="central" font-size="8" fill="#6b7280" font-family="system-ui">{skill_id}</text>'
+
+    # Data polygon
+    points = []
+    for i, (skill_id, _) in enumerate(skills):
+        angle = -_math.pi / 2 + (2 * _math.pi * i / n)
+        val = skill_data.get(skill_id, 0)
+        r = max_r * val
+        x = cx + r * _math.cos(angle)
+        y = cy + r * _math.sin(angle)
+        points.append(f"{x},{y}")
+
+    pts = " ".join(points)
+    svg += f'<polygon points="{pts}" fill="{fill_color}" fill-opacity="0.25" stroke="{fill_color}" stroke-width="2"/>'
+
+    # Data points
+    for i, (skill_id, _) in enumerate(skills):
+        angle = -_math.pi / 2 + (2 * _math.pi * i / n)
+        val = skill_data.get(skill_id, 0)
+        r = max_r * val
+        x = cx + r * _math.cos(angle)
+        y = cy + r * _math.sin(angle)
+        svg += f'<circle cx="{x}" cy="{y}" r="3" fill="{fill_color}" stroke="white" stroke-width="1"/>'
+
+    svg += '</svg>'
+
+    # Legend
+    level_label = current_level.title() if current_level else "Navigator"
+    html = f'''
+    <div style="font-family:system-ui;padding:16px;background:#f8fafc;border-radius:12px;margin-bottom:16px;">
+        <h3 style="margin-top:0;">Skill Radar</h3>
+        <div style="text-align:center;">{svg}</div>
+        <div style="display:flex;gap:16px;justify-content:center;font-size:12px;color:#6b7280;margin-top:8px;">
+            <span><span style="display:inline-block;width:12px;height:2px;background:{fill_color};margin-right:4px;vertical-align:middle;"></span>Current</span>
+            <span><span style="display:inline-block;width:12px;height:2px;background:#D4AF37;border-top:1px dashed #D4AF37;margin-right:4px;vertical-align:middle;"></span>Mastery (0.98)</span>
+        </div>
+        <div style="text-align:center;margin-top:8px;font-size:13px;color:#374151;">
+            Level: <strong>{level_label}</strong>
+        </div>
+    </div>'''
+    return html
+
+
+def _build_badge_notification_html(badge_result: dict) -> str:
+    """Build HTML for badge notification toasts after feedback."""
+    newly_earned = badge_result.get("newly_earned_badges", [])
+    xp_earned = badge_result.get("xp_earned", 0)
+
+    if not newly_earned and xp_earned <= 0:
+        return ""
+
+    html = ""
+
+    # XP earned bar
+    if xp_earned > 0:
+        total_xp = badge_result.get("total_xp", 0)
+        html += f'''
+        <div style="background:linear-gradient(135deg,#1B2838,#2d3748);border-radius:8px;padding:12px 16px;
+            margin-top:12px;display:flex;align-items:center;justify-content:space-between;color:white;">
+            <span style="font-size:14px;">+{xp_earned} XP earned</span>
+            <span style="color:#D4AF37;font-weight:bold;">Total: {total_xp:,} XP</span>
+        </div>'''
+
+    # Badge notifications
+    for badge in newly_earned:
+        name = badge.get("display_name", "Badge")
+        tier = badge.get("tier", "none")
+        category = badge.get("category", "")
+        desc = badge.get("description", "")
+
+        tier_text = f" ({tier.title()})" if tier != "none" else ""
+        tier_color = {"bronze": "#B87333", "silver": "#C0C0C0", "gold": "#D4AF37"}.get(tier, "#D4AF37")
+
+        # Try to find badge icon
+        icon_path = ""
+        if category == "progression":
+            icon_path = f"assets/badges/scaffolding_{badge['badge_id']}.jpg"
+        elif category == "specialisation":
+            icon_path = f"assets/badges/specialisation_{badge['badge_id'].replace('_', '')}_{tier}.jpg"
+        elif category == "behaviour":
+            icon_path = f"assets/badges/behaviour_{badge['badge_id'].replace('_', '')}.jpg"
+
+        html += f'''
+        <div style="background:linear-gradient(135deg,#1B2838,#2d3748);border:2px solid {tier_color};
+            border-radius:12px;padding:16px;margin-top:12px;display:flex;align-items:center;gap:16px;
+            animation:badgeFadeIn 0.5s ease-out;">
+            <div style="flex-shrink:0;">
+                <img src="file/{icon_path}" style="width:64px;height:64px;border-radius:50%;
+                    border:3px solid {tier_color};object-fit:cover;"
+                    onerror="this.style.display='none'" />
+            </div>
+            <div>
+                <div style="color:{tier_color};font-size:12px;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;">
+                    Badge Earned!
+                </div>
+                <div style="color:white;font-size:16px;font-weight:bold;">
+                    {name}{tier_text}
+                </div>
+                <div style="color:#9ca3af;font-size:13px;">{desc}</div>
+            </div>
+        </div>'''
+
+    return html
+
+
 def _build_error_guide_html() -> str:
     """Build the Error Types Guide accordion content."""
     html = ""
@@ -296,11 +604,6 @@ def build_student_app() -> gr.Blocks:
 
     with gr.Blocks(
         title="ToM-PE — Student",
-        theme=gr.themes.Soft(),
-        css="""
-        .pill-btn { border-radius: 16px !important; font-size: 14px !important; }
-        .phase-indicator { font-size: 14px; color: #6b7280; padding: 8px 0; }
-        """,
     ) as app:
         # ── State ────────────────────────────────────────────────────────
         session_token = gr.State(None)
@@ -313,6 +616,7 @@ def build_student_app() -> gr.Blocks:
         current_selection = gr.State(None)  # Current text selection
         current_phase = gr.State("annotate")  # annotate/justify/feedback
         current_response_id = gr.State(None)
+        item_start_time = gr.State(None)
 
         # ── Login view ───────────────────────────────────────────────────
         with gr.Column(visible=True) as login_view:
@@ -331,7 +635,6 @@ def build_student_app() -> gr.Blocks:
 
         # ── Consent view ─────────────────────────────────────────────────
         with gr.Column(visible=False) as consent_view:
-            gr.Markdown("# Research Participation & Data Consent")
             consent_text_display = gr.Markdown("")
             gr.Markdown("---")
             gr.Markdown(
@@ -513,6 +816,12 @@ def build_student_app() -> gr.Blocks:
                                 placeholder="A reader would think...",
                             )
 
+                        # Confidence rating (spec requirement)
+                        confidence_slider = gr.Slider(
+                            minimum=1, maximum=5, step=1, value=3,
+                            label="How confident are you in your annotations? (1 = not at all, 5 = very confident)",
+                        )
+
                         submit_justify_btn = gr.Button(
                             "Submit & See Feedback", variant="primary"
                         )
@@ -543,6 +852,7 @@ def build_student_app() -> gr.Blocks:
                     progress_content = gr.HTML(
                         "<p>Complete exercises to see your progress here.</p>"
                     )
+                    refresh_progress_btn = gr.Button("Refresh Progress", size="sm")
 
         # ── Event handlers ───────────────────────────────────────────────
 
@@ -673,7 +983,7 @@ def build_student_app() -> gr.Blocks:
         def handle_start_exercise(selected_json, student_info):
             """Start or continue an exercise."""
             if not selected_json:
-                return [gr.update()] * 8
+                return [gr.update()] * 19
 
             data = json.loads(selected_json)
             assignment = data["assignment"]
@@ -682,7 +992,7 @@ def build_student_app() -> gr.Blocks:
             item_ids = exercise.get("item_ids", [])
 
             if not item_ids:
-                return [gr.update()] * 8
+                return [gr.update()] * 19
 
             # Load the current item
             try:
@@ -691,7 +1001,7 @@ def build_student_app() -> gr.Blocks:
                 item = None
 
             if not item:
-                return [gr.update()] * 8
+                return [gr.update()] * 19
 
             # Update assignment status
             if assignment["status"] == "not_started":
@@ -703,7 +1013,7 @@ def build_student_app() -> gr.Blocks:
                 except Exception:
                     pass
 
-            level = exercise.get("level", "independent")
+            level = exercise.get("level", "analyst")
             mode = exercise.get("mode", "evaluation")
             task_descriptions = {
                 "navigator": (
@@ -711,12 +1021,12 @@ def build_student_app() -> gr.Blocks:
                     "annotation: **confirm** correct ones, **dispute** incorrect ones, and explain "
                     "your reasoning. Some annotations may be incorrect."
                 ),
-                "guided": (
+                "scout": (
                     "Approximate error regions are highlighted in yellow. Within each region, "
                     "**select the exact error span** by clicking and dragging. Then classify the "
                     "error type, assign a severity, and explain your reasoning."
                 ),
-                "independent": (
+                "analyst": (
                     "Read the source text and translation carefully. **Select any text you believe "
                     "contains an error** by clicking and dragging. Classify each error by type and "
                     "severity, then explain your reasoning."
@@ -732,15 +1042,26 @@ def build_student_app() -> gr.Blocks:
                     "to correct any errors. For each significant edit, explain why the change was needed."
                 )
             else:
-                task_text = task_descriptions.get(level, task_descriptions["independent"])
+                task_text = task_descriptions.get(level, task_descriptions["analyst"])
 
             # Render source and translation
             source_text = item.get("source_text", "")
             presented_text = item.get("presented_text", "")
 
-            # For L0 Navigator, show pre-annotations
+            # Level-specific annotations for display
             annotations_for_display = []
             if level == "navigator":
+                # L0: Show pre-annotated errors (with some false annotations)
+                for err in item.get("errors", []):
+                    annotations_for_display.append({
+                        "span_start": err.get("span_start", 0),
+                        "span_end": err.get("span_end", 0),
+                        "primary_tag": err.get("primary_tag", ""),
+                        "annotation_id": err.get("error_id", str(uuid4())),
+                        "mqm_label": f"{err.get('primary_tag', '')} > {err.get('error_type', '')}",
+                        "severity_label": err.get("severity", ""),
+                    })
+                # Also add any false annotations from annotation_config
                 for ann in item.get("annotations", []):
                     annotations_for_display.append({
                         "span_start": ann.get("span_start", 0),
@@ -750,6 +1071,25 @@ def build_student_app() -> gr.Blocks:
                         "mqm_label": ann.get("mqm_label", ""),
                         "severity_label": ann.get("severity_label", ""),
                     })
+            elif level == "scout":
+                # L1: Show approximate error regions as yellow highlights
+                for err in item.get("errors", []):
+                    start = max(0, err.get("span_start", 0) - 5)
+                    end = min(len(presented_text), err.get("span_end", 0) + 5)
+                    annotations_for_display.append({
+                        "span_start": start,
+                        "span_end": end,
+                        "primary_tag": "",
+                        "annotation_id": str(uuid4()),
+                        "is_region_hint": True,
+                    })
+
+            # L3 Expert: add warning about clean segments
+            if level == "expert":
+                task_text += (
+                    "\n\n**Note:** Some segments in this exercise contain no errors. "
+                    "Marking a correct segment as erroneous will reduce your score."
+                )
 
             translation_display = render_text_with_highlights(
                 presented_text, annotations_for_display, level=level
@@ -783,6 +1123,7 @@ def build_student_app() -> gr.Blocks:
                 gr.update(visible=show_pe),  # pe_panel
                 gr.update(value=presented_text if show_pe else ""),  # pe_textbox
                 "annotate",  # current_phase
+                time.time(),  # item_start_time
             )
 
         def handle_span_selection(span_data, annotations, current_item):
@@ -887,11 +1228,12 @@ def build_student_app() -> gr.Blocks:
 
         def handle_submit_justify(
             justify_text_val, justify_mt_val, justify_author_val, justify_reader_val,
+            confidence_val, item_start_time_val,
             annotations, current_item, current_exercise, student_info,
         ):
             """Submit annotations + justifications and get feedback."""
             if not current_item:
-                return gr.update(), gr.update(), gr.update(), None, gr.update()
+                return gr.update(), gr.update(), gr.update(), None, gr.update(), gr.update()
 
             mode = current_exercise.get("mode", "evaluation") if current_exercise else "evaluation"
             item_id = current_item.get("item_id", "")
@@ -904,8 +1246,11 @@ def build_student_app() -> gr.Blocks:
                     "span_end": ann["span_end"],
                     "student_mqm_category": _tag_to_mqm(ann.get("primary_tag", "")),
                     "student_severity": ann.get("severity", "major"),
-                    "confidence": "medium",
+                    "confidence": int(confidence_val),
                 })
+
+            # Calculate elapsed time
+            time_spent = round(time.time() - item_start_time_val, 1) if item_start_time_val else 0
 
             # Submit response
             try:
@@ -913,13 +1258,15 @@ def build_student_app() -> gr.Blocks:
                     item_id=item_id,
                     mode=mode,
                     identified_errors=identified,
-                    time_spent_seconds=0,
+                    time_spent_seconds=time_spent,
+                    confidence=int(confidence_val),
                 )
                 response_id = resp.get("response_id")
             except Exception as e:
                 return (
                     gr.update(), gr.update(), gr.update(), None,
                     gr.update(value=f'<div style="color:red;">Error: {e}</div>'),
+                    gr.update(),
                 )
 
             # Submit justifications
@@ -949,6 +1296,10 @@ def build_student_app() -> gr.Blocks:
                 try:
                     fb = api.get_feedback(response_id)
                     feedback_content = _build_feedback_html(fb)
+                    # Append badge notifications
+                    badge_result = fb.get("badges")
+                    if badge_result:
+                        feedback_content += _build_badge_notification_html(badge_result)
                 except Exception as e:
                     feedback_content = f'<div style="color:#6b7280;">Feedback unavailable: {e}</div>'
 
@@ -972,7 +1323,7 @@ def build_student_app() -> gr.Blocks:
         ):
             """Advance to the next item in the exercise."""
             if not current_exercise:
-                return [gr.update()] * 8
+                return [gr.update()] * 13
 
             item_ids = current_exercise.get("item_ids", [])
             next_idx = current_item_idx + 1
@@ -996,13 +1347,18 @@ def build_student_app() -> gr.Blocks:
                     gr.update(visible=False),
                     gr.update(value=""),
                     gr.update(value=""),
+                    [],  # annotations_state
+                    gr.update(value=""),  # chips_html
+                    "annotate",  # current_phase
+                    gr.update(),  # phase_html
+                    None,  # item_start_time
                 )
 
             # Load next item
             try:
                 item = api.get_item(item_ids[next_idx])
             except Exception:
-                return [gr.update()] * 8
+                return [gr.update()] * 13
 
             # Update assignment
             if current_assignment:
@@ -1041,7 +1397,65 @@ def build_student_app() -> gr.Blocks:
                         "2 Justify -> 3 Feedback</div>"
                     )
                 ),
+                time.time(),  # item_start_time
             )
+
+        def handle_refresh_progress(student_info):
+            """Load and render the My Progress tab content."""
+            if not student_info or "student_id" not in student_info:
+                return gr.update(value="<p>Log in to see your progress.</p>")
+
+            try:
+                progress_data = api.get_progress(student_info["student_id"])
+            except Exception:
+                return gr.update(value="<p>Could not load progress data.</p>")
+
+            level = student_info.get("current_level", "navigator")
+            # Handle AnnotationLevel enum values
+            if hasattr(level, 'value'):
+                level = level.value
+
+            html = '<div style="font-family:system-ui;padding:16px;">'
+            html += '<h3>Your Performance</h3>'
+
+            # Summary metrics
+            completed = progress_data.get("total_sessions", 0)
+            avg_score = progress_data.get("avg_detection_rate", 0)
+            badge_data = progress_data.get("badges", {})
+            total_xp = badge_data.get("total_xp", 0) if badge_data else 0
+
+            html += '<div style="display:flex;gap:16px;margin-bottom:24px;flex-wrap:wrap;">'
+            html += f'<div style="text-align:center;padding:16px;background:#f0f9ff;border-radius:8px;flex:1;min-width:100px;"><div style="font-size:24px;font-weight:bold;color:#3b82f6;">{completed}</div><div style="color:#6b7280;">Exercises</div></div>'
+            html += f'<div style="text-align:center;padding:16px;background:#f0fdf4;border-radius:8px;flex:1;min-width:100px;"><div style="font-size:24px;font-weight:bold;color:#10b981;">{avg_score:.0f}%</div><div style="color:#6b7280;">Avg Score</div></div>'
+            html += f'<div style="text-align:center;padding:16px;background:#fef3c7;border-radius:8px;flex:1;min-width:100px;"><div style="font-size:24px;font-weight:bold;color:#f59e0b;">{level.title()}</div><div style="color:#6b7280;">Level</div></div>'
+            html += f'<div style="text-align:center;padding:16px;background:linear-gradient(135deg,#1B2838,#2d3748);border-radius:8px;flex:1;min-width:100px;"><div style="font-size:24px;font-weight:bold;color:#D4AF37;">{total_xp:,}</div><div style="color:#9ca3af;">XP</div></div>'
+            html += '</div>'
+
+            # Badge Collection
+            if badge_data:
+                html += _build_badge_collection_html(badge_data)
+
+            # Skill Radar
+            skill_data = progress_data.get("skill_profile", {})
+            if skill_data:
+                html += _build_skill_radar_html(skill_data, level)
+            else:
+                # Show radar with zeros if no skill data yet
+                empty_skills = {f"S{i}": 0.0 for i in range(1, 8)}
+                html += _build_skill_radar_html(empty_skills, level)
+
+            # Recent scores
+            recent = progress_data.get("recent_scores", [])
+            if recent:
+                html += '<h4 style="margin-top:24px;">Recent Exercises</h4>'
+                for entry in recent[-5:]:
+                    score_pct = int(entry.get("f1", 0) * 100)
+                    html += f'<div style="padding:8px;border-bottom:1px solid #e5e7eb;">'
+                    html += f'<strong>{entry.get("exercise_name", "Exercise")}</strong> — {score_pct}% F1'
+                    html += f' | Time: {entry.get("time_spent", 0):.0f}s</div>'
+
+            html += '</div>'
+            return gr.update(value=html)
 
         # ── Wire up events ───────────────────────────────────────────────
 
@@ -1086,6 +1500,7 @@ def build_student_app() -> gr.Blocks:
                 progress_html, annotations_state, chips_html,
                 classification_panel, justification_panel,
                 feedback_panel, pe_panel, pe_textbox, current_phase,
+                item_start_time,
             ],
         )
 
@@ -1134,6 +1549,7 @@ def build_student_app() -> gr.Blocks:
             handle_submit_justify,
             inputs=[
                 justify_text, justify_mt, justify_author, justify_reader,
+                confidence_slider, item_start_time,
                 annotations_state, current_item, current_exercise, student_info,
             ],
             outputs=[
@@ -1153,7 +1569,14 @@ def build_student_app() -> gr.Blocks:
                 source_html, progress_html,
                 annotations_state, chips_html,
                 current_phase, phase_html,
+                item_start_time,
             ],
+        )
+
+        refresh_progress_btn.click(
+            handle_refresh_progress,
+            inputs=[student_info],
+            outputs=[progress_content],
         )
 
     return app
@@ -1178,8 +1601,23 @@ def _tag_to_mqm(tag: str) -> str:
 
 def main():
     """Launch the student interface."""
+    from pathlib import Path
+
+    project_root = Path(__file__).resolve().parent.parent.parent.parent
+    assets_dir = str(project_root / "assets")
+
     app = build_student_app()
-    app.launch(server_name="0.0.0.0", server_port=7860)
+    app.launch(
+        server_name="127.0.0.1",
+        server_port=7860,
+        allowed_paths=[assets_dir],
+        theme=gr.themes.Soft(),
+        css="""
+        .pill-btn { border-radius: 16px !important; font-size: 14px !important; }
+        .phase-indicator { font-size: 14px; color: #6b7280; padding: 8px 0; }
+        @keyframes badgeFadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+        """,
+    )
 
 
 if __name__ == "__main__":

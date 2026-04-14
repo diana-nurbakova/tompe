@@ -1,8 +1,8 @@
-# Capture the Error — Gamified Error Detection in ToM-PE
+# Fluency Trap — Gamified Error Detection in ToM-PE
 
 ## Overview
 
-**Capture the Error** is the core gamified activity in ToM-PE (Theory of Mind-Informed Platform for Scaffolded MT Post-Editing Training). Students receive machine-translated text and must identify, classify, and justify translation errors. The activity is structured as a three-phase workflow — **Annotate → Justify → Feedback** — with progressive scaffolding levels (L0–L3) that systematically remove support as students develop expertise.
+**Fluency Trap** is the core gamified activity in ToM-PE (Theory of Mind-Informed Platform for Scaffolded MT Post-Editing Training). Students receive machine-translated text and must identify, classify, and justify translation errors. The activity is structured as a three-phase workflow — **Annotate → Justify → Feedback** — with progressive scaffolding levels (L0–L3) that systematically remove support as students develop expertise.
 
 The gamification lies in the scoring mechanics, immediate feedback loops, progressive difficulty, and the cognitive challenge of "capturing" errors before the system reveals them. The platform tracks detection rates, false positives, and justification quality to create a skill-building progression.
 
@@ -107,11 +107,14 @@ Teachers compose exercises from published items and configure the gamification p
 
 #### 1.6 Analytics Dashboard (Teacher Monitoring)
 
-Teachers monitor Capture the Error performance through:
+Teachers monitor Fluency Trap performance through:
 
 - **Class Overview**: detection rate by MQM category, skill radar charts, over-editing tendency
 - **Individual Students**: per-student performance vs. class average, blind spot alerts
 - **ToM Blind Spot Analysis**: MQM × ToM heatmap highlighting systematic weaknesses (e.g., a student consistently misses `2nd_reader` level mistranslations)
+- **Badge Distribution Heatmap**: rows = students, columns = badges, cells coloured by tier. Highlights which specialisation badges are most/least common — a category with no Bronze badges across the class suggests underrepresented items.
+- **Badge Visibility Toggle**: teachers can enable or disable badge display per class (tracking continues internally). Default: enabled.
+- **Threshold Override**: teachers can adjust specialisation badge thresholds per class to account for item pool composition. Changes apply prospectively only.
 
 ---
 
@@ -271,12 +274,136 @@ When the exercise mode is set to `postediting`, Phase 1 changes:
 
 When mode is `both`, students first annotate errors (evaluation), then edit the translation (post-editing).
 
-### 5. Progress Tracking
+### 5. Progress Tracking & Gamification
 
-The **My Progress** tab shows:
-- Completed exercises and scores
-- Performance trends over time
-- Skill development across MQM categories and ToM levels
+The **My Progress** tab shows three panels: a summary bar, the Badge Collection, and the Skill Radar.
+
+#### 5.1 Summary Bar
+
+Four metric cards at the top:
+
+| Card | Value |
+|------|-------|
+| **Exercises** | Total completed |
+| **Avg Score** | Mean detection rate (%) |
+| **Level** | Current scaffolding level (Navigator / Scout / Analyst / Expert) |
+| **XP** | Cumulative experience points |
+
+#### 5.2 Badge System
+
+Badges provide visual recognition of student progress across three axes. They are earned automatically based on tracked performance data. All badges share a circular 64×64 px display format with a dark navy (#1B2838) background.
+
+**Design principles:**
+
+- **Pedagogically grounded** — every badge maps to a measurable learning outcome. No badges reward speed, volume, or streak-based behaviours.
+- **Non-competitive** — badges reflect individual mastery, not relative ranking.
+- **Progressive disclosure** — earned badges display in full colour; unearned badges appear as greyscale locked silhouettes with criteria visible on hover.
+
+##### Progression Badges (4 badges)
+
+Awarded once per scaffolding level. They are the primary visual indicator of a student's current skill level.
+
+| Badge | Level | Trigger | Icon |
+|-------|-------|---------|------|
+| **Navigator** | L0 | Complete first exercise at L0 | Compass rose with glowing needle |
+| **Scout** | L1 | BKT mastery at L0 (p ≥ 0.98) + teacher approval → L1 unlocked | Binoculars with lens flare |
+| **Analyst** | L2 | BKT mastery at L1 + teacher approval → L2 unlocked | Magnifying glass over highlighted text |
+| **Expert** | L3 | BKT mastery at L2 + teacher approval → L3 unlocked | Diamond gem radiating light |
+
+##### Specialisation Badges (10 categories × 3 tiers = 30 badges)
+
+Reward demonstrated expertise in detecting specific MQM error categories. Each category has three tiers — Bronze, Silver, Gold — earned by accumulating correct detections at L1 or above (L0 detections are excluded because pre-annotations make the category visible).
+
+| Badge | MQM Tag | Bronze | Silver | Gold |
+|-------|---------|--------|--------|------|
+| **Accuracy Hunter** | `MISTRANSLATION` | 10 | 25 | 50 |
+| **Gap Finder** | `OMISSION` | 10 | 25 | 50 |
+| **Surplus Spotter** | `ADDITION` | 8 | 20 | 40 |
+| **Code Switcher** | `UNTRANSLATED` | 5 | 15 | 30 |
+| **Grammar Guard** | `GRAMMAR` | 10 | 25 | 50 |
+| **Sharp Eye** | `SPELLING` | 8 | 20 | 40 |
+| **Punctuation Pro** | `PUNCTUATION` | 8 | 20 | 40 |
+| **Term Specialist** | `TERMINOLOGY` | 8 | 20 | 40 |
+| **Style Sentinel** | `STYLE` | 8 | 20 | 40 |
+| **Locale Expert** | `LOCALE` | 5 | 15 | 30 |
+
+A detection counts when: (1) span IoU ≥ 0.5 with ground truth, and (2) correct MQM category at the primary tag level. Severity match is not required. When a higher tier is earned, it replaces the lower one (only the highest tier is displayed).
+
+Tier visual treatment:
+
+| Tier | Border colour | Style |
+|------|--------------|-------|
+| Bronze | Copper (#B87333) | Matte, 3 px |
+| Silver | Steel (#C0C0C0) | Polished, 3 px |
+| Gold | Gold (#D4AF37) | Luminous, 3 px with outer glow |
+
+##### Behaviour Badges (3 badges)
+
+Reward specific performance patterns reflecting high-quality cognitive engagement.
+
+| Badge | Trigger | Repeatable |
+|-------|---------|------------|
+| **False Positive Discipline** | Complete an L3 exercise (≥ 5 items) with zero false positives | No |
+| **Clean Sheet** | Score 100 % on a single segment: all errors detected, correct categories, zero false positives | Yes (counter ×N) |
+| **Trap Detector** | Correctly dispute ≥ 10 false annotations at L0 | No |
+
+#### 5.3 XP Scoring System
+
+XP accumulates across all exercises and provides a single visible progression metric alongside badges.
+
+**Base XP per action:**
+
+| Action | Base XP |
+|--------|---------|
+| Correct error detection (span IoU ≥ 0.5) | +10 |
+| Correct MQM category match | +5 |
+| Correct severity match | +3 |
+| False positive | −5 |
+| Missed error | 0 |
+
+**Difficulty multipliers** — XP per detection is multiplied by two factors:
+
+*ToM level multiplier* (cognitive difficulty of the error):
+
+| ToM level | Multiplier |
+|-----------|-----------|
+| L0 surface fluency (`1st_machine`) | ×1.0 |
+| L1 source comparison (`1st_author`) | ×1.25 |
+| L2 bilingual analysis (`2nd_reader`) | ×1.5 |
+| L3 recursive/contextual (`recursive`) | ×2.0 |
+
+*Scaffolding level multiplier* (how much support the student had):
+
+| Scaffolding level | Multiplier |
+|-------------------|-----------|
+| L0 Navigator | ×0.5 |
+| L1 Scout | ×1.0 |
+| L2 Analyst | ×1.5 |
+| L3 Expert | ×2.0 |
+
+**Formula:** `XP = ceil(base_xp × tom_multiplier × scaffolding_multiplier)`
+
+This ensures detecting the same error independently at a higher scaffolding level earns roughly 3× more XP than at L0 with pre-annotations visible.
+
+#### 5.4 Skill Radar
+
+A heptagonal SVG radar chart displays the student's current BKT mastery probability for each of the seven competency skills (S1–S7) on a 0.0–1.0 scale.
+
+| Axis | Skill | Error types mapped | ToM level |
+|------|-------|--------------------|-----------|
+| S1 | Surface form | Spelling, Punctuation | L0 |
+| S2 | Grammar | Grammar | L0 |
+| S3 | Lexical accuracy | Mistranslation | L2 |
+| S4 | Completeness | Omission, Addition, Untranslated | L2 |
+| S5 | Terminology | Terminology | L2 |
+| S6 | Style & register | Style, Locale | L3 |
+| S7 | Contextual coherence | Cross-sentence, recursive reasoning | L3 |
+
+A dashed gold circle marks the mastery threshold (0.98). The fill area uses the student's current progression-level accent colour (amber for Navigator, teal for Scout, blue for Analyst, gold for Expert).
+
+#### 5.5 Badge Notification Toasts
+
+When a badge is earned during an exercise, a toast notification appears at the end of Phase 3 (Feedback) for the item that triggered it. The toast shows the badge icon, name, tier (if applicable), and a short description. It also displays the XP earned for that item. Multiple badges earned in a single exercise are shown together. The toast uses a slide-in animation (`badgeFadeIn`) and does not block the workflow.
 
 ---
 
@@ -284,14 +411,14 @@ The **My Progress** tab shows:
 
 | Component | Scoring Rule |
 |-----------|-------------|
-| **True positive (correct detection)** | +1 point per correctly identified error span |
-| **Category match** | Bonus for correct MQM category classification |
-| **Severity match** | Bonus for correct severity assignment |
-| **False positive** | Penalty for marking error-free text as erroneous |
-| **Missed error** | No points (counts toward "missed" tally) |
+| **True positive (correct detection)** | +1 point per correctly identified error span (+ XP per formula above) |
+| **Category match** | Bonus for correct MQM category classification (+5 base XP) |
+| **Severity match** | Bonus for correct severity assignment (+3 base XP) |
+| **False positive** | Penalty for marking error-free text as erroneous (−5 base XP) |
+| **Missed error** | No points (counts toward "missed" tally, 0 XP) |
 | **Justification quality** | Qualitative assessment (displayed but may factor into progression decisions) |
 
-The final score is expressed as a percentage: `detected / total_errors * 100`, adjusted for false positives.
+The final score is expressed as a percentage: `detected / total_errors * 100`, adjusted for false positives. XP earned is computed separately using the multiplier formula and accumulates in the student's profile.
 
 ---
 
@@ -339,7 +466,11 @@ Analytics Dashboard                        ├─ Layer 2a: How It Works
 | Annotation models | Pydantic | `src/tompe/schemas/annotation.py` |
 | Assessment items | Pydantic | `src/tompe/schemas/item.py` |
 | Session/exercise models | Pydantic | `src/tompe/schemas/session.py` |
+| Badge & XP models | Pydantic | `src/tompe/schemas/badges.py` |
 | Enums (tags, levels, skills) | Python Enum | `src/tompe/schemas/enums.py` |
 | Color scheme | Python dict | `src/tompe/interfaces/components/colors.py` |
 | API client | HTTP client | `src/tompe/interfaces/api_client.py` |
 | Backend API | FastAPI | `src/tompe/services/api.py` |
+| Badge service | Python | `src/tompe/services/badges.py` |
+| Badge definitions | JSON config | `config/badges.json` |
+| Badge icon assets | JPG images | `assets/badges/` |

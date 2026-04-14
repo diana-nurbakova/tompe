@@ -66,7 +66,7 @@ class Exercise(BaseModel):
     name: str
     description: str = ""
     mode: Literal["evaluation", "postediting", "both"] = "evaluation"
-    level: AnnotationLevel = AnnotationLevel.INDEPENDENT
+    level: AnnotationLevel = AnnotationLevel.ANALYST
     item_ids: list[str] = []  # FK to AssessmentItem
     justification_type: Literal["free_text", "structured", "both"] = "free_text"
     clean_segment_ratio: float = 0.0  # L3 only: fraction of items that are error-free

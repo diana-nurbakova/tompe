@@ -1,0 +1,185 @@
+{
+  "item_id": "d55f7948-d685-4855-aa5e-09ce3d61567b",
+  "segment_id": "europarl-f79c610991d6",
+  "source_text": "If the House agrees, I shall do as Mr Evans has suggested.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Si l'Assemblée est à d'accord, je vais faire comme M. Evans l'a suggéré.",
+  "reference_translation": "Si l'Assemblée en est d'accord, je ferai comme M. Evans l'a suggéré.",
+  "mt_system": "claude",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "1abbe23a-0c74-4d5e-aa24-aa841cba8e93",
+      "span_start": 32,
+      "span_end": 45,
+      "original_text": "je ferai",
+      "injected_text": "je vais faire",
+      "primary_tag": "STYLE",
+      "error_type": "register_informal",
+      "severity": "minor",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely mapped 'I shall do' to 'je vais faire' because it is a common, straightforward way to express future actions in French.",
+        "actual_meaning": "The source uses a formal, slightly more distant future ('I shall do'), appropriate for parliamentary or official contexts.",
+        "reader_impact": "A reader might perceive 'je vais faire' as too informal or conversational, which could undermine the formality of the speaker's intent.",
+        "correction_rationale": "'Je ferai' is the formal future tense in French, matching the register and tone of the source text, and is standard in official or formal discourse."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often use the most common or 'average' way of saying things, like someone who always picks the safest answer on a test. This means they might use informal language even when a more formal tone is needed, because that's what they see most often in their training.",
+        "architectural_cause": "Internally, the system learns from huge amounts of text and tries to predict what words usually come next. It doesn't truly understand social situations or when formality is required, so it just copies patterns it has seen before.",
+        "pattern_generalization": "You’ll often see this mistake when translating texts where the original is formal but informal language is more common in everyday speech. Pay extra attention with official documents, business emails, or academic writing.",
+        "mt_system_specific": "Dedicated MT systems are sometimes better at handling formality if they've been trained with special rules or examples, while general LLMs like Claude may miss these cues more often."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Si l'Assemblée en est d'accord, <STYLE type=\"register_informal\" severity=\"minor\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">je vais faire</STYLE> comme M. Evans l'a suggéré.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "e4cb4593-9757-4501-880f-a123021bafcd",
+      "span_start": 15,
+      "span_end": 16,
+      "original_text": "en",
+      "injected_text": "à",
+      "primary_tag": "GRAMMAR",
+      "error_type": "preposition",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely selected 'à' because it often translates 'to' or 'at,' and it may have associated 'agree to' with 'être d'accord à.'",
+        "actual_meaning": "The source means that if the House is in agreement (with the proposal), the action will be taken as suggested by Mr Evans.",
+        "reader_impact": "A reader would be confused by 'à,' as it is ungrammatical in this context and suggests an incorrect relationship, making the sentence sound awkward or unclear.",
+        "correction_rationale": "The correct preposition is 'en,' as the fixed French expression is 'être d'accord en,' which properly conveys agreement in this context."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up prepositions because they work a bit like someone learning a new language by reading lots of examples, but not always understanding the subtle rules. Prepositions can be tricky, as their use often depends on context and doesn't always match word-for-word between languages.",
+        "architectural_cause": "Internally, the system predicts each word based on patterns it has seen before, rather than following strict grammar rules. When it comes to prepositions, it sometimes chooses the most common or likely one, even if it's not the perfect fit for the sentence.",
+        "pattern_generalization": "You’ll often see these mistakes when the same preposition in your language translates differently in English, or when the surrounding words create unusual combinations. Be especially alert in idioms or fixed expressions.",
+        "mt_system_specific": "Dedicated MT systems sometimes make fewer of these errors because they are trained specifically on translation data, while general LLMs may be less precise with prepositions."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Si l'Assemblée <GRAMMAR type=\"preposition\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">à</GRAMMAR> est d'accord, je vais faire comme M. Evans l'a suggéré.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "53282c55-6dad-4a28-8bb8-acfb49166ae9",
+      "span_start": 15,
+      "span_end": 29,
+      "original_text": "à est d'accord",
+      "injected_text": "est à d'accord",
+      "primary_tag": "GRAMMAR",
+      "error_type": "preposition",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely misanalyzed the French prepositional structure and inserted the preposition 'à' before 'est d'accord', resulting in 'est à d'accord'. It may have been influenced by similar constructions or direct word-for-word alignment.",
+        "actual_meaning": "The source means that if the House agrees (gives its approval), the speaker will follow Mr Evans's suggestion. The phrase 'en est d'accord' expresses collective agreement in proper French.",
+        "reader_impact": "A reader may find 'est à d'accord' ungrammatical and confusing, potentially misunderstanding the sentence or being distracted by the unnatural phrasing. It disrupts comprehension and weakens the professional tone.",
+        "correction_rationale": "The correct form 'en est d'accord' uses the preposition 'en' to refer back to the proposal and 'être d'accord' to express agreement, which is the standard and grammatically correct expression in French."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up prepositions because they rely on patterns in large amounts of text, much like someone learning a new language by reading lots of books but not always understanding the subtle rules. Prepositions are tricky since their usage can change depending on context, and small changes can completely alter meaning.",
+        "architectural_cause": "Internally, the system makes its best guess based on how words usually appear together, rather than understanding the underlying grammar rules. It doesn’t truly 'know' why a preposition is correct in one place and not another—it just picks what seems most common from its training.",
+        "pattern_generalization": "Students will see similar errors when the correct preposition depends on subtle context, or when two prepositions are often used in similar situations. Pay extra attention when translating phrases with prepositions that don’t have a direct match in the target language.",
+        "mt_system_specific": "LLMs like Claude may make more preposition errors than dedicated MT systems, since they are trained more broadly and not specifically for translation tasks."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Si l'Assemblée <GRAMMAR type=\"preposition\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">est à d'accord</GRAMMAR>, je vais faire comme M. Evans l'a suggéré.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 4,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely mapped 'I shall do' to 'je vais faire' because it is a common, straightforward way to express future actions in French.",
+      "actual_meaning": "The source uses a formal, slightly more distant future ('I shall do'), appropriate for parliamentary or official contexts.",
+      "reader_impact": "A reader might perceive 'je vais faire' as too informal or conversational, which could undermine the formality of the speaker's intent.",
+      "correction_rationale": "'Je ferai' is the formal future tense in French, matching the register and tone of the source text, and is standard in official or formal discourse."
+    },
+    {
+      "mt_interpretation": "The MT system likely selected 'à' because it often translates 'to' or 'at,' and it may have associated 'agree to' with 'être d'accord à.'",
+      "actual_meaning": "The source means that if the House is in agreement (with the proposal), the action will be taken as suggested by Mr Evans.",
+      "reader_impact": "A reader would be confused by 'à,' as it is ungrammatical in this context and suggests an incorrect relationship, making the sentence sound awkward or unclear.",
+      "correction_rationale": "The correct preposition is 'en,' as the fixed French expression is 'être d'accord en,' which properly conveys agreement in this context."
+    },
+    {
+      "mt_interpretation": "The MT system likely misanalyzed the French prepositional structure and inserted the preposition 'à' before 'est d'accord', resulting in 'est à d'accord'. It may have been influenced by similar constructions or direct word-for-word alignment.",
+      "actual_meaning": "The source means that if the House agrees (gives its approval), the speaker will follow Mr Evans's suggestion. The phrase 'en est d'accord' expresses collective agreement in proper French.",
+      "reader_impact": "A reader may find 'est à d'accord' ungrammatical and confusing, potentially misunderstanding the sentence or being distracted by the unnatural phrasing. It disrupts comprehension and weakens the professional tone.",
+      "correction_rationale": "The correct form 'en est d'accord' uses the preposition 'en' to refer back to the proposal and 'être d'accord' to express agreement, which is the standard and grammatically correct expression in French."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often use the most common or 'average' way of saying things, like someone who always picks the safest answer on a test. This means they might use informal language even when a more formal tone is needed, because that's what they see most often in their training.",
+      "architectural_cause": "Internally, the system learns from huge amounts of text and tries to predict what words usually come next. It doesn't truly understand social situations or when formality is required, so it just copies patterns it has seen before.",
+      "pattern_generalization": "You’ll often see this mistake when translating texts where the original is formal but informal language is more common in everyday speech. Pay extra attention with official documents, business emails, or academic writing.",
+      "mt_system_specific": "Dedicated MT systems are sometimes better at handling formality if they've been trained with special rules or examples, while general LLMs like Claude may miss these cues more often."
+    },
+    {
+      "error_mechanism": "MT systems often mix up prepositions because they work a bit like someone learning a new language by reading lots of examples, but not always understanding the subtle rules. Prepositions can be tricky, as their use often depends on context and doesn't always match word-for-word between languages.",
+      "architectural_cause": "Internally, the system predicts each word based on patterns it has seen before, rather than following strict grammar rules. When it comes to prepositions, it sometimes chooses the most common or likely one, even if it's not the perfect fit for the sentence.",
+      "pattern_generalization": "You’ll often see these mistakes when the same preposition in your language translates differently in English, or when the surrounding words create unusual combinations. Be especially alert in idioms or fixed expressions.",
+      "mt_system_specific": "Dedicated MT systems sometimes make fewer of these errors because they are trained specifically on translation data, while general LLMs may be less precise with prepositions."
+    },
+    {
+      "error_mechanism": "MT systems often mix up prepositions because they rely on patterns in large amounts of text, much like someone learning a new language by reading lots of books but not always understanding the subtle rules. Prepositions are tricky since their usage can change depending on context, and small changes can completely alter meaning.",
+      "architectural_cause": "Internally, the system makes its best guess based on how words usually appear together, rather than understanding the underlying grammar rules. It doesn’t truly 'know' why a preposition is correct in one place and not another—it just picks what seems most common from its training.",
+      "pattern_generalization": "Students will see similar errors when the correct preposition depends on subtle context, or when two prepositions are often used in similar situations. Pay extra attention when translating phrases with prepositions that don’t have a direct match in the target language.",
+      "mt_system_specific": "LLMs like Claude may make more preposition errors than dedicated MT systems, since they are trained more broadly and not specifically for translation tasks."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

@@ -1,0 +1,136 @@
+{
+  "item_id": "7cee38e3-7a1b-4463-840e-60feeceaaa2b",
+  "segment_id": "europarl-fad45e9d0c6b",
+  "source_text": "You will be aware from the press and television that there have been a number of bomb explosions and killings in Sri Lanka.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Vous avez probablement appris par la presse et par la télévision que plusieurs attentats à la bombe et crimes ont été perpétrés au Sri Lanka.",
+  "reference_translation": "Vous avez probablement appris par la presse et par la télévision que plusieurs attentats à la bombe et crimes ont été perpétrés au Sri Lanka.",
+  "mt_system": "claude",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "89735f23-96d8-44d9-8b34-1c6550120279",
+      "span_start": 30,
+      "span_end": 64,
+      "original_text": "par la presse et par la télévision",
+      "injected_text": "par la télévision et par la presse",
+      "primary_tag": "GRAMMAR",
+      "error_type": "word_order",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system considered 'press and television' as a simple list and did not recognize any conventional or preferred order, translating it as 'par la télévision et par la presse.'",
+        "actual_meaning": "The source text lists 'press' before 'television,' which is a standard and natural order in French for this context, emphasizing the traditional flow of information sources.",
+        "reader_impact": "A French reader may find the reversed order slightly awkward or less idiomatic, potentially perceiving the translation as less fluent or unnatural, though the meaning remains clear.",
+        "correction_rationale": "The correct translation maintains the conventional sequence 'par la presse et par la télévision,' which aligns with French stylistic norms and ensures a more natural and expected reading experience."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up word order because they focus on translating pieces of a sentence, not always the whole flow. It's like copying a recipe from one language to another but sometimes putting the steps in the wrong order.",
+        "architectural_cause": "Internally, the system looks for patterns in lots of sentences it has seen before. If it hasn't seen enough examples of a certain word order, it might guess and put words in an order that sounds odd or unnatural.",
+        "pattern_generalization": "These mistakes are more likely when the original and target languages have different natural word orders, or when the sentence is long and complicated.",
+        "mt_system_specific": "General-purpose LLMs like Claude may make more of these errors than dedicated MT systems, because they aren't trained specifically to handle tricky word order differences between languages."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Vous avez probablement appris <GRAMMAR type=\"word_order\" severity=\"minor\" tom=\"1st_machine\" desc=\"5-15 word explanation\">par la télévision et par la presse</GRAMMAR> que plusieurs attentats à la bombe et crimes ont été perpétrés au Sri Lanka.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "1e3df841-fb6b-47e8-8262-4bc574b0f523",
+      "span_start": 30,
+      "span_end": 64,
+      "original_text": "par la télévision et par la presse",
+      "injected_text": "par la presse et par la télévision",
+      "primary_tag": "GRAMMAR",
+      "error_type": "word_order",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely preserved the English word order 'press and television' directly, believing the sequence was unimportant in French.",
+        "actual_meaning": "The source means that information was learned through both television and the press, with the French conventionally listing 'télévision' before 'presse'.",
+        "reader_impact": "A French reader would not misunderstand the facts, but the phrase would sound awkward or non-idiomatic, possibly disrupting the natural flow.",
+        "correction_rationale": "French idiomatic usage prefers 'par la télévision et par la presse'; maintaining this order ensures the translation reads naturally to native speakers."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up word order because they learn by spotting patterns in lots of sentences, but sometimes those patterns don't fit every situation. It's like following a recipe by memory and occasionally putting the ingredients in the wrong order.",
+        "architectural_cause": "The system doesn't truly understand grammar rules; instead, it predicts the next word based on what it's seen before. If the training data has unusual or mixed word orders, the system can get confused and copy those mistakes.",
+        "pattern_generalization": "Similar errors happen most with sentences that have a different word order than usual, like questions or sentences with lots of details. Watch out when translating between languages that arrange words differently.",
+        "mt_system_specific": "Dedicated MT systems are often better at handling word order because they're trained specifically for translation, while general-purpose LLMs like Claude may make more word order mistakes."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Vous avez probablement appris <GRAMMAR type=\"word_order\" severity=\"minor\" tom=\"1st_machine\" desc=\"5-15 word explanation\">par la presse et par la télévision</GRAMMAR> que plusieurs attentats à la bombe et crimes ont été perpétrés au Sri Lanka.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 3,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system considered 'press and television' as a simple list and did not recognize any conventional or preferred order, translating it as 'par la télévision et par la presse.'",
+      "actual_meaning": "The source text lists 'press' before 'television,' which is a standard and natural order in French for this context, emphasizing the traditional flow of information sources.",
+      "reader_impact": "A French reader may find the reversed order slightly awkward or less idiomatic, potentially perceiving the translation as less fluent or unnatural, though the meaning remains clear.",
+      "correction_rationale": "The correct translation maintains the conventional sequence 'par la presse et par la télévision,' which aligns with French stylistic norms and ensures a more natural and expected reading experience."
+    },
+    {
+      "mt_interpretation": "The MT system likely preserved the English word order 'press and television' directly, believing the sequence was unimportant in French.",
+      "actual_meaning": "The source means that information was learned through both television and the press, with the French conventionally listing 'télévision' before 'presse'.",
+      "reader_impact": "A French reader would not misunderstand the facts, but the phrase would sound awkward or non-idiomatic, possibly disrupting the natural flow.",
+      "correction_rationale": "French idiomatic usage prefers 'par la télévision et par la presse'; maintaining this order ensures the translation reads naturally to native speakers."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often mix up word order because they focus on translating pieces of a sentence, not always the whole flow. It's like copying a recipe from one language to another but sometimes putting the steps in the wrong order.",
+      "architectural_cause": "Internally, the system looks for patterns in lots of sentences it has seen before. If it hasn't seen enough examples of a certain word order, it might guess and put words in an order that sounds odd or unnatural.",
+      "pattern_generalization": "These mistakes are more likely when the original and target languages have different natural word orders, or when the sentence is long and complicated.",
+      "mt_system_specific": "General-purpose LLMs like Claude may make more of these errors than dedicated MT systems, because they aren't trained specifically to handle tricky word order differences between languages."
+    },
+    {
+      "error_mechanism": "MT systems often mix up word order because they learn by spotting patterns in lots of sentences, but sometimes those patterns don't fit every situation. It's like following a recipe by memory and occasionally putting the ingredients in the wrong order.",
+      "architectural_cause": "The system doesn't truly understand grammar rules; instead, it predicts the next word based on what it's seen before. If the training data has unusual or mixed word orders, the system can get confused and copy those mistakes.",
+      "pattern_generalization": "Similar errors happen most with sentences that have a different word order than usual, like questions or sentences with lots of details. Watch out when translating between languages that arrange words differently.",
+      "mt_system_specific": "Dedicated MT systems are often better at handling word order because they're trained specifically for translation, while general-purpose LLMs like Claude may make more word order mistakes."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

@@ -1,0 +1,181 @@
+{
+  "item_id": "9ae4e8e0-4262-4d50-83c4-c89454ad9350",
+  "segment_id": "europarl-07e9c46bedd9",
+  "source_text": "I would like your advice about Rule 143 concerning inadmissibility.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Je veux te demander un petit coup de main au sujet de l'article 143, qui concerne l'irrecevabilité.",
+  "reference_translation": "Je voudrais vous demander un conseil au sujet de l'article 143, qui concerne l'irrecevabilité.",
+  "mt_system": "deepl",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "e35b11d3-00cc-4fdd-ad30-c034705085a4",
+      "span_start": 0,
+      "span_end": 30,
+      "original_text": "Je voudrais vous demander un conseil",
+      "injected_text": "Je veux te demander un conseil",
+      "primary_tag": "STYLE",
+      "error_type": "register_formal",
+      "severity": "minor",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system interpreted the sentence as a straightforward request and used the direct form 'Je veux te demander', possibly defaulting to a literal and informal translation.",
+        "actual_meaning": "The source expresses a polite and formal request for advice, appropriate for formal or professional contexts.",
+        "reader_impact": "A French reader would perceive 'Je veux te demander un conseil' as abrupt and overly familiar, which could seem disrespectful or unprofessional in the given context.",
+        "correction_rationale": "The correct translation, 'Je voudrais vous demander un conseil', uses the conditional and formal 'vous', aligning with the politeness and formality of the source text."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often confuse formal and informal language, like someone who knows many words but isn't always sure when to use 'please' or 'thanks.' They may pick the most common version of a phrase, even if it doesn't match the intended level of formality.",
+        "architectural_cause": "Internally, the system learns by looking at lots of examples, but it doesn't truly understand social situations or tone. It tends to choose translations that appear most often in its training, even if they aren't the right fit for the situation's formality.",
+        "pattern_generalization": "Similar errors are likely when translating texts that require a specific tone, such as business emails or official documents. Watch out when the source text is formal but the translation sounds casual, or vice versa.",
+        "mt_system_specific": "Dedicated MT systems like DeepL may struggle more with tone compared to LLMs, which are sometimes better at picking up on subtle style cues from context."
+      },
+      "technical_explanation": null,
+      "xml_tag": "<STYLE type=\"register_formal\" severity=\"minor\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">Je veux te demander un conseil</STYLE> au sujet de l'article 143, qui concerne l'irrecevabilité.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "851ac4f9-e0f6-4301-8b03-b3b53dda561b",
+      "span_start": 0,
+      "span_end": 35,
+      "original_text": "Je veux te demander un conseil",
+      "injected_text": "Je veux te demander un coup de main",
+      "primary_tag": "STYLE",
+      "error_type": "register_formal",
+      "severity": "major",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system interpreted 'advice' as a general request for help and rendered it as 'un coup de main,' which means 'a hand' or 'help' in French, possibly due to confusion with informal expressions.",
+        "actual_meaning": "The source is specifically asking for advice or guidance regarding Rule 143, not general help or assistance.",
+        "reader_impact": "A reader would misunderstand the request as asking for practical help or intervention rather than seeking advice, and the informal tone ('coup de main') is inappropriate for the formal context.",
+        "correction_rationale": "The correct translation uses 'un conseil,' which precisely conveys the request for advice in a formal register, matching both the meaning and tone of the original English sentence."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up formal and informal language, like someone switching between speaking to a friend and a teacher without noticing. They may not always pick up on subtle clues that tell us to use a more formal tone.",
+        "architectural_cause": "The system learns from lots of examples, but it doesn’t truly understand social situations. If its training data mixes formal and informal language, the system might not always know which style fits the context.",
+        "pattern_generalization": "You’re likely to see this error when the source text clearly calls for a formal tone, but the system uses everyday words or phrases. Pay special attention to business, academic, or official documents.",
+        "mt_system_specific": "Dedicated MT systems like DeepL may struggle more with register than LLMs, since LLMs can better pick up on context and subtle style cues."
+      },
+      "technical_explanation": null,
+      "xml_tag": "<STYLE type=\"register_formal\" severity=\"major\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">Je veux te demander un coup de main</STYLE> au sujet de l'article 143, qui concerne l'irrecevabilité.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "a8c99142-22dc-4c34-9c63-08c5c44baf10",
+      "span_start": 8,
+      "span_end": 41,
+      "original_text": "te demander un coup de main",
+      "injected_text": "te demander un petit coup de main",
+      "primary_tag": "STYLE",
+      "error_type": "register_informal",
+      "severity": "minor",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system interpreted 'advice' as a small, informal favor and rendered it as 'un petit coup de main,' aiming for a friendly, colloquial tone.",
+        "actual_meaning": "The source is formally requesting advice about a specific rule, not asking for a casual or minor favor.",
+        "reader_impact": "A French reader might perceive the request as overly informal or trivial, potentially undermining the seriousness of the inquiry about Rule 143.",
+        "correction_rationale": "The correct translation uses 'un conseil' to accurately convey the formal request for advice, maintaining appropriate register and clarity for the context."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often choose informal language because they have learned from lots of everyday conversations online, like picking up slang from chatting with friends. They may not always recognize when a formal tone is needed, so they use casual words even in serious situations.",
+        "architectural_cause": "Internally, the system looks for patterns in huge amounts of text. If it sees informal phrases used more often, it assumes that's the normal way to talk, even if the context actually needs a formal tone.",
+        "pattern_generalization": "You’ll notice this mistake especially when translating official documents, business emails, or academic texts. Watch for it whenever the source text is formal or polite, but the translation sounds too casual.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are trained mainly for general use, so they may miss subtle clues about formality. Large language models (LLMs) can sometimes adjust style better if you give clear instructions, but both systems can slip into informal language."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je veux <STYLE type=\"register_informal\" severity=\"minor\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">te demander un petit coup de main</STYLE> au sujet de l'article 143, qui concerne l'irrecevabilité.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 4,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system interpreted the sentence as a straightforward request and used the direct form 'Je veux te demander', possibly defaulting to a literal and informal translation.",
+      "actual_meaning": "The source expresses a polite and formal request for advice, appropriate for formal or professional contexts.",
+      "reader_impact": "A French reader would perceive 'Je veux te demander un conseil' as abrupt and overly familiar, which could seem disrespectful or unprofessional in the given context.",
+      "correction_rationale": "The correct translation, 'Je voudrais vous demander un conseil', uses the conditional and formal 'vous', aligning with the politeness and formality of the source text."
+    },
+    {
+      "mt_interpretation": "The MT system interpreted 'advice' as a general request for help and rendered it as 'un coup de main,' which means 'a hand' or 'help' in French, possibly due to confusion with informal expressions.",
+      "actual_meaning": "The source is specifically asking for advice or guidance regarding Rule 143, not general help or assistance.",
+      "reader_impact": "A reader would misunderstand the request as asking for practical help or intervention rather than seeking advice, and the informal tone ('coup de main') is inappropriate for the formal context.",
+      "correction_rationale": "The correct translation uses 'un conseil,' which precisely conveys the request for advice in a formal register, matching both the meaning and tone of the original English sentence."
+    },
+    {
+      "mt_interpretation": "The MT system interpreted 'advice' as a small, informal favor and rendered it as 'un petit coup de main,' aiming for a friendly, colloquial tone.",
+      "actual_meaning": "The source is formally requesting advice about a specific rule, not asking for a casual or minor favor.",
+      "reader_impact": "A French reader might perceive the request as overly informal or trivial, potentially undermining the seriousness of the inquiry about Rule 143.",
+      "correction_rationale": "The correct translation uses 'un conseil' to accurately convey the formal request for advice, maintaining appropriate register and clarity for the context."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often confuse formal and informal language, like someone who knows many words but isn't always sure when to use 'please' or 'thanks.' They may pick the most common version of a phrase, even if it doesn't match the intended level of formality.",
+      "architectural_cause": "Internally, the system learns by looking at lots of examples, but it doesn't truly understand social situations or tone. It tends to choose translations that appear most often in its training, even if they aren't the right fit for the situation's formality.",
+      "pattern_generalization": "Similar errors are likely when translating texts that require a specific tone, such as business emails or official documents. Watch out when the source text is formal but the translation sounds casual, or vice versa.",
+      "mt_system_specific": "Dedicated MT systems like DeepL may struggle more with tone compared to LLMs, which are sometimes better at picking up on subtle style cues from context."
+    },
+    {
+      "error_mechanism": "MT systems often mix up formal and informal language, like someone switching between speaking to a friend and a teacher without noticing. They may not always pick up on subtle clues that tell us to use a more formal tone.",
+      "architectural_cause": "The system learns from lots of examples, but it doesn’t truly understand social situations. If its training data mixes formal and informal language, the system might not always know which style fits the context.",
+      "pattern_generalization": "You’re likely to see this error when the source text clearly calls for a formal tone, but the system uses everyday words or phrases. Pay special attention to business, academic, or official documents.",
+      "mt_system_specific": "Dedicated MT systems like DeepL may struggle more with register than LLMs, since LLMs can better pick up on context and subtle style cues."
+    },
+    {
+      "error_mechanism": "MT systems often choose informal language because they have learned from lots of everyday conversations online, like picking up slang from chatting with friends. They may not always recognize when a formal tone is needed, so they use casual words even in serious situations.",
+      "architectural_cause": "Internally, the system looks for patterns in huge amounts of text. If it sees informal phrases used more often, it assumes that's the normal way to talk, even if the context actually needs a formal tone.",
+      "pattern_generalization": "You’ll notice this mistake especially when translating official documents, business emails, or academic texts. Watch for it whenever the source text is formal or polite, but the translation sounds too casual.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are trained mainly for general use, so they may miss subtle clues about formality. Large language models (LLMs) can sometimes adjust style better if you give clear instructions, but both systems can slip into informal language."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

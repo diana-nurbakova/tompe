@@ -1,0 +1,183 @@
+{
+  "item_id": "f65a21a1-d9ad-47ed-8934-562536205ec6",
+  "segment_id": "europarl-4b1e1b1beaec",
+  "source_text": "Would it be appropriate for you, Madam President, to write a letter to the Sri Lankan President expressing Parliament's regret at his and the other violent deaths in Sri Lanka and urging her to do everything she possibly can to seek a peaceful reconciliation to a very difficult situation?",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Ne pensez-vous pas, Madame la Présidente, qu'il convient d'écrire une lettre au président du Sri Lanka pour lui communiquer que le Parlement déplore la mort violente, dont celle de M. Ponnambalam, et pour l'inviter instamment à faire tout ce qui est en son pouvoir pour chercher une reconciliation pacifique et mettre un terme à cette situation particulièrement difficile.",
+  "reference_translation": "Ne pensez-vous pas, Madame la Présidente, qu'il conviendrait d'écrire une lettre au président du Sri Lanka pour lui communiquer que le Parlement déplore les morts violentes, dont celle de M. Ponnambalam, et pour l'inviter instamment à faire tout ce qui est en son pouvoir pour chercher une réconciliation pacifique et mettre un terme à cette situation particulièrement difficile.",
+  "mt_system": "claude",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "10a1478e-e219-4903-937a-af4f1b0fa289",
+      "span_start": 153,
+      "span_end": 169,
+      "original_text": "les morts violentes",
+      "injected_text": "la mort violente",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "number",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system interpreted 'violent deaths' as a singular event, rendering it as 'la mort violente' instead of the plural form.",
+        "actual_meaning": "The source refers to multiple violent deaths, not just a single one, encompassing the death of Mr. Ponnambalam and others.",
+        "reader_impact": "A reader may think only one violent death occurred, misunderstanding the scale and seriousness of the events being referenced.",
+        "correction_rationale": "The plural 'les morts violentes' accurately conveys that several violent deaths took place, aligning with the source's intent and ensuring the scope of the tragedy is clear."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mistranslate numbers because they treat them like any other word, not realizing that even a small change can completely alter the meaning—like confusing a phone number or a price. It's a bit like copying a recipe but accidentally swapping '2 cups' for '3 cups'—the result can be very different.",
+        "architectural_cause": "Inside, these systems focus on patterns in language, not on the special importance of numbers. Since numbers are just another part of the sentence to the system, it may substitute, drop, or change them if it thinks it fits the pattern better, without understanding the real-world impact.",
+        "pattern_generalization": "Students should watch for this error whenever a sentence contains dates, quantities, prices, or measurements—especially if the number is important to the meaning. Double-check any translation with critical numbers.",
+        "mt_system_specific": "Dedicated MT systems are often better at handling numbers because they are trained specifically for translation tasks, while general LLMs like Claude may be more likely to make these mistakes."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Ne pensez-vous pas, Madame la Présidente, qu'il conviendrait d'écrire une lettre au président du Sri Lanka pour lui communiquer que le Parlement déplore <MISTRANSLATION type=\"number\" severity=\"minor\" tom=\"1st_machine\" desc=\"5-15 word explanation\">la mort violente</MISTRANSLATION>, dont celle de M. Ponnambalam, et pour l'inviter instamment à faire tout ce qui est en son pouvoir pour chercher une réconciliation pacifique et mettre un terme à cette situation particulièrement difficile.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "4c474cb5-dc7f-4bca-aba8-5471772eec45",
+      "span_start": 287,
+      "span_end": 301,
+      "original_text": "réconciliation",
+      "injected_text": "reconciliation",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "false_cognate",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "severity_range": [
+        "major",
+        "critical"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system recognized the English word 'reconciliation' and, due to the similarity in spelling, directly transferred it into French as 'reconciliation' without adapting it to the correct French form.",
+        "actual_meaning": "The source text refers to the process of restoring friendly relations, which in French is accurately expressed as 'réconciliation.'",
+        "reader_impact": "A French reader may be confused by the unaccented, non-French word 'reconciliation,' which disrupts comprehension and signals a lack of fluency or care in the translation.",
+        "correction_rationale": "The correct translation, 'réconciliation,' uses the appropriate French word and spelling, ensuring clarity and maintaining the naturalness and accuracy of the target text."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mistake 'false friends'—words that look similar in two languages but have different meanings—because they rely on patterns in their training data. It's like seeing the word 'actual' in Spanish and thinking it means 'actual' in English, when it really means 'current.'",
+        "architectural_cause": "Internally, these systems connect words that appear together often, without truly understanding their deeper meanings. So if two words look or sound alike, the system may assume they mean the same thing, even if that's not correct.",
+        "pattern_generalization": "Students should watch for these errors with words that look familiar in both languages but may not share the same meaning—especially with common 'false friends.'",
+        "mt_system_specific": "LLMs like Claude may be even more prone to this error than specialized MT systems, because they are trained on a broader range of text and may not focus as much on careful word-by-word translation."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Ne pensez-vous pas, Madame la Présidente, qu'il conviendrait d'écrire une lettre au président du Sri Lanka pour lui communiquer que le Parlement déplore la mort violente, dont celle de M. Ponnambalam, et pour l'inviter instamment à faire tout ce qui est en son pouvoir pour chercher une <MISTRANSLATION type=\"false_cognate\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">reconciliation</MISTRANSLATION> pacifique et mettre un terme à cette situation particulièrement difficile.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "80b8a72c-daba-49d3-b144-ff8157d5cb35",
+      "span_start": 42,
+      "span_end": 65,
+      "original_text": "qu'il conviendrait d'écrire",
+      "injected_text": "qu'il convient d'écrire",
+      "primary_tag": "GRAMMAR",
+      "error_type": "tense",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted the modal 'would it be appropriate' as a general present statement and selected the present tense 'il convient' to match the apparent register.",
+        "actual_meaning": "The source is posing a hypothetical or tentative suggestion, asking if it would be appropriate for the President to take an action, not stating it is appropriate in general.",
+        "reader_impact": "A reader would interpret the present tense 'il convient' as a factual assertion that writing the letter is appropriate, missing the original's nuance of tentative suggestion and politeness.",
+        "correction_rationale": "Using the conditional 'il conviendrait' accurately reflects the hypothetical and polite tone of the original question, preserving the intended nuance and aligning with French conventions for such suggestions."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems sometimes mix up conditional and present tense because they focus on matching patterns they've seen before, rather like someone who learned a language by memorizing phrases instead of understanding the rules. If the system sees lots of present tense examples, it might forget to use the special 'what if' tone of conditionals, losing the sense of possibility or uncertainty.",
+        "architectural_cause": "Internally, the system doesn't truly understand the meaning behind the words—it predicts the next word based on patterns in its training data. If it hasn't seen enough examples of hypothetical situations, it might default to the more common present tense, missing the subtle shift needed for conditionals.",
+        "pattern_generalization": "Students should watch for this error especially in sentences that talk about possibilities, wishes, or imagined situations—any time you'd use 'would,' 'could,' or 'if.' These are common spots where nuance can be lost.",
+        "mt_system_specific": "Large language models like Claude may make this mistake more often than dedicated translation systems, because they are trained on a wider range of text and may not focus as much on strict grammar rules between languages."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Ne pensez-vous pas, Madame la Présidente, <GRAMMAR type=\"tense\" severity=\"minor\" tom=\"1st_machine\" desc=\"Conditional replaced by present tense, losing hypothetical nuance\">qu'il convient d'écrire</GRAMMAR> une lettre au président du Sri Lanka pour lui communiquer que le Parlement déplore la mort violente, dont celle de M. Ponnambalam, et pour l'inviter instamment à faire tout ce qui est en son pouvoir pour chercher une reconciliation pacifique et mettre un terme à cette situation particulièrement difficile.",
+      "brief_explanation": "Conditional replaced by present tense, losing hypothetical nuance"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 4,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system interpreted 'violent deaths' as a singular event, rendering it as 'la mort violente' instead of the plural form.",
+      "actual_meaning": "The source refers to multiple violent deaths, not just a single one, encompassing the death of Mr. Ponnambalam and others.",
+      "reader_impact": "A reader may think only one violent death occurred, misunderstanding the scale and seriousness of the events being referenced.",
+      "correction_rationale": "The plural 'les morts violentes' accurately conveys that several violent deaths took place, aligning with the source's intent and ensuring the scope of the tragedy is clear."
+    },
+    {
+      "mt_interpretation": "The MT system recognized the English word 'reconciliation' and, due to the similarity in spelling, directly transferred it into French as 'reconciliation' without adapting it to the correct French form.",
+      "actual_meaning": "The source text refers to the process of restoring friendly relations, which in French is accurately expressed as 'réconciliation.'",
+      "reader_impact": "A French reader may be confused by the unaccented, non-French word 'reconciliation,' which disrupts comprehension and signals a lack of fluency or care in the translation.",
+      "correction_rationale": "The correct translation, 'réconciliation,' uses the appropriate French word and spelling, ensuring clarity and maintaining the naturalness and accuracy of the target text."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted the modal 'would it be appropriate' as a general present statement and selected the present tense 'il convient' to match the apparent register.",
+      "actual_meaning": "The source is posing a hypothetical or tentative suggestion, asking if it would be appropriate for the President to take an action, not stating it is appropriate in general.",
+      "reader_impact": "A reader would interpret the present tense 'il convient' as a factual assertion that writing the letter is appropriate, missing the original's nuance of tentative suggestion and politeness.",
+      "correction_rationale": "Using the conditional 'il conviendrait' accurately reflects the hypothetical and polite tone of the original question, preserving the intended nuance and aligning with French conventions for such suggestions."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often mistranslate numbers because they treat them like any other word, not realizing that even a small change can completely alter the meaning—like confusing a phone number or a price. It's a bit like copying a recipe but accidentally swapping '2 cups' for '3 cups'—the result can be very different.",
+      "architectural_cause": "Inside, these systems focus on patterns in language, not on the special importance of numbers. Since numbers are just another part of the sentence to the system, it may substitute, drop, or change them if it thinks it fits the pattern better, without understanding the real-world impact.",
+      "pattern_generalization": "Students should watch for this error whenever a sentence contains dates, quantities, prices, or measurements—especially if the number is important to the meaning. Double-check any translation with critical numbers.",
+      "mt_system_specific": "Dedicated MT systems are often better at handling numbers because they are trained specifically for translation tasks, while general LLMs like Claude may be more likely to make these mistakes."
+    },
+    {
+      "error_mechanism": "MT systems often mistake 'false friends'—words that look similar in two languages but have different meanings—because they rely on patterns in their training data. It's like seeing the word 'actual' in Spanish and thinking it means 'actual' in English, when it really means 'current.'",
+      "architectural_cause": "Internally, these systems connect words that appear together often, without truly understanding their deeper meanings. So if two words look or sound alike, the system may assume they mean the same thing, even if that's not correct.",
+      "pattern_generalization": "Students should watch for these errors with words that look familiar in both languages but may not share the same meaning—especially with common 'false friends.'",
+      "mt_system_specific": "LLMs like Claude may be even more prone to this error than specialized MT systems, because they are trained on a broader range of text and may not focus as much on careful word-by-word translation."
+    },
+    {
+      "error_mechanism": "MT systems sometimes mix up conditional and present tense because they focus on matching patterns they've seen before, rather like someone who learned a language by memorizing phrases instead of understanding the rules. If the system sees lots of present tense examples, it might forget to use the special 'what if' tone of conditionals, losing the sense of possibility or uncertainty.",
+      "architectural_cause": "Internally, the system doesn't truly understand the meaning behind the words—it predicts the next word based on patterns in its training data. If it hasn't seen enough examples of hypothetical situations, it might default to the more common present tense, missing the subtle shift needed for conditionals.",
+      "pattern_generalization": "Students should watch for this error especially in sentences that talk about possibilities, wishes, or imagined situations—any time you'd use 'would,' 'could,' or 'if.' These are common spots where nuance can be lost.",
+      "mt_system_specific": "Large language models like Claude may make this mistake more often than dedicated translation systems, because they are trained on a wider range of text and may not focus as much on strict grammar rules between languages."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

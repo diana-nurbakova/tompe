@@ -1,0 +1,183 @@
+{
+  "item_id": "62ec229e-b2d2-432b-89d1-a8184e1a3330",
+  "segment_id": "europarl-4b1e1b1beaec",
+  "source_text": "Would it be appropriate for you, Madam President, to write a letter to the Sri Lankan President expressing Parliament's regret at his and the other violent deaths in Sri Lanka and urging her to do everything she possibly can to seek a peaceful reconciliation to a very difficult situation?",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Ne pensez-vous pas, Madame la Présidente, qu'il conviendrait d'écrire une lettre au président du Sri Lanka pour lui dire que le Parlement déplore les morts violentes, où celle de M. Ponnambalam, et pour l'inviter instamment à faire tout ce qui est en son pouvoir pour chercher une réconciliation pacifique et arrêter cette situation particulièrement difficile.",
+  "reference_translation": "Ne pensez-vous pas, Madame la Présidente, qu'il conviendrait d'écrire une lettre au président du Sri Lanka pour lui communiquer que le Parlement déplore les morts violentes, dont celle de M. Ponnambalam, et pour l'inviter instamment à faire tout ce qui est en son pouvoir pour chercher une réconciliation pacifique et mettre un terme à cette situation particulièrement difficile.",
+  "mt_system": "deepl",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "8e943af5-7d4c-4aac-b6fd-39b5ac9360d9",
+      "span_start": 318,
+      "span_end": 368,
+      "original_text": "mettre un terme à cette situation particulièrement difficile",
+      "injected_text": "arrêter cette situation particulièrement difficile",
+      "primary_tag": "STYLE",
+      "error_type": "unidiomatic",
+      "severity": "minor",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely chose 'arrêter' as a direct translation of 'to stop,' aiming for a literal rendering of 'to end the situation.'",
+        "actual_meaning": "The source intends to convey the idea of resolving or bringing an end to a difficult situation, not just stopping it abruptly.",
+        "reader_impact": "A reader might interpret 'arrêter cette situation' as unidiomatic or awkward, possibly misunderstanding the nuance of resolution versus abrupt cessation.",
+        "correction_rationale": "'Mettre un terme à cette situation' is the idiomatic French expression for bringing a situation to an end, accurately reflecting the intended nuance of the source text."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often make unidiomatic style errors because they focus on matching patterns they've seen before, a bit like someone who learned a language from textbooks but hasn't spent much time chatting with native speakers. They might choose words or phrases that are correct, but sound odd or unnatural to a local listener.",
+        "architectural_cause": "Internally, the system predicts the next word based on large amounts of example sentences. It doesn't truly 'understand' the flow or feel of natural speech, so it sometimes strings together phrases that are technically right but not how people would really say them.",
+        "pattern_generalization": "Students can expect to see these errors especially with common phrases, idioms, or when the source text uses a style that's different from standard writing. Pay extra attention when translating informal language or culturally unique expressions.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are trained mostly on written text, so they may sound less natural than LLMs, which are exposed to a wider range of language styles, including more conversational or informal speech."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Ne pensez-vous pas, Madame la Présidente, qu'il conviendrait d'écrire une lettre au président du Sri Lanka pour lui communiquer que le Parlement déplore les morts violentes, dont celle de M. Ponnambalam, et pour l'inviter instamment à faire tout ce qui est en son pouvoir pour chercher une réconciliation pacifique et <STYLE type=\"unidiomatic\" severity=\"minor\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">arrêter cette situation particulièrement difficile</STYLE>.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "5eff157b-daf2-44bb-93ff-56ef2643f57a",
+      "span_start": 174,
+      "span_end": 200,
+      "original_text": "dont celle de M. Ponnambalam",
+      "injected_text": "où celle de M. Ponnambalam",
+      "primary_tag": "GRAMMAR",
+      "error_type": "relative_pronoun",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted the phrase as indicating a location or context ('where'), thus choosing the relative pronoun 'où'.",
+        "actual_meaning": "The source refers to a subset of violent deaths, specifically including that of Mr. Ponnambalam, so the correct pronoun is 'dont' (of which).",
+        "reader_impact": "A reader would misunderstand the sentence, thinking it refers to a place or event ('where'), rather than specifying that Mr. Ponnambalam's death is one among the violent deaths being deplored.",
+        "correction_rationale": "'Dont' is the correct relative pronoun to express 'of which', indicating that Mr. Ponnambalam's death is one of the violent deaths, whereas 'où' incorrectly introduces a locative or temporal relationship."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up or drop relative pronouns, like 'who', 'which', or 'that', because they struggle to keep track of what connects to what in a sentence—like losing the string between beads in a necklace.",
+        "architectural_cause": "The system reads sentences in chunks and tries to guess the next word based on patterns it has seen before. If it hasn't seen enough examples or if the sentence is unusually long or complex, it can lose track of the links between parts of the sentence, leading to missing or wrong pronouns.",
+        "pattern_generalization": "Similar errors often happen in sentences with several clauses, or when the relative pronoun is far from the word it refers to. Watch for mistakes in long or complicated sentences with lots of connecting words.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are trained specifically for translation, so they may handle these errors better than general-purpose language models, but both can struggle with tricky sentence structures."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Ne pensez-vous pas, Madame la Présidente, qu'il conviendrait d'écrire une lettre au président du Sri Lanka pour lui communiquer que le Parlement déplore les morts violentes, <GRAMMAR type=\"relative_pronoun\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">où celle de M. Ponnambalam</GRAMMAR>, et pour l'inviter instamment à faire tout ce qui est en son pouvoir pour chercher une réconciliation pacifique et arrêter cette situation particulièrement difficile.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "c877a8f9-1da6-4695-8175-f50f3eaf40a5",
+      "span_start": 112,
+      "span_end": 120,
+      "original_text": "lui communiquer",
+      "injected_text": "lui dire",
+      "primary_tag": "STYLE",
+      "error_type": "register_informal",
+      "severity": "minor",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely chose 'lui dire' as a direct translation of 'to tell him', focusing on the literal meaning without considering formality.",
+        "actual_meaning": "The source text refers to formally communicating Parliament's regret, which requires a more diplomatic and official register.",
+        "reader_impact": "A reader may perceive 'lui dire' as too casual or conversational for an official letter from Parliament, potentially undermining the seriousness of the message.",
+        "correction_rationale": "'Lui communiquer' is more appropriate in formal or diplomatic contexts, accurately conveying the official and respectful tone required in such correspondence."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often use the most common or 'default' way of speaking they have seen in their training, like someone who always picks the most familiar outfit instead of dressing for a special occasion. If the system has mostly seen informal language, it might use it even when a formal tone is needed.",
+        "architectural_cause": "Internally, the system matches patterns from its large collection of examples, but it doesn’t truly understand social situations or context. It can miss subtle clues that tell humans when to use formal or informal language, so it sometimes guesses wrong.",
+        "pattern_generalization": "Similar errors often happen when the source text is neutral or ambiguous, or when the MT system hasn’t seen enough examples of formal situations. Watch out for this in business, academic, or official translations.",
+        "mt_system_specific": "Dedicated MT systems like DeepL may be more prone to this error than LLM-based systems, because they rely heavily on their training data and may not adapt as flexibly to different styles or registers."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Ne pensez-vous pas, Madame la Présidente, qu'il conviendrait d'écrire une lettre au président du Sri Lanka pour <STYLE type=\"register_informal\" severity=\"minor\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">lui dire</STYLE> que le Parlement déplore les morts violentes, où celle de M. Ponnambalam, et pour l'inviter instamment à faire tout ce qui est en son pouvoir pour chercher une réconciliation pacifique et arrêter cette situation particulièrement difficile.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 4,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely chose 'arrêter' as a direct translation of 'to stop,' aiming for a literal rendering of 'to end the situation.'",
+      "actual_meaning": "The source intends to convey the idea of resolving or bringing an end to a difficult situation, not just stopping it abruptly.",
+      "reader_impact": "A reader might interpret 'arrêter cette situation' as unidiomatic or awkward, possibly misunderstanding the nuance of resolution versus abrupt cessation.",
+      "correction_rationale": "'Mettre un terme à cette situation' is the idiomatic French expression for bringing a situation to an end, accurately reflecting the intended nuance of the source text."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted the phrase as indicating a location or context ('where'), thus choosing the relative pronoun 'où'.",
+      "actual_meaning": "The source refers to a subset of violent deaths, specifically including that of Mr. Ponnambalam, so the correct pronoun is 'dont' (of which).",
+      "reader_impact": "A reader would misunderstand the sentence, thinking it refers to a place or event ('where'), rather than specifying that Mr. Ponnambalam's death is one among the violent deaths being deplored.",
+      "correction_rationale": "'Dont' is the correct relative pronoun to express 'of which', indicating that Mr. Ponnambalam's death is one of the violent deaths, whereas 'où' incorrectly introduces a locative or temporal relationship."
+    },
+    {
+      "mt_interpretation": "The MT system likely chose 'lui dire' as a direct translation of 'to tell him', focusing on the literal meaning without considering formality.",
+      "actual_meaning": "The source text refers to formally communicating Parliament's regret, which requires a more diplomatic and official register.",
+      "reader_impact": "A reader may perceive 'lui dire' as too casual or conversational for an official letter from Parliament, potentially undermining the seriousness of the message.",
+      "correction_rationale": "'Lui communiquer' is more appropriate in formal or diplomatic contexts, accurately conveying the official and respectful tone required in such correspondence."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often make unidiomatic style errors because they focus on matching patterns they've seen before, a bit like someone who learned a language from textbooks but hasn't spent much time chatting with native speakers. They might choose words or phrases that are correct, but sound odd or unnatural to a local listener.",
+      "architectural_cause": "Internally, the system predicts the next word based on large amounts of example sentences. It doesn't truly 'understand' the flow or feel of natural speech, so it sometimes strings together phrases that are technically right but not how people would really say them.",
+      "pattern_generalization": "Students can expect to see these errors especially with common phrases, idioms, or when the source text uses a style that's different from standard writing. Pay extra attention when translating informal language or culturally unique expressions.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are trained mostly on written text, so they may sound less natural than LLMs, which are exposed to a wider range of language styles, including more conversational or informal speech."
+    },
+    {
+      "error_mechanism": "MT systems often mix up or drop relative pronouns, like 'who', 'which', or 'that', because they struggle to keep track of what connects to what in a sentence—like losing the string between beads in a necklace.",
+      "architectural_cause": "The system reads sentences in chunks and tries to guess the next word based on patterns it has seen before. If it hasn't seen enough examples or if the sentence is unusually long or complex, it can lose track of the links between parts of the sentence, leading to missing or wrong pronouns.",
+      "pattern_generalization": "Similar errors often happen in sentences with several clauses, or when the relative pronoun is far from the word it refers to. Watch for mistakes in long or complicated sentences with lots of connecting words.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are trained specifically for translation, so they may handle these errors better than general-purpose language models, but both can struggle with tricky sentence structures."
+    },
+    {
+      "error_mechanism": "MT systems often use the most common or 'default' way of speaking they have seen in their training, like someone who always picks the most familiar outfit instead of dressing for a special occasion. If the system has mostly seen informal language, it might use it even when a formal tone is needed.",
+      "architectural_cause": "Internally, the system matches patterns from its large collection of examples, but it doesn’t truly understand social situations or context. It can miss subtle clues that tell humans when to use formal or informal language, so it sometimes guesses wrong.",
+      "pattern_generalization": "Similar errors often happen when the source text is neutral or ambiguous, or when the MT system hasn’t seen enough examples of formal situations. Watch out for this in business, academic, or official translations.",
+      "mt_system_specific": "Dedicated MT systems like DeepL may be more prone to this error than LLM-based systems, because they rely heavily on their training data and may not adapt as flexibly to different styles or registers."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

@@ -1,0 +1,182 @@
+{
+  "item_id": "a3a100fc-6430-471d-9b93-2b9f3be18436",
+  "segment_id": "europarl-62c435241d98",
+  "source_text": "You have requested a debate on this subject in the course of the next few days, during this part-session.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Vous souhaitez un débat à ce sujet dans le prochain jours, durant cette session de période.",
+  "reference_translation": "Vous avez souhaité un débat à ce sujet dans les prochains jours, au cours de cette période de session.",
+  "mt_system": "claude",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "aca674d2-12bd-4187-ae7c-3a91d548b3de",
+      "span_start": 65,
+      "span_end": 96,
+      "original_text": "au cours de cette période de session",
+      "injected_text": "durant cette session de période",
+      "primary_tag": "STYLE",
+      "error_type": "awkward",
+      "severity": "minor",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely tried to translate 'part-session' literally, resulting in 'session de période,' and used 'durant' as a direct equivalent for 'during.'",
+        "actual_meaning": "The source refers to holding the debate within the current parliamentary sitting period, specifically during this session's timeframe.",
+        "reader_impact": "A reader may find 'session de période' confusing and awkward, possibly misunderstanding the timing or structure of the event.",
+        "correction_rationale": "'Au cours de cette période de session' is idiomatic and clearly conveys the intended timeframe in French, matching parliamentary terminology and natural phrasing."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often create awkward sentences because they piece together words and phrases based on patterns they've seen before, like someone assembling a puzzle without seeing the full picture. This can lead to sentences that sound strange or unnatural, even if each piece fits grammatically.",
+        "architectural_cause": "Internally, the system predicts the next word one at a time, focusing on what is most likely based on its training data. It doesn't always have a strong sense of the overall flow or style, so it may combine parts that technically work but don't sound smooth to a human reader.",
+        "pattern_generalization": "You can expect awkward phrasing especially in longer or more complex sentences, or when the source text has idioms or unusual structures. Watch for sentences that sound stiff or 'off' even if the meaning is clear.",
+        "mt_system_specific": "Large language models like Claude may be more prone to awkwardness than dedicated MT systems, as they are trained on a wider variety of texts and not focused specifically on translation style."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Vous avez souhaité un débat à ce sujet dans les prochains jours, <STYLE type=\"awkward\" severity=\"minor\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">durant cette session de période</STYLE>.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "35c6e95f-bc3f-4dc8-93e5-b1996fd73ee8",
+      "span_start": 0,
+      "span_end": 14,
+      "original_text": "Vous avez souhaité",
+      "injected_text": "Vous souhaitez",
+      "primary_tag": "GRAMMAR",
+      "error_type": "tense",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted the verb 'have requested' as a simple present tense 'souhaitez' instead of recognizing it as a present perfect referring to a completed action.",
+        "actual_meaning": "The source actually indicates that the request was made in the past and is now being referenced as already having occurred.",
+        "reader_impact": "A reader would misunderstand this as the request being current or ongoing, rather than already completed, potentially causing confusion about the timing of the debate request.",
+        "correction_rationale": "The correct translation uses 'avez souhaité' to accurately reflect the past perfect aspect of the original, clarifying that the action is completed and aligning with the intended temporal meaning."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up verb tenses, like using the present instead of the past perfect, because they focus on the most likely word patterns rather than fully understanding the timeline of events. It's a bit like someone retelling a story but skipping over the details about when things happened, leading to confusion about the sequence.",
+        "architectural_cause": "Inside, these systems predict the next word based on surrounding words, but they don't 'think' about time the way humans do. They look for patterns in the text they've seen before, so if present tense is more common in similar sentences, they'll often choose that, even if the past perfect is needed.",
+        "pattern_generalization": "You can expect similar errors when the sentence structure is complex, or when the timeline of events isn't clearly marked by time words. Watch out for this especially in stories or reports that describe actions happening before other past actions.",
+        "mt_system_specific": "LLMs like Claude may struggle more with tense consistency than dedicated MT systems, because they are trained more broadly and not just for translation. Dedicated MT systems might make fewer of these mistakes, especially if they've been trained on lots of tense-specific examples."
+      },
+      "technical_explanation": null,
+      "xml_tag": "<GRAMMAR type=\"tense\" severity=\"major\" tom=\"1st_machine\" desc=\"Incorrect present tense used instead of past perfect\">Vous souhaitez</GRAMMAR> un débat à ce sujet dans les prochains jours, durant cette session de période.",
+      "brief_explanation": "Incorrect present tense used instead of past perfect"
+    },
+    {
+      "error_id": "515b40e5-d836-4202-9b08-d6d3aa638821",
+      "span_start": 40,
+      "span_end": 57,
+      "original_text": "les prochains jours",
+      "injected_text": "le prochain jours",
+      "primary_tag": "GRAMMAR",
+      "error_type": "agreement_number",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely saw 'the next few days' and attempted a direct translation, mismatching singular 'le prochain' with plural 'jours'.",
+        "actual_meaning": "The source refers to several upcoming days, so the phrase should be plural: 'les prochains jours'.",
+        "reader_impact": "A reader may be confused by the grammatical mismatch, as 'le prochain jours' incorrectly mixes singular and plural, making the sentence sound ungrammatical and unclear.",
+        "correction_rationale": "In French, both the article and adjective must agree in number with the noun, so 'les prochains jours' is the correct plural form matching 'the next few days'."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often miss number agreement, like matching singulars and plurals, because they focus on words one by one, a bit like assembling a puzzle without always seeing the full picture. Sometimes, they overlook clues that show whether something should be singular or plural, especially if those clues are spread out in the sentence.",
+        "architectural_cause": "Internally, the system reads and predicts words based on patterns it has seen before, rather than deeply understanding grammar rules. If the system doesn't clearly 'see' the connection between words that need to agree in number, it may choose the wrong form.",
+        "pattern_generalization": "Students will notice these errors most often in longer sentences or when the subject and verb are separated by other words. Watch out for sentences where it's easy to lose track of which words should match.",
+        "mt_system_specific": "Dedicated MT systems are often trained more specifically on translation tasks, so they may handle agreement errors slightly better than general-purpose LLMs like Claude, which are trained on a wider range of text."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Vous souhaitez un débat à ce sujet dans <GRAMMAR type=\"agreement_number\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">le prochain jours</GRAMMAR>, durant cette session de période.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 4,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely tried to translate 'part-session' literally, resulting in 'session de période,' and used 'durant' as a direct equivalent for 'during.'",
+      "actual_meaning": "The source refers to holding the debate within the current parliamentary sitting period, specifically during this session's timeframe.",
+      "reader_impact": "A reader may find 'session de période' confusing and awkward, possibly misunderstanding the timing or structure of the event.",
+      "correction_rationale": "'Au cours de cette période de session' is idiomatic and clearly conveys the intended timeframe in French, matching parliamentary terminology and natural phrasing."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted the verb 'have requested' as a simple present tense 'souhaitez' instead of recognizing it as a present perfect referring to a completed action.",
+      "actual_meaning": "The source actually indicates that the request was made in the past and is now being referenced as already having occurred.",
+      "reader_impact": "A reader would misunderstand this as the request being current or ongoing, rather than already completed, potentially causing confusion about the timing of the debate request.",
+      "correction_rationale": "The correct translation uses 'avez souhaité' to accurately reflect the past perfect aspect of the original, clarifying that the action is completed and aligning with the intended temporal meaning."
+    },
+    {
+      "mt_interpretation": "The MT system likely saw 'the next few days' and attempted a direct translation, mismatching singular 'le prochain' with plural 'jours'.",
+      "actual_meaning": "The source refers to several upcoming days, so the phrase should be plural: 'les prochains jours'.",
+      "reader_impact": "A reader may be confused by the grammatical mismatch, as 'le prochain jours' incorrectly mixes singular and plural, making the sentence sound ungrammatical and unclear.",
+      "correction_rationale": "In French, both the article and adjective must agree in number with the noun, so 'les prochains jours' is the correct plural form matching 'the next few days'."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often create awkward sentences because they piece together words and phrases based on patterns they've seen before, like someone assembling a puzzle without seeing the full picture. This can lead to sentences that sound strange or unnatural, even if each piece fits grammatically.",
+      "architectural_cause": "Internally, the system predicts the next word one at a time, focusing on what is most likely based on its training data. It doesn't always have a strong sense of the overall flow or style, so it may combine parts that technically work but don't sound smooth to a human reader.",
+      "pattern_generalization": "You can expect awkward phrasing especially in longer or more complex sentences, or when the source text has idioms or unusual structures. Watch for sentences that sound stiff or 'off' even if the meaning is clear.",
+      "mt_system_specific": "Large language models like Claude may be more prone to awkwardness than dedicated MT systems, as they are trained on a wider variety of texts and not focused specifically on translation style."
+    },
+    {
+      "error_mechanism": "MT systems often mix up verb tenses, like using the present instead of the past perfect, because they focus on the most likely word patterns rather than fully understanding the timeline of events. It's a bit like someone retelling a story but skipping over the details about when things happened, leading to confusion about the sequence.",
+      "architectural_cause": "Inside, these systems predict the next word based on surrounding words, but they don't 'think' about time the way humans do. They look for patterns in the text they've seen before, so if present tense is more common in similar sentences, they'll often choose that, even if the past perfect is needed.",
+      "pattern_generalization": "You can expect similar errors when the sentence structure is complex, or when the timeline of events isn't clearly marked by time words. Watch out for this especially in stories or reports that describe actions happening before other past actions.",
+      "mt_system_specific": "LLMs like Claude may struggle more with tense consistency than dedicated MT systems, because they are trained more broadly and not just for translation. Dedicated MT systems might make fewer of these mistakes, especially if they've been trained on lots of tense-specific examples."
+    },
+    {
+      "error_mechanism": "MT systems often miss number agreement, like matching singulars and plurals, because they focus on words one by one, a bit like assembling a puzzle without always seeing the full picture. Sometimes, they overlook clues that show whether something should be singular or plural, especially if those clues are spread out in the sentence.",
+      "architectural_cause": "Internally, the system reads and predicts words based on patterns it has seen before, rather than deeply understanding grammar rules. If the system doesn't clearly 'see' the connection between words that need to agree in number, it may choose the wrong form.",
+      "pattern_generalization": "Students will notice these errors most often in longer sentences or when the subject and verb are separated by other words. Watch out for sentences where it's easy to lose track of which words should match.",
+      "mt_system_specific": "Dedicated MT systems are often trained more specifically on translation tasks, so they may handle agreement errors slightly better than general-purpose LLMs like Claude, which are trained on a wider range of text."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

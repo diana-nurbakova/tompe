@@ -62,8 +62,8 @@ class AnnotationLevel(str, Enum):
     """Progressive scaffolding levels — maps to CCL stages."""
 
     NAVIGATOR = "navigator"  # Level 0: Full annotations visible
-    GUIDED = "guided"  # Level 1: Location hints, no labels
-    INDEPENDENT = "independent"  # Level 2: No annotations
+    SCOUT = "scout"  # Level 1: Location hints, no labels
+    ANALYST = "analyst"  # Level 2: No annotations
     EXPERT = "expert"  # Level 3: No annotations + clean spans + multi-system
 
 

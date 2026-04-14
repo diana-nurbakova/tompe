@@ -1,0 +1,138 @@
+{
+  "item_id": "a0e8b622-2262-4956-8f31-a1dd570437c3",
+  "segment_id": "europarl-62c435241d98",
+  "source_text": "You have requested a debate on this subject in the course of the next few days, during this part-session.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Vous avez souhaité un débat à ce sujet dans les prochains jours qui .",
+  "reference_translation": "Vous avez souhaité un débat à ce sujet dans les prochains jours, au cours de cette période de session.",
+  "mt_system": "deepl",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "e5128dd3-c07c-4546-9327-81fdaddf0926",
+      "span_start": 65,
+      "span_end": 65,
+      "original_text": "au cours de cette période de session",
+      "injected_text": "",
+      "primary_tag": "OMISSION",
+      "error_type": "partial",
+      "severity": "major",
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely focused on translating the general timeframe ('in the next few days') and overlooked the specific mention of the parliamentary session ('during this part-session'). It may have considered the session detail as redundant or less important contextual information.",
+        "actual_meaning": "The source text specifies not just the timing ('in the next few days'), but also restricts it to the current parliamentary sitting ('during this part-session'). This detail is crucial to understand the formal context and scheduling constraints.",
+        "reader_impact": "A reader would interpret the translation as referring to any upcoming days, missing the institutional boundary that the debate should occur specifically during the ongoing session. This could cause confusion about when the debate is expected to happen and lead to misunderstandings about procedural deadlines.",
+        "correction_rationale": "The correct translation includes 'au cours de cette période de session', accurately conveying the institutional context and timeframe. This ensures the reader understands that the debate is to be scheduled within the current session, preserving the procedural nuance of the original."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often \"miss the small print\" in a sentence, similar to how someone skimming a document might overlook fine details and only catch the main idea. They tend to focus on the bigger picture, sometimes leaving out specific information like exact dates or timeframes.",
+        "architectural_cause": "Internally, the system tries to summarize and match patterns it has seen before, but it doesn't always give extra weight to details that seem less common or important. As a result, specific details like parliamentary timeframes can get lost if the system thinks the general timing is enough to convey the meaning.",
+        "pattern_generalization": "Students should watch out for this kind of omission whenever the source text contains precise details—especially dates, numbers, or official timeframes—since the MT system may gloss over them.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are trained to be efficient and fluent, but they can sometimes sacrifice detail for smoothness. LLM-based systems may behave similarly, though they sometimes retain more detail due to their broader training, but both types can make this omission."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Vous avez souhaité un débat à ce sujet dans les prochains jours, <OMISSION type=\"partial\" severity=\"major\" tom=\"1st_author\" desc=\"Omission of parliamentary timeframe detail; only general timing remains.\"></OMISSION>.",
+      "brief_explanation": "Omission of parliamentary timeframe detail; only general timing remains."
+    },
+    {
+      "error_id": "b788f65f-76a8-4af8-a9ea-76a2d7f0cb51",
+      "span_start": 39,
+      "span_end": 69,
+      "original_text": "dans les prochains jours, .",
+      "injected_text": "dans les prochains jours qui .",
+      "primary_tag": "GRAMMAR",
+      "error_type": "relative_pronoun",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'the next few days' as requiring a relative clause, hence inserted 'qui' to connect it to a following description.",
+        "actual_meaning": "The source simply refers to a debate taking place 'in the next few days' within the current session period, with no need for a relative clause.",
+        "reader_impact": "A reader may expect additional information after 'qui', leading to confusion or the impression of an incomplete sentence.",
+        "correction_rationale": "The correct translation omits 'qui' because 'dans les prochains jours' is a time expression that does not require a relative pronoun in this context."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems sometimes mix up relative pronouns like 'who', 'which', or 'that' because they rely on patterns they've seen before, not on real understanding. It's a bit like someone learning a language by memorizing phrases—they might pick the wrong connecting word if the situation feels similar to something they've seen, even if it's not quite right.",
+        "architectural_cause": "Internally, the system looks at lots of previous examples to guess which word fits best, rather than thinking about the grammar rules like a human would. If the examples in its training data use certain pronouns more often, it might copy those patterns even when they're not appropriate.",
+        "pattern_generalization": "You’ll often see these errors in sentences where it’s unclear which noun the pronoun refers to, or when the sentence structure is unusual. Pay extra attention when translating complex or nested sentences.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are a bit more consistent with relative pronouns than general-purpose LLMs, but both can make these mistakes when the sentence structure is tricky."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Vous avez souhaité un débat à ce sujet <GRAMMAR type=\"relative_pronoun\" severity=\"minor\" tom=\"1st_machine\" desc=\"5-15 word explanation\">dans les prochains jours qui .</GRAMMAR>",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 3,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely focused on translating the general timeframe ('in the next few days') and overlooked the specific mention of the parliamentary session ('during this part-session'). It may have considered the session detail as redundant or less important contextual information.",
+      "actual_meaning": "The source text specifies not just the timing ('in the next few days'), but also restricts it to the current parliamentary sitting ('during this part-session'). This detail is crucial to understand the formal context and scheduling constraints.",
+      "reader_impact": "A reader would interpret the translation as referring to any upcoming days, missing the institutional boundary that the debate should occur specifically during the ongoing session. This could cause confusion about when the debate is expected to happen and lead to misunderstandings about procedural deadlines.",
+      "correction_rationale": "The correct translation includes 'au cours de cette période de session', accurately conveying the institutional context and timeframe. This ensures the reader understands that the debate is to be scheduled within the current session, preserving the procedural nuance of the original."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted 'the next few days' as requiring a relative clause, hence inserted 'qui' to connect it to a following description.",
+      "actual_meaning": "The source simply refers to a debate taking place 'in the next few days' within the current session period, with no need for a relative clause.",
+      "reader_impact": "A reader may expect additional information after 'qui', leading to confusion or the impression of an incomplete sentence.",
+      "correction_rationale": "The correct translation omits 'qui' because 'dans les prochains jours' is a time expression that does not require a relative pronoun in this context."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often \"miss the small print\" in a sentence, similar to how someone skimming a document might overlook fine details and only catch the main idea. They tend to focus on the bigger picture, sometimes leaving out specific information like exact dates or timeframes.",
+      "architectural_cause": "Internally, the system tries to summarize and match patterns it has seen before, but it doesn't always give extra weight to details that seem less common or important. As a result, specific details like parliamentary timeframes can get lost if the system thinks the general timing is enough to convey the meaning.",
+      "pattern_generalization": "Students should watch out for this kind of omission whenever the source text contains precise details—especially dates, numbers, or official timeframes—since the MT system may gloss over them.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are trained to be efficient and fluent, but they can sometimes sacrifice detail for smoothness. LLM-based systems may behave similarly, though they sometimes retain more detail due to their broader training, but both types can make this omission."
+    },
+    {
+      "error_mechanism": "MT systems sometimes mix up relative pronouns like 'who', 'which', or 'that' because they rely on patterns they've seen before, not on real understanding. It's a bit like someone learning a language by memorizing phrases—they might pick the wrong connecting word if the situation feels similar to something they've seen, even if it's not quite right.",
+      "architectural_cause": "Internally, the system looks at lots of previous examples to guess which word fits best, rather than thinking about the grammar rules like a human would. If the examples in its training data use certain pronouns more often, it might copy those patterns even when they're not appropriate.",
+      "pattern_generalization": "You’ll often see these errors in sentences where it’s unclear which noun the pronoun refers to, or when the sentence structure is unusual. Pay extra attention when translating complex or nested sentences.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are a bit more consistent with relative pronouns than general-purpose LLMs, but both can make these mistakes when the sentence structure is tricky."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

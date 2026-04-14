@@ -1,0 +1,179 @@
+{
+  "item_id": "27e5fb91-562b-46a2-a306-57f16da00de4",
+  "segment_id": "europarl-fb6e3c1dbc20",
+  "source_text": "Yes, Mr Evans, I feel an initiative of the type you have just suggested would be entirely appropriate.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Oui, Monsieur Evans, je pense qu'une initiative du type que vous venez de suggérer seraient complètement appropriée.",
+  "reference_translation": "Oui, Monsieur Evans, je pense qu'une initiative dans le sens que vous venez de suggérer serait tout à fait appropriée.",
+  "mt_system": "gpt4",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "db4fa47c-6db9-442c-9475-8bc3c5bfdcfc",
+      "span_start": 48,
+      "span_end": 82,
+      "original_text": "dans le sens que vous venez de suggérer",
+      "injected_text": "du type que vous venez de suggérer",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "ambiguity",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "severity_range": [
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'of the type' literally and rendered it as 'du type', focusing on a classification rather than the intended direction or spirit of the suggestion.",
+        "actual_meaning": "The source means an initiative in the same direction or along the lines of what was just suggested, emphasizing alignment with the suggestion's intent rather than its category.",
+        "reader_impact": "A reader may infer that the speaker is referring to a specific category or type of initiative, which introduces ambiguity and detracts from the intended sense of following the same direction or idea.",
+        "correction_rationale": "'Dans le sens que vous venez de suggérer' precisely conveys the idea of following the same intent or direction as the suggestion, avoiding the ambiguity introduced by 'du type'."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often stumble with ambiguous phrases like 'du type' because, like a person reading a sentence with missing context, they have to guess which meaning is intended. If the system hasn't seen enough examples or clear hints, it might pick the wrong interpretation, just as someone might misunderstand a vague instruction.",
+        "architectural_cause": "Internally, the system looks for patterns in the words around 'du type' to decide what it means, but if the surrounding words aren't specific enough, it can't be sure. Since it doesn't truly 'understand' the deeper meaning, it relies on statistical guesses from previous examples, which can easily go astray with ambiguous phrases.",
+        "pattern_generalization": "Students should watch out for similar errors whenever a word or phrase could mean more than one thing, especially if the context doesn't clearly point to the right meaning. This is common with words that have multiple definitions or when referring to something not previously explained.",
+        "mt_system_specific": "General-purpose LLMs like GPT-4 may be more prone to this type of ambiguity error than dedicated MT systems, because they are trained on a wider range of texts and may not focus as much on precise translation rules."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Oui, Monsieur Evans, je pense qu'une initiative <MISTRANSLATION type=\"ambiguity\" severity=\"major\" tom=\"1st_machine\" desc=\"'Du type' introduces ambiguity about the nature of the initiative.\">du type que vous venez de suggérer</MISTRANSLATION> serait tout à fait appropriée.",
+      "brief_explanation": "'Du type' introduces ambiguity about the nature of the initiative."
+    },
+    {
+      "error_id": "c3633493-e5d5-4f35-8984-51a8b8c66aa7",
+      "span_start": 83,
+      "span_end": 113,
+      "original_text": "serait tout à fait appropriée",
+      "injected_text": "serait complètement appropriée",
+      "primary_tag": "STYLE",
+      "error_type": "awkward",
+      "severity": "minor",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely equated 'entirely' with 'complètement', focusing on the literal dictionary meaning and direct word-for-word translation.",
+        "actual_meaning": "The source expresses that the initiative would be fully or wholly appropriate, using a natural, idiomatic expression in French ('tout à fait appropriée').",
+        "reader_impact": "A French reader may find 'complètement appropriée' awkward or slightly unnatural, as this phrase is rarely used in formal contexts and may sound like a calque from English.",
+        "correction_rationale": "'Tout à fait appropriée' is the standard, idiomatic way to express 'entirely appropriate' in French, fitting the register and style of formal communication."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often create awkward sentences because they piece together words and phrases based on patterns they've seen before, a bit like assembling a puzzle without always knowing what the final picture should look like. Sometimes, the pieces technically fit, but the result doesn't sound natural to a human ear.",
+        "architectural_cause": "Internally, the system predicts each word one at a time, choosing what seems most likely based on its training data. It doesn't always have a full sense of the bigger picture or the subtle flow of natural conversation, so the sentences can end up sounding stiff or odd.",
+        "pattern_generalization": "You'll often see these awkward sentences when the text includes unusual phrasing, idioms, or complex sentence structures that the system hasn't seen often. Pay extra attention to translations of creative or less common expressions.",
+        "mt_system_specific": "General-purpose LLMs like GPT-4 may produce more awkward phrasing than specialized MT systems because they aren't trained specifically on high-quality translation data."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Oui, Monsieur Evans, je pense qu'une initiative du type que vous venez de suggérer <STYLE type=\"awkward\" severity=\"minor\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">serait complètement appropriée</STYLE>.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "2d2da344-1971-4512-bd91-a2d53ad49449",
+      "span_start": 83,
+      "span_end": 91,
+      "original_text": "serait",
+      "injected_text": "seraient",
+      "primary_tag": "GRAMMAR",
+      "error_type": "agreement_number",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'initiative' as a plural noun, leading it to use the plural verb form 'seraient' to agree in number.",
+        "actual_meaning": "The source refers to a single initiative, so the verb should be singular, matching the singular subject.",
+        "reader_impact": "A reader might be confused, thinking that multiple initiatives were mentioned or suggested, rather than just one.",
+        "correction_rationale": "The correct translation uses 'serait' because 'initiative' is singular in French, and subject-verb agreement in number is required for grammatical accuracy."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often trip up on number agreement, like mixing up singular and plural, because they focus on predicting the next word based on patterns they've seen, not strict grammar rules. It's similar to someone learning a new language and sometimes forgetting to match 'is' with 'cat' and 'are' with 'cats.'",
+        "architectural_cause": "Internally, the system doesn't truly 'understand' grammar—it just looks for word combinations that seem likely based on its training data. If examples in its data are inconsistent or unclear, it can easily make mistakes with number agreement.",
+        "pattern_generalization": "Students will often see these errors in sentences where the subject and verb are far apart, or when the sentence structure is more complex than usual.",
+        "mt_system_specific": "Dedicated MT systems are usually better at catching these errors because they're trained specifically for translation and grammar, while general-purpose LLMs like GPT-4 can be more prone to them."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Oui, Monsieur Evans, je pense qu'une initiative du type que vous venez de suggérer <GRAMMAR type=\"agreement_number\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">seraient</GRAMMAR> complètement appropriée.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 4,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely interpreted 'of the type' literally and rendered it as 'du type', focusing on a classification rather than the intended direction or spirit of the suggestion.",
+      "actual_meaning": "The source means an initiative in the same direction or along the lines of what was just suggested, emphasizing alignment with the suggestion's intent rather than its category.",
+      "reader_impact": "A reader may infer that the speaker is referring to a specific category or type of initiative, which introduces ambiguity and detracts from the intended sense of following the same direction or idea.",
+      "correction_rationale": "'Dans le sens que vous venez de suggérer' precisely conveys the idea of following the same intent or direction as the suggestion, avoiding the ambiguity introduced by 'du type'."
+    },
+    {
+      "mt_interpretation": "The MT system likely equated 'entirely' with 'complètement', focusing on the literal dictionary meaning and direct word-for-word translation.",
+      "actual_meaning": "The source expresses that the initiative would be fully or wholly appropriate, using a natural, idiomatic expression in French ('tout à fait appropriée').",
+      "reader_impact": "A French reader may find 'complètement appropriée' awkward or slightly unnatural, as this phrase is rarely used in formal contexts and may sound like a calque from English.",
+      "correction_rationale": "'Tout à fait appropriée' is the standard, idiomatic way to express 'entirely appropriate' in French, fitting the register and style of formal communication."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted 'initiative' as a plural noun, leading it to use the plural verb form 'seraient' to agree in number.",
+      "actual_meaning": "The source refers to a single initiative, so the verb should be singular, matching the singular subject.",
+      "reader_impact": "A reader might be confused, thinking that multiple initiatives were mentioned or suggested, rather than just one.",
+      "correction_rationale": "The correct translation uses 'serait' because 'initiative' is singular in French, and subject-verb agreement in number is required for grammatical accuracy."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often stumble with ambiguous phrases like 'du type' because, like a person reading a sentence with missing context, they have to guess which meaning is intended. If the system hasn't seen enough examples or clear hints, it might pick the wrong interpretation, just as someone might misunderstand a vague instruction.",
+      "architectural_cause": "Internally, the system looks for patterns in the words around 'du type' to decide what it means, but if the surrounding words aren't specific enough, it can't be sure. Since it doesn't truly 'understand' the deeper meaning, it relies on statistical guesses from previous examples, which can easily go astray with ambiguous phrases.",
+      "pattern_generalization": "Students should watch out for similar errors whenever a word or phrase could mean more than one thing, especially if the context doesn't clearly point to the right meaning. This is common with words that have multiple definitions or when referring to something not previously explained.",
+      "mt_system_specific": "General-purpose LLMs like GPT-4 may be more prone to this type of ambiguity error than dedicated MT systems, because they are trained on a wider range of texts and may not focus as much on precise translation rules."
+    },
+    {
+      "error_mechanism": "MT systems often create awkward sentences because they piece together words and phrases based on patterns they've seen before, a bit like assembling a puzzle without always knowing what the final picture should look like. Sometimes, the pieces technically fit, but the result doesn't sound natural to a human ear.",
+      "architectural_cause": "Internally, the system predicts each word one at a time, choosing what seems most likely based on its training data. It doesn't always have a full sense of the bigger picture or the subtle flow of natural conversation, so the sentences can end up sounding stiff or odd.",
+      "pattern_generalization": "You'll often see these awkward sentences when the text includes unusual phrasing, idioms, or complex sentence structures that the system hasn't seen often. Pay extra attention to translations of creative or less common expressions.",
+      "mt_system_specific": "General-purpose LLMs like GPT-4 may produce more awkward phrasing than specialized MT systems because they aren't trained specifically on high-quality translation data."
+    },
+    {
+      "error_mechanism": "MT systems often trip up on number agreement, like mixing up singular and plural, because they focus on predicting the next word based on patterns they've seen, not strict grammar rules. It's similar to someone learning a new language and sometimes forgetting to match 'is' with 'cat' and 'are' with 'cats.'",
+      "architectural_cause": "Internally, the system doesn't truly 'understand' grammar—it just looks for word combinations that seem likely based on its training data. If examples in its data are inconsistent or unclear, it can easily make mistakes with number agreement.",
+      "pattern_generalization": "Students will often see these errors in sentences where the subject and verb are far apart, or when the sentence structure is more complex than usual.",
+      "mt_system_specific": "Dedicated MT systems are usually better at catching these errors because they're trained specifically for translation and grammar, while general-purpose LLMs like GPT-4 can be more prone to them."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

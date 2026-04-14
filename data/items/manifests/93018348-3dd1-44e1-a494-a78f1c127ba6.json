@@ -1,0 +1,137 @@
+{
+  "item_id": "93018348-3dd1-44e1-a494-a78f1c127ba6",
+  "segment_id": "europarl-e54de29885ec",
+  "source_text": "I declare resumed the session of the European Parliament adjourned on Friday 17 December 1999, and I would like once again to wish you a happy new year in the hope that you enjoyed a pleasant festive period.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier  je vous renouvelle tous mes vux en espérant que vous avez passé des vacances.",
+  "reference_translation": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes vux en espérant que vous avez passé de bonnes vacances.",
+  "mt_system": "gpt4",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "fc3750ee-92ee-4e49-b15d-92055c823ea0",
+      "span_start": 177,
+      "span_end": 189,
+      "original_text": "de bonnes vacances",
+      "injected_text": "des vacances",
+      "primary_tag": "OMISSION",
+      "error_type": "modifier",
+      "severity": "major",
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'a pleasant festive period' simply as 'vacances' and omitted the modifier 'bonnes', focusing on a literal translation without conveying the positive nuance.",
+        "actual_meaning": "The source wishes the audience not just any holidays, but specifically that they had an enjoyable or pleasant holiday period, emphasizing well-being and positivity.",
+        "reader_impact": "A reader would interpret 'des vacances' as a neutral mention of holidays, missing the intended well-wishing and warmth of the original message.",
+        "correction_rationale": "The correct translation 'de bonnes vacances' includes the positive modifier 'bonnes', accurately reflecting the source's intent to express goodwill and pleasantness."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often leave out modifiers (like adjectives or adverbs) because they focus on the main meaning, a bit like someone telling a story who skips the details to get to the point. If the modifier seems unimportant or rare in their training examples, the system might ignore it.",
+        "architectural_cause": "Inside, these systems predict the next word based on patterns they've seen before. If modifiers don't show up often or clearly in those patterns, the system may not realize they're needed, like following a recipe but forgetting the spices because they're mentioned less often.",
+        "pattern_generalization": "Similar errors can happen when translating sentences with extra details, especially if the modifier is unusual or not commonly used. Watch for this when your source text uses descriptive words that add nuance.",
+        "mt_system_specific": "Dedicated MT systems are usually better at keeping modifiers because they're trained specifically for translation, while general-purpose LLMs may overlook them since they're trained on a wider range of tasks."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes vux en espérant que vous avez passé <OMISSION type=\"modifier\" severity=\"major\" tom=\"1st_author\" desc=\"5-15 word explanation\">des vacances</OMISSION>.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "50d2a5a4-17a0-4b5e-bece-8b32f97a9c78",
+      "span_start": 110,
+      "span_end": 110,
+      "original_text": "et",
+      "injected_text": "",
+      "primary_tag": "OMISSION",
+      "error_type": "discourse_marker",
+      "severity": "minor",
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [
+        "S7"
+      ],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system may have considered the conjunction 'et' as unnecessary or redundant, possibly merging the two clauses without explicit linkage.",
+        "actual_meaning": "The source uses 'and' ('et') to clearly connect two related actions: resuming the session and wishing a happy new year, indicating both happen in sequence.",
+        "reader_impact": "Without 'et', the sentence feels abrupt and the connection between the two actions is lost, making the wish seem like a separate, unrelated statement.",
+        "correction_rationale": "Including 'et' maintains the intended flow and logical connection between the two clauses, accurately reflecting the structure and meaning of the original sentence."
+      },
+      "system_behavior": {
+        "error_mechanism": "Machine translation systems often skip over small connecting words or phrases, like 'however' or 'therefore,' because they seem less important compared to nouns and verbs. It's like someone retelling a story but leaving out the 'meanwhile' or 'on the other hand' parts, focusing only on the main events.",
+        "architectural_cause": "These systems decide what words to include based on patterns they've seen in lots of texts, and sometimes they underestimate the importance of linking words that guide the flow of ideas. Internally, the system may pay more attention to words that carry obvious meaning, missing out on subtle cues that help sentences fit together smoothly.",
+        "pattern_generalization": "Students should look out for missing connecting words, especially in longer sentences or texts where ideas shift or contrast. This happens most when the original sentence uses words to guide the reader from one idea to another.",
+        "mt_system_specific": "Dedicated machine translation systems are often better at keeping these connecting words, since they're trained specifically for translation, while general-purpose language models like GPT-4 may overlook them more often."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier <OMISSION type=\"discourse_marker\" severity=\"minor\" tom=\"1st_author\" desc=\"5-15 word explanation\"></OMISSION> je vous renouvelle tous mes vux en espérant que vous avez passé des vacances.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 3,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely interpreted 'a pleasant festive period' simply as 'vacances' and omitted the modifier 'bonnes', focusing on a literal translation without conveying the positive nuance.",
+      "actual_meaning": "The source wishes the audience not just any holidays, but specifically that they had an enjoyable or pleasant holiday period, emphasizing well-being and positivity.",
+      "reader_impact": "A reader would interpret 'des vacances' as a neutral mention of holidays, missing the intended well-wishing and warmth of the original message.",
+      "correction_rationale": "The correct translation 'de bonnes vacances' includes the positive modifier 'bonnes', accurately reflecting the source's intent to express goodwill and pleasantness."
+    },
+    {
+      "mt_interpretation": "The MT system may have considered the conjunction 'et' as unnecessary or redundant, possibly merging the two clauses without explicit linkage.",
+      "actual_meaning": "The source uses 'and' ('et') to clearly connect two related actions: resuming the session and wishing a happy new year, indicating both happen in sequence.",
+      "reader_impact": "Without 'et', the sentence feels abrupt and the connection between the two actions is lost, making the wish seem like a separate, unrelated statement.",
+      "correction_rationale": "Including 'et' maintains the intended flow and logical connection between the two clauses, accurately reflecting the structure and meaning of the original sentence."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often leave out modifiers (like adjectives or adverbs) because they focus on the main meaning, a bit like someone telling a story who skips the details to get to the point. If the modifier seems unimportant or rare in their training examples, the system might ignore it.",
+      "architectural_cause": "Inside, these systems predict the next word based on patterns they've seen before. If modifiers don't show up often or clearly in those patterns, the system may not realize they're needed, like following a recipe but forgetting the spices because they're mentioned less often.",
+      "pattern_generalization": "Similar errors can happen when translating sentences with extra details, especially if the modifier is unusual or not commonly used. Watch for this when your source text uses descriptive words that add nuance.",
+      "mt_system_specific": "Dedicated MT systems are usually better at keeping modifiers because they're trained specifically for translation, while general-purpose LLMs may overlook them since they're trained on a wider range of tasks."
+    },
+    {
+      "error_mechanism": "Machine translation systems often skip over small connecting words or phrases, like 'however' or 'therefore,' because they seem less important compared to nouns and verbs. It's like someone retelling a story but leaving out the 'meanwhile' or 'on the other hand' parts, focusing only on the main events.",
+      "architectural_cause": "These systems decide what words to include based on patterns they've seen in lots of texts, and sometimes they underestimate the importance of linking words that guide the flow of ideas. Internally, the system may pay more attention to words that carry obvious meaning, missing out on subtle cues that help sentences fit together smoothly.",
+      "pattern_generalization": "Students should look out for missing connecting words, especially in longer sentences or texts where ideas shift or contrast. This happens most when the original sentence uses words to guide the reader from one idea to another.",
+      "mt_system_specific": "Dedicated machine translation systems are often better at keeping these connecting words, since they're trained specifically for translation, while general-purpose language models like GPT-4 may overlook them more often."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

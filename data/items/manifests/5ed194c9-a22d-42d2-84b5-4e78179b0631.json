@@ -1,0 +1,140 @@
+{
+  "item_id": "5ed194c9-a22d-42d2-84b5-4e78179b0631",
+  "segment_id": "europarl-58eae60d5b7a",
+  "source_text": "Although, as you will have seen, the dreaded 'millennium bug' failed to materialise, still the people in a number of countries suffered a series of natural disasters that truly were dreadful.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Comme vous avez pu le constater, le grand \"bogue de l'an 2000\" ne s'est pas produit. En revanche, les citoyens dans un certain nombre de nos pays étaient victimes de catastrophes naturelles qui ont vraiment été terribles.",
+  "reference_translation": "Comme vous avez pu le constater, le grand \"bogue de l'an 2000\" ne s'est pas produit. En revanche, les citoyens d'un certain nombre de nos pays ont été victimes de catastrophes naturelles qui ont vraiment été terribles.",
+  "mt_system": "claude",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "8b335b3b-5075-470b-b604-2b635b096124",
+      "span_start": 143,
+      "span_end": 159,
+      "original_text": "ont été victimes",
+      "injected_text": "étaient victimes",
+      "primary_tag": "GRAMMAR",
+      "error_type": "tense",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted the English past tense 'suffered' as an ongoing or habitual action, leading it to choose the French imparfait 'étaient victimes.'",
+        "actual_meaning": "The source describes a specific, completed event: people in several countries were victims of natural disasters during a particular period.",
+        "reader_impact": "A reader might understand 'étaient victimes' as if these people were victims over an extended time or repeatedly, which distorts the sense of a single, completed occurrence.",
+        "correction_rationale": "The passé composé 'ont été victimes' correctly conveys that the people became victims at a specific moment in the past, aligning with the completed action described in the source."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often confuse tenses like imparfait and passé composé because they rely on patterns in large amounts of text, much like someone learning a language by reading lots of stories without always knowing the grammar rules. If the context is unclear or the event is described simply, the system may pick the more common or 'safer' tense, even if it's not exactly right.",
+        "architectural_cause": "Internally, the system looks for clues in the surrounding words to decide which tense fits best, but it doesn't always 'understand' the story the way a human does. It matches patterns it has seen before, so if both tenses often appear in similar contexts, it can easily mix them up.",
+        "pattern_generalization": "Students will see similar errors whenever the source sentence talks about past events, especially when it's not obvious whether the event is ongoing or completed. Watch out for sentences describing finished actions without clear time markers.",
+        "mt_system_specific": "Dedicated MT systems trained specifically for translation may be slightly better at picking the right tense, because they see more examples of how tenses are used between languages. General LLMs like Claude can be more prone to tense confusion because they are trained on a wider variety of texts, not just translations."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Comme vous avez pu le constater, le grand \"bogue de l'an 2000\" ne s'est pas produit. En revanche, les citoyens d'un certain nombre de nos pays <GRAMMAR type=\"tense\" severity=\"major\" tom=\"1st_machine\" desc=\"Imparfait used instead of passé composé for completed event\">étaient victimes</GRAMMAR> de catastrophes naturelles qui ont vraiment été terribles.",
+      "brief_explanation": "Imparfait used instead of passé composé for completed event"
+    },
+    {
+      "error_id": "97c9be34-f75e-498b-b3ef-cd37e96ef19d",
+      "span_start": 111,
+      "span_end": 145,
+      "original_text": "d'un certain nombre de nos pays",
+      "injected_text": "dans un certain nombre de nos pays",
+      "primary_tag": "GRAMMAR",
+      "error_type": "preposition",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely mapped 'in a number of countries' directly to 'dans un certain nombre de nos pays,' following a literal word-for-word approach.",
+        "actual_meaning": "The source means that citizens from several of our countries suffered, not that the suffering happened geographically within those countries.",
+        "reader_impact": "A reader would incorrectly believe that the disasters occurred inside the physical borders of the countries, rather than affecting their citizens regardless of location.",
+        "correction_rationale": "The correct preposition 'de' indicates belonging (citizens of the countries), while 'dans' would incorrectly specify a location, thus altering the intended meaning."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up prepositions because different languages use them in different ways, much like how recipes from different countries use spices differently. The system might pick a preposition that sounds right based on patterns it's seen, but it doesn't always catch the subtle rules that humans learn over years.",
+        "architectural_cause": "Internally, the system relies on patterns from huge amounts of text. If it sees certain words together often, it assumes they belong together, even if the grammar is slightly off. It doesn't truly 'understand' the meaning behind the words, so it can miss the right preposition.",
+        "pattern_generalization": "Students can expect these errors when translating phrases where prepositions don't match one-to-one between languages, or in idiomatic expressions. Pay extra attention to set phrases and verbs that always need a specific preposition.",
+        "mt_system_specific": "Large language models like Claude may make more of these errors than dedicated MT systems, because they focus on general language use rather than strict translation patterns."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Comme vous avez pu le constater, le grand \"bogue de l'an 2000\" ne s'est pas produit. En revanche, les citoyens <GRAMMAR type=\"preposition\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">dans un certain nombre de nos pays</GRAMMAR> étaient victimes de catastrophes naturelles qui ont vraiment été terribles.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 3,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely interpreted the English past tense 'suffered' as an ongoing or habitual action, leading it to choose the French imparfait 'étaient victimes.'",
+      "actual_meaning": "The source describes a specific, completed event: people in several countries were victims of natural disasters during a particular period.",
+      "reader_impact": "A reader might understand 'étaient victimes' as if these people were victims over an extended time or repeatedly, which distorts the sense of a single, completed occurrence.",
+      "correction_rationale": "The passé composé 'ont été victimes' correctly conveys that the people became victims at a specific moment in the past, aligning with the completed action described in the source."
+    },
+    {
+      "mt_interpretation": "The MT system likely mapped 'in a number of countries' directly to 'dans un certain nombre de nos pays,' following a literal word-for-word approach.",
+      "actual_meaning": "The source means that citizens from several of our countries suffered, not that the suffering happened geographically within those countries.",
+      "reader_impact": "A reader would incorrectly believe that the disasters occurred inside the physical borders of the countries, rather than affecting their citizens regardless of location.",
+      "correction_rationale": "The correct preposition 'de' indicates belonging (citizens of the countries), while 'dans' would incorrectly specify a location, thus altering the intended meaning."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often confuse tenses like imparfait and passé composé because they rely on patterns in large amounts of text, much like someone learning a language by reading lots of stories without always knowing the grammar rules. If the context is unclear or the event is described simply, the system may pick the more common or 'safer' tense, even if it's not exactly right.",
+      "architectural_cause": "Internally, the system looks for clues in the surrounding words to decide which tense fits best, but it doesn't always 'understand' the story the way a human does. It matches patterns it has seen before, so if both tenses often appear in similar contexts, it can easily mix them up.",
+      "pattern_generalization": "Students will see similar errors whenever the source sentence talks about past events, especially when it's not obvious whether the event is ongoing or completed. Watch out for sentences describing finished actions without clear time markers.",
+      "mt_system_specific": "Dedicated MT systems trained specifically for translation may be slightly better at picking the right tense, because they see more examples of how tenses are used between languages. General LLMs like Claude can be more prone to tense confusion because they are trained on a wider variety of texts, not just translations."
+    },
+    {
+      "error_mechanism": "MT systems often mix up prepositions because different languages use them in different ways, much like how recipes from different countries use spices differently. The system might pick a preposition that sounds right based on patterns it's seen, but it doesn't always catch the subtle rules that humans learn over years.",
+      "architectural_cause": "Internally, the system relies on patterns from huge amounts of text. If it sees certain words together often, it assumes they belong together, even if the grammar is slightly off. It doesn't truly 'understand' the meaning behind the words, so it can miss the right preposition.",
+      "pattern_generalization": "Students can expect these errors when translating phrases where prepositions don't match one-to-one between languages, or in idiomatic expressions. Pay extra attention to set phrases and verbs that always need a specific preposition.",
+      "mt_system_specific": "Large language models like Claude may make more of these errors than dedicated MT systems, because they focus on general language use rather than strict translation patterns."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

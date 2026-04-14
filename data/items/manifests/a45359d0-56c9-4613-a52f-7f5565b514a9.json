@@ -1,0 +1,184 @@
+{
+  "item_id": "a45359d0-56c9-4613-a52f-7f5565b514a9",
+  "segment_id": "europarl-8778e3c7fe2e",
+  "source_text": "The Cunha report on multiannual guidance programmes comes before Parliament on Thursday and contains a proposal in paragraph 6 that a form of quota penalties should be introduced for countries which fail to meet their fleet reduction targets annually.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Le paragraphe 6 du rapport Cunha sur les programmes d'orientation pluriannuels, qui a été soumis au Parlement ce jeudi, propose d'introduire des sanctions financières applicables aux pays qui ne respectent pas les objectifs de réduction de leur flotte.",
+  "reference_translation": "Le paragraphe 6 du rapport Cunha sur les programmes d'orientation pluriannuels, qui sera soumis au Parlement ce jeudi, propose d'introduire des sanctions applicables aux pays qui ne respectent pas les objectifs annuels de réduction de leur flotte.",
+  "mt_system": "deepl",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "a83d358f-66fd-4631-9b2a-74bac843342a",
+      "span_start": 201,
+      "span_end": 238,
+      "original_text": "objectifs annuels de réduction de leur flotte",
+      "injected_text": "objectifs de réduction de leur flotte",
+      "primary_tag": "OMISSION",
+      "error_type": "modifier",
+      "severity": "major",
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'fleet reduction targets annually' as simply 'fleet reduction targets,' omitting the modifier 'annually' because it did not recognize its importance or attachment to the noun phrase.",
+        "actual_meaning": "The source text specifies that the fleet reduction targets are set on an annual basis, meaning countries are evaluated each year on whether they meet these targets.",
+        "reader_impact": "Without 'annuels,' the reader may think the targets are overall or cumulative, not recurring each year, leading to confusion about the frequency and strictness of the penalties.",
+        "correction_rationale": "Including 'annuels' accurately conveys that the objectives are evaluated yearly, which is essential for understanding the conditions under which penalties apply; omitting it changes the meaning of the policy."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems can sometimes miss out on adding important descriptive words, much like someone telling a story who forgets to mention a key detail. They often focus on the main parts of the sentence and can skip over smaller, modifying words that add nuance.",
+        "architectural_cause": "Inside, the system tries to predict the next word based on patterns it has seen before. If modifiers seem less important or are less frequent in its training examples, the system might leave them out, thinking the sentence still makes sense.",
+        "pattern_generalization": "Students should watch for missing adjectives or adverbs, especially with longer or more complex sentences, or when the modifier is not commonly used. Pay close attention when the original sentence has extra descriptive details.",
+        "mt_system_specific": "Dedicated MT systems like DeepL might miss modifiers more often than LLMs, which are trained to be more verbose and attentive to nuance. LLMs may include more detail, but could also add information not present in the original."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Le paragraphe 6 du rapport Cunha sur les programmes d'orientation pluriannuels, qui sera soumis au Parlement ce jeudi, propose d'introduire des sanctions applicables aux pays qui ne respectent pas les <OMISSION type=\"modifier\" severity=\"major\" tom=\"1st_author\" desc=\"5-15 word explanation\">objectifs de réduction de leur flotte</OMISSION>.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "294e5ab0-12ae-4c0e-82a2-f5a13a873561",
+      "span_start": 84,
+      "span_end": 96,
+      "original_text": "sera soumis",
+      "injected_text": "a été soumis",
+      "primary_tag": "GRAMMAR",
+      "error_type": "tense",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted the event as having already occurred, rendering 'has been submitted' ('a été soumis') instead of conveying a scheduled future action.",
+        "actual_meaning": "The source text indicates that the Cunha report will be presented to Parliament on Thursday, meaning the event is set to happen in the future.",
+        "reader_impact": "A reader would believe that the report has already been submitted to Parliament, potentially causing confusion about the timeline of parliamentary proceedings.",
+        "correction_rationale": "The correct translation uses the future tense ('sera soumis') to accurately reflect the scheduled nature of the event, ensuring temporal alignment with the source text."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up tenses like past and future because they rely on patterns found in their training data, much like a person who learns a language by reading lots of books but sometimes misses subtle cues about time. If the context isn't crystal clear, the system might guess the wrong tense, especially for scheduled events that could be described in different ways.",
+        "architectural_cause": "Internally, the system looks at the words around the verb to decide which tense to use, but it doesn't truly understand time the way humans do. It matches patterns it has seen before, so if similar sentences in its data used the past tense, it might copy that even if the event is actually in the future.",
+        "pattern_generalization": "Students should watch out for this error when translating sentences about plans, schedules, or events that will happen soon, especially if the time is not spelled out clearly. These errors are more likely when the source sentence uses simple present or ambiguous time expressions.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are more likely to make this mistake because they stick closely to patterns in their training data, while LLMs (like ChatGPT) can sometimes reason more flexibly about time based on broader context."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Le paragraphe 6 du rapport Cunha sur les programmes d'orientation pluriannuels, qui <GRAMMAR type=\"tense\" severity=\"minor\" tom=\"1st_machine\" desc=\"Past tense used instead of scheduled future event\">a été soumis</GRAMMAR> au Parlement ce jeudi, propose d'introduire des sanctions applicables aux pays qui ne respectent pas les objectifs de réduction de leur flotte.",
+      "brief_explanation": "Past tense used instead of scheduled future event"
+    },
+    {
+      "error_id": "a70cf1aa-d891-491e-98c1-dc7326c7c3a1",
+      "span_start": 141,
+      "span_end": 178,
+      "original_text": "des sanctions applicables",
+      "injected_text": "des sanctions financières applicables",
+      "primary_tag": "ADDITION",
+      "error_type": "qualifier",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S4",
+      "secondary_skills": [
+        "S6"
+      ],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely inferred from the context that 'quota penalties' refers specifically to financial penalties, so it added 'financières' to clarify the type of sanctions.",
+        "actual_meaning": "The source text mentions 'quota penalties' in general, without specifying if they are financial or of another nature. The intent is to cover any form of penalty, not necessarily financial.",
+        "reader_impact": "A reader would assume that only financial sanctions are proposed, potentially overlooking other forms of penalties (such as administrative or operational) that could also be applied.",
+        "correction_rationale": "The correct translation omits 'financières' to remain faithful to the source, which does not specify the nature of the sanctions, thus preserving the intended generality and accuracy."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often add extra words, like qualifiers, because they try to be helpful by making sentences sound more natural or complete, a bit like someone who adds extra details when retelling a story. Sometimes, they guess what should be there based on similar sentences they've seen before, even if the original text didn't include those words.",
+        "architectural_cause": "Inside, these systems work by predicting the next word in a sentence based on patterns they've learned from lots of examples. If qualifiers often appear in similar sentences in their training data, the system might add them automatically, thinking that's what usually comes next.",
+        "pattern_generalization": "Students are more likely to see these errors when the source sentence is short, vague, or missing context, prompting the MT system to 'fill in the gaps.' Watch for unnecessary descriptive words or phrases that weren't in the original text.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are trained to produce fluent translations and may add qualifiers for smoothness, while large language models might do this even more because they're designed to be even more conversational and context-aware."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Le paragraphe 6 du rapport Cunha sur les programmes d'orientation pluriannuels, qui a été soumis au Parlement ce jeudi, propose d'introduire <ADDITION type=\"qualifier\" severity=\"minor\" tom=\"1st_machine\" desc=\"5-15 word explanation\">des sanctions financières applicables</ADDITION> aux pays qui ne respectent pas les objectifs de réduction de leur flotte.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 4,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely interpreted 'fleet reduction targets annually' as simply 'fleet reduction targets,' omitting the modifier 'annually' because it did not recognize its importance or attachment to the noun phrase.",
+      "actual_meaning": "The source text specifies that the fleet reduction targets are set on an annual basis, meaning countries are evaluated each year on whether they meet these targets.",
+      "reader_impact": "Without 'annuels,' the reader may think the targets are overall or cumulative, not recurring each year, leading to confusion about the frequency and strictness of the penalties.",
+      "correction_rationale": "Including 'annuels' accurately conveys that the objectives are evaluated yearly, which is essential for understanding the conditions under which penalties apply; omitting it changes the meaning of the policy."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted the event as having already occurred, rendering 'has been submitted' ('a été soumis') instead of conveying a scheduled future action.",
+      "actual_meaning": "The source text indicates that the Cunha report will be presented to Parliament on Thursday, meaning the event is set to happen in the future.",
+      "reader_impact": "A reader would believe that the report has already been submitted to Parliament, potentially causing confusion about the timeline of parliamentary proceedings.",
+      "correction_rationale": "The correct translation uses the future tense ('sera soumis') to accurately reflect the scheduled nature of the event, ensuring temporal alignment with the source text."
+    },
+    {
+      "mt_interpretation": "The MT system likely inferred from the context that 'quota penalties' refers specifically to financial penalties, so it added 'financières' to clarify the type of sanctions.",
+      "actual_meaning": "The source text mentions 'quota penalties' in general, without specifying if they are financial or of another nature. The intent is to cover any form of penalty, not necessarily financial.",
+      "reader_impact": "A reader would assume that only financial sanctions are proposed, potentially overlooking other forms of penalties (such as administrative or operational) that could also be applied.",
+      "correction_rationale": "The correct translation omits 'financières' to remain faithful to the source, which does not specify the nature of the sanctions, thus preserving the intended generality and accuracy."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems can sometimes miss out on adding important descriptive words, much like someone telling a story who forgets to mention a key detail. They often focus on the main parts of the sentence and can skip over smaller, modifying words that add nuance.",
+      "architectural_cause": "Inside, the system tries to predict the next word based on patterns it has seen before. If modifiers seem less important or are less frequent in its training examples, the system might leave them out, thinking the sentence still makes sense.",
+      "pattern_generalization": "Students should watch for missing adjectives or adverbs, especially with longer or more complex sentences, or when the modifier is not commonly used. Pay close attention when the original sentence has extra descriptive details.",
+      "mt_system_specific": "Dedicated MT systems like DeepL might miss modifiers more often than LLMs, which are trained to be more verbose and attentive to nuance. LLMs may include more detail, but could also add information not present in the original."
+    },
+    {
+      "error_mechanism": "MT systems often mix up tenses like past and future because they rely on patterns found in their training data, much like a person who learns a language by reading lots of books but sometimes misses subtle cues about time. If the context isn't crystal clear, the system might guess the wrong tense, especially for scheduled events that could be described in different ways.",
+      "architectural_cause": "Internally, the system looks at the words around the verb to decide which tense to use, but it doesn't truly understand time the way humans do. It matches patterns it has seen before, so if similar sentences in its data used the past tense, it might copy that even if the event is actually in the future.",
+      "pattern_generalization": "Students should watch out for this error when translating sentences about plans, schedules, or events that will happen soon, especially if the time is not spelled out clearly. These errors are more likely when the source sentence uses simple present or ambiguous time expressions.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are more likely to make this mistake because they stick closely to patterns in their training data, while LLMs (like ChatGPT) can sometimes reason more flexibly about time based on broader context."
+    },
+    {
+      "error_mechanism": "MT systems often add extra words, like qualifiers, because they try to be helpful by making sentences sound more natural or complete, a bit like someone who adds extra details when retelling a story. Sometimes, they guess what should be there based on similar sentences they've seen before, even if the original text didn't include those words.",
+      "architectural_cause": "Inside, these systems work by predicting the next word in a sentence based on patterns they've learned from lots of examples. If qualifiers often appear in similar sentences in their training data, the system might add them automatically, thinking that's what usually comes next.",
+      "pattern_generalization": "Students are more likely to see these errors when the source sentence is short, vague, or missing context, prompting the MT system to 'fill in the gaps.' Watch for unnecessary descriptive words or phrases that weren't in the original text.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are trained to produce fluent translations and may add qualifiers for smoothness, while large language models might do this even more because they're designed to be even more conversational and context-aware."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

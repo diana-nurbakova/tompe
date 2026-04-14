@@ -1,0 +1,138 @@
+{
+  "item_id": "1845f0cb-e5d5-4d18-a560-6e552492af78",
+  "segment_id": "europarl-e54de29885ec",
+  "source_text": "I declare resumed the session of the European Parliament adjourned on Friday 17 December 1999, and I would like once again to wish you a happy new year in the hope that you enjoyed a pleasant festive period.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes vux en espérant que vous passez de bonne vacances.",
+  "reference_translation": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes vux en espérant que vous avez passé de bonnes vacances.",
+  "mt_system": "gpt4",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "a19bfb90-1dbe-4a3f-bd27-6a0e3730ba0f",
+      "span_start": 177,
+      "span_end": 194,
+      "original_text": "de bonnes vacances",
+      "injected_text": "de bonne vacances",
+      "primary_tag": "GRAMMAR",
+      "error_type": "agreement_number",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'pleasant holidays' as requiring only the singular form of the adjective, producing 'de bonne vacances' instead of matching the plural noun.",
+        "actual_meaning": "The source wishes the audience 'pleasant holidays,' which requires both the adjective and noun to be in plural form in French: 'de bonnes vacances.'",
+        "reader_impact": "A French reader would immediately notice the grammatical error, as 'de bonne vacances' is ungrammatical and disrupts the flow, potentially reducing the perceived professionalism of the text.",
+        "correction_rationale": "In French, adjectives must agree in number and gender with the nouns they modify; since 'vacances' is plural and feminine, the correct form is 'de bonnes vacances.'"
+      },
+      "system_behavior": {
+        "error_mechanism": "Machine translation systems often miss number agreement between adjectives and nouns, like forgetting to make an adjective plural when the noun is plural. It's a bit like someone who knows the meaning of words but sometimes overlooks the small details that make a sentence sound natural, especially when they're focused on the big picture.",
+        "architectural_cause": "Internally, these systems process sentences word by word and try to predict what comes next based on patterns they've seen before. Sometimes, they don't 'see' the connection between the noun and its describing word if they're separated, or if the system is distracted by other parts of the sentence.",
+        "pattern_generalization": "Students should watch for these errors whenever a language requires adjectives to change depending on the noun's number or gender—especially in longer, more complex sentences.",
+        "mt_system_specific": "Large language models like GPT-4, which aren't specialized for translation, may make this mistake more often than dedicated translation systems, because they're designed to handle many tasks and might not focus as much on grammar details in other languages."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes vux en espérant que vous avez passé <GRAMMAR type=\"agreement_number\" severity=\"minor\" tom=\"1st_machine\" desc=\"Adjective does not agree in number with plural noun\">de bonne vacances</GRAMMAR>.",
+      "brief_explanation": "Adjective does not agree in number with plural noun"
+    },
+    {
+      "error_id": "52d32c5d-1be5-4a62-a03d-8b0fddf6c239",
+      "span_start": 166,
+      "span_end": 172,
+      "original_text": "avez passé",
+      "injected_text": "passez",
+      "primary_tag": "GRAMMAR",
+      "error_type": "tense",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted the verb 'enjoyed' as referring to a general or habitual action, leading it to use the present tense 'passez' instead of the past tense.",
+        "actual_meaning": "The source text refers to a completed event in the past—the festive period has already occurred, and the speaker hopes the audience enjoyed it.",
+        "reader_impact": "A reader would misunderstand and think the speaker is referring to the ongoing or future enjoyment of the holidays, which is illogical since the festive period is already over.",
+        "correction_rationale": "The correct translation uses the past tense 'avez passé' to accurately convey that the action (spending the holidays) is finished, aligning the French verb tense with the English past tense 'enjoyed.'"
+      },
+      "system_behavior": {
+        "error_mechanism": "Machine translation systems sometimes mix up tenses because they rely on patterns in language, much like someone skimming a story and guessing what comes next based on experience. If the clues about time aren't clear, the system might pick the most common tense, even if it's not correct for the situation.",
+        "architectural_cause": "Inside, these systems don't truly understand time or events; they look for words and phrases that usually go together. If past tense isn't clearly signaled, the system may default to the present tense, especially if that's more frequent in its training data.",
+        "pattern_generalization": "Similar errors often happen when the sentence doesn't have obvious time markers, or when context about when something happened is missing or vague. Pay extra attention to tense when translating sentences that stand alone or have ambiguous timing.",
+        "mt_system_specific": "Dedicated MT systems are often trained with more focus on grammar rules and may handle tense a bit better, while general-purpose language models like GPT-4 can be more prone to these mistakes because they aim for fluency over strict accuracy."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes vux en espérant que vous <GRAMMAR type=\"tense\" severity=\"major\" tom=\"1st_machine\" desc=\"Present tense used instead of required past tense\">passez</GRAMMAR> de bonne vacances.",
+      "brief_explanation": "Present tense used instead of required past tense"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 3,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely interpreted 'pleasant holidays' as requiring only the singular form of the adjective, producing 'de bonne vacances' instead of matching the plural noun.",
+      "actual_meaning": "The source wishes the audience 'pleasant holidays,' which requires both the adjective and noun to be in plural form in French: 'de bonnes vacances.'",
+      "reader_impact": "A French reader would immediately notice the grammatical error, as 'de bonne vacances' is ungrammatical and disrupts the flow, potentially reducing the perceived professionalism of the text.",
+      "correction_rationale": "In French, adjectives must agree in number and gender with the nouns they modify; since 'vacances' is plural and feminine, the correct form is 'de bonnes vacances.'"
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted the verb 'enjoyed' as referring to a general or habitual action, leading it to use the present tense 'passez' instead of the past tense.",
+      "actual_meaning": "The source text refers to a completed event in the past—the festive period has already occurred, and the speaker hopes the audience enjoyed it.",
+      "reader_impact": "A reader would misunderstand and think the speaker is referring to the ongoing or future enjoyment of the holidays, which is illogical since the festive period is already over.",
+      "correction_rationale": "The correct translation uses the past tense 'avez passé' to accurately convey that the action (spending the holidays) is finished, aligning the French verb tense with the English past tense 'enjoyed.'"
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "Machine translation systems often miss number agreement between adjectives and nouns, like forgetting to make an adjective plural when the noun is plural. It's a bit like someone who knows the meaning of words but sometimes overlooks the small details that make a sentence sound natural, especially when they're focused on the big picture.",
+      "architectural_cause": "Internally, these systems process sentences word by word and try to predict what comes next based on patterns they've seen before. Sometimes, they don't 'see' the connection between the noun and its describing word if they're separated, or if the system is distracted by other parts of the sentence.",
+      "pattern_generalization": "Students should watch for these errors whenever a language requires adjectives to change depending on the noun's number or gender—especially in longer, more complex sentences.",
+      "mt_system_specific": "Large language models like GPT-4, which aren't specialized for translation, may make this mistake more often than dedicated translation systems, because they're designed to handle many tasks and might not focus as much on grammar details in other languages."
+    },
+    {
+      "error_mechanism": "Machine translation systems sometimes mix up tenses because they rely on patterns in language, much like someone skimming a story and guessing what comes next based on experience. If the clues about time aren't clear, the system might pick the most common tense, even if it's not correct for the situation.",
+      "architectural_cause": "Inside, these systems don't truly understand time or events; they look for words and phrases that usually go together. If past tense isn't clearly signaled, the system may default to the present tense, especially if that's more frequent in its training data.",
+      "pattern_generalization": "Similar errors often happen when the sentence doesn't have obvious time markers, or when context about when something happened is missing or vague. Pay extra attention to tense when translating sentences that stand alone or have ambiguous timing.",
+      "mt_system_specific": "Dedicated MT systems are often trained with more focus on grammar rules and may handle tense a bit better, while general-purpose language models like GPT-4 can be more prone to these mistakes because they aim for fluency over strict accuracy."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

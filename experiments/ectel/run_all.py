@@ -234,6 +234,8 @@ def run(exclude: list[str] | None = None, tag: str = "full",
     print("\nGenerating figures...")
     f4 = viz.figure_f4_difficulty_scatter(exp1_results, output_dir)
     print(f"  F4: {f4}")
+    f4b = viz.figure_f4b_difficulty_combined(exp1_results, output_dir)
+    print(f"  F4b: {f4b}")
     f5 = viz.figure_f5_fluency_asymmetry(exp2_results, output_dir)
     print(f"  F5: {f5}")
     f6 = viz.figure_f6_convergence_heatmap(exp5_results, output_dir)

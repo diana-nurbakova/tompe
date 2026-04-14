@@ -123,6 +123,95 @@ def figure_f4_difficulty_scatter(exp1_results: Dict, output_dir: Path) -> Path:
     return path
 
 
+def figure_f4b_difficulty_combined(exp1_results: Dict, output_dir: Path) -> Path:
+    """F4b: Combined scatter — all Exp 1 sources on one axis with min-max normalised difficulty.
+
+    X = ToM rank, Y = normalised observed difficulty [0, 1].
+    Each source has its own color and marker. Trend line fitted on all points.
+    """
+    from .tom_mapping import is_low_tom
+
+    sources = exp1_results["per_source"]
+
+    # Source-specific styling
+    source_styles = [
+        {"color": "#1565C0", "marker": "o", "label": "Daems et al. (2017) — fixation rank"},
+        {"color": "#C62828", "marker": "s", "label": "Yamada (2019) — 1 − correction rate"},
+        {"color": "#2E7D32", "marker": "D", "label": "Popović (2018) — NMT error rate"},
+        {"color": "#F57F17", "marker": "^", "label": "Temnikova (2010) — difficulty rank"},
+    ]
+
+    fig, ax = plt.subplots(figsize=(7, 5))
+
+    all_tom, all_norm = [], []
+    rng = np.random.default_rng(42)
+
+    for idx, src in enumerate(sources):
+        style = source_styles[idx % len(source_styles)]
+        tom_r = np.array(src["tom_ranks"])
+        obs_r = np.array(src["observed_ranks"], dtype=float)
+
+        # Min-max normalise within source
+        obs_min, obs_max = obs_r.min(), obs_r.max()
+        if obs_max - obs_min > 0:
+            obs_norm = (obs_r - obs_min) / (obs_max - obs_min)
+        else:
+            obs_norm = np.full_like(obs_r, 0.5)
+
+        jitter = rng.uniform(-0.08, 0.08, len(tom_r))
+
+        ax.scatter(
+            tom_r + jitter, obs_norm,
+            c=style["color"], marker=style["marker"], s=80, zorder=3,
+            edgecolors="white", linewidths=0.7,
+            label=f"{style['label']}  (τ={src['kendall_tau']:.2f})",
+        )
+
+        all_tom.extend(tom_r.tolist())
+        all_norm.extend(obs_norm.tolist())
+
+    # Overall trend line
+    all_tom_arr = np.array(all_tom)
+    all_norm_arr = np.array(all_norm)
+    if len(all_tom_arr) >= 3:
+        z = np.polyfit(all_tom_arr, all_norm_arr, 1)
+        x_line = np.linspace(all_tom_arr.min() - 0.3, all_tom_arr.max() + 0.3, 50)
+        ax.plot(x_line, np.polyval(z, x_line), "--", color="gray", alpha=0.6,
+                linewidth=1.5, label="Overall trend")
+
+    # Aggregate stats annotation
+    agg = exp1_results["aggregate"]
+    ax.text(
+        0.02, 0.97,
+        f"Pooled τ = {agg['pooled_tau']:.3f} (p = {agg['pooled_p']:.3f})\n"
+        f"Weighted τ = {agg['weighted_tau']:.3f}\n"
+        f"Sources positive: {agg['positive_count']}/{agg['n_sources']}",
+        transform=ax.transAxes, fontsize=8, verticalalignment="top",
+        bbox=dict(boxstyle="round,pad=0.4", facecolor="white", alpha=0.85),
+    )
+
+    rank_labels = {1: "1 (S1)", 2: "2 (S2)", 3: "3 (S3)",
+                   4: "4 (S4–S6)", 5: "5 (S7)"}
+    unique_ranks = sorted(set(all_tom))
+    ax.set_xticks(unique_ranks)
+    ax.set_xticklabels([rank_labels.get(int(r), str(int(r))) for r in unique_ranks],
+                       fontsize=9)
+
+    ax.set_xlabel("ToM Rank", fontsize=11)
+    ax.set_ylabel("Normalised Observed Difficulty", fontsize=11)
+    ax.set_title("Experiment 1: ToM Ordering vs. Published Difficulty\n(min-max normalised per source)",
+                 fontsize=12, fontweight="bold")
+    ax.set_ylim(-0.08, 1.08)
+    ax.legend(fontsize=8, loc="lower right", framealpha=0.9)
+    ax.grid(True, alpha=0.2)
+
+    fig.tight_layout()
+    path = output_dir / "F4b_difficulty_combined.png"
+    fig.savefig(path, dpi=150, bbox_inches="tight")
+    plt.close(fig)
+    return path
+
+
 def figure_f5_fluency_asymmetry(exp2_results: Dict, output_dir: Path) -> Path:
     """F5: Fluency paradox asymmetry — improvement ratio by ToM level (Spec §10.2).
 

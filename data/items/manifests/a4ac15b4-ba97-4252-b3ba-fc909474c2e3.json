@@ -1,0 +1,182 @@
+{
+  "item_id": "a4ac15b4-ba97-4252-b3ba-fc909474c2e3",
+  "segment_id": "europarl-fb6e3c1dbc20",
+  "source_text": "Yes, Mr Evans, I feel an initiative of the type you have just suggested would be entirely appropriate.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Oui, tu Evans, je pense qu'une initiative dans la voie que vous venez de suggérer serait tout à fait appropriée.",
+  "reference_translation": "Oui, Monsieur Evans, je pense qu'une initiative dans le sens que vous venez de suggérer serait tout à fait appropriée.",
+  "mt_system": "deepl",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "68c2798e-39c6-47da-a1dd-d8fb6cfe583c",
+      "span_start": 5,
+      "span_end": 13,
+      "original_text": "Monsieur Evans",
+      "injected_text": "tu Evans",
+      "primary_tag": "STYLE",
+      "error_type": "register_informal",
+      "severity": "major",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'Mr Evans' as a familiar or informal address, mapping 'Mr' to 'tu' based on a misalignment of formality or pronoun usage.",
+        "actual_meaning": "The source is a formal address to Mr Evans, using a respectful and appropriate form of reference in a professional or official context.",
+        "reader_impact": "A reader would perceive 'tu Evans' as disrespectful or overly familiar, which undermines the intended formality and politeness of the original message.",
+        "correction_rationale": "The correct translation uses 'Monsieur Evans', preserving the formal register and respectful tone required in the context, aligning with French norms for addressing someone formally."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often choose words or phrases that sound casual or informal, like talking to a friend, even when a more formal tone is needed. This happens because the system tries to match patterns it has seen most often, and everyday language is more common in its training data.",
+        "architectural_cause": "Internally, the system learns by looking at millions of examples and picking the most likely translation based on what it has seen before. If it sees informal language more often, it will tend to use that, without truly understanding the social setting or level of formality required.",
+        "pattern_generalization": "You can expect similar errors when translating texts that require a specific tone, like business emails, academic writing, or official documents. Be extra careful with texts where being too casual might be seen as unprofessional.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are especially prone to this because they rely heavily on patterns from their training data. Large language models (LLMs) can sometimes adjust tone better if you give them clear instructions, but they are not perfect either."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Oui, <STYLE type=\"register_informal\" severity=\"major\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">tu Evans</STYLE>, je pense qu'une initiative dans le sens que vous venez de suggérer serait tout à fait appropriée.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "235d49a4-b531-4bce-bc6c-525eb19e5a43",
+      "span_start": 42,
+      "span_end": 59,
+      "original_text": "dans le sens",
+      "injected_text": "dans la direction",
+      "primary_tag": "TERMINOLOGY",
+      "error_type": "wrong_term",
+      "severity": "major",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S5",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'of the type' as referring to a physical or directional movement, leading it to choose 'dans la direction' as a literal equivalent of 'direction.'",
+        "actual_meaning": "The source actually means an initiative in the sense or spirit of what was just suggested, not a physical direction but a conceptual alignment.",
+        "reader_impact": "A reader might interpret 'dans la direction' as implying a literal or spatial direction, causing confusion about whether the initiative involves a specific path or movement rather than an idea.",
+        "correction_rationale": "'Dans le sens' is the correct idiomatic expression in French to convey alignment with an idea or intention, whereas 'dans la direction' misleads by implying physical directionality."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often pick the most common word they have seen for a concept, like someone guessing the name of a tool based on what they hear most often. If a text uses a specific term, the system might miss it and use a more general or familiar word instead.",
+        "architectural_cause": "Internally, the system works by matching patterns from huge amounts of past translations. It doesn’t truly understand specialized language, so it sometimes grabs the closest match it knows, rather than checking if it’s the exact term needed.",
+        "pattern_generalization": "You’ll see this kind of mistake when translating texts with technical, legal, or industry-specific vocabulary. Always double-check important terms, especially in specialized documents.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are trained on lots of parallel texts, so they’re good at common language but can still miss rare or new terminology. LLMs might make even more terminology mistakes, since they rely more on general language patterns."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Oui, tu Evans, je pense qu'une initiative <TERMINOLOGY type=\"wrong_term\" severity=\"major\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">dans la direction</TERMINOLOGY> que vous venez de suggérer serait tout à fait appropriée.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "eb6a82ae-f733-485a-baa9-dec72549135c",
+      "span_start": 42,
+      "span_end": 81,
+      "original_text": "dans la direction que vous venez de suggérer",
+      "injected_text": "dans la voie que vous venez de suggérer",
+      "primary_tag": "STYLE",
+      "error_type": "unidiomatic",
+      "severity": "major",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely associated the English word 'direction' or 'type' with 'voie', a literal translation meaning 'way' or 'path', which is sometimes used in French for abstract senses.",
+        "actual_meaning": "The source means an initiative in the sense or manner just suggested, not a literal 'path' or 'way'.",
+        "reader_impact": "A French reader may find 'dans la voie que vous venez de suggérer' odd or unidiomatic, possibly interpreting it too literally or feeling the phrase is awkward and unclear.",
+        "correction_rationale": "'Dans la direction' or 'dans le sens' are idiomatic expressions in French for abstract directions or manners, accurately reflecting the intended nuance of the English source."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often use phrases that sound awkward or unnatural because they rely on patterns they've seen in large amounts of text, not on a true understanding of how people speak. It's a bit like someone learning a language from a textbook, who knows the rules but misses the subtle ways native speakers actually talk.",
+        "architectural_cause": "Internally, the system looks for word combinations that are statistically likely based on its training data, rather than choosing what sounds most natural to a human ear. This can lead to sentences that are technically correct but feel odd or stiff, because the system doesn't 'feel' language the way a person does.",
+        "pattern_generalization": "Students will often see these errors with idioms, set phrases, or when translating informal speech—any time the natural flow of language is important. Pay attention to places where the translation sounds just a bit off or too formal.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are more likely to make these errors than LLMs, which have broader training on conversational and varied text, sometimes resulting in more natural-sounding outputs."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Oui, tu Evans, je pense qu'une initiative <STYLE type=\"unidiomatic\" severity=\"major\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">dans la voie que vous venez de suggérer</STYLE> serait tout à fait appropriée.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 4,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely interpreted 'Mr Evans' as a familiar or informal address, mapping 'Mr' to 'tu' based on a misalignment of formality or pronoun usage.",
+      "actual_meaning": "The source is a formal address to Mr Evans, using a respectful and appropriate form of reference in a professional or official context.",
+      "reader_impact": "A reader would perceive 'tu Evans' as disrespectful or overly familiar, which undermines the intended formality and politeness of the original message.",
+      "correction_rationale": "The correct translation uses 'Monsieur Evans', preserving the formal register and respectful tone required in the context, aligning with French norms for addressing someone formally."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted 'of the type' as referring to a physical or directional movement, leading it to choose 'dans la direction' as a literal equivalent of 'direction.'",
+      "actual_meaning": "The source actually means an initiative in the sense or spirit of what was just suggested, not a physical direction but a conceptual alignment.",
+      "reader_impact": "A reader might interpret 'dans la direction' as implying a literal or spatial direction, causing confusion about whether the initiative involves a specific path or movement rather than an idea.",
+      "correction_rationale": "'Dans le sens' is the correct idiomatic expression in French to convey alignment with an idea or intention, whereas 'dans la direction' misleads by implying physical directionality."
+    },
+    {
+      "mt_interpretation": "The MT system likely associated the English word 'direction' or 'type' with 'voie', a literal translation meaning 'way' or 'path', which is sometimes used in French for abstract senses.",
+      "actual_meaning": "The source means an initiative in the sense or manner just suggested, not a literal 'path' or 'way'.",
+      "reader_impact": "A French reader may find 'dans la voie que vous venez de suggérer' odd or unidiomatic, possibly interpreting it too literally or feeling the phrase is awkward and unclear.",
+      "correction_rationale": "'Dans la direction' or 'dans le sens' are idiomatic expressions in French for abstract directions or manners, accurately reflecting the intended nuance of the English source."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often choose words or phrases that sound casual or informal, like talking to a friend, even when a more formal tone is needed. This happens because the system tries to match patterns it has seen most often, and everyday language is more common in its training data.",
+      "architectural_cause": "Internally, the system learns by looking at millions of examples and picking the most likely translation based on what it has seen before. If it sees informal language more often, it will tend to use that, without truly understanding the social setting or level of formality required.",
+      "pattern_generalization": "You can expect similar errors when translating texts that require a specific tone, like business emails, academic writing, or official documents. Be extra careful with texts where being too casual might be seen as unprofessional.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are especially prone to this because they rely heavily on patterns from their training data. Large language models (LLMs) can sometimes adjust tone better if you give them clear instructions, but they are not perfect either."
+    },
+    {
+      "error_mechanism": "MT systems often pick the most common word they have seen for a concept, like someone guessing the name of a tool based on what they hear most often. If a text uses a specific term, the system might miss it and use a more general or familiar word instead.",
+      "architectural_cause": "Internally, the system works by matching patterns from huge amounts of past translations. It doesn’t truly understand specialized language, so it sometimes grabs the closest match it knows, rather than checking if it’s the exact term needed.",
+      "pattern_generalization": "You’ll see this kind of mistake when translating texts with technical, legal, or industry-specific vocabulary. Always double-check important terms, especially in specialized documents.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are trained on lots of parallel texts, so they’re good at common language but can still miss rare or new terminology. LLMs might make even more terminology mistakes, since they rely more on general language patterns."
+    },
+    {
+      "error_mechanism": "MT systems often use phrases that sound awkward or unnatural because they rely on patterns they've seen in large amounts of text, not on a true understanding of how people speak. It's a bit like someone learning a language from a textbook, who knows the rules but misses the subtle ways native speakers actually talk.",
+      "architectural_cause": "Internally, the system looks for word combinations that are statistically likely based on its training data, rather than choosing what sounds most natural to a human ear. This can lead to sentences that are technically correct but feel odd or stiff, because the system doesn't 'feel' language the way a person does.",
+      "pattern_generalization": "Students will often see these errors with idioms, set phrases, or when translating informal speech—any time the natural flow of language is important. Pay attention to places where the translation sounds just a bit off or too formal.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are more likely to make these errors than LLMs, which have broader training on conversational and varied text, sometimes resulting in more natural-sounding outputs."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

@@ -1,0 +1,184 @@
+{
+  "item_id": "8515d073-2d16-46fb-8b0c-7b034e9c93a9",
+  "segment_id": "europarl-07e9c46bedd9",
+  "source_text": "I would like your advice about Rule 143 concerning inadmissibility.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Je voudrais vous demander un conseil au sujet de la règle 143, qui concerne l'irrecevabilité.",
+  "reference_translation": "Je voudrais vous demander un conseil au sujet de l'article 143, qui concerne l'irrecevabilité.",
+  "mt_system": "claude",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "06df767f-aed6-46d5-8537-c388147b3d29",
+      "span_start": 37,
+      "span_end": 123,
+      "original_text": "au sujet de l'article 143, qui concerne l'irrecevabilité",
+      "injected_text": "au sujet de l'article 143, qui concerne l'irrecevabilité et la procédure disciplinaire",
+      "primary_tag": "ADDITION",
+      "error_type": "hallucination",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S4",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "major",
+        "critical"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system may have associated 'inadmissibility' with related legal concepts like 'disciplinary procedure' and assumed both were relevant to Rule 143, leading to the addition.",
+        "actual_meaning": "The source text only refers to Rule 143 in the context of inadmissibility, without mentioning any disciplinary procedures.",
+        "reader_impact": "A reader would believe that Rule 143 also concerns disciplinary procedure, which introduces incorrect information and could mislead about the rule's scope.",
+        "correction_rationale": "The correct translation accurately reflects the source by limiting the explanation to inadmissibility, avoiding any unsupported additions and maintaining fidelity to the original meaning."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems sometimes \"hallucinate\"—making up information—because they try to produce text that sounds natural, even if that means inventing details. It's like a student who, unsure of an answer, fills in the blanks with their best guess to keep the story flowing.",
+        "architectural_cause": "Internally, the system predicts the next word based on patterns it has seen in its training data, not by truly understanding the meaning. If the input is unclear or incomplete, the system may \"improvise\" to keep the output smooth and logical-sounding.",
+        "pattern_generalization": "Students should watch for hallucinations when translating vague, ambiguous, or incomplete texts, or when the source mentions things that are unusual or rare. These errors are also more likely in longer, more complex sentences.",
+        "mt_system_specific": "Large language models like Claude may hallucinate more than dedicated MT systems, because they're trained to generate fluent text in many situations, not just to translate faithfully."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je voudrais vous demander un conseil <ADDITION type=\"hallucination\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">au sujet de l'article 143, qui concerne l'irrecevabilité et la procédure disciplinaire</ADDITION>.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "b0537917-67f6-4373-8a04-18c17b88e8d1",
+      "span_start": 49,
+      "span_end": 61,
+      "original_text": "l'article 143",
+      "injected_text": "la règle 143",
+      "primary_tag": "TERMINOLOGY",
+      "error_type": "inconsistent",
+      "severity": "minor",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S5",
+      "secondary_skills": [
+        "S7"
+      ],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely identified 'Rule 143' as a generic rule, translating 'rule' directly as 'règle' in French, without considering the specific legal context.",
+        "actual_meaning": "The source refers to a specific provision, 'Rule 143,' which in the relevant legal context should be rendered as 'article 143' in French to match standard legal terminology.",
+        "reader_impact": "A French reader may be confused or misled, as 'règle 143' is not standard legal phrasing and could obscure the reference to the official legal document or provision.",
+        "correction_rationale": "Using 'l'article 143' aligns with established legal terminology in French, ensuring clarity and precision in referencing the specific legal provision."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up specialized terms, like calling the same fruit both 'apple' and 'pear' in one text. It's like a student who forgets which word they used earlier and accidentally switches, because they're focused on each sentence by itself.",
+        "architectural_cause": "These systems translate by looking at patterns in lots of previous examples, but they don't always keep track of which specific words they've already chosen. They treat each sentence or short section separately, so consistency across the whole text can be lost.",
+        "pattern_generalization": "You might notice this error when translating texts with repeated technical terms or names, especially in longer documents. Be extra careful with product names, medical terms, or legal phrases.",
+        "mt_system_specific": "Dedicated MT systems sometimes have special tools to keep terminology consistent, but general LLMs like Claude are more likely to switch terms because they aren't designed specifically for translation."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je voudrais vous demander un conseil au sujet de <TERMINOLOGY type=\"inconsistent\" severity=\"minor\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">la règle 143</TERMINOLOGY>, qui concerne l'irrecevabilité et la procédure disciplinaire.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "12aef3db-fdbe-40cf-8118-b972d76d576f",
+      "span_start": 92,
+      "span_end": 92,
+      "original_text": " et la procédure disciplinaire",
+      "injected_text": "",
+      "primary_tag": "OMISSION",
+      "error_type": "partial",
+      "severity": "major",
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely focused only on the explicit mention of Rule 143 and its connection to inadmissibility, overlooking any additional elements such as disciplinary procedure mentioned in the source.",
+        "actual_meaning": "The source refers to both inadmissibility and the disciplinary procedure as connected to Rule 143, and both aspects are important for a full understanding.",
+        "reader_impact": "A reader would think that Rule 143 only concerns inadmissibility and would miss the important detail that it also covers disciplinary procedures, leading to an incomplete or incorrect understanding of the rule's scope.",
+        "correction_rationale": "The correct translation includes both 'irrecevabilité' and 'la procédure disciplinaire,' accurately reflecting the two key aspects of Rule 143 discussed in the source and ensuring the reader is fully informed."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems sometimes leave out parts of a sentence, much like a person retelling a story but forgetting a detail or two. This usually happens because the system focuses on the main ideas and accidentally skips over smaller pieces of information.",
+        "architectural_cause": "Internally, the system tries to predict the next word or phrase based on patterns it has seen before. If certain details seem less important or are less common in its training, the system might not include them in the translation.",
+        "pattern_generalization": "Students should watch for omissions when the source text has extra information, side notes, or less common expressions. These errors often appear when the sentence is long or has multiple ideas.",
+        "mt_system_specific": "LLMs like Claude, which are trained for general language tasks, may omit details more often than dedicated MT systems, which are fine-tuned to capture all information in translation."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je voudrais vous demander un conseil au sujet de la règle 143, qui concerne l'irrecevabilité<OMISSION type=\"partial\" severity=\"major\" tom=\"1st_author\" desc=\"5-15 word explanation\"></OMISSION>.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 4,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system may have associated 'inadmissibility' with related legal concepts like 'disciplinary procedure' and assumed both were relevant to Rule 143, leading to the addition.",
+      "actual_meaning": "The source text only refers to Rule 143 in the context of inadmissibility, without mentioning any disciplinary procedures.",
+      "reader_impact": "A reader would believe that Rule 143 also concerns disciplinary procedure, which introduces incorrect information and could mislead about the rule's scope.",
+      "correction_rationale": "The correct translation accurately reflects the source by limiting the explanation to inadmissibility, avoiding any unsupported additions and maintaining fidelity to the original meaning."
+    },
+    {
+      "mt_interpretation": "The MT system likely identified 'Rule 143' as a generic rule, translating 'rule' directly as 'règle' in French, without considering the specific legal context.",
+      "actual_meaning": "The source refers to a specific provision, 'Rule 143,' which in the relevant legal context should be rendered as 'article 143' in French to match standard legal terminology.",
+      "reader_impact": "A French reader may be confused or misled, as 'règle 143' is not standard legal phrasing and could obscure the reference to the official legal document or provision.",
+      "correction_rationale": "Using 'l'article 143' aligns with established legal terminology in French, ensuring clarity and precision in referencing the specific legal provision."
+    },
+    {
+      "mt_interpretation": "The MT system likely focused only on the explicit mention of Rule 143 and its connection to inadmissibility, overlooking any additional elements such as disciplinary procedure mentioned in the source.",
+      "actual_meaning": "The source refers to both inadmissibility and the disciplinary procedure as connected to Rule 143, and both aspects are important for a full understanding.",
+      "reader_impact": "A reader would think that Rule 143 only concerns inadmissibility and would miss the important detail that it also covers disciplinary procedures, leading to an incomplete or incorrect understanding of the rule's scope.",
+      "correction_rationale": "The correct translation includes both 'irrecevabilité' and 'la procédure disciplinaire,' accurately reflecting the two key aspects of Rule 143 discussed in the source and ensuring the reader is fully informed."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems sometimes \"hallucinate\"—making up information—because they try to produce text that sounds natural, even if that means inventing details. It's like a student who, unsure of an answer, fills in the blanks with their best guess to keep the story flowing.",
+      "architectural_cause": "Internally, the system predicts the next word based on patterns it has seen in its training data, not by truly understanding the meaning. If the input is unclear or incomplete, the system may \"improvise\" to keep the output smooth and logical-sounding.",
+      "pattern_generalization": "Students should watch for hallucinations when translating vague, ambiguous, or incomplete texts, or when the source mentions things that are unusual or rare. These errors are also more likely in longer, more complex sentences.",
+      "mt_system_specific": "Large language models like Claude may hallucinate more than dedicated MT systems, because they're trained to generate fluent text in many situations, not just to translate faithfully."
+    },
+    {
+      "error_mechanism": "MT systems often mix up specialized terms, like calling the same fruit both 'apple' and 'pear' in one text. It's like a student who forgets which word they used earlier and accidentally switches, because they're focused on each sentence by itself.",
+      "architectural_cause": "These systems translate by looking at patterns in lots of previous examples, but they don't always keep track of which specific words they've already chosen. They treat each sentence or short section separately, so consistency across the whole text can be lost.",
+      "pattern_generalization": "You might notice this error when translating texts with repeated technical terms or names, especially in longer documents. Be extra careful with product names, medical terms, or legal phrases.",
+      "mt_system_specific": "Dedicated MT systems sometimes have special tools to keep terminology consistent, but general LLMs like Claude are more likely to switch terms because they aren't designed specifically for translation."
+    },
+    {
+      "error_mechanism": "MT systems sometimes leave out parts of a sentence, much like a person retelling a story but forgetting a detail or two. This usually happens because the system focuses on the main ideas and accidentally skips over smaller pieces of information.",
+      "architectural_cause": "Internally, the system tries to predict the next word or phrase based on patterns it has seen before. If certain details seem less important or are less common in its training, the system might not include them in the translation.",
+      "pattern_generalization": "Students should watch for omissions when the source text has extra information, side notes, or less common expressions. These errors often appear when the sentence is long or has multiple ideas.",
+      "mt_system_specific": "LLMs like Claude, which are trained for general language tasks, may omit details more often than dedicated MT systems, which are fine-tuned to capture all information in translation."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

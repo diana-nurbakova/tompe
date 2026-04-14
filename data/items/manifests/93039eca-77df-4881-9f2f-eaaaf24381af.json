@@ -1,0 +1,136 @@
+{
+  "item_id": "93039eca-77df-4881-9f2f-eaaaf24381af",
+  "segment_id": "europarl-e54de29885ec",
+  "source_text": "I declare resumed the session of the European Parliament adjourned on Friday 17 December 1999, and I would like once again to wish you a happy new year in the hope that you enjoyed a pleasant festive period.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Je déclare la session reprise du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes vux en espérant que vous avez passé de bonne vacances.",
+  "reference_translation": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes vux en espérant que vous avez passé de bonnes vacances.",
+  "mt_system": "claude",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "f6bd50ca-953f-4f33-af82-90c4a8dc7cb1",
+      "span_start": 177,
+      "span_end": 194,
+      "original_text": "de bonnes vacances",
+      "injected_text": "de bonne vacances",
+      "primary_tag": "GRAMMAR",
+      "error_type": "agreement_number",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely treated 'vacances' as singular or failed to apply plural agreement, resulting in the singular adjective 'bonne' instead of the correct plural 'bonnes.'",
+        "actual_meaning": "The source refers to 'pleasant holidays,' which in French requires both the adjective and noun to be in the plural form: 'bonnes vacances.'",
+        "reader_impact": "A reader would notice the grammatical error ('de bonne vacances'), which may sound unnatural or careless, but the intended meaning would still be understood.",
+        "correction_rationale": "In French, adjectives must agree in number and gender with the nouns they modify; since 'vacances' is plural and feminine, the adjective should also be plural and feminine: 'bonnes vacances.'"
+      },
+      "system_behavior": {
+        "error_mechanism": "Machine translation systems can sometimes miss details like matching the number of words, a bit like someone forgetting to use 'are' instead of 'is' when talking about more than one thing. They focus on the main meaning and might overlook the small changes needed for grammar, such as making adjectives plural.",
+        "architectural_cause": "Inside, these systems look at patterns in lots of sentences but don't actually 'understand' grammar rules the way people do. They predict what comes next based on examples they've seen, so if they haven't seen enough examples with plural adjectives, they might make a mistake.",
+        "pattern_generalization": "You’ll often see this kind of error when the noun and adjective are separated by other words, or when the system is translating phrases with less common combinations. Pay special attention to agreement in sentences with multiple elements or longer phrases.",
+        "mt_system_specific": "Dedicated MT systems trained specifically for translation tend to make fewer agreement errors because they are fine-tuned on translation data, while general LLMs like Claude may be less consistent with these details."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes vux en espérant que vous avez passé <GRAMMAR type=\"agreement_number\" severity=\"minor\" tom=\"1st_machine\" desc=\"Adjective 'bonne' should agree in number with plural 'vacances'\">de bonne vacances</GRAMMAR>.",
+      "brief_explanation": "Adjective 'bonne' should agree in number with plural 'vacances'"
+    },
+    {
+      "error_id": "47919adb-4be7-491a-bfa2-77dc7992f5de",
+      "span_start": 0,
+      "span_end": 51,
+      "original_text": "Je déclare reprise la session du Parlement européen",
+      "injected_text": "Je déclare la session reprise du Parlement européen",
+      "primary_tag": "GRAMMAR",
+      "error_type": "word_order",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely tried to follow English word order, placing 'la session' before 'reprise' to mirror 'resumed the session.'",
+        "actual_meaning": "The source means that the session of the European Parliament is now officially resumed; 'reprise' should directly modify 'la session.'",
+        "reader_impact": "A reader may find the phrase awkward or confusing, possibly interpreting 'reprise' as an afterthought or misunderstanding the official declaration.",
+        "correction_rationale": "In French, 'déclarer reprise la session' is the correct formal structure, with 'reprise' acting as a predicate adjective, ensuring clarity and proper official register."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems sometimes mix up word order because they are like someone trying to put together a puzzle without always knowing which pieces fit best in each language. Each language has its own 'rules' for word order, and the system might follow the rules of the wrong language or get confused by unusual sentence structures.",
+        "architectural_cause": "Inside, the system looks for patterns in how words are usually arranged, based on examples it has seen. If the training data has lots of sentences with a certain word order, the system might over-rely on that pattern, missing exceptions or special cases.",
+        "pattern_generalization": "You’ll often see these errors with sentences that have unusual structures, long descriptions, or when translating between languages with very different word orders. Pay extra attention when translating complex sentences or switching between, for example, English and German.",
+        "mt_system_specific": "Dedicated MT systems are usually better at handling word order because they're trained specifically for translation, while general LLMs like Claude may be less reliable, especially with tricky or less common sentence structures."
+      },
+      "technical_explanation": null,
+      "xml_tag": "<GRAMMAR type=\"word_order\" severity=\"minor\" tom=\"1st_machine\" desc=\"5-15 word explanation\">Je déclare la session reprise du Parlement européen</GRAMMAR> qui avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes vux en espérant que vous avez passé de bonne vacances.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 3,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely treated 'vacances' as singular or failed to apply plural agreement, resulting in the singular adjective 'bonne' instead of the correct plural 'bonnes.'",
+      "actual_meaning": "The source refers to 'pleasant holidays,' which in French requires both the adjective and noun to be in the plural form: 'bonnes vacances.'",
+      "reader_impact": "A reader would notice the grammatical error ('de bonne vacances'), which may sound unnatural or careless, but the intended meaning would still be understood.",
+      "correction_rationale": "In French, adjectives must agree in number and gender with the nouns they modify; since 'vacances' is plural and feminine, the adjective should also be plural and feminine: 'bonnes vacances.'"
+    },
+    {
+      "mt_interpretation": "The MT system likely tried to follow English word order, placing 'la session' before 'reprise' to mirror 'resumed the session.'",
+      "actual_meaning": "The source means that the session of the European Parliament is now officially resumed; 'reprise' should directly modify 'la session.'",
+      "reader_impact": "A reader may find the phrase awkward or confusing, possibly interpreting 'reprise' as an afterthought or misunderstanding the official declaration.",
+      "correction_rationale": "In French, 'déclarer reprise la session' is the correct formal structure, with 'reprise' acting as a predicate adjective, ensuring clarity and proper official register."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "Machine translation systems can sometimes miss details like matching the number of words, a bit like someone forgetting to use 'are' instead of 'is' when talking about more than one thing. They focus on the main meaning and might overlook the small changes needed for grammar, such as making adjectives plural.",
+      "architectural_cause": "Inside, these systems look at patterns in lots of sentences but don't actually 'understand' grammar rules the way people do. They predict what comes next based on examples they've seen, so if they haven't seen enough examples with plural adjectives, they might make a mistake.",
+      "pattern_generalization": "You’ll often see this kind of error when the noun and adjective are separated by other words, or when the system is translating phrases with less common combinations. Pay special attention to agreement in sentences with multiple elements or longer phrases.",
+      "mt_system_specific": "Dedicated MT systems trained specifically for translation tend to make fewer agreement errors because they are fine-tuned on translation data, while general LLMs like Claude may be less consistent with these details."
+    },
+    {
+      "error_mechanism": "MT systems sometimes mix up word order because they are like someone trying to put together a puzzle without always knowing which pieces fit best in each language. Each language has its own 'rules' for word order, and the system might follow the rules of the wrong language or get confused by unusual sentence structures.",
+      "architectural_cause": "Inside, the system looks for patterns in how words are usually arranged, based on examples it has seen. If the training data has lots of sentences with a certain word order, the system might over-rely on that pattern, missing exceptions or special cases.",
+      "pattern_generalization": "You’ll often see these errors with sentences that have unusual structures, long descriptions, or when translating between languages with very different word orders. Pay extra attention when translating complex sentences or switching between, for example, English and German.",
+      "mt_system_specific": "Dedicated MT systems are usually better at handling word order because they're trained specifically for translation, while general LLMs like Claude may be less reliable, especially with tricky or less common sentence structures."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

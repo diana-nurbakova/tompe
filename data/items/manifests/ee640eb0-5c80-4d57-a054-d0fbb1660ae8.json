@@ -1,0 +1,137 @@
+{
+  "item_id": "ee640eb0-5c80-4d57-a054-d0fbb1660ae8",
+  "segment_id": "europarl-58eae60d5b7a",
+  "source_text": "Although, as you will have seen, the dreaded 'millennium bug' failed to materialise, still the people in a number of countries suffered a series of natural disasters that truly were dreadful.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Comme vous avez pu le constater, le grand \"bogue de l'an 2000\" ne s'est pas produit. En revanche, les citoyens d'un certain nombre de nos pays ont été victimes de catastrophes naturelles qui ont été importantes.",
+  "reference_translation": "Comme vous avez pu le constater, le grand \"bogue de l'an 2000\" ne s'est pas produit. En revanche, les citoyens d'un certain nombre de nos pays ont été victimes de catastrophes naturelles qui ont vraiment été terribles.",
+  "mt_system": "deepl",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "bc746fb2-ff70-446b-a422-7b32e117b239",
+      "span_start": 195,
+      "span_end": 208,
+      "original_text": "vraiment été terribles",
+      "injected_text": "été terribles",
+      "primary_tag": "OMISSION",
+      "error_type": "modifier",
+      "severity": "major",
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely considered 'été terribles' sufficient to convey that the disasters were terrible, omitting the adverb as non-essential detail.",
+        "actual_meaning": "The source emphasizes that the natural disasters were not just terrible, but truly dreadful, stressing the intensity with 'truly.'",
+        "reader_impact": "Without 'vraiment,' the reader might interpret the disasters as simply terrible, missing the intended emphasis on their severity and emotional impact.",
+        "correction_rationale": "Including 'vraiment' accurately reflects the source's emphasis, conveying the full strength of the original statement and preserving the intended nuance."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems sometimes skip modifiers, like adjectives or adverbs, because they focus on the main ideas of a sentence, a bit like someone summarizing a story and leaving out the details. These details can seem less important to the system, even though they change the meaning.",
+        "architectural_cause": "Internally, the system tries to match patterns it has seen before, and if modifiers are often left out in its training data, it learns to do the same. It doesn't always 'understand' which details are crucial, so it may drop words that seem extra.",
+        "pattern_generalization": "Watch for missing modifiers especially in sentences where small words change the meaning, or when the source sentence is more detailed than usual. Pay extra attention to adjectives, adverbs, and descriptive phrases.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are trained to prioritize fluency and main ideas, sometimes at the expense of small details. LLM-based systems may be more likely to keep modifiers because they try to mimic human-like, detailed responses."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Comme vous avez pu le constater, le grand \"bogue de l'an 2000\" ne s'est pas produit. En revanche, les citoyens d'un certain nombre de nos pays ont été victimes de catastrophes naturelles qui ont <OMISSION type=\"modifier\" severity=\"major\" tom=\"1st_author\" desc=\"5-15 word explanation\">été terribles</OMISSION>.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "c376f0ea-77d5-468e-8bc4-5555379343ac",
+      "span_start": 199,
+      "span_end": 210,
+      "original_text": "terribles",
+      "injected_text": "importantes",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "undertranslation",
+      "severity": "minor",
+      "tom_level": "1st_author",
+      "primary_skill": "S3",
+      "secondary_skills": [
+        "S4"
+      ],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely associated 'dreadful' with 'important' due to overlapping semantic fields or frequency of 'important' as a translation for significant events, thus choosing 'importantes.'",
+        "actual_meaning": "The source text emphasizes the severity and horrifying nature of the natural disasters, describing them as 'dreadful' or 'terrible,' not merely significant or important.",
+        "reader_impact": "A reader would interpret 'importantes' as indicating the disasters were noteworthy or significant, but would miss the emotional intensity and gravity implied by 'terribles.'",
+        "correction_rationale": "'Terribles' accurately conveys the sense of horror and severity present in the source text, preserving the intended emotional impact, whereas 'importantes' weakens the description and undertranslates the original meaning."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often miss the full strength of words like 'terrible' because they sometimes choose safer, milder words that fit more sentences in their training data. It's a bit like someone who always plays it safe in conversation, avoiding strong language even when the situation really calls for it.",
+        "architectural_cause": "Inside, the system picks words based on patterns it has seen most often, rather than always matching the exact feeling or intensity. It doesn't truly 'feel' the emotion behind a word, so it might pick a less intense word if that's what usually follows in its examples.",
+        "pattern_generalization": "Students should watch out for this with strong adjectives or emotional words, especially when the source word is very negative or positive. Pay extra attention to whether the translation sounds too mild or watered down.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are trained to be consistent and may prefer common, less risky translations, while LLMs sometimes take more creative risks and might better capture strong feelings, but can also make different kinds of mistakes."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Comme vous avez pu le constater, le grand \"bogue de l'an 2000\" ne s'est pas produit. En revanche, les citoyens d'un certain nombre de nos pays ont été victimes de catastrophes naturelles qui ont été <MISTRANSLATION type=\"undertranslation\" severity=\"minor\" tom=\"1st_author\" desc=\"Fails to convey the full severity of 'terrible'\">importantes</MISTRANSLATION>.",
+      "brief_explanation": "Fails to convey the full severity of 'terrible'"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 3,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely considered 'été terribles' sufficient to convey that the disasters were terrible, omitting the adverb as non-essential detail.",
+      "actual_meaning": "The source emphasizes that the natural disasters were not just terrible, but truly dreadful, stressing the intensity with 'truly.'",
+      "reader_impact": "Without 'vraiment,' the reader might interpret the disasters as simply terrible, missing the intended emphasis on their severity and emotional impact.",
+      "correction_rationale": "Including 'vraiment' accurately reflects the source's emphasis, conveying the full strength of the original statement and preserving the intended nuance."
+    },
+    {
+      "mt_interpretation": "The MT system likely associated 'dreadful' with 'important' due to overlapping semantic fields or frequency of 'important' as a translation for significant events, thus choosing 'importantes.'",
+      "actual_meaning": "The source text emphasizes the severity and horrifying nature of the natural disasters, describing them as 'dreadful' or 'terrible,' not merely significant or important.",
+      "reader_impact": "A reader would interpret 'importantes' as indicating the disasters were noteworthy or significant, but would miss the emotional intensity and gravity implied by 'terribles.'",
+      "correction_rationale": "'Terribles' accurately conveys the sense of horror and severity present in the source text, preserving the intended emotional impact, whereas 'importantes' weakens the description and undertranslates the original meaning."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems sometimes skip modifiers, like adjectives or adverbs, because they focus on the main ideas of a sentence, a bit like someone summarizing a story and leaving out the details. These details can seem less important to the system, even though they change the meaning.",
+      "architectural_cause": "Internally, the system tries to match patterns it has seen before, and if modifiers are often left out in its training data, it learns to do the same. It doesn't always 'understand' which details are crucial, so it may drop words that seem extra.",
+      "pattern_generalization": "Watch for missing modifiers especially in sentences where small words change the meaning, or when the source sentence is more detailed than usual. Pay extra attention to adjectives, adverbs, and descriptive phrases.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are trained to prioritize fluency and main ideas, sometimes at the expense of small details. LLM-based systems may be more likely to keep modifiers because they try to mimic human-like, detailed responses."
+    },
+    {
+      "error_mechanism": "MT systems often miss the full strength of words like 'terrible' because they sometimes choose safer, milder words that fit more sentences in their training data. It's a bit like someone who always plays it safe in conversation, avoiding strong language even when the situation really calls for it.",
+      "architectural_cause": "Inside, the system picks words based on patterns it has seen most often, rather than always matching the exact feeling or intensity. It doesn't truly 'feel' the emotion behind a word, so it might pick a less intense word if that's what usually follows in its examples.",
+      "pattern_generalization": "Students should watch out for this with strong adjectives or emotional words, especially when the source word is very negative or positive. Pay extra attention to whether the translation sounds too mild or watered down.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are trained to be consistent and may prefer common, less risky translations, while LLMs sometimes take more creative risks and might better capture strong feelings, but can also make different kinds of mistakes."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

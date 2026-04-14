@@ -1,0 +1,184 @@
+{
+  "item_id": "0005f83e-7258-4638-81cd-b4f97ae5a42c",
+  "segment_id": "europarl-f79c610991d6",
+  "source_text": "If the House agrees, I shall do as Mr Evans has suggested.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Si les Assemblées sont d'accord avec, je suivrai la recommandation de M. Evans, comme il l'a suggéré.",
+  "reference_translation": "Si l'Assemblée en est d'accord, je ferai comme M. Evans l'a suggéré.",
+  "mt_system": "deepl",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "5f94853d-8312-4a2c-99f4-5f1dd3d9e54c",
+      "span_start": 3,
+      "span_end": 34,
+      "original_text": "l'Assemblée en est d'accord",
+      "injected_text": "les Assemblées en sont d'accord",
+      "primary_tag": "GRAMMAR",
+      "error_type": "agreement_number",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'the House' as referring to multiple assemblies, leading it to use the plural form 'les Assemblées' and plural verb agreement.",
+        "actual_meaning": "The source refers specifically to a single legislative body, 'the House,' meaning only one assembly is being addressed.",
+        "reader_impact": "A reader would believe that several assemblies must agree, rather than just the single relevant legislative body, which distorts the institutional context.",
+        "correction_rationale": "The correct translation uses the singular 'l'Assemblée' and singular verb agreement to accurately reflect the source's reference to one specific body, preserving the intended meaning."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up singular and plural forms because they rely on patterns in the data they've seen, a bit like someone who learns a language by reading lots of books but doesn't always catch every grammar rule.",
+        "architectural_cause": "Internally, the system processes words in chunks and may miss connections between words that need to agree in number, especially if they're far apart in a sentence. This is similar to a person who forgets the start of a sentence by the time they reach the end.",
+        "pattern_generalization": "These errors are more likely when sentences are long or have extra words between subjects and verbs, making agreement harder to track.",
+        "mt_system_specific": "Dedicated MT systems like DeepL may struggle more with agreement in complex sentences than LLMs, which can sometimes track longer sentence relationships better."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Si <GRAMMAR type=\"agreement_number\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">les Assemblées en sont d'accord</GRAMMAR>, je ferai comme M. Evans l'a suggéré.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "805a2227-8ccc-4459-ba23-035ba64a4d61",
+      "span_start": 36,
+      "span_end": 98,
+      "original_text": "je ferai comme M. Evans l'a suggéré",
+      "injected_text": "je suivrai la recommandation de M. Evans, comme il l'a suggéré",
+      "primary_tag": "ADDITION",
+      "error_type": "explicitation",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S4",
+      "secondary_skills": [
+        "S6"
+      ],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'do as Mr Evans has suggested' as 'follow Mr Evans's recommendation,' making the implicit suggestion explicit in the translation.",
+        "actual_meaning": "The source simply states that the speaker will do as Mr Evans suggested, without specifying the nature of the suggestion or calling it a recommendation.",
+        "reader_impact": "A reader might incorrectly infer that Mr Evans made a formal recommendation, which adds a nuance not present in the original text and could misrepresent the intent or formality of the statement.",
+        "correction_rationale": "The correct translation mirrors the source's level of explicitness, preserving the ambiguity and avoiding unwarranted details, thus maintaining fidelity to the original meaning."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often try to be helpful by making things clearer for the reader, like a friend who adds extra details to make sure you understand. Sometimes, this means the system adds explanations or recommendations that weren't actually in the original text.",
+        "architectural_cause": "Inside, the system learns from lots of examples where recommendations or explanations are often included, so it 'guesses' that adding them is the right thing to do. It doesn’t truly understand intent, so it sometimes fills in what it thinks is missing, even if the original didn’t say it.",
+        "pattern_generalization": "You’re likely to see this kind of error when translating texts that are a bit vague, or where important information is often left unsaid, such as instructions or advice. Watch out when the original is brief but the translation seems more detailed or explicit.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are especially prone to this because they are trained to produce clear, natural-sounding output, while LLMs might be more literal or cautious about adding extra information."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Si les Assemblées en sont d'accord, <ADDITION type=\"explicitation\" severity=\"minor\" tom=\"1st_machine\" desc=\"Adds explicit mention of recommendation not in source\">je suivrai la recommandation de M. Evans, comme il l'a suggéré</ADDITION>.",
+      "brief_explanation": "Adds explicit mention of recommendation not in source"
+    },
+    {
+      "error_id": "43bcb0d8-d73c-4a07-a86c-037fbbc2b65a",
+      "span_start": 18,
+      "span_end": 36,
+      "original_text": "en sont d'accord",
+      "injected_text": "sont d'accord avec",
+      "primary_tag": "GRAMMAR",
+      "error_type": "preposition",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system interpreted 'agrees' as requiring a direct prepositional object, translating it literally as 'sont d'accord avec,' mirroring the English structure 'agree with.'",
+        "actual_meaning": "The source means that the House, as a collective entity, gives its approval, which in French is idiomatically expressed as 'en être d'accord.'",
+        "reader_impact": "A French reader would find 'sont d'accord avec' awkward and potentially confusing, as it suggests individual agreement with someone rather than collective approval of a proposal.",
+        "correction_rationale": "'En être d'accord' is the correct idiomatic expression in French for collective agreement by a body such as 'l'Assemblée,' accurately reflecting the intended meaning of the source."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up prepositions because, like someone learning a new language, they rely on patterns and examples they've seen before. If the context is slightly different or unusual, the system may pick a preposition that sounds familiar but isn't quite right, much like guessing which key fits a lock.",
+        "architectural_cause": "Internally, the system learns from huge amounts of text, noticing which words commonly go together. It doesn't truly understand the rules or meanings behind prepositions, so it sometimes chooses based on surface patterns rather than deep understanding.",
+        "pattern_generalization": "Students can expect these errors especially in sentences with unusual phrasing, idiomatic expressions, or when translating between languages that use prepositions differently.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are trained specifically for translation, so they often make fewer preposition mistakes than general-purpose language models, but they can still struggle with tricky or rare cases."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Si les Assemblées <GRAMMAR type=\"preposition\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">sont d'accord avec</GRAMMAR>, je suivrai la recommandation de M. Evans, comme il l'a suggéré.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 4,
+  "domain": "parliamentary",
+  "item_status": "published",
+  "teacher_notes": "",
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely interpreted 'the House' as referring to multiple assemblies, leading it to use the plural form 'les Assemblées' and plural verb agreement.",
+      "actual_meaning": "The source refers specifically to a single legislative body, 'the House,' meaning only one assembly is being addressed.",
+      "reader_impact": "A reader would believe that several assemblies must agree, rather than just the single relevant legislative body, which distorts the institutional context.",
+      "correction_rationale": "The correct translation uses the singular 'l'Assemblée' and singular verb agreement to accurately reflect the source's reference to one specific body, preserving the intended meaning."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted 'do as Mr Evans has suggested' as 'follow Mr Evans's recommendation,' making the implicit suggestion explicit in the translation.",
+      "actual_meaning": "The source simply states that the speaker will do as Mr Evans suggested, without specifying the nature of the suggestion or calling it a recommendation.",
+      "reader_impact": "A reader might incorrectly infer that Mr Evans made a formal recommendation, which adds a nuance not present in the original text and could misrepresent the intent or formality of the statement.",
+      "correction_rationale": "The correct translation mirrors the source's level of explicitness, preserving the ambiguity and avoiding unwarranted details, thus maintaining fidelity to the original meaning."
+    },
+    {
+      "mt_interpretation": "The MT system interpreted 'agrees' as requiring a direct prepositional object, translating it literally as 'sont d'accord avec,' mirroring the English structure 'agree with.'",
+      "actual_meaning": "The source means that the House, as a collective entity, gives its approval, which in French is idiomatically expressed as 'en être d'accord.'",
+      "reader_impact": "A French reader would find 'sont d'accord avec' awkward and potentially confusing, as it suggests individual agreement with someone rather than collective approval of a proposal.",
+      "correction_rationale": "'En être d'accord' is the correct idiomatic expression in French for collective agreement by a body such as 'l'Assemblée,' accurately reflecting the intended meaning of the source."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often mix up singular and plural forms because they rely on patterns in the data they've seen, a bit like someone who learns a language by reading lots of books but doesn't always catch every grammar rule.",
+      "architectural_cause": "Internally, the system processes words in chunks and may miss connections between words that need to agree in number, especially if they're far apart in a sentence. This is similar to a person who forgets the start of a sentence by the time they reach the end.",
+      "pattern_generalization": "These errors are more likely when sentences are long or have extra words between subjects and verbs, making agreement harder to track.",
+      "mt_system_specific": "Dedicated MT systems like DeepL may struggle more with agreement in complex sentences than LLMs, which can sometimes track longer sentence relationships better."
+    },
+    {
+      "error_mechanism": "MT systems often try to be helpful by making things clearer for the reader, like a friend who adds extra details to make sure you understand. Sometimes, this means the system adds explanations or recommendations that weren't actually in the original text.",
+      "architectural_cause": "Inside, the system learns from lots of examples where recommendations or explanations are often included, so it 'guesses' that adding them is the right thing to do. It doesn’t truly understand intent, so it sometimes fills in what it thinks is missing, even if the original didn’t say it.",
+      "pattern_generalization": "You’re likely to see this kind of error when translating texts that are a bit vague, or where important information is often left unsaid, such as instructions or advice. Watch out when the original is brief but the translation seems more detailed or explicit.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are especially prone to this because they are trained to produce clear, natural-sounding output, while LLMs might be more literal or cautious about adding extra information."
+    },
+    {
+      "error_mechanism": "MT systems often mix up prepositions because, like someone learning a new language, they rely on patterns and examples they've seen before. If the context is slightly different or unusual, the system may pick a preposition that sounds familiar but isn't quite right, much like guessing which key fits a lock.",
+      "architectural_cause": "Internally, the system learns from huge amounts of text, noticing which words commonly go together. It doesn't truly understand the rules or meanings behind prepositions, so it sometimes chooses based on surface patterns rather than deep understanding.",
+      "pattern_generalization": "Students can expect these errors especially in sentences with unusual phrasing, idiomatic expressions, or when translating between languages that use prepositions differently.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are trained specifically for translation, so they often make fewer preposition mistakes than general-purpose language models, but they can still struggle with tricky or rare cases."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

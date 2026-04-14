@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "timestamp": "2026-04-01T20:09:58.324399",
+    "timestamp": "2026-04-13T11:37:43.548036",
     "spec_version": "ECTEL2026_v1",
     "tag": "no_temnikova",
     "excluded_sources": [
@@ -8,7 +8,7 @@
     ],
     "description": "Retroactive validation of ToM framework against published PE data",
     "source_counts": {
-      "exp1": 4,
+      "exp1": 3,
       "exp2": 4,
       "exp3": 3,
       "exp3b": 3,
@@ -44,27 +44,6 @@
           3,
           4,
           5
-        ]
-      },
-      {
-        "source": "TraineeDetection",
-        "n": 3,
-        "kendall_tau": 1.0,
-        "p_value": 0.3333,
-        "skills": [
-          "S1",
-          "S3",
-          "S4"
-        ],
-        "tom_ranks": [
-          1,
-          3,
-          4
-        ],
-        "observed_ranks": [
-          0.07,
-          0.2,
-          0.33
         ]
       },
       {
@@ -120,14 +99,14 @@
       }
     ],
     "aggregate": {
-      "pooled_tau": 0.386,
-      "pooled_p": 0.0443,
-      "pooled_n": 17,
-      "weighted_tau": 0.9188,
-      "n_sources": 4,
-      "positive_count": 4
+      "pooled_tau": 0.3313,
+      "pooled_p": 0.1237,
+      "pooled_n": 14,
+      "weighted_tau": 0.9154,
+      "n_sources": 3,
+      "positive_count": 3
     },
-    "interpretation": "CONFIRMED: Positive correlation (tau=0.386, p=0.0443). 4/4 sources show positive tau."
+    "interpretation": "TREND: Positive but not significant (tau=0.331, p=0.1237). 3/3 sources show positive tau."
   },
   "exp2": {
     "experiment": "Exp2_FluencyParadox",
@@ -804,10 +783,6 @@
             "verdict": "V"
           },
           {
-            "src": "Tra",
-            "verdict": "V"
-          },
-          {
             "src": "Yam",
             "verdict": "-"
           },
@@ -879,10 +854,6 @@
             "verdict": "V"
           },
           {
-            "src": "Tra",
-            "verdict": "-"
-          },
-          {
             "src": "Yam",
             "verdict": "V"
           },
@@ -951,10 +922,6 @@
         "exp1_cells": [
           {
             "src": "Dae",
-            "verdict": "V"
-          },
-          {
-            "src": "Tra",
             "verdict": "V"
           },
           {
@@ -1029,10 +996,6 @@
             "verdict": "-"
           },
           {
-            "src": "Tra",
-            "verdict": "V"
-          },
-          {
             "src": "Yam",
             "verdict": "V"
           },
@@ -1101,10 +1064,6 @@
         "exp1_cells": [
           {
             "src": "Dae",
-            "verdict": "-"
-          },
-          {
-            "src": "Tra",
             "verdict": "-"
           },
           {
@@ -1179,10 +1138,6 @@
             "verdict": "V"
           },
           {
-            "src": "Tra",
-            "verdict": "-"
-          },
-          {
             "src": "Yam",
             "verdict": "-"
           },
@@ -1254,10 +1209,6 @@
             "verdict": "V"
           },
           {
-            "src": "Tra",
-            "verdict": "-"
-          },
-          {
             "src": "Yam",
             "verdict": "-"
           },
@@ -1323,13 +1274,13 @@
       }
     },
     "aggregate": {
-      "n_align": 44,
+      "n_align": 41,
       "n_partial": 23,
       "n_contradict": 3,
-      "n_no_data": 42,
-      "convergence_ratio": 0.9362,
+      "n_no_data": 38,
+      "convergence_ratio": 0.9318,
       "binomial_p": 0.0
     },
-    "interpretation": "STRONG VALIDATION: Convergence ratio 0.94 >= 0.80 across 4 experiments. Binomial p=0.0000."
+    "interpretation": "STRONG VALIDATION: Convergence ratio 0.93 >= 0.80 across 4 experiments. Binomial p=0.0000."
   }
 }

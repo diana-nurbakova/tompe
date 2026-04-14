@@ -1,0 +1,181 @@
+{
+  "item_id": "0a8807d4-f507-409e-a4ab-16e2adcd3df2",
+  "segment_id": "europarl-5af6ee68531a",
+  "source_text": "One of the people assassinated very recently in Sri Lanka was Mr Kumar Ponnambalam, who had visited the European Parliament just a few months ago.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "L'une des personnes qui vient d'être assassinée au Sri Lanka est M. Kumar Ponnambalam, qui avait été voir le Parlement européen il y a mois .",
+  "reference_translation": "L'une des personnes qui vient d'être assassinée au Sri Lanka est M. Kumar Ponnambalam, qui avait rendu visite au Parlement européen il y a quelques mois à peine.",
+  "mt_system": "gpt4",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "541fbf40-1502-42e7-bfe3-12f078c2336a",
+      "span_start": 97,
+      "span_end": 127,
+      "original_text": "rendu visite au Parlement européen",
+      "injected_text": "été voir le Parlement européen",
+      "primary_tag": "STYLE",
+      "error_type": "register_formal",
+      "severity": "major",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely chose 'été voir le Parlement européen' as a literal translation of 'visited the European Parliament,' focusing on a direct equivalence of 'visit.'",
+        "actual_meaning": "The source expresses that Mr Kumar Ponnambalam made an official or formal visit to the European Parliament, emphasizing the diplomatic or respectful nature of the meeting.",
+        "reader_impact": "A reader would interpret 'été voir le Parlement européen' as colloquial and informal, suggesting a casual or even tourist-like visit, which undermines the formality of the event.",
+        "correction_rationale": "'Rendu visite au Parlement européen' is the correct formal phrase in French for an official visit, maintaining the register and respect appropriate for the context."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up formal and informal language, like someone who learned English by watching both news broadcasts and casual TV shows. They sometimes can't always tell when to use 'you' or 'sir,' because they treat all examples they've seen as equally likely.",
+        "architectural_cause": "Inside, the system is like a giant pattern-matcher that looks for words and phrases that seem to fit, but it doesn't truly understand social rules or context. It relies on the examples it has seen, so if there's a mix of formal and informal language in its training, it can get confused about which style to use.",
+        "pattern_generalization": "You'll often see this error when the source text uses a formal tone, but the system picks a word or phrase that's too casual, or vice versa. Pay extra attention to translations of emails, official documents, or anything with a clear social hierarchy.",
+        "mt_system_specific": "Dedicated MT systems trained on professional translation data usually stick to the correct register better than general-purpose LLMs like GPT-4, which have seen a wider mix of styles."
+      },
+      "technical_explanation": null,
+      "xml_tag": "L'une des personnes qui vient d'être assassinée au Sri Lanka est M. Kumar Ponnambalam, qui avait <STYLE type=\"register_formal\" severity=\"major\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">été voir le Parlement européen</STYLE> il y a quelques mois à peine.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "ecf38c5d-6a44-47f1-b3d9-39f5759b67f2",
+      "span_start": 149,
+      "span_end": 149,
+      "original_text": "à peine",
+      "injected_text": "",
+      "primary_tag": "OMISSION",
+      "error_type": "modifier",
+      "severity": "minor",
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'just a few months ago' as simply 'il y a quelques mois,' omitting the emphasis provided by 'just.'",
+        "actual_meaning": "The source emphasizes that the visit happened very recently, not just several months ago, but only a short time before the assassination.",
+        "reader_impact": "A reader would understand the visit as having happened at any time in the past few months, missing the sense of immediacy and recency implied by 'just.'",
+        "correction_rationale": "Including 'à peine' accurately conveys the nuance of 'just a few months ago,' preserving the emphasis on how recent the visit was, which is important to the context."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often skip over small but important details, like modifiers, because they're trying to quickly capture the main message—like someone summarizing a story and forgetting to mention a character's hat. These details might seem less important to the system, so they get left out.",
+        "architectural_cause": "Internally, the system pays more attention to the big, obvious parts of a sentence, and sometimes it doesn't 'notice' smaller words or phrases that add nuance. Since it processes language by predicting what comes next, it might miss subtle clues that a modifier matters.",
+        "pattern_generalization": "Students should watch for omissions of adjectives, adverbs, or short descriptive phrases, especially in longer or more complex sentences. Errors are more likely when the modifier is easily overlooked or doesn't change the main meaning much.",
+        "mt_system_specific": "Dedicated MT systems are often better at keeping modifiers because they're trained specifically for translation, while general-purpose LLMs like GPT-4 might skip them more often since they're not focused just on translation."
+      },
+      "technical_explanation": null,
+      "xml_tag": "L'une des personnes qui vient d'être assassinée au Sri Lanka est M. Kumar Ponnambalam, qui avait été voir le Parlement européen il y a quelques mois <OMISSION type=\"modifier\" severity=\"minor\" tom=\"1st_author\" desc=\"5-15 word explanation\"></OMISSION>.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "2ea17582-61ae-4d33-b980-75b47e0d29e2",
+      "span_start": 135,
+      "span_end": 139,
+      "original_text": "quelques mois",
+      "injected_text": "mois",
+      "primary_tag": "OMISSION",
+      "error_type": "modifier",
+      "severity": "minor",
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'a few months ago' simply as 'months ago,' omitting the modifier 'a few' and thus failing to convey the precise time frame.",
+        "actual_meaning": "The source specifies that the visit occurred only a few months ago, highlighting the recentness of the event, not just at any time in the past months.",
+        "reader_impact": "A reader would understand 'mois' as a vague reference to some unspecified time in the past months, missing the intended emphasis on the short interval since the visit.",
+        "correction_rationale": "Including 'quelques' in the translation accurately conveys the small number of months and preserves the nuance of recentness present in the source text."
+      },
+      "system_behavior": {
+        "error_mechanism": "Machine translation systems sometimes skip small words like 'a few' because they focus on the main message, a bit like someone retelling a story and forgetting to mention minor details. These words might seem less important to the system, but leaving them out can change the meaning.",
+        "architectural_cause": "Internally, the system tries to predict the most likely translation based on patterns it has seen in its training data. If it often sees phrases without modifiers, or if the modifier seems optional, it may drop it to make the sentence sound more natural or fluent.",
+        "pattern_generalization": "Similar omissions often happen with words that add detail but aren't strictly necessary for a basic sentence, like 'some', 'a few', or 'about'. Watch out for this when translating phrases with small quantifiers or descriptive words.",
+        "mt_system_specific": "Dedicated MT systems trained on lots of translation examples are usually better at keeping these small words, while general-purpose language models like GPT-4 may overlook them more often."
+      },
+      "technical_explanation": null,
+      "xml_tag": "L'une des personnes qui vient d'être assassinée au Sri Lanka est M. Kumar Ponnambalam, qui avait été voir le Parlement européen il y a <OMISSION type=\"modifier\" severity=\"minor\" tom=\"1st_author\" desc=\"Omission of 'quelques' loses sense of 'a few' months\">mois</OMISSION> .",
+      "brief_explanation": "Omission of 'quelques' loses sense of 'a few' months"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 4,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely chose 'été voir le Parlement européen' as a literal translation of 'visited the European Parliament,' focusing on a direct equivalence of 'visit.'",
+      "actual_meaning": "The source expresses that Mr Kumar Ponnambalam made an official or formal visit to the European Parliament, emphasizing the diplomatic or respectful nature of the meeting.",
+      "reader_impact": "A reader would interpret 'été voir le Parlement européen' as colloquial and informal, suggesting a casual or even tourist-like visit, which undermines the formality of the event.",
+      "correction_rationale": "'Rendu visite au Parlement européen' is the correct formal phrase in French for an official visit, maintaining the register and respect appropriate for the context."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted 'just a few months ago' as simply 'il y a quelques mois,' omitting the emphasis provided by 'just.'",
+      "actual_meaning": "The source emphasizes that the visit happened very recently, not just several months ago, but only a short time before the assassination.",
+      "reader_impact": "A reader would understand the visit as having happened at any time in the past few months, missing the sense of immediacy and recency implied by 'just.'",
+      "correction_rationale": "Including 'à peine' accurately conveys the nuance of 'just a few months ago,' preserving the emphasis on how recent the visit was, which is important to the context."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted 'a few months ago' simply as 'months ago,' omitting the modifier 'a few' and thus failing to convey the precise time frame.",
+      "actual_meaning": "The source specifies that the visit occurred only a few months ago, highlighting the recentness of the event, not just at any time in the past months.",
+      "reader_impact": "A reader would understand 'mois' as a vague reference to some unspecified time in the past months, missing the intended emphasis on the short interval since the visit.",
+      "correction_rationale": "Including 'quelques' in the translation accurately conveys the small number of months and preserves the nuance of recentness present in the source text."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often mix up formal and informal language, like someone who learned English by watching both news broadcasts and casual TV shows. They sometimes can't always tell when to use 'you' or 'sir,' because they treat all examples they've seen as equally likely.",
+      "architectural_cause": "Inside, the system is like a giant pattern-matcher that looks for words and phrases that seem to fit, but it doesn't truly understand social rules or context. It relies on the examples it has seen, so if there's a mix of formal and informal language in its training, it can get confused about which style to use.",
+      "pattern_generalization": "You'll often see this error when the source text uses a formal tone, but the system picks a word or phrase that's too casual, or vice versa. Pay extra attention to translations of emails, official documents, or anything with a clear social hierarchy.",
+      "mt_system_specific": "Dedicated MT systems trained on professional translation data usually stick to the correct register better than general-purpose LLMs like GPT-4, which have seen a wider mix of styles."
+    },
+    {
+      "error_mechanism": "MT systems often skip over small but important details, like modifiers, because they're trying to quickly capture the main message—like someone summarizing a story and forgetting to mention a character's hat. These details might seem less important to the system, so they get left out.",
+      "architectural_cause": "Internally, the system pays more attention to the big, obvious parts of a sentence, and sometimes it doesn't 'notice' smaller words or phrases that add nuance. Since it processes language by predicting what comes next, it might miss subtle clues that a modifier matters.",
+      "pattern_generalization": "Students should watch for omissions of adjectives, adverbs, or short descriptive phrases, especially in longer or more complex sentences. Errors are more likely when the modifier is easily overlooked or doesn't change the main meaning much.",
+      "mt_system_specific": "Dedicated MT systems are often better at keeping modifiers because they're trained specifically for translation, while general-purpose LLMs like GPT-4 might skip them more often since they're not focused just on translation."
+    },
+    {
+      "error_mechanism": "Machine translation systems sometimes skip small words like 'a few' because they focus on the main message, a bit like someone retelling a story and forgetting to mention minor details. These words might seem less important to the system, but leaving them out can change the meaning.",
+      "architectural_cause": "Internally, the system tries to predict the most likely translation based on patterns it has seen in its training data. If it often sees phrases without modifiers, or if the modifier seems optional, it may drop it to make the sentence sound more natural or fluent.",
+      "pattern_generalization": "Similar omissions often happen with words that add detail but aren't strictly necessary for a basic sentence, like 'some', 'a few', or 'about'. Watch out for this when translating phrases with small quantifiers or descriptive words.",
+      "mt_system_specific": "Dedicated MT systems trained on lots of translation examples are usually better at keeping these small words, while general-purpose language models like GPT-4 may overlook them more often."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

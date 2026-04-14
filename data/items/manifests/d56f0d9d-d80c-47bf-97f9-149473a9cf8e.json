@@ -1,0 +1,182 @@
+{
+  "item_id": "d56f0d9d-d80c-47bf-97f9-149473a9cf8e",
+  "segment_id": "europarl-e54de29885ec",
+  "source_text": "I declare resumed the session of the European Parliament adjourned on Friday 17 December 1999, and I would like once again to wish you a happy new year in the hope that you enjoyed a pleasant festive period.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous souhaite une fois encore une bonne année en espérant que vous avez passé de bonnes période festive.",
+  "reference_translation": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes vux en espérant que vous avez passé de bonnes vacances.",
+  "mt_system": "gpt4",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "dc0f8db4-2d44-405b-9e5f-b4bdb028977a",
+      "span_start": 113,
+      "span_end": 161,
+      "original_text": "je vous renouvelle tous mes vux",
+      "injected_text": "je vous souhaite encore une fois une bonne année",
+      "primary_tag": "STYLE",
+      "error_type": "awkward",
+      "severity": "minor",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system interpreted 'wish you a happy new year' literally and translated it as 'je vous souhaite encore une fois une bonne année,' focusing on the direct greeting.",
+        "actual_meaning": "The source expresses a formal renewal of good wishes for the new year, using a phrase appropriate for official or ceremonial contexts.",
+        "reader_impact": "Readers may find the translation informal or repetitive, as 'je vous souhaite encore une fois une bonne année' sounds casual and less fitting for a parliamentary setting.",
+        "correction_rationale": "The correct translation 'je vous renouvelle tous mes vœux' uses a formal idiomatic expression that matches the tone and intent of the original, aligning with the conventions of official French discourse."
+      },
+      "system_behavior": {
+        "error_mechanism": "Machine translation systems sometimes produce awkward sentences because they piece together language a bit like assembling a jigsaw puzzle from many boxes. They may choose words or phrases that fit technically, but the overall result can sound unnatural to a human reader.",
+        "architectural_cause": "Internally, these systems decide what comes next in a sentence by looking at patterns they've seen before, not by truly understanding meaning or style. Without a sense of what 'flows' in a language, they can create sentences that are technically correct but feel clunky or odd.",
+        "pattern_generalization": "You’ll often see these awkward errors when the input sentence is long, complex, or uses expressions that aren’t common in the training data. Pay special attention to translations of idioms, formal writing, or anything with a unique tone.",
+        "mt_system_specific": "Large language models like GPT-4 are more likely to sound natural than traditional MT systems, but both can still produce awkward phrasing, especially with less common topics or styles."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et <STYLE type=\"awkward\" severity=\"minor\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">je vous souhaite encore une fois une bonne année</STYLE> en espérant que vous avez passé de bonnes vacances.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "8d2ee471-5dbf-4c6a-bd4f-aaa160994432",
+      "span_start": 130,
+      "span_end": 145,
+      "original_text": "encore une fois",
+      "injected_text": "une fois encore",
+      "primary_tag": "GRAMMAR",
+      "error_type": "word_order",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system recognized the adverbial phrase 'once again' and rendered it as 'une fois encore,' following a literal, word-for-word order.",
+        "actual_meaning": "The source wishes to repeat New Year's greetings to the audience, using a natural French expression for repetition.",
+        "reader_impact": "A reader would understand the meaning, but 'une fois encore' sounds awkward or emphatic, and less idiomatic in formal French than 'encore une fois.'",
+        "correction_rationale": "'Encore une fois' is the conventional and idiomatic way to express 'once again' in this context, ensuring the message flows naturally and formally in French."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems sometimes mix up word order because, like a non-native speaker, they might know the right words but not always how to arrange them naturally in the target language. It's like building a sentence with puzzle pieces that almost fit, but not quite in the right order.",
+        "architectural_cause": "Internally, the system predicts the next word one at a time, mostly based on patterns it has seen before. If the training data had unusual word orders or if the system hasn't seen enough examples, it can easily put words together in a way that sounds odd to native speakers.",
+        "pattern_generalization": "Expect these errors especially when translating between languages with very different word orders, or in complex sentences with lots of clauses. Pay extra attention to long or tricky sentences.",
+        "mt_system_specific": "Dedicated MT systems are usually better at word order because they are trained specifically for translation, while general LLMs like GPT-4 may struggle more, especially with less common sentence structures."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous souhaite <GRAMMAR type=\"word_order\" severity=\"minor\" tom=\"1st_machine\" desc=\"5-15 word explanation\">une fois encore</GRAMMAR> une bonne année en espérant que vous avez passé de bonnes vacances.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "7a7a09cd-62ec-4890-b302-ab684ab6b4f4",
+      "span_start": 204,
+      "span_end": 219,
+      "original_text": "vacances",
+      "injected_text": "période festive",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "overly_literal",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [
+        "S6"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely translated 'festive period' literally as 'période festive,' aiming for a direct word-for-word correspondence without considering idiomatic usage.",
+        "actual_meaning": "The source text uses 'festive period' as an English idiom referring to the holiday season, specifically the time around Christmas and New Year, which in French is commonly expressed as 'vacances.'",
+        "reader_impact": "A French reader would find 'période festive' unusual and potentially confusing, as it is not a standard way to refer to the holiday break, making the text sound awkward and less natural.",
+        "correction_rationale": "The correct translation uses 'vacances,' which is the idiomatic and culturally appropriate way in French to refer to the holiday season, ensuring the message is clear and natural for the target audience."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often act like a student who translates word-for-word from a dictionary, missing the special ways languages express ideas. They may not always recognize when a phrase is an idiom or has a cultural twist, so they stick too closely to the literal meaning.",
+        "architectural_cause": "Inside, the system looks for patterns in huge amounts of text, but it doesn’t truly understand culture or context like a human does. If it hasn’t seen enough examples where a word or phrase is used idiomatically, it tends to play it safe and translate each word directly.",
+        "pattern_generalization": "You’ll often see this kind of error with idioms, sayings, or words that have a special meaning in one language but not in another. Be especially alert when a phrase sounds natural in English but is awkward or odd in the translation.",
+        "mt_system_specific": "General-purpose LLMs like GPT-4 are more likely to make this error than specialized MT systems, because they haven't been trained specifically to handle tricky translation cases and idioms."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous souhaite une fois encore une bonne année en espérant que vous avez passé de bonnes <MISTRANSLATION type=\"overly_literal\" severity=\"major\" tom=\"1st_machine\" desc=\"Literal translation; French idiomatically uses 'vacances' here\">période festive</MISTRANSLATION>.",
+      "brief_explanation": "Literal translation; French idiomatically uses 'vacances' here"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 4,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system interpreted 'wish you a happy new year' literally and translated it as 'je vous souhaite encore une fois une bonne année,' focusing on the direct greeting.",
+      "actual_meaning": "The source expresses a formal renewal of good wishes for the new year, using a phrase appropriate for official or ceremonial contexts.",
+      "reader_impact": "Readers may find the translation informal or repetitive, as 'je vous souhaite encore une fois une bonne année' sounds casual and less fitting for a parliamentary setting.",
+      "correction_rationale": "The correct translation 'je vous renouvelle tous mes vœux' uses a formal idiomatic expression that matches the tone and intent of the original, aligning with the conventions of official French discourse."
+    },
+    {
+      "mt_interpretation": "The MT system recognized the adverbial phrase 'once again' and rendered it as 'une fois encore,' following a literal, word-for-word order.",
+      "actual_meaning": "The source wishes to repeat New Year's greetings to the audience, using a natural French expression for repetition.",
+      "reader_impact": "A reader would understand the meaning, but 'une fois encore' sounds awkward or emphatic, and less idiomatic in formal French than 'encore une fois.'",
+      "correction_rationale": "'Encore une fois' is the conventional and idiomatic way to express 'once again' in this context, ensuring the message flows naturally and formally in French."
+    },
+    {
+      "mt_interpretation": "The MT system likely translated 'festive period' literally as 'période festive,' aiming for a direct word-for-word correspondence without considering idiomatic usage.",
+      "actual_meaning": "The source text uses 'festive period' as an English idiom referring to the holiday season, specifically the time around Christmas and New Year, which in French is commonly expressed as 'vacances.'",
+      "reader_impact": "A French reader would find 'période festive' unusual and potentially confusing, as it is not a standard way to refer to the holiday break, making the text sound awkward and less natural.",
+      "correction_rationale": "The correct translation uses 'vacances,' which is the idiomatic and culturally appropriate way in French to refer to the holiday season, ensuring the message is clear and natural for the target audience."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "Machine translation systems sometimes produce awkward sentences because they piece together language a bit like assembling a jigsaw puzzle from many boxes. They may choose words or phrases that fit technically, but the overall result can sound unnatural to a human reader.",
+      "architectural_cause": "Internally, these systems decide what comes next in a sentence by looking at patterns they've seen before, not by truly understanding meaning or style. Without a sense of what 'flows' in a language, they can create sentences that are technically correct but feel clunky or odd.",
+      "pattern_generalization": "You’ll often see these awkward errors when the input sentence is long, complex, or uses expressions that aren’t common in the training data. Pay special attention to translations of idioms, formal writing, or anything with a unique tone.",
+      "mt_system_specific": "Large language models like GPT-4 are more likely to sound natural than traditional MT systems, but both can still produce awkward phrasing, especially with less common topics or styles."
+    },
+    {
+      "error_mechanism": "MT systems sometimes mix up word order because, like a non-native speaker, they might know the right words but not always how to arrange them naturally in the target language. It's like building a sentence with puzzle pieces that almost fit, but not quite in the right order.",
+      "architectural_cause": "Internally, the system predicts the next word one at a time, mostly based on patterns it has seen before. If the training data had unusual word orders or if the system hasn't seen enough examples, it can easily put words together in a way that sounds odd to native speakers.",
+      "pattern_generalization": "Expect these errors especially when translating between languages with very different word orders, or in complex sentences with lots of clauses. Pay extra attention to long or tricky sentences.",
+      "mt_system_specific": "Dedicated MT systems are usually better at word order because they are trained specifically for translation, while general LLMs like GPT-4 may struggle more, especially with less common sentence structures."
+    },
+    {
+      "error_mechanism": "MT systems often act like a student who translates word-for-word from a dictionary, missing the special ways languages express ideas. They may not always recognize when a phrase is an idiom or has a cultural twist, so they stick too closely to the literal meaning.",
+      "architectural_cause": "Inside, the system looks for patterns in huge amounts of text, but it doesn’t truly understand culture or context like a human does. If it hasn’t seen enough examples where a word or phrase is used idiomatically, it tends to play it safe and translate each word directly.",
+      "pattern_generalization": "You’ll often see this kind of error with idioms, sayings, or words that have a special meaning in one language but not in another. Be especially alert when a phrase sounds natural in English but is awkward or odd in the translation.",
+      "mt_system_specific": "General-purpose LLMs like GPT-4 are more likely to make this error than specialized MT systems, because they haven't been trained specifically to handle tricky translation cases and idioms."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

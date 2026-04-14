@@ -1,0 +1,181 @@
+{
+  "item_id": "2b7b69cf-d456-4a6a-981d-3520ec047d3c",
+  "segment_id": "europarl-62c435241d98",
+  "source_text": "You have requested a debate on this subject in the course of the next few days, during this part-session.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "T'as voulu un débat à ce sujet dans le prochain jour, au cours de cette période de session.",
+  "reference_translation": "Vous avez souhaité un débat à ce sujet dans les prochains jours, au cours de cette période de session.",
+  "mt_system": "deepl",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "42b855c0-b11d-4846-a2df-4f39657f9b92",
+      "span_start": 39,
+      "span_end": 60,
+      "original_text": "dans les prochains jours",
+      "injected_text": "dans le prochain jour",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "number",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'the next few days' as referring to a single upcoming day, rendering it as 'le prochain jour' (the next day) instead of the plural 'les prochains jours.'",
+        "actual_meaning": "The source refers to a period spanning several upcoming days, not just one, indicating flexibility or a range of possible days for the debate.",
+        "reader_impact": "A reader would understand that the debate is scheduled for only one specific day, which could cause confusion or mislead about the timeframe for the debate.",
+        "correction_rationale": "The correct translation 'dans les prochains jours' accurately conveys the plural and indeterminate period referenced in the source, maintaining the intended meaning of several days rather than just one."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up numbers because they see them as just another word or symbol, not as special information that needs to be exact. It's like someone copying a recipe but swapping '2 cups' for '3 cups' because they didn't notice the difference mattered.",
+        "architectural_cause": "Internally, the system doesn't truly 'understand' the meaning or importance of numbers—it just tries to match patterns it has seen before. If numbers are rare or appear in unusual places, the system might guess based on what looks most likely from its training, leading to mistakes.",
+        "pattern_generalization": "Students can expect similar errors when translating texts with lots of facts, statistics, dates, or measurements—especially if the number format differs between languages.",
+        "mt_system_specific": "Dedicated MT systems like DeepL are usually better at handling numbers than general-purpose AI like LLMs, but both can still make these mistakes, especially with complex or unfamiliar formats."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Vous avez souhaité un débat à ce sujet <MISTRANSLATION type=\"number\" severity=\"minor\" tom=\"1st_machine\" desc=\"5-15 word explanation\">dans le prochain jour</MISTRANSLATION>, au cours de cette période de session.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "78036959-0885-434a-b0be-df0c6cd5b0dd",
+      "span_start": 0,
+      "span_end": 11,
+      "original_text": "Vous avez souhaité",
+      "injected_text": "Tu as voulu",
+      "primary_tag": "STYLE",
+      "error_type": "register_formal",
+      "severity": "major",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system interpreted 'You have requested' as an informal, direct statement and rendered it as 'Tu as voulu,' using the informal 'tu' and a more literal verb for 'wanted.'",
+        "actual_meaning": "The source is a formal address, likely in an institutional or parliamentary context, and 'You have requested' refers formally to a request made by the addressed party.",
+        "reader_impact": "A French reader would perceive 'Tu as voulu' as inappropriately informal and possibly disrespectful, which undermines the formal tone expected in this context.",
+        "correction_rationale": "'Vous avez souhaité' uses the formal 'vous' pronoun and the verb 'souhaiter,' which matches the respectful, formal register of the source and is appropriate for official or public communication."
+      },
+      "system_behavior": {
+        "error_mechanism": "Machine translation systems often mix up formal and informal language because they learn by seeing lots of examples, just like someone picking up phrases from movies or conversations. If most examples use casual speech, the system might forget to switch to a more formal tone when needed, even if the situation calls for it.",
+        "architectural_cause": "Internally, the system doesn't truly understand social situations or politeness—it just matches patterns it has seen before. It chooses words and phrases that seem to fit, but it can't always sense when a more formal style is required, especially if the training data didn't highlight these differences clearly.",
+        "pattern_generalization": "Students should watch for this error in texts that require a specific level of formality, like official documents, business emails, or academic writing. The system is more likely to slip into casual language when translating everyday topics or dialogues.",
+        "mt_system_specific": "Dedicated MT systems like DeepL may struggle more with register than newer language models, which can sometimes better pick up on subtle style cues from context."
+      },
+      "technical_explanation": null,
+      "xml_tag": "<STYLE type=\"register_formal\" severity=\"major\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">Tu as voulu</STYLE> un débat à ce sujet dans le prochain jour, au cours de cette période de session.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "4ede1b7b-b2ad-4055-8db8-ab19aa4d9b71",
+      "span_start": 0,
+      "span_end": 30,
+      "original_text": "Tu as voulu un débat à ce sujet",
+      "injected_text": "T'as voulu un débat à ce sujet",
+      "primary_tag": "STYLE",
+      "error_type": "register_formal",
+      "severity": "major",
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system interpreted the pronoun 'You' as informal and contracted it to 'T'as' in French, possibly due to training data favoring conversational language.",
+        "actual_meaning": "The source addresses the reader in a formal context, likely within an institutional or official setting, requiring the formal 'Vous' in French.",
+        "reader_impact": "A reader would perceive 'T'as' as overly casual or even disrespectful in this context, undermining the formality and seriousness of the communication.",
+        "correction_rationale": "The correct translation uses 'Vous avez souhaité,' maintaining the appropriate level of formality expected in official or professional discourse."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often miss the right level of formality, like someone using casual language at a formal event because they can’t always sense the social setting. They may choose words or phrases that sound friendly or informal, even when a more formal tone is needed.",
+        "architectural_cause": "Internally, the system learns from many examples but doesn't truly understand social cues or context. It picks what sounds most common or natural in its training data, which can lead to mismatched formality if the data mixes both formal and informal texts.",
+        "pattern_generalization": "Students will often see this error in texts that require a specific register, like business emails or academic writing. Pay special attention when translating for audiences where politeness and formality matter.",
+        "mt_system_specific": "Dedicated MT systems like DeepL may struggle more than LLMs, since LLMs are sometimes better at picking up subtle cues about formality from instructions or context."
+      },
+      "technical_explanation": null,
+      "xml_tag": "<STYLE type=\"register_formal\" severity=\"major\" tom=\"2nd_reader\" desc=\"5-15 word explanation\">T'as voulu un débat à ce sujet</STYLE> dans le prochain jour, au cours de cette période de session.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 4,
+  "domain": "parliamentary",
+  "item_status": "published",
+  "teacher_notes": "",
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely interpreted 'the next few days' as referring to a single upcoming day, rendering it as 'le prochain jour' (the next day) instead of the plural 'les prochains jours.'",
+      "actual_meaning": "The source refers to a period spanning several upcoming days, not just one, indicating flexibility or a range of possible days for the debate.",
+      "reader_impact": "A reader would understand that the debate is scheduled for only one specific day, which could cause confusion or mislead about the timeframe for the debate.",
+      "correction_rationale": "The correct translation 'dans les prochains jours' accurately conveys the plural and indeterminate period referenced in the source, maintaining the intended meaning of several days rather than just one."
+    },
+    {
+      "mt_interpretation": "The MT system interpreted 'You have requested' as an informal, direct statement and rendered it as 'Tu as voulu,' using the informal 'tu' and a more literal verb for 'wanted.'",
+      "actual_meaning": "The source is a formal address, likely in an institutional or parliamentary context, and 'You have requested' refers formally to a request made by the addressed party.",
+      "reader_impact": "A French reader would perceive 'Tu as voulu' as inappropriately informal and possibly disrespectful, which undermines the formal tone expected in this context.",
+      "correction_rationale": "'Vous avez souhaité' uses the formal 'vous' pronoun and the verb 'souhaiter,' which matches the respectful, formal register of the source and is appropriate for official or public communication."
+    },
+    {
+      "mt_interpretation": "The MT system interpreted the pronoun 'You' as informal and contracted it to 'T'as' in French, possibly due to training data favoring conversational language.",
+      "actual_meaning": "The source addresses the reader in a formal context, likely within an institutional or official setting, requiring the formal 'Vous' in French.",
+      "reader_impact": "A reader would perceive 'T'as' as overly casual or even disrespectful in this context, undermining the formality and seriousness of the communication.",
+      "correction_rationale": "The correct translation uses 'Vous avez souhaité,' maintaining the appropriate level of formality expected in official or professional discourse."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often mix up numbers because they see them as just another word or symbol, not as special information that needs to be exact. It's like someone copying a recipe but swapping '2 cups' for '3 cups' because they didn't notice the difference mattered.",
+      "architectural_cause": "Internally, the system doesn't truly 'understand' the meaning or importance of numbers—it just tries to match patterns it has seen before. If numbers are rare or appear in unusual places, the system might guess based on what looks most likely from its training, leading to mistakes.",
+      "pattern_generalization": "Students can expect similar errors when translating texts with lots of facts, statistics, dates, or measurements—especially if the number format differs between languages.",
+      "mt_system_specific": "Dedicated MT systems like DeepL are usually better at handling numbers than general-purpose AI like LLMs, but both can still make these mistakes, especially with complex or unfamiliar formats."
+    },
+    {
+      "error_mechanism": "Machine translation systems often mix up formal and informal language because they learn by seeing lots of examples, just like someone picking up phrases from movies or conversations. If most examples use casual speech, the system might forget to switch to a more formal tone when needed, even if the situation calls for it.",
+      "architectural_cause": "Internally, the system doesn't truly understand social situations or politeness—it just matches patterns it has seen before. It chooses words and phrases that seem to fit, but it can't always sense when a more formal style is required, especially if the training data didn't highlight these differences clearly.",
+      "pattern_generalization": "Students should watch for this error in texts that require a specific level of formality, like official documents, business emails, or academic writing. The system is more likely to slip into casual language when translating everyday topics or dialogues.",
+      "mt_system_specific": "Dedicated MT systems like DeepL may struggle more with register than newer language models, which can sometimes better pick up on subtle style cues from context."
+    },
+    {
+      "error_mechanism": "MT systems often miss the right level of formality, like someone using casual language at a formal event because they can’t always sense the social setting. They may choose words or phrases that sound friendly or informal, even when a more formal tone is needed.",
+      "architectural_cause": "Internally, the system learns from many examples but doesn't truly understand social cues or context. It picks what sounds most common or natural in its training data, which can lead to mismatched formality if the data mixes both formal and informal texts.",
+      "pattern_generalization": "Students will often see this error in texts that require a specific register, like business emails or academic writing. Pay special attention when translating for audiences where politeness and formality matter.",
+      "mt_system_specific": "Dedicated MT systems like DeepL may struggle more than LLMs, since LLMs are sometimes better at picking up subtle cues about formality from instructions or context."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

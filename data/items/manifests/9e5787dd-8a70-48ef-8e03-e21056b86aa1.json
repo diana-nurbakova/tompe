@@ -1,0 +1,137 @@
+{
+  "item_id": "9e5787dd-8a70-48ef-8e03-e21056b86aa1",
+  "segment_id": "europarl-fad45e9d0c6b",
+  "source_text": "You will be aware from the press and television that there have been a number of bomb explosions and killings in Sri Lanka.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Vous avez probablement appris par la presse et par la télévision que plusieurs explosions de bombes et meurtres ont été perpétrés au Sri Lanka.",
+  "reference_translation": "Vous avez probablement appris par la presse et par la télévision que plusieurs attentats à la bombe et crimes ont été perpétrés au Sri Lanka.",
+  "mt_system": "gpt4",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "010c17fd-ed77-4d10-89b4-39a82af39a6d",
+      "span_start": 103,
+      "span_end": 111,
+      "original_text": "crimes",
+      "injected_text": "meurtres",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "ambiguity",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "severity_range": [
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system interpreted 'killings' as specifically meaning 'meurtres' (murders), focusing on intentional unlawful killing.",
+        "actual_meaning": "In this context, 'killings' refers more generally to violent deaths or crimes, not necessarily limited to premeditated murders.",
+        "reader_impact": "A reader would assume that only premeditated murders occurred, missing the broader scope of violent acts or crimes reported.",
+        "correction_rationale": "'Crimes' accurately captures the wider range of violent acts, including but not limited to murders, aligning better with the source's intended meaning."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often stumble with ambiguous words or phrases, much like a person who hears the word 'bat' and isn't sure if it means the animal or the baseball equipment. Without extra clues, the system guesses which meaning fits best, but sometimes it picks the wrong one.",
+        "architectural_cause": "The system decides on word meanings by looking at patterns in the words around them, but it doesn't truly 'understand' the situation like a human does. If the surrounding words don't make the meaning clear, the system just chooses whichever meaning seems most common in its training.",
+        "pattern_generalization": "You’ll see these errors when a word or phrase has multiple meanings, especially if the rest of the sentence doesn’t make the intended meaning obvious. Watch out for short sentences or those lacking context.",
+        "mt_system_specific": "General-purpose LLMs like GPT-4 may make more of these mistakes than dedicated MT systems, since LLMs aren’t trained specifically for translation and may rely more on general language patterns."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Vous avez probablement appris par la presse et par la télévision que plusieurs attentats à la bombe et <MISTRANSLATION type=\"ambiguity\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">meurtres</MISTRANSLATION> ont été perpétrés au Sri Lanka.",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "4c192b33-c667-4dbd-baf2-0510643db5a8",
+      "span_start": 79,
+      "span_end": 99,
+      "original_text": "attentats à la bombe",
+      "injected_text": "explosions de bombes",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "overly_literal",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [
+        "S6"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system interpreted 'bomb explosions' literally and translated it as 'explosions de bombes,' focusing on the physical act of bombs exploding.",
+        "actual_meaning": "The source refers to 'attentats à la bombe,' which means bomb attacks or bombings, emphasizing the criminal and intentional nature of the acts.",
+        "reader_impact": "A reader might understand 'explosions de bombes' as accidental or non-criminal explosions, missing the intentional, violent context of terrorist attacks.",
+        "correction_rationale": "'Attentats à la bombe' is the established French term for bomb attacks, accurately conveying the idea of deliberate, criminal acts rather than mere explosions."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often translate word-for-word, like someone following a recipe exactly without considering local ingredients or tastes. They might miss the intended meaning because they focus too much on the surface of the sentence, not its spirit.",
+        "architectural_cause": "Inside, these systems look for patterns between words in different languages based on what they've seen before. They often match words directly, rather than understanding the deeper meaning, especially when they haven't seen enough examples of more natural or idiomatic translations.",
+        "pattern_generalization": "Expect overly literal translations with unusual phrases, idioms, or when the text uses expressions that don't translate directly. Watch out when the source sentence sounds natural, but the translation sounds awkward or stiff.",
+        "mt_system_specific": "General-purpose LLMs like GPT-4 are even more prone to this than dedicated MT systems, because they aren't trained specifically to handle the quirks of translation between languages."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Vous avez probablement appris par la presse et par la télévision que plusieurs <MISTRANSLATION type=\"overly_literal\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">explosions de bombes</MISTRANSLATION> et meurtres ont été perpétrés au Sri Lanka.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 3,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system interpreted 'killings' as specifically meaning 'meurtres' (murders), focusing on intentional unlawful killing.",
+      "actual_meaning": "In this context, 'killings' refers more generally to violent deaths or crimes, not necessarily limited to premeditated murders.",
+      "reader_impact": "A reader would assume that only premeditated murders occurred, missing the broader scope of violent acts or crimes reported.",
+      "correction_rationale": "'Crimes' accurately captures the wider range of violent acts, including but not limited to murders, aligning better with the source's intended meaning."
+    },
+    {
+      "mt_interpretation": "The MT system interpreted 'bomb explosions' literally and translated it as 'explosions de bombes,' focusing on the physical act of bombs exploding.",
+      "actual_meaning": "The source refers to 'attentats à la bombe,' which means bomb attacks or bombings, emphasizing the criminal and intentional nature of the acts.",
+      "reader_impact": "A reader might understand 'explosions de bombes' as accidental or non-criminal explosions, missing the intentional, violent context of terrorist attacks.",
+      "correction_rationale": "'Attentats à la bombe' is the established French term for bomb attacks, accurately conveying the idea of deliberate, criminal acts rather than mere explosions."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often stumble with ambiguous words or phrases, much like a person who hears the word 'bat' and isn't sure if it means the animal or the baseball equipment. Without extra clues, the system guesses which meaning fits best, but sometimes it picks the wrong one.",
+      "architectural_cause": "The system decides on word meanings by looking at patterns in the words around them, but it doesn't truly 'understand' the situation like a human does. If the surrounding words don't make the meaning clear, the system just chooses whichever meaning seems most common in its training.",
+      "pattern_generalization": "You’ll see these errors when a word or phrase has multiple meanings, especially if the rest of the sentence doesn’t make the intended meaning obvious. Watch out for short sentences or those lacking context.",
+      "mt_system_specific": "General-purpose LLMs like GPT-4 may make more of these mistakes than dedicated MT systems, since LLMs aren’t trained specifically for translation and may rely more on general language patterns."
+    },
+    {
+      "error_mechanism": "MT systems often translate word-for-word, like someone following a recipe exactly without considering local ingredients or tastes. They might miss the intended meaning because they focus too much on the surface of the sentence, not its spirit.",
+      "architectural_cause": "Inside, these systems look for patterns between words in different languages based on what they've seen before. They often match words directly, rather than understanding the deeper meaning, especially when they haven't seen enough examples of more natural or idiomatic translations.",
+      "pattern_generalization": "Expect overly literal translations with unusual phrases, idioms, or when the text uses expressions that don't translate directly. Watch out when the source sentence sounds natural, but the translation sounds awkward or stiff.",
+      "mt_system_specific": "General-purpose LLMs like GPT-4 are even more prone to this than dedicated MT systems, because they aren't trained specifically to handle the quirks of translation between languages."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

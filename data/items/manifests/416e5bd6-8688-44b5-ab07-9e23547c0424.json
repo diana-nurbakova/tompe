@@ -1,0 +1,137 @@
+{
+  "item_id": "416e5bd6-8688-44b5-ab07-9e23547c0424",
+  "segment_id": "europarl-e54de29885ec",
+  "source_text": "I declare resumed the session of the European Parliament adjourned on Friday 17 December 1999, and I would like once again to wish you a happy new year in the hope that you enjoyed a pleasant festive period.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes vux en espérant que vous avez passé de bonne période festive.",
+  "reference_translation": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes vux en espérant que vous avez passé de bonnes vacances.",
+  "mt_system": "deepl",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "2fb5ff5e-ac72-4277-83b9-5152df19389f",
+      "span_start": 177,
+      "span_end": 194,
+      "original_text": "de bonnes vacances",
+      "injected_text": "de bonne vacances",
+      "primary_tag": "GRAMMAR",
+      "error_type": "agreement_number",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely treated 'bonne' as if it should remain singular, failing to recognize that 'vacances' is a plural noun in French.",
+        "actual_meaning": "The source wishes the audience a pleasant holiday period, which in French requires the adjective to agree in number with the plural noun 'vacances.'",
+        "reader_impact": "A French reader would notice the grammatical error ('de bonne vacances'), which disrupts the flow and may cause confusion or reduce the perceived professionalism of the text.",
+        "correction_rationale": "In French, adjectives must agree in number and gender with the nouns they modify; since 'vacances' is plural, the correct form is 'bonnes vacances.'"
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems sometimes miss number agreement between adjectives and nouns because they focus on translating words in sequence, like a person assembling a puzzle quickly and missing a piece that doesn’t quite fit. If the system doesn’t catch that the noun is plural, it might forget to make the adjective plural too, leading to mismatches.",
+        "architectural_cause": "Internally, the system learns from lots of examples, but it doesn’t have a deep understanding of grammar rules. It relies on patterns it has seen, so if the connection between plural nouns and their adjectives isn’t strong in its training data, it can overlook the need for agreement.",
+        "pattern_generalization": "Students can expect similar errors when adjectives and nouns are separated by other words, or in sentences with complex structures. Watch out for this especially in languages where adjective endings change with number.",
+        "mt_system_specific": "Dedicated MT systems like DeepL may make fewer of these mistakes than general-purpose LLMs, because they are trained specifically on translation data, but both types can struggle with agreement in tricky sentences."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes vux en espérant que vous avez passé <GRAMMAR type=\"agreement_number\" severity=\"major\" tom=\"1st_machine\" desc=\"Adjective should be plural to agree with plural noun\">de bonne vacances</GRAMMAR>.",
+      "brief_explanation": "Adjective should be plural to agree with plural noun"
+    },
+    {
+      "error_id": "82498228-09ec-441c-9ae1-a75d3283c5a7",
+      "span_start": 186,
+      "span_end": 201,
+      "original_text": "vacances",
+      "injected_text": "période festive",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "word_sense",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [
+        "S5"
+      ],
+      "severity_range": [
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system identified 'festive period' and translated it literally as 'période festive,' focusing on the surface meaning of the words rather than the context.",
+        "actual_meaning": "The source refers to the holiday break at the end of the year, commonly called 'les vacances' in French, not just any festive period.",
+        "reader_impact": "A French reader would find 'période festive' awkward and unclear, possibly interpreting it as a generic celebration period rather than the specific holiday break, making the message less natural and idiomatic.",
+        "correction_rationale": "'Vacances' is the standard, idiomatic way to refer to the end-of-year holidays in French and accurately conveys the intended meaning, making the sentence both natural and culturally appropriate."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often pick the most common meaning of a word, like choosing the first tool in a toolbox without checking if it's the right fit for the job. If a word has several meanings, the system may miss the special sense needed for the situation, especially with phrases that don't translate word-for-word.",
+        "architectural_cause": "Internally, the system looks for patterns it has seen before in its training data. If the exact phrase or idiom is rare or missing, it guesses based on the most frequent or obvious meaning, rather than understanding the full context like a human would.",
+        "pattern_generalization": "Similar errors happen with words or phrases that have multiple meanings, especially with idioms, slang, or expressions that don't translate literally. Watch out for these when translating things like holiday names, cultural references, or figurative language.",
+        "mt_system_specific": "Dedicated MT systems like DeepL rely more on their training data and may miss subtle context, while large language models (LLMs) can sometimes do better by reasoning about the broader situation, but both can make this kind of mistake."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Je déclare reprise la session du Parlement européen qui avait été interrompue le vendredi 17 décembre dernier et je vous renouvelle tous mes vux en espérant que vous avez passé de bonne <MISTRANSLATION type=\"word_sense\" severity=\"major\" tom=\"1st_machine\" desc=\"Literal translation; not idiomatic for holiday break\">période festive</MISTRANSLATION>.",
+      "brief_explanation": "Literal translation; not idiomatic for holiday break"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 3,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely treated 'bonne' as if it should remain singular, failing to recognize that 'vacances' is a plural noun in French.",
+      "actual_meaning": "The source wishes the audience a pleasant holiday period, which in French requires the adjective to agree in number with the plural noun 'vacances.'",
+      "reader_impact": "A French reader would notice the grammatical error ('de bonne vacances'), which disrupts the flow and may cause confusion or reduce the perceived professionalism of the text.",
+      "correction_rationale": "In French, adjectives must agree in number and gender with the nouns they modify; since 'vacances' is plural, the correct form is 'bonnes vacances.'"
+    },
+    {
+      "mt_interpretation": "The MT system identified 'festive period' and translated it literally as 'période festive,' focusing on the surface meaning of the words rather than the context.",
+      "actual_meaning": "The source refers to the holiday break at the end of the year, commonly called 'les vacances' in French, not just any festive period.",
+      "reader_impact": "A French reader would find 'période festive' awkward and unclear, possibly interpreting it as a generic celebration period rather than the specific holiday break, making the message less natural and idiomatic.",
+      "correction_rationale": "'Vacances' is the standard, idiomatic way to refer to the end-of-year holidays in French and accurately conveys the intended meaning, making the sentence both natural and culturally appropriate."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems sometimes miss number agreement between adjectives and nouns because they focus on translating words in sequence, like a person assembling a puzzle quickly and missing a piece that doesn’t quite fit. If the system doesn’t catch that the noun is plural, it might forget to make the adjective plural too, leading to mismatches.",
+      "architectural_cause": "Internally, the system learns from lots of examples, but it doesn’t have a deep understanding of grammar rules. It relies on patterns it has seen, so if the connection between plural nouns and their adjectives isn’t strong in its training data, it can overlook the need for agreement.",
+      "pattern_generalization": "Students can expect similar errors when adjectives and nouns are separated by other words, or in sentences with complex structures. Watch out for this especially in languages where adjective endings change with number.",
+      "mt_system_specific": "Dedicated MT systems like DeepL may make fewer of these mistakes than general-purpose LLMs, because they are trained specifically on translation data, but both types can struggle with agreement in tricky sentences."
+    },
+    {
+      "error_mechanism": "MT systems often pick the most common meaning of a word, like choosing the first tool in a toolbox without checking if it's the right fit for the job. If a word has several meanings, the system may miss the special sense needed for the situation, especially with phrases that don't translate word-for-word.",
+      "architectural_cause": "Internally, the system looks for patterns it has seen before in its training data. If the exact phrase or idiom is rare or missing, it guesses based on the most frequent or obvious meaning, rather than understanding the full context like a human would.",
+      "pattern_generalization": "Similar errors happen with words or phrases that have multiple meanings, especially with idioms, slang, or expressions that don't translate literally. Watch out for these when translating things like holiday names, cultural references, or figurative language.",
+      "mt_system_specific": "Dedicated MT systems like DeepL rely more on their training data and may miss subtle context, while large language models (LLMs) can sometimes do better by reasoning about the broader situation, but both can make this kind of mistake."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

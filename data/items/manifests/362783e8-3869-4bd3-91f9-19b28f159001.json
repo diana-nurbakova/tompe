@@ -1,0 +1,137 @@
+{
+  "item_id": "362783e8-3869-4bd3-91f9-19b28f159001",
+  "segment_id": "europarl-58eae60d5b7a",
+  "source_text": "Although, as you will have seen, the dreaded 'millennium bug' failed to materialise, still the people in a number of countries suffered a series of natural disasters that truly were dreadful.",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Comme vous avez pu le constater, le \"bogue de l'an 2000\" redouté ne s'est pas produit. En revanche, les citoyens d'un certain nombre de nos pays étaient victimes de catastrophes naturelles qui ont vraiment été terribles.",
+  "reference_translation": "Comme vous avez pu le constater, le grand \"bogue de l'an 2000\" ne s'est pas produit. En revanche, les citoyens d'un certain nombre de nos pays ont été victimes de catastrophes naturelles qui ont vraiment été terribles.",
+  "mt_system": "gpt4",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "c208b6fe-66a2-4a6f-b117-4dc7e009be1a",
+      "span_start": 143,
+      "span_end": 159,
+      "original_text": "ont été victimes",
+      "injected_text": "étaient victimes",
+      "primary_tag": "GRAMMAR",
+      "error_type": "tense",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted the English past simple 'suffered' as requiring the French imperfect tense 'étaient victimes', focusing on an ongoing or habitual aspect.",
+        "actual_meaning": "The source describes specific, completed events—people in several countries were victims of natural disasters at particular times, not continuously.",
+        "reader_impact": "A reader might interpret 'étaient victimes' as meaning these people were victims over an extended period or habitually, rather than as a result of discrete disasters.",
+        "correction_rationale": "The passé composé 'ont été victimes' correctly conveys that the people became victims in specific, completed incidents, matching the source's meaning and the typical use of past tenses in French for such contexts."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often confuse tenses like imperfect and passé composé because they rely on patterns in the text rather than truly understanding the story or timeline. It's like a student who memorizes common phrases without always knowing when each is appropriate, sometimes grabbing the wrong one for the situation.",
+        "architectural_cause": "Internally, the system looks for clues in the surrounding words and sentences to guess the correct tense, but it doesn't have a deep sense of time or sequence. It makes decisions based on which tense seems most likely in similar examples it has seen, not by reasoning about the events themselves.",
+        "pattern_generalization": "Students can expect similar errors whenever the context does not make the time of the action crystal clear, especially in narratives or descriptions where both tenses could make sense. Watch for this in sentences describing past events without explicit time markers.",
+        "mt_system_specific": "Dedicated MT systems trained specifically for translation between languages usually handle tense better than general-purpose LLMs, because they are optimized to follow tense rules more strictly."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Comme vous avez pu le constater, le grand \"bogue de l'an 2000\" ne s'est pas produit. En revanche, les citoyens d'un certain nombre de nos pays <GRAMMAR type=\"tense\" severity=\"minor\" tom=\"1st_machine\" desc=\"Imperfect tense used instead of passé composé\">étaient victimes</GRAMMAR> de catastrophes naturelles qui ont vraiment été terribles.",
+      "brief_explanation": "Imperfect tense used instead of passé composé"
+    },
+    {
+      "error_id": "2ee8e691-978e-454e-9688-c3868f23cbdb",
+      "span_start": 36,
+      "span_end": 64,
+      "original_text": "grand \"bogue de l'an 2000\"",
+      "injected_text": "\"bogue de l'an 2000\" redouté",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "ambiguity",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "severity_range": [
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system interpreted 'dreaded' as an adjective directly modifying 'bogue de l'an 2000', resulting in 'bogue de l'an 2000 redouté'. It aimed for a literal translation, focusing on the explicit descriptor.",
+        "actual_meaning": "The source uses 'dreaded' to convey the widespread fear and significance attached to the 'millennium bug', not just that it was feared, but that it was a major, well-known event. The emphasis is on the prominence and notoriety of the bug.",
+        "reader_impact": "A reader may interpret 'bogue de l'an 2000 redouté' as a minor or obscure bug that some people feared, missing the cultural and historical importance of the event. This downplays its impact and the shared experience of that period.",
+        "correction_rationale": "'Le grand \"bogue de l'an 2000\"' accurately conveys both the scale and the notoriety of the event, aligning with how it is referenced in French. It preserves the intended emphasis and cultural resonance present in the source text."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often struggle with words or phrases that have more than one meaning, like the word 'bank' (which could mean a riverbank or a financial institution). It's a bit like hearing a word in a conversation without enough background—you might guess the wrong meaning if you don't know the full story.",
+        "architectural_cause": "Internally, the system tries to predict the best translation based on patterns it has seen before, but it doesn't truly 'understand' the deeper context like a human would. If the sentence doesn't provide enough clues, the system may pick the most common or familiar meaning instead of the correct one for that situation.",
+        "pattern_generalization": "Students will often see these errors when a word or phrase in the source language can be translated in multiple ways, especially if the surrounding text doesn’t make the meaning clear. Watch out for short sentences or headlines, which often lack enough context.",
+        "mt_system_specific": "Large language models like GPT-4 may make more of these errors compared to specialized translation systems, because they are trained on a wider range of texts and may not focus as much on picking the right meaning for translation tasks."
+      },
+      "technical_explanation": null,
+      "xml_tag": "Comme vous avez pu le constater, le <MISTRANSLATION type=\"ambiguity\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">\"bogue de l'an 2000\" redouté</MISTRANSLATION> ne s'est pas produit. En revanche, les citoyens d'un certain nombre de nos pays étaient victimes de catastrophes naturelles qui ont vraiment été terribles.",
+      "brief_explanation": "5-15 word explanation"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "independent",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 3,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely interpreted the English past simple 'suffered' as requiring the French imperfect tense 'étaient victimes', focusing on an ongoing or habitual aspect.",
+      "actual_meaning": "The source describes specific, completed events—people in several countries were victims of natural disasters at particular times, not continuously.",
+      "reader_impact": "A reader might interpret 'étaient victimes' as meaning these people were victims over an extended period or habitually, rather than as a result of discrete disasters.",
+      "correction_rationale": "The passé composé 'ont été victimes' correctly conveys that the people became victims in specific, completed incidents, matching the source's meaning and the typical use of past tenses in French for such contexts."
+    },
+    {
+      "mt_interpretation": "The MT system interpreted 'dreaded' as an adjective directly modifying 'bogue de l'an 2000', resulting in 'bogue de l'an 2000 redouté'. It aimed for a literal translation, focusing on the explicit descriptor.",
+      "actual_meaning": "The source uses 'dreaded' to convey the widespread fear and significance attached to the 'millennium bug', not just that it was feared, but that it was a major, well-known event. The emphasis is on the prominence and notoriety of the bug.",
+      "reader_impact": "A reader may interpret 'bogue de l'an 2000 redouté' as a minor or obscure bug that some people feared, missing the cultural and historical importance of the event. This downplays its impact and the shared experience of that period.",
+      "correction_rationale": "'Le grand \"bogue de l'an 2000\"' accurately conveys both the scale and the notoriety of the event, aligning with how it is referenced in French. It preserves the intended emphasis and cultural resonance present in the source text."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often confuse tenses like imperfect and passé composé because they rely on patterns in the text rather than truly understanding the story or timeline. It's like a student who memorizes common phrases without always knowing when each is appropriate, sometimes grabbing the wrong one for the situation.",
+      "architectural_cause": "Internally, the system looks for clues in the surrounding words and sentences to guess the correct tense, but it doesn't have a deep sense of time or sequence. It makes decisions based on which tense seems most likely in similar examples it has seen, not by reasoning about the events themselves.",
+      "pattern_generalization": "Students can expect similar errors whenever the context does not make the time of the action crystal clear, especially in narratives or descriptions where both tenses could make sense. Watch for this in sentences describing past events without explicit time markers.",
+      "mt_system_specific": "Dedicated MT systems trained specifically for translation between languages usually handle tense better than general-purpose LLMs, because they are optimized to follow tense rules more strictly."
+    },
+    {
+      "error_mechanism": "MT systems often struggle with words or phrases that have more than one meaning, like the word 'bank' (which could mean a riverbank or a financial institution). It's a bit like hearing a word in a conversation without enough background—you might guess the wrong meaning if you don't know the full story.",
+      "architectural_cause": "Internally, the system tries to predict the best translation based on patterns it has seen before, but it doesn't truly 'understand' the deeper context like a human would. If the sentence doesn't provide enough clues, the system may pick the most common or familiar meaning instead of the correct one for that situation.",
+      "pattern_generalization": "Students will often see these errors when a word or phrase in the source language can be translated in multiple ways, especially if the surrounding text doesn’t make the meaning clear. Watch out for short sentences or headlines, which often lack enough context.",
+      "mt_system_specific": "Large language models like GPT-4 may make more of these errors compared to specialized translation systems, because they are trained on a wider range of texts and may not focus as much on picking the right meaning for translation tasks."
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "independent",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

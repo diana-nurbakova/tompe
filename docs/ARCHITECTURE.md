@@ -11,10 +11,12 @@
 3. [Data Preparation Pipeline](#3-data-preparation-pipeline)
 4. [Teacher Workflow](#4-teacher-workflow)
 5. [Student Workflow](#5-student-workflow)
-6. [Backend Services](#6-backend-services)
-7. [Scoring, Feedback & Analytics](#7-scoring-feedback--analytics)
-8. [Configuration & Deployment](#8-configuration--deployment)
-9. [End-to-End Architecture Diagram](#9-end-to-end-architecture-diagram)
+6. [Gamification & Badges](#6-gamification--badges)
+7. [Backend Services](#7-backend-services)
+8. [Scoring, Feedback & Analytics](#8-scoring-feedback--analytics)
+9. [Research Infrastructure](#9-research-infrastructure)
+10. [Configuration & Deployment](#10-configuration--deployment)
+11. [End-to-End Architecture Diagram](#11-end-to-end-architecture-diagram)
 
 ---
 
@@ -41,16 +43,21 @@ ToM-PE is a pedagogical platform that trains translation students to critically 
 ```
 ToM-PE/
 ├── src/tompe/
-│   ├── schemas/          # Pydantic data models (items, students, competency)
+│   ├── schemas/          # Pydantic data models (items, students, competency, badges)
 │   ├── pipeline/         # Item generation pipeline (6 stages)
-│   ├── services/         # API, auth, scoring, feedback, analytics
+│   ├── services/         # API, auth, scoring, feedback, analytics, badges
 │   └── interfaces/       # Teacher (Streamlit) & Student (Gradio) UIs
-├── config/               # settings.yaml, mt_backends.yaml
+├── config/               # settings.yaml, mt_backends.yaml, badges.json
+├── assets/badges/        # Badge icon images (40+ PNGs)
 ├── data/                 # All persistent data (JSON, JSONL)
-├── scripts/              # Batch ingestion & generation scripts
-├── study/                # Standalone ECTEL 2026 study app
-├── experiments/          # Research validation experiments
-├── specs/                # Technical specifications
+├── scripts/              # Batch ingestion, generation & report scripts
+├── study/                # Standalone ECTEL 2026 pilot study app
+├── experiments/
+│   ├── ectel/            # ECTEL 2026 submission experiments (3a, 3b)
+│   ├── tom_validation/   # ToM hypothesis validation pipeline (R + Python)
+│   └── wasserstein/      # MasteryGap dashboard visualizations
+├── screenshots/          # Labelled UI screenshots (student & teacher workflows)
+├── docs/                 # Architecture, fluency-trap spec
 └── tests/                # Test suite
 ```
 
@@ -422,9 +429,64 @@ Promotion requires sustained performance (detection rate above threshold for 3 c
 
 ---
 
-## 6. Backend Services
+## 6. Gamification & Badges
 
-### 6.1 FastAPI Application
+The platform includes a gamification layer to sustain student motivation through badges and experience points (XP).
+
+### 6.1 Badge System
+
+**Schema**: `src/tompe/schemas/badges.py`
+**Service**: `src/tompe/services/badges.py`
+**Configuration**: `config/badges.json`
+**Assets**: `assets/badges/` (40+ icon images)
+
+Badges are organized into three categories:
+
+| Category | Count | Description |
+|----------|-------|-------------|
+| **Progression** | 4 tiers | Awarded when students complete scaffolding levels L0–L3 (Navigator → Scout → Analyst → Expert) |
+| **Specialisation** | 10 × 3 tiers = 30 | Track detection mastery per MQM error category with bronze / silver / gold tiers |
+| **Behaviour** | 3 unique | Reward strategic thinking patterns |
+
+**Specialisation badge tiers** require cumulative correct detections per category:
+
+| Tier   | Detections | Category Matches | Severity Matches |
+|--------|------------|------------------|------------------|
+| Bronze | 10         | 8                | 5                |
+| Silver | 25         | 20               | 15               |
+| Gold   | 50         | 40               | 30               |
+
+**Behaviour badges**:
+
+- **Clean Sheet**: Perfect score on an item (zero FP, all errors detected)
+- **Trap Detector**: Correctly identifies false annotations at Navigator level
+- **False Positive Discipline**: Maintains zero false positives at Expert level
+
+### 6.2 XP System
+
+Each student action earns XP with base values:
+
+| Action | Base XP |
+|--------|---------|
+| Error detection | +10 |
+| Category match | +5 |
+| Severity match | +3 |
+| False positive | −5 |
+
+XP is scaled by two multipliers:
+- **ToM level multiplier**: 1.0× (1st-machine) → 2.0× (recursive) — rewards detecting harder errors
+- **Scaffolding level multiplier**: 0.5× (Navigator L0) → 2.0× (Expert L3) — rewards independence
+
+### 6.3 UI Integration
+
+- **Student app**: Badge collection display with visual hierarchy, progress bars toward next tiers, and XP history
+- **Teacher app**: Badge analytics tab with class-wide heatmap showing badge distribution across students, and a visibility toggle
+
+---
+
+## 7. Backend Services
+
+### 7.1 FastAPI Application
 
 **Module**: `src/tompe/services/api.py`
 **Default port**: 8000, CORS enabled for Gradio cross-origin requests.
@@ -442,6 +504,7 @@ Promotion requires sustained performance (detection rate above threshold for 3 c
 | Classes | `/api/classes/` | Class management (teacher/admin) |
 | Students | `/api/students/` | Student CRUD, bulk import, level management |
 | Analytics | `/api/analytics/` | Per-student and per-class performance metrics |
+| Badges | `/api/badges/` | Badge collection, XP history, progress summaries |
 
 #### Key Endpoints
 
@@ -455,9 +518,10 @@ POST /api/responses/{id}/justifications → confirmation
 GET  /api/responses/{id}/feedback  → {summary, errors with explanations}
 GET  /api/responses/{id}/score     → ScoringResult
 GET  /api/analytics/student/{id}   → StudentProfile with blind spots
+GET  /api/badges/{student_id}      → StudentBadges with earned badges & XP
 ```
 
-### 6.2 Authentication
+### 7.2 Authentication
 
 **Module**: `src/tompe/services/auth.py`
 
@@ -470,7 +534,7 @@ GET  /api/analytics/student/{id}   → StudentProfile with blind spots
 
 Teacher access (Streamlit) runs on the same machine with direct service imports — no authentication layer in v1.
 
-### 6.3 Data Store
+### 7.3 Data Store
 
 **Module**: `src/tompe/services/datastore.py`
 
@@ -498,8 +562,9 @@ class JsonStore:
 | `feedback_store` | `data/feedback/` | — |
 | `tokens_store` | `data/sessions/tokens/` | — |
 | `consent_store` | `data/consent/` | — |
+| `badges_store` | `data/badges/` | `student_id` |
 
-### 6.4 LLM Client
+### 7.4 LLM Client
 
 **Module**: `src/tompe/pipeline/llm_client.py`
 
@@ -521,9 +586,9 @@ Factory functions `make_client(provider, model)` and `make_client_from_config(co
 
 ---
 
-## 7. Scoring, Feedback & Analytics
+## 8. Scoring, Feedback & Analytics
 
-### 7.1 Scoring
+### 8.1 Scoring
 
 **Module**: `src/tompe/services/scoring.py`
 
@@ -552,7 +617,7 @@ For post-editing mode:
 - **Unnecessary edits**: Changes to spans that were not errors
 - **Edit quality**: Proportion of edits that improve the translation
 
-### 7.2 Feedback (Cognitive Forcing Protocol)
+### 8.2 Feedback (Cognitive Forcing Protocol)
 
 **Module**: `src/tompe/services/feedback.py`
 
@@ -568,7 +633,7 @@ The feedback payload includes:
 - Missed errors with full explanations to fill knowledge gaps
 - False positives with explanation of why the flagged span is actually correct
 
-### 7.3 Analytics & Blind Spot Detection
+### 8.3 Analytics & Blind Spot Detection
 
 **Module**: `src/tompe/services/analytics.py`
 
@@ -590,9 +655,76 @@ Returns: affected category, ToM level, average rate, session count, and example 
 
 ---
 
-## 8. Configuration & Deployment
+## 9. Research Infrastructure
 
-### 8.1 Environment Variables (`.env`)
+The `experiments/` and `study/` directories contain standalone research tooling that validates the platform's theoretical foundations and supports pilot data collection.
+
+### 9.1 ToM Hypothesis Validation
+
+**Directory**: `experiments/tom_validation/`
+
+An 8-step statistical pipeline that validates the core hypothesis: errors requiring higher Theory of Mind levels are harder for human raters to detect.
+
+| Step | Module | Method |
+|------|--------|--------|
+| 1 | `parse_mqm.py` | Parse WMT-MQM TSV annotations, extract error spans with IoU alignment |
+| 2 | `align_errors.py` | Rater-level error alignment with configurable IoU thresholds (standard 0.5, lenient 0.4, strict 0.6) |
+| 3 | `assign_tom.py` | Map detected errors to ToM levels (1st-machine, 1st-author, 2nd-reader, recursive) |
+| 4 | `descriptive.py` | Descriptive statistics: rater counts, error distributions per category and ToM level |
+| 5 | `test_trend.py` | Jonckheere-Terpstra trend test for monotonic ToM-difficulty relationship |
+| 6 | `mixed_models.py` | Kruskal-Wallis H-test, Dunn's post-hoc comparisons, ordinal regression, rater-level logistic regression |
+| 7 | `sensitivity.py` | Sensitivity analyses: IoU variants, rater exclusion, severity filtering, subset replication |
+| 8 | `figures.py` | Generate V1–V3 visualization figures (boxplot, heatmap, rater slopes) |
+
+**R integration**: `r_runner.py` wraps two R scripts for mixed-effects models:
+
+- `clmm_analysis.R` — Cumulative link mixed model (CLMM) for ordinal ToM levels
+- `rater_glmm.R` — Generalized linear mixed model (GLMM) for rater random effects
+
+**Orchestration**: `run_all.py` runs the full pipeline end-to-end, writing outputs to `outputs/tom_validation/`.
+
+### 9.2 ECTEL 2026 Experiments
+
+**Directory**: `experiments/ectel/`
+
+Experiments supporting the EC-TEL 2026 submission:
+
+- `exp3b_developmental.py` — Tests the developmental gradient hypothesis (low-ToM skills are mastered before high-ToM skills) using first-mastery analysis, learning curve slopes, phase improvement, and experience-gradient methods
+- `visualizations.py` — Generates figures F4–F6: ToM ordering vs. published difficulty scatter plots, convergence analysis, and convergence heatmaps
+- `run_all.py` — Orchestration script including exp3b
+
+**Report generation**: `scripts/generate_ectel_report.py` produces detailed Markdown reports from experiment results, with support for source-exclusion sensitivity runs (e.g., excluding Temnikova 2010).
+
+### 9.3 Wasserstein Distance Visualizations
+
+**Module**: `experiments/wasserstein/dashboard_visualizations.py`
+
+Generates teacher-facing dashboard prototypes using the MasteryGap metric (Wasserstein / optimal-transport distance between a student's current skill distribution and a target mastery profile):
+
+- **Option A** — Individual student skill profiles with optimal-transport arrows showing current vs. target mastery
+- **Option B** — Class-level trajectory sparklines with alert bands for at-risk students
+- **Option C** — Class heatmap with student rows, skill columns, and session-by-session color-coded progression
+
+Outputs 9 dashboard prototypes to `outputs/wasserstein/figures/dashboard/` (3 student archetypes × 3 visualization options).
+
+### 9.4 ECTEL 2026 Pilot Study App
+
+**Directory**: `study/`
+
+A standalone Gradio + Streamlit application for participant data collection, independent of the main training platform:
+
+- `study_app.py` — Gradio interface with a linear flow: Consent → 20 segment evaluations → Post-task questionnaire → Thank you
+- `study_manager.py` — Streamlit management dashboard with Setup, Monitor, and Export tabs
+- `study_config.json` — Configuration with consent forms and post-task questionnaires
+- `segments/ectel2026_pilot.json` — 20 curated segments across three conditions (L1 surface errors, L2 meaning errors with fluency-form variants, L3 deeper ToM errors)
+
+**Design features**: Form randomization (A/B) for counterbalancing fluency effects, segment ordering constraints (first segment always L1 warm-up, max 2 consecutive from same condition), anonymous participant ID generation, per-participant JSON export.
+
+---
+
+## 10. Configuration & Deployment
+
+### 10.1 Environment Variables (`.env`)
 
 ```bash
 ANTHROPIC_API_KEY=sk-ant-...      # Claude for error injection & explanations
@@ -605,7 +737,7 @@ TOGETHER_API_KEY=...              # Together AI for open-source models
 HF_TOKEN=...                      # Hugging Face (xCOMET model access)
 ```
 
-### 8.2 Global Settings (`config/settings.yaml`)
+### 10.2 Global Settings (`config/settings.yaml`)
 
 ```yaml
 languages:
@@ -635,11 +767,11 @@ server:
   teacher_ui_port: 8501
 ```
 
-### 8.3 MT Backend Configuration (`config/mt_backends.yaml`)
+### 10.3 MT Backend Configuration (`config/mt_backends.yaml`)
 
 Each MT system is independently toggleable with its own model, prompt strategy, and provider settings. The `injection_llm` section configures which model performs error injection (default: GPT-4.1, temperature 0.3).
 
-### 8.4 Running the Platform
+### 10.4 Running the Platform
 
 ```bash
 # Start the FastAPI backend (port 8000)
@@ -654,7 +786,7 @@ streamlit run src/tompe/interfaces/teacher_app.py
 
 ---
 
-## 9. End-to-End Architecture Diagram
+## 11. End-to-End Architecture Diagram
 
 ```
 ╔══════════════════════════════════════════════════════════════════════════╗
@@ -671,10 +803,10 @@ streamlit run src/tompe/interfaces/teacher_app.py
 ┌───────────────────────────────────────────────────────────────────────┐
 │                    SERVICES LAYER (Direct Imports)                    │
 │                                                                       │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────────────┐  │
-│  │  auth.py │  │datastore │  │ scoring  │  │    analytics.py      │  │
-│  │          │  │   .py    │  │   .py    │  │                      │  │
-│  └──────────┘  └──────────┘  └──────────┘  └──────────────────────┘  │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌────────────┐  ┌──────┐  │
+│  │  auth.py │  │datastore │  │ scoring  │  │analytics.py│  │badges│  │
+│  │          │  │   .py    │  │   .py    │  │            │  │  .py │  │
+│  └──────────┘  └──────────┘  └──────────┘  └────────────┘  └──────┘  │
 └───────────────────────────┬───────────────────────────────────────────┘
                             │
                             ▼
@@ -712,6 +844,7 @@ streamlit run src/tompe/interfaces/teacher_app.py
 │  data/feedback/    ← Generated feedback                              │
 │  data/consent/     ← Research consent records                        │
 │  data/analytics/   ← Performance metrics                             │
+│  data/badges/      ← Earned badges & XP records                      │
 └───────────────────────────────────────────────────────────────────────┘
 
 ╔══════════════════════════════════════════════════════════════════════════╗
@@ -724,6 +857,7 @@ streamlit run src/tompe/interfaces/teacher_app.py
 ║  /api/items/         ← Assessment item delivery                        ║
 ║  /api/responses/     ← Submit annotations, justifications, feedback    ║
 ║  /api/analytics/     ← Performance metrics                             ║
+║  /api/badges/        ← Badge collection & XP                           ║
 ║  /api/classes/       ← Admin class management                          ║
 ║  /api/students/      ← Admin student management                        ║
 ╚═══════════════════════════════════╤════════════════════════════════════╝
@@ -741,6 +875,16 @@ streamlit run src/tompe/interfaces/teacher_app.py
 ║  └────────────────┘  └────────────────┘  └────────────────────────┘   ║
 ║                                                                        ║
 ║  Scaffolding: L0 Navigator │ L1 Guided │ L2 Independent │ L3 Expert   ║
+║  Gamification: Badges (progression/specialisation/behaviour) + XP      ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║                     RESEARCH INFRASTRUCTURE                            ║
+║                                                                        ║
+║  experiments/tom_validation/   ← ToM hypothesis validation (R+Python)  ║
+║  experiments/ectel/            ← ECTEL 2026 experiments (3a, 3b)       ║
+║  experiments/wasserstein/      ← MasteryGap dashboard prototypes       ║
+║  study/                        ← Standalone pilot study app (Gradio)   ║
 ╚══════════════════════════════════════════════════════════════════════════╝
 ```
 
@@ -753,6 +897,7 @@ streamlit run src/tompe/interfaces/teacher_app.py
 5. **Student logs in**, selects an exercise, and enters the three-phase workflow.
 6. **Phase 1**: Student identifies errors in the presented MT text (with scaffolding appropriate to their level).
 7. **Phase 2**: Student justifies each detection before seeing answers (cognitive forcing).
-8. **Phase 3**: System scores the response, reveals explanations, and stores results.
+8. **Phase 3**: System scores the response, reveals explanations, awards badges and XP, and stores results.
 9. **Analytics** track performance over time, detect blind spots, and recommend progression.
-10. **Teacher monitors** class and individual performance, adjusting scaffolding levels as students demonstrate mastery.
+10. **Gamification** awards progression, specialisation, and behaviour badges; XP scales with ToM level and scaffolding independence.
+11. **Teacher monitors** class and individual performance via analytics dashboards and badge heatmaps, adjusting scaffolding levels as students demonstrate mastery.

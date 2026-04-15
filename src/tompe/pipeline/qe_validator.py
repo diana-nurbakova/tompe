@@ -43,7 +43,6 @@ GEMBA_RESPONSE_SCHEMA = {
         },
         "overall_score": {
             "type": "number",
-            "description": "Quality score from 0 (worst) to 100 (perfect)",
         },
         "errors": {
             "type": "array",
@@ -56,11 +55,13 @@ GEMBA_RESPONSE_SCHEMA = {
                     "span": {"type": "string"},
                     "explanation": {"type": "string"},
                 },
-                "required": ["category", "severity", "span", "explanation"],
+                "required": ["category", "subcategory", "severity", "span", "explanation"],
+                "additionalProperties": False,
             },
         },
     },
     "required": ["overall_quality", "overall_score", "errors"],
+    "additionalProperties": False,
 }
 
 

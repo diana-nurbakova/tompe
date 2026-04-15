@@ -1,0 +1,4634 @@
+{
+  "detection_rate": 0.5243,
+  "category_agreement": 0.4371,
+  "false_positive_rate": 1.9774,
+  "clean_accuracy": 0.2973,
+  "meets_target": false,
+  "target": 0.8,
+  "iou_threshold": 0.5,
+  "total_items": 133,
+  "total_injected_errors": 288,
+  "total_detected": 151,
+  "total_false_positives": 263,
+  "clean_items": 37,
+  "clean_correct": 11,
+  "by_tom_level": {
+    "1st_machine": {
+      "total": 132,
+      "detected": 75,
+      "category_matches": 42,
+      "detection_rate": 0.5681818181818182,
+      "category_agreement": 0.56
+    },
+    "2nd_reader": {
+      "total": 103,
+      "detected": 53,
+      "category_matches": 11,
+      "detection_rate": 0.5145631067961165,
+      "category_agreement": 0.20754716981132076
+    },
+    "1st_author": {
+      "total": 53,
+      "detected": 23,
+      "category_matches": 13,
+      "detection_rate": 0.4339622641509434,
+      "category_agreement": 0.5652173913043478
+    }
+  },
+  "per_item": [
+    {
+      "item_id": "val_0000_dgt_tm-1eb35dc1ca41",
+      "total_injected": 3,
+      "detected": 3,
+      "category_matches": 1,
+      "false_positives": 0,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "80422e1e-d64b-4106-901b-d9735b8454da",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "entity",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.9048,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "eabf5585-008c-4049-88bf-5735cd3daaf8",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "number",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "25a5d137-2b3a-446f-ae4d-d010b703d817",
+          "primary_tag": "GRAMMAR",
+          "error_type": "agreement_number",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.8571,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0001_eurlex-ab8cc9b3f34f",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 0,
+      "false_positives": 3,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "9484581b-9dad-4f7b-834d-1b7379ad9646",
+          "primary_tag": "GRAMMAR",
+          "error_type": "word_order",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.4091,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "8ce3e65b-d365-440a-bf93-50955509d99f",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "overly_literal",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.5714,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "c4b0b9a4-5827-4525-a98a-291277da9bc2",
+          "primary_tag": "GRAMMAR",
+          "error_type": "relative_pronoun",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.4545,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0002_eurlex-79c27a2acf9a",
+      "total_injected": 3,
+      "detected": 3,
+      "category_matches": 1,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "5e7e7871-73df-47fe-b946-38393ea5c5e7",
+          "primary_tag": "STYLE",
+          "error_type": "register_formal",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": true,
+          "gemba_category": "Style"
+        },
+        {
+          "error_id": "c9537bc0-fd10-4665-8431-fe518948fdb2",
+          "primary_tag": "LOCALE",
+          "error_type": "time_format",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "49b45810-ec37-4fe7-9760-f551564e7a70",
+          "primary_tag": "TERMINOLOGY",
+          "error_type": "wrong_term",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 0.7458,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0003_eurlex-7ef171758d12",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 0,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "f2835bfe-6e46-4fc3-96a7-56e15dd6c3c5",
+          "primary_tag": "OMISSION",
+          "error_type": "modifier",
+          "severity": "minor",
+          "tom_level": "1st_author",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        },
+        {
+          "error_id": "3c14e327-0c1d-4f6a-80d0-b36ec7372081",
+          "primary_tag": "GRAMMAR",
+          "error_type": "agreement_number",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.6296,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "8e919e75-f424-4061-a3c9-2521747e8329",
+          "primary_tag": "ADDITION",
+          "error_type": "hallucination",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.3333,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0004_dgt_tm-482813e0d15f",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 0,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "e1e87d4c-e363-4c56-88d5-86f499ac0d73",
+          "primary_tag": "TERMINOLOGY",
+          "error_type": "institutional",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.4643,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        },
+        {
+          "error_id": "e9d15cd6-ac9b-4a03-9dc4-3e9d18ba10f6",
+          "primary_tag": "STYLE",
+          "error_type": "register_formal",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        },
+        {
+          "error_id": "47d76140-cbfe-4b88-bf4b-b03a607cd590",
+          "primary_tag": "LOCALE",
+          "error_type": "number_format",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 0.75,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0006_eurlex-77802e07ca0c",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 1,
+      "false_positives": 5,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "5e76cd8e-4212-4158-8c0b-fda932d3e86d",
+          "primary_tag": "LOCALE",
+          "error_type": "time_format",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.2308,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "268dc745-34da-4c70-944a-e7b20ee30c46",
+          "primary_tag": "TERMINOLOGY",
+          "error_type": "wrong_term",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 0.9688,
+          "category_match": true,
+          "gemba_category": "Terminology"
+        },
+        {
+          "error_id": "9be5c981-66df-41ea-8716-a3318bc632c5",
+          "primary_tag": "STYLE",
+          "error_type": "register_informal",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.2258,
+          "category_match": false,
+          "gemba_category": "Style"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0007_europarl-894e385b08a6",
+      "total_injected": 3,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 5,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "a9d0fb98-a9ee-46c6-ba1a-df4ba53db121",
+          "primary_tag": "GRAMMAR",
+          "error_type": "tense",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.2439,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "b32eaf1d-015f-4bbb-a9e6-88d687b5c615",
+          "primary_tag": "STYLE",
+          "error_type": "register_formal",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.1964,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "3ce32750-70c7-47bd-9603-177167bd8063",
+          "primary_tag": "STYLE",
+          "error_type": "unidiomatic",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        }
+      ]
+    },
+    {
+      "item_id": "val_0009_europarl-fc6ab81fda1d",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 1,
+      "false_positives": 3,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "28888739-214a-4c25-8648-6f27eb9b315a",
+          "primary_tag": "GRAMMAR",
+          "error_type": "preposition",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.4211,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "3c274ac4-a229-4c05-94ea-1b9779bdf277",
+          "primary_tag": "ADDITION",
+          "error_type": "explicitation",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.7273,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "606a6f0b-1217-41ed-b8d8-0dd94847268a",
+          "primary_tag": "ADDITION",
+          "error_type": "hallucination",
+          "severity": "critical",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.1515,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0010_dgt_tm-fae63fd10f42",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 1,
+      "false_positives": 1,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "3508725f-77d6-4b39-ba75-0e570e08a720",
+          "primary_tag": "STYLE",
+          "error_type": "register_formal",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 0.75,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "c45f4ce7-59bd-48c1-8736-a9af5ae5cf54",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "overly_literal",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.5172,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "475b66ca-a92f-4e70-a08b-94213a3c9beb",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "false_cognate",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        }
+      ]
+    },
+    {
+      "item_id": "val_0011_dgt_tm-34a8e1005b3e",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 1,
+      "false_positives": 1,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "b145d70a-d494-4883-b8d1-cb9e45206f50",
+          "primary_tag": "OMISSION",
+          "error_type": "modifier",
+          "severity": "major",
+          "tom_level": "1st_author",
+          "detected": true,
+          "best_iou": 0.5556,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        },
+        {
+          "error_id": "3342865e-7d71-4030-85e0-326c36755b9b",
+          "primary_tag": "OMISSION",
+          "error_type": "modifier",
+          "severity": "minor",
+          "tom_level": "1st_author",
+          "detected": true,
+          "best_iou": 0.55,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "f61d4098-0126-4ce6-8e01-a16cedbecba2",
+          "primary_tag": "OMISSION",
+          "error_type": "partial",
+          "severity": "major",
+          "tom_level": "1st_author",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        }
+      ]
+    },
+    {
+      "item_id": "val_0013_eurlex-9e7461f0ddc9",
+      "total_injected": 3,
+      "detected": 3,
+      "category_matches": 0,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "e7116441-424f-4912-8da8-f2981c089a94",
+          "primary_tag": "OMISSION",
+          "error_type": "modifier",
+          "severity": "major",
+          "tom_level": "1st_author",
+          "detected": true,
+          "best_iou": 0.7,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "2949c6e8-5d88-484d-9f69-2225b6bc1392",
+          "primary_tag": "GRAMMAR",
+          "error_type": "word_order",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.8235,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "82290058-d326-442e-bb76-c65b8f5ed0e9",
+          "primary_tag": "GRAMMAR",
+          "error_type": "tense",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.5,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0014_dgt_tm-f37a11417440",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 0,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "a9f0eb7a-dc25-43d8-955d-5b4eec143696",
+          "primary_tag": "STYLE",
+          "error_type": "unidiomatic",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 0.8378,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "a4634f99-3ac5-4a11-87c9-774518046b63",
+          "primary_tag": "TERMINOLOGY",
+          "error_type": "institutional",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.1515,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        },
+        {
+          "error_id": "e6a3ba08-e5ba-4f87-a678-f3e58273b4c2",
+          "primary_tag": "STYLE",
+          "error_type": "unidiomatic",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        }
+      ]
+    },
+    {
+      "item_id": "val_0015_europarl-81091132e506",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 1,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "2db93fcc-05e8-42df-8e46-c360afbd5df3",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "number",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.5862,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "ff24160e-fdb4-4789-b8cb-da859038ea63",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "ambiguity",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.25,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "41df47ed-7cc0-4294-883b-f390c85b8527",
+          "primary_tag": "GRAMMAR",
+          "error_type": "agreement_number",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.2619,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0016_eurlex-d3610da28608",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 1,
+      "false_positives": 1,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "b83aeed2-d41c-41cf-9551-406228513add",
+          "primary_tag": "PUNCTUATION",
+          "error_type": "punctuation",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.9643,
+          "category_match": true,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "57894a0b-6c9e-4752-aa79-d6eeded3ee94",
+          "primary_tag": "GRAMMAR",
+          "error_type": "agreement_number",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.3,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "ace53756-3ef4-42ef-94c5-8cd9a1dfd811",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "word_sense",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.9,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0017_europarl-b551a18f5d20",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 1,
+      "false_positives": 3,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "ef9d62be-75b1-4d2c-8ad2-6899e1513329",
+          "primary_tag": "OMISSION",
+          "error_type": "partial",
+          "severity": "major",
+          "tom_level": "1st_author",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        },
+        {
+          "error_id": "bcd3de7a-57c1-46e3-a23f-2587cdf4504a",
+          "primary_tag": "STYLE",
+          "error_type": "register_informal",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        },
+        {
+          "error_id": "6f933e3b-5587-4540-877b-c1b65ce65791",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "entity",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0018_dgt_tm-0129ef3f5a05",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 1,
+      "false_positives": 1,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "a24259f0-c34b-4a69-be70-0668f7f868d1",
+          "primary_tag": "GRAMMAR",
+          "error_type": "word_order",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.72,
+          "category_match": true,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "2513e459-8aaa-4633-8856-af3f456d75b0",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "entity",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.4,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "5f7919b9-2ceb-4d10-86ca-e1c3bb102cb6",
+          "primary_tag": "GRAMMAR",
+          "error_type": "agreement_gender",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        }
+      ]
+    },
+    {
+      "item_id": "val_0019_europarl-3a44c994f1d3",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 1,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "c1ae5dbd-78fb-47fc-9794-042cf60912c1",
+          "primary_tag": "GRAMMAR",
+          "error_type": "preposition",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "ebd7b3ac-cd9e-47c5-bf88-93a76147d016",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "number",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "f521a425-71fe-4bb1-8d37-5860422a6c00",
+          "primary_tag": "ADDITION",
+          "error_type": "hallucination",
+          "severity": "critical",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.3704,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0020_eurlex-608366d71428",
+      "total_injected": 3,
+      "detected": 3,
+      "category_matches": 1,
+      "false_positives": 0,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "cac6fdfb-22c3-4427-a368-ca8583a94640",
+          "primary_tag": "LOCALE",
+          "error_type": "number_format",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 0.7083,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "03e45394-01c8-4e42-be18-a67663f6d7e9",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "false_cognate",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        },
+        {
+          "error_id": "8e05054f-335d-4dbc-956a-b8a16920b066",
+          "primary_tag": "ADDITION",
+          "error_type": "hallucination",
+          "severity": "critical",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.9487,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0021_eurlex-2c4e93e85a00",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 0,
+      "false_positives": 6,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "4df517cd-0722-404d-a27b-d0f67f0c3982",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "entity",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.4048,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "f92c0142-a576-4655-b0f5-61606008b477",
+          "primary_tag": "STYLE",
+          "error_type": "register_formal",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "1c5523bc-7081-4874-a568-ddd049c5951b",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "overly_literal",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.4048,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0022_dgt_tm-d5224536227c",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 1,
+      "false_positives": 0,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "95739215-d27a-4d77-9954-8abdd76598d7",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "word_sense",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        },
+        {
+          "error_id": "912faa3c-994a-4171-aa70-aecd937a9023",
+          "primary_tag": "SPELLING",
+          "error_type": "spelling",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": true,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "5b99f356-ff29-4770-8867-9e192ead8449",
+          "primary_tag": "UNTRANSLATED",
+          "error_type": "untranslated",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.5283,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0023_eurlex-d13e7b2a8641",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 1,
+      "false_positives": 0,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "234b6a45-60b4-4f6d-ba7d-2978c69a93af",
+          "primary_tag": "STYLE",
+          "error_type": "awkward",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 0.5,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "72cf9d89-97ce-4dae-bba7-15b9d42526d7",
+          "primary_tag": "GRAMMAR",
+          "error_type": "preposition",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.7857,
+          "category_match": true,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "d418afce-7fe1-400b-a18c-ce1bc2d24012",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "entity",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        }
+      ]
+    },
+    {
+      "item_id": "val_0024_eurlex-c36947d2305e",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 1,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "ed77bf01-62be-4e1e-9104-64e71fbaf6b0",
+          "primary_tag": "LOCALE",
+          "error_type": "date_format",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.2321,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "8e8a6c26-a654-42db-aab9-f73f80b3e7cc",
+          "primary_tag": "STYLE",
+          "error_type": "register_informal",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "10f5fc9f-835e-4638-8f14-c5ce1cca86e1",
+          "primary_tag": "STYLE",
+          "error_type": "register_informal",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": true,
+          "gemba_category": "Style"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0025_eurlex-00b978e7e768",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 1,
+      "false_positives": 3,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "b4f2c944-6d30-46e6-9500-48392beb6baf",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "ambiguity",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.4717,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "2454b7ac-83e7-46b2-af2b-0f5ba56c7cf0",
+          "primary_tag": "GRAMMAR",
+          "error_type": "word_order",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.4717,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "f20091e5-ffa5-4135-a451-3b8145ac7556",
+          "primary_tag": "ADDITION",
+          "error_type": "hallucination",
+          "severity": "critical",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.5094,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0026_europarl-4fe13e5d660d",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 0,
+      "false_positives": 0,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "8ec21c51-2006-4f39-84ed-d417a376d20a",
+          "primary_tag": "STYLE",
+          "error_type": "register_formal",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.1481,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "05fbc3ec-b7ce-4759-bcbb-2968ff6429aa",
+          "primary_tag": "STYLE",
+          "error_type": "unidiomatic",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 0.871,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "9be5b1eb-3715-446f-a34b-fb210808d196",
+          "primary_tag": "TERMINOLOGY",
+          "error_type": "institutional",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0027_dgt_tm-aca18f51d222",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 0,
+      "false_positives": 0,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "02e78dac-047b-4271-ba2a-4b4bce624c07",
+          "primary_tag": "STYLE",
+          "error_type": "unidiomatic",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 0.9545,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "148e95ed-bcc7-4bb8-9cc3-bb99569d24e3",
+          "primary_tag": "TERMINOLOGY",
+          "error_type": "wrong_term",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        },
+        {
+          "error_id": "f498e5f7-9d3f-4d11-887e-76ec052f9735",
+          "primary_tag": "LOCALE",
+          "error_type": "number_format",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0028_eurlex-59e54166feb0",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 0,
+      "false_positives": 4,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "e038b59a-a9f3-465e-b84d-92cfda279695",
+          "primary_tag": "STYLE",
+          "error_type": "register_formal",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        },
+        {
+          "error_id": "fd183e9f-87b3-4568-bc37-d0ec96dd3ee4",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "entity",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.186,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "72250830-0099-4a6e-a6ed-48cd378d120a",
+          "primary_tag": "LOCALE",
+          "error_type": "time_format",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.3548,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0029_dgt_tm-a638ae6258eb",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 1,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "2692d425-77d0-4416-bb8a-0cebb7b9be93",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "word_sense",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        },
+        {
+          "error_id": "ad44998e-fe80-40e6-b133-79b34febabca",
+          "primary_tag": "GRAMMAR",
+          "error_type": "relative_pronoun",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.4474,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "e9876daf-b47d-46ab-943d-ac36dc66b8ee",
+          "primary_tag": "ADDITION",
+          "error_type": "hallucination",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.5526,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0031_dgt_tm-4fa6fd27e30b",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 0,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "c4f2d794-9257-49d4-a9bd-24911f20cb95",
+          "primary_tag": "STYLE",
+          "error_type": "unidiomatic",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 0.9565,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "40c9f153-0d90-4a91-96a3-19ea6758a018",
+          "primary_tag": "LOCALE",
+          "error_type": "number_format",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.0395,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "8870e2e2-6a61-4485-bb88-63393ad210a3",
+          "primary_tag": "TERMINOLOGY",
+          "error_type": "institutional",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.4868,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0032_europarl-9abdcd41a1ee",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 0,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "c5b72c90-83fe-430b-be1e-a8f3f90a7c02",
+          "primary_tag": "OMISSION",
+          "error_type": "modifier",
+          "severity": "minor",
+          "tom_level": "1st_author",
+          "detected": false,
+          "best_iou": 0.245,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "e65661d2-80aa-4595-8843-f0c2a37b4097",
+          "primary_tag": "TERMINOLOGY",
+          "error_type": "institutional",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.4828,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        },
+        {
+          "error_id": "9b80d73e-9b50-47c2-a8aa-b01dea379f9b",
+          "primary_tag": "STYLE",
+          "error_type": "register_formal",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0033_eurlex-cf1b5cc81984",
+      "total_injected": 3,
+      "detected": 3,
+      "category_matches": 0,
+      "false_positives": 0,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "d78353e6-4a91-4d37-892f-36f45db8dca1",
+          "primary_tag": "TERMINOLOGY",
+          "error_type": "wrong_term",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "94329543-6aea-481d-927e-2f4f4eb6de98",
+          "primary_tag": "LOCALE",
+          "error_type": "number_format",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "f8b3e5b1-98f1-4a8e-bf36-8d1e2f005808",
+          "primary_tag": "STYLE",
+          "error_type": "register_formal",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0035_eurlex-3129606efa40",
+      "total_injected": 3,
+      "detected": 3,
+      "category_matches": 1,
+      "false_positives": 3,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "8956728f-f79b-4105-9e71-7de9140aa544",
+          "primary_tag": "OMISSION",
+          "error_type": "partial",
+          "severity": "minor",
+          "tom_level": "1st_author",
+          "detected": true,
+          "best_iou": 0.9259,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "70e12a70-a98a-44cb-88c6-f19f1eeb4b1e",
+          "primary_tag": "GRAMMAR",
+          "error_type": "relative_pronoun",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.7143,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "dc72f9d4-1ad0-4def-8bbf-a2d6d4ef8abc",
+          "primary_tag": "LOCALE",
+          "error_type": "date_format",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0036_eurlex-1f035803141c",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 2,
+      "false_positives": 0,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "1d3fb424-5e1d-4f76-9a89-779eda16c4d0",
+          "primary_tag": "OMISSION",
+          "error_type": "discourse_marker",
+          "severity": "minor",
+          "tom_level": "1st_author",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "d46480e4-bea9-4d21-a662-b7cfe83141c2",
+          "primary_tag": "OMISSION",
+          "error_type": "partial",
+          "severity": "minor",
+          "tom_level": "1st_author",
+          "detected": false,
+          "best_iou": 0.1892,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "8ce604fe-8ab6-44e7-b39d-d1f0db1cc052",
+          "primary_tag": "OMISSION",
+          "error_type": "modifier",
+          "severity": "major",
+          "tom_level": "1st_author",
+          "detected": true,
+          "best_iou": 0.7297,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0037_dgt_tm-b4db307ed247",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 1,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "381dc028-b919-48f8-b7bd-a81dad31d144",
+          "primary_tag": "STYLE",
+          "error_type": "register_formal",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.2857,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "4a1de57e-ed41-4f46-9938-95f893bbbeef",
+          "primary_tag": "TERMINOLOGY",
+          "error_type": "wrong_term",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.125,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        },
+        {
+          "error_id": "81d5d8b6-c5e8-47a9-8c94-3739f719c1ae",
+          "primary_tag": "TERMINOLOGY",
+          "error_type": "inconsistent",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 0.7273,
+          "category_match": true,
+          "gemba_category": "Terminology"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0038_eurlex-07117cb1166a",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 1,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "3a7d1426-a99d-45b9-9f4c-011e5da624a8",
+          "primary_tag": "GRAMMAR",
+          "error_type": "word_order",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.6875,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "15310c27-25a8-45aa-9c6c-c2e19ed97cee",
+          "primary_tag": "GRAMMAR",
+          "error_type": "agreement_number",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.4231,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "d351c175-c8a1-43ca-9723-c199c888b4c7",
+          "primary_tag": "ADDITION",
+          "error_type": "hallucination",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.9286,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0039_dgt_tm-6cd0a1368427",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 1,
+      "false_positives": 3,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "2f5aa7ee-fb44-4b05-9a89-7a1e3a4f3f78",
+          "primary_tag": "TERMINOLOGY",
+          "error_type": "wrong_term",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 0.9545,
+          "category_match": true,
+          "gemba_category": "Terminology"
+        },
+        {
+          "error_id": "d0c48d84-e478-4395-a6a8-3ec562617471",
+          "primary_tag": "TERMINOLOGY",
+          "error_type": "institutional",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "c5eda841-4834-4684-a3e0-4193780ecb4c",
+          "primary_tag": "LOCALE",
+          "error_type": "date_format",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.4762,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0040_dgt_tm-058a0106e49d",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 0,
+      "false_positives": 3,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "5c92e491-9aa6-4c10-9dc2-20f438916ea7",
+          "primary_tag": "OMISSION",
+          "error_type": "modifier",
+          "severity": "major",
+          "tom_level": "1st_author",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        },
+        {
+          "error_id": "57f6e414-020a-4d11-ae71-3d2cf451682c",
+          "primary_tag": "UNTRANSLATED",
+          "error_type": "untranslated",
+          "severity": "critical",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        },
+        {
+          "error_id": "51fe0c65-0e78-42b3-8bd7-5e76c1b3920b",
+          "primary_tag": "LOCALE",
+          "error_type": "currency_format",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.3,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0041_eurlex-2b8b19ad9941",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 0,
+      "false_positives": 3,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "6c21aee2-b951-4aad-a953-ed664a8e8210",
+          "primary_tag": "OMISSION",
+          "error_type": "partial",
+          "severity": "major",
+          "tom_level": "1st_author",
+          "detected": false,
+          "best_iou": 0.4783,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "2eb8642b-373c-47d3-b1c6-0499725048f6",
+          "primary_tag": "OMISSION",
+          "error_type": "partial",
+          "severity": "minor",
+          "tom_level": "1st_author",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        },
+        {
+          "error_id": "1bb21db9-4db9-4952-af25-61ba3b6f0de3",
+          "primary_tag": "OMISSION",
+          "error_type": "modifier",
+          "severity": "minor",
+          "tom_level": "1st_author",
+          "detected": true,
+          "best_iou": 0.8,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0044_eurlex-76b3f741ff50",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 1,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "e542d84e-40ae-42d2-bb08-2dcfd896d1ae",
+          "primary_tag": "GRAMMAR",
+          "error_type": "preposition",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": true,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "b085525d-9d4b-4acc-b8b8-90d510d4af3d",
+          "primary_tag": "GRAMMAR",
+          "error_type": "agreement_gender",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.0689,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "0f054a11-5807-492d-8278-b891714912b3",
+          "primary_tag": "STYLE",
+          "error_type": "register_formal",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.0656,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0045_dgt_tm-0f8dbd1bfa1c",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 0,
+      "false_positives": 3,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "da216b25-7cdf-4f84-9dbf-6066d244750a",
+          "primary_tag": "GRAMMAR",
+          "error_type": "agreement_gender",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.2667,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "81be9076-ffdb-432a-bd8e-92246fd140a3",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "false_cognate",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        },
+        {
+          "error_id": "117e51a6-5e08-4181-8865-08f886b74c1d",
+          "primary_tag": "GRAMMAR",
+          "error_type": "agreement_number",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.3,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0047_eurlex-c76fd4479cbd",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 1,
+      "false_positives": 1,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "c64c9a60-e7e0-4651-8188-934739d9ac89",
+          "primary_tag": "OMISSION",
+          "error_type": "modifier",
+          "severity": "major",
+          "tom_level": "1st_author",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        },
+        {
+          "error_id": "d512b892-6638-4be3-ac08-69228000b880",
+          "primary_tag": "GRAMMAR",
+          "error_type": "agreement_gender",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.6471,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "2bb62448-20b6-42bd-87a9-aa55783f2905",
+          "primary_tag": "GRAMMAR",
+          "error_type": "tense",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": true,
+          "gemba_category": "Fluency"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0049_dgt_tm-371bde9876f3",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 1,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "29f22948-2f03-4371-abc9-af816a980c95",
+          "primary_tag": "OMISSION",
+          "error_type": "modifier",
+          "severity": "major",
+          "tom_level": "1st_author",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        },
+        {
+          "error_id": "d19c368b-224e-45a8-9280-9d8405b61055",
+          "primary_tag": "OMISSION",
+          "error_type": "clause",
+          "severity": "critical",
+          "tom_level": "1st_author",
+          "detected": true,
+          "best_iou": 0.9318,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "44b32ed8-45a0-4fc7-8b9f-fe6d02337850",
+          "primary_tag": "OMISSION",
+          "error_type": "modifier",
+          "severity": "major",
+          "tom_level": "1st_author",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        }
+      ]
+    },
+    {
+      "item_id": "val_0050_eurlex-b925be5144aa",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 1,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "027f9d3d-7346-4ece-a07c-488325e8cc55",
+          "primary_tag": "OMISSION",
+          "error_type": "modifier",
+          "severity": "minor",
+          "tom_level": "1st_author",
+          "detected": false,
+          "best_iou": 0.0769,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "a71b2f37-5a69-4a6a-ad83-32f85d0df00f",
+          "primary_tag": "OMISSION",
+          "error_type": "partial",
+          "severity": "minor",
+          "tom_level": "1st_author",
+          "detected": true,
+          "best_iou": 0.6923,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "d9db0f42-8700-42f3-82b0-554bd4ced5fe",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "undertranslation",
+          "severity": "minor",
+          "tom_level": "1st_author",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        }
+      ]
+    },
+    {
+      "item_id": "val_0051_dgt_tm-9c96083edb43",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 1,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "b53afb4a-2d60-4db3-8e84-016f0c27f7cd",
+          "primary_tag": "OMISSION",
+          "error_type": "modifier",
+          "severity": "major",
+          "tom_level": "1st_author",
+          "detected": false,
+          "best_iou": 0.1916,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "1b4a8c63-e9a7-4989-b70b-d92928b7b664",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "overly_literal",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.5224,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "1a50ccfd-52aa-4a18-a3fe-b37bbdb82419",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "entity",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.4,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0052_dgt_tm-419958f81bf0",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 0,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "80d707b5-9534-4401-94ae-3fb88f737dbc",
+          "primary_tag": "OMISSION",
+          "error_type": "partial",
+          "severity": "major",
+          "tom_level": "1st_author",
+          "detected": true,
+          "best_iou": 0.9474,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        },
+        {
+          "error_id": "833761de-079b-4a38-a163-f5d434c2bea2",
+          "primary_tag": "TERMINOLOGY",
+          "error_type": "inconsistent",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        },
+        {
+          "error_id": "7b179143-990d-4865-965c-38bd504426ea",
+          "primary_tag": "STYLE",
+          "error_type": "register_formal",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        }
+      ]
+    },
+    {
+      "item_id": "val_0053_europarl-c7b51e857475",
+      "total_injected": 3,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 3,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "29e29691-a3f9-45e0-9f2a-aa6305a7a365",
+          "primary_tag": "OMISSION",
+          "error_type": "discourse_marker",
+          "severity": "minor",
+          "tom_level": "1st_author",
+          "detected": false,
+          "best_iou": 0.4144,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "14dff032-07b9-4a83-9daf-49df3f61af41",
+          "primary_tag": "OMISSION",
+          "error_type": "modifier",
+          "severity": "major",
+          "tom_level": "1st_author",
+          "detected": false,
+          "best_iou": 0.4646,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "847ec82f-54c0-422b-bdef-360025e7bafb",
+          "primary_tag": "OMISSION",
+          "error_type": "partial",
+          "severity": "minor",
+          "tom_level": "1st_author",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        }
+      ]
+    },
+    {
+      "item_id": "val_0054_eurlex-a12c86033318",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 2,
+      "false_positives": 1,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "7ee5c45f-e356-4887-b829-19273f38b45c",
+          "primary_tag": "OMISSION",
+          "error_type": "partial",
+          "severity": "major",
+          "tom_level": "1st_author",
+          "detected": false,
+          "best_iou": 0.3714,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "04c29f4e-280e-48bc-a869-11df6e1957b1",
+          "primary_tag": "OMISSION",
+          "error_type": "partial",
+          "severity": "major",
+          "tom_level": "1st_author",
+          "detected": true,
+          "best_iou": 0.8351,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "48c086a9-7cdb-4493-bed7-67262eea239e",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "overtranslation",
+          "severity": "minor",
+          "tom_level": "1st_author",
+          "detected": true,
+          "best_iou": 0.8947,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0055_europarl-c05a70cfd28c",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 1,
+      "false_positives": 3,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "0fb4e575-d7b2-49f9-99fa-fcd92c7e8ca9",
+          "primary_tag": "STYLE",
+          "error_type": "register_formal",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 0.9487,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "92ac18b4-5f00-4887-8b3c-10ba536fac7a",
+          "primary_tag": "LOCALE",
+          "error_type": "currency_format",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.4815,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "a71e8594-a6bf-45a6-973f-e554c281cc1d",
+          "primary_tag": "TERMINOLOGY",
+          "error_type": "wrong_term",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": true,
+          "gemba_category": "Terminology"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0056_europarl-ffccdcd65606",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 0,
+      "false_positives": 5,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "7b3be91e-9b44-4a7c-b68a-d4b8f94e2f63",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "overly_literal",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.1228,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "8a652c06-a034-4919-bcfc-1b4bf2fb2f37",
+          "primary_tag": "GRAMMAR",
+          "error_type": "agreement_gender",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.381,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "8a84aada-23c4-4a44-8d1a-9a9d146e4f7d",
+          "primary_tag": "UNTRANSLATED",
+          "error_type": "untranslated",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.5,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0057_europarl-f2981298b048",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 1,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "24c31d9c-5b13-4016-929d-b9faac8257d5",
+          "primary_tag": "GRAMMAR",
+          "error_type": "tense",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        },
+        {
+          "error_id": "5fedc9a1-89b1-4c5e-ba75-b7dd1ee40e05",
+          "primary_tag": "GRAMMAR",
+          "error_type": "tense",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        },
+        {
+          "error_id": "2ca9cdeb-fedd-46e1-a841-056cf8f5eb1e",
+          "primary_tag": "ADDITION",
+          "error_type": "hallucination",
+          "severity": "critical",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0058_dgt_tm-856f04dcd5c7",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 1,
+      "false_positives": 1,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "e18921a3-1484-4fe9-88aa-db856bf95204",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "overtranslation",
+          "severity": "minor",
+          "tom_level": "1st_author",
+          "detected": true,
+          "best_iou": 0.875,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "e0624956-29be-420f-bc9e-df8d91ebef8e",
+          "primary_tag": "GRAMMAR",
+          "error_type": "relative_pronoun",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.5417,
+          "category_match": true,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "aa744298-b70e-45bd-baa8-e34eb7cd7734",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "overly_literal",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.4167,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0059_dgt_tm-8b3ff07d339c",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 1,
+      "false_positives": 0,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "4faa15d6-f5ee-458c-98d3-f6ca598e442b",
+          "primary_tag": "GRAMMAR",
+          "error_type": "agreement_gender",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.5385,
+          "category_match": true,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "2fc8e5eb-720e-4f7e-b464-4ebb3dd2470a",
+          "primary_tag": "GRAMMAR",
+          "error_type": "tense",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        },
+        {
+          "error_id": "e78a51cd-518b-45e3-b5cd-f2b99f08c9e9",
+          "primary_tag": "GRAMMAR",
+          "error_type": "tense",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        }
+      ]
+    },
+    {
+      "item_id": "val_0060_europarl-cde7e67a5020",
+      "total_injected": 3,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 4,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "3c991687-08d6-4a1b-a57e-703e1d397fc9",
+          "primary_tag": "GRAMMAR",
+          "error_type": "preposition",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.1429,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "12f7da70-b05b-4ae5-b196-29ec787ecf11",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "entity",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.1395,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "eec1ad8b-28c6-4430-b3d7-3535c782638b",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "ambiguity",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.1481,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0061_dgt_tm-4442b7248b69",
+      "total_injected": 3,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 0,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "c3d2c242-f0dc-42cf-90c9-6160488beff3",
+          "primary_tag": "STYLE",
+          "error_type": "register_informal",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        },
+        {
+          "error_id": "fb3a0930-50f1-44c0-8d37-1dc3b65e76bb",
+          "primary_tag": "STYLE",
+          "error_type": "unidiomatic",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        },
+        {
+          "error_id": "263cb1a1-843a-42ec-ab45-b40cd1eb3e46",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "entity",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        }
+      ]
+    },
+    {
+      "item_id": "val_0063_eurlex-8437895acefd",
+      "total_injected": 3,
+      "detected": 3,
+      "category_matches": 1,
+      "false_positives": 3,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "49b5e001-7820-45da-b7cd-d0cec6d3b1ae",
+          "primary_tag": "GRAMMAR",
+          "error_type": "preposition",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.9714,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "5ec8d168-ebc6-4f4a-aadd-6b38d596a7ad",
+          "primary_tag": "GRAMMAR",
+          "error_type": "agreement_gender",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.6176,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        },
+        {
+          "error_id": "9b477ddd-b078-4c65-8da4-896c629c36bd",
+          "primary_tag": "PUNCTUATION",
+          "error_type": "punctuation",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": true,
+          "gemba_category": "Fluency"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0064_europarl-e83f3088bf64",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 1,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "0be7974c-f980-4146-859a-37f7b3cb68d9",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "number",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.2167,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "ff80926b-6974-4e8d-b9f3-c625f8636deb",
+          "primary_tag": "GRAMMAR",
+          "error_type": "word_order",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.4861,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "6e65a667-6ab2-4f07-bff0-5b7536995359",
+          "primary_tag": "ADDITION",
+          "error_type": "hallucination",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0065_eurlex-ccaffc6a3d9c",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 1,
+      "false_positives": 1,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "adf47706-7c16-4db0-a527-36625cc1aaf5",
+          "primary_tag": "OMISSION",
+          "error_type": "clause",
+          "severity": "critical",
+          "tom_level": "1st_author",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        },
+        {
+          "error_id": "2e1b856d-ce90-4805-8e5b-7a9bf9b543fb",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "overly_literal",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.5385,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "7b8afd62-ffc5-40f7-9119-5c17ca92ef11",
+          "primary_tag": "LOCALE",
+          "error_type": "date_format",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0066_dgt_tm-6632b3c9ad6e",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 0,
+      "false_positives": 5,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "fcc4f018-9e82-4db5-b2da-4689cba72d11",
+          "primary_tag": "STYLE",
+          "error_type": "unidiomatic",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.4,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "e1870f52-af08-44b0-9c59-482e7e010ce2",
+          "primary_tag": "STYLE",
+          "error_type": "awkward",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.3929,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "81e389b4-a2ff-45ec-8747-b681179b63cd",
+          "primary_tag": "STYLE",
+          "error_type": "register_informal",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 0.5789,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0067_dgt_tm-ab31716962f9",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 1,
+      "false_positives": 3,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "22a31258-18a2-4f02-b4d3-f4b9d1e0123e",
+          "primary_tag": "OMISSION",
+          "error_type": "modifier",
+          "severity": "minor",
+          "tom_level": "1st_author",
+          "detected": true,
+          "best_iou": 0.9524,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "8fd443e2-a874-4cc6-833a-2a996cd9729d",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "word_sense",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.3878,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "dcc1d469-7690-4b84-8f0e-61c931924698",
+          "primary_tag": "TERMINOLOGY",
+          "error_type": "inconsistent",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.4286,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0068_eurlex-dc42f146f2dc",
+      "total_injected": 3,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 6,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "94db5efe-0cbd-40b9-b76c-479faaba5141",
+          "primary_tag": "OMISSION",
+          "error_type": "discourse_marker",
+          "severity": "minor",
+          "tom_level": "1st_author",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        },
+        {
+          "error_id": "69e86ca5-ab31-470f-af7e-1911cadea0ec",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "false_cognate",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.2289,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "e11bb114-fdf4-45d1-9fb1-bb2dec826279",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "ambiguity",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.2651,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0069_dgt_tm-3b404bccba72",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 0,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "f14a0ca1-506a-496e-a0ff-668717ea3aa6",
+          "primary_tag": "TERMINOLOGY",
+          "error_type": "institutional",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 0.5143,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "1c8e8c4f-add6-4043-9988-9067f0003b75",
+          "primary_tag": "STYLE",
+          "error_type": "register_formal",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.2727,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "4a5ee403-2d10-4d30-9647-9e1297399384",
+          "primary_tag": "TERMINOLOGY",
+          "error_type": "institutional",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        }
+      ]
+    },
+    {
+      "item_id": "val_0070_europarl-08c4382389c7",
+      "total_injected": 3,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "3130bf48-fa28-4f9e-be6a-98170f71c4a8",
+          "primary_tag": "STYLE",
+          "error_type": "unidiomatic",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.4,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "07ef1162-6e15-45e2-8bff-c245a0516270",
+          "primary_tag": "STYLE",
+          "error_type": "register_informal",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.375,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "8be04848-b67d-4b3a-b73a-25baf11140b0",
+          "primary_tag": "STYLE",
+          "error_type": "unidiomatic",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.375,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0071_eurlex-8afc77d201d2",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 0,
+      "false_positives": 4,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "c2a968eb-f184-4cac-b287-cc84a40276a1",
+          "primary_tag": "STYLE",
+          "error_type": "unidiomatic",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 0.7308,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "62b6e68a-ca60-4477-924a-3275d7ff1742",
+          "primary_tag": "LOCALE",
+          "error_type": "time_format",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.2593,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "ee519512-8767-45fc-ac6c-97f49ac9c4b4",
+          "primary_tag": "STYLE",
+          "error_type": "register_informal",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.3333,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0072_europarl-db370a47900b",
+      "total_injected": 3,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "2f240caf-a9cf-43b8-bf01-47407b4e1b88",
+          "primary_tag": "OMISSION",
+          "error_type": "partial",
+          "severity": "minor",
+          "tom_level": "1st_author",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        },
+        {
+          "error_id": "e6908d80-27e9-4bb5-ac94-126806e5eef9",
+          "primary_tag": "OMISSION",
+          "error_type": "partial",
+          "severity": "minor",
+          "tom_level": "1st_author",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        },
+        {
+          "error_id": "84b84f14-6abd-4165-afaa-f4eb78d99bdb",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "overtranslation",
+          "severity": "minor",
+          "tom_level": "1st_author",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        }
+      ]
+    },
+    {
+      "item_id": "val_0073_europarl-af504c05aad8",
+      "total_injected": 3,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "7698437a-541b-4160-bffd-1bc1000efbb7",
+          "primary_tag": "STYLE",
+          "error_type": "unidiomatic",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.2083,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "8af87a52-3d47-40d6-948a-a90773f434f7",
+          "primary_tag": "STYLE",
+          "error_type": "register_formal",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.1667,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "db0b8b80-1117-4e2f-8648-3bc89b152056",
+          "primary_tag": "STYLE",
+          "error_type": "unidiomatic",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.2093,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0074_europarl-34cd74beceba",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 2,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "3f2fa13d-36ab-4157-9291-d9e4ff490f4e",
+          "primary_tag": "GRAMMAR",
+          "error_type": "agreement_gender",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": true,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "cb6f5c2d-05f8-4f06-ab51-114260bf4433",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "entity",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.6923,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "53a5bc7b-2c25-4976-ac6e-2d6df750a354",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "entity",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.4231,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0075_eurlex-6b087ff185a0",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 2,
+      "false_positives": 3,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "0f3c4b9f-668f-4e18-b8bf-061cdb660122",
+          "primary_tag": "OMISSION",
+          "error_type": "partial",
+          "severity": "major",
+          "tom_level": "1st_author",
+          "detected": false,
+          "best_iou": 0.3768,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        },
+        {
+          "error_id": "e4ffd659-18f2-41c5-a1d4-33f38b51fcc6",
+          "primary_tag": "GRAMMAR",
+          "error_type": "word_order",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.6486,
+          "category_match": true,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "ba3357aa-efe6-4877-878b-63631f92200b",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "entity",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0076_eurlex-038b7ce66af6",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 2,
+      "false_positives": 3,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "ef5150b7-fb04-4617-acbe-c5826ab8a92c",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "entity",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.5484,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "9e1afacb-0635-4173-8ec5-cb8cde509057",
+          "primary_tag": "GRAMMAR",
+          "error_type": "relative_pronoun",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.75,
+          "category_match": true,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "fc7bc21d-2521-4aab-aafd-4163ecab3182",
+          "primary_tag": "GRAMMAR",
+          "error_type": "preposition",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.1455,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0077_europarl-5c77c6dc6697",
+      "total_injected": 3,
+      "detected": 3,
+      "category_matches": 2,
+      "false_positives": 4,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "9b14e402-0d26-44e4-9c39-bfa83e4e308e",
+          "primary_tag": "GRAMMAR",
+          "error_type": "preposition",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "8a268aa3-bb7d-4959-b8c7-80fd63132929",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "overly_literal",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.6,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "3bb91f3d-4f4f-4f85-89ad-7567a8e9a065",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "ambiguity",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.7143,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0078_eurlex-ede79b72c333",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 0,
+      "false_positives": 4,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "a0a0b59c-5ae6-48c3-8225-949f46785208",
+          "primary_tag": "GRAMMAR",
+          "error_type": "agreement_number",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.2364,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "976c666d-1b69-48ce-94ad-be91ddb46dfd",
+          "primary_tag": "UNTRANSLATED",
+          "error_type": "untranslated",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.5312,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "936df08a-7a01-48ec-b79d-28ab80b8f9b1",
+          "primary_tag": "ADDITION",
+          "error_type": "hallucination",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.5,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0079_dgt_tm-050745359214",
+      "total_injected": 3,
+      "detected": 3,
+      "category_matches": 1,
+      "false_positives": 1,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "be2d31b9-01d0-4cb9-8210-4a35dcc1c861",
+          "primary_tag": "TERMINOLOGY",
+          "error_type": "institutional",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 0.75,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "539f7c06-a36b-4d0c-8af8-2ffec6facbf9",
+          "primary_tag": "LOCALE",
+          "error_type": "time_format",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 0.5909,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "d4b2da07-5419-42a9-9a84-5f140b465329",
+          "primary_tag": "STYLE",
+          "error_type": "register_formal",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": true,
+          "gemba_category": "Style"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0080_eurlex-97e3abc54afb",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 0,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "f4278d1e-1114-465f-92d6-601a38c27656",
+          "primary_tag": "STYLE",
+          "error_type": "register_formal",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.4375,
+          "category_match": false,
+          "gemba_category": "Style"
+        },
+        {
+          "error_id": "1a331650-d3a5-4f1e-9594-494f8e379978",
+          "primary_tag": "LOCALE",
+          "error_type": "number_format",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "e2d64109-5834-4cea-a651-627484fa1512",
+          "primary_tag": "TERMINOLOGY",
+          "error_type": "wrong_term",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0082_eurlex-caa6ab2d98fc",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 0,
+      "false_positives": 4,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "2216d437-9e1c-4063-b067-98ab25f910a7",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "overly_literal",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.4103,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        },
+        {
+          "error_id": "69df490a-c9ca-4b7c-bc40-83bfa87c5f67",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "number",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.4615,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        },
+        {
+          "error_id": "e0fa6cb6-8ba1-4947-a5ee-2d35258cb4a8",
+          "primary_tag": "ADDITION",
+          "error_type": "explicitation",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0083_eurlex-41e7c9cd7c29",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 1,
+      "false_positives": 4,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "2cb86b44-22f8-4216-9950-9f7b4a0586e8",
+          "primary_tag": "OMISSION",
+          "error_type": "modifier",
+          "severity": "minor",
+          "tom_level": "1st_author",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "af7009ee-41d0-4edf-8020-b70fe2207eaf",
+          "primary_tag": "OMISSION",
+          "error_type": "partial",
+          "severity": "major",
+          "tom_level": "1st_author",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        },
+        {
+          "error_id": "929174f6-fbf2-45c5-9fd3-6c7e14e9570e",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "overtranslation",
+          "severity": "minor",
+          "tom_level": "1st_author",
+          "detected": true,
+          "best_iou": 0.9467,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0084_dgt_tm-40b4d4ca3d11",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 1,
+      "false_positives": 4,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "e7cb257d-6b83-4f89-87b4-4ca31e8ef923",
+          "primary_tag": "GRAMMAR",
+          "error_type": "tense",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.5417,
+          "category_match": true,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "081f2119-4649-48aa-9410-0ff30202c76a",
+          "primary_tag": "GRAMMAR",
+          "error_type": "agreement_gender",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.3684,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        },
+        {
+          "error_id": "0129a5d8-34ff-4f98-ab3a-70f9a25c1cfe",
+          "primary_tag": "ADDITION",
+          "error_type": "hallucination",
+          "severity": "critical",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.3579,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0085_dgt_tm-aff7d2b35efb",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 1,
+      "false_positives": 0,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "1452b333-e41a-451b-a484-afffa30eee22",
+          "primary_tag": "LOCALE",
+          "error_type": "time_format",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        },
+        {
+          "error_id": "510db987-8e9d-474f-8cc9-a9e475c55b08",
+          "primary_tag": "TERMINOLOGY",
+          "error_type": "wrong_term",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": true,
+          "gemba_category": "Terminology"
+        },
+        {
+          "error_id": "c59bb3e3-9c2c-4f8e-a3f6-25bd9504879e",
+          "primary_tag": "STYLE",
+          "error_type": "register_formal",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        }
+      ]
+    },
+    {
+      "item_id": "val_0086_eurlex-e1b5ecab3c09",
+      "total_injected": 3,
+      "detected": 3,
+      "category_matches": 0,
+      "false_positives": 4,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "cb15ce9c-14c0-4695-b602-2e26d41fcab0",
+          "primary_tag": "STYLE",
+          "error_type": "register_formal",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        },
+        {
+          "error_id": "9ef24195-e743-47bc-816d-b3b010e1542d",
+          "primary_tag": "GRAMMAR",
+          "error_type": "agreement_number",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.7273,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "b12b99b1-ee4d-4064-9ab1-8b5beb9ce227",
+          "primary_tag": "STYLE",
+          "error_type": "register_formal",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 0.6154,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0087_europarl-c9a9b87129c0",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 0,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "ed474ab3-fb9a-4589-b9da-9a8753cc5feb",
+          "primary_tag": "STYLE",
+          "error_type": "register_formal",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 0.6364,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        },
+        {
+          "error_id": "fa28a782-5ab4-4369-a367-1c1526524be4",
+          "primary_tag": "STYLE",
+          "error_type": "unidiomatic",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 0.6364,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "720250dc-1419-411c-97f3-28b1bf071485",
+          "primary_tag": "STYLE",
+          "error_type": "register_formal",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        }
+      ]
+    },
+    {
+      "item_id": "val_0088_dgt_tm-b4942f6e725b",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 1,
+      "false_positives": 1,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "94c7ead6-f3ff-4a86-8cb7-44f2b05a2935",
+          "primary_tag": "TERMINOLOGY",
+          "error_type": "institutional",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.3684,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        },
+        {
+          "error_id": "d17e6e9c-460c-4c51-95ac-e958b737729e",
+          "primary_tag": "TERMINOLOGY",
+          "error_type": "institutional",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 0.6842,
+          "category_match": true,
+          "gemba_category": "Terminology"
+        },
+        {
+          "error_id": "c8dc8731-fa9a-4a18-b4a0-59ccd8c10559",
+          "primary_tag": "LOCALE",
+          "error_type": "time_format",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.3846,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0089_eurlex-a8e31b3add6e",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 0,
+      "false_positives": 1,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "0841113d-45a2-43f8-8765-b512e2138eed",
+          "primary_tag": "TERMINOLOGY",
+          "error_type": "inconsistent",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.1786,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "4da06fcc-99d4-4e7a-9599-8ffd11703bc3",
+          "primary_tag": "STYLE",
+          "error_type": "unidiomatic",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 0.9438,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "468ea228-360a-4a50-b0c1-d0e716d4e6af",
+          "primary_tag": "STYLE",
+          "error_type": "register_informal",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 0.5517,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0090_eurlex-5596db5d1bef",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 1,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "98381793-79b5-4188-99d3-e62f8d796e2a",
+          "primary_tag": "STYLE",
+          "error_type": "register_formal",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        },
+        {
+          "error_id": "fbea94c8-c155-41c9-ac9f-e62bf2cae675",
+          "primary_tag": "STYLE",
+          "error_type": "register_informal",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": true,
+          "gemba_category": "Style"
+        },
+        {
+          "error_id": "b5563fbe-3c15-4948-9f7e-e7682c2e1850",
+          "primary_tag": "STYLE",
+          "error_type": "register_formal",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.375,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0091_dgt_tm-0b0c03a246bb",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 1,
+      "false_positives": 1,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "e1f6cdab-eeba-4cd9-8018-2fbfd2c581cb",
+          "primary_tag": "OMISSION",
+          "error_type": "modifier",
+          "severity": "minor",
+          "tom_level": "1st_author",
+          "detected": true,
+          "best_iou": 0.6977,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "2165b8b3-03d9-4642-be00-8e138e575fcc",
+          "primary_tag": "OMISSION",
+          "error_type": "modifier",
+          "severity": "major",
+          "tom_level": "1st_author",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        },
+        {
+          "error_id": "69e8c87f-ca23-448c-891a-cb0c6f45156c",
+          "primary_tag": "OMISSION",
+          "error_type": "clause",
+          "severity": "major",
+          "tom_level": "1st_author",
+          "detected": true,
+          "best_iou": 0.5444,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0092_europarl-ca2767d1bccf",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 1,
+      "false_positives": 1,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "1c97fc4f-decc-4561-a804-ea273bfd5c35",
+          "primary_tag": "GRAMMAR",
+          "error_type": "word_order",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": true,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "03accc99-0561-4068-ac52-283375812237",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "ambiguity",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.9444,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        },
+        {
+          "error_id": "fcaa9ce0-1ba5-4097-a64c-e25b8575e9c9",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "ambiguity",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.1765,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0093_dgt_tm-b3225534f7a7",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 1,
+      "false_positives": 0,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "32dff42c-e141-45e7-a640-dcdad54dca4b",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "word_sense",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.6562,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "445a9635-bf27-430d-b568-6f0bcacf2e38",
+          "primary_tag": "GRAMMAR",
+          "error_type": "agreement_number",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.5938,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        },
+        {
+          "error_id": "a4187a4a-2762-418b-af0d-84a9798dbe33",
+          "primary_tag": "ADDITION",
+          "error_type": "hallucination",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        }
+      ]
+    },
+    {
+      "item_id": "val_0094_europarl-7ed9741c762c",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 1,
+      "false_positives": 3,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "c32b0d73-3d33-4285-9407-c362645edb44",
+          "primary_tag": "GRAMMAR",
+          "error_type": "word_order",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.2581,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "205b4b34-d119-423c-979f-969eed238cd2",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "overtranslation",
+          "severity": "minor",
+          "tom_level": "1st_author",
+          "detected": true,
+          "best_iou": 0.8462,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        },
+        {
+          "error_id": "0dd4ad0c-8f3c-4c78-9e47-07be44131bb0",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "entity",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0095_dgt_tm-f9ff971e30b2",
+      "total_injected": 3,
+      "detected": 3,
+      "category_matches": 1,
+      "false_positives": 0,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "9018d484-5a30-4be4-9c21-180d442cd4c7",
+          "primary_tag": "OMISSION",
+          "error_type": "discourse_marker",
+          "severity": "minor",
+          "tom_level": "1st_author",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "b12b90b8-ea4e-46ab-8964-30fad6bd1bf7",
+          "primary_tag": "OMISSION",
+          "error_type": "partial",
+          "severity": "major",
+          "tom_level": "1st_author",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "311cb729-8992-4438-aaf9-6ff436834d2b",
+          "primary_tag": "OMISSION",
+          "error_type": "modifier",
+          "severity": "major",
+          "tom_level": "1st_author",
+          "detected": true,
+          "best_iou": 0.75,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0096_dgt_tm-e2c8dc5b5655",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 0,
+      "false_positives": 1,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "f1f9d0d2-52f4-48de-9c7a-db5633e4a15b",
+          "primary_tag": "GRAMMAR",
+          "error_type": "tense",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.0714,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "54d4f8ca-636b-46f8-8710-5cc6a805e731",
+          "primary_tag": "GRAMMAR",
+          "error_type": "agreement_number",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "86084e5f-1823-4506-afea-7774d57bd0aa",
+          "primary_tag": "ADDITION",
+          "error_type": "explicitation",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        }
+      ]
+    },
+    {
+      "item_id": "val_0097_europarl-166e513b7a4e",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 1,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "c0194d75-55dd-446e-b9ed-9ff63d1653e5",
+          "primary_tag": "OMISSION",
+          "error_type": "clause",
+          "severity": "major",
+          "tom_level": "1st_author",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        },
+        {
+          "error_id": "7accd136-c60b-4309-9fab-a2bb13e00895",
+          "primary_tag": "GRAMMAR",
+          "error_type": "word_order",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.4706,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "e080d3f8-cb29-4c94-a93c-5cad34b0cb06",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "entity",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0098_eurlex-02ebe7e5f6a0",
+      "total_injected": 3,
+      "detected": 3,
+      "category_matches": 2,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "dd5fd0f4-bed1-4ce2-89b2-db70b9273a0f",
+          "primary_tag": "OMISSION",
+          "error_type": "clause",
+          "severity": "major",
+          "tom_level": "1st_author",
+          "detected": true,
+          "best_iou": 0.6505,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "63f3c80c-3674-4aad-b412-d88e0fde5853",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "overly_literal",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.8421,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "23d3115f-a4ad-43fa-900d-b82cc96fff0b",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "ambiguity",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0101_europarl-785c0aa0b4e8",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 0,
+      "false_positives": 1,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "489e94eb-6558-44a8-8ad9-711ca552f736",
+          "primary_tag": "STYLE",
+          "error_type": "register_formal",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.194,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "6764d8b1-4b71-4b82-be14-d6de2fb0a65d",
+          "primary_tag": "LOCALE",
+          "error_type": "date_format",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 0.6757,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "575f45fd-6c38-4b35-a24b-0c4c4e779492",
+          "primary_tag": "TERMINOLOGY",
+          "error_type": "institutional",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 0.913,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0102_dgt_tm-43cd5d49a3dc",
+      "total_injected": 3,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 3,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "13a4d1f8-a3b5-4190-bea7-5f76f5513289",
+          "primary_tag": "OMISSION",
+          "error_type": "partial",
+          "severity": "major",
+          "tom_level": "1st_author",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        },
+        {
+          "error_id": "35fb1c02-ec0b-43c0-ae93-8002c20e84c6",
+          "primary_tag": "OMISSION",
+          "error_type": "clause",
+          "severity": "major",
+          "tom_level": "1st_author",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        },
+        {
+          "error_id": "8367266d-3c6d-4270-b4f2-6ebc3fbb2c35",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "undertranslation",
+          "severity": "minor",
+          "tom_level": "1st_author",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        }
+      ]
+    },
+    {
+      "item_id": "val_0103_dgt_tm-949e1468ac30",
+      "total_injected": 3,
+      "detected": 1,
+      "category_matches": 0,
+      "false_positives": 1,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "a72e7539-57c3-4a23-9be1-ddcfb80f0e94",
+          "primary_tag": "STYLE",
+          "error_type": "register_informal",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.4595,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "4a9dfd65-42b7-4e50-9c51-cda758c2543d",
+          "primary_tag": "TERMINOLOGY",
+          "error_type": "institutional",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 0.5862,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "b99001ab-d8d1-43ff-9de2-be44c7baf2b2",
+          "primary_tag": "STYLE",
+          "error_type": "register_formal",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.0,
+          "category_match": false,
+          "gemba_category": null
+        }
+      ]
+    },
+    {
+      "item_id": "val_0104_dgt_tm-67327e6a9384",
+      "total_injected": 3,
+      "detected": 3,
+      "category_matches": 1,
+      "false_positives": 1,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "2c861ed7-a59b-4554-86c3-d9408c59b6d4",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "ambiguity",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.6207,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        },
+        {
+          "error_id": "92bd810b-c1fa-4bf6-b985-d899dba632a3",
+          "primary_tag": "GRAMMAR",
+          "error_type": "relative_pronoun",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "3a84bacc-f3e8-488c-90d6-e71909fe156c",
+          "primary_tag": "GRAMMAR",
+          "error_type": "agreement_number",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.6667,
+          "category_match": true,
+          "gemba_category": "Fluency"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0107_europarl-a206444c515d",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 1,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "db856bd4-b34f-4e03-a0ee-c8f5844804d3",
+          "primary_tag": "LOCALE",
+          "error_type": "date_format",
+          "severity": "minor",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 0.5366,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "4b30e616-0a19-48e3-9f55-f69d88742712",
+          "primary_tag": "TERMINOLOGY",
+          "error_type": "institutional",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": false,
+          "best_iou": 0.2564,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "378585bf-9340-41d2-874f-c79a8bf74bf1",
+          "primary_tag": "TERMINOLOGY",
+          "error_type": "institutional",
+          "severity": "major",
+          "tom_level": "2nd_reader",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": true,
+          "gemba_category": "Terminology"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0109_europarl-ef24ea4caff3",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 2,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "15675256-1d4e-4aca-a6d7-6725bc68125f",
+          "primary_tag": "GRAMMAR",
+          "error_type": "tense",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.0732,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "40ec82ea-4610-4b34-a579-ff1a8b2106a4",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "entity",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "d111b7c8-e22d-4c40-b445-f948555d6a0d",
+          "primary_tag": "GRAMMAR",
+          "error_type": "agreement_number",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.6053,
+          "category_match": true,
+          "gemba_category": "Fluency"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0111_europarl-42b4618251f9",
+      "total_injected": 3,
+      "detected": 3,
+      "category_matches": 1,
+      "false_positives": 2,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "72f656a8-84a4-4199-a952-57875418f89a",
+          "primary_tag": "GRAMMAR",
+          "error_type": "tense",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 1.0,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "9e3d9825-8896-4ce0-bba6-97c16be0c6c7",
+          "primary_tag": "GRAMMAR",
+          "error_type": "preposition",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.9302,
+          "category_match": true,
+          "gemba_category": "Fluency"
+        },
+        {
+          "error_id": "ae2967fb-7eed-48b1-9456-5679d6077e1e",
+          "primary_tag": "MISTRANSLATION",
+          "error_type": "overly_literal",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.85,
+          "category_match": false,
+          "gemba_category": "Fluency"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0112_europarl-de1b88b3d992",
+      "total_injected": 3,
+      "detected": 2,
+      "category_matches": 1,
+      "false_positives": 1,
+      "is_clean": false,
+      "clean_correct": false,
+      "per_error": [
+        {
+          "error_id": "c3b86ade-e53a-4164-87ef-105d03b89c03",
+          "primary_tag": "GRAMMAR",
+          "error_type": "article",
+          "severity": "minor",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.5484,
+          "category_match": false,
+          "gemba_category": "Terminology"
+        },
+        {
+          "error_id": "c7560fd6-9a3c-432d-9302-4f8e32b760b5",
+          "primary_tag": "GRAMMAR",
+          "error_type": "preposition",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": false,
+          "best_iou": 0.2273,
+          "category_match": false,
+          "gemba_category": "Accuracy"
+        },
+        {
+          "error_id": "5391f43f-a549-4711-ab93-746ed43469eb",
+          "primary_tag": "ADDITION",
+          "error_type": "hallucination",
+          "severity": "major",
+          "tom_level": "1st_machine",
+          "detected": true,
+          "best_iou": 0.9375,
+          "category_match": true,
+          "gemba_category": "Accuracy"
+        }
+      ]
+    },
+    {
+      "item_id": "val_0113_europarl-f8201ec0b692",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 0,
+      "is_clean": true,
+      "clean_correct": true,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0114_europarl-d80a4fa7738b",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 4,
+      "is_clean": true,
+      "clean_correct": false,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0115_europarl-794c4b326755",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 4,
+      "is_clean": true,
+      "clean_correct": false,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0116_eurlex-69871326625c",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 0,
+      "is_clean": true,
+      "clean_correct": true,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0117_eurlex-0fbec93a3984",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 2,
+      "is_clean": true,
+      "clean_correct": false,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0118_europarl-c5b17622c383",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 1,
+      "is_clean": true,
+      "clean_correct": false,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0119_europarl-6da3a86d06e7",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 2,
+      "is_clean": true,
+      "clean_correct": false,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0120_eurlex-1d6b0ada40c3",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 1,
+      "is_clean": true,
+      "clean_correct": false,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0121_europarl-7d7e8d2eec5f",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 1,
+      "is_clean": true,
+      "clean_correct": false,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0122_dgt_tm-27b8a24ab9a5",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 2,
+      "is_clean": true,
+      "clean_correct": false,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0123_dgt_tm-2647a825780c",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 0,
+      "is_clean": true,
+      "clean_correct": true,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0124_europarl-94fd99ddbf94",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 3,
+      "is_clean": true,
+      "clean_correct": false,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0125_eurlex-0da944fa0e0e",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 2,
+      "is_clean": true,
+      "clean_correct": false,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0126_dgt_tm-e5a9c9d7b968",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 0,
+      "is_clean": true,
+      "clean_correct": true,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0127_europarl-3a843ad1d65a",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 4,
+      "is_clean": true,
+      "clean_correct": false,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0128_dgt_tm-2cb88d944b2b",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 2,
+      "is_clean": true,
+      "clean_correct": false,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0129_eurlex-9a0439de981f",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 0,
+      "is_clean": true,
+      "clean_correct": true,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0130_dgt_tm-ef184f33e448",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 3,
+      "is_clean": true,
+      "clean_correct": false,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0131_eurlex-73a5fda9f76c",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 1,
+      "is_clean": true,
+      "clean_correct": false,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0132_dgt_tm-c0dc1c23fffd",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 1,
+      "is_clean": true,
+      "clean_correct": false,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0133_eurlex-3c980ce4a234",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 4,
+      "is_clean": true,
+      "clean_correct": false,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0134_eurlex-09a7a7231dd6",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 2,
+      "is_clean": true,
+      "clean_correct": false,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0135_dgt_tm-329f995fb404",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 2,
+      "is_clean": true,
+      "clean_correct": false,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0136_dgt_tm-c9889226bb3c",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 0,
+      "is_clean": true,
+      "clean_correct": true,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0137_europarl-70334c0735ad",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 0,
+      "is_clean": true,
+      "clean_correct": true,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0138_europarl-0a38c9fb640f",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 2,
+      "is_clean": true,
+      "clean_correct": false,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0139_europarl-e907b354c080",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 3,
+      "is_clean": true,
+      "clean_correct": false,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0140_eurlex-4b54ce08acf0",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 1,
+      "is_clean": true,
+      "clean_correct": false,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0141_europarl-90facc65ea14",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 0,
+      "is_clean": true,
+      "clean_correct": true,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0142_eurlex-964aeb1d4aa2",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 3,
+      "is_clean": true,
+      "clean_correct": false,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0143_europarl-9b3dc0dfc6aa",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 3,
+      "is_clean": true,
+      "clean_correct": false,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0144_europarl-b5a5893240e3",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 3,
+      "is_clean": true,
+      "clean_correct": false,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0145_dgt_tm-bb05442b8d4f",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 0,
+      "is_clean": true,
+      "clean_correct": true,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0146_dgt_tm-5f781de8ba59",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 0,
+      "is_clean": true,
+      "clean_correct": true,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0147_dgt_tm-d9aa65a2a059",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 0,
+      "is_clean": true,
+      "clean_correct": true,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0148_europarl-369cd1d6b445",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 2,
+      "is_clean": true,
+      "clean_correct": false,
+      "per_error": []
+    },
+    {
+      "item_id": "val_0149_europarl-17ee7b88ff8c",
+      "total_injected": 0,
+      "detected": 0,
+      "category_matches": 0,
+      "false_positives": 2,
+      "is_clean": true,
+      "clean_correct": false,
+      "per_error": []
+    }
+  ]
+}

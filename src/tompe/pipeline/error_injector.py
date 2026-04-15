@@ -422,6 +422,80 @@ async def _inject_single_error(
 
 
 # ============================================================================
+# Span recalculation for multi-error items
+# ============================================================================
+
+
+def _realign_spans(
+    final_text: str,
+    errors: list[InjectedError],
+) -> None:
+    """Realign every error's span to point into *final_text*.
+
+    After sequential injection, spans may be stale because:
+    - Later injections shifted character positions (offset drift).
+    - The LLM made minor whitespace/punctuation changes outside the
+      error span (allowed up to 5% by verification).
+    - A later error overwrote part of an earlier error's text.
+
+    Strategy (single pass, last-injected first):
+    1. ``find()`` each error's ``injected_text`` in *final_text*.
+    2. Pick the match closest to the current (possibly stale) offset.
+    3. If not found, the text was overwritten by a later error — read
+       the actual content at the approximate position and update
+       ``injected_text``.
+    """
+    text_len = len(final_text)
+    claimed: set[tuple[int, int]] = set()
+
+    # Process in reverse: last error's spans are most likely correct
+    for error in reversed(errors):
+        target = error.injected_text
+        if not target:
+            error.span_start = min(error.span_start, text_len)
+            error.span_end = error.span_start
+            continue
+
+        # Find all unclaimed occurrences
+        candidates: list[tuple[int, int]] = []
+        search_pos = 0
+        while True:
+            pos = final_text.find(target, search_pos)
+            if pos == -1:
+                break
+            span = (pos, pos + len(target))
+            if span not in claimed:
+                candidates.append(span)
+            search_pos = pos + 1
+
+        if candidates:
+            best = min(candidates, key=lambda c: abs(c[0] - error.span_start))
+            error.span_start = best[0]
+            error.span_end = best[1]
+            claimed.add(best)
+        else:
+            # Text was overwritten by a later error — read actual content
+            # at the approximate position and update injected_text.
+            s = max(0, min(error.span_start, text_len))
+            e = max(s, min(error.span_end, text_len))
+            actual = final_text[s:e]
+            if actual:
+                logger.debug(
+                    "Span overwritten for error %s: '%s' → '%s'",
+                    error.error_id, target[:30], actual[:30],
+                )
+                error.span_start = s
+                error.span_end = e
+                error.injected_text = actual
+                claimed.add((s, e))
+            else:
+                logger.warning(
+                    "Could not realign error %s ('%s') in final text",
+                    error.error_id, target[:30],
+                )
+
+
+# ============================================================================
 # Public API
 # ============================================================================
 
@@ -473,7 +547,12 @@ async def inject_errors_reference_based(
             use_few_shot=error_profile.use_few_shot,
             direction=error_profile.direction,
         )
+        # Adjust prior errors' spans for the character delta this injection caused
         injected_errors.append(error)
+
+    # Realign all spans to the final text
+    if len(injected_errors) > 1:
+        _realign_spans(current_text, injected_errors)
 
     return current_text, injected_errors
 
@@ -518,5 +597,8 @@ async def inject_errors_mt_based(
             direction=error_profile.direction,
         )
         injected_errors.append(error)
+
+    if len(injected_errors) > 1:
+        _realign_spans(current_text, injected_errors)
 
     return current_text, injected_errors

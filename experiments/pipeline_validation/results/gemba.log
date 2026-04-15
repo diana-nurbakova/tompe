@@ -1,0 +1,410 @@
+2026-04-16 01:08:41,653 runner INFO Loaded 133 items
+2026-04-16 01:08:43,293 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:43,294 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:43,760 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:43,760 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:44,384 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:44,385 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:45,391 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:45,392 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:45,912 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:45,912 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:46,177 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:46,178 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:46,381 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:46,382 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:46,607 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:46,607 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:47,422 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:47,422 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:47,642 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:47,642 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:47,841 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:47,841 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:48,063 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:48,064 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:48,267 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:48,267 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:48,497 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:48,502 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:49,199 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:49,200 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:49,674 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:49,675 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:49,877 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:49,877 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:50,417 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:50,418 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:50,663 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:50,664 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:50,859 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:50,860 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:51,173 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:51,174 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:51,410 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:51,411 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:51,636 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:51,636 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:51,875 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:51,875 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:52,111 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:52,112 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:52,323 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:52,324 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:52,557 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:52,558 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:52,758 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:52,759 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:53,213 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:53,214 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:53,980 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:53,980 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:54,172 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:54,172 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:54,431 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:54,431 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:54,663 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:54,663 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:54,884 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:54,885 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:55,220 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:55,221 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:55,630 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:55,630 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:55,831 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:55,834 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:56,051 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:56,051 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:56,264 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:56,265 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:56,478 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:56,479 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:56,686 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:56,686 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:56,908 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:56,910 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:57,197 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:57,198 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:57,429 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:57,429 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:57,633 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:57,633 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:57,830 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:57,830 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:58,043 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:58,043 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:58,260 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:58,261 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:58,470 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:58,471 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:58,718 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:58,719 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:58,907 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:58,908 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:59,136 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:59,138 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:59,343 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:59,344 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:59,546 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:59,547 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:59,769 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:59,770 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:08:59,969 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:08:59,970 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:00,227 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:00,227 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:00,450 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:00,450 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:00,694 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:00,695 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:00,932 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:00,933 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:01,168 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:01,169 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:01,404 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:01,405 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:01,693 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:01,693 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:01,993 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:01,993 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:02,216 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:02,216 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:02,407 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:02,408 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:02,621 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:02,621 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:02,865 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:02,865 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:03,071 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:03,072 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:03,307 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:03,307 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:04,550 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:04,551 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:04,758 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:04,758 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:04,980 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:04,981 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:05,201 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:05,202 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:05,432 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:05,433 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:05,631 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:05,632 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:05,849 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:05,849 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:06,083 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:06,084 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:06,283 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:06,283 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:06,522 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:06,522 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:06,718 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:06,719 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:06,949 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:06,951 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:07,157 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:07,158 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:07,394 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:07,395 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:07,610 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:07,611 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:07,817 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:07,817 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:08,032 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:08,032 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:08,264 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:08,264 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:08,482 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:08,483 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:08,675 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:08,675 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:08,897 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:08,897 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:09,130 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:09,131 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:09,351 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:09,352 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:09,602 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:09,602 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:09,833 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:09,834 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:10,031 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:10,031 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:10,238 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:10,238 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:10,460 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:10,461 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:10,671 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:10,672 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:10,892 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:10,892 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:11,116 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:11,116 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:11,347 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:11,348 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:11,574 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:11,575 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:11,782 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:11,783 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:12,181 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:12,181 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:12,401 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:12,402 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:12,609 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:12,610 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:12,857 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:12,858 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:13,099 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:13,100 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:13,341 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:13,342 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:13,563 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:13,564 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:13,778 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:13,779 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:14,001 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:14,003 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:14,226 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:14,226 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:14,454 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:14,454 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:14,670 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:14,670 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:14,922 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:14,923 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:15,129 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:15,129 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:15,341 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:15,341 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:15,568 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:15,569 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:15,814 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:15,815 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:16,039 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:16,040 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:16,227 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:16,228 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:16,474 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:16,475 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:16,759 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:16,759 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:16,967 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:16,968 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:17,188 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:17,188 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:17,563 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:17,564 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:17,778 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:17,778 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:17,978 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:17,978 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:18,193 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:18,194 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:18,394 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:18,394 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:18,644 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-16 01:09:18,645 tompe.pipeline.qe_validator ERROR GEMBA-MQM evaluation failed: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-04-16 01:09:18,654 experiments.pipeline_validation.track_a.gemba_detection INFO GEMBA detection: 0/288 detected (0.0%), category agreement 0.0%, FP rate 0.00, clean accuracy 100.0%, target 80%
+2026-04-16 01:09:18,664 experiments.pipeline_validation.track_a.gemba_detection INFO GEMBA detection results saved to C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\results\track_a\a2_gemba_detection.json
+Detection rate: 0%
+Category agreement: 0%
+Clean accuracy: 100%
+FP rate: 0%
+By ToM:
+  1st_machine: det=0% cat=0%
+  2nd_reader: det=0% cat=0%
+  1st_author: det=0% cat=0%

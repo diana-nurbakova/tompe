@@ -1,0 +1,539 @@
+2026-04-16 01:11:37,145 runner INFO Loaded 133 items
+2026-04-16 01:11:37,858 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:11:39,330 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.2s — tokens=487, content_len=828
+2026-04-16 01:11:40,253 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:11:40,570 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.2s — tokens=307, content_len=61
+2026-04-16 01:11:41,153 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:11:42,476 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.9s — tokens=535, content_len=905
+2026-04-16 01:11:43,212 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:11:46,612 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 4.1s — tokens=468, content_len=654
+2026-04-16 01:11:47,055 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:11:49,033 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.4s — tokens=631, content_len=1351
+2026-04-16 01:11:49,608 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:11:50,531 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.5s — tokens=469, content_len=661
+2026-04-16 01:11:51,064 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:11:52,541 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.0s — tokens=522, content_len=983
+2026-04-16 01:11:53,298 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:11:53,922 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.4s — tokens=318, content_len=61
+2026-04-16 01:11:54,537 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:11:56,405 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.5s — tokens=530, content_len=946
+2026-04-16 01:11:56,931 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:11:57,732 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.3s — tokens=320, content_len=61
+2026-04-16 01:11:58,197 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:12:00,957 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.2s — tokens=798, content_len=1720
+2026-04-16 01:12:01,516 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:12:04,306 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 3.3s — tokens=702, content_len=1421
+2026-04-16 01:12:04,956 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:12:07,681 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.4s — tokens=749, content_len=1765
+2026-04-16 01:12:08,244 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:12:10,526 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.8s — tokens=691, content_len=1491
+2026-04-16 01:12:11,102 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:12:12,924 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.4s — tokens=620, content_len=1096
+2026-04-16 01:12:13,476 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:12:14,183 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.2s — tokens=435, content_len=246
+2026-04-16 01:12:14,744 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:12:16,470 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.3s — tokens=511, content_len=948
+2026-04-16 01:12:17,592 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:12:17,910 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.4s — tokens=318, content_len=61
+2026-04-16 01:12:18,502 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:12:21,493 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.6s — tokens=519, content_len=911
+2026-04-16 01:12:22,016 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:12:23,045 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.5s — tokens=424, content_len=478
+2026-04-16 01:12:23,545 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:12:26,915 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.9s — tokens=720, content_len=1756
+2026-04-16 01:12:27,356 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:12:27,515 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.6s — tokens=343, content_len=61
+2026-04-16 01:12:27,978 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:12:29,578 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.1s — tokens=596, content_len=1084
+2026-04-16 01:12:30,408 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:12:33,105 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 3.5s — tokens=468, content_len=430
+2026-04-16 01:12:33,748 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:12:36,746 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.6s — tokens=590, content_len=953
+2026-04-16 01:12:37,416 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:12:37,715 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.0s — tokens=392, content_len=61
+2026-04-16 01:12:38,228 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:12:39,353 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.6s — tokens=507, content_len=780
+2026-04-16 01:12:39,801 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:12:39,948 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.6s — tokens=344, content_len=61
+2026-04-16 01:12:40,408 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:12:42,395 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.5s — tokens=648, content_len=1252
+2026-04-16 01:12:43,582 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:12:43,748 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.3s — tokens=392, content_len=61
+2026-04-16 01:12:44,202 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:12:45,256 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.5s — tokens=464, content_len=561
+2026-04-16 01:12:45,915 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:12:46,059 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.8s — tokens=353, content_len=61
+2026-04-16 01:12:46,557 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:12:48,523 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.5s — tokens=618, content_len=1192
+2026-04-16 01:12:48,986 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:12:50,096 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.6s — tokens=485, content_len=654
+2026-04-16 01:12:50,696 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:12:52,549 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.5s — tokens=582, content_len=1116
+2026-04-16 01:12:53,046 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:12:54,592 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.0s — tokens=498, content_len=810
+2026-04-16 01:12:55,067 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:12:58,977 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 4.4s — tokens=772, content_len=1686
+2026-04-16 01:12:59,492 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:13:03,638 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 4.7s — tokens=834, content_len=1962
+2026-04-16 01:13:04,264 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:13:05,724 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.1s — tokens=490, content_len=529
+2026-04-16 01:13:06,413 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:13:06,884 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.2s — tokens=371, content_len=61
+2026-04-16 01:13:07,542 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:13:11,996 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 5.1s — tokens=437, content_len=570
+2026-04-16 01:13:12,483 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:13:12,616 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.6s — tokens=310, content_len=61
+2026-04-16 01:13:13,352 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:13:14,919 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.3s — tokens=580, content_len=1061
+2026-04-16 01:13:15,918 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:13:17,127 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.2s — tokens=463, content_len=636
+2026-04-16 01:13:17,763 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:13:26,559 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 9.4s — tokens=671, content_len=1500
+2026-04-16 01:13:27,444 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:13:36,517 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 10.0s — tokens=674, content_len=1505
+2026-04-16 01:13:37,494 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:13:39,091 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.6s — tokens=485, content_len=729
+2026-04-16 01:13:39,960 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:13:41,345 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.3s — tokens=409, content_len=374
+2026-04-16 01:13:42,259 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:13:43,352 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.0s — tokens=462, content_len=569
+2026-04-16 01:13:44,195 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:13:44,343 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.0s — tokens=342, content_len=61
+2026-04-16 01:13:45,353 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:13:47,935 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.6s — tokens=663, content_len=1310
+2026-04-16 01:13:48,815 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:13:49,273 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.3s — tokens=420, content_len=298
+2026-04-16 01:13:50,160 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:13:51,690 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.4s — tokens=534, content_len=1047
+2026-04-16 01:13:52,583 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:13:52,682 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.0s — tokens=309, content_len=61
+2026-04-16 01:13:53,792 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:13:55,123 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.4s — tokens=548, content_len=998
+2026-04-16 01:13:55,993 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:13:56,988 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.9s — tokens=485, content_len=713
+2026-04-16 01:13:57,813 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:13:59,220 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.2s — tokens=568, content_len=984
+2026-04-16 01:14:00,358 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:14:02,614 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 3.4s — tokens=621, content_len=1280
+2026-04-16 01:14:03,503 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:14:05,139 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.5s — tokens=529, content_len=883
+2026-04-16 01:14:06,004 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:14:06,104 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.0s — tokens=330, content_len=61
+2026-04-16 01:14:07,013 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:14:09,724 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.6s — tokens=685, content_len=1511
+2026-04-16 01:14:10,615 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:14:12,938 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 3.2s — tokens=641, content_len=1237
+2026-04-16 01:14:13,980 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:14:16,705 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.8s — tokens=481, content_len=896
+2026-04-16 01:14:17,718 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:14:19,069 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.4s — tokens=484, content_len=726
+2026-04-16 01:14:20,045 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:14:21,734 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.7s — tokens=517, content_len=806
+2026-04-16 01:14:22,630 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:14:22,772 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.0s — tokens=337, content_len=61
+2026-04-16 01:14:23,620 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:14:25,513 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.7s — tokens=589, content_len=1359
+2026-04-16 01:14:26,525 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:14:26,704 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.2s — tokens=326, content_len=61
+2026-04-16 01:14:27,567 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:14:30,271 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.6s — tokens=715, content_len=1576
+2026-04-16 01:14:31,212 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:14:33,609 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 3.3s — tokens=565, content_len=858
+2026-04-16 01:14:34,642 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:14:38,928 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 5.3s — tokens=599, content_len=1188
+2026-04-16 01:14:39,994 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:14:40,109 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.2s — tokens=353, content_len=61
+2026-04-16 01:14:41,124 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:14:43,322 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.2s — tokens=575, content_len=1158
+2026-04-16 01:14:44,332 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:14:44,616 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.3s — tokens=333, content_len=61
+2026-04-16 01:14:45,516 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:14:48,124 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.5s — tokens=641, content_len=1340
+2026-04-16 01:14:49,185 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:14:52,028 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 3.9s — tokens=630, content_len=1262
+2026-04-16 01:14:52,870 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:14:54,956 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.9s — tokens=585, content_len=1298
+2026-04-16 01:14:55,555 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:14:55,670 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.7s — tokens=311, content_len=61
+2026-04-16 01:14:56,558 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:14:59,023 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.4s — tokens=502, content_len=902
+2026-04-16 01:14:59,511 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:15:00,282 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.2s — tokens=400, content_len=497
+2026-04-16 01:15:01,428 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:15:02,932 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.6s — tokens=509, content_len=959
+2026-04-16 01:15:03,483 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:15:03,595 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.7s — tokens=345, content_len=61
+2026-04-16 01:15:04,626 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:15:06,980 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.4s — tokens=659, content_len=1195
+2026-04-16 01:15:07,892 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:15:10,221 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 3.2s — tokens=595, content_len=879
+2026-04-16 01:15:10,745 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:15:12,897 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.7s — tokens=697, content_len=1279
+2026-04-16 01:15:13,425 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:15:14,863 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.0s — tokens=568, content_len=615
+2026-04-16 01:15:15,372 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:15:16,960 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.1s — tokens=593, content_len=778
+2026-04-16 01:15:17,861 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:15:19,146 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.2s — tokens=587, content_len=836
+2026-04-16 01:15:19,746 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:15:21,789 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.6s — tokens=548, content_len=1043
+2026-04-16 01:15:22,269 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:15:24,913 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 3.1s — tokens=526, content_len=877
+2026-04-16 01:15:25,432 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:15:26,982 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.1s — tokens=563, content_len=992
+2026-04-16 01:15:27,477 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:15:28,838 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.9s — tokens=574, content_len=1009
+2026-04-16 01:15:29,494 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:15:32,293 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.5s — tokens=677, content_len=1514
+2026-04-16 01:15:32,823 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:15:34,642 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.3s — tokens=544, content_len=1034
+2026-04-16 01:15:35,189 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:15:38,173 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.5s — tokens=853, content_len=1980
+2026-04-16 01:15:38,725 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:15:41,997 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 3.8s — tokens=793, content_len=1723
+2026-04-16 01:15:42,448 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:15:45,331 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.3s — tokens=583, content_len=1040
+2026-04-16 01:15:45,953 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:15:47,045 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.7s — tokens=521, content_len=770
+2026-04-16 01:15:47,580 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:15:48,899 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.9s — tokens=474, content_len=672
+2026-04-16 01:15:49,431 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:15:49,622 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.7s — tokens=317, content_len=61
+2026-04-16 01:15:50,087 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:15:50,565 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.0s — tokens=468, content_len=302
+2026-04-16 01:15:51,132 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:15:51,268 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.7s — tokens=410, content_len=61
+2026-04-16 01:15:52,137 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:15:54,297 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.0s — tokens=671, content_len=1313
+2026-04-16 01:15:54,860 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:15:56,011 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.7s — tokens=532, content_len=681
+2026-04-16 01:15:56,505 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:15:56,853 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.8s — tokens=309, content_len=61
+2026-04-16 01:15:57,345 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:15:57,486 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.6s — tokens=310, content_len=61
+2026-04-16 01:15:58,188 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:16:01,501 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 4.0s — tokens=821, content_len=2095
+2026-04-16 01:16:01,978 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:16:02,813 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.3s — tokens=492, content_len=669
+2026-04-16 01:16:03,451 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:16:06,134 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.3s — tokens=544, content_len=955
+2026-04-16 01:16:06,696 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:16:08,294 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.2s — tokens=550, content_len=950
+2026-04-16 01:16:08,843 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:16:12,044 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.8s — tokens=484, content_len=681
+2026-04-16 01:16:12,539 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:16:12,653 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.6s — tokens=315, content_len=61
+2026-04-16 01:16:13,155 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:16:18,747 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 6.1s — tokens=950, content_len=2215
+2026-04-16 01:16:19,322 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:16:20,823 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.1s — tokens=570, content_len=581
+2026-04-16 01:16:21,543 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:16:25,104 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 4.3s — tokens=537, content_len=1150
+2026-04-16 01:16:25,739 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:16:27,389 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.3s — tokens=536, content_len=1132
+2026-04-16 01:16:27,872 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:16:31,383 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 4.0s — tokens=780, content_len=1907
+2026-04-16 01:16:31,853 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:16:33,201 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.8s — tokens=479, content_len=625
+2026-04-16 01:16:33,681 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:16:35,770 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.6s — tokens=634, content_len=1115
+2026-04-16 01:16:36,284 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:16:36,396 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.6s — tokens=396, content_len=61
+2026-04-16 01:16:36,926 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:16:38,082 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.7s — tokens=485, content_len=686
+2026-04-16 01:16:38,653 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:16:39,347 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.3s — tokens=400, content_len=341
+2026-04-16 01:16:39,832 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:16:42,504 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.2s — tokens=641, content_len=1382
+2026-04-16 01:16:42,997 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:16:44,556 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.0s — tokens=534, content_len=1069
+2026-04-16 01:16:45,026 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:16:45,920 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.4s — tokens=457, content_len=582
+2026-04-16 01:16:46,687 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:16:46,860 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.9s — tokens=332, content_len=61
+2026-04-16 01:16:47,396 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:16:48,238 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.4s — tokens=465, content_len=527
+2026-04-16 01:16:48,799 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:16:48,958 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.7s — tokens=348, content_len=61
+2026-04-16 01:16:49,476 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:16:52,382 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.4s — tokens=588, content_len=1199
+2026-04-16 01:16:52,941 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:16:54,286 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.9s — tokens=490, content_len=876
+2026-04-16 01:16:54,875 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:16:56,857 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.6s — tokens=613, content_len=1270
+2026-04-16 01:16:57,382 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:17:00,769 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 3.9s — tokens=790, content_len=2009
+2026-04-16 01:17:01,284 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:17:03,475 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.7s — tokens=762, content_len=1755
+2026-04-16 01:17:04,704 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:17:06,605 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 3.1s — tokens=688, content_len=1382
+2026-04-16 01:17:07,089 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:17:10,381 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.8s — tokens=893, content_len=2116
+2026-04-16 01:17:10,872 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:17:12,473 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.1s — tokens=566, content_len=682
+2026-04-16 01:17:12,957 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:17:17,256 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 4.8s — tokens=778, content_len=1796
+2026-04-16 01:17:17,760 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:17:20,001 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.7s — tokens=605, content_len=1078
+2026-04-16 01:17:20,467 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:17:22,400 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.4s — tokens=571, content_len=1041
+2026-04-16 01:17:22,911 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:17:23,897 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.5s — tokens=433, content_len=515
+2026-04-16 01:17:24,333 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:17:26,208 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.3s — tokens=576, content_len=1202
+2026-04-16 01:17:26,727 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:17:26,882 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.7s — tokens=325, content_len=61
+2026-04-16 01:17:27,407 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:17:29,918 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.0s — tokens=653, content_len=1695
+2026-04-16 01:17:30,404 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:17:31,338 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.4s — tokens=445, content_len=712
+2026-04-16 01:17:31,894 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:17:34,947 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.6s — tokens=785, content_len=1839
+2026-04-16 01:17:35,534 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:17:36,934 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.0s — tokens=565, content_len=795
+2026-04-16 01:17:37,509 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:17:39,764 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.8s — tokens=659, content_len=1213
+2026-04-16 01:17:40,267 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:17:40,403 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.6s — tokens=389, content_len=61
+2026-04-16 01:17:40,888 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:17:41,661 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.3s — tokens=441, content_len=378
+2026-04-16 01:17:42,213 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:17:42,659 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.0s — tokens=366, content_len=61
+2026-04-16 01:17:43,494 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:17:48,154 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 5.5s — tokens=878, content_len=2039
+2026-04-16 01:17:48,681 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:17:51,211 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 3.1s — tokens=603, content_len=751
+2026-04-16 01:17:51,791 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:17:54,527 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.3s — tokens=629, content_len=1227
+2026-04-16 01:17:54,988 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:17:57,435 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.9s — tokens=535, content_len=777
+2026-04-16 01:17:57,982 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:18:00,036 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.6s — tokens=551, content_len=615
+2026-04-16 01:18:00,656 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:18:02,971 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.9s — tokens=538, content_len=604
+2026-04-16 01:18:03,536 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:18:06,780 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.8s — tokens=617, content_len=1225
+2026-04-16 01:18:07,321 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:18:09,445 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.7s — tokens=580, content_len=1118
+2026-04-16 01:18:10,043 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:18:12,772 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.3s — tokens=632, content_len=1199
+2026-04-16 01:18:13,393 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:18:15,739 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 3.0s — tokens=526, content_len=760
+2026-04-16 01:18:16,245 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:18:19,411 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.7s — tokens=678, content_len=1173
+2026-04-16 01:18:20,258 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:18:20,656 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.2s — tokens=444, content_len=61
+2026-04-16 01:18:21,459 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:18:31,788 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 11.1s — tokens=602, content_len=1200
+2026-04-16 01:18:32,282 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:18:32,407 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.6s — tokens=352, content_len=61
+2026-04-16 01:18:32,879 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:18:34,095 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.7s — tokens=461, content_len=676
+2026-04-16 01:18:34,619 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:18:34,779 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.7s — tokens=333, content_len=61
+2026-04-16 01:18:35,299 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:18:37,906 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.1s — tokens=588, content_len=1261
+2026-04-16 01:18:38,383 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:18:38,481 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.6s — tokens=311, content_len=61
+2026-04-16 01:18:38,966 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:18:40,903 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.4s — tokens=468, content_len=765
+2026-04-16 01:18:41,389 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:18:41,603 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.7s — tokens=311, content_len=61
+2026-04-16 01:18:42,076 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:18:43,703 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.1s — tokens=520, content_len=640
+2026-04-16 01:18:44,238 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:18:45,446 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.8s — tokens=479, content_len=453
+2026-04-16 01:18:45,999 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:18:48,005 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.6s — tokens=528, content_len=970
+2026-04-16 01:18:48,621 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:18:50,524 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.5s — tokens=490, content_len=743
+2026-04-16 01:18:51,150 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:18:54,239 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.7s — tokens=625, content_len=1502
+2026-04-16 01:18:54,696 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:18:57,267 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 3.0s — tokens=601, content_len=1485
+2026-04-16 01:18:57,764 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:18:59,910 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.6s — tokens=499, content_len=829
+2026-04-16 01:19:00,380 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:19:01,556 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.7s — tokens=436, content_len=523
+2026-04-16 01:19:02,024 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:19:05,092 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.5s — tokens=577, content_len=932
+2026-04-16 01:19:05,603 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:19:05,827 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.7s — tokens=419, content_len=61
+2026-04-16 01:19:06,425 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:19:07,694 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.9s — tokens=461, content_len=584
+2026-04-16 01:19:08,266 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:19:09,822 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.1s — tokens=485, content_len=516
+2026-04-16 01:19:10,364 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:19:14,243 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 4.4s — tokens=605, content_len=1102
+2026-04-16 01:19:14,897 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:19:16,827 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.6s — tokens=480, content_len=652
+2026-04-16 01:19:17,347 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:19:20,250 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.4s — tokens=606, content_len=1113
+2026-04-16 01:19:20,786 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:19:23,833 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 3.6s — tokens=565, content_len=1023
+2026-04-16 01:19:24,453 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:19:26,417 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.6s — tokens=527, content_len=809
+2026-04-16 01:19:26,936 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:19:27,023 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.6s — tokens=357, content_len=61
+2026-04-16 01:19:27,618 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:19:30,735 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.7s — tokens=638, content_len=1352
+2026-04-16 01:19:31,257 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:19:32,468 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.7s — tokens=424, content_len=398
+2026-04-16 01:19:33,065 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:19:35,111 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.6s — tokens=576, content_len=943
+2026-04-16 01:19:35,737 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:19:37,107 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.0s — tokens=474, content_len=501
+2026-04-16 01:19:37,705 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:19:37,910 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.8s — tokens=336, content_len=61
+2026-04-16 01:19:38,396 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:19:40,037 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.1s — tokens=426, content_len=447
+2026-04-16 01:19:40,570 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:19:45,259 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 5.2s — tokens=856, content_len=1844
+2026-04-16 01:19:45,804 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:19:50,372 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 5.1s — tokens=799, content_len=1561
+2026-04-16 01:19:50,991 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:19:56,384 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 6.0s — tokens=589, content_len=1254
+2026-04-16 01:19:56,899 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:19:59,069 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.7s — tokens=575, content_len=1148
+2026-04-16 01:19:59,587 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:19:59,737 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.7s — tokens=332, content_len=61
+2026-04-16 01:20:00,251 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:20:00,353 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.6s — tokens=332, content_len=61
+2026-04-16 01:20:00,854 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:20:02,239 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.9s — tokens=561, content_len=640
+2026-04-16 01:20:02,731 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:20:05,104 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.9s — tokens=565, content_len=629
+2026-04-16 01:20:05,623 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:20:06,486 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.4s — tokens=425, content_len=375
+2026-04-16 01:20:07,021 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:20:08,545 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.1s — tokens=428, content_len=401
+2026-04-16 01:20:09,122 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:20:11,275 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.7s — tokens=536, content_len=890
+2026-04-16 01:20:11,852 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:20:16,396 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 5.1s — tokens=492, content_len=705
+2026-04-16 01:20:16,996 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:20:17,849 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.5s — tokens=482, content_len=287
+2026-04-16 01:20:18,302 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:20:18,447 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.6s — tokens=431, content_len=61
+2026-04-16 01:20:18,959 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:20:19,985 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.5s — tokens=423, content_len=521
+2026-04-16 01:20:20,426 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:20:22,027 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.0s — tokens=442, content_len=578
+2026-04-16 01:20:22,600 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:20:24,224 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.2s — tokens=464, content_len=658
+2026-04-16 01:20:24,763 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:20:27,300 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 3.1s — tokens=452, content_len=662
+2026-04-16 01:20:27,941 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:20:28,282 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.0s — tokens=363, content_len=61
+2026-04-16 01:20:28,783 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:20:28,899 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.6s — tokens=363, content_len=61
+2026-04-16 01:20:29,636 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:20:32,577 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.7s — tokens=742, content_len=987
+2026-04-16 01:20:33,203 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:20:37,191 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 4.6s — tokens=826, content_len=1271
+2026-04-16 01:20:37,777 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:20:38,856 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.7s — tokens=503, content_len=757
+2026-04-16 01:20:39,783 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:20:40,507 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.7s — tokens=427, content_len=433
+2026-04-16 01:20:41,405 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:20:41,589 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.1s — tokens=401, content_len=61
+2026-04-16 01:20:42,465 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:20:42,657 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.1s — tokens=401, content_len=61
+2026-04-16 01:20:43,519 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:20:45,924 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.3s — tokens=712, content_len=1223
+2026-04-16 01:20:46,784 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:20:50,913 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 5.0s — tokens=747, content_len=1337
+2026-04-16 01:20:51,928 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:20:54,079 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.2s — tokens=488, content_len=768
+2026-04-16 01:20:55,140 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:20:57,601 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 3.5s — tokens=502, content_len=827
+2026-04-16 01:20:58,645 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:20:58,789 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.2s — tokens=332, content_len=61
+2026-04-16 01:20:59,666 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:20:59,813 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.0s — tokens=332, content_len=61
+2026-04-16 01:21:00,871 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:21:03,120 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.3s — tokens=556, content_len=910
+2026-04-16 01:21:04,181 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:21:05,921 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.8s — tokens=529, content_len=776
+2026-04-16 01:21:06,492 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:21:07,484 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.6s — tokens=435, content_len=379
+2026-04-16 01:21:08,420 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:21:09,225 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.8s — tokens=444, content_len=381
+2026-04-16 01:21:09,743 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:21:10,350 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.1s — tokens=368, content_len=313
+2026-04-16 01:21:11,160 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:21:11,995 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.6s — tokens=365, content_len=299
+2026-04-16 01:21:12,876 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:21:16,398 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 4.4s — tokens=644, content_len=1308
+2026-04-16 01:21:17,069 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:21:18,777 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.4s — tokens=526, content_len=754
+2026-04-16 01:21:19,369 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:21:20,721 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.9s — tokens=485, content_len=727
+2026-04-16 01:21:21,270 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:21:24,207 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 3.5s — tokens=504, content_len=832
+2026-04-16 01:21:24,937 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:21:28,882 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 4.7s — tokens=596, content_len=851
+2026-04-16 01:21:29,676 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:21:31,814 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.9s — tokens=509, content_len=415
+2026-04-16 01:21:32,279 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:21:32,422 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.6s — tokens=425, content_len=61
+2026-04-16 01:21:33,175 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:21:33,295 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.9s — tokens=425, content_len=61
+2026-04-16 01:21:33,862 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:21:34,014 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.7s — tokens=337, content_len=61
+2026-04-16 01:21:34,507 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:21:34,581 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.6s — tokens=337, content_len=61
+2026-04-16 01:21:35,111 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:21:36,560 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.0s — tokens=543, content_len=722
+2026-04-16 01:21:37,855 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:21:40,032 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 3.5s — tokens=529, content_len=671
+2026-04-16 01:21:40,557 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:21:42,957 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.9s — tokens=515, content_len=1031
+2026-04-16 01:21:43,473 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:21:46,145 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 3.2s — tokens=550, content_len=1088
+2026-04-16 01:21:46,946 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:21:47,842 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.7s — tokens=395, content_len=363
+2026-04-16 01:21:48,404 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:21:49,442 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.6s — tokens=403, content_len=405
+2026-04-16 01:21:50,022 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:21:50,275 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.8s — tokens=332, content_len=61
+2026-04-16 01:21:50,856 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:21:51,060 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.8s — tokens=332, content_len=61
+2026-04-16 01:21:51,655 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:21:53,638 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.6s — tokens=478, content_len=836
+2026-04-16 01:21:54,377 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:21:56,174 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.5s — tokens=498, content_len=916
+2026-04-16 01:21:56,668 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:21:59,293 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.1s — tokens=619, content_len=1006
+2026-04-16 01:22:00,049 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:22:01,804 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.5s — tokens=604, content_len=999
+2026-04-16 01:22:02,629 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:22:06,273 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 4.5s — tokens=610, content_len=1081
+2026-04-16 01:22:06,874 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:22:08,920 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.6s — tokens=572, content_len=941
+2026-04-16 01:22:09,609 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:22:09,764 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.8s — tokens=337, content_len=61
+2026-04-16 01:22:10,988 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:22:11,213 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.5s — tokens=337, content_len=61
+2026-04-16 01:22:12,288 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:22:12,462 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.2s — tokens=376, content_len=61
+2026-04-16 01:22:13,479 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:22:13,701 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.2s — tokens=376, content_len=61
+2026-04-16 01:22:14,747 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:22:14,949 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.2s — tokens=317, content_len=61
+2026-04-16 01:22:16,042 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:22:16,226 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.3s — tokens=317, content_len=61
+2026-04-16 01:22:17,097 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:22:19,916 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.7s — tokens=580, content_len=948
+2026-04-16 01:22:20,878 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:22:23,095 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 3.2s — tokens=574, content_len=917
+2026-04-16 01:22:23,982 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:22:26,182 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.1s — tokens=520, content_len=840
+2026-04-16 01:22:27,088 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:22:29,429 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 3.2s — tokens=543, content_len=930
+2026-04-16 01:22:29,440 experiments.pipeline_validation.track_a.gemba_detection INFO GEMBA detection: 151/288 detected (52.4%), category agreement 43.7%, FP rate 1.98, clean accuracy 29.7%, target 80%
+2026-04-16 01:22:29,456 experiments.pipeline_validation.track_a.gemba_detection INFO GEMBA detection results saved to C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\results\track_a\a2_gemba_detection.json
+2026-04-16 01:22:29,456 runner INFO RESULTS: det=52% cat=44% clean=30% fp=1.98
+2026-04-16 01:22:29,456 runner INFO   1st_machine: det=57% cat=56%
+2026-04-16 01:22:29,456 runner INFO   2nd_reader: det=51% cat=21%
+2026-04-16 01:22:29,456 runner INFO   1st_author: det=43% cat=57%

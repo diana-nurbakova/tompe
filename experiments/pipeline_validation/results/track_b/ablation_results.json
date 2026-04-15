@@ -1,0 +1,102 @@
+{
+  "segments_used": [
+    "eurlex-ab8cc9b3f34f",
+    "eurlex-79c27a2acf9a",
+    "eurlex-7ef171758d12",
+    "eurlex-77802e07ca0c",
+    "europarl-894e385b08a6",
+    "europarl-fc6ab81fda1d",
+    "dgt_tm-fae63fd10f42",
+    "eurlex-9e7461f0ddc9",
+    "dgt_tm-f37a11417440",
+    "europarl-81091132e506",
+    "europarl-3a44c994f1d3",
+    "eurlex-d13e7b2a8641",
+    "europarl-4fe13e5d660d",
+    "eurlex-59e54166feb0",
+    "dgt_tm-4fa6fd27e30b",
+    "europarl-9abdcd41a1ee",
+    "eurlex-cf1b5cc81984",
+    "eurlex-1f035803141c",
+    "dgt_tm-b4db307ed247",
+    "dgt_tm-058a0106e49d",
+    "eurlex-76b3f741ff50",
+    "eurlex-c76fd4479cbd",
+    "dgt_tm-419958f81bf0",
+    "europarl-c7b51e857475",
+    "europarl-ffccdcd65606",
+    "dgt_tm-856f04dcd5c7",
+    "dgt_tm-8b3ff07d339c",
+    "europarl-cde7e67a5020",
+    "eurlex-ccaffc6a3d9c",
+    "eurlex-dc42f146f2dc",
+    "europarl-db370a47900b",
+    "europarl-34cd74beceba",
+    "europarl-5c77c6dc6697",
+    "dgt_tm-050745359214",
+    "dgt_tm-aff7d2b35efb",
+    "eurlex-a8e31b3add6e",
+    "dgt_tm-b3225534f7a7",
+    "dgt_tm-f9ff971e30b2",
+    "europarl-166e513b7a4e",
+    "europarl-785c0aa0b4e8",
+    "dgt_tm-43cd5d49a3dc",
+    "dgt_tm-949e1468ac30",
+    "europarl-ef24ea4caff3",
+    "europarl-42b4618251f9",
+    "europarl-de1b88b3d992"
+  ],
+  "n_segments": 45,
+  "table": [
+    {
+      "condition": "B0_random",
+      "n_items": 27,
+      "structural_pass_rate": 1.0,
+      "gemba_detection_rate": 0.0,
+      "category_fidelity": null,
+      "xcomet_score_drop": 0.0,
+      "text_preservation_rate": null
+    },
+    {
+      "condition": "B1_single_step",
+      "n_items": 27,
+      "structural_pass_rate": 1.0,
+      "gemba_detection_rate": 0.0,
+      "category_fidelity": 1.0,
+      "xcomet_score_drop": 0.0,
+      "text_preservation_rate": 0.481
+    },
+    {
+      "condition": "B2_unconstrained",
+      "n_items": 43,
+      "structural_pass_rate": 1.0,
+      "gemba_detection_rate": 0.0,
+      "category_fidelity": null,
+      "xcomet_score_drop": 0.0,
+      "text_preservation_rate": 0.488
+    },
+    {
+      "condition": "full_pipeline",
+      "n_items": 0,
+      "structural_pass_rate": 0.0,
+      "gemba_detection_rate": 0.0,
+      "category_fidelity": 0.0,
+      "xcomet_score_drop": 0.0,
+      "text_preservation_rate": 0.0
+    }
+  ],
+  "deltas_vs_full": {
+    "B0_random": {
+      "structural_delta": -1.0,
+      "gemba_delta": 0.0
+    },
+    "B1_single_step": {
+      "structural_delta": -1.0,
+      "gemba_delta": 0.0
+    },
+    "B2_unconstrained": {
+      "structural_delta": -1.0,
+      "gemba_delta": 0.0
+    }
+  }
+}

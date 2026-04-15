@@ -1,0 +1,1433 @@
+2026-04-16 01:27:45,676 runner INFO Full pipeline items for ablation: 45
+2026-04-16 01:27:45,677 experiments.pipeline_validation.track_b.ablation_comparison INFO Starting ablation study on 45 segments
+2026-04-16 01:27:45,677 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment eurlex-ab8cc9b3f34f
+2026-04-16 01:27:45,678 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment eurlex-79c27a2acf9a
+2026-04-16 01:27:45,678 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [synonym] on segment eurlex-7ef171758d12
+2026-04-16 01:27:45,681 experiments.pipeline_validation.track_b.ablation_comparison ERROR B0 failed for segment eurlex-7ef171758d12
+Traceback (most recent call last):
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 84, in __load
+    root = nltk.data.find(f"{self.subdir}/{zip_name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4.zip/omw-1.4/[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 147, in _run_condition_b0
+    modified_text, errors = await inject_random(seg)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 133, in inject_random
+    new_words, idx, original, injected, tag = _synonym_replace(words)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 95, in _synonym_replace
+    syn = _get_synonym(words[idx])
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 58, in _get_synonym
+    synsets = wordnet.synsets(word, lang=lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1765, in synsets
+    self._load_lang_data(lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1303, in _load_lang_data
+    self.add_omw()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1338, in add_omw
+    self.add_provs(self._omw_reader)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1325, in add_provs
+    fileids = reader.fileids()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 121, in __getattr__
+    self.__load()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 86, in __load
+    raise e
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 81, in __load
+    root = nltk.data.find(f"{self.subdir}/{self.__name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+2026-04-16 01:27:45,684 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [synonym] on segment eurlex-77802e07ca0c
+2026-04-16 01:27:45,687 experiments.pipeline_validation.track_b.ablation_comparison ERROR B0 failed for segment eurlex-77802e07ca0c
+Traceback (most recent call last):
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 84, in __load
+    root = nltk.data.find(f"{self.subdir}/{zip_name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4.zip/omw-1.4/[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 147, in _run_condition_b0
+    modified_text, errors = await inject_random(seg)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 133, in inject_random
+    new_words, idx, original, injected, tag = _synonym_replace(words)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 95, in _synonym_replace
+    syn = _get_synonym(words[idx])
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 58, in _get_synonym
+    synsets = wordnet.synsets(word, lang=lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1765, in synsets
+    self._load_lang_data(lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1303, in _load_lang_data
+    self.add_omw()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1338, in add_omw
+    self.add_provs(self._omw_reader)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1325, in add_provs
+    fileids = reader.fileids()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 121, in __getattr__
+    self.__load()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 86, in __load
+    raise e
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 81, in __load
+    root = nltk.data.find(f"{self.subdir}/{self.__name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+2026-04-16 01:27:45,688 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment europarl-894e385b08a6
+2026-04-16 01:27:45,688 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment europarl-fc6ab81fda1d
+2026-04-16 01:27:45,688 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment dgt_tm-fae63fd10f42
+2026-04-16 01:27:45,689 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment eurlex-9e7461f0ddc9
+2026-04-16 01:27:45,689 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment dgt_tm-f37a11417440
+2026-04-16 01:27:45,689 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [synonym] on segment europarl-81091132e506
+2026-04-16 01:27:45,692 experiments.pipeline_validation.track_b.ablation_comparison ERROR B0 failed for segment europarl-81091132e506
+Traceback (most recent call last):
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 84, in __load
+    root = nltk.data.find(f"{self.subdir}/{zip_name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4.zip/omw-1.4/[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 147, in _run_condition_b0
+    modified_text, errors = await inject_random(seg)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 133, in inject_random
+    new_words, idx, original, injected, tag = _synonym_replace(words)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 95, in _synonym_replace
+    syn = _get_synonym(words[idx])
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 58, in _get_synonym
+    synsets = wordnet.synsets(word, lang=lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1765, in synsets
+    self._load_lang_data(lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1303, in _load_lang_data
+    self.add_omw()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1338, in add_omw
+    self.add_provs(self._omw_reader)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1325, in add_provs
+    fileids = reader.fileids()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 121, in __getattr__
+    self.__load()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 86, in __load
+    raise e
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 81, in __load
+    root = nltk.data.find(f"{self.subdir}/{self.__name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+2026-04-16 01:27:45,693 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment europarl-3a44c994f1d3
+2026-04-16 01:27:45,693 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment eurlex-d13e7b2a8641
+2026-04-16 01:27:45,693 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment europarl-4fe13e5d660d
+2026-04-16 01:27:45,693 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment eurlex-59e54166feb0
+2026-04-16 01:27:45,693 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment dgt_tm-4fa6fd27e30b
+2026-04-16 01:27:45,693 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [synonym] on segment europarl-9abdcd41a1ee
+2026-04-16 01:27:45,696 experiments.pipeline_validation.track_b.ablation_comparison ERROR B0 failed for segment europarl-9abdcd41a1ee
+Traceback (most recent call last):
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 84, in __load
+    root = nltk.data.find(f"{self.subdir}/{zip_name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4.zip/omw-1.4/[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 147, in _run_condition_b0
+    modified_text, errors = await inject_random(seg)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 133, in inject_random
+    new_words, idx, original, injected, tag = _synonym_replace(words)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 95, in _synonym_replace
+    syn = _get_synonym(words[idx])
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 58, in _get_synonym
+    synsets = wordnet.synsets(word, lang=lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1765, in synsets
+    self._load_lang_data(lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1303, in _load_lang_data
+    self.add_omw()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1338, in add_omw
+    self.add_provs(self._omw_reader)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1325, in add_provs
+    fileids = reader.fileids()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 121, in __getattr__
+    self.__load()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 86, in __load
+    raise e
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 81, in __load
+    root = nltk.data.find(f"{self.subdir}/{self.__name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+2026-04-16 01:27:45,697 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment eurlex-cf1b5cc81984
+2026-04-16 01:27:45,697 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [synonym] on segment eurlex-1f035803141c
+2026-04-16 01:27:45,701 experiments.pipeline_validation.track_b.ablation_comparison ERROR B0 failed for segment eurlex-1f035803141c
+Traceback (most recent call last):
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 84, in __load
+    root = nltk.data.find(f"{self.subdir}/{zip_name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4.zip/omw-1.4/[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 147, in _run_condition_b0
+    modified_text, errors = await inject_random(seg)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 133, in inject_random
+    new_words, idx, original, injected, tag = _synonym_replace(words)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 95, in _synonym_replace
+    syn = _get_synonym(words[idx])
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 58, in _get_synonym
+    synsets = wordnet.synsets(word, lang=lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1765, in synsets
+    self._load_lang_data(lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1303, in _load_lang_data
+    self.add_omw()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1338, in add_omw
+    self.add_provs(self._omw_reader)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1325, in add_provs
+    fileids = reader.fileids()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 121, in __getattr__
+    self.__load()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 86, in __load
+    raise e
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 81, in __load
+    root = nltk.data.find(f"{self.subdir}/{self.__name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+2026-04-16 01:27:45,701 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [synonym] on segment dgt_tm-b4db307ed247
+2026-04-16 01:27:45,702 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment dgt_tm-058a0106e49d
+2026-04-16 01:27:45,702 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment eurlex-76b3f741ff50
+2026-04-16 01:27:45,702 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment eurlex-c76fd4479cbd
+2026-04-16 01:27:45,702 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [synonym] on segment dgt_tm-419958f81bf0
+2026-04-16 01:27:45,705 experiments.pipeline_validation.track_b.ablation_comparison ERROR B0 failed for segment dgt_tm-419958f81bf0
+Traceback (most recent call last):
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 84, in __load
+    root = nltk.data.find(f"{self.subdir}/{zip_name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4.zip/omw-1.4/[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 147, in _run_condition_b0
+    modified_text, errors = await inject_random(seg)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 133, in inject_random
+    new_words, idx, original, injected, tag = _synonym_replace(words)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 95, in _synonym_replace
+    syn = _get_synonym(words[idx])
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 58, in _get_synonym
+    synsets = wordnet.synsets(word, lang=lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1765, in synsets
+    self._load_lang_data(lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1303, in _load_lang_data
+    self.add_omw()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1338, in add_omw
+    self.add_provs(self._omw_reader)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1325, in add_provs
+    fileids = reader.fileids()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 121, in __getattr__
+    self.__load()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 86, in __load
+    raise e
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 81, in __load
+    root = nltk.data.find(f"{self.subdir}/{self.__name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+2026-04-16 01:27:45,706 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment europarl-c7b51e857475
+2026-04-16 01:27:45,706 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [synonym] on segment europarl-ffccdcd65606
+2026-04-16 01:27:45,710 experiments.pipeline_validation.track_b.ablation_comparison ERROR B0 failed for segment europarl-ffccdcd65606
+Traceback (most recent call last):
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 84, in __load
+    root = nltk.data.find(f"{self.subdir}/{zip_name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4.zip/omw-1.4/[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 147, in _run_condition_b0
+    modified_text, errors = await inject_random(seg)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 133, in inject_random
+    new_words, idx, original, injected, tag = _synonym_replace(words)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 95, in _synonym_replace
+    syn = _get_synonym(words[idx])
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 58, in _get_synonym
+    synsets = wordnet.synsets(word, lang=lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1765, in synsets
+    self._load_lang_data(lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1303, in _load_lang_data
+    self.add_omw()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1338, in add_omw
+    self.add_provs(self._omw_reader)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1325, in add_provs
+    fileids = reader.fileids()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 121, in __getattr__
+    self.__load()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 86, in __load
+    raise e
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 81, in __load
+    root = nltk.data.find(f"{self.subdir}/{self.__name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+2026-04-16 01:27:45,710 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment dgt_tm-856f04dcd5c7
+2026-04-16 01:27:45,710 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment dgt_tm-8b3ff07d339c
+2026-04-16 01:27:45,711 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment europarl-cde7e67a5020
+2026-04-16 01:27:45,711 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment eurlex-ccaffc6a3d9c
+2026-04-16 01:27:45,711 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [synonym] on segment eurlex-dc42f146f2dc
+2026-04-16 01:27:45,716 experiments.pipeline_validation.track_b.ablation_comparison ERROR B0 failed for segment eurlex-dc42f146f2dc
+Traceback (most recent call last):
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 84, in __load
+    root = nltk.data.find(f"{self.subdir}/{zip_name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4.zip/omw-1.4/[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 147, in _run_condition_b0
+    modified_text, errors = await inject_random(seg)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 133, in inject_random
+    new_words, idx, original, injected, tag = _synonym_replace(words)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 95, in _synonym_replace
+    syn = _get_synonym(words[idx])
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 58, in _get_synonym
+    synsets = wordnet.synsets(word, lang=lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1765, in synsets
+    self._load_lang_data(lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1303, in _load_lang_data
+    self.add_omw()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1338, in add_omw
+    self.add_provs(self._omw_reader)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1325, in add_provs
+    fileids = reader.fileids()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 121, in __getattr__
+    self.__load()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 86, in __load
+    raise e
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 81, in __load
+    root = nltk.data.find(f"{self.subdir}/{self.__name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+2026-04-16 01:27:45,716 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment europarl-db370a47900b
+2026-04-16 01:27:45,717 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [synonym] on segment europarl-34cd74beceba
+2026-04-16 01:27:45,720 experiments.pipeline_validation.track_b.ablation_comparison ERROR B0 failed for segment europarl-34cd74beceba
+Traceback (most recent call last):
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 84, in __load
+    root = nltk.data.find(f"{self.subdir}/{zip_name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4.zip/omw-1.4/[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 147, in _run_condition_b0
+    modified_text, errors = await inject_random(seg)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 133, in inject_random
+    new_words, idx, original, injected, tag = _synonym_replace(words)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 95, in _synonym_replace
+    syn = _get_synonym(words[idx])
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 58, in _get_synonym
+    synsets = wordnet.synsets(word, lang=lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1765, in synsets
+    self._load_lang_data(lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1303, in _load_lang_data
+    self.add_omw()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1338, in add_omw
+    self.add_provs(self._omw_reader)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1325, in add_provs
+    fileids = reader.fileids()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 121, in __getattr__
+    self.__load()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 86, in __load
+    raise e
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 81, in __load
+    root = nltk.data.find(f"{self.subdir}/{self.__name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+2026-04-16 01:27:45,721 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment europarl-5c77c6dc6697
+2026-04-16 01:27:45,721 experiments.pipeline_validation.baselines.random_perturbation WARNING Segment dgt_tm-050745359214 too short for perturbation
+2026-04-16 01:27:45,721 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [synonym] on segment dgt_tm-aff7d2b35efb
+2026-04-16 01:27:45,724 experiments.pipeline_validation.track_b.ablation_comparison ERROR B0 failed for segment dgt_tm-aff7d2b35efb
+Traceback (most recent call last):
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 84, in __load
+    root = nltk.data.find(f"{self.subdir}/{zip_name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4.zip/omw-1.4/[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 147, in _run_condition_b0
+    modified_text, errors = await inject_random(seg)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 133, in inject_random
+    new_words, idx, original, injected, tag = _synonym_replace(words)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 95, in _synonym_replace
+    syn = _get_synonym(words[idx])
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 58, in _get_synonym
+    synsets = wordnet.synsets(word, lang=lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1765, in synsets
+    self._load_lang_data(lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1303, in _load_lang_data
+    self.add_omw()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1338, in add_omw
+    self.add_provs(self._omw_reader)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1325, in add_provs
+    fileids = reader.fileids()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 121, in __getattr__
+    self.__load()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 86, in __load
+    raise e
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 81, in __load
+    root = nltk.data.find(f"{self.subdir}/{self.__name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+2026-04-16 01:27:45,725 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment eurlex-a8e31b3add6e
+2026-04-16 01:27:45,725 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [synonym] on segment dgt_tm-b3225534f7a7
+2026-04-16 01:27:45,728 experiments.pipeline_validation.track_b.ablation_comparison ERROR B0 failed for segment dgt_tm-b3225534f7a7
+Traceback (most recent call last):
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 84, in __load
+    root = nltk.data.find(f"{self.subdir}/{zip_name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4.zip/omw-1.4/[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 147, in _run_condition_b0
+    modified_text, errors = await inject_random(seg)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 133, in inject_random
+    new_words, idx, original, injected, tag = _synonym_replace(words)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 95, in _synonym_replace
+    syn = _get_synonym(words[idx])
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 58, in _get_synonym
+    synsets = wordnet.synsets(word, lang=lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1765, in synsets
+    self._load_lang_data(lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1303, in _load_lang_data
+    self.add_omw()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1338, in add_omw
+    self.add_provs(self._omw_reader)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1325, in add_provs
+    fileids = reader.fileids()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 121, in __getattr__
+    self.__load()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 86, in __load
+    raise e
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 81, in __load
+    root = nltk.data.find(f"{self.subdir}/{self.__name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+2026-04-16 01:27:45,729 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment dgt_tm-f9ff971e30b2
+2026-04-16 01:27:45,729 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment europarl-166e513b7a4e
+2026-04-16 01:27:45,729 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment europarl-785c0aa0b4e8
+2026-04-16 01:27:45,729 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [synonym] on segment dgt_tm-43cd5d49a3dc
+2026-04-16 01:27:45,733 experiments.pipeline_validation.track_b.ablation_comparison ERROR B0 failed for segment dgt_tm-43cd5d49a3dc
+Traceback (most recent call last):
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 84, in __load
+    root = nltk.data.find(f"{self.subdir}/{zip_name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4.zip/omw-1.4/[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 147, in _run_condition_b0
+    modified_text, errors = await inject_random(seg)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 133, in inject_random
+    new_words, idx, original, injected, tag = _synonym_replace(words)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 95, in _synonym_replace
+    syn = _get_synonym(words[idx])
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 58, in _get_synonym
+    synsets = wordnet.synsets(word, lang=lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1765, in synsets
+    self._load_lang_data(lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1303, in _load_lang_data
+    self.add_omw()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1338, in add_omw
+    self.add_provs(self._omw_reader)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1325, in add_provs
+    fileids = reader.fileids()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 121, in __getattr__
+    self.__load()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 86, in __load
+    raise e
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 81, in __load
+    root = nltk.data.find(f"{self.subdir}/{self.__name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+2026-04-16 01:27:45,734 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment dgt_tm-949e1468ac30
+2026-04-16 01:27:45,734 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment europarl-ef24ea4caff3
+2026-04-16 01:27:45,734 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [synonym] on segment europarl-42b4618251f9
+2026-04-16 01:27:45,738 experiments.pipeline_validation.track_b.ablation_comparison ERROR B0 failed for segment europarl-42b4618251f9
+Traceback (most recent call last):
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 84, in __load
+    root = nltk.data.find(f"{self.subdir}/{zip_name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4.zip/omw-1.4/[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 147, in _run_condition_b0
+    modified_text, errors = await inject_random(seg)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 133, in inject_random
+    new_words, idx, original, injected, tag = _synonym_replace(words)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 95, in _synonym_replace
+    syn = _get_synonym(words[idx])
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 58, in _get_synonym
+    synsets = wordnet.synsets(word, lang=lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1765, in synsets
+    self._load_lang_data(lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1303, in _load_lang_data
+    self.add_omw()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1338, in add_omw
+    self.add_provs(self._omw_reader)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1325, in add_provs
+    fileids = reader.fileids()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 121, in __getattr__
+    self.__load()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 86, in __load
+    raise e
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 81, in __load
+    root = nltk.data.find(f"{self.subdir}/{self.__name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+2026-04-16 01:27:45,739 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [synonym] on segment europarl-de1b88b3d992
+2026-04-16 01:27:45,743 experiments.pipeline_validation.track_b.ablation_comparison ERROR B0 failed for segment europarl-de1b88b3d992
+Traceback (most recent call last):
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 84, in __load
+    root = nltk.data.find(f"{self.subdir}/{zip_name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4.zip/omw-1.4/[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 147, in _run_condition_b0
+    modified_text, errors = await inject_random(seg)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 133, in inject_random
+    new_words, idx, original, injected, tag = _synonym_replace(words)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 95, in _synonym_replace
+    syn = _get_synonym(words[idx])
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 58, in _get_synonym
+    synsets = wordnet.synsets(word, lang=lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1765, in synsets
+    self._load_lang_data(lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1303, in _load_lang_data
+    self.add_omw()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1338, in add_omw
+    self.add_provs(self._omw_reader)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1325, in add_provs
+    fileids = reader.fileids()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 121, in __getattr__
+    self.__load()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 86, in __load
+    raise e
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 81, in __load
+    root = nltk.data.find(f"{self.subdir}/{self.__name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+2026-04-16 01:27:45,745 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:27:45,745 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:27:46,392 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:27:47,012 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.3s — tokens=307, content_len=200
+2026-04-16 01:27:47,012 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected GRAMMAR/relative_pronoun (minor) at [58:62]: 'au n' -> 'dont'
+2026-04-16 01:27:47,014 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:27:47,014 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:27:48,521 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:27:48,927 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.9s — tokens=360, content_len=184
+2026-04-16 01:27:48,927 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for OMISSION/clause: ['Invalid tag/type: TAG/OMISSION', 'Too much text changed outside error span (token overlap 0%)']
+2026-04-16 01:27:49,762 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:27:50,324 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.4s — tokens=394, content_len=174
+2026-04-16 01:27:50,325 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for OMISSION/clause: ['Invalid tag/type: TAG/OMISSION', 'Too much text changed outside error span (token overlap 36%)']
+2026-04-16 01:27:50,963 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:27:51,369 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 1.0s — tokens=395, content_len=184
+2026-04-16 01:27:51,369 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 3/3) for OMISSION/clause: ['Invalid tag/type: TAG/OMISSION', 'Too much text changed outside error span (token overlap 0%)']
+2026-04-16 01:27:51,370 experiments.pipeline_validation.track_b.ablation_comparison ERROR B1 failed for segment eurlex-79c27a2acf9a
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 169, in _run_condition_b1
+    modified_text, errors = await inject_single_step(
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\single_step_inject.py", line 272, in inject_single_step
+    raise ValueError(
+ValueError: B1 single-step injection failed after 3 attempts for OMISSION/clause. Last errors: ['Invalid tag/type: TAG/OMISSION', 'Too much text changed outside error span (token overlap 0%)']
+2026-04-16 01:27:51,371 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:27:51,371 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:27:52,114 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:27:52,411 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.0s — tokens=271, content_len=136
+2026-04-16 01:27:52,411 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for OMISSION/modifier: ['Invalid tag/type: TAG/OMISSION', 'Too much text changed outside error span (token overlap 33%)']
+2026-04-16 01:27:53,304 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:27:53,628 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.2s — tokens=308, content_len=155
+2026-04-16 01:27:53,628 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for OMISSION/modifier: ['Too much text changed outside error span (token overlap 50%)']
+2026-04-16 01:27:54,204 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:27:54,420 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 0.8s — tokens=291, content_len=134
+2026-04-16 01:27:54,420 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 3/3) for OMISSION/modifier: ['Invalid tag/type: TAG/OMISSION']
+2026-04-16 01:27:54,420 experiments.pipeline_validation.track_b.ablation_comparison ERROR B1 failed for segment eurlex-7ef171758d12
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 169, in _run_condition_b1
+    modified_text, errors = await inject_single_step(
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\single_step_inject.py", line 272, in inject_single_step
+    raise ValueError(
+ValueError: B1 single-step injection failed after 3 attempts for OMISSION/modifier. Last errors: ['Invalid tag/type: TAG/OMISSION']
+2026-04-16 01:27:54,422 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:27:54,422 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:27:55,154 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:27:55,934 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.5s — tokens=392, content_len=327
+2026-04-16 01:27:55,934 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for SPELLING/spelling: ['Invalid tag/type: TAG/SPELLING']
+2026-04-16 01:27:56,942 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:27:57,591 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.7s — tokens=415, content_len=337
+2026-04-16 01:27:57,591 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected SPELLING/spelling (minor) at [99:105]: 'hommes' -> 'homems'
+2026-04-16 01:27:57,592 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:27:57,592 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:27:58,183 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:27:58,716 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.1s — tokens=389, content_len=387
+2026-04-16 01:27:58,717 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for MISTRANSLATION/entity: ['Invalid tag/type: TAG/MISTRANSLATION']
+2026-04-16 01:27:59,329 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:27:59,936 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.2s — tokens=411, content_len=381
+2026-04-16 01:27:59,936 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected MISTRANSLATION/entity (major) at [110:129]: 'concepts pertinents' -> 'concepts pertinents'
+2026-04-16 01:27:59,937 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:27:59,937 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:28:00,470 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:00,976 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.0s — tokens=380, content_len=315
+2026-04-16 01:28:00,976 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for UNTRANSLATED/untranslated: ['Invalid tag/type: TAG/UNTRANSLATED']
+2026-04-16 01:28:01,566 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:02,223 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.2s — tokens=401, content_len=297
+2026-04-16 01:28:02,224 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected UNTRANSLATED/untranslated (major) at [115:117]: 'le' -> 'US'
+2026-04-16 01:28:02,225 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:28:02,225 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:28:02,791 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:03,103 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.9s — tokens=278, content_len=171
+2026-04-16 01:28:03,103 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for LOCALE/time_format: ['Invalid tag/type: TAG/LOCALE/time_format']
+2026-04-16 01:28:03,768 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:04,178 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.1s — tokens=300, content_len=164
+2026-04-16 01:28:04,178 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for LOCALE/time_format: ['Invalid tag/type: TAG/LOCALE']
+2026-04-16 01:28:04,823 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:05,233 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 1.1s — tokens=296, content_len=143
+2026-04-16 01:28:05,234 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 3/3) for LOCALE/time_format: ['Invalid tag/type: TAG/LOCALE']
+2026-04-16 01:28:05,234 experiments.pipeline_validation.track_b.ablation_comparison ERROR B1 failed for segment dgt_tm-fae63fd10f42
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 169, in _run_condition_b1
+    modified_text, errors = await inject_single_step(
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\single_step_inject.py", line 272, in inject_single_step
+    raise ValueError(
+ValueError: B1 single-step injection failed after 3 attempts for LOCALE/time_format. Last errors: ['Invalid tag/type: TAG/LOCALE']
+2026-04-16 01:28:05,235 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:28:05,235 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:28:06,292 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:06,892 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.7s — tokens=335, content_len=257
+2026-04-16 01:28:06,892 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected TERMINOLOGY/inconsistent (minor) at [26:40]: 'SEROLOGIQUES A' -> 'IMMUNOLOGIQUES'
+2026-04-16 01:28:06,893 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:28:06,893 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:28:07,519 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:08,266 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.4s — tokens=397, content_len=421
+2026-04-16 01:28:08,266 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected MISTRANSLATION/undertranslation (minor) at [215:235]: 'sont perçues d'une m' -> 'peuvent être perçues'
+2026-04-16 01:28:08,267 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:28:08,267 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:28:08,831 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:09,549 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.3s — tokens=400, content_len=435
+2026-04-16 01:28:09,549 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for ADDITION/hallucination: ['Invalid tag/type: TAG/ADDITION']
+2026-04-16 01:28:10,292 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:10,947 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.4s — tokens=417, content_len=418
+2026-04-16 01:28:10,947 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for ADDITION/hallucination: ['Invalid tag/type: ADDITION/addition']
+2026-04-16 01:28:11,570 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:13,413 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 2.5s — tokens=428, content_len=459
+2026-04-16 01:28:13,413 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected ADDITION/hallucination (critical) at [166:216]: 'vont aboutir à un dispositif bureaucratique très c' -> 'ainsi que la promotion de la diversité culturelle,'
+2026-04-16 01:28:13,415 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:28:13,415 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:28:13,993 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:14,636 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.2s — tokens=371, content_len=329
+2026-04-16 01:28:14,636 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for MISTRANSLATION/ambiguity: ['Invalid tag/type: TAG/MISTRANSLATION']
+2026-04-16 01:28:15,194 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:15,895 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.2s — tokens=405, content_len=405
+2026-04-16 01:28:15,895 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected MISTRANSLATION/ambiguity (major) at [92:138]: 'depuis que je suis engagé dans la politique, à' -> 'depuis que je travaille dans le secteur public'
+2026-04-16 01:28:15,896 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:28:15,897 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:28:16,507 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:16,780 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.9s — tokens=260, content_len=130
+2026-04-16 01:28:16,780 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for OMISSION/partial: ['Invalid tag/type: TAG/OMISSION', 'Too much text changed outside error span (token overlap 33%)']
+2026-04-16 01:28:17,383 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:17,652 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.9s — tokens=291, content_len=119
+2026-04-16 01:28:17,652 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for OMISSION/partial: ['Too much text changed outside error span (token overlap 33%)']
+2026-04-16 01:28:18,300 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:18,628 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 1.0s — tokens=285, content_len=130
+2026-04-16 01:28:18,629 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 3/3) for OMISSION/partial: ['Invalid tag/type: TAG/OMISSION', 'Too much text changed outside error span (token overlap 67%)']
+2026-04-16 01:28:18,629 experiments.pipeline_validation.track_b.ablation_comparison ERROR B1 failed for segment eurlex-d13e7b2a8641
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 169, in _run_condition_b1
+    modified_text, errors = await inject_single_step(
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\single_step_inject.py", line 272, in inject_single_step
+    raise ValueError(
+ValueError: B1 single-step injection failed after 3 attempts for OMISSION/partial. Last errors: ['Invalid tag/type: TAG/OMISSION', 'Too much text changed outside error span (token overlap 67%)']
+2026-04-16 01:28:18,630 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:28:18,630 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:28:19,220 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:19,545 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.9s — tokens=289, content_len=162
+2026-04-16 01:28:19,546 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected GRAMMAR/tense (major) at [55:61]: 'tirion' -> 'tirons'
+2026-04-16 01:28:19,547 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:28:19,547 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:28:20,130 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:20,548 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.0s — tokens=325, content_len=221
+2026-04-16 01:28:20,548 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for STYLE/register_formal: ['Invalid tag/type: TAG/STYLE', 'Too much text changed outside error span (token overlap 0%)']
+2026-04-16 01:28:21,161 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:21,595 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.0s — tokens=370, content_len=245
+2026-04-16 01:28:21,595 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for STYLE/register_formal: ['Invalid tag/type: TAG/REGISTER']
+2026-04-16 01:28:22,590 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:23,188 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 1.6s — tokens=353, content_len=239
+2026-04-16 01:28:23,188 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 3/3) for STYLE/register_formal: ['Invalid tag/type: TAG/STYLE']
+2026-04-16 01:28:23,188 experiments.pipeline_validation.track_b.ablation_comparison ERROR B1 failed for segment eurlex-59e54166feb0
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 169, in _run_condition_b1
+    modified_text, errors = await inject_single_step(
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\single_step_inject.py", line 272, in inject_single_step
+    raise ValueError(
+ValueError: B1 single-step injection failed after 3 attempts for STYLE/register_formal. Last errors: ['Invalid tag/type: TAG/STYLE']
+2026-04-16 01:28:23,188 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:28:23,189 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:28:23,791 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:24,158 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.0s — tokens=306, content_len=169
+2026-04-16 01:28:24,159 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for MISTRANSLATION/number: ['Invalid tag/type: TAG/MISTRANSLATION']
+2026-04-16 01:28:24,712 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:25,758 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.6s — tokens=329, content_len=169
+2026-04-16 01:28:25,758 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for MISTRANSLATION/number: ['Invalid tag/type: TAG/MISTRANSLATION']
+2026-04-16 01:28:26,541 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:27,186 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 1.4s — tokens=339, content_len=202
+2026-04-16 01:28:27,187 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 3/3) for MISTRANSLATION/number: ['Invalid tag/type: TAG/MISTRANSLATION']
+2026-04-16 01:28:27,187 experiments.pipeline_validation.track_b.ablation_comparison ERROR B1 failed for segment dgt_tm-4fa6fd27e30b
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 169, in _run_condition_b1
+    modified_text, errors = await inject_single_step(
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\single_step_inject.py", line 272, in inject_single_step
+    raise ValueError(
+ValueError: B1 single-step injection failed after 3 attempts for MISTRANSLATION/number. Last errors: ['Invalid tag/type: TAG/MISTRANSLATION']
+2026-04-16 01:28:27,188 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:28:27,188 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:28:28,051 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:29,048 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.9s — tokens=363, content_len=337
+2026-04-16 01:28:29,049 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected STYLE/register_informal (major) at [179:210]: 'à l'investissement direct de l'' -> 'à l'invest direct de l'étranger'
+2026-04-16 01:28:29,050 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:28:29,051 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:28:29,749 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:30,477 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.4s — tokens=407, content_len=261
+2026-04-16 01:28:30,478 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected MISTRANSLATION/false_cognate (critical) at [56:65]: 'trouver u' -> 'découvrir'
+2026-04-16 01:28:30,479 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:28:30,479 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:28:31,094 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:31,438 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.0s — tokens=306, content_len=189
+2026-04-16 01:28:31,439 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for OMISSION/discourse_marker: ['Invalid tag/type: TAG/OMISSION']
+2026-04-16 01:28:32,609 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:33,256 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.8s — tokens=332, content_len=211
+2026-04-16 01:28:33,257 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected OMISSION/discourse_marker (minor) at [18:19]: 'q' -> ' '
+2026-04-16 01:28:33,258 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:28:33,258 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:28:34,148 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:34,657 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.4s — tokens=305, content_len=147
+2026-04-16 01:28:34,657 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for MISTRANSLATION/entity: ['Invalid tag/type: TAG/MISTRANSLATION']
+2026-04-16 01:28:35,343 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:35,744 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.1s — tokens=332, content_len=164
+2026-04-16 01:28:35,745 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected MISTRANSLATION/entity (minor) at [3:4]: 'L' -> 'N'
+2026-04-16 01:28:35,746 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:28:35,746 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:28:37,385 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:38,031 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.3s — tokens=341, content_len=313
+2026-04-16 01:28:38,031 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected MISTRANSLATION/overtranslation (minor) at [53:99]: 't dans le supplément EEE du Journal officiel d' -> 'qui contient des informations supplémentaires,'
+2026-04-16 01:28:38,032 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:28:38,033 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:28:38,629 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:39,194 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.2s — tokens=390, content_len=395
+2026-04-16 01:28:39,194 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for OMISSION/discourse_marker: ['Invalid tag/type: TAG/OMISSION']
+2026-04-16 01:28:39,783 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:40,660 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.5s — tokens=411, content_len=395
+2026-04-16 01:28:40,660 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for OMISSION/discourse_marker: ['Invalid tag/type: TAG/OMISSION']
+2026-04-16 01:28:41,276 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:41,990 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 1.3s — tokens=423, content_len=459
+2026-04-16 01:28:41,990 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 3/3) for OMISSION/discourse_marker: ['Too much text changed outside error span (token overlap 0%)']
+2026-04-16 01:28:41,990 experiments.pipeline_validation.track_b.ablation_comparison ERROR B1 failed for segment eurlex-76b3f741ff50
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 169, in _run_condition_b1
+    modified_text, errors = await inject_single_step(
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\single_step_inject.py", line 272, in inject_single_step
+    raise ValueError(
+ValueError: B1 single-step injection failed after 3 attempts for OMISSION/discourse_marker. Last errors: ['Too much text changed outside error span (token overlap 0%)']
+2026-04-16 01:28:41,992 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:28:41,992 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:28:42,602 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:42,897 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.9s — tokens=267, content_len=152
+2026-04-16 01:28:42,897 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for MISTRANSLATION/overtranslation: ['Invalid tag/type: TAG/MISTRANSLATION', 'Too much text changed outside error span (token overlap 0%)']
+2026-04-16 01:28:43,647 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:44,129 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.2s — tokens=304, content_len=150
+2026-04-16 01:28:44,129 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for MISTRANSLATION/overtranslation: ['Invalid tag/type: TAG/MISTRANSLATION', 'Too much text changed outside error span (token overlap 0%)']
+2026-04-16 01:28:44,694 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:44,927 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 0.8s — tokens=304, content_len=150
+2026-04-16 01:28:44,927 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 3/3) for MISTRANSLATION/overtranslation: ['Invalid tag/type: TAG/MISTRANSLATION', 'Too much text changed outside error span (token overlap 0%)']
+2026-04-16 01:28:44,927 experiments.pipeline_validation.track_b.ablation_comparison ERROR B1 failed for segment eurlex-c76fd4479cbd
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 169, in _run_condition_b1
+    modified_text, errors = await inject_single_step(
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\single_step_inject.py", line 272, in inject_single_step
+    raise ValueError(
+ValueError: B1 single-step injection failed after 3 attempts for MISTRANSLATION/overtranslation. Last errors: ['Invalid tag/type: TAG/MISTRANSLATION', 'Too much text changed outside error span (token overlap 0%)']
+2026-04-16 01:28:44,929 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:28:44,929 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:28:45,669 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:46,297 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.4s — tokens=446, content_len=473
+2026-04-16 01:28:46,297 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected LOCALE/number_format (minor) at [140:144]: '2,05' -> '2.05'
+2026-04-16 01:28:46,298 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:28:46,299 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:28:46,892 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:47,305 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.0s — tokens=330, content_len=274
+2026-04-16 01:28:47,306 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for STYLE/register_informal: ['Invalid tag/type: TAG/STYLE']
+2026-04-16 01:28:47,881 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:48,377 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.1s — tokens=347, content_len=279
+2026-04-16 01:28:48,378 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for STYLE/register_informal: ['Invalid tag/type: REGISTER/register_informal', 'Too much text changed outside error span (token overlap 14%)']
+2026-04-16 01:28:48,969 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:49,390 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 1.0s — tokens=361, content_len=258
+2026-04-16 01:28:49,390 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 3/3) for STYLE/register_informal: ['Invalid tag/type: TAG/STYLE']
+2026-04-16 01:28:49,390 experiments.pipeline_validation.track_b.ablation_comparison ERROR B1 failed for segment europarl-c7b51e857475
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 169, in _run_condition_b1
+    modified_text, errors = await inject_single_step(
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\single_step_inject.py", line 272, in inject_single_step
+    raise ValueError(
+ValueError: B1 single-step injection failed after 3 attempts for STYLE/register_informal. Last errors: ['Invalid tag/type: TAG/STYLE']
+2026-04-16 01:28:49,392 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:28:49,392 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:28:50,476 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:53,126 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.7s — tokens=465, content_len=471
+2026-04-16 01:28:53,127 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for TERMINOLOGY/inconsistent: ['Invalid tag/type: TAG/TERMINOLOGY']

@@ -1441,8 +1441,8 @@ def _class_create_form():
 def _page_analytics():
     st.header("📊 Analytics Dashboard")
 
-    tab_class, tab_student, tab_blindspot, tab_export = st.tabs(
-        ["Class Overview", "Individual Students", "ToM Blind Spot Analysis", "Data Export"]
+    tab_class, tab_student, tab_blindspot, tab_badges, tab_export = st.tabs(
+        ["Class Overview", "Individual Students", "ToM Blind Spot Analysis", "Badge Analytics", "Data Export"]
     )
 
     with tab_class:
@@ -1453,6 +1453,9 @@ def _page_analytics():
 
     with tab_blindspot:
         _analytics_blindspot()
+
+    with tab_badges:
+        _analytics_badges()
 
     with tab_export:
         _analytics_data_export()
@@ -2019,6 +2022,198 @@ def _analytics_blindspot():
                 height=max(200, len(levels) * 60), margin=dict(l=0, r=0, t=10, b=0),
             )
             st.plotly_chart(fig, use_container_width=True, key="blindspot_tom")
+
+
+def _analytics_badges():
+    """Badge Analytics — distribution heatmap, visibility toggle, threshold overrides."""
+    import numpy as np
+    import plotly.graph_objects as go
+    from tompe.schemas.badges import (
+        CATEGORY_BADGE_NAMES,
+        CATEGORY_DISPLAY_NAMES,
+        CATEGORY_THRESHOLDS,
+        PROGRESSION_BADGES,
+        StudentBadges,
+    )
+    from tompe.services.badges import get_badge_summary
+    from tompe.services.datastore import badges_store
+
+    classes = list_classes()
+    if not classes:
+        st.info("No classes yet.")
+        return
+
+    class_options = {c.class_name: c.class_id for c in classes}
+    sel_class = st.selectbox("Class", list(class_options.keys()), key="badge_class")
+    class_id = class_options[sel_class]
+    class_obj = get_class(class_id)
+    students = list_students(class_id)
+
+    if not students:
+        st.info("No students in this class.")
+        return
+
+    # ── Badge Distribution Heatmap ──────────────────────────────────────
+    st.subheader("Badge Distribution")
+    st.caption(
+        "Rows = students, columns = specialisation badges. "
+        "Cells show highest tier earned (0 = none, 1 = Bronze, 2 = Silver, 3 = Gold). "
+        "Empty columns suggest underrepresented error categories in your item pool."
+    )
+
+    badge_categories = list(CATEGORY_BADGE_NAMES.keys())
+    badge_display = [CATEGORY_DISPLAY_NAMES[c] for c in badge_categories]
+    badge_ids = [CATEGORY_BADGE_NAMES[c] for c in badge_categories]
+
+    tier_map = {"none": 0, "bronze": 1, "silver": 2, "gold": 3}
+    student_names = []
+    matrix = []
+
+    for student in students:
+        student_names.append(student.display_name)
+        try:
+            summary = get_badge_summary(student.student_id)
+        except Exception:
+            matrix.append([0] * len(badge_categories))
+            continue
+
+        row = []
+        for spec_badge in summary.get("specialisation", []):
+            highest = spec_badge.get("highest_tier", "none") or "none"
+            row.append(tier_map.get(highest, 0))
+
+        if len(row) == len(badge_categories):
+            matrix.append(row)
+        else:
+            # Fallback: build from earned badges directly
+            record = badges_store.get(student.student_id, StudentBadges)
+            row = []
+            for bid in badge_ids:
+                tier = record.get_highest_tier(bid) if record else None
+                row.append(tier_map.get(tier, 0) if tier else 0)
+            matrix.append(row)
+
+    matrix_np = np.array(matrix)
+
+    # Custom colorscale: 0=grey, 1=copper, 2=silver, 3=gold
+    colorscale = [
+        [0.0, "#e5e7eb"],    # none — light grey
+        [0.33, "#B87333"],   # bronze — copper
+        [0.66, "#C0C0C0"],   # silver — steel
+        [1.0, "#D4AF37"],    # gold
+    ]
+
+    # Text matrix for hover
+    tier_labels = ["—", "Bronze", "Silver", "Gold"]
+    text_matrix = [[tier_labels[v] for v in row] for row in matrix]
+
+    fig = go.Figure(go.Heatmap(
+        z=matrix_np,
+        x=badge_display,
+        y=student_names,
+        colorscale=colorscale,
+        zmin=0, zmax=3,
+        text=text_matrix,
+        texttemplate="%{text}",
+        hovertemplate="Student: %{y}<br>Badge: %{x}<br>Tier: %{text}<extra></extra>",
+        showscale=False,
+    ))
+    fig.update_layout(
+        height=max(250, len(students) * 40 + 80),
+        margin=dict(l=0, r=0, t=30, b=0),
+        xaxis=dict(side="top"),
+    )
+    st.plotly_chart(fig, use_container_width=True, key="badge_heatmap")
+
+    # Summary: categories with no badges earned
+    col_totals = matrix_np.sum(axis=0)
+    empty_cats = [badge_display[i] for i in range(len(badge_display)) if col_totals[i] == 0]
+    if empty_cats:
+        st.warning(
+            f"No students have earned badges for: **{', '.join(empty_cats)}**. "
+            "Consider adding more items with these error categories to your exercises."
+        )
+
+    # ── Progression Badge Summary ───────────────────────────────────────
+    st.subheader("Progression Badges")
+    prog_data = []
+    for student in students:
+        try:
+            summary = get_badge_summary(student.student_id)
+            earned = [b["display_name"] for b in summary.get("progression", []) if b.get("earned")]
+            prog_data.append({"Student": student.display_name, "Earned": ", ".join(earned) or "—"})
+        except Exception:
+            prog_data.append({"Student": student.display_name, "Earned": "—"})
+    st.dataframe(prog_data, use_container_width=True)
+
+    # ── XP Summary ──────────────────────────────────────────────────────
+    st.subheader("XP Leaderboard")
+    xp_data = []
+    for student in students:
+        record = badges_store.get(student.student_id, StudentBadges)
+        xp = record.total_xp if record else 0
+        n_badges = len(record.earned_badges) if record else 0
+        xp_data.append({
+            "Student": student.display_name,
+            "Total XP": xp,
+            "Badges Earned": n_badges,
+        })
+    xp_data.sort(key=lambda x: x["Total XP"], reverse=True)
+    st.dataframe(xp_data, use_container_width=True)
+
+    # ── Badge Settings ──────────────────────────────────────────────────
+    st.subheader("Badge Settings")
+
+    # Visibility toggle
+    current_visible = class_obj.badges_visible if class_obj else True
+    new_visible = st.toggle(
+        "Show badges to students",
+        value=current_visible,
+        help="When disabled, students won't see the badge collection in their progress tab. Badge tracking continues internally.",
+        key="badge_visibility_toggle",
+    )
+    if new_visible != current_visible and class_obj:
+        from tompe.services.datastore import classes_store as _classes_store
+        _classes_store.update(class_id, type(class_obj), {"badges_visible": new_visible})
+        st.success(f"Badge visibility {'enabled' if new_visible else 'disabled'} for this class.")
+
+    # Threshold overrides
+    st.markdown("**Specialisation Badge Thresholds**")
+    st.caption(
+        "Override the default detection count thresholds for earning Bronze/Silver/Gold badges. "
+        "Leave at default (0) to use the system defaults. Changes apply prospectively only."
+    )
+    current_overrides = class_obj.badge_threshold_overrides if class_obj else {}
+
+    changed = False
+    new_overrides = {}
+    cols_header = st.columns([2, 1, 1, 1, 2])
+    cols_header[0].markdown("**Category**")
+    cols_header[1].markdown("**Bronze**")
+    cols_header[2].markdown("**Silver**")
+    cols_header[3].markdown("**Gold**")
+    cols_header[4].markdown("**Default**")
+
+    for cat in badge_categories:
+        display = CATEGORY_DISPLAY_NAMES[cat]
+        defaults = CATEGORY_THRESHOLDS[cat]
+        override = current_overrides.get(cat, [0, 0, 0])
+
+        cols = st.columns([2, 1, 1, 1, 2])
+        cols[0].write(display)
+        b = cols[1].number_input("B", value=override[0] if override[0] else 0, min_value=0, step=1, key=f"thr_b_{cat}", label_visibility="collapsed")
+        s = cols[2].number_input("S", value=override[1] if len(override) > 1 and override[1] else 0, min_value=0, step=1, key=f"thr_s_{cat}", label_visibility="collapsed")
+        g = cols[3].number_input("G", value=override[2] if len(override) > 2 and override[2] else 0, min_value=0, step=1, key=f"thr_g_{cat}", label_visibility="collapsed")
+        cols[4].caption(f"{defaults[0]} / {defaults[1]} / {defaults[2]}")
+
+        if b > 0 or s > 0 or g > 0:
+            new_overrides[cat] = [b, s, g]
+
+    if st.button("Save Threshold Overrides", key="save_thresholds"):
+        if class_obj:
+            from tompe.services.datastore import classes_store as _classes_store
+            _classes_store.update(class_id, type(class_obj), {"badge_threshold_overrides": new_overrides})
+            st.success("Threshold overrides saved. Changes apply to future badge awards only.")
 
 
 def _analytics_data_export():

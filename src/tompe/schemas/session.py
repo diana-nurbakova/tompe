@@ -56,6 +56,10 @@ class ClassGroup(BaseModel):
     default_levels: list[AnnotationLevel] = Field(
         default_factory=lambda: [AnnotationLevel.NAVIGATOR]
     )
+    badges_visible: bool = True  # Whether students see badge UI
+    badge_threshold_overrides: dict[str, list[int]] = Field(
+        default_factory=dict
+    )  # Per-category [bronze, silver, gold] overrides
     created_at: datetime = Field(default_factory=datetime.now)
 
 

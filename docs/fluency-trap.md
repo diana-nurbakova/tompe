@@ -90,7 +90,7 @@ Teachers compose exercises from published items and configure the gamification p
 | **Name** | Free text | Descriptive title for students |
 | **Mode** | `evaluation`, `postediting`, `both` | Whether students detect errors, fix them, or both |
 | **Scaffolding Level** | `navigator` (L0), `guided` (L1), `independent` (L2), `expert` (L3) | Controls how much support is provided |
-| **Justification type** | `free_text`, `structured`, `both` | How students explain their reasoning |
+| **Justification type** | `per_error_short`, `per_error_structured`, `global_free_text`, `none` | How students explain their reasoning (see Phase 2 details) |
 | **Item ordering** | `manual`, `difficulty`, `random` | Sequence strategy |
 | **Domain / Direction** | Free text | Metadata labels |
 | **False annotation ratio** (L0 only) | 0.0–0.5 | Fraction of pre-annotations that are deliberately incorrect (forces critical evaluation) |
@@ -98,8 +98,9 @@ Teachers compose exercises from published items and configure the gamification p
 
 #### 1.5 Class Management & Assignment
 
-- Create class groups (e.g., "MT Post-Editing 2026 — Group A")
+- Create class groups (e.g., "MT Post-Editing 2026 — Group A"). Duplicate class names are rejected (case-insensitive).
 - Add student accounts individually or via CSV import (username, display_name, password)
+- **Reassign students between classes** via a dropdown in the student table. Changing class auto-assigns the new class's exercises.
 - Set default scaffolding levels per class
 - Override individual student levels based on performance
 - Assign exercises to entire classes (auto-creates `ExerciseAssignment` for each student)
@@ -107,12 +108,16 @@ Teachers compose exercises from published items and configure the gamification p
 
 #### 1.6 Analytics Dashboard (Teacher Monitoring)
 
-Teachers monitor Fluency Trap performance through:
+Teachers monitor Fluency Trap performance through four tabs:
 
-- **Class Overview**: detection rate by MQM category, skill radar charts, over-editing tendency
-- **Individual Students**: per-student performance vs. class average, blind spot alerts
-- **ToM Blind Spot Analysis**: MQM × ToM heatmap highlighting systematic weaknesses (e.g., a student consistently misses `2nd_reader` level mistranslations)
-- **Badge Distribution Heatmap**: rows = students, columns = badges, cells coloured by tier. Highlights which specialisation badges are most/least common — a category with no Bronze badges across the class suggests underrepresented items.
+- **Class Overview**: summary metrics (Students, Items Evaluated, Avg Precision/Recall/F1), per-student performance table, and detection breakdown charts. When per-skill (S1–S7) data is available, a skill profile bar chart is shown. Otherwise, side-by-side MQM and ToM detection rate charts display the real scoring breakdowns from `detection_by_mqm` and `detection_by_tom`.
+- **Individual Students**: per-student metrics (Items Evaluated, Avg F1, Latest F1), F1 performance over time, and detection breakdowns by MQM category and ToM level. When sufficient per-skill data (3+ of 7 skills observed) exists, a **Wasserstein Transport** visualization replaces the bar charts — showing current skill mastery vs. expert target with optimal transport arrows indicating where mastery needs to flow, the MasteryGap (W₁) distance metric, and a teacher-facing interpretation ("Strong on X. Focus next on Y."). Uses `plot_student_profile_with_transport()` from `experiments/wasserstein/dashboard_visualizations.py` and the M3 weighted graph ground metric.
+- **ToM Blind Spot Analysis**: an **MQM × ToM heatmap** built from per-error cross-tabulation (re-matching student responses against ground-truth item errors). Each cell shows detection rate + counts (e.g., "67% (2/3)") with RdYlGn colorscale. Below the heatmap, marginal bar charts show detection rates by MQM category and ToM level, with red bars (< 50%) highlighting systematic blind spots.
+- **Data Export**: CSV and JSON export of student response data.
+
+Additional analytics features:
+
+- **Badge Distribution Heatmap**: rows = students, columns = badges, cells coloured by tier. Highlights which specialisation badges are most/least common.
 - **Badge Visibility Toggle**: teachers can enable or disable badge display per class (tracking continues internally). Default: enabled.
 - **Threshold Override**: teachers can adjust specialisation badge thresholds per class to account for item pool composition. Changes apply prospectively only.
 
@@ -194,23 +199,44 @@ This is the core "game" — students must find and classify errors in the MT out
 
 #### Phase 2: Justify (Cognitive Forcing)
 
-Before seeing any feedback, students must explain their reasoning. This "cognitive forcing" step prevents superficial pattern-matching and promotes genuine Theory of Mind engagement.
+Before seeing any feedback, students must explain their reasoning. This "cognitive forcing" step prevents superficial pattern-matching and promotes genuine Theory of Mind engagement. Each justification is stored with its `error_id` for traceability, enabling per-error analysis of reasoning quality against detection accuracy.
 
-**Free-text mode:**
+The teacher configures the justification mode per exercise. Four modes are available:
 
-A single textbox with the prompt:
+**`per_error_short` (default — recommended):**
+
+One textbox per annotated error (up to 8). Each error is shown as a card displaying the span text, MQM category, and severity. The prompt adapts to the error's cognitive demand:
+
+| Error type | Adaptive prompt |
+| ---------- | --------------- |
+| Surface (spelling, punctuation, grammar) | "What's wrong here?" |
+| Meaning / terminology (mistranslation, omission, addition, untranslated, terminology) | "Why is this a problem?" |
+| Pragmatic / discourse (style, locale) | "Why is this a problem and how would a reader misinterpret this?" |
+
+This mode balances traceability with student effort — surface errors need only a brief note, while deeper errors prompt more reasoning.
+
+**`per_error_structured` (advanced, stage 4–5):**
+
+Three ToM-guided fields per annotated error:
+
+1. **"What did the MT system misunderstand?"**
+2. **"What was the author's actual intent?"**
+3. **"How would a reader misinterpret this?"**
+
+Best suited for advanced students who need to practice explicit multi-perspective reasoning.
+
+**`global_free_text` (legacy):**
+
+A single textbox for the entire item with the prompt:
 > "What did the MT system misunderstand? What was the author's intent? How would a reader misinterpret this?"
 
-**Structured ToM mode:**
+Simpler but provides no per-error traceability.
 
-Three separate textboxes:
-1. **"What did the MT system misunderstand?"** — Placeholder: "The MT system likely interpreted..."
-2. **"What was the author's actual intent?"** — Placeholder: "The author meant..."
-3. **"How would a reader misinterpret this?"** — Placeholder: "A reader would think..."
+**`none`:**
 
-The teacher configures which mode (`free_text`, `structured`, or `both`) appears per exercise.
+Skips the justification phase entirely — students go straight from annotation to feedback. Useful for timed exercises or when the focus is purely on detection speed.
 
-After writing their justification, students click "Submit & See Feedback" to advance to Phase 3.
+After writing their justification(s), students rate their confidence (1–5 scale) and click "Submit & See Feedback" to advance to Phase 3.
 
 ---
 
@@ -440,8 +466,8 @@ Review Queue                             Phase 1: Annotate
     ↓                                      └─ Add annotation
 Published Items                              ↓
     ↓                                    Phase 2: Justify
-Exercise Builder                           ├─ Free-text reasoning
-  ├─ Select items                          └─ Structured ToM prompts
+Exercise Builder                           ├─ Per-error adaptive prompts
+  ├─ Select items                          └─ or structured / global / none
   ├─ Configure level/mode                      ↓
   └─ Set scaffolding params             Phase 3: Feedback
     ↓                                      ├─ Score summary
@@ -471,6 +497,13 @@ Analytics Dashboard                        ├─ Layer 2a: How It Works
 | Color scheme | Python dict | `src/tompe/interfaces/components/colors.py` |
 | API client | HTTP client | `src/tompe/interfaces/api_client.py` |
 | Backend API | FastAPI | `src/tompe/services/api.py` |
+| Scoring engine | Python | `src/tompe/services/scoring.py` |
+| Response/justification models | Pydantic | `src/tompe/schemas/response.py` |
+| Scoring result models | Pydantic | `src/tompe/schemas/scoring.py` |
 | Badge service | Python | `src/tompe/services/badges.py` |
 | Badge definitions | JSON config | `config/badges.json` |
 | Badge icon assets | JPG images | `assets/badges/` |
+| Wasserstein metrics | Python + POT | `experiments/wasserstein/metrics.py` |
+| Wasserstein dashboard viz | Matplotlib | `experiments/wasserstein/dashboard_visualizations.py` |
+| Ground metrics (M1–M5) | Python | `experiments/wasserstein/ground_metrics.py` |
+| Skill/target config | Python | `experiments/wasserstein/config.py` |

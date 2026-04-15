@@ -1,0 +1,50 @@
+{
+  "response_id": "474122c3-9cb1-47b6-a196-265281f6d67a",
+  "session_id": "28849ddd-52f1-4649-9e80-6bc59f84a904",
+  "item_id": "0005f83e-7258-4638-81cd-b4f97ae5a42c",
+  "student_id": "970d802c-b625-4bf2-9870-74aab2037864",
+  "mode": "evaluation",
+  "timestamp": "2026-04-15T11:02:35.923217",
+  "time_spent_seconds": 1066.8,
+  "identified_errors": [
+    {
+      "span_start": 3,
+      "span_end": 17,
+      "student_mqm_category": "fluency",
+      "student_severity": "major",
+      "confidence": "medium"
+    },
+    {
+      "span_start": 38,
+      "span_end": 78,
+      "student_mqm_category": "accuracy",
+      "student_severity": "minor",
+      "confidence": "medium"
+    },
+    {
+      "span_start": 18,
+      "span_end": 36,
+      "student_mqm_category": "fluency",
+      "student_severity": "minor",
+      "confidence": "medium"
+    }
+  ],
+  "edited_text": null,
+  "verification_responses": null,
+  "comparison_type": null,
+  "per_system_evaluations": null,
+  "system_rankings": null,
+  "pe_worthiness": null,
+  "justification_format": "free_text",
+  "justifications": [
+    {
+      "error_id": null,
+      "format": "structured",
+      "text": null,
+      "mt_misunderstanding": "'the House'  is interpreted as multiple assemblies, leading it to use the plural form 'les Assemblées'.",
+      "author_intent": "The source refers specifically to a single legislative body, 'the House,' meaning only one assembly is being addressed.",
+      "reader_impact": "They will think that there exist multiple legal bodies.",
+      "tom_perspective": null
+    }
+  ]
+}

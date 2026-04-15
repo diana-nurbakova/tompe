@@ -4,7 +4,7 @@ Implements IoU-based span matching for evaluation mode, HTER for post-editing mo
 and verification scoring for navigator mode.
 """
 
-from tompe.schemas.enums import MQMCategory, PrimaryTag, TOMLevel
+from tompe.schemas.enums import MQMCategory, PrimaryTag, SkillID, TOMLevel
 from tompe.schemas.item import AssessmentItem
 from tompe.schemas.response import StudentResponse
 from tompe.schemas.scoring import CategoryScore, ScoringResult
@@ -133,6 +133,25 @@ def score_evaluation_response(
         for tom, c in tom_counts.items()
     }
 
+    # Per-Skill breakdown (S1-S7)
+    skill_counts: dict[SkillID, dict[str, int]] = {}
+    for gt_idx, gt_err in enumerate(ground_truth):
+        skill = gt_err.primary_skill
+        if skill not in skill_counts:
+            skill_counts[skill] = {"detected": 0, "total": 0}
+        skill_counts[skill]["total"] += 1
+        if gt_matched[gt_idx]:
+            skill_counts[skill]["detected"] += 1
+
+    detection_by_skill = {
+        skill: CategoryScore(
+            detected=c["detected"],
+            total=c["total"],
+            detection_rate=c["detected"] / c["total"] if c["total"] > 0 else 0.0,
+        )
+        for skill, c in skill_counts.items()
+    }
+
     return ScoringResult(
         response_id=response.response_id,
         item_id=item.item_id,
@@ -144,6 +163,7 @@ def score_evaluation_response(
         f1=f1,
         detection_by_mqm=detection_by_mqm,
         detection_by_tom=detection_by_tom,
+        detection_by_skill=detection_by_skill,
     )
 
 

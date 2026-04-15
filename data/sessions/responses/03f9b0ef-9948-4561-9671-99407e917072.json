@@ -1,0 +1,71 @@
+{
+  "response_id": "03f9b0ef-9948-4561-9671-99407e917072",
+  "session_id": "61414e2c-7c4a-4fd0-80b4-7225bba42182",
+  "item_id": "0005f83e-7258-4638-81cd-b4f97ae5a42c",
+  "student_id": "970d802c-b625-4bf2-9870-74aab2037864",
+  "mode": "evaluation",
+  "timestamp": "2026-04-15T11:19:07.053500",
+  "time_spent_seconds": 290.4,
+  "identified_errors": [
+    {
+      "span_start": 3,
+      "span_end": 17,
+      "student_mqm_category": "fluency",
+      "student_severity": "major",
+      "confidence": "medium"
+    },
+    {
+      "span_start": 38,
+      "span_end": 78,
+      "student_mqm_category": "accuracy",
+      "student_severity": "minor",
+      "confidence": "medium"
+    },
+    {
+      "span_start": 18,
+      "span_end": 36,
+      "student_mqm_category": "fluency",
+      "student_severity": "minor",
+      "confidence": "medium"
+    }
+  ],
+  "edited_text": null,
+  "verification_responses": null,
+  "comparison_type": null,
+  "per_system_evaluations": null,
+  "system_rankings": null,
+  "pe_worthiness": null,
+  "justification_format": "per_error_short",
+  "justifications": [
+    {
+      "error_id": "32ddc7a0-f8d6-4d44-bafd-e79e24da89c4",
+      "format": "per_error_structured",
+      "text": null,
+      "mt_misunderstanding": "'the House' is interpreted as multiple assemblies, leading it to use the plural form 'les Assemblées'",
+      "author_intent": "To refer to a single  legislative body",
+      "reader_impact": "That there are several legislative bodies and all need to agree",
+      "tom_perspective": null,
+      "prompt_shown": null
+    },
+    {
+      "error_id": "4ea9a2db-c506-402d-a0f7-dc6ac1686596",
+      "format": "per_error_structured",
+      "text": null,
+      "mt_misunderstanding": "'do as Mr Evans has suggested' is interpreted as a more explicit 'follow Mr Evans's recommendation,'",
+      "author_intent": "the speaker will do as Mr Evans suggested, without specifying the nature of the suggestion",
+      "reader_impact": "There was a particular recommendation of Mr Evans",
+      "tom_perspective": null,
+      "prompt_shown": null
+    },
+    {
+      "error_id": "06cd6820-4fd0-4d28-8194-3b36e822d5a2",
+      "format": "per_error_structured",
+      "text": null,
+      "mt_misunderstanding": "The MT system interpreted 'agrees' as requiring a direct prepositional object, translating it literally as 'sont d'accord avec,' mirroring the English structure 'agree with.'",
+      "author_intent": "to state a condition that the member of the House agree",
+      "reader_impact": "a condition that the member of the House agree",
+      "tom_perspective": null,
+      "prompt_shown": null
+    }
+  ]
+}

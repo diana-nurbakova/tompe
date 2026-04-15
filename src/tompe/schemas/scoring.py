@@ -4,7 +4,7 @@ from typing import Literal, Optional
 
 from pydantic import BaseModel
 
-from tompe.schemas.enums import MQMCategory, TOMLevel
+from tompe.schemas.enums import MQMCategory, SkillID, TOMLevel
 
 
 class CategoryScore(BaseModel):
@@ -34,6 +34,7 @@ class ScoringResult(BaseModel):
     # Per-category breakdown
     detection_by_mqm: dict[MQMCategory, CategoryScore]
     detection_by_tom: dict[TOMLevel, CategoryScore]
+    detection_by_skill: dict[SkillID, CategoryScore] = {}
 
     # Post-editing metrics (if PE mode)
     hter: Optional[float] = None

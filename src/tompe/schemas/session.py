@@ -7,7 +7,7 @@ exercises, and exercise assignments.
 from datetime import datetime
 from typing import Literal, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 from tompe.schemas.enums import AnnotationLevel
 
@@ -68,7 +68,21 @@ class Exercise(BaseModel):
     mode: Literal["evaluation", "postediting", "both"] = "evaluation"
     level: AnnotationLevel = AnnotationLevel.ANALYST
     item_ids: list[str] = []  # FK to AssessmentItem
-    justification_type: Literal["free_text", "structured", "both"] = "free_text"
+    justification_type: Literal[
+        "none", "per_error_short", "per_error_structured", "global_free_text",
+        # Legacy values (mapped on load)
+        "free_text", "structured", "both",
+    ] = "per_error_short"
+
+    @field_validator("justification_type", mode="before")
+    @classmethod
+    def _map_legacy_justification(cls, v: str) -> str:
+        legacy_map = {
+            "free_text": "global_free_text",
+            "structured": "per_error_structured",
+            "both": "global_free_text",
+        }
+        return legacy_map.get(v, v)
     clean_segment_ratio: float = 0.0  # L3 only: fraction of items that are error-free
     false_annotation_ratio: float = 0.0  # L0 only: ratio of false to true annotations
     item_ordering: Literal["manual", "difficulty", "random"] = "manual"

@@ -112,11 +112,21 @@ def update_student_levels(
     return students_store.update(student_id, StudentAccount, patch)
 
 
+def update_student_class(student_id: str, new_class_id: str) -> Optional[StudentAccount]:
+    """Move a student to a different class."""
+    return students_store.update(student_id, StudentAccount, {"class_id": new_class_id})
+
+
 # ── Class management ──────────────────────────────────────────────────────────
 
 
 def create_class(class_name: str, default_levels: Optional[list[AnnotationLevel]] = None) -> ClassGroup:
-    """Create a new class group."""
+    """Create a new class group. Raises ValueError if name already exists."""
+    existing = classes_store.list_all(
+        ClassGroup, filter_fn=lambda c: c.class_name.strip().lower() == class_name.strip().lower()
+    )
+    if existing:
+        raise ValueError(f"Class '{class_name}' already exists")
     cls = ClassGroup(
         class_id=str(uuid4()),
         class_name=class_name,

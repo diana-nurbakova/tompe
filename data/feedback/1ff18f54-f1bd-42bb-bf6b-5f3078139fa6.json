@@ -1,0 +1,33 @@
+{
+  "response_id": "1ff18f54-f1bd-42bb-bf6b-5f3078139fa6",
+  "item_id": "463439f7-3856-4d0c-9533-dad59e92df94",
+  "true_positives": 2,
+  "false_positives": 0,
+  "false_negatives": 1,
+  "precision": 1.0,
+  "recall": 0.6666666666666666,
+  "f1": 0.8,
+  "detection_by_mqm": {
+    "accuracy": {
+      "detected": 2,
+      "total": 3,
+      "detection_rate": 0.6666666666666666
+    }
+  },
+  "detection_by_tom": {
+    "1st_machine": {
+      "detected": 1,
+      "total": 2,
+      "detection_rate": 0.5
+    },
+    "1st_author": {
+      "detected": 1,
+      "total": 1,
+      "detection_rate": 1.0
+    }
+  },
+  "hter": null,
+  "unnecessary_edits": null,
+  "edit_quality": null,
+  "justification_scores": []
+}

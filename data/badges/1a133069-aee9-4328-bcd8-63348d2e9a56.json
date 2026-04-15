@@ -10,7 +10,7 @@
       "count": 1
     }
   ],
-  "total_xp": 23,
+  "total_xp": 58,
   "xp_history": [
     {
       "exercise_id": "2ab9ed9f-0982-44a9-91c8-0b651f7a3951",
@@ -37,9 +37,25 @@
         "tom_multiplier": 1.5,
         "scaffolding_multiplier": 1.5
       }
+    },
+    {
+      "exercise_id": "2ab9ed9f-0982-44a9-91c8-0b651f7a3951",
+      "xp_earned": 35,
+      "timestamp": "2026-04-15T01:03:00.784998",
+      "breakdown": {
+        "detection_xp": 30,
+        "category_xp": 0,
+        "severity_xp": 5,
+        "fp_penalty": 0,
+        "tom_multiplier": 1.0,
+        "scaffolding_multiplier": 1.5
+      }
     }
   ],
-  "detection_counts": {},
+  "detection_counts": {
+    "MISTRANSLATION": 1,
+    "OMISSION": 1
+  },
   "clean_sheet_count": 0,
   "correct_disputes": 0
 }

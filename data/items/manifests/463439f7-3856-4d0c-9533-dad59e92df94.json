@@ -10,38 +10,6 @@
   "pathway": "controlled",
   "errors": [
     {
-      "error_id": "d8b22377-8eec-40ea-9522-0eab46de8c2a",
-      "span_start": 49,
-      "span_end": 103,
-      "original_text": "l'article 143, qui concerne l'irrecevabilité",
-      "injected_text": "l'article 143, qui pourrait concerner l'irrecevabilité",
-      "primary_tag": "MISTRANSLATION",
-      "error_type": "ambiguity",
-      "severity": "major",
-      "tom_level": "1st_machine",
-      "primary_skill": "S3",
-      "secondary_skills": [],
-      "severity_range": [
-        "major"
-      ],
-      "direction": "both",
-      "explanation": {
-        "mt_interpretation": "The MT system likely interpreted 'concerning' as expressing possibility, resulting in 'qui pourrait concerner' ('which could concern'), introducing ambiguity about whether Rule 143 actually addresses inadmissibility.",
-        "actual_meaning": "The source text clearly states that Rule 143 addresses inadmissibility, not that it might address it. The rule is definitively about inadmissibility.",
-        "reader_impact": "A reader would wrongly assume that the connection between Rule 143 and inadmissibility is uncertain or only potential, possibly leading to confusion about the rule's scope.",
-        "correction_rationale": "The correct translation, 'qui concerne l'irrecevabilité', accurately reflects the definitive link made in the source text between Rule 143 and inadmissibility, avoiding any unintended ambiguity."
-      },
-      "system_behavior": {
-        "error_mechanism": "MT systems often stumble with ambiguous words or phrases, much like someone hearing a word with two meanings and picking the wrong one based on limited clues. Without enough context, the system has to make its best guess, which can easily lead to the wrong choice.",
-        "architectural_cause": "Internally, the system looks at patterns in the words around the ambiguous term to decide its meaning. If the surrounding words don't clearly point to one meaning, the system can't 'ask for clarification' and just picks what seems most likely from its training.",
-        "pattern_generalization": "Expect similar mistakes whenever a word or phrase has multiple meanings and the context isn't crystal clear. Watch out for sentences where a human would also need to pause and think about which meaning fits best.",
-        "mt_system_specific": "Large general-purpose LLMs like GPT-4 may be even more prone to this than dedicated MT engines, because they aren't specialized in handling translation-specific clues for ambiguity."
-      },
-      "technical_explanation": null,
-      "xml_tag": "Je voudrais vous demander un conseil au sujet de <MISTRANSLATION type=\"ambiguity\" severity=\"major\" tom=\"1st_machine\" desc=\"5-15 word explanation\">l'article 143, qui pourrait concerner l'irrecevabilité</MISTRANSLATION>.",
-      "brief_explanation": "5-15 word explanation"
-    },
-    {
       "error_id": "40229751-5e5d-42c8-a4f7-2c3a2e131016",
       "span_start": 37,
       "span_end": 62,

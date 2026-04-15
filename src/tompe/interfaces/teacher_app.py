@@ -33,6 +33,7 @@ from tompe.services.auth import (
     get_class,
     list_classes,
     list_students,
+    update_student_class,
     update_student_levels,
 )
 from tompe.services.datastore import (
@@ -86,6 +87,7 @@ def main():
         "📤 Upload Corpus",
         "🔄 Generate & Inject Errors",
         "📋 Review Queue",
+        "🔍 QE Validation",
         "📋 Published Items",
         "📚 Exercise Builder",
         "👥 Class Management",
@@ -115,6 +117,8 @@ def main():
         _page_generate_translations()
     elif page == "📋 Review Queue":
         _page_review_queue()
+    elif page == "🔍 QE Validation":
+        _page_qe_validation()
     elif page == "📋 Published Items":
         _page_published_items()
     elif page == "📚 Exercise Builder":
@@ -702,6 +706,13 @@ def _render_review_detail(item: AssessmentItem):
                     key=f"l2a_{iid}_{i}", height=60,
                 )
 
+            st.divider()
+            if st.button("Delete this error", key=f"del_err_{iid}_{i}", type="secondary"):
+                updated_errors = [e for j, e in enumerate(item.errors) if j != i]
+                items_store.update(iid, AssessmentItem, {"errors": [e.model_dump() for e in updated_errors]})
+                st.success(f"Error {i+1} deleted.")
+                st.rerun()
+
     # Teacher notes
     st.subheader("Teacher Notes")
     notes = st.text_area("Internal notes", value=item.teacher_notes or "", key=f"teacher_notes_{iid}")
@@ -734,6 +745,193 @@ def _render_review_detail(item: AssessmentItem):
             st.rerun()
 
 
+# ── QE Validation ────────────────────────────────────────────────────────────
+
+
+def _page_qe_validation():
+    st.header("🔍 QE Validation (GEMBA-MQM)")
+    st.caption(
+        "Validate items using GEMBA-MQM: an LLM independently evaluates the translation "
+        "and checks whether the injected errors are detectable. Items that pass validation "
+        "have higher confidence in their error annotations."
+    )
+
+    # Show items that can be validated (draft or reviewed)
+    items = items_store.list_all(
+        AssessmentItem,
+        filter_fn=lambda i: i.item_status in ("draft", "reviewed", "published"),
+    )
+
+    if not items:
+        st.info("No items to validate. Generate items first.")
+        return
+
+    # Filter controls
+    col1, col2 = st.columns(2)
+    with col1:
+        status_filter = st.selectbox("Status", ["All", "draft", "reviewed", "published"], key="qe_status")
+    with col2:
+        mt_config = _load_mt_config()
+
+    if status_filter != "All":
+        items = [i for i in items if i.item_status == status_filter]
+
+    st.write(f"**{len(items)} items** available for validation")
+
+    # Item selection
+    item_options = {
+        f"{i.item_id[:8]}... | {i.domain} | {len(i.errors)} errors | {i.item_status}": i.item_id
+        for i in items
+    }
+    selected_items = st.multiselect("Select items to validate", list(item_options.keys()), key="qe_items")
+
+    col_run, col_batch = st.columns(2)
+    with col_run:
+        run_single = st.button("Validate Selected", type="primary")
+    with col_batch:
+        run_all = st.button("Validate All Pending")
+
+    items_to_validate = []
+    if run_single and selected_items:
+        items_to_validate = [items_store.get(item_options[s], AssessmentItem) for s in selected_items]
+        items_to_validate = [i for i in items_to_validate if i is not None]
+    elif run_all:
+        items_to_validate = [i for i in items if i.item_status in ("draft", "reviewed")]
+
+    if items_to_validate:
+        _run_qe_validation(items_to_validate, mt_config)
+
+    # Show previous validation results
+    st.divider()
+    st.subheader("Validation Results")
+    _show_qe_results(items)
+
+
+def _run_qe_validation(items_to_validate, mt_config):
+    """Run GEMBA-MQM validation on selected items."""
+    import asyncio
+    from tompe.pipeline.qe_validator import validate_item_gemba
+
+    injection_config = mt_config.get("injection_llm", {})
+    if not injection_config:
+        st.error("No injection LLM configured. Check config/mt_backends.yaml.")
+        return
+
+    loop = asyncio.new_event_loop()
+    progress = st.progress(0)
+    status = st.empty()
+    results_container = st.container()
+
+    for idx, item in enumerate(items_to_validate):
+        progress.progress((idx + 1) / len(items_to_validate))
+        status.info(f"Validating item {idx+1}/{len(items_to_validate)}: {item.item_id[:8]}...")
+
+        try:
+            result = loop.run_until_complete(
+                validate_item_gemba(
+                    source_text=item.source_text,
+                    reference=item.reference_translation,
+                    injected_text=item.presented_text,
+                    injected_errors=item.errors,
+                    llm_config=injection_config,
+                    source_lang=item.source_lang,
+                    target_lang=item.target_lang,
+                )
+            )
+
+            # Store result as teacher_notes metadata
+            qe_summary = (
+                f"[QE] GEMBA: {result.overall_quality} ({result.overall_score}/100) | "
+                f"Detected: {result.gemba_detected}/{result.total_injected} | "
+                f"Extra: {result.gemba_extra} | "
+                f"Status: {result.status}"
+            )
+            existing_notes = item.teacher_notes or ""
+            # Replace previous QE note if exists
+            lines = [l for l in existing_notes.split("\n") if not l.startswith("[QE]")]
+            lines.insert(0, qe_summary)
+            new_notes = "\n".join(lines).strip()
+            items_store.update(item.item_id, AssessmentItem, {"teacher_notes": new_notes})
+
+            with results_container:
+                status_emoji = "✅" if result.passes_validation else "❌"
+                st.write(
+                    f"{status_emoji} **{item.item_id[:8]}** — "
+                    f"Quality: {result.overall_quality} ({result.overall_score}/100) | "
+                    f"Detected: {result.gemba_detected}/{result.total_injected} errors | "
+                    f"Extra issues: {result.gemba_extra}"
+                )
+
+                if result.gemba_errors:
+                    with st.expander("GEMBA-detected errors", expanded=False):
+                        for g_err in result.gemba_errors:
+                            sev_color = {"minor": "#f59e0b", "major": "#ef4444", "critical": "#7f1d1d"}.get(
+                                g_err.severity, "#6b7280"
+                            )
+                            st.markdown(
+                                f'<span style="color:{sev_color};font-weight:bold;">[{g_err.severity}]</span> '
+                                f'**{g_err.category}** — "{g_err.span}" — {g_err.explanation}',
+                                unsafe_allow_html=True,
+                            )
+
+                if result.score_degradation is not None:
+                    st.caption(
+                        f"Score degradation: {result.clean_score:.0f} (clean) → "
+                        f"{result.overall_score:.0f} (injected) = "
+                        f"Δ{result.score_degradation:.0f}"
+                    )
+
+        except Exception as e:
+            with results_container:
+                st.warning(f"❌ {item.item_id[:8]} — Validation failed: {e}")
+
+    loop.close()
+    progress.progress(1.0)
+    status.success(f"Validation complete for {len(items_to_validate)} items.")
+
+
+def _show_qe_results(items):
+    """Show summary of QE validation results from teacher_notes."""
+    passed = []
+    failed = []
+    pending = []
+
+    for item in items:
+        notes = item.teacher_notes or ""
+        qe_line = next((l for l in notes.split("\n") if l.startswith("[QE]")), None)
+        if qe_line:
+            if "Status: passed" in qe_line:
+                passed.append((item, qe_line))
+            else:
+                failed.append((item, qe_line))
+        else:
+            pending.append(item)
+
+    col1, col2, col3 = st.columns(3)
+    col1.metric("Passed", len(passed))
+    col2.metric("Failed", len(failed))
+    col3.metric("Pending", len(pending))
+
+    if passed:
+        with st.expander(f"✅ Passed ({len(passed)})", expanded=False):
+            for item, note in passed:
+                st.write(f"**{item.item_id[:8]}** | {item.domain} | {len(item.errors)} errors — {note}")
+
+    if failed:
+        with st.expander(f"❌ Failed ({len(failed)})", expanded=True):
+            for item, note in failed:
+                st.write(f"**{item.item_id[:8]}** | {item.domain} | {len(item.errors)} errors — {note}")
+                if st.button("Review this item", key=f"qe_review_{item.item_id}"):
+                    st.session_state["selected_review_item"] = item.item_id
+                    st.session_state["nav_page"] = "📋 Review Queue"
+                    st.rerun()
+
+    if pending:
+        with st.expander(f"⏳ Pending ({len(pending)})", expanded=False):
+            for item in pending:
+                st.write(f"**{item.item_id[:8]}** | {item.domain} | {len(item.errors)} errors | {item.item_status}")
+
+
 # ── Published Items ──────────────────────────────────────────────────────────
 
 
@@ -748,17 +946,134 @@ def _page_published_items():
         st.info("No published items yet. Approve items from the Review Queue.")
         return
 
-    data = []
-    for item in items:
-        data.append({
-            "Item ID": item.item_id[:12],
-            "Domain": item.domain,
-            "Direction": f"{item.source_lang}→{item.target_lang}",
-            "Errors": len(item.errors),
-            "Difficulty": item.difficulty_level,
-            "Source": item.source_text[:60],
-        })
-    st.dataframe(data, width="stretch")
+    # Two-column layout like Review Queue
+    col_list, col_detail = st.columns([1, 2])
+
+    with col_list:
+        st.subheader(f"Published ({len(items)})")
+        for item in items:
+            n_errors = len(item.errors)
+            label = f"📄 {item.item_id[:8]}... | {item.domain} | {n_errors} errors"
+            if st.button(label, key=f"pub_{item.item_id}", width="stretch"):
+                st.session_state["selected_published_item"] = item.item_id
+
+    with col_detail:
+        item_id = st.session_state.get("selected_published_item")
+        if item_id:
+            item = items_store.get(item_id, AssessmentItem)
+            if item:
+                _render_published_detail(item)
+        else:
+            st.info("Select an item from the list to view or edit.")
+
+
+def _render_published_detail(item: AssessmentItem):
+    """Render detail panel for a published item with edit capabilities."""
+    iid = item.item_id
+
+    st.subheader(f"Item: {iid[:12]}...")
+    st.markdown(
+        f"**Status:** :green[published] | "
+        f"**Domain:** {item.domain} | **Direction:** {item.source_lang}→{item.target_lang} | "
+        f"**Difficulty:** {item.difficulty_level}/5 | **Errors:** {len(item.errors)} | "
+        f"**MT System:** {item.mt_system}"
+    )
+
+    # Source + Translation
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown("**Source Text**")
+        st.text_area("Source", value=item.source_text, height=100, disabled=True, key=f"pub_src_{iid}")
+    with col2:
+        st.markdown("**Translation (with errors)**")
+        new_presented = st.text_area(
+            "Translation", value=item.presented_text, height=100, key=f"pub_tgt_{iid}"
+        )
+
+    st.markdown("**Reference Translation**")
+    st.text(item.reference_translation)
+
+    # Error manifest
+    st.subheader("Error Manifest")
+    for i, err in enumerate(item.errors):
+        with st.expander(
+            f"Error {i+1}: {TAG_LABELS.get(err.primary_tag, err.primary_tag)} "
+            f"({err.severity}) — \"{err.injected_text if hasattr(err, 'injected_text') else ''}\"",
+            expanded=False,
+        ):
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                st.selectbox(
+                    "Category", [t.value for t in PrimaryTag],
+                    index=[t.value for t in PrimaryTag].index(err.primary_tag)
+                    if err.primary_tag in [t.value for t in PrimaryTag] else 0,
+                    key=f"pub_cat_{iid}_{i}",
+                )
+            with col2:
+                st.text_input("Error type", value=err.error_type, key=f"pub_type_{iid}_{i}")
+            with col3:
+                st.selectbox(
+                    "Severity", [s.value for s in Severity],
+                    index=[s.value for s in Severity].index(err.severity)
+                    if err.severity in [s.value for s in Severity] else 0,
+                    key=f"pub_sev_{iid}_{i}",
+                )
+
+            if hasattr(err, "injected_text"):
+                st.text_input("Error text", value=err.injected_text, key=f"pub_errtxt_{iid}_{i}")
+            st.text_input("Correct text", value=err.original_text, key=f"pub_orig_{iid}_{i}")
+
+            if hasattr(err, "explanation") and err.explanation:
+                st.markdown("**Layer 1 — Contrastive**")
+                st.text_area(
+                    "MT interpretation", value=err.explanation.mt_interpretation,
+                    key=f"pub_l1mt_{iid}_{i}", height=60,
+                )
+                st.text_area(
+                    "Actual meaning", value=err.explanation.actual_meaning,
+                    key=f"pub_l1act_{iid}_{i}", height=60,
+                )
+
+            if hasattr(err, "system_behavior") and err.system_behavior:
+                st.markdown("**Layer 2a — Conceptual**")
+                st.text_area(
+                    "Error mechanism", value=err.system_behavior.error_mechanism,
+                    key=f"pub_l2a_{iid}_{i}", height=60,
+                )
+
+            st.divider()
+            if st.button("Delete this error", key=f"pub_del_err_{iid}_{i}", type="secondary"):
+                updated_errors = [e for j, e in enumerate(item.errors) if j != i]
+                items_store.update(iid, AssessmentItem, {"errors": [e.model_dump() for e in updated_errors]})
+                st.success(f"Error {i+1} deleted.")
+                st.rerun()
+
+    # Teacher notes
+    st.subheader("Teacher Notes")
+    notes = st.text_area("Internal notes", value=item.teacher_notes or "", key=f"pub_notes_{iid}")
+
+    # Action buttons
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        if st.button("Save Changes", type="primary", width="stretch", key=f"pub_save_{iid}"):
+            items_store.update(iid, AssessmentItem, {
+                "presented_text": new_presented,
+                "teacher_notes": notes,
+            })
+            st.success("Changes saved!")
+            st.rerun()
+    with col2:
+        if st.button("Unpublish (back to draft)", width="stretch", key=f"pub_unpub_{iid}"):
+            items_store.update(iid, AssessmentItem, {"item_status": "draft"})
+            st.warning("Item moved back to draft.")
+            st.session_state.pop("selected_published_item", None)
+            st.rerun()
+    with col3:
+        if st.button("Retire Item", width="stretch", key=f"pub_retire_{iid}"):
+            items_store.update(iid, AssessmentItem, {"item_status": "retired"})
+            st.warning("Item retired.")
+            st.session_state.pop("selected_published_item", None)
+            st.rerun()
 
 
 # ── Exercise Builder ─────────────────────────────────────────────────────────
@@ -821,7 +1136,16 @@ def _exercise_create_form():
             index=2,
         )
     with col2:
-        ex_just = st.selectbox("Justification type", ["free_text", "structured", "both"])
+        ex_just = st.selectbox(
+            "Justification type",
+            ["per_error_short", "per_error_structured", "global_free_text", "none"],
+            format_func=lambda x: {
+                "per_error_short": "Per error — short (adaptive prompt)",
+                "per_error_structured": "Per error — structured (3 ToM fields)",
+                "global_free_text": "Global free text (one box per item)",
+                "none": "None (skip justification)",
+            }[x],
+        )
         ex_order = st.selectbox("Item ordering", ["manual", "difficulty", "random"])
         ex_domain = st.text_input("Domain label", placeholder="e.g., Parliamentary")
         ex_direction = st.text_input("Direction", placeholder="e.g., FR→EN")
@@ -1020,9 +1344,13 @@ def _class_students_view():
     )
 
     level_options = [l.value for l in AnnotationLevel]
+    all_classes = list_classes()
+    class_name_map = {c.class_id: c.class_name for c in all_classes}
+    class_id_list = [c.class_id for c in all_classes]
+    class_name_list = [c.class_name for c in all_classes]
 
     # Table header
-    hcol1, hcol2, hcol3, hcol4, hcol5 = st.columns([2, 2, 1, 1, 1])
+    hcol1, hcol2, hcol3, hcol4, hcol5, hcol6 = st.columns([2, 2, 1, 1, 1, 1])
     with hcol1:
         st.markdown("**Username**")
     with hcol2:
@@ -1030,12 +1358,14 @@ def _class_students_view():
     with hcol3:
         st.markdown("**Level**")
     with hcol4:
-        st.markdown("**Consent**")
+        st.markdown("**Class**")
     with hcol5:
+        st.markdown("**Consent**")
+    with hcol6:
         st.markdown("**Active**")
 
     for student in students:
-        col1, col2, col3, col4, col5 = st.columns([2, 2, 1, 1, 1])
+        col1, col2, col3, col4, col5, col6 = st.columns([2, 2, 1, 1, 1, 1])
         with col1:
             st.write(f"**{student.username}**")
         with col2:
@@ -1056,6 +1386,20 @@ def _class_students_view():
                     allowed_levels=[AnnotationLevel(l) for l in level_options[:level_options.index(new_level) + 1]],
                 )
         with col4:
+            current_class_idx = class_id_list.index(student.class_id) if student.class_id in class_id_list else 0
+            new_class_name = st.selectbox(
+                "Class",
+                class_name_list,
+                index=current_class_idx,
+                key=f"class_{student.student_id}",
+                label_visibility="collapsed",
+            )
+            new_class_id = class_id_list[class_name_list.index(new_class_name)]
+            if new_class_id != student.class_id:
+                update_student_class(student.student_id, new_class_id)
+                _assign_class_exercises_to_student(student.student_id, new_class_id)
+                st.rerun()
+        with col5:
             if student.consent is None:
                 st.write("⏳ Pending")
             elif student.consent.withdrawn:
@@ -1067,7 +1411,7 @@ def _class_students_view():
                 st.write(f"✅ {tier_label}")
             else:
                 st.write("➖ Declined")
-        with col5:
+        with col6:
             st.write(f"{'🟢' if student.is_active else '🔴'}")
 
 
@@ -1083,9 +1427,12 @@ def _class_create_form():
         )
         if st.form_submit_button("Create Class"):
             if name:
-                create_class(name, [AnnotationLevel(l) for l in levels])
-                st.success(f"Class '{name}' created!")
-                st.rerun()
+                try:
+                    create_class(name, [AnnotationLevel(l) for l in levels])
+                    st.success(f"Class '{name}' created!")
+                    st.rerun()
+                except ValueError as e:
+                    st.error(str(e))
 
 
 # ── Analytics Dashboard ──────────────────────────────────────────────────────
@@ -1150,11 +1497,14 @@ def _analytics_class_overview():
     avg_recall = sum(s.recall for s in class_scores) / len(class_scores)
     avg_f1 = sum(s.f1 for s in class_scores) / len(class_scores)
 
-    col1, col2, col3, col4 = st.columns(4)
-    col1.metric("Responses", len(class_scores))
-    col2.metric("Avg Precision", f"{avg_precision:.1%}")
-    col3.metric("Avg Recall", f"{avg_recall:.1%}")
-    col4.metric("Avg F1", f"{avg_f1:.1%}")
+    active_student_ids = {r.student_id for r in student_responses}
+
+    col1, col2, col3, col4, col5 = st.columns(5)
+    col1.metric("Students", len(active_student_ids))
+    col2.metric("Items Evaluated", len(class_scores))
+    col3.metric("Avg Precision", f"{avg_precision:.1%}")
+    col4.metric("Avg Recall", f"{avg_recall:.1%}")
+    col5.metric("Avg F1", f"{avg_f1:.1%}")
 
     # Per-student summary table
     st.subheader("Per-Student Performance")
@@ -1180,33 +1530,100 @@ def _analytics_class_overview():
         })
     st.dataframe(rows, width="stretch")
 
-    # Skill profile bar chart (S1-S7 detection rates)
-    st.subheader("Skill Profile (S1-S7 Detection Rates)")
-    skill_labels = ["S1 Surface", "S2 Grammar", "S3 Meaning", "S4 Completeness",
-                    "S5 Terminology", "S6 Pragmatic", "S7 Discourse"]
+    # Detection breakdown charts
+    import plotly.graph_objects as go
 
-    # Aggregate per-skill from scoring details if available
-    skill_data = {}
+    # Aggregate per-skill from detection_by_skill breakdown
+    skill_detected: dict[str, int] = {}
+    skill_total: dict[str, int] = {}
     for score in class_scores:
-        if hasattr(score, "per_skill_detection") and score.per_skill_detection:
-            for skill_id, rate in score.per_skill_detection.items():
-                skill_data.setdefault(skill_id, []).append(rate)
+        for skill_id, cat_score in getattr(score, "detection_by_skill", {}).items():
+            sid = skill_id if isinstance(skill_id, str) else skill_id.value
+            skill_detected[sid] = skill_detected.get(sid, 0) + cat_score.detected
+            skill_total[sid] = skill_total.get(sid, 0) + cat_score.total
 
-    if skill_data:
-        import plotly.graph_objects as go
+    if skill_total:
+        st.subheader("Skill Profile (S1-S7 Detection Rates)")
+        skill_labels = ["S1 Surface", "S2 Grammar", "S3 Meaning", "S4 Completeness",
+                        "S5 Terminology", "S6 Pragmatic", "S7 Discourse"]
         skills = []
         rates = []
         for i, label in enumerate(skill_labels):
             sid = f"S{i+1}"
-            vals = skill_data.get(sid, [])
+            total = skill_total.get(sid, 0)
             skills.append(label)
-            rates.append(sum(vals) / len(vals) if vals else 0)
+            rates.append(skill_detected.get(sid, 0) / total if total > 0 else 0)
 
         fig = go.Figure(go.Bar(x=skills, y=rates, marker_color="#3b82f6"))
         fig.update_layout(yaxis_title="Detection Rate", yaxis_range=[0, 1], height=350)
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True, key="class_skill_profile")
     else:
-        st.caption("Detailed per-skill data will appear once items with ToM-level annotations are completed.")
+        # Show MQM and ToM breakdowns from existing scoring data
+        st.subheader("Detection by Category")
+
+        mqm_detected: dict[str, int] = {}
+        mqm_total: dict[str, int] = {}
+        tom_detected: dict[str, int] = {}
+        tom_total: dict[str, int] = {}
+        for score in class_scores:
+            for mqm, cat_score in score.detection_by_mqm.items():
+                key = mqm if isinstance(mqm, str) else mqm.value
+                mqm_detected[key] = mqm_detected.get(key, 0) + cat_score.detected
+                mqm_total[key] = mqm_total.get(key, 0) + cat_score.total
+            for tom, cat_score in score.detection_by_tom.items():
+                key = tom if isinstance(tom, str) else tom.value
+                tom_detected[key] = tom_detected.get(key, 0) + cat_score.detected
+                tom_total[key] = tom_total.get(key, 0) + cat_score.total
+
+        TOM_DISPLAY = {
+            "1st_machine": "1st Order (Machine)",
+            "1st_author": "1st Order (Author)",
+            "2nd_reader": "2nd Order (Reader)",
+            "recursive": "Recursive (Multi-agent)",
+        }
+
+        col_mqm, col_tom = st.columns(2)
+
+        with col_mqm:
+            st.markdown("**By MQM Category**")
+            if mqm_total:
+                cats = list(mqm_total.keys())
+                rates = [mqm_detected.get(c, 0) / mqm_total[c] for c in cats]
+                labels = [f"{c.title()} ({mqm_detected.get(c, 0)}/{mqm_total[c]})" for c in cats]
+                fig = go.Figure(go.Bar(
+                    x=rates, y=labels, orientation="h",
+                    marker_color="#3b82f6",
+                    text=[f"{r:.0%}" for r in rates], textposition="auto",
+                ))
+                fig.update_layout(
+                    xaxis_title="Detection Rate", xaxis_range=[0, 1],
+                    height=max(200, len(cats) * 50), margin=dict(l=0, r=0, t=10, b=0),
+                )
+                st.plotly_chart(fig, use_container_width=True, key="class_mqm")
+            else:
+                st.caption("No MQM data yet.")
+
+        with col_tom:
+            st.markdown("**By ToM Level**")
+            if tom_total:
+                levels = list(tom_total.keys())
+                rates = [tom_detected.get(l, 0) / tom_total[l] for l in levels]
+                labels = [
+                    f"{TOM_DISPLAY.get(l, l)} ({tom_detected.get(l, 0)}/{tom_total[l]})"
+                    for l in levels
+                ]
+                fig = go.Figure(go.Bar(
+                    x=rates, y=labels, orientation="h",
+                    marker_color="#8b5cf6",
+                    text=[f"{r:.0%}" for r in rates], textposition="auto",
+                ))
+                fig.update_layout(
+                    xaxis_title="Detection Rate", xaxis_range=[0, 1],
+                    height=max(200, len(levels) * 50), margin=dict(l=0, r=0, t=10, b=0),
+                )
+                st.plotly_chart(fig, use_container_width=True, key="class_tom")
+            else:
+                st.caption("No ToM data yet.")
 
 
 def _analytics_individual_student():
@@ -1253,7 +1670,7 @@ def _analytics_individual_student():
 
     col1, col2, col3 = st.columns(3)
     avg_f1 = sum(s.f1 for s in student_scores) / len(student_scores)
-    col1.metric("Total Responses", len(student_scores))
+    col1.metric("Items Evaluated", len(student_scores))
     col2.metric("Avg F1", f"{avg_f1:.1%}")
     col3.metric("Latest F1", f"{student_scores[-1].f1:.1%}")
 
@@ -1262,83 +1679,150 @@ def _analytics_individual_student():
     f1_series = [s.f1 for s in student_scores]
     st.line_chart({"F1 Score": f1_series})
 
-    # Wasserstein skill profile visualization
-    st.subheader("Skill Profile — Wasserstein Transport")
-    st.caption(
-        "Shows current skill mastery vs. expert target. "
-        "Arrows indicate optimal mastery redistribution (transport plan)."
-    )
-    try:
-        import numpy as np
-        import plotly.graph_objects as go
-        from experiments.wasserstein.config import TARGET_PROFILE, SKILL_LABELS, SKILL_NAMES
+    # Build per-skill data from detection_by_skill breakdown
+    import plotly.graph_objects as go
+    skill_detected: dict[str, int] = {}
+    skill_total: dict[str, int] = {}
+    for score in student_scores:
+        for skill_id, cat_score in getattr(score, "detection_by_skill", {}).items():
+            sid = skill_id if isinstance(skill_id, str) else skill_id.value
+            skill_detected[sid] = skill_detected.get(sid, 0) + cat_score.detected
+            skill_total[sid] = skill_total.get(sid, 0) + cat_score.total
 
-        # Build student profile from per-skill data if available
-        student_profile = {}
-        for score in student_scores:
-            if hasattr(score, "per_skill_detection") and score.per_skill_detection:
-                for skill, rate in score.per_skill_detection.items():
-                    student_profile.setdefault(skill, []).append(rate)
+    has_skill_data = len(skill_total) >= 3  # need at least 3 skills observed
 
-        if student_profile:
-            current = {k: sum(v) / len(v) for k, v in student_profile.items()}
-        else:
-            # Approximate from overall F1
-            current = {s: avg_f1 * TARGET_PROFILE[s] for s in SKILL_LABELS}
-
-        target = TARGET_PROFILE
-
-        labels = [f"{s} {SKILL_NAMES[s]}" for s in SKILL_LABELS]
-        current_vals = [current.get(s, 0) for s in SKILL_LABELS]
-        target_vals = [target[s] for s in SKILL_LABELS]
-
-        fig = go.Figure()
-        fig.add_trace(go.Bar(
-            name="Current", x=labels, y=current_vals,
-            marker_color="#3b82f6", opacity=0.8,
-        ))
-        fig.add_trace(go.Bar(
-            name="Target", x=labels, y=target_vals,
-            marker_color="#10b981", opacity=0.4,
-        ))
-        fig.update_layout(
-            barmode="overlay",
-            yaxis_title="Detection Rate",
-            yaxis_range=[0, 1],
-            height=350,
-            legend=dict(yanchor="top", y=0.99, xanchor="right", x=0.99),
+    if has_skill_data:
+        # Wasserstein skill profile with transport arrows
+        st.subheader("Skill Profile — Wasserstein Transport")
+        st.caption(
+            "Shows current skill mastery vs. expert target. "
+            "Arrows indicate optimal mastery redistribution (transport plan)."
         )
-        st.plotly_chart(fig, use_container_width=True)
-
-        # Compute MasteryGap
         try:
-            from experiments.wasserstein.metrics import w1_balanced
-            from experiments.wasserstein.config import ADJACENCY, EDGE_WEIGHTS
+            import sys
             import numpy as np
+            _project_root = str(Path(__file__).resolve().parents[3])
+            if _project_root not in sys.path:
+                sys.path.insert(0, _project_root)
+            from experiments.wasserstein.config import TARGET_PROFILE, SKILL_LABELS, SKILL_NAMES
+            from experiments.wasserstein.ground_metrics import build_weighted_graph
+            from experiments.wasserstein.dashboard_visualizations import (
+                plot_student_profile_with_transport,
+                _generate_interpretation,
+                SKILL_DISPLAY,
+            )
 
-            # Build cost matrix from graph
-            cost = np.full((7, 7), 100.0)
-            np.fill_diagonal(cost, 0.0)
-            for (i, j), w in EDGE_WEIGHTS.items():
-                cost[i][j] = w
-                cost[j][i] = w
-            # Floyd-Warshall for shortest paths
-            for k in range(7):
-                for i in range(7):
-                    for j in range(7):
-                        if cost[i][k] + cost[k][j] < cost[i][j]:
-                            cost[i][j] = cost[i][k] + cost[k][j]
+            current = {
+                s: skill_detected.get(s, 0) / skill_total[s] if skill_total.get(s, 0) > 0 else 0
+                for s in SKILL_LABELS
+            }
 
-            gap = w1_balanced(current, target, cost)
-            st.metric("MasteryGap (W₁)", f"{gap:.3f}",
-                      help="Wasserstein-1 distance from current profile to expert target. Lower = closer to mastery.")
-        except Exception:
-            pass
+            student_arr = np.array([current[s] for s in SKILL_LABELS])
+            target_arr = np.array([TARGET_PROFILE[s] for s in SKILL_LABELS])
+            cost_matrix = build_weighted_graph()
 
-    except ImportError:
-        st.caption("Install `POT` (Python Optimal Transport) for Wasserstein visualization.")
-    except Exception as e:
-        st.caption(f"Wasserstein visualization unavailable: {e}")
+            fig_mpl, gap, plan = plot_student_profile_with_transport(
+                student_profile=student_arr,
+                target_profile=target_arr,
+                ground_metric=cost_matrix,
+                skill_names=SKILL_DISPLAY,
+                student_name=sel_student,
+            )
+            fig_mpl.set_size_inches(7, 3.5)
+            fig_mpl.set_dpi(100)
+            fig_mpl.tight_layout()
+            st.pyplot(fig_mpl, use_container_width=False)
+
+            interpretation = _generate_interpretation(
+                student_arr, target_arr, plan, [SKILL_NAMES[s] for s in SKILL_LABELS],
+            )
+            col_gap, col_interp = st.columns([1, 3])
+            col_gap.metric(
+                "MasteryGap (W₁)", f"{gap:.3f}",
+                help="Wasserstein-1 distance from current profile to expert target. Lower = closer to mastery.",
+            )
+            col_interp.info(interpretation)
+
+        except ImportError as e:
+            st.caption(f"Install `POT` (Python Optimal Transport) for Wasserstein visualization. ({e})")
+        except Exception as e:
+            st.caption(f"Wasserstein visualization unavailable: {e}")
+    else:
+        # Not enough skill data — show MQM and ToM breakdowns we do have
+        st.subheader("Detection by Error Category")
+
+        # Aggregate detection_by_mqm across all scores
+        mqm_detected: dict[str, int] = {}
+        mqm_total: dict[str, int] = {}
+        for score in student_scores:
+            for mqm, cat_score in score.detection_by_mqm.items():
+                key = mqm if isinstance(mqm, str) else mqm.value
+                mqm_detected[key] = mqm_detected.get(key, 0) + cat_score.detected
+                mqm_total[key] = mqm_total.get(key, 0) + cat_score.total
+
+        # Aggregate detection_by_tom across all scores
+        tom_detected: dict[str, int] = {}
+        tom_total: dict[str, int] = {}
+        for score in student_scores:
+            for tom, cat_score in score.detection_by_tom.items():
+                key = tom if isinstance(tom, str) else tom.value
+                tom_detected[key] = tom_detected.get(key, 0) + cat_score.detected
+                tom_total[key] = tom_total.get(key, 0) + cat_score.total
+
+        col_mqm, col_tom = st.columns(2)
+
+        with col_mqm:
+            st.markdown("**By MQM Category**")
+            if mqm_total:
+                cats = list(mqm_total.keys())
+                rates = [mqm_detected.get(c, 0) / mqm_total[c] for c in cats]
+                labels = [f"{c.title()} ({mqm_detected.get(c, 0)}/{mqm_total[c]})" for c in cats]
+                fig = go.Figure(go.Bar(
+                    x=rates, y=labels, orientation="h",
+                    marker_color="#3b82f6",
+                    text=[f"{r:.0%}" for r in rates], textposition="auto",
+                ))
+                fig.update_layout(
+                    xaxis_title="Detection Rate", xaxis_range=[0, 1],
+                    height=max(200, len(cats) * 50), margin=dict(l=0, r=0, t=10, b=0),
+                )
+                st.plotly_chart(fig, use_container_width=True, key="student_mqm")
+            else:
+                st.caption("No MQM data yet.")
+
+        TOM_DISPLAY = {
+            "1st_machine": "1st Order (Machine)",
+            "1st_author": "1st Order (Author)",
+            "2nd_reader": "2nd Order (Reader)",
+            "recursive": "Recursive (Multi-agent)",
+        }
+        with col_tom:
+            st.markdown("**By ToM Level**")
+            if tom_total:
+                levels = list(tom_total.keys())
+                rates = [tom_detected.get(l, 0) / tom_total[l] for l in levels]
+                labels = [
+                    f"{TOM_DISPLAY.get(l, l)} ({tom_detected.get(l, 0)}/{tom_total[l]})"
+                    for l in levels
+                ]
+                fig = go.Figure(go.Bar(
+                    x=rates, y=labels, orientation="h",
+                    marker_color="#8b5cf6",
+                    text=[f"{r:.0%}" for r in rates], textposition="auto",
+                ))
+                fig.update_layout(
+                    xaxis_title="Detection Rate", xaxis_range=[0, 1],
+                    height=max(200, len(levels) * 50), margin=dict(l=0, r=0, t=10, b=0),
+                )
+                st.plotly_chart(fig, use_container_width=True, key="student_tom")
+            else:
+                st.caption("No ToM data yet.")
+
+        n_skills_observed = len(skill_total)
+        st.info(
+            f"Skill profile requires data on at least 3 of 7 skills (currently {n_skills_observed}). "
+            "Wasserstein transport visualization will appear as the student completes more exercises."
+        )
 
     # Level progression recommendation
     st.subheader("Level Progression")
@@ -1369,62 +1853,172 @@ def _analytics_individual_student():
 
 
 def _analytics_blindspot():
-    """ToM Blind Spot Analysis — MQM x ToM heatmap."""
+    """ToM Blind Spot Analysis — MQM x ToM heatmap + bar charts."""
+    import numpy as np
+    import plotly.graph_objects as go
+    from tompe.schemas.item import AssessmentItem
+    from tompe.schemas.response import StudentResponse
     from tompe.schemas.scoring import ScoringResult
-    from tompe.services.datastore import feedback_store
+    from tompe.services.datastore import feedback_store, responses_store
+    from tompe.services.scoring import _TAG_TO_MQM, compute_span_iou, _text_overlap
 
     all_scores = feedback_store.list_all(ScoringResult)
     if not all_scores:
         st.info("No scoring data yet. Blind spot analysis requires completed exercises.")
         return
 
+    # ── MQM x ToM Heatmap ──────────────────────────────────────────────────
+    # Build from per-error ground truth by re-matching student responses to items
+    MQM_LABELS = ["accuracy", "fluency", "terminology", "style", "locale"]
+    MQM_DISPLAY = ["Accuracy", "Fluency", "Terminology", "Style", "Locale"]
+    TOM_LABELS = ["1st_machine", "1st_author", "2nd_reader", "recursive"]
+    TOM_DISPLAY = {
+        "1st_machine": "1st Machine",
+        "1st_author": "1st Author",
+        "2nd_reader": "2nd Reader",
+        "recursive": "Recursive",
+    }
+
+    # Load items and responses for cross-referencing
+    matrix_detected = np.zeros((len(MQM_LABELS), len(TOM_LABELS)))
+    matrix_total = np.zeros((len(MQM_LABELS), len(TOM_LABELS)))
+
+    for score in all_scores:
+        item = items_store.get(score.item_id, AssessmentItem)
+        resp = responses_store.get(score.response_id, StudentResponse)
+        if not item or not resp:
+            continue
+
+        ground_truth = item.errors
+        student_errors = resp.identified_errors or []
+
+        # Re-run greedy matching (same logic as scoring.py)
+        gt_matched = [False] * len(ground_truth)
+        for s_err in student_errors:
+            best_iou = 0.0
+            best_gt_idx = -1
+            for gt_idx, gt_err in enumerate(ground_truth):
+                if gt_matched[gt_idx]:
+                    continue
+                iou = compute_span_iou(
+                    (s_err.span_start, s_err.span_end),
+                    (gt_err.span_start, gt_err.span_end),
+                )
+                if iou < 0.3:
+                    if _text_overlap(s_err.span_start, s_err.span_end, gt_err, item.presented_text):
+                        iou = max(iou, 0.3)
+                if iou > best_iou:
+                    best_iou = iou
+                    best_gt_idx = gt_idx
+            if best_iou >= 0.3 and best_gt_idx >= 0:
+                gt_matched[best_gt_idx] = True
+
+        # Accumulate per-error MQM x ToM counts
+        for gt_idx, gt_err in enumerate(ground_truth):
+            mqm_key = _TAG_TO_MQM.get(gt_err.primary_tag, "accuracy")
+            tom_key = gt_err.tom_level if isinstance(gt_err.tom_level, str) else gt_err.tom_level.value
+            mqm_idx = MQM_LABELS.index(mqm_key) if mqm_key in MQM_LABELS else 0
+            tom_idx = TOM_LABELS.index(tom_key) if tom_key in TOM_LABELS else 0
+            matrix_total[mqm_idx][tom_idx] += 1
+            if gt_matched[gt_idx]:
+                matrix_detected[mqm_idx][tom_idx] += 1
+
+    # Compute rates, NaN where no data
+    with np.errstate(divide="ignore", invalid="ignore"):
+        rates = np.where(matrix_total > 0, matrix_detected / matrix_total, np.nan)
+
+    has_data = np.any(matrix_total > 0)
+
     st.subheader("MQM x ToM Heatmap")
     st.caption(
-        "Cells show average detection rate. Red = systematic weakness (< 50%). "
-        "Data populates as students complete exercises with ToM-annotated items."
+        "Detection rate by MQM category and ToM level. "
+        "Red cells (< 50%) indicate systematic blind spots."
     )
 
-    # Build heatmap from per-error detection data if available
-    mqm_cats = ["Accuracy", "Fluency", "Terminology", "Style"]
-    tom_levels = ["L1 Surface", "L2 Grammar", "L3 Meaning", "L4 Complete", "L5 Term"]
+    if has_data:
+        # Build text annotations showing rate + counts
+        text_matrix = []
+        for i in range(len(MQM_LABELS)):
+            row = []
+            for j in range(len(TOM_LABELS)):
+                if matrix_total[i][j] > 0:
+                    pct = int(round(rates[i][j] * 100))
+                    row.append(f"{pct}%\n({int(matrix_detected[i][j])}/{int(matrix_total[i][j])})")
+                else:
+                    row.append("—")
+            text_matrix.append(row)
 
-    # Placeholder heatmap structure
-    import plotly.graph_objects as go
-    import numpy as np
-
-    # Extract from scores if per-error data exists
-    has_detail = any(
-        hasattr(s, "per_error_results") and s.per_error_results
-        for s in all_scores
-    )
-
-    if has_detail:
-        matrix = np.zeros((len(mqm_cats), len(tom_levels)))
-        counts = np.zeros((len(mqm_cats), len(tom_levels)))
-        for score in all_scores:
-            for err_result in getattr(score, "per_error_results", []):
-                mqm_idx = min(err_result.get("mqm_idx", 0), len(mqm_cats) - 1)
-                tom_idx = min(err_result.get("tom_idx", 0), len(tom_levels) - 1)
-                matrix[mqm_idx][tom_idx] += err_result.get("detected", 0)
-                counts[mqm_idx][tom_idx] += 1
-
-        rates = np.divide(matrix, counts, where=counts > 0, out=np.zeros_like(matrix))
+        tom_display = [TOM_DISPLAY.get(t, t) for t in TOM_LABELS]
+        fig = go.Figure(go.Heatmap(
+            z=rates,
+            x=tom_display,
+            y=MQM_DISPLAY,
+            colorscale="RdYlGn",
+            zmin=0, zmax=1,
+            text=text_matrix,
+            texttemplate="%{text}",
+            hovertemplate="MQM: %{y}<br>ToM: %{x}<br>Detection: %{z:.0%}<extra></extra>",
+        ))
+        fig.update_layout(height=350, margin=dict(l=0, r=0, t=30, b=0))
+        st.plotly_chart(fig, use_container_width=True, key="blindspot_heatmap")
     else:
-        rates = np.full((len(mqm_cats), len(tom_levels)), np.nan)
-        st.caption("Detailed per-error ToM data not yet available. Showing empty heatmap.")
+        st.caption("No per-error data available yet for the heatmap.")
 
-    fig = go.Figure(go.Heatmap(
-        z=rates,
-        x=tom_levels,
-        y=mqm_cats,
-        colorscale="RdYlGn",
-        zmin=0, zmax=1,
-        text=np.where(np.isnan(rates), "—", np.round(rates * 100).astype(int).astype(str) + "%"),
-        texttemplate="%{text}",
-        hovertemplate="MQM: %{y}<br>ToM: %{x}<br>Detection: %{z:.0%}<extra></extra>",
-    ))
-    fig.update_layout(height=350, margin=dict(l=0, r=0, t=30, b=0))
-    st.plotly_chart(fig, use_container_width=True)
+    # ── Marginal bar charts ────────────────────────────────────────────────
+    col_mqm, col_tom = st.columns(2)
+
+    with col_mqm:
+        st.markdown("**By MQM Category**")
+        mqm_detected_m = {}
+        mqm_total_m = {}
+        for score in all_scores:
+            for mqm, cat_score in score.detection_by_mqm.items():
+                key = mqm if isinstance(mqm, str) else mqm.value
+                mqm_detected_m[key] = mqm_detected_m.get(key, 0) + cat_score.detected
+                mqm_total_m[key] = mqm_total_m.get(key, 0) + cat_score.total
+        if mqm_total_m:
+            cats = list(mqm_total_m.keys())
+            rates_m = [mqm_detected_m.get(c, 0) / mqm_total_m[c] for c in cats]
+            labels = [f"{c.title()} ({mqm_detected_m.get(c, 0)}/{mqm_total_m[c]})" for c in cats]
+            colors = ["#ef4444" if r < 0.5 else "#22c55e" for r in rates_m]
+            fig = go.Figure(go.Bar(
+                x=rates_m, y=labels, orientation="h",
+                marker_color=colors,
+                text=[f"{r:.0%}" for r in rates_m], textposition="auto",
+            ))
+            fig.update_layout(
+                xaxis_title="Detection Rate", xaxis_range=[0, 1],
+                height=max(200, len(cats) * 60), margin=dict(l=0, r=0, t=10, b=0),
+            )
+            st.plotly_chart(fig, use_container_width=True, key="blindspot_mqm")
+
+    with col_tom:
+        st.markdown("**By ToM Level**")
+        tom_detected_m = {}
+        tom_total_m = {}
+        for score in all_scores:
+            for tom, cat_score in score.detection_by_tom.items():
+                key = tom if isinstance(tom, str) else tom.value
+                tom_detected_m[key] = tom_detected_m.get(key, 0) + cat_score.detected
+                tom_total_m[key] = tom_total_m.get(key, 0) + cat_score.total
+        if tom_total_m:
+            levels = list(tom_total_m.keys())
+            rates_t = [tom_detected_m.get(l, 0) / tom_total_m[l] for l in levels]
+            labels = [
+                f"{TOM_DISPLAY.get(l, l)} ({tom_detected_m.get(l, 0)}/{tom_total_m[l]})"
+                for l in levels
+            ]
+            colors = ["#ef4444" if r < 0.5 else "#22c55e" for r in rates_t]
+            fig = go.Figure(go.Bar(
+                x=rates_t, y=labels, orientation="h",
+                marker_color=colors,
+                text=[f"{r:.0%}" for r in rates_t], textposition="auto",
+            ))
+            fig.update_layout(
+                xaxis_title="Detection Rate", xaxis_range=[0, 1],
+                height=max(200, len(levels) * 60), margin=dict(l=0, r=0, t=10, b=0),
+            )
+            st.plotly_chart(fig, use_container_width=True, key="blindspot_tom")
 
 
 def _analytics_data_export():

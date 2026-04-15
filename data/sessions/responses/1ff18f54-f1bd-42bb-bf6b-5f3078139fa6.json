@@ -1,0 +1,33 @@
+{
+  "response_id": "1ff18f54-f1bd-42bb-bf6b-5f3078139fa6",
+  "session_id": "9a45075e-aa23-498d-bcce-adb827e51975",
+  "item_id": "463439f7-3856-4d0c-9533-dad59e92df94",
+  "student_id": "1a133069-aee9-4328-bcd8-63348d2e9a56",
+  "mode": "evaluation",
+  "timestamp": "2026-04-15T01:02:58.425085",
+  "time_spent_seconds": 152.7,
+  "identified_errors": [
+    {
+      "span_start": 49,
+      "span_end": 61,
+      "student_mqm_category": "accuracy",
+      "student_severity": "major",
+      "confidence": "medium"
+    },
+    {
+      "span_start": 49,
+      "span_end": 62,
+      "student_mqm_category": "accuracy",
+      "student_severity": "critical",
+      "confidence": "medium"
+    }
+  ],
+  "edited_text": null,
+  "verification_responses": null,
+  "comparison_type": null,
+  "per_system_evaluations": null,
+  "system_rankings": null,
+  "pe_worthiness": null,
+  "justification_format": "free_text",
+  "justifications": []
+}

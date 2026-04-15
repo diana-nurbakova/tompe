@@ -54,9 +54,9 @@ class Justification(BaseModel):
     """Student-generated ToM reasoning."""
 
     error_id: Optional[str] = None
-    format: Literal["free_text", "structured"]
+    format: Literal["free_text", "structured", "per_error_short", "per_error_structured"]
 
-    # Free-text format
+    # Free-text format (global or per-error short)
     text: Optional[str] = None
 
     # Structured format (guided ToM prompts)
@@ -64,6 +64,9 @@ class Justification(BaseModel):
     author_intent: Optional[str] = None
     reader_impact: Optional[str] = None
     tom_perspective: Optional[TOMLevel] = None
+
+    # Adaptive prompt that was shown to the student
+    prompt_shown: Optional[str] = None
 
 
 class StudentResponse(BaseModel):
@@ -91,5 +94,8 @@ class StudentResponse(BaseModel):
     pe_worthiness: Optional[dict[str, PEWorthinessVerdict]] = None
 
     # Justification (required before seeing feedback)
-    justification_format: Literal["free_text", "structured", "both"] = "free_text"
+    justification_format: Literal[
+        "free_text", "structured", "both",  # legacy
+        "none", "per_error_short", "per_error_structured", "global_free_text",
+    ] = "per_error_short"
     justifications: list[Justification] = []

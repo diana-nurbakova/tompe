@@ -1,0 +1,48 @@
+{
+  "student_id": "970d802c-b625-4bf2-9870-74aab2037864",
+  "earned_badges": [
+    {
+      "badge_id": "analyst",
+      "student_id": "970d802c-b625-4bf2-9870-74aab2037864",
+      "tier": "none",
+      "earned_at": "2026-04-15T11:02:40.862626",
+      "exercise_id": "2ab9ed9f-0982-44a9-91c8-0b651f7a3951",
+      "count": 1
+    }
+  ],
+  "total_xp": 100,
+  "xp_history": [
+    {
+      "exercise_id": "2ab9ed9f-0982-44a9-91c8-0b651f7a3951",
+      "xp_earned": 50,
+      "timestamp": "2026-04-15T11:02:40.879418",
+      "breakdown": {
+        "detection_xp": 45,
+        "category_xp": 0,
+        "severity_xp": 5,
+        "fp_penalty": 0,
+        "tom_multiplier": 1.0,
+        "scaffolding_multiplier": 1.5
+      }
+    },
+    {
+      "exercise_id": "2ab9ed9f-0982-44a9-91c8-0b651f7a3951",
+      "xp_earned": 50,
+      "timestamp": "2026-04-15T11:19:11.922866",
+      "breakdown": {
+        "detection_xp": 45,
+        "category_xp": 0,
+        "severity_xp": 5,
+        "fp_penalty": 0,
+        "tom_multiplier": 1.0,
+        "scaffolding_multiplier": 1.5
+      }
+    }
+  ],
+  "detection_counts": {
+    "ADDITION": 2,
+    "GRAMMAR": 2
+  },
+  "clean_sheet_count": 0,
+  "correct_disputes": 0
+}

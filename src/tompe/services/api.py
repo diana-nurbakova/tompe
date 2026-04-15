@@ -112,7 +112,7 @@ class CreateExerciseRequest(BaseModel):
     mode: str = "evaluation"
     level: AnnotationLevel = AnnotationLevel.ANALYST
     item_ids: list[str] = []
-    justification_type: str = "free_text"
+    justification_type: str = "per_error_short"
     clean_segment_ratio: float = 0.0
     false_annotation_ratio: float = 0.0
     item_ordering: str = "manual"

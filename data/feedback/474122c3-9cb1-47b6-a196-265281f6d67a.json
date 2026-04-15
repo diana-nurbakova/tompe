@@ -1,0 +1,45 @@
+{
+  "response_id": "474122c3-9cb1-47b6-a196-265281f6d67a",
+  "item_id": "0005f83e-7258-4638-81cd-b4f97ae5a42c",
+  "true_positives": 3,
+  "false_positives": 0,
+  "false_negatives": 0,
+  "precision": 1.0,
+  "recall": 1.0,
+  "f1": 1.0,
+  "detection_by_mqm": {
+    "fluency": {
+      "detected": 2,
+      "total": 2,
+      "detection_rate": 1.0
+    },
+    "accuracy": {
+      "detected": 1,
+      "total": 1,
+      "detection_rate": 1.0
+    }
+  },
+  "detection_by_tom": {
+    "1st_machine": {
+      "detected": 3,
+      "total": 3,
+      "detection_rate": 1.0
+    }
+  },
+  "detection_by_skill": {
+    "S2": {
+      "detected": 2,
+      "total": 2,
+      "detection_rate": 1.0
+    },
+    "S4": {
+      "detected": 1,
+      "total": 1,
+      "detection_rate": 1.0
+    }
+  },
+  "hter": null,
+  "unnecessary_edits": null,
+  "edit_quality": null,
+  "justification_scores": []
+}

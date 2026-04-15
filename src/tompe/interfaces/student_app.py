@@ -265,12 +265,28 @@ def _build_feedback_html(feedback_data: dict) -> str:
     return html
 
 
-_BADGES_DIR = str(Path(__file__).resolve().parent.parent.parent.parent / "assets" / "badges")
+_BADGES_DIR = Path(__file__).resolve().parent.parent.parent.parent / "assets" / "badges"
+
+
+_badge_cache: dict[str, str] = {}
 
 
 def _badge_path(filename: str) -> str:
-    """Return the Gradio file-serving URL for a badge image."""
-    return f"file={_BADGES_DIR}/{filename}"
+    """Return a base64 data URI for a badge image (no file serving needed)."""
+    if filename in _badge_cache:
+        return _badge_cache[filename]
+
+    import base64
+    filepath = _BADGES_DIR / filename
+    if filepath.exists():
+        data = base64.b64encode(filepath.read_bytes()).decode()
+        uri = f"data:image/jpeg;base64,{data}"
+    else:
+        # Transparent 1x1 pixel fallback
+        uri = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+
+    _badge_cache[filename] = uri
+    return uri
 
 
 def _build_badge_collection_html(badge_data: dict) -> str:
@@ -627,6 +643,47 @@ def _build_error_guide_html() -> str:
     return html
 
 
+# ── Adaptive justification prompts ───────────────────────────────────────────
+
+_SURFACE_TAGS = {PrimaryTag.SPELLING, PrimaryTag.PUNCTUATION, PrimaryTag.GRAMMAR}
+_MEANING_TAGS = {
+    PrimaryTag.MISTRANSLATION, PrimaryTag.OMISSION, PrimaryTag.ADDITION,
+    PrimaryTag.UNTRANSLATED, PrimaryTag.TERMINOLOGY,
+}
+_PRAGMATIC_TAGS = {PrimaryTag.STYLE, PrimaryTag.LOCALE}
+
+
+def _get_justification_prompt(primary_tag: str) -> str:
+    """Return an adaptive prompt based on the error's category."""
+    if primary_tag in _SURFACE_TAGS:
+        return "What's wrong here?"
+    if primary_tag in _PRAGMATIC_TAGS:
+        return "Why is this a problem and how would a reader misinterpret this?"
+    # Default for meaning/terminology and unknown
+    return "Why is this a problem?"
+
+
+def _build_error_label_html(idx: int, annotation: dict, item_text: str = "") -> str:
+    """Build an HTML card for one annotated error in the justification panel."""
+    start = annotation.get("span_start", 0)
+    end = annotation.get("span_end", 0)
+    span_text = item_text[start:end] if item_text else f"chars {start}-{end}"
+    tag = annotation.get("primary_tag", "unknown")
+    severity = annotation.get("severity_label", annotation.get("severity", ""))
+    tag_label = TAG_LABELS.get(tag, tag) if tag else "Unknown"
+
+    return (
+        f'<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;'
+        f'padding:8px 12px;margin-bottom:4px;">'
+        f'<strong>Error {idx + 1}:</strong> '
+        f'<span style="background:#fef3c7;padding:2px 6px;border-radius:3px;">'
+        f'"{span_text[:60]}{"..." if len(span_text) > 60 else ""}"</span> '
+        f'<span style="color:#6b7280;">— {tag_label}'
+        f'{" / " + severity if severity else ""}</span>'
+        f'</div>'
+    )
+
+
 # ── Main app builder ─────────────────────────────────────────────────────────
 
 
@@ -755,9 +812,9 @@ def build_student_app() -> gr.Blocks:
                     # Textbox for span selection JS → Python communication
                     span_output = gr.Textbox(
                         elem_id="span-output-main",
-                        label="Selected text (drag and drop from translation, or type the error text)",
+                        label="Selected text (drag from translation, or type the error/context text)",
                         lines=1, max_lines=1, interactive=True,
-                        placeholder="Drag text from the translation here, or type the error text...",
+                        placeholder="For omissions: type the surrounding context where text is missing...",
                     )
 
                     # Annotation chips
@@ -828,8 +885,10 @@ def build_student_app() -> gr.Blocks:
                                 )
 
                         # ── Justification panel (Phase 2) ───────────────
+                        MAX_PER_ERROR = 8
+
                         with gr.TabItem("2. Justify", id=11) as justification_panel:
-                            gr.HTML(
+                            justify_header = gr.HTML(
                                 '<div style="background:#eff6ff;border:2px solid #3b82f6;'
                                 'border-radius:8px;padding:16px;margin-bottom:12px;">'
                                 '<h3 style="margin:0 0 8px 0;color:#1d4ed8;">Justify Your Reasoning</h3>'
@@ -838,8 +897,8 @@ def build_student_app() -> gr.Blocks:
                                 '</div>'
                             )
 
-                            # Mode A: Free-text
-                            with gr.Column(visible=True) as justify_freetext:
+                            # Mode A: Global free-text (legacy)
+                            with gr.Column(visible=False) as justify_freetext:
                                 justify_text = gr.Textbox(
                                     label="Explain your reasoning",
                                     lines=4,
@@ -850,23 +909,50 @@ def build_student_app() -> gr.Blocks:
                                     ),
                                 )
 
-                            # Mode B: Structured ToM
-                            with gr.Column(visible=False) as justify_structured:
-                                justify_mt = gr.Textbox(
-                                    label="What did the MT system misunderstand?",
-                                    lines=2,
-                                    placeholder="The MT system likely interpreted...",
-                                )
-                                justify_author = gr.Textbox(
-                                    label="What was the author's actual intent?",
-                                    lines=2,
-                                    placeholder="The author meant...",
-                                )
-                                justify_reader = gr.Textbox(
-                                    label="How would a reader misinterpret this?",
-                                    lines=2,
-                                    placeholder="A reader would think...",
-                                )
+                            # Mode B: Per-error short (adaptive prompt)
+                            with gr.Column(visible=False) as justify_per_error_short:
+                                pe_short_groups = []
+                                pe_short_labels = []
+                                pe_short_texts = []
+                                for i in range(MAX_PER_ERROR):
+                                    with gr.Group(visible=False) as grp:
+                                        lbl = gr.HTML("")
+                                        txt = gr.Textbox(
+                                            label="Your reasoning",
+                                            lines=2,
+                                            placeholder="Explain why this is an error...",
+                                        )
+                                    pe_short_groups.append(grp)
+                                    pe_short_labels.append(lbl)
+                                    pe_short_texts.append(txt)
+
+                            # Mode C: Per-error structured (3 ToM fields)
+                            with gr.Column(visible=False) as justify_per_error_struct:
+                                pe_struct_groups = []
+                                pe_struct_labels = []
+                                pe_struct_mt = []
+                                pe_struct_author = []
+                                pe_struct_reader = []
+                                for i in range(MAX_PER_ERROR):
+                                    with gr.Group(visible=False) as grp:
+                                        lbl = gr.HTML("")
+                                        mt = gr.Textbox(
+                                            label="What did the MT system misunderstand?",
+                                            lines=2,
+                                        )
+                                        au = gr.Textbox(
+                                            label="What was the author's actual intent?",
+                                            lines=2,
+                                        )
+                                        rd = gr.Textbox(
+                                            label="How would a reader misinterpret this?",
+                                            lines=2,
+                                        )
+                                    pe_struct_groups.append(grp)
+                                    pe_struct_labels.append(lbl)
+                                    pe_struct_mt.append(mt)
+                                    pe_struct_author.append(au)
+                                    pe_struct_reader.append(rd)
 
                             # Confidence rating (spec requirement)
                             confidence_slider = gr.Slider(
@@ -1080,7 +1166,8 @@ def build_student_app() -> gr.Blocks:
                 "analyst": (
                     "Read the source text and translation carefully. **Drag and drop any text you "
                     "believe contains an error** from the translation into the 'Selected text' field "
-                    "below. Classify each error by type and severity, then explain your reasoning."
+                    "below. For **omissions**, type the surrounding context where content is missing. "
+                    "Classify each error by type and severity, then explain your reasoning."
                 ),
                 "expert": (
                     "Evaluate this translation independently. **Drag and drop suspected errors** from "
@@ -1269,6 +1356,10 @@ def build_student_app() -> gr.Blocks:
                     idx = text.find(search)
                     if idx >= 0:
                         data = {"start": idx, "end": idx + len(search), "text": search}
+                    else:
+                        # Text not found in translation — likely an omission or description
+                        # Use the typed text as the annotation label
+                        data = {"start": 0, "end": 0, "text": search}
 
             if not data or not category:
                 return no_change
@@ -1298,19 +1389,78 @@ def build_student_app() -> gr.Blocks:
                 gr.update(value=summary),
             )
 
-        def handle_proceed_to_justify(annotations, current_exercise):
-            """Transition from Phase 1 (Annotate) to Phase 2 (Justify)."""
-            just_type = "free_text"
+        def _submit_response_and_get_feedback(annotations, current_item, current_exercise, student_info, confidence_val=3):
+            """Shared submission logic: submit response, return (response_id, feedback_html)."""
+            mode = current_exercise.get("mode", "evaluation") if current_exercise else "evaluation"
+            item_id = current_item.get("item_id", "")
+            confidence_map = {1: "low", 2: "low", 3: "medium", 4: "high", 5: "high"}
+            conf_label = confidence_map.get(int(confidence_val), "medium")
+            identified = []
+            for ann in annotations:
+                identified.append({
+                    "span_start": ann["span_start"],
+                    "span_end": ann["span_end"],
+                    "student_mqm_category": _tag_to_mqm(ann.get("primary_tag", "")),
+                    "student_severity": ann.get("severity", "major"),
+                    "confidence": conf_label,
+                })
+            time_spent = 0  # not tracked for skip-justify mode
+            try:
+                resp = api.submit_response(
+                    item_id=item_id, mode=mode,
+                    identified_errors=identified, time_spent_seconds=time_spent,
+                )
+                response_id = resp.get("response_id")
+            except Exception as e:
+                return None, f'<div style="color:red;">Error: {e}</div>'
+            feedback_content = ""
+            if response_id:
+                try:
+                    fb = api.get_feedback(response_id)
+                    feedback_content = _build_feedback_html(fb)
+                    badge_result = fb.get("badges")
+                    if badge_result:
+                        feedback_content += _build_badge_notification_html(badge_result)
+                except Exception as e:
+                    feedback_content = f'<div style="color:#6b7280;">Feedback unavailable: {e}</div>'
+            return response_id, feedback_content
+
+        def handle_proceed_to_justify(annotations, current_item, current_exercise, student_info):
+            """Transition from Phase 1 (Annotate) to Phase 2 (Justify), or skip to Feedback if mode=none."""
+            just_type = "per_error_short"
             if current_exercise:
-                just_type = current_exercise.get("justification_type", "free_text")
+                raw = current_exercise.get("justification_type", "per_error_short")
+                legacy = {"free_text": "global_free_text", "structured": "per_error_structured", "both": "global_free_text"}
+                just_type = legacy.get(raw, raw)
 
-            show_free = just_type in ("free_text", "both")
-            show_struct = just_type in ("structured", "both")
+            item_text = current_item.get("presented_text", "") if current_item else ""
 
-            return (
-                gr.update(selected=11),  # switch phase_tabs to Justify tab
-                gr.update(visible=show_free),
-                gr.update(visible=show_struct),
+            # "none" mode: skip justification, submit directly, jump to feedback
+            n_extra = MAX_PER_ERROR * 3 + MAX_PER_ERROR * 5  # short(3 per slot) + struct(5 per slot)
+            if just_type == "none":
+                response_id, feedback_content = _submit_response_and_get_feedback(
+                    annotations, current_item, current_exercise, student_info,
+                )
+                base = [
+                    gr.update(selected=12),  # jump to Feedback tab
+                    gr.update(visible=False), gr.update(visible=False), gr.update(visible=False),
+                    "feedback",
+                    gr.update(value=(
+                        '<div class="phase-indicator" style="text-align:center;">'
+                        "1 Annotate -> 2 Justify -> "
+                        '<strong style="color:#3b82f6;">3 Feedback</strong></div>'
+                    )),
+                    response_id,
+                    gr.update(value=feedback_content),
+                ]
+                return tuple(base + [gr.update()] * n_extra)
+
+            # Normal modes: show justify panel
+            base = [
+                gr.update(selected=11),  # switch to Justify tab
+                gr.update(visible=(just_type == "global_free_text")),
+                gr.update(visible=(just_type == "per_error_short")),
+                gr.update(visible=(just_type == "per_error_structured")),
                 "justify",
                 gr.update(
                     value=(
@@ -1320,19 +1470,76 @@ def build_student_app() -> gr.Blocks:
                         "3 Feedback</div>"
                     )
                 ),
-            )
+                gr.update(),  # current_response_id (no change)
+                gr.update(),  # feedback_html (no change)
+            ]
 
-        def handle_submit_justify(
-            justify_text_val, justify_mt_val, justify_author_val, justify_reader_val,
-            confidence_val, item_start_time_val,
-            annotations, current_item, current_exercise, student_info,
-        ):
-            """Submit annotations + justifications and get feedback."""
+            # Per-error short slot updates
+            short_updates = []
+            for i in range(MAX_PER_ERROR):
+                if i < len(annotations):
+                    ann = annotations[i]
+                    prompt = _get_justification_prompt(ann.get("primary_tag", ""))
+                    label_html = _build_error_label_html(i, ann, item_text)
+                    short_updates.append(gr.update(visible=True))   # group
+                    short_updates.append(gr.update(value=label_html))  # label
+                    short_updates.append(gr.update(value="", label=prompt))  # textbox
+                else:
+                    short_updates.append(gr.update(visible=False))
+                    short_updates.append(gr.update(value=""))
+                    short_updates.append(gr.update(value=""))
+
+            # Per-error structured slot updates
+            struct_updates = []
+            for i in range(MAX_PER_ERROR):
+                if i < len(annotations):
+                    ann = annotations[i]
+                    label_html = _build_error_label_html(i, ann, item_text)
+                    struct_updates.append(gr.update(visible=True))   # group
+                    struct_updates.append(gr.update(value=label_html))  # label
+                    struct_updates.append(gr.update(value=""))  # mt
+                    struct_updates.append(gr.update(value=""))  # author
+                    struct_updates.append(gr.update(value=""))  # reader
+                else:
+                    struct_updates.append(gr.update(visible=False))
+                    struct_updates.append(gr.update(value=""))
+                    struct_updates.append(gr.update(value=""))
+                    struct_updates.append(gr.update(value=""))
+                    struct_updates.append(gr.update(value=""))
+
+            return tuple(base + short_updates + struct_updates)
+
+        def handle_submit_justify(*args):
+            """Submit annotations + justifications and get feedback.
+
+            Args are positionally unpacked:
+              [0] justify_text_val (global free text)
+              [1..MAX_PER_ERROR] pe_short_text values
+              [MAX_PER_ERROR+1 .. MAX_PER_ERROR+MAX_PER_ERROR*3] pe_struct mt/author/reader values
+              then: confidence_val, item_start_time_val, annotations, current_item,
+                    current_exercise, student_info
+            """
+            idx = 0
+            justify_text_val = args[idx]; idx += 1
+            pe_short_vals = list(args[idx:idx + MAX_PER_ERROR]); idx += MAX_PER_ERROR
+            pe_struct_vals = list(args[idx:idx + MAX_PER_ERROR * 3]); idx += MAX_PER_ERROR * 3
+            confidence_val = args[idx]; idx += 1
+            item_start_time_val = args[idx]; idx += 1
+            annotations = args[idx]; idx += 1
+            current_item = args[idx]; idx += 1
+            current_exercise = args[idx]; idx += 1
+            student_info = args[idx]; idx += 1
+
             if not current_item:
                 return gr.update(), gr.update(), None, gr.update(), gr.update()
 
             mode = current_exercise.get("mode", "evaluation") if current_exercise else "evaluation"
             item_id = current_item.get("item_id", "")
+
+            # Determine justification type
+            raw_jt = current_exercise.get("justification_type", "per_error_short") if current_exercise else "per_error_short"
+            legacy = {"free_text": "global_free_text", "structured": "per_error_structured", "both": "global_free_text"}
+            just_type = legacy.get(raw_jt, raw_jt)
 
             # Build identified errors from annotations
             confidence_map = {1: "low", 2: "low", 3: "medium", 4: "high", 5: "high"}
@@ -1366,20 +1573,46 @@ def build_student_app() -> gr.Blocks:
                     gr.update(),
                 )
 
-            # Submit justifications
+            # Build justifications based on mode
             justifications = []
-            if justify_text_val:
-                justifications.append({
-                    "format": "free_text",
-                    "text": justify_text_val,
-                })
-            if justify_mt_val or justify_author_val or justify_reader_val:
-                justifications.append({
-                    "format": "structured",
-                    "mt_misunderstanding": justify_mt_val or "",
-                    "author_intent": justify_author_val or "",
-                    "reader_impact": justify_reader_val or "",
-                })
+
+            if just_type == "global_free_text":
+                if justify_text_val:
+                    justifications.append({
+                        "format": "free_text",
+                        "text": justify_text_val,
+                    })
+
+            elif just_type == "per_error_short":
+                for i, ann in enumerate(annotations):
+                    if i >= MAX_PER_ERROR:
+                        break
+                    text = pe_short_vals[i] if i < len(pe_short_vals) else ""
+                    if text and text.strip():
+                        prompt = _get_justification_prompt(ann.get("primary_tag", ""))
+                        justifications.append({
+                            "format": "per_error_short",
+                            "error_id": ann.get("annotation_id"),
+                            "text": text.strip(),
+                            "prompt_shown": prompt,
+                        })
+
+            elif just_type == "per_error_structured":
+                for i, ann in enumerate(annotations):
+                    if i >= MAX_PER_ERROR:
+                        break
+                    base = i * 3
+                    mt_val = pe_struct_vals[base] if base < len(pe_struct_vals) else ""
+                    au_val = pe_struct_vals[base + 1] if base + 1 < len(pe_struct_vals) else ""
+                    rd_val = pe_struct_vals[base + 2] if base + 2 < len(pe_struct_vals) else ""
+                    if (mt_val and mt_val.strip()) or (au_val and au_val.strip()) or (rd_val and rd_val.strip()):
+                        justifications.append({
+                            "format": "per_error_structured",
+                            "error_id": ann.get("annotation_id"),
+                            "mt_misunderstanding": (mt_val or "").strip(),
+                            "author_intent": (au_val or "").strip(),
+                            "reader_impact": (rd_val or "").strip(),
+                        })
 
             if justifications and response_id:
                 try:
@@ -1413,10 +1646,14 @@ def build_student_app() -> gr.Blocks:
         ):
             """Advance to the next item in the exercise."""
             if not current_exercise:
-                return [gr.update()] * 18
+                return [gr.update()] * (15 + MAX_PER_ERROR + MAX_PER_ERROR * 3)
 
             item_ids = current_exercise.get("item_ids", [])
             next_idx = current_item_idx + 1
+
+            # Number of per-error text fields to reset
+            _n_justify_resets = 1 + MAX_PER_ERROR + MAX_PER_ERROR * 3 + 1
+            # = justify_text + short texts + struct mt/author/reader + confidence
 
             if next_idx >= len(item_ids):
                 # Exercise complete
@@ -1428,7 +1665,7 @@ def build_student_app() -> gr.Blocks:
                         )
                     except Exception:
                         pass
-                return (
+                base = [
                     next_idx,
                     gr.update(value="<h3>Exercise Complete!</h3><p>Great work. Return to the Exercises tab to see your results.</p>"),
                     gr.update(selected=10),  # phase_tabs → Annotate
@@ -1442,18 +1679,16 @@ def build_student_app() -> gr.Blocks:
                     None,  # item_start_time
                     gr.update(value=_build_errors_summary([])),  # errors_summary_html
                     gr.update(value=""),  # span_output clear
-                    gr.update(value=""),  # justify_text
-                    gr.update(value=""),  # justify_mt
-                    gr.update(value=""),  # justify_author
-                    gr.update(value=""),  # justify_reader
-                    gr.update(value=3),  # confidence_slider
-                )
+                ]
+                resets = [gr.update(value="")] * (MAX_PER_ERROR + MAX_PER_ERROR * 3 + 1)  # short + struct + justify_text
+                resets.append(gr.update(value=3))  # confidence
+                return tuple(base + resets)
 
             # Load next item
             try:
                 item = api.get_item(item_ids[next_idx])
             except Exception:
-                return [gr.update()] * 18
+                return [gr.update()] * (15 + MAX_PER_ERROR + MAX_PER_ERROR * 3)
 
             # Update assignment
             if current_assignment:
@@ -1493,10 +1728,7 @@ def build_student_app() -> gr.Blocks:
                 time.time(),  # item_start_time
                 gr.update(value=_build_errors_summary([])),  # errors_summary_html
                 gr.update(value=""),  # span_output clear
-                gr.update(value=""),  # justify_text
-                gr.update(value=""),  # justify_mt
-                gr.update(value=""),  # justify_author
-                gr.update(value=""),  # justify_reader
+                *([gr.update(value="")] * (1 + MAX_PER_ERROR + MAX_PER_ERROR * 3)),  # justify_text + short + struct
                 gr.update(value=3),  # confidence_slider
             )
 
@@ -1646,23 +1878,40 @@ def build_student_app() -> gr.Blocks:
             queue=False,
         )
 
+        # Build outputs list for proceed_justify: base + response_id + feedback + per-error slots
+        _proceed_outputs = [
+            phase_tabs,
+            justify_freetext, justify_per_error_short, justify_per_error_struct,
+            current_phase, phase_html,
+            current_response_id, feedback_html,
+        ]
+        for i in range(MAX_PER_ERROR):
+            _proceed_outputs.extend([pe_short_groups[i], pe_short_labels[i], pe_short_texts[i]])
+        for i in range(MAX_PER_ERROR):
+            _proceed_outputs.extend([
+                pe_struct_groups[i], pe_struct_labels[i],
+                pe_struct_mt[i], pe_struct_author[i], pe_struct_reader[i],
+            ])
+
         proceed_justify_btn.click(
             handle_proceed_to_justify,
-            inputs=[annotations_state, current_exercise],
-            outputs=[
-                phase_tabs,
-                justify_freetext, justify_structured,
-                current_phase, phase_html,
-            ],
+            inputs=[annotations_state, current_item, current_exercise, student_info],
+            outputs=_proceed_outputs,
         )
+
+        # Build inputs list for submit_justify: global text + per-error short texts + per-error struct fields + rest
+        _submit_inputs = [justify_text]
+        _submit_inputs.extend(pe_short_texts)
+        for i in range(MAX_PER_ERROR):
+            _submit_inputs.extend([pe_struct_mt[i], pe_struct_author[i], pe_struct_reader[i]])
+        _submit_inputs.extend([
+            confidence_slider, item_start_time,
+            annotations_state, current_item, current_exercise, student_info,
+        ])
 
         submit_justify_btn.click(
             handle_submit_justify,
-            inputs=[
-                justify_text, justify_mt, justify_author, justify_reader,
-                confidence_slider, item_start_time,
-                annotations_state, current_item, current_exercise, student_info,
-            ],
+            inputs=_submit_inputs,
             outputs=[
                 phase_tabs,
                 current_phase, current_response_id,
@@ -1670,20 +1919,25 @@ def build_student_app() -> gr.Blocks:
             ],
         )
 
+        _next_item_outputs = [
+            current_item_idx, translation_html,
+            phase_tabs, current_item,
+            source_html, progress_html,
+            annotations_state, chips_html,
+            current_phase, phase_html,
+            item_start_time, errors_summary_html,
+            span_output,
+            justify_text,
+        ]
+        _next_item_outputs.extend(pe_short_texts)
+        for i in range(MAX_PER_ERROR):
+            _next_item_outputs.extend([pe_struct_mt[i], pe_struct_author[i], pe_struct_reader[i]])
+        _next_item_outputs.append(confidence_slider)
+
         next_item_btn.click(
             handle_next_item,
             inputs=[current_item_idx, current_exercise, current_assignment, student_info],
-            outputs=[
-                current_item_idx, translation_html,
-                phase_tabs, current_item,
-                source_html, progress_html,
-                annotations_state, chips_html,
-                current_phase, phase_html,
-                item_start_time, errors_summary_html,
-                span_output,
-                justify_text, justify_mt, justify_author, justify_reader,
-                confidence_slider,
-            ],
+            outputs=_next_item_outputs,
         )
 
         refresh_progress_btn.click(
@@ -1693,8 +1947,13 @@ def build_student_app() -> gr.Blocks:
         )
 
         # Auto-load progress when My Progress tab is selected
+        def _on_tab_select(student_info_val, evt: gr.SelectData):
+            if evt.index == 2:  # My Progress tab
+                return handle_refresh_progress(student_info_val)
+            return gr.update()
+
         main_tabs.select(
-            handle_refresh_progress,
+            _on_tab_select,
             inputs=[student_info],
             outputs=[progress_content],
         )

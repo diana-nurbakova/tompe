@@ -102,8 +102,14 @@ def _plan_errors(profile: ErrorProfile) -> list[ErrorTypeSpec]:
             spec = random.choice(valid)
             error_specs.append(spec)
 
-    random.shuffle(error_specs)
-    return error_specs
+    # Sort: omissions first (they remove text, so other errors must operate
+    # on the post-omission text), then additions, then the rest shuffled.
+    omissions = [s for s in error_specs if s.primary_tag == PrimaryTag.OMISSION]
+    additions = [s for s in error_specs if s.primary_tag == PrimaryTag.ADDITION]
+    others = [s for s in error_specs
+              if s.primary_tag not in (PrimaryTag.OMISSION, PrimaryTag.ADDITION)]
+    random.shuffle(others)
+    return omissions + others + additions
 
 
 # ============================================================================

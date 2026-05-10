@@ -241,6 +241,33 @@ ERROR_TYPE_SPECS: list[ErrorTypeSpec] = [
         (Severity.MINOR,), TOMLevel.FIRST_ORDER_MACHINE,
         SkillID.S1, (SkillID.S6,), "Low", "both",
     ),
+
+    # --- L3 RECURSIVE / DISCOURSE (5 types) ---
+    ErrorTypeSpec(
+        PrimaryTag.MISTRANSLATION, "anaphora_resolution",
+        (Severity.MAJOR, Severity.CRITICAL), TOMLevel.RECURSIVE_MULTI,
+        SkillID.S7, (SkillID.S3,), "Very High", "both",
+    ),
+    ErrorTypeSpec(
+        PrimaryTag.MISTRANSLATION, "discourse_connective",
+        (Severity.MINOR, Severity.MAJOR), TOMLevel.RECURSIVE_MULTI,
+        SkillID.S7, (SkillID.S3,), "Very High", "both",
+    ),
+    ErrorTypeSpec(
+        PrimaryTag.GRAMMAR, "tense_sequence",
+        (Severity.MINOR, Severity.MAJOR), TOMLevel.RECURSIVE_MULTI,
+        SkillID.S7, (SkillID.S2,), "High", "en_fr",
+    ),
+    ErrorTypeSpec(
+        PrimaryTag.TERMINOLOGY, "lexical_cohesion",
+        (Severity.MINOR, Severity.MAJOR), TOMLevel.RECURSIVE_MULTI,
+        SkillID.S7, (SkillID.S5,), "Very High", "both",
+    ),
+    ErrorTypeSpec(
+        PrimaryTag.STYLE, "information_packaging",
+        (Severity.MINOR, Severity.MAJOR), TOMLevel.RECURSIVE_MULTI,
+        SkillID.S7, (SkillID.S6,), "Very High", "both",
+    ),
 ]
 
 # ============================================================================

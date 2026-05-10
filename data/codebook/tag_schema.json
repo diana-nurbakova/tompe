@@ -4,7 +4,7 @@
   "primary_tags": {
     "MISTRANSLATION": {
       "mqm_dimension": "Accuracy",
-      "types": ["false_cognate", "word_sense", "number", "entity", "overly_literal", "overtranslation", "undertranslation", "ambiguity", "negation"]
+      "types": ["false_cognate", "word_sense", "number", "entity", "overly_literal", "overtranslation", "undertranslation", "ambiguity", "negation", "anaphora_resolution", "discourse_connective"]
     },
     "OMISSION": {
       "mqm_dimension": "Accuracy",
@@ -20,15 +20,15 @@
     },
     "GRAMMAR": {
       "mqm_dimension": "Linguistic conventions",
-      "types": ["agreement_gender", "agreement_number", "tense", "article", "preposition", "word_order", "relative_pronoun"]
+      "types": ["agreement_gender", "agreement_number", "tense", "article", "preposition", "word_order", "relative_pronoun", "tense_sequence"]
     },
     "TERMINOLOGY": {
       "mqm_dimension": "Terminology",
-      "types": ["wrong_term", "inconsistent", "institutional"]
+      "types": ["wrong_term", "inconsistent", "institutional", "lexical_cohesion"]
     },
     "STYLE": {
       "mqm_dimension": "Style",
-      "types": ["awkward", "unidiomatic", "register_formal", "register_informal"]
+      "types": ["awkward", "unidiomatic", "register_formal", "register_informal", "information_packaging"]
     },
     "LOCALE": {
       "mqm_dimension": "Locale conventions",

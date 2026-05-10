@@ -130,6 +130,201 @@
           }
         }
       ]
+    },
+    {
+      "codebook_id": "ACC-MIST-AR-001",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "anaphora_resolution",
+      "mqm_path": "Accuracy > Mistranslation > Anaphora",
+      "severity_range": ["major", "critical"],
+      "tom_level": "recursive",
+      "primary_skill": "S7",
+      "secondary_skills": ["S3"],
+      "definition": "A pronoun or referring expression in the translation resolves to a different entity than in the source, due to gender, number, or proximity differences between source and target language. The error is only detectable by tracking referents across sentences.",
+      "boundary_not": "NOT a simple pronoun gender error within a single sentence (that is L0 grammar). The error must require cross-sentence context to detect.",
+      "directions": ["en_to_fr", "fr_to_en"],
+      "examples": [
+        {
+          "direction": "en_to_fr",
+          "source": "The minister met with the ambassador. She expressed concerns about the trade agreement.",
+          "reference": "La ministre a rencontré l'ambassadeur. Elle a exprimé des inquiétudes concernant l'accord commercial.",
+          "injected": "La ministre a rencontré l'ambassadeur. <MISTRANSLATION type=\"anaphora_resolution\" severity=\"major\" tom=\"recursive\" desc=\"'She' refers to minister (fem), not ambassador (masc)\">Il</MISTRANSLATION> a exprimé des inquiétudes concernant l'accord commercial.",
+          "explanation": {
+            "mt_interpretation": "The MT system resolved 'She' to masculine 'Il', likely because 'ambassadeur' (masc) is the closest noun.",
+            "actual_meaning": "'She' refers to the minister, not the ambassador.",
+            "reader_impact": "A French reader will understand the ambassador expressed concerns, inverting the agency.",
+            "correction_rationale": "Replace 'Il' with 'Elle' to match the feminine referent 'ministre'."
+          }
+        },
+        {
+          "direction": "en_to_fr",
+          "source": "The director praised the new policy. It would reduce costs significantly.",
+          "reference": "Le directeur a salué la nouvelle politique. Elle permettrait de réduire considérablement les coûts.",
+          "injected": "Le directeur a salué la nouvelle politique. <MISTRANSLATION type=\"anaphora_resolution\" severity=\"major\" tom=\"recursive\" desc=\"'It' refers to 'politique' (fem), resolved as masc 'Il'\">Il</MISTRANSLATION> permettrait de réduire considérablement les coûts.",
+          "explanation": {
+            "mt_interpretation": "The MT resolved 'It' to masculine 'Il' instead of feminine 'Elle' required by 'politique' (fem).",
+            "actual_meaning": "'It' refers to the policy, which is feminine in French.",
+            "reader_impact": "Reader interprets the director (not the policy) as reducing costs.",
+            "correction_rationale": "Use 'Elle' to agree with 'politique' (feminine)."
+          }
+        }
+      ]
+    },
+    {
+      "codebook_id": "ACC-MIST-DC-001",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "discourse_connective",
+      "mqm_path": "Accuracy > Mistranslation > Discourse",
+      "severity_range": ["minor", "major"],
+      "tom_level": "recursive",
+      "primary_skill": "S7",
+      "secondary_skills": ["S3"],
+      "definition": "A discourse connective (however, therefore, moreover, etc.) is translated with a connective that implies a different logical relationship between sentences, altering the argumentative structure of the text.",
+      "boundary_not": "NOT a simple word-level mistranslation of a conjunction within a clause. The error must change the logical relationship between independent sentences or paragraphs.",
+      "directions": ["en_to_fr", "fr_to_en"],
+      "examples": [
+        {
+          "direction": "en_to_fr",
+          "source": "The proposal was rejected by the committee. Nevertheless, the commission decided to proceed.",
+          "reference": "La proposition a été rejetée par le comité. Néanmoins, la commission a décidé de procéder.",
+          "injected": "La proposition a été rejetée par le comité. <MISTRANSLATION type=\"discourse_connective\" severity=\"major\" tom=\"recursive\" desc=\"'Nevertheless' (concessive) mistranslated as 'Par conséquent' (causal)\">Par conséquent</MISTRANSLATION>, la commission a décidé de procéder.",
+          "explanation": {
+            "mt_interpretation": "The MT translated 'Nevertheless' as 'Par conséquent', reversing the concessive relationship to a causal one.",
+            "actual_meaning": "The source establishes a concessive relationship: the commission proceeded DESPITE the rejection.",
+            "reader_impact": "A reader will understand the commission proceeded BECAUSE OF the rejection — the opposite logic.",
+            "correction_rationale": "Replace 'Par conséquent' with 'Néanmoins' to restore the concessive relationship."
+          }
+        },
+        {
+          "direction": "en_to_fr",
+          "source": "Unemployment has decreased. Moreover, wages have risen across all sectors.",
+          "reference": "Le chômage a diminué. De plus, les salaires ont augmenté dans tous les secteurs.",
+          "injected": "Le chômage a diminué. <MISTRANSLATION type=\"discourse_connective\" severity=\"minor\" tom=\"recursive\" desc=\"'Moreover' (additive) mistranslated as 'En revanche' (contrastive)\">En revanche</MISTRANSLATION>, les salaires ont augmenté dans tous les secteurs.",
+          "explanation": {
+            "mt_interpretation": "The MT used 'En revanche' (on the other hand), implying contrast instead of the additive 'De plus'.",
+            "actual_meaning": "Both facts are positive — decreasing unemployment AND rising wages. 'Moreover' signals addition.",
+            "reader_impact": "The reader perceives the wage increase as contrasting with the unemployment decrease, implying tension.",
+            "correction_rationale": "Use 'De plus' or 'Par ailleurs' to convey the additive relationship."
+          }
+        }
+      ]
+    },
+    {
+      "codebook_id": "FLU-GRAM-TS-001",
+      "primary_tag": "GRAMMAR",
+      "error_type": "tense_sequence",
+      "mqm_path": "Linguistic conventions > Grammar > Tense-sequence",
+      "severity_range": ["minor", "major"],
+      "tom_level": "recursive",
+      "primary_skill": "S7",
+      "secondary_skills": ["S2"],
+      "definition": "The tense of a verb in one sentence is inconsistent with the temporal framework established in the preceding sentence(s), even though the verb form is grammatically correct in isolation.",
+      "boundary_not": "NOT a simple tense error within a single sentence (that is L0 grammar). The verb must be grammatically valid in isolation; the error is only visible in discourse context.",
+      "directions": ["en_to_fr"],
+      "examples": [
+        {
+          "direction": "en_to_fr",
+          "source": "The regulation entered into force in 2019. It established new requirements for data protection.",
+          "reference": "Le règlement est entré en vigueur en 2019. Il a établi de nouvelles exigences en matière de protection des données.",
+          "injected": "Le règlement est entré en vigueur en 2019. Il <GRAMMAR type=\"tense_sequence\" severity=\"major\" tom=\"recursive\" desc=\"Present tense breaks past-tense narrative established in sentence 1\">établit</GRAMMAR> de nouvelles exigences en matière de protection des données.",
+          "explanation": {
+            "mt_interpretation": "The MT used present tense 'établit' instead of passé composé 'a établi', breaking the temporal sequence.",
+            "actual_meaning": "Both sentences describe past events (2019). The passé composé maintains the narrative.",
+            "reader_impact": "The reader encounters an unexpected tense shift, disconnecting the second sentence from the 2019 timeframe.",
+            "correction_rationale": "Use 'a établi' to maintain the past-tense narrative."
+          }
+        },
+        {
+          "direction": "en_to_fr",
+          "source": "The committee reviewed the document. It then submitted its recommendations to the council.",
+          "reference": "Le comité a examiné le document. Il a ensuite soumis ses recommandations au conseil.",
+          "injected": "Le comité a examiné le document. Il <GRAMMAR type=\"tense_sequence\" severity=\"minor\" tom=\"recursive\" desc=\"Future tense breaks sequential past narrative\">soumettra</GRAMMAR> ensuite ses recommandations au conseil.",
+          "explanation": {
+            "mt_interpretation": "The MT shifted to future tense 'soumettra' despite the past context.",
+            "actual_meaning": "Both events already happened — the review and the submission.",
+            "reader_impact": "The reader thinks the submission hasn't happened yet, breaking the sequence.",
+            "correction_rationale": "Use 'a soumis' to maintain the past sequence."
+          }
+        }
+      ]
+    },
+    {
+      "codebook_id": "TRM-INC-LC-001",
+      "primary_tag": "TERMINOLOGY",
+      "error_type": "lexical_cohesion",
+      "mqm_path": "Terminology > Inconsistent use of terminology",
+      "severity_range": ["minor", "major"],
+      "tom_level": "recursive",
+      "primary_skill": "S7",
+      "secondary_skills": ["S5"],
+      "definition": "The same source term is translated differently across sentences in the same text, creating a false impression that two different concepts are being discussed.",
+      "boundary_not": "NOT a case where the source uses different terms (legitimate variation). The SOURCE must use the same term; the TARGET uses different translations.",
+      "directions": ["en_to_fr", "fr_to_en"],
+      "examples": [
+        {
+          "direction": "en_to_fr",
+          "source": "The regulation aims to protect personal data. Member states must transpose the regulation into national law.",
+          "reference": "Le règlement vise à protéger les données personnelles. Les États membres doivent transposer le règlement en droit national.",
+          "injected": "Le règlement vise à protéger les données personnelles. Les États membres doivent transposer <TERMINOLOGY type=\"lexical_cohesion\" severity=\"major\" tom=\"recursive\" desc=\"'regulation' translated as 'directive' breaking terminological consistency\">la directive</TERMINOLOGY> en droit national.",
+          "explanation": {
+            "mt_interpretation": "The MT translated 'regulation' as 'directive' in the second occurrence, creating inconsistency.",
+            "actual_meaning": "'Regulation' refers to the same legal instrument in both sentences.",
+            "reader_impact": "In EU law, 'règlement' and 'directive' are distinct instruments. The reader thinks a different legal act is referenced.",
+            "correction_rationale": "Use 'le règlement' consistently."
+          }
+        },
+        {
+          "direction": "en_to_fr",
+          "source": "The framework supports innovation. Companies rely on the framework for compliance guidance.",
+          "reference": "Le cadre soutient l'innovation. Les entreprises s'appuient sur le cadre pour les orientations en matière de conformité.",
+          "injected": "Le cadre soutient l'innovation. Les entreprises s'appuient sur <TERMINOLOGY type=\"lexical_cohesion\" severity=\"minor\" tom=\"recursive\" desc=\"'framework' translated as 'dispositif' instead of consistent 'cadre'\">le dispositif</TERMINOLOGY> pour les orientations en matière de conformité.",
+          "explanation": {
+            "mt_interpretation": "The MT varied the translation of 'framework' from 'cadre' to 'dispositif'.",
+            "actual_meaning": "Both refer to the same framework.",
+            "reader_impact": "The reader may wonder if a different mechanism is being referenced.",
+            "correction_rationale": "Use 'le cadre' consistently."
+          }
+        }
+      ]
+    },
+    {
+      "codebook_id": "STY-AWK-IP-001",
+      "primary_tag": "STYLE",
+      "error_type": "information_packaging",
+      "mqm_path": "Style > Awkward",
+      "severity_range": ["minor", "major"],
+      "tom_level": "recursive",
+      "primary_skill": "S7",
+      "secondary_skills": ["S6"],
+      "definition": "The translation restructures the information flow (theme-rheme structure) in a way that disrupts the discourse progression. Each sentence is individually grammatical and accurate, but the way information is packaged across sentences creates an unnatural reading experience.",
+      "boundary_not": "NOT a single-sentence word order issue (that is L0 fluency). The disruption must be visible only when reading consecutive sentences.",
+      "directions": ["en_to_fr", "fr_to_en"],
+      "examples": [
+        {
+          "direction": "en_to_fr",
+          "source": "The committee examined the proposal. The proposal was then forwarded to the council for final approval.",
+          "reference": "Le comité a examiné la proposition. Celle-ci a ensuite été transmise au conseil pour approbation finale.",
+          "injected": "Le comité a examiné la proposition. <STYLE type=\"information_packaging\" severity=\"major\" tom=\"recursive\" desc=\"Active voice breaks thematic continuity of 'the proposal' as topic\">Le conseil a ensuite reçu la proposition pour approbation finale.</STYLE>",
+          "explanation": {
+            "mt_interpretation": "The MT restructured from passive to active, changing the topic from 'the proposal' to 'the council'.",
+            "actual_meaning": "The source maintains 'the proposal' as the thematic thread across both sentences.",
+            "reader_impact": "The reader experiences a topic shift between sentences, breaking discourse flow.",
+            "correction_rationale": "Use demonstrative 'Celle-ci' and passive to maintain the proposal as topic."
+          }
+        },
+        {
+          "direction": "en_to_fr",
+          "source": "The report was published in March. It was widely discussed in the media.",
+          "reference": "Le rapport a été publié en mars. Il a été largement commenté dans les médias.",
+          "injected": "Le rapport a été publié en mars. <STYLE type=\"information_packaging\" severity=\"minor\" tom=\"recursive\" desc=\"Subject switch from 'report' to 'media' disrupts topic continuity\">Les médias l'ont largement commenté.</STYLE>",
+          "explanation": {
+            "mt_interpretation": "The MT switched the subject from 'it' (the report) to 'the media', restructuring information flow.",
+            "actual_meaning": "The source keeps 'the report' as topic in both sentences.",
+            "reader_impact": "The reader's focus shifts from the report to the media, breaking thematic continuity.",
+            "correction_rationale": "Maintain passive: 'Il a été largement commenté dans les médias.'"
+          }
+        }
+      ]
     }
   ]
 }

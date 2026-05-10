@@ -16,9 +16,13 @@ class CorpusSegment(BaseModel):
     target_lang: Literal["fr", "en"]
     corpus_origin: Literal["europarl", "dgt_tm", "eurlex", "unpc"]
     domain: str  # e.g., "legal", "parliamentary", "institutional"
-    complexity_score: float
-    terminology_density: float  # IATE term count / total tokens
-    text_register: Literal["formal", "semi-formal", "informal"] = Field(alias="register")
+    complexity_score: float = 0.0
+    terminology_density: float = 0.0  # IATE term count / total tokens
+    text_register: Literal["formal", "semi-formal", "informal"] = Field(
+        default="formal", alias="register"
+    )
+    document_id: Optional[str] = None  # Original document filename from OPUS
+    position_in_doc: Optional[int] = None  # 0-based sentence position within document
 
 
 class MTOutput(BaseModel):

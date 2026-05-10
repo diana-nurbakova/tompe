@@ -1,18 +1,22 @@
 """Corpus ingestion script.
 
-Downloads EN-FR parallel segments from EU/UN corpora via OPUS Moses files
-and stores them as JSONL files for the segment selector pipeline stage.
+Downloads EN-FR parallel segments from EU/UN corpora via OPUS (using
+opustools) and stores them as JSONL files with document IDs and
+positional ordering for the segment selector pipeline stage.
 
-The Moses txt.zip files from OPUS contain pre-aligned parallel text — one
-sentence per line in separate .en and .fr files inside the zip. We download
-the zip, stream the first N pairs, write JSONL, then delete the zip to
-conserve disk space.
+Document structure is preserved: each segment includes ``document_id``
+(original OPUS filename) and ``position_in_doc`` (0-based sentence
+position within that document).  This enables multi-sentence context
+windows for L3 (recursive/discourse) error injection.
 
 Usage:
-    uv run python scripts/ingest_corpus.py                    # all corpora, 10k segments each
-    uv run python scripts/ingest_corpus.py --corpus europarl  # single corpus
-    uv run python scripts/ingest_corpus.py --max-segments 500 # small sample
-    uv run python scripts/ingest_corpus.py --list             # show available corpora info
+    python scripts/ingest_corpus.py                          # all corpora, 10k segments each
+    python scripts/ingest_corpus.py --corpus europarl        # single corpus
+    python scripts/ingest_corpus.py --max-segments 500       # small sample
+    python scripts/ingest_corpus.py --list                   # show available corpora info
+
+Requirements:
+    pip install opustools
 """
 
 from __future__ import annotations
@@ -20,11 +24,8 @@ from __future__ import annotations
 import argparse
 import json
 import logging
-import os
-import sys
-import urllib.request
+import re
 import uuid
-import zipfile
 from pathlib import Path
 
 logging.basicConfig(
@@ -73,73 +74,124 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 CORPORA_DIR = PROJECT_ROOT / "data" / "corpora"
 CACHE_DIR = CORPORA_DIR / "_cache"
 
+# ── Document boundary tags in OPUS Moses output ────────────────────────────
 
-def _moses_zip_url(opus_name: str, version: str, src: str, tgt: str) -> str:
-    """Build the OPUS Moses txt.zip download URL."""
-    return (
-        f"https://object.pouta.csc.fi/OPUS-{opus_name}/{version}/moses/{src}-{tgt}.txt.zip"
-    )
+_FROM_DOC_RE = re.compile(r"<fromDoc>(.*?)</fromDoc>")
+_TO_DOC_RE = re.compile(r"<toDoc>(.*?)</toDoc>")
 
 
-def _download_with_progress(url: str, dest: Path) -> None:
-    """Download a file with progress reporting."""
-    log.info("Downloading %s", url)
-
-    def _report(block_num, block_size, total_size):
-        downloaded = block_num * block_size
-        if total_size > 0:
-            pct = min(100, downloaded * 100 // total_size)
-            mb = downloaded / (1024 * 1024)
-            total_mb = total_size / (1024 * 1024)
-            print(f"\r  {mb:.0f}/{total_mb:.0f} MB ({pct}%)", end="", flush=True)
-
-    urllib.request.urlretrieve(url, str(dest), reporthook=_report)
-    print()  # newline after progress
-
-
-def _extract_pairs_from_moses_zip(
-    zip_path: Path,
+def _extract_with_opustools(
+    corpus_key: str,
+    max_segments: int,
     source_lang: str,
     target_lang: str,
-    max_pairs: int,
-) -> list[tuple[str, str]]:
-    """Extract aligned sentence pairs from a Moses txt.zip.
+) -> list[dict]:
+    """Use opustools to extract aligned pairs with document IDs.
 
-    The zip typically contains:
-      - {corpus}.{src}-{tgt}.{src}  (source sentences, one per line)
-      - {corpus}.{src}-{tgt}.{tgt}  (target sentences, one per line)
+    OpusRead in moses write mode outputs:
+    - ``<fromDoc>en/filename.xml.gz</fromDoc>`` before each document
+    - Empty lines between documents
+    - One sentence per line (aligned by position)
     """
-    with zipfile.ZipFile(zip_path) as zf:
-        names = zf.namelist()
+    from opustools import OpusRead
 
-        # Find the source and target text files
-        src_file = None
-        tgt_file = None
-        for name in names:
-            if name.endswith(f".{source_lang}"):
-                src_file = name
-            elif name.endswith(f".{target_lang}"):
-                tgt_file = name
+    corpus_cfg = CORPORA[corpus_key]
+    cache_dir = CACHE_DIR / corpus_key
+    cache_dir.mkdir(parents=True, exist_ok=True)
 
-        if not src_file or not tgt_file:
-            raise FileNotFoundError(
-                f"Could not find .{source_lang} and .{target_lang} files in {zip_path}. "
-                f"Found: {names}"
+    src_file = cache_dir / "src_moses.txt"
+    trg_file = cache_dir / "trg_moses.txt"
+
+    log.info(
+        "Extracting %s (OPUS: %s %s) via opustools, max %d segments...",
+        corpus_key, corpus_cfg["opus_name"], corpus_cfg["version"], max_segments,
+    )
+
+    reader = OpusRead(
+        directory=corpus_cfg["opus_name"],
+        source=source_lang,
+        target=target_lang,
+        release=corpus_cfg["version"],
+        preprocess="xml",
+        maximum=max_segments,
+        print_file_names=True,
+        download_dir=str(cache_dir),
+        suppress_prompts=True,
+        write=[str(src_file), str(trg_file)],
+        write_mode="moses",
+    )
+    reader.printPairs()
+
+    # Parse the Moses output files, tracking document boundaries
+    segments: list[dict] = []
+
+    src_lines = src_file.read_text(encoding="utf-8").splitlines()
+    trg_lines = trg_file.read_text(encoding="utf-8").splitlines()
+
+    current_doc_id: str | None = None
+    position_in_doc = 0
+    src_idx = 0
+    trg_idx = 0
+
+    while src_idx < len(src_lines) and trg_idx < len(trg_lines):
+        src_line = src_lines[src_idx]
+        trg_line = trg_lines[trg_idx]
+
+        # Check for document boundary tag
+        src_doc_match = _FROM_DOC_RE.search(src_line)
+        trg_doc_match = _TO_DOC_RE.search(trg_line)
+
+        if src_doc_match:
+            current_doc_id = src_doc_match.group(1)
+            # Strip path prefix (e.g., "en/ep-00-01-17.xml.gz" -> "ep-00-01-17")
+            current_doc_id = (
+                current_doc_id.rsplit("/", 1)[-1]
+                .replace(".xml.gz", "")
+                .replace(".xml", "")
             )
+            position_in_doc = 0
+            src_idx += 1
+            trg_idx += 1
+            continue
 
-        log.info("Reading %s and %s from zip", src_file, tgt_file)
+        if trg_doc_match and not src_doc_match:
+            # Target has doc tag but source doesn't — skip target line
+            trg_idx += 1
+            continue
 
-        pairs: list[tuple[str, str]] = []
-        with zf.open(src_file) as sf, zf.open(tgt_file) as tf:
-            for i, (src_line, tgt_line) in enumerate(zip(sf, tf)):
-                if i >= max_pairs:
-                    break
-                src = src_line.decode("utf-8").strip()
-                tgt = tgt_line.decode("utf-8").strip()
-                if src and tgt:
-                    pairs.append((src, tgt))
+        # Skip empty lines (document boundaries in Moses format)
+        if not src_line.strip() or not trg_line.strip():
+            src_idx += 1
+            trg_idx += 1
+            continue
 
-    return pairs
+        src_text = src_line.strip()
+        trg_text = trg_line.strip()
+
+        if src_text and trg_text:
+            segment = {
+                "segment_id": f"{corpus_key}-{uuid.uuid4().hex[:12]}",
+                "source_text": src_text,
+                "reference_translation": trg_text,
+                "source_lang": source_lang,
+                "target_lang": target_lang,
+                "corpus_origin": corpus_key,
+                "domain": corpus_cfg["domain"],
+                "register": corpus_cfg["register"],
+                "document_id": current_doc_id,
+                "position_in_doc": position_in_doc,
+            }
+            segments.append(segment)
+            position_in_doc += 1
+
+        src_idx += 1
+        trg_idx += 1
+
+    # Clean up temporary files
+    src_file.unlink(missing_ok=True)
+    trg_file.unlink(missing_ok=True)
+
+    return segments
 
 
 def download_and_extract(
@@ -147,66 +199,30 @@ def download_and_extract(
     max_segments: int = 10_000,
     source_lang: str = "en",
     target_lang: str = "fr",
-    keep_cache: bool = False,
 ) -> Path:
-    """Download a Moses txt.zip from OPUS, extract pairs, write JSONL.
+    """Download from OPUS via opustools, extract pairs with document IDs, write JSONL.
 
     Returns the path to the output JSONL file.
     """
-    corpus_cfg = CORPORA[corpus_key]
-
     output_dir = CORPORA_DIR / corpus_key
     output_dir.mkdir(parents=True, exist_ok=True)
     output_file = output_dir / f"segments_{source_lang}_{target_lang}.jsonl"
 
-    cache_dir = CACHE_DIR / corpus_key
-    cache_dir.mkdir(parents=True, exist_ok=True)
-
-    url = _moses_zip_url(
-        corpus_cfg["opus_name"], corpus_cfg["version"], source_lang, target_lang
+    segments = _extract_with_opustools(
+        corpus_key, max_segments, source_lang, target_lang,
     )
-    zip_path = cache_dir / f"{corpus_cfg['opus_name']}_{source_lang}-{target_lang}.txt.zip"
+    log.info("Extracted %d aligned pairs from %s", len(segments), corpus_key)
 
-    # Download if not cached
-    if zip_path.exists():
-        log.info("Using cached %s", zip_path)
-    else:
-        _download_with_progress(url, zip_path)
-
-    # Extract pairs
-    log.info(
-        "Extracting up to %d pairs from %s (%s)",
-        max_segments,
-        corpus_key,
-        corpus_cfg["opus_name"],
-    )
-    pairs = _extract_pairs_from_moses_zip(zip_path, source_lang, target_lang, max_segments)
-    log.info("Extracted %d aligned pairs from %s", len(pairs), corpus_key)
+    # Count documents
+    doc_ids = {s["document_id"] for s in segments if s["document_id"]}
+    log.info("  Documents: %d unique", len(doc_ids))
 
     # Write JSONL
-    written = 0
     with open(output_file, "w", encoding="utf-8") as f:
-        for src, tgt in pairs:
-            segment = {
-                "segment_id": f"{corpus_key}-{uuid.uuid4().hex[:12]}",
-                "source_text": src,
-                "reference_translation": tgt,
-                "source_lang": source_lang,
-                "target_lang": target_lang,
-                "corpus_origin": corpus_key,
-                "domain": corpus_cfg["domain"],
-                "register": corpus_cfg["register"],
-            }
-            f.write(json.dumps(segment, ensure_ascii=False) + "\n")
-            written += 1
+        for seg in segments:
+            f.write(json.dumps(seg, ensure_ascii=False) + "\n")
 
-    log.info("Wrote %d segments to %s", written, output_file)
-
-    # Clean up zip to save disk space
-    if not keep_cache:
-        zip_path.unlink(missing_ok=True)
-        log.info("Cleaned up cached zip to save disk space")
-
+    log.info("Wrote %d segments to %s", len(segments), output_file)
     return output_file
 
 
@@ -227,8 +243,13 @@ def list_corpora():
         jsonl = CORPORA_DIR / key / "segments_en_fr.jsonl"
         if jsonl.exists():
             n_lines = sum(1 for _ in open(jsonl, encoding="utf-8"))
+            # Check if document_id field exists
+            with open(jsonl, encoding="utf-8") as f:
+                first = json.loads(f.readline())
+            has_doc = "document_id" in first and first["document_id"] is not None
+            doc_info = " (with doc IDs)" if has_doc else " (no doc IDs)"
             size_mb = jsonl.stat().st_size / (1024 * 1024)
-            print(f"  {key:<12} {n_lines:>8,} segments  ({size_mb:.1f} MB)")
+            print(f"  {key:<12} {n_lines:>8,} segments  ({size_mb:.1f} MB){doc_info}")
         else:
             print(f"  {key:<12} not downloaded")
     print()
@@ -260,11 +281,6 @@ def main():
         help="Target language (default: fr)",
     )
     parser.add_argument(
-        "--keep-cache",
-        action="store_true",
-        help="Keep downloaded zip files (default: delete after extraction)",
-    )
-    parser.add_argument(
         "--list",
         action="store_true",
         help="List available corpora and exit",
@@ -291,7 +307,6 @@ def main():
                 max_segments=args.max_segments,
                 source_lang=args.source_lang,
                 target_lang=args.target_lang,
-                keep_cache=args.keep_cache,
             )
             results[corpus_key] = str(output_path)
         except Exception:

@@ -175,6 +175,49 @@ ANNOTATION_APP_CSS = """
 .completion-screen h2 { color: #059669; }
 """
 
+# Browser-side ticker that animates `.timer-display` elements. Each element
+# tracks its own start time via `data-start-ms`; clicks on the per-item
+# advance buttons reset all timers (annotation §2.4). Wired via
+# `gr.Blocks.load(js=...)` below.
+ANNOTATION_TIMER_JS = """
+() => {
+  if (window.__tompeAnnotationTimerInstalled) return;
+  window.__tompeAnnotationTimerInstalled = true;
+  function fmt(ms) {
+    var s = Math.max(0, Math.floor(ms / 1000));
+    var mm = String(Math.floor(s / 60)).padStart(2, '0');
+    var ss = String(s % 60).padStart(2, '0');
+    return mm + ':' + ss;
+  }
+  function tick() {
+    document.querySelectorAll('.timer-display').forEach(function (el) {
+      var start = parseInt(el.dataset.startMs || '', 10);
+      if (!start || isNaN(start)) {
+        start = Date.now();
+        el.dataset.startMs = String(start);
+      }
+      var next = fmt(Date.now() - start);
+      if (el.textContent !== next) el.textContent = next;
+    });
+  }
+  function resetAll() {
+    var now = String(Date.now());
+    document.querySelectorAll('.timer-display').forEach(function (el) {
+      el.dataset.startMs = now;
+      el.textContent = '00:00';
+    });
+  }
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest(
+      '#btn-start-phase-a, #btn-submit-next, #btn-no-errors, ' +
+      '#btn-start-phase-b, #btn-submit-expl'
+    );
+    if (btn) setTimeout(resetAll, 50);
+  }, true);
+  setInterval(tick, 500);
+}
+"""
+
 
 # ── Helper functions ────────────────────────────────────────────────────────
 
@@ -299,7 +342,10 @@ def build_annotation_app(annotator_id: str = "annotator_1") -> gr.Blocks:
                 value=annotator_id,
                 placeholder="e.g., annotator_1",
             )
-            start_btn = gr.Button("Start Phase A", variant="primary", size="lg")
+            start_btn = gr.Button(
+                "Start Phase A", variant="primary", size="lg",
+                elem_id="btn-start-phase-a",
+            )
 
         # ================================================================
         # PHASE A: ERROR ANNOTATION
@@ -371,10 +417,12 @@ def build_annotation_app(annotator_id: str = "annotator_1") -> gr.Blocks:
             )
             with gr.Row():
                 no_errors_btn = gr.Button(
-                    "No Errors Found", variant="secondary"
+                    "No Errors Found", variant="secondary",
+                    elem_id="btn-no-errors",
                 )
                 submit_next_btn = gr.Button(
-                    "Submit & Next", variant="primary"
+                    "Submit & Next", variant="primary",
+                    elem_id="btn-submit-next",
                 )
 
         # ================================================================
@@ -391,7 +439,8 @@ def build_annotation_app(annotator_id: str = "annotator_1") -> gr.Blocks:
                 "</div>"
             )
             start_phase_b_btn = gr.Button(
-                "Start Phase B", variant="primary", size="lg"
+                "Start Phase B", variant="primary", size="lg",
+                elem_id="btn-start-phase-b",
             )
 
         # ================================================================
@@ -437,7 +486,8 @@ def build_annotation_app(annotator_id: str = "annotator_1") -> gr.Blocks:
             )
             status_msg_b = gr.Markdown("")
             submit_expl_btn = gr.Button(
-                "Submit & Next", variant="primary"
+                "Submit & Next", variant="primary",
+                elem_id="btn-submit-expl",
             )
 
         # ================================================================
@@ -1024,6 +1074,9 @@ def build_annotation_app(annotator_id: str = "annotator_1") -> gr.Blocks:
             inputs=[annotator_input],
             outputs=[done_html],
         )
+
+        # Animate `.timer-display` elements once the page loads.
+        app.load(fn=None, inputs=None, outputs=None, js=ANNOTATION_TIMER_JS)
 
     return app
 

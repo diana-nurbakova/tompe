@@ -106,8 +106,42 @@ def _stratified_sample(
 def _baseline_sample(
     items: list[AssessmentItem],
     rng: random.Random,
+    forced_segment_ids: list[str] | None = None,
 ) -> list[AssessmentItem]:
-    """Sample baseline items using the ToM-level quota (2/1/2/1)."""
+    """Sample baseline items using the ToM-level quota (2/1/2/1).
+
+    If `forced_segment_ids` is provided, pick the items whose
+    `segment_id` matches that list (preserving order). Used by
+    `select_annotation_items` to enforce the spec §4.2 requirement that
+    the same 6 source segments be translated by all baseline conditions.
+    Items missing from the pool fall back to ToM-stratified sampling.
+    """
+    if forced_segment_ids:
+        by_segment: dict[str, AssessmentItem] = {}
+        for item in items:
+            by_segment.setdefault(item.segment_id, item)
+
+        selected: list[AssessmentItem] = []
+        missing: list[str] = []
+        for sid in forced_segment_ids:
+            it = by_segment.get(sid)
+            if it is not None:
+                selected.append(it)
+            else:
+                missing.append(sid)
+        if missing:
+            logger.warning(
+                "Baseline reuse: %d/%d forced segment IDs missing in pool; "
+                "filling with stratified sample",
+                len(missing), len(forced_segment_ids),
+            )
+            # Fill the gap by stratified sampling, excluding already-picked segments.
+            picked_segments = {it.segment_id for it in selected}
+            fallback_pool = [it for it in items if it.segment_id not in picked_segments]
+            fallback = _baseline_sample(fallback_pool, rng, forced_segment_ids=None)
+            selected.extend(fallback[: len(missing)])
+        return selected
+
     by_level: dict[str, list[AssessmentItem]] = {lvl: [] for lvl in TOM_LEVELS}
 
     for item in items:
@@ -188,14 +222,25 @@ def select_annotation_items(
         selected.append((item, "full_pipeline", False))
     logger.info("Pipeline items selected: %d (target: %d)", len(pipeline_selected), 24)
 
-    # 2. Baselines: 6 per condition, using shared segments with ToM quota
-    for bname in ("B0", "B1", "B2"):
+    # 2. Baselines: 6 per condition, sharing source segments across B0/B1/B2
+    # so the within-segment comparison in spec §4.2 is possible. We pick from
+    # B0 first using the ToM quota; B1 and B2 reuse those segment IDs.
+    b0_pool = baseline_items.get("B0", [])
+    b0_selected = _baseline_sample(b0_pool, rng)
+    shared_segment_ids = [it.segment_id for it in b0_selected]
+    for item in b0_selected:
+        selected.append((item, "baseline_B0", False))
+    logger.info(
+        "Baseline B0 items selected: %d (target: %d); shared segment_ids=%d",
+        len(b0_selected), ANNOTATION_BASELINE_PER_CONDITION, len(shared_segment_ids),
+    )
+    for bname in ("B1", "B2"):
         pool = baseline_items.get(bname, [])
-        b_selected = _baseline_sample(pool, rng)
+        b_selected = _baseline_sample(pool, rng, forced_segment_ids=shared_segment_ids)
         for item in b_selected:
             selected.append((item, f"baseline_{bname}", False))
         logger.info(
-            "Baseline %s items selected: %d (target: %d)",
+            "Baseline %s items selected: %d (target: %d, reusing B0 segments)",
             bname, len(b_selected), ANNOTATION_BASELINE_PER_CONDITION,
         )
 

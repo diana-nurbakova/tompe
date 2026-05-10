@@ -89,6 +89,17 @@ class Exercise(BaseModel):
         return legacy_map.get(v, v)
     clean_segment_ratio: float = 0.0  # L3 only: fraction of items that are error-free
     false_annotation_ratio: float = 0.0  # L0 only: ratio of false to true annotations
+    # L0 only: how false annotations are sourced when an exercise targets level 0.
+    #   "none"   → no false annotations (default; backward compatible).
+    #   "llm"    → LLM-generated at exercise build time (recommended for pedagogy).
+    #   "rule"   → rule-based random spans (cheap, weak distractors).
+    #   "manual" → teacher authors via review-queue UI.
+    false_annotation_mode: Literal["none", "llm", "rule", "manual"] = "none"
+    # L0 only: target count of false annotations per item (1–2 recommended).
+    false_annotation_count: int = 2
+    # L0 only: per-item generated false annotations, keyed by item_id.
+    # Populated when the exercise is built; consumed by student_app at L0.
+    false_annotations: dict[str, list[dict]] = Field(default_factory=dict)
     item_ordering: Literal["manual", "difficulty", "random"] = "manual"
     assigned_to_class: Optional[str] = None  # FK to ClassGroup
     assigned_to_students: list[str] = []  # FK to StudentAccount

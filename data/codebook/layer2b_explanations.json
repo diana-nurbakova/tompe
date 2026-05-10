@@ -1,0 +1,22 @@
+{
+  "_doc": "Layer 2b (technical) explanation templates per (primary_tag, error_type, mt_system). Consulted by tompe.pipeline.explanation_generator.generate_layer2b_explanation; cache misses fall back to LLM generation. To curate: add entries to `entries[]` with non-empty `technical_description`, `key_concepts`, and `references` fields. `mt_system` may be omitted to match any system.",
+  "_schema_version": "1.0",
+  "entries": [
+    {
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "false_cognate",
+      "mt_system": null,
+      "technical_description": "Cross-lingual lexical interference between orthographically aligned but semantically divergent word pairs. Subword tokenisation (BPE / SentencePiece) frequently yields shared subword units across the language pair, biasing the encoder–decoder attention toward the high-probability surface-form mapping. The phenomenon is amplified when training data contains parallel sentences with literal renderings.",
+      "key_concepts": ["false cognate", "lexical transfer", "BPE shared subwords", "translation memorisation", "cross-lingual word embedding bias"],
+      "references": ["Frunza & Inkpen (2009), Identification of disambiguation strategies for cognates and false friends; Carpuat & Wu (2007), Improving SMT performance through false-friend disambiguation."]
+    },
+    {
+      "primary_tag": "GRAMMAR",
+      "error_type": "agreement_gender",
+      "mt_system": null,
+      "technical_description": "Cross-lingual divergence in grammatical gender features. Where the source language under-specifies gender (English), the decoder must infer it from target-side monolingual priors and from the alignment of the target noun. Errors arise when (a) the noun is low-frequency in training data, (b) gender agreement crosses a long dependency, or (c) the antecedent is structurally distant.",
+      "key_concepts": ["morphological agreement", "grammatical gender", "long-distance dependency", "decoder LM prior", "feature underspecification"],
+      "references": ["Vanmassenhove et al. (2018), Getting gender right in NMT; Stanovsky et al. (2019), Evaluating gender bias in MT."]
+    }
+  ]
+}

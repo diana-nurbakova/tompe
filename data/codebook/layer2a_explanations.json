@@ -1,0 +1,24 @@
+{
+  "_doc": "Layer 2a (popular-science) explanation templates per (primary_tag, error_type, mt_system). Consulted by tompe.pipeline.explanation_generator.generate_layer2a_explanation; cache misses fall back to LLM generation. To curate: add entries to `entries[]` with non-empty `error_mechanism`, `architectural_cause`, `pattern_generalization`, and `mt_system_specific` fields. `mt_system` may be omitted to match any system.",
+  "_schema_version": "1.0",
+  "entries": [
+    {
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "false_cognate",
+      "mt_system": null,
+      "error_mechanism": "False cognates (faux amis) are word pairs that share orthographic form across languages but diverge in meaning. MT systems often pick the surface-similar word because it has a high translation probability in the bilingual lexicon, even when the contextual sense is wrong.",
+      "architectural_cause": "Subword vocabularies and word-alignment statistics in NMT bias the model toward orthographically similar substitutions. The decoder weighs token-level cross-entropy more heavily than semantic faithfulness when the surface forms align.",
+      "pattern_generalization": "Expect this error in any FR↔EN pair where Latinate roots have drifted (e.g. 'actually' / 'actuellement', 'sensible' / 'sensible', 'eventually' / 'éventuellement').",
+      "mt_system_specific": "Both Google Translate and DeepL exhibit this; large-LLM translators (DeepSeek-V3, GPT-4) reduce but do not eliminate it because the same statistical regularities exist in their pre-training corpora."
+    },
+    {
+      "primary_tag": "GRAMMAR",
+      "error_type": "agreement_gender",
+      "mt_system": null,
+      "error_mechanism": "French gender agreement requires the article, adjective, and past participle to match the noun's grammatical gender. MT systems sometimes pick the wrong gender form when the noun is rare or when the antecedent is ambiguous in English (which has no gender).",
+      "architectural_cause": "Cross-lingually, English provides no gender signal for most nouns, so the model must rely on French monolingual priors. When the target noun has low frequency or competing forms, the priors are weak and gender errors leak through.",
+      "pattern_generalization": "Most common when (a) the French noun is feminine but the English source is gender-neutral, (b) the noun is rare, or (c) gender disagreement spans several tokens (e.g. between subject and a participle later in the sentence).",
+      "mt_system_specific": "Statistical / NMT systems show this more than large LLMs. LLM translators still err on rare feminine nouns and on long-distance agreement."
+    }
+  ]
+}

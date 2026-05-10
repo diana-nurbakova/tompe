@@ -21,6 +21,10 @@ from tompe.schemas.error import InjectedError
 
 logger = logging.getLogger(__name__)
 
+# Pipeline-validation spec v3 §3 A2 / annotation-tool spec §6.1 mandate IoU > 0.5
+# for span-level agreement between GEMBA-detected and pipeline-injected errors.
+_GEMBA_IOU_THRESHOLD = 0.5
+
 # ── GEMBA-MQM Prompts ──────────────────────────────────────────────────────
 
 GEMBA_SYSTEM_PROMPT = """You are an expert translation quality evaluator. Given a source text and its translation, identify all translation errors using the MQM (Multidimensional Quality Metrics) framework.
@@ -181,7 +185,7 @@ def _match_gemba_to_injected(
                 i_start, i_end = inj.span_start, inj.span_end
                 intersection = max(0, min(g_end, i_end) - max(g_start, i_start))
                 union = (g_end - g_start) + (i_end - i_start) - intersection
-                if union > 0 and intersection / union >= 0.3:
+                if union > 0 and intersection / union >= _GEMBA_IOU_THRESHOLD:
                     injected_matched[i] = True
                     matched = True
                     break

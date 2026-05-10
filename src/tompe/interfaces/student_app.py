@@ -1389,7 +1389,10 @@ def build_student_app() -> gr.Blocks:
                 gr.update(value=summary),
             )
 
-        def _submit_response_and_get_feedback(annotations, current_item, current_exercise, student_info, confidence_val=3):
+        def _submit_response_and_get_feedback(
+            annotations, current_item, current_exercise, student_info,
+            confidence_val=3, edited_text="",
+        ):
             """Shared submission logic: submit response, return (response_id, feedback_html)."""
             mode = current_exercise.get("mode", "evaluation") if current_exercise else "evaluation"
             item_id = current_item.get("item_id", "")
@@ -1405,11 +1408,16 @@ def build_student_app() -> gr.Blocks:
                     "confidence": conf_label,
                 })
             time_spent = 0  # not tracked for skip-justify mode
+            submit_kwargs = {
+                "item_id": item_id, "mode": mode,
+                "time_spent_seconds": time_spent,
+            }
+            if mode == "postediting":
+                submit_kwargs["edited_text"] = edited_text or ""
+            else:
+                submit_kwargs["identified_errors"] = identified
             try:
-                resp = api.submit_response(
-                    item_id=item_id, mode=mode,
-                    identified_errors=identified, time_spent_seconds=time_spent,
-                )
+                resp = api.submit_response(**submit_kwargs)
                 response_id = resp.get("response_id")
             except Exception as e:
                 return None, f'<div style="color:red;">Error: {e}</div>'
@@ -1425,8 +1433,12 @@ def build_student_app() -> gr.Blocks:
                     feedback_content = f'<div style="color:#6b7280;">Feedback unavailable: {e}</div>'
             return response_id, feedback_content
 
-        def handle_proceed_to_justify(annotations, current_item, current_exercise, student_info):
-            """Transition from Phase 1 (Annotate) to Phase 2 (Justify), or skip to Feedback if mode=none."""
+        def handle_proceed_to_justify(annotations, current_item, current_exercise, student_info, pe_text=""):
+            """Transition from Phase 1 (Annotate) to Phase 2 (Justify), or skip to Feedback if mode=none.
+
+            pe_text carries the edited translation from the post-editing textbox; it is
+            used only when the exercise mode is 'postediting'.
+            """
             just_type = "per_error_short"
             if current_exercise:
                 raw = current_exercise.get("justification_type", "per_error_short")
@@ -1440,6 +1452,7 @@ def build_student_app() -> gr.Blocks:
             if just_type == "none":
                 response_id, feedback_content = _submit_response_and_get_feedback(
                     annotations, current_item, current_exercise, student_info,
+                    edited_text=pe_text,
                 )
                 base = [
                     gr.update(selected=12),  # jump to Feedback tab
@@ -1517,7 +1530,7 @@ def build_student_app() -> gr.Blocks:
               [1..MAX_PER_ERROR] pe_short_text values
               [MAX_PER_ERROR+1 .. MAX_PER_ERROR+MAX_PER_ERROR*3] pe_struct mt/author/reader values
               then: confidence_val, item_start_time_val, annotations, current_item,
-                    current_exercise, student_info
+                    current_exercise, student_info, pe_text_val
             """
             idx = 0
             justify_text_val = args[idx]; idx += 1
@@ -1529,6 +1542,7 @@ def build_student_app() -> gr.Blocks:
             current_item = args[idx]; idx += 1
             current_exercise = args[idx]; idx += 1
             student_info = args[idx]; idx += 1
+            pe_text_val = args[idx] if idx < len(args) else ""
 
             if not current_item:
                 return gr.update(), gr.update(), None, gr.update(), gr.update()
@@ -1558,13 +1572,17 @@ def build_student_app() -> gr.Blocks:
             time_spent = round(time.time() - item_start_time_val, 1) if item_start_time_val else 0
 
             # Submit response
+            submit_kwargs = {
+                "item_id": item_id,
+                "mode": mode,
+                "time_spent_seconds": time_spent,
+            }
+            if mode == "postediting":
+                submit_kwargs["edited_text"] = pe_text_val or ""
+            else:
+                submit_kwargs["identified_errors"] = identified
             try:
-                resp = api.submit_response(
-                    item_id=item_id,
-                    mode=mode,
-                    identified_errors=identified,
-                    time_spent_seconds=time_spent,
-                )
+                resp = api.submit_response(**submit_kwargs)
                 response_id = resp.get("response_id")
             except Exception as e:
                 return (
@@ -1895,7 +1913,13 @@ def build_student_app() -> gr.Blocks:
 
         proceed_justify_btn.click(
             handle_proceed_to_justify,
-            inputs=[annotations_state, current_item, current_exercise, student_info],
+            inputs=[annotations_state, current_item, current_exercise, student_info, pe_textbox],
+            outputs=_proceed_outputs,
+        )
+
+        pe_proceed_btn.click(
+            handle_proceed_to_justify,
+            inputs=[annotations_state, current_item, current_exercise, student_info, pe_textbox],
             outputs=_proceed_outputs,
         )
 
@@ -1907,6 +1931,7 @@ def build_student_app() -> gr.Blocks:
         _submit_inputs.extend([
             confidence_slider, item_start_time,
             annotations_state, current_item, current_exercise, student_info,
+            pe_textbox,
         ])
 
         submit_justify_btn.click(

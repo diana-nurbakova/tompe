@@ -728,6 +728,23 @@ async def api_get_feedback(response_id: str):
     exercise_id = exercise.exercise_id if exercise else ""
     n_items = len(exercise.item_ids) if exercise else 1
 
+    # Look up class for per-class badge configuration (threshold overrides + visibility)
+    student_obj = get_student(response.student_id)
+    class_obj = get_class(student_obj.class_id) if student_obj else None
+    threshold_overrides = class_obj.badge_threshold_overrides if class_obj else None
+    badges_visible = class_obj.badges_visible if class_obj else True
+
+    # Per-item breakdown for Clean Sheet check. Single-item submission, so one entry.
+    # correct_disputes=0 here; populated by L0 Confirm/Dispute flow (A5).
+    item_results = [{
+        "detected": scoring.true_positives,
+        "total_errors": scoring.true_positives + scoring.false_negatives,
+        "false_positives": scoring.false_positives,
+        "category_matches": category_matches,
+        "correct_disputes": 0,
+    }]
+
+    # Tracking continues regardless of visibility (spec §8.3); response is masked below.
     badge_result = process_badges_and_xp(
         student_id=response.student_id,
         scoring=scoring,
@@ -739,11 +756,13 @@ async def api_get_feedback(response_id: str):
         severity_matches=severity_matches,
         n_items=n_items,
         completed_exercises_at_level=completed_at_level,
+        item_results=item_results,
+        threshold_overrides=threshold_overrides,
     )
 
     # Build feedback payload
     feedback = prepare_feedback(response, item, scoring)
-    feedback["badges"] = badge_result
+    feedback["badges"] = badge_result if badges_visible else None
     return feedback
 
 
@@ -774,8 +793,16 @@ async def api_get_progress(student_id: str):
         if student_scores else 0.0
     )
 
-    # Include badge summary
-    badge_summary = get_badge_summary(student_id)
+    # Look up class for per-class badge configuration
+    class_obj = get_class(student.class_id) if student.class_id else None
+    threshold_overrides = class_obj.badge_threshold_overrides if class_obj else None
+    badges_visible = class_obj.badges_visible if class_obj else True
+
+    # Include badge summary (None when class has badges_visible=False)
+    badge_summary = (
+        get_badge_summary(student_id, threshold_overrides=threshold_overrides)
+        if badges_visible else None
+    )
 
     return {
         "student_id": student_id,
@@ -790,11 +817,15 @@ async def api_get_progress(student_id: str):
 
 @app.get("/api/badges/{student_id}")
 async def api_get_badges(student_id: str):
-    """Get badge summary for a student."""
+    """Get badge summary for a student. Honours per-class visibility + thresholds."""
     student = get_student(student_id)
     if not student:
         raise HTTPException(status_code=404, detail="Student not found")
-    return get_badge_summary(student_id)
+    class_obj = get_class(student.class_id) if student.class_id else None
+    if class_obj and not class_obj.badges_visible:
+        return None
+    threshold_overrides = class_obj.badge_threshold_overrides if class_obj else None
+    return get_badge_summary(student_id, threshold_overrides=threshold_overrides)
 
 
 # ── Analytics endpoints ──────────────────────────────────────────────────────

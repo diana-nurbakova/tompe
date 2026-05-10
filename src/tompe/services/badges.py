@@ -84,12 +84,15 @@ def check_specialisation_badges(
     matched_categories: list[str],
     scaffolding_level: str,
     exercise_id: Optional[str] = None,
+    threshold_overrides: Optional[dict[str, list[int]]] = None,
 ) -> list[dict]:
     """Check specialisation badges after correct detections.
 
     Args:
         matched_categories: List of PrimaryTag values for correctly detected errors.
         scaffolding_level: Current scaffolding level (L0 detections excluded).
+        threshold_overrides: Optional per-class overrides keyed by category
+            (e.g. {"GRAMMAR": [5, 15, 30]}); falls back to CATEGORY_THRESHOLDS.
 
     Returns list of newly earned badge info dicts.
     """
@@ -98,6 +101,7 @@ def check_specialisation_badges(
         return []
 
     record = get_or_create_student_badges(student_id)
+    overrides = threshold_overrides or {}
     earned = []
 
     for category in matched_categories:
@@ -111,7 +115,7 @@ def check_specialisation_badges(
         )
 
         count = record.detection_counts[category_upper]
-        thresholds = CATEGORY_THRESHOLDS[category_upper]
+        thresholds = overrides.get(category_upper, CATEGORY_THRESHOLDS[category_upper])
         tiers = [BadgeTier.BRONZE, BadgeTier.SILVER, BadgeTier.GOLD]
         tier_names = ["bronze", "silver", "gold"]
         badge_id = CATEGORY_BADGE_NAMES[category_upper]
@@ -268,10 +272,12 @@ def process_badges_and_xp(
     n_items: int = 1,
     completed_exercises_at_level: int = 0,
     item_results: Optional[list[dict]] = None,
+    threshold_overrides: Optional[dict[str, list[int]]] = None,
 ) -> dict:
     """Run all badge checks and XP computation after a response.
 
     Returns a dict with newly_earned_badges, xp_earned, total_xp.
+    Threshold overrides (per-class) are applied to specialisation badges.
     """
     newly_earned = []
 
@@ -284,7 +290,8 @@ def process_badges_and_xp(
 
     # Specialisation badges
     spec = check_specialisation_badges(
-        student_id, matched_categories, scaffolding_level, exercise_id
+        student_id, matched_categories, scaffolding_level, exercise_id,
+        threshold_overrides=threshold_overrides,
     )
     newly_earned.extend(spec)
 
@@ -310,12 +317,20 @@ def process_badges_and_xp(
     }
 
 
-def get_badge_summary(student_id: str) -> dict:
+def get_badge_summary(
+    student_id: str,
+    threshold_overrides: Optional[dict[str, list[int]]] = None,
+) -> dict:
     """Get a complete badge summary for display in the UI.
+
+    Args:
+        threshold_overrides: Optional per-class threshold overrides; falls back
+            to CATEGORY_THRESHOLDS for any category not overridden.
 
     Returns a dict with all badge info, detection counts, XP.
     """
     record = get_or_create_student_badges(student_id)
+    overrides = threshold_overrides or {}
 
     # Progression badges
     progression = []
@@ -333,7 +348,7 @@ def get_badge_summary(student_id: str) -> dict:
     specialisation = []
     for category, badge_id in CATEGORY_BADGE_NAMES.items():
         display_name = CATEGORY_DISPLAY_NAMES[category]
-        thresholds = CATEGORY_THRESHOLDS[category]
+        thresholds = overrides.get(category, CATEGORY_THRESHOLDS[category])
         count = record.detection_counts.get(category, 0)
         highest_tier = record.get_highest_tier(badge_id)
 

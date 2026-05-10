@@ -11,12 +11,13 @@
 3. [Data Preparation Pipeline](#3-data-preparation-pipeline)
 4. [Teacher Workflow](#4-teacher-workflow)
 5. [Student Workflow](#5-student-workflow)
-6. [Gamification & Badges](#6-gamification--badges)
-7. [Backend Services](#7-backend-services)
-8. [Scoring, Feedback & Analytics](#8-scoring-feedback--analytics)
-9. [Research Infrastructure](#9-research-infrastructure)
-10. [Configuration & Deployment](#10-configuration--deployment)
-11. [End-to-End Architecture Diagram](#11-end-to-end-architecture-diagram)
+6. [Annotation Interface](#6-annotation-interface)
+7. [Gamification & Badges](#7-gamification--badges)
+8. [Backend Services](#8-backend-services)
+9. [Scoring, Feedback & Analytics](#9-scoring-feedback--analytics)
+10. [Research Infrastructure](#10-research-infrastructure)
+11. [Configuration & Deployment](#11-configuration--deployment)
+12. [End-to-End Architecture Diagram](#12-end-to-end-architecture-diagram)
 
 ---
 
@@ -30,11 +31,12 @@ ToM-PE is a pedagogical platform that trains translation students to critically 
 |-------|-----------|---------|
 | Teacher UI | **Streamlit** (`teacher_app.py`) | Corpus management, item review, class admin |
 | Student UI | **Gradio** (`student_app.py`) | Three-phase PE training workflow |
+| Annotation UI | **Gradio** (`annotation_app.py`) | Expert MQM annotation for pipeline validation |
 | Backend API | **FastAPI** (`api.py`) | REST endpoints for student-facing operations |
 | Data Pipeline | **Async Python** | Segment selection, MT generation, error injection |
 | LLM Integration | **httpx** (async) | OpenAI, Anthropic, Ollama, Together AI |
 | MT Systems | **REST APIs** | Google Translate, DeepL |
-| Data Models | **Pydantic** | Typed schemas for all entities |
+| Data Models | **Pydantic v2** | Typed schemas for all entities |
 | Storage | **JSON files** | One file per entity in `data/` directory |
 | Authentication | **bcrypt + bearer tokens** | Student login, 7-day token sessions |
 
@@ -43,21 +45,65 @@ ToM-PE is a pedagogical platform that trains translation students to critically 
 ```
 ToM-PE/
 ├── src/tompe/
-│   ├── schemas/          # Pydantic data models (items, students, competency, badges)
+│   ├── schemas/          # Pydantic data models
+│   │   ├── annotation.py         # Scaffolding annotation config (L0-L3)
+│   │   ├── badges.py             # Badge definitions and progress
+│   │   ├── competency.py         # Skill competency framework (S1-S7)
+│   │   ├── corpus.py             # CorpusSegment, MTOutput, IATETerm
+│   │   ├── enums.py              # PrimaryTag, TOMLevel, Severity, SkillID, etc.
+│   │   ├── error.py              # InjectedError, DetectedError, explanations
+│   │   ├── expert_annotation.py  # ExpertAnnotation, ExplanationRating (validation)
+│   │   ├── item.py               # AssessmentItem, ItemMetadata
+│   │   ├── response.py           # StudentResponse, Justification
+│   │   ├── scoring.py            # ScoringResult, BlindSpot
+│   │   └── session.py            # StudentAccount, ClassGroup, Exercise
 │   ├── pipeline/         # Item generation pipeline (6 stages)
+│   │   ├── segment_selector.py   # Corpus filtering and sampling
+│   │   ├── mt_generator.py       # MT system translation
+│   │   ├── error_injector.py     # Two-step LLM error injection + span realignment
+│   │   ├── qe_validator.py       # GEMBA-MQM + xCOMET validation
+│   │   ├── explanation_generator.py  # Three-layer explanation generation
+│   │   ├── item_builder.py       # Final assembly
+│   │   ├── llm_client.py         # Unified async LLM client (4 providers)
+│   │   ├── codebook.py           # Error codebook loader and query interface
+│   │   ├── mqm_taxonomy.py       # 42 error types with ToM/skill mappings
+│   │   ├── authentic_detector.py # Authentic MT error detection
+│   │   ├── _injection_prompts.py # Step 1/2 prompt templates
+│   │   └── _translation_prompts.py  # MT prompt strategies
 │   ├── services/         # API, auth, scoring, feedback, analytics, badges
-│   └── interfaces/       # Teacher (Streamlit) & Student (Gradio) UIs
+│   │   ├── api.py                # FastAPI application
+│   │   ├── auth.py               # Authentication service
+│   │   ├── datastore.py          # JSON file CRUD operations
+│   │   ├── scoring.py            # IoU span matching, F1, HTER
+│   │   ├── feedback.py           # Cognitive forcing feedback assembly
+│   │   ├── badges.py             # Badge awarding and XP calculation
+│   │   ├── analytics.py          # Blind spot detection, student profiles
+│   │   └── progression.py        # BKT-based scaffolding level advancement
+│   └── interfaces/       # User interfaces
+│       ├── student_app.py        # Gradio student training UI
+│       ├── teacher_app.py        # Streamlit teacher admin UI
+│       ├── annotation_app.py     # Gradio expert annotation UI (validation)
+│       ├── api_client.py         # HTTP client for Student ↔ Backend
+│       └── components/
+│           ├── span_selector.py  # Interactive text span selection (JS+HTML)
+│           └── colors.py         # Colorblind-safe MQM tag palette
 ├── config/               # settings.yaml, mt_backends.yaml, badges.json
-├── assets/badges/        # Badge icon images (40+ PNGs)
+├── assets/badges/        # Badge icon images (40+ JPGs)
 ├── data/                 # All persistent data (JSON, JSONL)
-├── scripts/              # Batch ingestion, generation & report scripts
-├── study/                # Standalone ECTEL 2026 pilot study app
+│   ├── corpora/          # Parallel text with document IDs
+│   ├── codebook/         # Error taxonomy (8 entries) + tag schema (42 types)
+│   ├── annotations/      # Expert annotation data (validation study)
+│   └── ...               # items, students, exercises, sessions, badges, etc.
+├── scripts/              # Corpus ingestion, batch generation
+│   └── ingest_corpus.py  # OPUS download with document structure preservation
 ├── experiments/
-│   ├── ectel/            # ECTEL 2026 submission experiments (3a, 3b)
-│   ├── tom_validation/   # ToM hypothesis validation pipeline (R + Python)
-│   └── wasserstein/      # MasteryGap dashboard visualizations
-├── screenshots/          # Labelled UI screenshots (student & teacher workflows)
-├── docs/                 # Architecture, fluency-trap spec
+│   ├── pipeline_validation/  # CIKM 2026 validation experiments
+│   ├── ectel/                # EC-TEL 2026 experiments
+│   ├── tom_validation/       # ToM hypothesis validation (R + Python)
+│   └── wasserstein/          # MasteryGap dashboard visualizations
+├── study/                # Standalone ECTEL 2026 pilot study app
+├── specs/                # Specification documents
+├── docs/                 # Architecture documentation
 └── tests/                # Test suite
 ```
 
@@ -67,42 +113,58 @@ ToM-PE/
 
 ### 2.1 Parallel Corpora (OPUS)
 
-The platform ingests sentence-aligned parallel corpora from the OPUS project, covering four EU/UN domains:
+The platform ingests sentence-aligned parallel corpora from the OPUS project, covering EU/UN domains. Corpora are downloaded via `opustools` which preserves document structure from the OPUS XML format.
 
-| Corpus | Domain | Approx. Size | Register |
-|--------|--------|-------------|----------|
-| **Europarl v8** | Parliamentary proceedings | ~2M segments | Formal |
-| **DGT-TM v2019** | EU legal translation memory | ~5M segments | Formal |
-| **EUbookshop v2** | EU publications & legislation | ~10M segments | Semi-formal |
-| **UNPC v1.0** | UN institutional documents | ~30M segments | Formal |
+| Corpus | Domain | Segments | Documents | Register |
+|--------|--------|:--------:|:---------:|----------|
+| **Europarl v8** | Parliamentary proceedings | 9,982 | 8 | Semi-formal |
+| **DGT-TM v2019** | EU legal translation memory | 9,919 | 169 | Formal |
+| **EUbookshop v2** | EU publications & legislation | 10,000 | — | Formal |
+| **UNPC v1.0** | UN institutional documents | — | — | Formal |
 
-**Ingestion** is handled by `scripts/ingest_corpus.py`, which downloads pre-aligned Moses-format files from OPUS, converts them to JSONL, and stores them in `data/corpora/{corpus}/segments_en_fr.jsonl`.
+**Ingestion** is handled by `scripts/ingest_corpus.py`, which uses `opustools.OpusRead` to download OPUS XML-aligned data and extract sentence pairs with document metadata. Output is stored as JSONL in `data/corpora/{corpus}/segments_en_fr.jsonl`.
 
 Each segment follows the schema:
 
 ```json
 {
-  "segment_id": "europarl_00042",
-  "source_text": "Le Parlement a adopté la résolution.",
-  "reference_translation": "Parliament adopted the resolution.",
-  "source_lang": "fr",
-  "target_lang": "en",
+  "segment_id": "europarl-b0e004b9e126",
+  "source_text": "Resumption of the session",
+  "reference_translation": "Reprise de la session",
+  "source_lang": "en",
+  "target_lang": "fr",
   "corpus_origin": "europarl",
   "domain": "parliamentary",
-  "register": "formal"
+  "register": "semi-formal",
+  "document_id": "ep-00-01-17",
+  "position_in_doc": 0
 }
 ```
 
+The `document_id` and `position_in_doc` fields enable multi-sentence context windows for L3 (recursive/discourse) error injection, where cross-sentence dependencies must be preserved.
+
 ### 2.2 Error Codebook
 
-Located at `data/codebook/error_codebook_fr_en.json`, the codebook defines **37 error types** across **10 MQM primary categories**. Each entry includes:
+Located at `data/codebook/error_codebook_fr_en.json`, the codebook defines **8 detailed entries** with few-shot examples across the **42 error types** enumerated in `data/codebook/tag_schema.json`. The 42 types span **10 MQM primary categories** and **4 ToM levels**.
+
+Each codebook entry includes:
 
 - Machine-readable identifiers (codebook ID, MQM hierarchy path)
 - Severity range (minor / major / critical)
 - Theory of Mind level assignment (1st-machine, 1st-author, 2nd-reader, recursive)
-- Primary competency skill (S1–S7)
+- Primary competency skill (S1-S7)
 - Definition with boundary conditions ("what this is NOT")
-- Few-shot examples with inline XML-tagged errors and three-layer explanations
+- Few-shot examples with inline XML-tagged errors and multi-layer explanations
+
+**L3 (recursive) entries** (added for CIKM 2026 validation):
+
+| ID | Error Type | Primary Tag | Description |
+|----|-----------|-------------|-------------|
+| R1 | anaphora_resolution | MISTRANSLATION | Cross-sentence pronoun resolution failure |
+| R2 | discourse_connective | MISTRANSLATION | Logical relationship inversion between sentences |
+| R3 | tense_sequence | GRAMMAR | Tense inconsistency across discourse |
+| R4 | lexical_cohesion | TERMINOLOGY | Same term translated differently across sentences |
+| R5 | information_packaging | STYLE | Theme-rheme disruption across sentences |
 
 ### 2.3 IATE Terminology
 
@@ -139,17 +201,16 @@ The item generation pipeline transforms raw parallel text into pedagogically-gra
 
 Selects suitable segments from ingested corpora by applying:
 
-1. **Token-length filtering**: Segments must be between 10–50 tokens (configurable) to ensure they are neither trivially short nor overwhelmingly long for student review.
+1. **Token-length filtering**: Standard segments 10-50 tokens; L3 discourse segments 30-150 tokens.
 2. **Exact deduplication**: Token-set identity check removes verbatim duplicates.
-3. **Near-duplicate removal**: Jaccard similarity threshold (default 0.8) eliminates paraphrastic duplicates that would reduce exercise variety.
+3. **Near-duplicate removal**: Jaccard similarity threshold (default 0.8) eliminates paraphrastic duplicates.
 4. **Complexity scoring**: Each segment receives a [0, 1] complexity score based on sentence length and terminology density.
 5. **Stratified sampling**: Final selection draws proportionally from each corpus to ensure domain diversity.
 
-**Key functions**:
-- `load_corpus(corpus_dir, origin)` — Parse JSONL files
-- `filter_segments(segments, min_tokens, max_tokens, jaccard_threshold)` — Apply all filters
-- `select_segments(corpora_dirs, n_segments, ...)` — Full selection pipeline
-- `compute_complexity(source_text, terminology_density)` — Difficulty heuristic
+**L3 segment selection** (for discourse-level errors) uses two strategies:
+
+- **Strategy 1** (long segments): Selects naturally multi-clause segments (30-150 tokens) with semicolons, colons, or multiple periods. Used for R2 (discourse connectives), R3 (tense sequence), R4 (lexical cohesion).
+- **Strategy 2** (adjacent pairs): Uses `document_id` and `position_in_doc` to concatenate genuinely consecutive segments within the same document. Used for R1 (anaphora resolution), R5 (information packaging).
 
 ### 3.2 MT Generation
 
@@ -204,7 +265,9 @@ The committee voted on <MISTRANSLATION type="false_cognate" severity="major"
 
 **Verification**: The system parses XML tags from the output, validates tag attributes against the codebook, checks span alignment, and retries up to 3 times on failure.
 
-**Error profiles** specify target distributions: which MQM categories, severity mix (e.g., 1 minor : 2 major : 0 critical), and ToM levels to include in a given item.
+**Span realignment**: When multiple errors are injected sequentially, `_realign_spans()` runs after all injections to fix offset drift. It processes errors last-to-first using `find()` to relocate each span in the final text, and updates `injected_text` for any spans overwritten by later injections.
+
+**Error profiles** specify target distributions: which MQM categories, severity mix, and ToM levels to include in a given item. The validation configuration uses 1 error per item for clean baseline comparisons.
 
 ### 3.4 QE Validation
 
@@ -212,10 +275,10 @@ The committee voted on <MISTRANSLATION type="false_cognate" severity="major"
 
 Quality estimation validates that injected errors are genuine degradations and detectable by automated QE systems:
 
-1. **xCOMET-XL** scores both the clean reference and the error-injected text against the source. The injected version must show measurable quality degradation (score drop > 0).
-2. **GEMBA-MQM** performs MQM-categorized error detection on the injected text. At least 80% of injected errors must be independently detected.
+1. **GEMBA-MQM** (LLM-as-a-judge) performs MQM-categorized error detection on the injected text using structured JSON output. Detected errors are matched to injected ground truth via text overlap and IoU-based span matching.
+2. **COMET** (wmt22-comet-da, reference-based) scores both the clean reference and the error-injected text against the source. The injected version must show measurable quality degradation (score drop > 0).
 
-Items that fail validation are flagged for manual review or discarded. This ensures that the platform's ground truth is consistent with state-of-the-art automatic quality metrics.
+Items that fail validation are flagged for manual review or discarded.
 
 ### 3.5 Explanation Generation (Three Layers)
 
@@ -224,21 +287,18 @@ Items that fail validation are flagged for manual review or discarded. This ensu
 Each injected error receives up to three layers of explanation, generated by LLM prompts with codebook context:
 
 **Layer 1 — Contrastive Explanation** (per error instance):
-- **MT interpretation**: "The system treated *assister à* as cognate of English *assist*, mapping it to the most frequent translation."
-- **Actual meaning**: "In this context, *assister à* means *to attend* or *to be present at*."
-- **Reader impact**: "A reader would understand that someone was helping at the conference, not attending it."
-- **Correction rationale**: "Replace *assisting at* with *attending* to restore the original meaning."
+- **MT interpretation**: "The system treated *assister à* as cognate of English *assist*..."
+- **Actual meaning**: "In this context, *assister à* means *to attend*..."
+- **Reader impact**: "A reader would understand that someone was helping..."
+- **Correction rationale**: "Replace *assisting at* with *attending*..."
 
 **Layer 2a — System Behavior** (per error type, accessible language):
 - Why MT systems make this specific type of error
 - Architectural causes (e.g., shared BPE vocabularies, attention patterns)
 - When to expect similar errors in practice
-- Whether general-purpose LLMs share this vulnerability
 
 **Layer 2b — Technical NLP** (optional, progressive disclosure):
-- Detailed NLP-level explanation
-- Key concepts (e.g., "BPE tokenization", "cross-lingual transfer")
-- Academic references
+- Detailed NLP-level explanation with key concepts and academic references
 
 ### 3.6 Item Assembly
 
@@ -257,9 +317,7 @@ AssessmentItem:
   difficulty_level: int               # 1–5 scale
   domain: str                         # e.g., "parliamentary", "legal"
   item_status: "draft" | "reviewed" | "published" | "retired"
-  explanations_layer1: list           # Contrastive explanations
-  explanations_layer2: list           # System behavior explanations
-  iate_terms: list[IATETerm]          # Domain terminology
+  metadata: ItemMetadata              # ToM profile, MQM profile, scaffolding level
 ```
 
 Items are stored as individual JSON files in `data/items/` and progress through a status lifecycle: **draft** (auto-generated) → **reviewed** (teacher-approved) → **published** (available for exercises) → **retired** (removed from active use).
@@ -325,12 +383,7 @@ Exercises are assigned to entire classes or individual students.
 
 ### 4.7 Settings
 
-Load and edit `config/settings.yaml` and `config/mt_backends.yaml` directly from the UI:
-- Toggle MT systems on/off, adjust prompt strategies
-- Set segment selection parameters (token range, dedup threshold)
-- Configure error injection defaults (severity distribution, clean span ratio)
-- Adjust QE validation thresholds
-- Modify scoring parameters (IoU threshold, mastery threshold, sustained sessions)
+Load and edit `config/settings.yaml` and `config/mt_backends.yaml` directly from the UI.
 
 ---
 
@@ -395,9 +448,9 @@ After justification submission, the system reveals:
 2. **Per-error comparison**:
    - Student's classification vs. ground truth (MQM tag, severity match)
    - Student's own justification (displayed first for metacognitive reflection)
-   - **Layer 1**: Contrastive explanation — what the MT system "thought" vs. reality
-   - **Layer 2a**: System behavior explanation — why MT systems make this error type
-   - **Layer 2b** (optional): Technical NLP deep dive with references
+   - **Layer 1**: Contrastive explanation
+   - **Layer 2a**: System behavior explanation (collapsible "How It Works")
+   - **Layer 2b** (optional): Technical NLP deep dive (collapsible "Under the Hood")
 3. **Missed errors**: Errors the student did not detect, with full explanations.
 4. **False positives**: Spans the student flagged that are not actual errors.
 
@@ -423,17 +476,87 @@ Students progress through five stages as they demonstrate mastery:
 | S4 | Completeness | 1st (author) | Omissions, additions, hallucinations |
 | S5 | Terminology | 2nd (reader) | Wrong/inconsistent/missing terms |
 | S6 | Pragmatics & style | 2nd (reader) | Register, idiomaticity, locale conventions |
-| S7 | Discourse coherence | Recursive | Cross-sentence consistency, anaphora |
-
-Promotion requires sustained performance (detection rate above threshold for 3 consecutive sessions) along with a false positive rate below 20% and at least 40% deep justifications.
+| S7 | Discourse coherence | Recursive | Cross-sentence consistency, anaphora, lexical cohesion |
 
 ---
 
-## 6. Gamification & Badges
+## 6. Annotation Interface
+
+**Module**: `src/tompe/interfaces/annotation_app.py`
+**Port**: 7861
+
+A standalone Gradio application for expert MQM annotation, used in the CIKM 2026 pipeline validation study (Track C). The annotation interface is a stripped-down variant of the student interface, configured for blind expert annotation without pedagogical scaffolding.
+
+### 6.1 Phase A — Error Annotation
+
+The annotator works through items sequentially, marking error spans and classifying them:
+
+- **Source text** (English) displayed alongside **Translation** (French)
+- Interactive span selector (reuses `span_selector.py` component)
+- All **10 MQM category** pill buttons (including SPELLING and PUNCTUATION)
+- Severity radio (minor / major / critical)
+- Per-item **confidence rating** (Low / Medium / High)
+- Optional **free-text notes**
+- **"No Errors Found"** button for clean segment judgment
+- Per-item **elapsed timer** and progress indicator ("Item X / Y")
+- No feedback, no scaffolding, no ground truth revealed
+
+**Item set composition** (84 items + 3 practice):
+- Full pipeline items: 6 per ToM level (24 total)
+- Baseline B0/B1/B2 items: 6 per condition (18 total)
+- Authentic MT errors: 12 (if available)
+- Clean segments: 12
+- Practice items: 3 (excluded from analysis)
+
+Items are presented in a randomized order; the annotator is blind to item source.
+
+### 6.2 Phase B — Explanation Quality Review
+
+After completing Phase A, the annotator reviews 24 generated explanations (6 per ToM level) and rates them on three dimensions:
+
+- **Factual accuracy**: Incorrect / Partially correct / Correct
+- **Pedagogical clarity**: Unclear / Somewhat clear / Clear
+- **Completeness**: Incomplete / Adequate / Thorough
+- Optional free-text comment
+
+The annotator sees the ground truth error and the generated Layer 1 (contrastive) and Layer 2a (system behavior) explanations.
+
+### 6.3 Data Model
+
+```python
+ExpertAnnotation:       # Phase A: per-item annotation record
+  annotation_id, annotator_id, item_id, item_source, tom_level
+  timestamp_start, timestamp_end, duration_seconds
+  errors: list[AnnotatedError]    # span_start, span_end, category, severity
+  no_errors_found: bool
+  confidence: "low" | "medium" | "high"
+  notes: str | None
+
+ExplanationRating:      # Phase B: per-explanation quality rating
+  rating_id, annotator_id, item_id, error_index, tom_level
+  factual_accuracy, pedagogical_clarity, completeness
+  comment: str | None
+  timestamp_start, timestamp_end, duration_seconds
+```
+
+Annotations are saved as JSON in `data/annotations/{annotator_id}/`.
+
+### 6.4 Three-Way Agreement Analysis
+
+The annotation data supports three-way agreement analysis (Pipeline ground truth × Human annotator × GEMBA-MQM), computed by `experiments/pipeline_validation/track_c/three_way_agreement.py`:
+
+- IoU-based span alignment across all three sources
+- Pairwise detection rates and Cohen's kappa
+- Agreement breakdown by ToM level (Cochran-Armitage trend test)
+- Three-way overlap statistics
+
+---
+
+## 7. Gamification & Badges
 
 The platform includes a gamification layer to sustain student motivation through badges and experience points (XP).
 
-### 6.1 Badge System
+### 7.1 Badge System
 
 **Schema**: `src/tompe/schemas/badges.py`
 **Service**: `src/tompe/services/badges.py`
@@ -462,7 +585,7 @@ Badges are organized into three categories:
 - **Trap Detector**: Correctly identifies false annotations at Navigator level
 - **False Positive Discipline**: Maintains zero false positives at Expert level
 
-### 6.2 XP System
+### 7.2 XP System
 
 Each student action earns XP with base values:
 
@@ -477,16 +600,16 @@ XP is scaled by two multipliers:
 - **ToM level multiplier**: 1.0× (1st-machine) → 2.0× (recursive) — rewards detecting harder errors
 - **Scaffolding level multiplier**: 0.5× (Navigator L0) → 2.0× (Expert L3) — rewards independence
 
-### 6.3 UI Integration
+### 7.3 UI Integration
 
 - **Student app**: Badge collection display with visual hierarchy, progress bars toward next tiers, and XP history
-- **Teacher app**: Badge analytics tab with class-wide heatmap showing badge distribution across students, and a visibility toggle
+- **Teacher app**: Badge analytics tab with class-wide heatmap showing badge distribution across students
 
 ---
 
-## 7. Backend Services
+## 8. Backend Services
 
-### 7.1 FastAPI Application
+### 8.1 FastAPI Application
 
 **Module**: `src/tompe/services/api.py`
 **Default port**: 8000, CORS enabled for Gradio cross-origin requests.
@@ -506,22 +629,7 @@ XP is scaled by two multipliers:
 | Analytics | `/api/analytics/` | Per-student and per-class performance metrics |
 | Badges | `/api/badges/` | Badge collection, XP history, progress summaries |
 
-#### Key Endpoints
-
-```
-POST /api/auth/login              → {token, student_id, display_name, level, consent_status}
-GET  /api/assignments/{student_id} → list[ExerciseAssignment]
-GET  /api/exercises/{exercise_id}  → Exercise with item_ids
-GET  /api/items/{item_id}          → AssessmentItem (filtered by student's level)
-POST /api/responses/submit         → {response_id}
-POST /api/responses/{id}/justifications → confirmation
-GET  /api/responses/{id}/feedback  → {summary, errors with explanations}
-GET  /api/responses/{id}/score     → ScoringResult
-GET  /api/analytics/student/{id}   → StudentProfile with blind spots
-GET  /api/badges/{student_id}      → StudentBadges with earned badges & XP
-```
-
-### 7.2 Authentication
+### 8.2 Authentication
 
 **Module**: `src/tompe/services/auth.py`
 
@@ -530,41 +638,16 @@ GET  /api/badges/{student_id}      → StudentBadges with earned badges & XP
 3. Generates `secrets.token_urlsafe()` bearer token
 4. Token stored in `data/sessions/tokens/{token}.json` with 7-day expiry
 5. Subsequent requests include `Authorization: Bearer {token}` header
-6. FastAPI dependency `verify_token()` validates on each request
 
 Teacher access (Streamlit) runs on the same machine with direct service imports — no authentication layer in v1.
 
-### 7.3 Data Store
+### 8.3 Data Store
 
 **Module**: `src/tompe/services/datastore.py`
 
-A generic `JsonStore` class provides CRUD operations over JSON files:
+A generic `JsonStore` class provides CRUD operations over JSON files with Pydantic validation.
 
-```python
-class JsonStore:
-    def save(obj: BaseModel) → str          # Write entity to data/{dir}/{id}.json
-    def get(obj_id, model_class) → T        # Read and validate via Pydantic
-    def list_all(model_class, filter_fn)     # List with optional filter
-    def update(obj_id, model_class, patch)   # Partial update
-    def delete(obj_id) → bool               # Remove file
-```
-
-**Pre-configured stores**:
-
-| Store | Directory | ID Field |
-|-------|-----------|----------|
-| `students_store` | `data/students/` | `student_id` |
-| `classes_store` | `data/classes/` | `class_id` |
-| `exercises_store` | `data/exercises/` | `exercise_id` |
-| `items_store` | `data/items/` | `item_id` |
-| `responses_store` | `data/sessions/responses/` | `response_id` |
-| `assignments_store` | `data/assignments/` | `assignment_id` |
-| `feedback_store` | `data/feedback/` | — |
-| `tokens_store` | `data/sessions/tokens/` | — |
-| `consent_store` | `data/consent/` | — |
-| `badges_store` | `data/badges/` | `student_id` |
-
-### 7.4 LLM Client
+### 8.4 LLM Client
 
 **Module**: `src/tompe/pipeline/llm_client.py`
 
@@ -572,23 +655,23 @@ Unified async client supporting four providers:
 
 | Provider | Endpoint | Models |
 |----------|----------|--------|
-| OpenAI | `/v1/chat/completions` | gpt-4.1, gpt-5-nano, o-series |
+| OpenAI | `/v1/chat/completions` | gpt-4.1, o-series reasoning models |
 | Anthropic | Native Messages API | claude-sonnet-4-6 |
 | Ollama | `/api/chat` or OpenAI-compatible | llama3, mistral, etc. |
 | Together AI | OpenAI-compatible | deepseek-v3, open-source models |
 
 Key methods:
 - `complete_text(system, user, temperature)` — Plain text completion
-- `complete_json(system, user, schema, temperature)` — Structured JSON output
+- `complete_json(system, user, schema, temperature)` — Structured JSON output (OpenAI: json_schema mode)
 - `stream_text(system, user)` — Streaming async iterator
 
-Factory functions `make_client(provider, model)` and `make_client_from_config(config)` read API keys from environment variables.
+Factory function `make_client_from_config(config)` reads API keys from environment variables.
 
 ---
 
-## 8. Scoring, Feedback & Analytics
+## 9. Scoring, Feedback & Analytics
 
-### 8.1 Scoring
+### 9.1 Scoring
 
 **Module**: `src/tompe/services/scoring.py`
 
@@ -599,145 +682,94 @@ IoU = |intersection| / |union|
 Match if IoU ≥ 0.5 (configurable threshold)
 ```
 
-Student errors are greedily matched to the closest ground-truth error by IoU. From matches, the system computes:
+Metrics computed: precision, recall, F1, per-MQM breakdown, per-ToM breakdown, per-skill breakdown.
 
-- **True positives** (TP): Student spans matching ground truth above IoU threshold
-- **False positives** (FP): Student spans with no ground-truth match
-- **False negatives** (FN): Ground-truth errors the student missed
-- **Precision**: TP / (TP + FP)
-- **Recall (detection rate)**: TP / (TP + FN)
-- **F1**: Harmonic mean of precision and recall
+For post-editing mode: HTER, unnecessary edits, edit quality.
 
-Additional breakdowns by:
-- **MQM category**: Accuracy, Fluency, Terminology, Style, Locale
-- **ToM level**: 1st-machine, 1st-author, 2nd-reader, recursive
-
-For post-editing mode:
-- **HTER** (Human Translation Edit Rate): Edit distance between student's edit and reference, normalized by reference length
-- **Unnecessary edits**: Changes to spans that were not errors
-- **Edit quality**: Proportion of edits that improve the translation
-
-### 8.2 Feedback (Cognitive Forcing Protocol)
+### 9.2 Feedback (Cognitive Forcing Protocol)
 
 **Module**: `src/tompe/services/feedback.py`
 
-The feedback service implements the cognitive forcing protocol:
+The student cannot see correct answers before committing their reasoning. Feedback includes: summary metrics, per-error comparisons with student justification displayed alongside Layer 1/2a/2b explanations, missed errors, and false positive diagnostics.
 
-1. Student submits identified errors + justifications.
-2. System scores the response (scoring service).
-3. **Only then** are explanations revealed — the student cannot see correct answers before committing their reasoning.
-
-The feedback payload includes:
-- Summary metrics (detected, missed, false positives, precision, recall, F1)
-- Per-error detail: student classification vs. ground truth, student's own justification displayed alongside Layer 1/2a/2b explanations
-- Missed errors with full explanations to fill knowledge gaps
-- False positives with explanation of why the flagged span is actually correct
-
-### 8.3 Analytics & Blind Spot Detection
+### 9.3 Analytics & Blind Spot Detection
 
 **Module**: `src/tompe/services/analytics.py`
 
-**Blind spot detection** identifies systematic weaknesses:
-
-```
-For each (MQM category × ToM level) combination:
-    If detection_rate < 0.5 AND sessions_observed ≥ 3:
-        → Blind spot identified
-```
-
-Returns: affected category, ToM level, average rate, session count, and example items for targeted practice.
-
-**Student profiles** aggregate:
-- Performance time series across sessions
-- Skill mastery levels (S1–S7)
-- Current progression stage
-- Recommended next exercises based on blind spots
+Identifies systematic weaknesses per (MQM category × ToM level) combination where detection rate < 0.5 over ≥ 3 sessions.
 
 ---
 
-## 9. Research Infrastructure
+## 10. Research Infrastructure
 
-The `experiments/` and `study/` directories contain standalone research tooling that validates the platform's theoretical foundations and supports pilot data collection.
+### 10.1 Pipeline Validation (CIKM 2026)
 
-### 9.1 ToM Hypothesis Validation
+**Directory**: `experiments/pipeline_validation/`
+
+Three-track validation of the error injection pipeline:
+
+**Track A — Automated Validation** (N = 196 items, 1 error/item):
+
+| Metric | Result |
+|--------|--------|
+| A1: Structural pass rate | 96.4% (target: >90%) |
+| A2: GEMBA detection rate | 53% (L0: 79%, L3: 41%) |
+| A3: COMET score drop | 0.045 (L0: 0.072, L3: 0.034) |
+
+**Track B — Ablation Baselines** (N = 60 segments × 4 conditions):
+
+| Condition | Structural | Category Fidelity | Text Preservation |
+|-----------|:----------:|:-----------------:|:-----------------:|
+| B0: Random (no LLM) | 0% | N/A | N/A |
+| B1: Single-step LLM | 64% | 100% | 88% |
+| B2: Unconstrained LLM | 0% | N/A | 78% |
+| **Full pipeline** | **95%** | **100%** | **90%** |
+
+**Track C — Expert Annotation** (pending: 84 items + explanation review):
+- Three-way agreement analysis (Pipeline × Human × GEMBA)
+- Explanation quality ratings (factual accuracy, clarity, completeness)
+
+Scripts: `generate_batch.py`, `run_all.py`, `figures.py`, `tables.py`, plus per-track modules in `track_a/`, `track_b/`, `track_c/`, and `baselines/`.
+
+### 10.2 ToM Hypothesis Validation
 
 **Directory**: `experiments/tom_validation/`
 
-An 8-step statistical pipeline that validates the core hypothesis: errors requiring higher Theory of Mind levels are harder for human raters to detect.
+An 8-step statistical pipeline validating the core hypothesis: errors requiring higher Theory of Mind levels are harder for human raters to detect. Uses WMT-MQM data, Jonckheere-Terpstra trend tests, CLMM (R), and GLMM with rater random effects.
 
-| Step | Module | Method |
-|------|--------|--------|
-| 1 | `parse_mqm.py` | Parse WMT-MQM TSV annotations, extract error spans with IoU alignment |
-| 2 | `align_errors.py` | Rater-level error alignment with configurable IoU thresholds (standard 0.5, lenient 0.4, strict 0.6) |
-| 3 | `assign_tom.py` | Map detected errors to ToM levels (1st-machine, 1st-author, 2nd-reader, recursive) |
-| 4 | `descriptive.py` | Descriptive statistics: rater counts, error distributions per category and ToM level |
-| 5 | `test_trend.py` | Jonckheere-Terpstra trend test for monotonic ToM-difficulty relationship |
-| 6 | `mixed_models.py` | Kruskal-Wallis H-test, Dunn's post-hoc comparisons, ordinal regression, rater-level logistic regression |
-| 7 | `sensitivity.py` | Sensitivity analyses: IoU variants, rater exclusion, severity filtering, subset replication |
-| 8 | `figures.py` | Generate V1–V3 visualization figures (boxplot, heatmap, rater slopes) |
-
-**R integration**: `r_runner.py` wraps two R scripts for mixed-effects models:
-
-- `clmm_analysis.R` — Cumulative link mixed model (CLMM) for ordinal ToM levels
-- `rater_glmm.R` — Generalized linear mixed model (GLMM) for rater random effects
-
-**Orchestration**: `run_all.py` runs the full pipeline end-to-end, writing outputs to `outputs/tom_validation/`.
-
-### 9.2 ECTEL 2026 Experiments
+### 10.3 ECTEL 2026 Experiments
 
 **Directory**: `experiments/ectel/`
 
-Experiments supporting the EC-TEL 2026 submission:
+Experiments supporting the EC-TEL 2026 submission: developmental gradient hypothesis, fluency paradox, over-editing analysis, convergence analysis.
 
-- `exp3b_developmental.py` — Tests the developmental gradient hypothesis (low-ToM skills are mastered before high-ToM skills) using first-mastery analysis, learning curve slopes, phase improvement, and experience-gradient methods
-- `visualizations.py` — Generates figures F4–F6: ToM ordering vs. published difficulty scatter plots, convergence analysis, and convergence heatmaps
-- `run_all.py` — Orchestration script including exp3b
+### 10.4 Wasserstein Distance Visualizations
 
-**Report generation**: `scripts/generate_ectel_report.py` produces detailed Markdown reports from experiment results, with support for source-exclusion sensitivity runs (e.g., excluding Temnikova 2010).
+**Directory**: `experiments/wasserstein/`
 
-### 9.3 Wasserstein Distance Visualizations
+Teacher-facing dashboard prototypes using the MasteryGap metric (optimal-transport distance between current and target skill distributions).
 
-**Module**: `experiments/wasserstein/dashboard_visualizations.py`
-
-Generates teacher-facing dashboard prototypes using the MasteryGap metric (Wasserstein / optimal-transport distance between a student's current skill distribution and a target mastery profile):
-
-- **Option A** — Individual student skill profiles with optimal-transport arrows showing current vs. target mastery
-- **Option B** — Class-level trajectory sparklines with alert bands for at-risk students
-- **Option C** — Class heatmap with student rows, skill columns, and session-by-session color-coded progression
-
-Outputs 9 dashboard prototypes to `outputs/wasserstein/figures/dashboard/` (3 student archetypes × 3 visualization options).
-
-### 9.4 ECTEL 2026 Pilot Study App
+### 10.5 ECTEL 2026 Pilot Study App
 
 **Directory**: `study/`
 
-A standalone Gradio + Streamlit application for participant data collection, independent of the main training platform:
-
-- `study_app.py` — Gradio interface with a linear flow: Consent → 20 segment evaluations → Post-task questionnaire → Thank you
-- `study_manager.py` — Streamlit management dashboard with Setup, Monitor, and Export tabs
-- `study_config.json` — Configuration with consent forms and post-task questionnaires
-- `segments/ectel2026_pilot.json` — 20 curated segments across three conditions (L1 surface errors, L2 meaning errors with fluency-form variants, L3 deeper ToM errors)
-
-**Design features**: Form randomization (A/B) for counterbalancing fluency effects, segment ordering constraints (first segment always L1 warm-up, max 2 consecutive from same condition), anonymous participant ID generation, per-participant JSON export.
+Standalone Gradio + Streamlit application for participant data collection: consent → 20 segment evaluations → post-task questionnaire.
 
 ---
 
-## 10. Configuration & Deployment
+## 11. Configuration & Deployment
 
-### 10.1 Environment Variables (`.env`)
+### 11.1 Environment Variables (`.env`)
 
 ```bash
-ANTHROPIC_API_KEY=sk-ant-...      # Claude for error injection & explanations
-OPENAI_API_KEY=sk-proj-...        # GPT-4.1 for MT generation & injection
-GOOGLE_TRANSLATE_API_KEY=...      # Google Translate API v2
-DEEPL_AUTH_KEY=...                # DeepL translation API
-OLLAMA_BASE_URL=https://...       # Ollama server URL
+OPENAI_API_KEY=sk-proj-...        # GPT-4.1 for injection, GEMBA, explanations
+ANTHROPIC_API_KEY=sk-ant-...      # Claude for injection & explanations
 OLLAMA_API_KEY=...                # Ollama authentication
 TOGETHER_API_KEY=...              # Together AI for open-source models
-HF_TOKEN=...                      # Hugging Face (xCOMET model access)
+DEEPL_AUTH_KEY=...                # DeepL translation API
 ```
 
-### 10.2 Global Settings (`config/settings.yaml`)
+### 11.2 Global Settings (`config/settings.yaml`)
 
 ```yaml
 languages:
@@ -767,11 +799,7 @@ server:
   teacher_ui_port: 8501
 ```
 
-### 10.3 MT Backend Configuration (`config/mt_backends.yaml`)
-
-Each MT system is independently toggleable with its own model, prompt strategy, and provider settings. The `injection_llm` section configures which model performs error injection (default: GPT-4.1, temperature 0.3).
-
-### 10.4 Running the Platform
+### 11.3 Running the Platform
 
 ```bash
 # Start the FastAPI backend (port 8000)
@@ -782,11 +810,14 @@ uv run tompe-student
 
 # Start the teacher Streamlit UI (port 8501)
 streamlit run src/tompe/interfaces/teacher_app.py
+
+# Start the annotation UI (port 7861)
+PYTHONPATH=src python -m tompe.interfaces.annotation_app
 ```
 
 ---
 
-## 11. End-to-End Architecture Diagram
+## 12. End-to-End Architecture Diagram
 
 ```
 ╔══════════════════════════════════════════════════════════════════════════╗
@@ -824,42 +855,28 @@ streamlit run src/tompe/interfaces/teacher_app.py
 │  │  └─────────┘ └──────────┘ └────────┘ └──────────────────┘   │     │
 │  └──────────────────────────────────────────────────────────────┘     │
 │                                                                       │
-│  ┌──────────────────────────────────────────────────────────────┐     │
-│  │  MT Systems: Google Translate │ DeepL                        │     │
-│  └──────────────────────────────────────────────────────────────┘     │
+│  codebook.py ── mqm_taxonomy.py (42 types, 4 ToM levels)            │
 └───────────────────────────────────────────────────────────────────────┘
                             │
                             ▼
 ┌───────────────────────────────────────────────────────────────────────┐
 │                      DATA LAYER (JSON Files)                         │
 │                                                                       │
-│  data/corpora/     ← Parallel text (JSONL)                           │
-│  data/codebook/    ← Error taxonomy & examples                       │
+│  data/corpora/     ← Parallel text with document IDs (JSONL)        │
+│  data/codebook/    ← Error taxonomy (8 entries) + tag schema (42)   │
 │  data/items/       ← Assessment items (draft/reviewed/published)     │
 │  data/students/    ← Student accounts                                │
-│  data/classes/     ← Class groups                                    │
-│  data/exercises/   ← Exercise definitions                            │
-│  data/assignments/ ← Student-exercise assignments                    │
+│  data/exercises/   ← Exercise definitions + assignments              │
 │  data/sessions/    ← Responses & auth tokens                         │
-│  data/feedback/    ← Generated feedback                              │
-│  data/consent/     ← Research consent records                        │
-│  data/analytics/   ← Performance metrics                             │
+│  data/annotations/ ← Expert annotation data (validation study)       │
 │  data/badges/      ← Earned badges & XP records                      │
 └───────────────────────────────────────────────────────────────────────┘
 
 ╔══════════════════════════════════════════════════════════════════════════╗
 ║                      FASTAPI BACKEND (port 8000)                       ║
 ║                                                                        ║
-║  /api/auth/          ← Login, logout, token management                 ║
-║  /api/consent/       ← Research consent CRUD                           ║
-║  /api/assignments/   ← Student exercise assignments                    ║
-║  /api/exercises/     ← Exercise retrieval                              ║
-║  /api/items/         ← Assessment item delivery                        ║
-║  /api/responses/     ← Submit annotations, justifications, feedback    ║
-║  /api/analytics/     ← Performance metrics                             ║
-║  /api/badges/        ← Badge collection & XP                           ║
-║  /api/classes/       ← Admin class management                          ║
-║  /api/students/      ← Admin student management                        ║
+║  /api/auth/    /api/consent/   /api/assignments/   /api/exercises/     ║
+║  /api/items/   /api/responses/ /api/analytics/     /api/badges/        ║
 ╚═══════════════════════════════════╤════════════════════════════════════╝
                                     │ HTTP (REST)
                                     ▼
@@ -879,19 +896,33 @@ streamlit run src/tompe/interfaces/teacher_app.py
 ╚══════════════════════════════════════════════════════════════════════════╝
 
 ╔══════════════════════════════════════════════════════════════════════════╗
+║                     ANNOTATION INTERFACE                               ║
+║                      (Gradio — port 7861)                              ║
+║                                                                        ║
+║  ┌──────────────────────────┐  ┌──────────────────────────────────┐   ║
+║  │     Phase A:             │  │      Phase B:                    │   ║
+║  │  Error Annotation (84)   │──▶  Explanation Quality Review (24) │   ║
+║  │  Blind MQM annotation    │  │  Rate accuracy/clarity/complete  │   ║
+║  └──────────────────────────┘  └──────────────────────────────────┘   ║
+║                                                                        ║
+║  Self-contained (JSON I/O) │ No backend dependency                     ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+╔══════════════════════════════════════════════════════════════════════════╗
 ║                     RESEARCH INFRASTRUCTURE                            ║
 ║                                                                        ║
-║  experiments/tom_validation/   ← ToM hypothesis validation (R+Python)  ║
-║  experiments/ectel/            ← ECTEL 2026 experiments (3a, 3b)       ║
-║  experiments/wasserstein/      ← MasteryGap dashboard prototypes       ║
-║  study/                        ← Standalone pilot study app (Gradio)   ║
+║  experiments/pipeline_validation/  ← CIKM 2026 (Track A/B/C)         ║
+║  experiments/tom_validation/       ← ToM hypothesis (R+Python)        ║
+║  experiments/ectel/                ← EC-TEL 2026 experiments          ║
+║  experiments/wasserstein/          ← MasteryGap dashboards            ║
+║  study/                            ← Standalone pilot study app       ║
 ╚══════════════════════════════════════════════════════════════════════════╝
 ```
 
 ### Data Flow Summary
 
-1. **Teacher ingests** parallel corpora from OPUS into `data/corpora/`.
-2. **Pipeline selects** segments, generates MT output, injects controlled errors, validates via QE, generates explanations, and assembles items.
+1. **Teacher ingests** parallel corpora from OPUS (with document IDs) into `data/corpora/`.
+2. **Pipeline selects** segments (including multi-sentence L3 segments), generates MT output, injects controlled errors (1 or more per item), validates via QE, generates three-layer explanations, and assembles items.
 3. **Teacher reviews** draft items, approves/edits, publishes, and builds exercises.
 4. **Teacher assigns** exercises to classes or individual students.
 5. **Student logs in**, selects an exercise, and enters the three-phase workflow.
@@ -900,4 +931,4 @@ streamlit run src/tompe/interfaces/teacher_app.py
 8. **Phase 3**: System scores the response, reveals explanations, awards badges and XP, and stores results.
 9. **Analytics** track performance over time, detect blind spots, and recommend progression.
 10. **Gamification** awards progression, specialisation, and behaviour badges; XP scales with ToM level and scaffolding independence.
-11. **Teacher monitors** class and individual performance via analytics dashboards and badge heatmaps, adjusting scaffolding levels as students demonstrate mastery.
+11. **Expert annotation** (validation study): annotator evaluates pipeline items blind, then reviews explanation quality. Results feed three-way agreement analysis.

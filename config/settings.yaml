@@ -36,6 +36,11 @@ error_injection:
     minor: 1
     major: 2
     critical: 0
+  # Used by pipeline-validation runs (single-error mode). Production runs
+  # use default_severity_distribution above. Toggled by single_error flag
+  # in experiments/pipeline_validation/generate_batch.py.
+  validation_severity_distribution:
+    major: 1
 
 # QE validation thresholds
 qe_validation:

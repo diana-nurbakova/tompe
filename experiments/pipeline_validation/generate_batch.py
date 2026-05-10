@@ -28,6 +28,10 @@ except ImportError:
 from tompe.pipeline.codebook import load_default_codebook
 from tompe.pipeline.error_injector import ErrorProfile, inject_errors_reference_based
 from tompe.pipeline.explanation_generator import generate_all_explanations
+from tompe.pipeline.segment_selector import (
+    select_l3_adjacent_pairs,
+    select_l3_long_segments,
+)
 from tompe.schemas.corpus import CorpusSegment
 from tompe.schemas.annotation import AnnotationConfig
 from tompe.schemas.enums import (
@@ -59,6 +63,7 @@ from experiments.pipeline_validation.config import (
     TARGET_LANG,
     TOM_LEVELS,
     TOTAL_ITEMS,
+    VALIDATION_SEVERITY_DISTRIBUTION,
     ensure_dirs,
 )
 
@@ -128,11 +133,28 @@ def load_corpus_segments(corpus_name: str, n: int) -> list[CorpusSegment]:
     return segments[:n]
 
 
-def _build_error_profile(tom_level: TOMLevel) -> ErrorProfile:
-    """Build an ErrorProfile targeting a specific ToM level."""
-    severity_dist = {
-        _SEVERITY_MAP[k]: v for k, v in SEVERITY_DISTRIBUTION.items()
-    }
+def load_all_segments() -> list[CorpusSegment]:
+    """Load all segments from all corpora, preserving document metadata."""
+    all_segs: list[CorpusSegment] = []
+    for corpus_name in CORPORA:
+        segs = load_corpus_segments(corpus_name, 999_999)  # load all
+        all_segs.extend(segs)
+    return all_segs
+
+
+def _build_error_profile(
+    tom_level: TOMLevel,
+    single_error: bool = True,
+) -> ErrorProfile:
+    """Build an ErrorProfile targeting a specific ToM level.
+
+    Severity distribution is sourced from config (mirrors
+    settings.yaml error_injection.*_severity_distribution):
+    - single_error=True  -> VALIDATION_SEVERITY_DISTRIBUTION
+    - single_error=False -> SEVERITY_DISTRIBUTION (production default)
+    """
+    source = VALIDATION_SEVERITY_DISTRIBUTION if single_error else SEVERITY_DISTRIBUTION
+    severity_dist = {_SEVERITY_MAP[k]: v for k, v in source.items()}
     return ErrorProfile(
         primary_tags=list(PrimaryTag),
         severity_distribution=severity_dist,
@@ -258,6 +280,7 @@ async def generate_batch(
     llm_config: dict | None = None,
     dry_run: bool = False,
     limit: int | None = None,
+    single_error: bool = True,
 ) -> list[AssessmentItem]:
     """Generate the validation batch.
 
@@ -265,6 +288,10 @@ async def generate_batch(
         llm_config: LLM configuration dict. Uses DEFAULT_LLM_CONFIG if None.
         dry_run: If True, report what would be done without running injection.
         limit: If set, cap total items to this number (for quick testing).
+        single_error: If True, use VALIDATION_SEVERITY_DISTRIBUTION (1 major
+            error / item, post-remediation v3 default). If False, use
+            SEVERITY_DISTRIBUTION (production default; multi-error items).
+            Both distributions are sourced from config/settings.yaml.
 
     Returns:
         List of AssessmentItem objects.
@@ -273,74 +300,91 @@ async def generate_batch(
     config = llm_config or dict(DEFAULT_LLM_CONFIG)
     codebook = load_default_codebook()
 
-    # Step 1: Load corpus segments
+    # Step 1: Load all corpus segments
+    all_segments = load_all_segments()
     target_total = limit if limit else TOTAL_ITEMS
-    # Over-sample per corpus to account for empty corpora, then cap later
-    active_corpora = sum(1 for c in CORPORA if (CORPORA_DIR / c).exists())
-    per_corpus = max(4, target_total // max(active_corpora, 1) + 2) if limit else ITEMS_PER_CORPUS
-
-    all_segments: list[CorpusSegment] = []
-    for corpus_name in CORPORA:
-        segs = load_corpus_segments(corpus_name, per_corpus)
-        all_segments.extend(segs)
-
     logger.info("Total segments loaded: %d (target: %d)", len(all_segments), target_total)
 
-    # Cap to target if we loaded more
-    if len(all_segments) > target_total:
-        rng_pre = random.Random(SEED)
-        rng_pre.shuffle(all_segments)
-        all_segments = all_segments[:target_total]
-
-    if len(all_segments) < target_total:
-        logger.warning(
-            "Only %d segments available (need %d). "
-            "Proceeding with available segments.",
-            len(all_segments), target_total,
-        )
-
-    # Step 2: Split into injection and clean pools
-    # Always reserve 25% for clean items, matching CLEAN_RATIO from config
     rng = random.Random(SEED)
-    rng.shuffle(all_segments)
 
-    total_available = len(all_segments)
-    n_clean = min(CLEAN_ITEMS, max(1, int(total_available * 0.25)))
-    n_inject = total_available - n_clean
+    # Step 2: Select L3 segments (need special treatment)
+    # L3 gets ~24% of injected items (36 out of 150 target)
+    n_clean = min(CLEAN_ITEMS, max(1, int(target_total * 0.25)))
+    n_inject = target_total - n_clean
+    n_l3 = max(1, n_inject // 4) if not limit else max(1, n_inject // 4)
+    n_l012 = n_inject - n_l3
 
-    inject_segments = all_segments[:n_inject]
-    clean_segments = all_segments[n_inject : n_inject + n_clean]
+    # L3 Strategy 1: long segments for R2, R3, R4 (60% of L3)
+    n_l3_long = max(1, int(n_l3 * 0.6))
+    l3_long_segs = select_l3_long_segments(all_segments, n_l3_long)
 
-    # Stratify injection segments by ToM level (evenly across available slots)
-    tom_enums = [_TOM_ENUM_MAP[lvl] for lvl in TOM_LEVELS]
-    tom_assignments = [tom_enums[i % len(tom_enums)] for i in range(n_inject)]
-    rng.shuffle(tom_assignments)
+    # L3 Strategy 2: adjacent pairs for R1, R5 (40% of L3)
+    n_l3_pairs = n_l3 - len(l3_long_segs)
+    l3_pair_segs = select_l3_adjacent_pairs(all_segments, n_l3_pairs)
+
+    l3_segments = l3_long_segs + l3_pair_segs
+    logger.info("L3 segments: %d (long: %d, pairs: %d)", len(l3_segments), len(l3_long_segs), len(l3_pair_segs))
+
+    # Exclude L3 segments from L0-L2 pool (by segment_id)
+    l3_ids = {s.segment_id for s in l3_segments}
+    l012_pool = [s for s in all_segments if s.segment_id not in l3_ids]
+    rng.shuffle(l012_pool)
+
+    # Cap L0-L2 pool
+    if len(l012_pool) > n_l012:
+        l012_pool = l012_pool[:n_l012]
+
+    # Select clean segments from remainder
+    remaining = [s for s in all_segments if s.segment_id not in l3_ids
+                 and s not in l012_pool[:n_l012]]
+    rng.shuffle(remaining)
+    clean_segments = remaining[:n_clean]
+
+    # If not enough clean from remainder, take from l012 pool end
+    if len(clean_segments) < n_clean:
+        shortfall = n_clean - len(clean_segments)
+        clean_segments.extend(l012_pool[-shortfall:])
+        l012_pool = l012_pool[:-shortfall]
+
+    # Build injection list: L0-L2 segments + L3 segments with ToM assignments
+    inject_segments: list[tuple[CorpusSegment, TOMLevel]] = []
+
+    # L0-L2: distribute evenly
+    l012_toms = [
+        TOMLevel.FIRST_ORDER_MACHINE,
+        TOMLevel.FIRST_ORDER_AUTHOR,
+        TOMLevel.SECOND_ORDER_READER,
+    ]
+    for i, seg in enumerate(l012_pool):
+        inject_segments.append((seg, l012_toms[i % 3]))
+
+    # L3: all recursive
+    for seg in l3_segments:
+        inject_segments.append((seg, TOMLevel.RECURSIVE_MULTI))
+
+    rng.shuffle(inject_segments)
 
     if dry_run:
+        from collections import Counter
+        tom_counts = Counter(t.value for _, t in inject_segments)
         logger.info("=== DRY RUN ===")
-        logger.info("Would process %d corpora: %s", len(CORPORA), CORPORA)
         logger.info("Total segments available: %d", len(all_segments))
-        logger.info("Would inject errors into %d segments", n_inject)
-        logger.info("Would keep %d segments clean", n_clean)
-        logger.info(
-            "ToM level distribution: %s",
-            {lvl: tom_assignments.count(_TOM_ENUM_MAP[lvl]) for lvl in TOM_LEVELS},
-        )
-        logger.info("MT systems: %s", MT_SYSTEMS)
-        logger.info("Error profile: severity=%s, max_errors=%d",
-                     SEVERITY_DISTRIBUTION, MAX_ERRORS_PER_ITEM)
+        logger.info("Would inject errors into %d segments (1 error each)", len(inject_segments))
+        logger.info("Would keep %d segments clean", len(clean_segments))
+        logger.info("ToM distribution: %s", dict(tom_counts))
+        logger.info("L3 segments: %d long + %d pairs", len(l3_long_segs), len(l3_pair_segs))
         logger.info("LLM config: %s", config)
         logger.info("Output: %s", RESULTS_DIR / "batch_200.jsonl")
         return []
 
-    # Step 3: Run error injection
+    # Step 3: Run error injection (1 error per item)
     items: list[AssessmentItem] = []
     item_index = 0
 
-    logger.info("Injecting errors into %d segments...", n_inject)
-    for seg_idx, (segment, tom_level) in enumerate(zip(inject_segments, tom_assignments)):
+    logger.info("Injecting errors into %d segments (1 error each)...", len(inject_segments))
+    for seg_idx, (segment, tom_level) in enumerate(inject_segments):
         mt_system = _assign_mt_system(item_index)
-        profile = _build_error_profile(tom_level)
+        profile = _build_error_profile(tom_level, single_error=single_error)
 
         try:
             presented_text, injected_errors = await inject_errors_reference_based(
@@ -461,6 +505,20 @@ if __name__ == "__main__":
         default=None,
         help="Override LLM model.",
     )
+    severity_group = parser.add_mutually_exclusive_group()
+    severity_group.add_argument(
+        "--single-error",
+        dest="single_error",
+        action="store_true",
+        help="Use validation_severity_distribution (1 major error/item, default).",
+    )
+    severity_group.add_argument(
+        "--production",
+        dest="single_error",
+        action="store_false",
+        help="Use default_severity_distribution (multi-error items, production runs).",
+    )
+    parser.set_defaults(single_error=True)
     args = parser.parse_args()
 
     config = dict(DEFAULT_LLM_CONFIG)
@@ -470,7 +528,12 @@ if __name__ == "__main__":
         config["model"] = args.llm_model
 
     result = asyncio.run(
-        generate_batch(llm_config=config, dry_run=args.dry_run, limit=args.limit)
+        generate_batch(
+            llm_config=config,
+            dry_run=args.dry_run,
+            limit=args.limit,
+            single_error=args.single_error,
+        )
     )
     if result:
         print(f"Generated {len(result)} items.")

@@ -17,6 +17,21 @@ CODEBOOK_PATH = DATA_DIR / "codebook" / "error_codebook_fr_en.json"
 ITEMS_DIR = DATA_DIR / "items"
 ANNOTATIONS_DIR = DATA_DIR / "annotations"
 RESULTS_DIR = PROJECT_ROOT / "experiments" / "pipeline_validation" / "results"
+SETTINGS_PATH = PROJECT_ROOT / "config" / "settings.yaml"
+
+
+def _load_settings() -> dict:
+    """Load settings.yaml; return {} if unavailable so module import never fails."""
+    try:
+        import yaml
+        with open(SETTINGS_PATH, "r", encoding="utf-8") as f:
+            return yaml.safe_load(f) or {}
+    except Exception:
+        return {}
+
+
+_SETTINGS = _load_settings()
+_INJECT = _SETTINGS.get("error_injection", {})
 
 # ── Language pair ─────────────────────────────────────────────────────────────
 
@@ -28,7 +43,10 @@ DIRECTION = "en_fr"
 
 TOTAL_ITEMS = 200
 ITEMS_PER_CORPUS = 50
-CORPORA = ["europarl", "dgt_tm", "eurlex", "unpc"]
+# UNPC removed per pipeline-remediation-spec §6 Option B: corpus tokens were
+# never re-ingested after deletion; the empty data/corpora/unpc/ dir is kept
+# as a placeholder for a future re-ingestion run.
+CORPORA = ["europarl", "dgt_tm", "eurlex"]
 
 MT_SYSTEMS = {
     "google_translate": 100,
@@ -42,7 +60,16 @@ CLEAN_RATIO = 0.25  # 50 out of 200 items have no errors
 CLEAN_ITEMS = 50
 INJECTED_ITEMS = 150
 
-SEVERITY_DISTRIBUTION = {"minor": 1, "major": 2, "critical": 0}
+SEVERITY_DISTRIBUTION = _INJECT.get(
+    "default_severity_distribution",
+    {"minor": 1, "major": 2, "critical": 0},
+)
+# Used in single_error validation mode (mirrors settings.yaml
+# error_injection.validation_severity_distribution).
+VALIDATION_SEVERITY_DISTRIBUTION = _INJECT.get(
+    "validation_severity_distribution",
+    {"major": 1},
+)
 MAX_ERRORS_PER_ITEM = 2
 
 # ── Baseline specification (spec §4) ─────────────────────────────────────────
@@ -82,7 +109,7 @@ DEFAULT_LLM_CONFIG = {
 
 # ── xCOMET configuration ─────────────────────────────────────────────────────
 
-XCOMET_MODEL = "Unbabel/XCOMET-XL"
+XCOMET_MODEL = "Unbabel/wmt22-comet-da"
 XCOMET_BATCH_SIZE = 16
 
 

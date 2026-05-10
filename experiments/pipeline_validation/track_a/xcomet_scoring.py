@@ -92,7 +92,9 @@ def _score_translations(
         {"src": src, "mt": mt, "ref": ref}
         for src, mt, ref in zip(sources, translations, references)
     ]
-    output = model.predict(data, batch_size=batch_size, gpus=1)
+    import torch
+    gpus = 1 if torch.cuda.is_available() else 0
+    output = model.predict(data, batch_size=batch_size, gpus=gpus)
     # comet .predict() returns a dict with "scores" (per-segment) and "system_score"
     return output["scores"]
 

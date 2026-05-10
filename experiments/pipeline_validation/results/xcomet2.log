@@ -1,0 +1,47 @@
+2026-04-16 01:46:14,551 xcomet INFO Loaded 133 items
+2026-04-16 01:46:14,551 xcomet INFO Loading COMET model...
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|##########| 5/5 [00:00<00:00, 714.29it/s]
+2026-04-16 01:47:08,317 pytorch_lightning.utilities.migration.utils INFO Lightning automatically upgraded your loaded checkpoint from v1.8.3.post1 to v2.6.1. To apply the upgrade to your files permanently, run `python -m pytorch_lightning.utilities.upgrade_checkpoint C:\Users\dnurb\.cache\huggingface\hub\models--Unbabel--wmt22-comet-da\snapshots\2760a223ac957f30acfb18c8aa649b01cf1d75f2\checkpoints\model.ckpt`
+C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\huggingface_hub\file_download.py:143: UserWarning: `huggingface_hub` cache-system uses symlinks by default to efficiently store duplicated files but your machine does not support them in C:\Users\dnurb\.cache\huggingface\hub\models--xlm-roberta-large. Caching files will still work but in a degraded version that might require more space on your disk. This warning can be disabled by setting the `HF_HUB_DISABLE_SYMLINKS_WARNING` environment variable. For more details, see https://huggingface.co/docs/huggingface_hub/how-to-cache#limitations.
+To support symlinks on Windows, you either need to activate Developer Mode or to run Python as an administrator. In order to activate developer mode, see this article: https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
+  warnings.warn(message)
+2026-04-16 01:47:45,642 comet.models.base INFO Encoder model frozen.
+C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\pytorch_lightning\core\saving.py:197: Found keys that are not in the model state dict but in the checkpoint: ['encoder.model.embeddings.position_ids']
+2026-04-16 01:47:57,948 experiments.pipeline_validation.track_a.xcomet_scoring INFO Loaded xCOMET model: Unbabel/wmt22-comet-da
+2026-04-16 01:47:57,950 xcomet INFO Scoring 133 items on CPU...
+2026-04-16 01:47:57,952 experiments.pipeline_validation.track_a.xcomet_scoring INFO Scoring 133 clean translations...
+2026-04-16 01:47:58,597 pytorch_lightning.utilities.rank_zero INFO GPU available: False, used: False
+2026-04-16 01:47:58,602 pytorch_lightning.utilities.rank_zero INFO TPU available: False, using: 0 TPU cores
+2026-04-16 01:47:58,602 pytorch_lightning.utilities.rank_zero INFO \U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-04-16 01:47:58,604 pytorch_lightning.utilities.rank_zero INFO \U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+Predicting: 0it [00:00, ?it/s]Predicting: 0it [00:00, ?it/s]Predicting DataLoader 0:   0%|          | 0/9 [00:00<?, ?it/s]Predicting DataLoader 0:  11%|#1        | 1/9 [00:26<03:31, 26.44s/it]Predicting DataLoader 0:  22%|##2       | 2/9 [01:09<04:04, 34.89s/it]Predicting DataLoader 0:  33%|###3      | 3/9 [01:33<03:07, 31.17s/it]Predicting DataLoader 0:  44%|####4     | 4/9 [02:05<02:36, 31.30s/it]Predicting DataLoader 0:  56%|#####5    | 5/9 [02:26<01:57, 29.33s/it]Predicting DataLoader 0:  67%|######6   | 6/9 [02:59<01:29, 29.88s/it]Predicting DataLoader 0:  78%|#######7  | 7/9 [03:33<01:00, 30.49s/it]Predicting DataLoader 0:  89%|########8 | 8/9 [04:15<00:31, 31.89s/it]Predicting DataLoader 0: 100%|##########| 9/9 [04:44<00:00, 31.57s/it]Predicting DataLoader 0: 100%|##########| 9/9 [04:44<00:00, 31.57s/it]
+2026-04-16 01:52:42,934 experiments.pipeline_validation.track_a.xcomet_scoring INFO Scoring 133 injected translations...
+2026-04-16 01:52:43,027 pytorch_lightning.utilities.rank_zero INFO GPU available: False, used: False
+2026-04-16 01:52:43,028 pytorch_lightning.utilities.rank_zero INFO TPU available: False, using: 0 TPU cores
+2026-04-16 01:52:43,028 pytorch_lightning.utilities.rank_zero INFO \U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+2026-04-16 01:52:43,029 pytorch_lightning.utilities.rank_zero INFO \U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+Predicting: 0it [00:00, ?it/s]Predicting: 0it [00:00, ?it/s]Predicting DataLoader 0:   0%|          | 0/9 [00:00<?, ?it/s]Predicting DataLoader 0:  11%|#1        | 1/9 [00:17<02:20, 17.54s/it]Predicting DataLoader 0:  22%|##2       | 2/9 [00:39<02:19, 19.93s/it]Predicting DataLoader 0:  33%|###3      | 3/9 [00:57<01:55, 19.33s/it]Predicting DataLoader 0:  44%|####4     | 4/9 [01:31<01:54, 22.94s/it]Predicting DataLoader 0:  56%|#####5    | 5/9 [01:58<01:34, 23.64s/it]Predicting DataLoader 0:  67%|######6   | 6/9 [02:25<01:12, 24.19s/it]Predicting DataLoader 0:  78%|#######7  | 7/9 [02:59<00:51, 25.61s/it]Predicting DataLoader 0:  89%|########8 | 8/9 [03:33<00:26, 26.74s/it]Predicting DataLoader 0: 100%|##########| 9/9 [04:01<00:00, 26.80s/it]Predicting DataLoader 0: 100%|##########| 9/9 [04:01<00:00, 26.80s/it]
+2026-04-16 01:56:44,332 experiments.pipeline_validation.track_a.xcomet_scoring INFO xCOMET scoring: mean clean=0.9590, mean injected=0.8399, mean drop=0.1192 (133 items)
+2026-04-16 01:56:44,346 experiments.pipeline_validation.track_a.xcomet_scoring INFO xCOMET scoring results saved to C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\results\track_a\a3_xcomet_scoring.json
+2026-04-16 01:56:44,348 xcomet INFO Mean score (clean): 0.9590
+2026-04-16 01:56:44,348 xcomet INFO Mean score drop (injected): 0.1192
+2026-04-16 01:56:44,348 xcomet INFO   1st_machine: drop=0.0000 n=31
+2026-04-16 01:56:44,348 xcomet INFO   2nd_reader: drop=0.0000 n=43
+2026-04-16 01:56:44,349 xcomet INFO   1st_author: drop=0.0000 n=22
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\logging\__init__.py", line 1100, in emit
+    msg = self.format(record)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\logging\__init__.py", line 943, in format
+    return fmt.format(record)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\logging\__init__.py", line 678, in format
+    record.message = record.getMessage()
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\lib\logging\__init__.py", line 368, in getMessage
+    msg = msg % self.args
+TypeError: must be real number, not dict
+Call stack:
+  File "<string>", line 30, in <module>
+Message: 'Clean stability: %.4f'
+Arguments: {'count': 37, 'mean_abs_drop': 0.0, 'max_abs_drop': 0.0}

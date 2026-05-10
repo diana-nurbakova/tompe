@@ -1,0 +1,19 @@
+\begin{table}[t]
+  \centering
+  \caption{Pipeline validation metrics ($N{=}200$).}
+  \label{tab:pipeline-validation}
+  \small
+  \begin{tabular}{l c c c c}
+    \toprule
+    \textbf{ToM Level} & \textbf{Struct.\ Pass} & \textbf{GEMBA Det.} & \textbf{Cat.\ Agree.} & \textbf{xCOMET $\Delta$} \\
+    \midrule
+    L0 (Machine) & -- & 78.9\% & 40.0\% & 0.0718 \\
+    L1 (Author) & -- & 29.4\% & 70.0\% & 0.0746 \\
+    L2 (Reader) & -- & 59.5\% & 36.4\% & 0.0629 \\
+    L3 (Recursive) & -- & 40.5\% & 60.0\% & 0.0338 \\
+    \midrule
+    \textbf{Overall} & 96.4\% & 52.7\% & 46.8\% & 0.0451 \\
+    Clean ($n$=50) & -- & FP acc.\ 34.0\% & -- & 0.0000 \\
+    \bottomrule
+  \end{tabular}
+\end{table}

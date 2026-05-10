@@ -1,0 +1,21 @@
+\begin{table}[t]
+  \centering
+  \caption{Ablation comparison ($N{=}60$ segments $\times$ 4 conditions).}
+  \label{tab:ablation}
+  \small
+  \begin{tabular}{l c c c c c}
+    \toprule
+    \textbf{Condition} & \textbf{Struct.} & \textbf{GEMBA} & \textbf{Cat.\ Fid.} & \textbf{xCOMET $\Delta$} & \textbf{Text Pres.} \\
+    \midrule
+    B0: Random & 0.0\% & 0.0\% & --\% & 0.0000 & --\% \\
+    B1: Single-step & 64.0\% & 0.0\% & 100.0\% & 0.0000 & 88.0\% \\
+    B2: Unconstrained & 0.0\% & 0.0\% & --\% & 0.0000 & 78.3\% \\
+    \textbf{Full pipeline} & 95.0\% & 0.0\% & 100.0\% & 0.0000 & 90.0\% \\
+    \midrule
+    \multicolumn{6}{l}{\textit{Improvement of full pipeline over baselines:}} \\
+    vs.\ B0: Random & +95.0pp & +0.0pp & -- & -- & -- \\
+    vs.\ B1: Single-step & +31.0pp & +0.0pp & -- & -- & -- \\
+    vs.\ B2: Unconstrained & +95.0pp & +0.0pp & -- & -- & -- \\
+    \bottomrule
+  \end{tabular}
+\end{table}

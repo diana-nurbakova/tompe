@@ -1,0 +1,59 @@
+{
+  "pass_rate": 0.9642857142857143,
+  "total_items": 196,
+  "passed_items": 189,
+  "failed_items": 7,
+  "meets_target": true,
+  "target": 0.9,
+  "per_check_rates": {
+    "xml_tags_parse": 1.0,
+    "tag_attributes": 1.0,
+    "span_offsets": 0.9897959183673469,
+    "surrounding_text": 1.0,
+    "error_presence": 0.9744897959183674
+  },
+  "failures": [
+    {
+      "item_id": "val_0006_eurlex-6e516401358f",
+      "checks_failed": [
+        "error b2dd55be-5bfc-456c-9d41-1729ece5a8e2: span_start (10) >= span_end (10)"
+      ]
+    },
+    {
+      "item_id": "val_0036_eurlex-079915965767",
+      "checks_failed": [
+        "non-clean item: presented_text identical to reference despite having injected errors"
+      ]
+    },
+    {
+      "item_id": "val_0044_eurlex-b872a7935525",
+      "checks_failed": [
+        "non-clean item: presented_text identical to reference despite having injected errors"
+      ]
+    },
+    {
+      "item_id": "val_0048_dgt_tm-d45870d5b1b4",
+      "checks_failed": [
+        "non-clean item: presented_text identical to reference despite having injected errors"
+      ]
+    },
+    {
+      "item_id": "val_0066_eurlex-fcb6e085b9ac",
+      "checks_failed": [
+        "error 30404cf0-97e0-4706-b26c-066e1e290012: span_start (30) >= span_end (30)"
+      ]
+    },
+    {
+      "item_id": "val_0114_dgt_tm-d37977d4206f",
+      "checks_failed": [
+        "non-clean item: presented_text identical to reference despite having injected errors"
+      ]
+    },
+    {
+      "item_id": "val_0120_europarl-48f446fca1ec",
+      "checks_failed": [
+        "non-clean item: presented_text identical to reference despite having injected errors"
+      ]
+    }
+  ]
+}

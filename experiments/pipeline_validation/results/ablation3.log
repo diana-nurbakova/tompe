@@ -1431,3 +1431,404 @@ ValueError: B1 single-step injection failed after 3 attempts for STYLE/register_
 2026-04-16 01:28:50,476 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
 2026-04-16 01:28:53,126 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.7s — tokens=465, content_len=471
 2026-04-16 01:28:53,127 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for TERMINOLOGY/inconsistent: ['Invalid tag/type: TAG/TERMINOLOGY']
+2026-04-16 01:28:54,068 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:54,888 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.8s — tokens=498, content_len=495
+2026-04-16 01:28:54,888 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected TERMINOLOGY/inconsistent (minor) at [141:147]: 'tâches' -> 'tâches'
+2026-04-16 01:28:54,889 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:28:54,889 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:28:55,427 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:55,796 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.9s — tokens=268, content_len=117
+2026-04-16 01:28:55,796 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for LOCALE/date_format: ['Invalid tag/type: TAG/LOCALE', 'Too much text changed outside error span (token overlap 25%)']
+2026-04-16 01:28:56,366 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:57,032 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.2s — tokens=304, content_len=117
+2026-04-16 01:28:57,032 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for LOCALE/date_format: ['Invalid tag/type: TAG/LOCALE', 'Too much text changed outside error span (token overlap 25%)']
+2026-04-16 01:28:57,968 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:58,339 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 1.3s — tokens=303, content_len=117
+2026-04-16 01:28:58,340 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 3/3) for LOCALE/date_format: ['Invalid tag/type: TAG/LOCALE', 'Too much text changed outside error span (token overlap 25%)']
+2026-04-16 01:28:58,340 experiments.pipeline_validation.track_b.ablation_comparison ERROR B1 failed for segment dgt_tm-856f04dcd5c7
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 169, in _run_condition_b1
+    modified_text, errors = await inject_single_step(
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\single_step_inject.py", line 272, in inject_single_step
+    raise ValueError(
+ValueError: B1 single-step injection failed after 3 attempts for LOCALE/date_format. Last errors: ['Invalid tag/type: TAG/LOCALE', 'Too much text changed outside error span (token overlap 25%)']
+2026-04-16 01:28:58,341 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:28:58,341 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:28:58,957 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:28:59,619 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.3s — tokens=427, content_len=370
+2026-04-16 01:28:59,619 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for TERMINOLOGY/institutional: ['Invalid tag/type: TAG/TERMINOLOGY']
+2026-04-16 01:29:00,253 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:00,869 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.3s — tokens=444, content_len=354
+2026-04-16 01:29:00,869 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected TERMINOLOGY/institutional (major) at [27:46]: 'Parlement européen ' -> 'Conseil de l'Europe'
+2026-04-16 01:29:00,870 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:29:00,870 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:29:01,450 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:02,182 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.3s — tokens=405, content_len=352
+2026-04-16 01:29:02,182 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for MISTRANSLATION/word_sense: ['Invalid tag/type: TAG/MISTRANSLATION']
+2026-04-16 01:29:02,727 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:03,518 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.3s — tokens=437, content_len=397
+2026-04-16 01:29:03,518 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected MISTRANSLATION/word_sense (major) at [153:166]: 'recyclage par' -> 'réutilisation'
+2026-04-16 01:29:03,519 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:29:03,520 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:29:04,057 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:04,402 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.9s — tokens=269, content_len=136
+2026-04-16 01:29:04,403 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for GRAMMAR/word_order: ['Invalid tag/type: TAG/GRAMMAR']
+2026-04-16 01:29:04,967 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:05,445 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.0s — tokens=289, content_len=138
+2026-04-16 01:29:05,445 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for GRAMMAR/word_order: ['Invalid tag/type: WORD_ORDER/word_order']
+2026-04-16 01:29:06,008 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:06,354 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 0.9s — tokens=288, content_len=121
+2026-04-16 01:29:06,354 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 3/3) for GRAMMAR/word_order: ['Invalid tag/type: TAG/GRAMMAR']
+2026-04-16 01:29:06,354 experiments.pipeline_validation.track_b.ablation_comparison ERROR B1 failed for segment eurlex-ccaffc6a3d9c
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 169, in _run_condition_b1
+    modified_text, errors = await inject_single_step(
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\single_step_inject.py", line 272, in inject_single_step
+    raise ValueError(
+ValueError: B1 single-step injection failed after 3 attempts for GRAMMAR/word_order. Last errors: ['Invalid tag/type: TAG/GRAMMAR']
+2026-04-16 01:29:06,355 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:29:06,356 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:29:06,900 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:07,460 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.1s — tokens=317, content_len=228
+2026-04-16 01:29:07,460 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for GRAMMAR/word_order: ['Invalid tag/type: TAG/GRAMMAR', 'Too much text changed outside error span (token overlap 59%)']
+2026-04-16 01:29:08,057 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:08,473 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.0s — tokens=353, content_len=229
+2026-04-16 01:29:08,473 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected GRAMMAR/word_order (minor) at [8:53]: 'égalité des chances et négociation collective' -> 'égalité des chances et collective négociation'
+2026-04-16 01:29:08,474 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:29:08,475 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:29:09,044 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:09,469 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.0s — tokens=296, content_len=209
+2026-04-16 01:29:09,469 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for ADDITION/explicitation: ['Too much text changed outside error span (token overlap 60%)']
+2026-04-16 01:29:10,860 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:11,323 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.9s — tokens=328, content_len=232
+2026-04-16 01:29:11,323 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for ADDITION/explicitation: ['Invalid tag/type: TAG/ADDITION', 'Too much text changed outside error span (token overlap 60%)']
+2026-04-16 01:29:11,907 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:12,303 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 1.0s — tokens=336, content_len=224
+2026-04-16 01:29:12,303 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected ADDITION/explicitation (minor) at [57:73]: 'les partenariats' -> 'la mise en œuvre'
+2026-04-16 01:29:12,305 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:29:12,305 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:29:12,946 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:13,332 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.0s — tokens=281, content_len=159
+2026-04-16 01:29:13,332 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for MISTRANSLATION/ambiguity: ['Invalid tag/type: TAG/MISTRANSLATION', 'Too much text changed outside error span (token overlap 60%)']
+2026-04-16 01:29:13,964 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:14,437 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.1s — tokens=321, content_len=168
+2026-04-16 01:29:14,437 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for MISTRANSLATION/ambiguity: ['Invalid tag/type: TAG/MISTRANSLATION', 'Too much text changed outside error span (token overlap 60%)']
+2026-04-16 01:29:15,010 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:15,446 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 1.0s — tokens=315, content_len=146
+2026-04-16 01:29:15,446 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 3/3) for MISTRANSLATION/ambiguity: ['Invalid tag/type: TAG/MISTRANSLATION', 'Too much text changed outside error span (token overlap 60%)']
+2026-04-16 01:29:15,446 experiments.pipeline_validation.track_b.ablation_comparison ERROR B1 failed for segment europarl-34cd74beceba
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 169, in _run_condition_b1
+    modified_text, errors = await inject_single_step(
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\single_step_inject.py", line 272, in inject_single_step
+    raise ValueError(
+ValueError: B1 single-step injection failed after 3 attempts for MISTRANSLATION/ambiguity. Last errors: ['Invalid tag/type: TAG/MISTRANSLATION', 'Too much text changed outside error span (token overlap 60%)']
+2026-04-16 01:29:15,448 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:29:15,449 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:29:16,274 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:17,090 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.6s — tokens=452, content_len=420
+2026-04-16 01:29:17,091 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected MISTRANSLATION/undertranslation (minor) at [242:268]: 'presque à un excès de tran' -> 'à un excès de transparence'
+2026-04-16 01:29:17,092 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:29:17,092 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:29:17,582 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:17,929 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.8s — tokens=273, content_len=138
+2026-04-16 01:29:17,929 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for MISTRANSLATION/number: ['Invalid tag/type: TAG/MISTRANSLATION', 'Too much text changed outside error span (token overlap 0%)']
+2026-04-16 01:29:18,585 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:18,937 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.0s — tokens=314, content_len=132
+2026-04-16 01:29:18,937 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for MISTRANSLATION/number: ['Invalid tag/type: TAG/MISTRANSLATION', 'Too much text changed outside error span (token overlap 0%)']
+2026-04-16 01:29:19,380 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:19,836 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 0.9s — tokens=322, content_len=142
+2026-04-16 01:29:19,837 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 3/3) for MISTRANSLATION/number: ['Invalid tag/type: TAG/MISTRANSLATION', 'Too much text changed outside error span (token overlap 0%)']
+2026-04-16 01:29:19,837 experiments.pipeline_validation.track_b.ablation_comparison ERROR B1 failed for segment dgt_tm-050745359214
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 169, in _run_condition_b1
+    modified_text, errors = await inject_single_step(
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\single_step_inject.py", line 272, in inject_single_step
+    raise ValueError(
+ValueError: B1 single-step injection failed after 3 attempts for MISTRANSLATION/number. Last errors: ['Invalid tag/type: TAG/MISTRANSLATION', 'Too much text changed outside error span (token overlap 0%)']
+2026-04-16 01:29:19,838 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:29:19,838 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:29:20,661 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:21,230 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.4s — tokens=345, content_len=238
+2026-04-16 01:29:21,230 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected STYLE/awkward (minor) at [21:34]: 'porter une ma' -> 'avoir sur eux'
+2026-04-16 01:29:21,232 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:29:21,233 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:29:22,067 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:22,507 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.3s — tokens=340, content_len=266
+2026-04-16 01:29:22,507 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for GRAMMAR/agreement_number: ['Invalid tag/type: TAG/GRAMMAR', 'Too much text changed outside error span (token overlap 68%)']
+2026-04-16 01:29:23,073 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:23,522 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.0s — tokens=375, content_len=265
+2026-04-16 01:29:23,522 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for GRAMMAR/agreement_number: ['Invalid tag/type: TAG/GRAMMAR', 'Too much text changed outside error span (token overlap 68%)']
+2026-04-16 01:29:24,061 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:24,493 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 1.0s — tokens=376, content_len=271
+2026-04-16 01:29:24,493 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 3/3) for GRAMMAR/agreement_number: ['Invalid tag/type: TAG/GRAMMAR', 'Too much text changed outside error span (token overlap 68%)']
+2026-04-16 01:29:24,493 experiments.pipeline_validation.track_b.ablation_comparison ERROR B1 failed for segment eurlex-a8e31b3add6e
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 169, in _run_condition_b1
+    modified_text, errors = await inject_single_step(
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\single_step_inject.py", line 272, in inject_single_step
+    raise ValueError(
+ValueError: B1 single-step injection failed after 3 attempts for GRAMMAR/agreement_number. Last errors: ['Invalid tag/type: TAG/GRAMMAR', 'Too much text changed outside error span (token overlap 68%)']
+2026-04-16 01:29:24,494 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:29:24,495 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:29:25,487 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:26,386 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.9s — tokens=296, content_len=165
+2026-04-16 01:29:26,386 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected LOCALE/time_format (minor) at [41:44]: '2.3' -> '2.3'
+2026-04-16 01:29:26,386 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:29:26,387 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:29:27,231 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:27,581 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.2s — tokens=261, content_len=122
+2026-04-16 01:29:27,581 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for TERMINOLOGY/institutional: ['Invalid tag/type: TAG/TERMINOLOGY', 'Too much text changed outside error span (token overlap 0%)']
+2026-04-16 01:29:28,210 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:28,654 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.1s — tokens=304, content_len=157
+2026-04-16 01:29:28,654 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for TERMINOLOGY/institutional: ['Too much text changed outside error span (token overlap 25%)']
+2026-04-16 01:29:29,240 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:29,677 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 1.0s — tokens=296, content_len=157
+2026-04-16 01:29:29,677 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected TERMINOLOGY/institutional (major) at [0:11]: 'considérant' -> 'Attendu que'
+2026-04-16 01:29:29,678 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:29:29,679 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:29:30,397 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:31,020 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.3s — tokens=327, content_len=269
+2026-04-16 01:29:31,020 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected MISTRANSLATION/overtranslation (minor) at [85:97]: 'sans aucun d' -> 'certainement'
+2026-04-16 01:29:31,022 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:29:31,022 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:29:31,730 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:32,112 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.1s — tokens=273, content_len=135
+2026-04-16 01:29:32,112 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for TERMINOLOGY/institutional: ['Invalid tag/type: TAG/TERMINOLOGY', 'Too much text changed outside error span (token overlap 33%)']
+2026-04-16 01:29:32,701 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:33,090 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.0s — tokens=320, content_len=169
+2026-04-16 01:29:33,090 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for TERMINOLOGY/institutional: ['Invalid tag/type: TAG/TERMINOLOGY']
+2026-04-16 01:29:33,718 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:34,157 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 1.1s — tokens=304, content_len=165
+2026-04-16 01:29:34,157 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected TERMINOLOGY/institutional (major) at [20:29]: 'Amsterdam' -> 'Rotterdam'
+2026-04-16 01:29:34,158 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:29:34,159 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:29:34,701 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:35,496 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.3s — tokens=429, content_len=310
+2026-04-16 01:29:35,496 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for GRAMMAR/agreement_number: ['Invalid tag/type: TAG/GRAMMAR']
+2026-04-16 01:29:36,226 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:36,912 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.4s — tokens=459, content_len=343
+2026-04-16 01:29:36,912 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected GRAMMAR/agreement_number (minor) at [101:116]: 'certains aspect' -> 'certains aspect'
+2026-04-16 01:29:36,913 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:29:36,914 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:29:37,492 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:38,011 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.1s — tokens=348, content_len=250
+2026-04-16 01:29:38,011 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for LOCALE/date_format: ['Invalid tag/type: TAG/LOCALE/date_format']
+2026-04-16 01:29:38,568 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:39,023 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.0s — tokens=368, content_len=230
+2026-04-16 01:29:39,024 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for LOCALE/date_format: ['Invalid tag/type: TAG/LOCALE']
+2026-04-16 01:29:39,622 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:40,239 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 1.2s — tokens=377, content_len=236
+2026-04-16 01:29:40,239 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 3/3) for LOCALE/date_format: ['Invalid tag/type: DATE_FORMAT/minor']
+2026-04-16 01:29:40,239 experiments.pipeline_validation.track_b.ablation_comparison ERROR B1 failed for segment dgt_tm-949e1468ac30
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 169, in _run_condition_b1
+    modified_text, errors = await inject_single_step(
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\single_step_inject.py", line 272, in inject_single_step
+    raise ValueError(
+ValueError: B1 single-step injection failed after 3 attempts for LOCALE/date_format. Last errors: ['Invalid tag/type: DATE_FORMAT/minor']
+2026-04-16 01:29:40,241 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:29:40,241 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:29:40,854 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:41,290 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.0s — tokens=341, content_len=244
+2026-04-16 01:29:41,290 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for TERMINOLOGY/institutional: ['Invalid tag/type: TAG/TERMINOLOGY']
+2026-04-16 01:29:41,853 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:42,662 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.4s — tokens=379, content_len=312
+2026-04-16 01:29:42,663 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected TERMINOLOGY/institutional (major) at [30:51]: 'dirigeants politiques' -> 'dirigeants politiques'
+2026-04-16 01:29:42,664 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:29:42,664 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:29:43,232 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:43,578 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.9s — tokens=323, content_len=258
+2026-04-16 01:29:43,579 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for LOCALE/date_format: ['Invalid tag/type: TAG/LOCALE/date_format']
+2026-04-16 01:29:44,073 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:44,443 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.9s — tokens=345, content_len=256
+2026-04-16 01:29:44,443 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for LOCALE/date_format: ['Invalid tag/type: TAG/LOCALE/date_format']
+2026-04-16 01:29:45,107 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:45,889 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 1.5s — tokens=343, content_len=244
+2026-04-16 01:29:45,889 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 3/3) for LOCALE/date_format: ['Invalid tag/type: TAG/LOCALE']
+2026-04-16 01:29:45,889 experiments.pipeline_validation.track_b.ablation_comparison ERROR B1 failed for segment europarl-42b4618251f9
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 169, in _run_condition_b1
+    modified_text, errors = await inject_single_step(
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\single_step_inject.py", line 272, in inject_single_step
+    raise ValueError(
+ValueError: B1 single-step injection failed after 3 attempts for LOCALE/date_format. Last errors: ['Invalid tag/type: TAG/LOCALE']
+2026-04-16 01:29:45,890 tompe.pipeline.codebook INFO Loaded codebook with 3 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 01:29:45,891 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 01:29:46,459 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:47,190 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.3s — tokens=374, content_len=373
+2026-04-16 01:29:47,190 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected LOCALE/number_format (minor) at [196:201]: 'forte' -> '1,000'
+2026-04-16 01:29:47,587 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:47,879 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.7s — tokens=241, content_len=93
+2026-04-16 01:29:47,880 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [48:57]: 'pr' -> 'objectifs'
+2026-04-16 01:29:48,274 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:48,451 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.6s — tokens=240, content_len=119
+2026-04-16 01:29:48,451 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [46:71]: 'formation et l'enseigneme' -> 'formation professionnelle'
+2026-04-16 01:29:48,806 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:48,911 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.5s — tokens=212, content_len=63
+2026-04-16 01:29:48,911 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [20:27]: 'réseaux' -> 'groupes'
+2026-04-16 01:29:49,316 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:49,687 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.8s — tokens=334, content_len=257
+2026-04-16 01:29:49,688 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [138:155]: 'et de l'Allemagne' -> 'et de la Finlande'
+2026-04-16 01:29:50,103 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:50,376 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.7s — tokens=301, content_len=214
+2026-04-16 01:29:50,377 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [110:131]: 'c' -> 'solutions pertinentes'
+2026-04-16 01:29:50,781 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:51,475 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.1s — tokens=315, content_len=215
+2026-04-16 01:29:51,476 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [158:199]: 'l' -> 'certaines parties de la région concernées'
+2026-04-16 01:29:51,895 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:52,030 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.6s — tokens=213, content_len=44
+2026-04-16 01:29:52,030 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [7:14]: 'Comité ' -> 'Conseil'
+2026-04-16 01:29:52,473 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:52,881 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.8s — tokens=251, content_len=91
+2026-04-16 01:29:52,882 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [39:44]: 'AVEC ' -> 'ENTRE'
+2026-04-16 01:29:53,286 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:53,800 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.9s — tokens=320, content_len=284
+2026-04-16 01:29:53,800 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [160:177]: 'respectant' -> 'ne respectant pas'
+2026-04-16 01:29:54,211 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:54,708 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.9s — tokens=329, content_len=285
+2026-04-16 01:29:54,709 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [245:257]: 'peu' -> 'relativement'
+2026-04-16 01:29:55,085 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:55,388 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.7s — tokens=290, content_len=185
+2026-04-16 01:29:55,389 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected STYLE (guessed) at [92:139]: 'depuis que je suis engagé dans la politique, à ' -> 'depuis que je suis actif dans le secteur public'
+2026-04-16 01:29:55,760 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:55,844 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.5s — tokens=201, content_len=39
+2026-04-16 01:29:55,844 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [0:11]: 'A' -> 'Royaume-Uni'
+2026-04-16 01:29:56,224 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:56,389 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.5s — tokens=230, content_len=77
+2026-04-16 01:29:56,389 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [11:15]: 'l' -> 'idée'
+2026-04-16 01:29:56,752 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:57,008 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.6s — tokens=275, content_len=150
+2026-04-16 01:29:57,008 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [64:74]: '\u0393admini' -> 'le secteur'
+2026-04-16 01:29:57,380 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:57,605 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.6s — tokens=245, content_len=83
+2026-04-16 01:29:57,605 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [12:21]: 'directive' -> 'règlement'
+2026-04-16 01:29:57,958 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:58,520 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.9s — tokens=303, content_len=236
+2026-04-16 01:29:58,520 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [183:206]: 'investissement direct d' -> 'investissement indirect'
+2026-04-16 01:29:58,959 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:29:59,238 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.7s — tokens=233, content_len=91
+2026-04-16 01:29:59,238 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [39:47]: 'a' -> 'soutenir'
+2026-04-16 01:29:59,658 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:00,188 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.0s — tokens=249, content_len=113
+2026-04-16 01:30:00,188 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [61:69]: 'durée de' -> 'validité'
+2026-04-16 01:30:00,668 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:00,892 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.7s — tokens=243, content_len=52
+2026-04-16 01:30:00,893 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [9:19]: 'du 27.4.20' -> 'en date du'
+2026-04-16 01:30:01,251 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:01,445 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.5s — tokens=262, content_len=134
+2026-04-16 01:30:01,446 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [33:36]: 'dan' -> 'sur'
+2026-04-16 01:30:01,887 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:03,267 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.8s — tokens=331, content_len=309
+2026-04-16 01:30:03,267 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [262:269]: 'en particulier' -> 'surtout'
+2026-04-16 01:30:03,655 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:03,732 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.5s — tokens=198, content_len=35
+2026-04-16 01:30:03,732 experiments.pipeline_validation.baselines.unconstrained_inject WARNING B2 verification failed (attempt 1/3): ['Too much text changed (token overlap 50%, need >= 60%)']
+2026-04-16 01:30:04,075 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:04,184 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.5s — tokens=236, content_len=35
+2026-04-16 01:30:04,184 experiments.pipeline_validation.baselines.unconstrained_inject WARNING B2 verification failed (attempt 2/3): ['Too much text changed (token overlap 50%, need >= 60%)']
+2026-04-16 01:30:04,647 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:04,813 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 0.6s — tokens=236, content_len=34
+2026-04-16 01:30:04,813 experiments.pipeline_validation.baselines.unconstrained_inject WARNING B2 verification failed (attempt 3/3): ['Too much text changed (token overlap 0%, need >= 60%)']
+2026-04-16 01:30:04,813 experiments.pipeline_validation.track_b.ablation_comparison ERROR B2 failed for segment eurlex-c76fd4479cbd
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 187, in _run_condition_b2
+    modified_text, errors = await inject_unconstrained(seg, llm_config=llm_config)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\unconstrained_inject.py", line 281, in inject_unconstrained
+    raise ValueError(
+ValueError: B2 unconstrained injection failed after 3 attempts. Last errors: ['Too much text changed (token overlap 0%, need >= 60%)']
+2026-04-16 01:30:05,173 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:05,737 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.9s — tokens=383, content_len=351
+2026-04-16 01:30:05,738 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [213:233]: 'fermeture définitive' -> 'fermeture temporaire'
+2026-04-16 01:30:06,097 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:06,343 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.6s — tokens=270, content_len=173
+2026-04-16 01:30:06,344 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [145:148]: 'conce' -> 'sur'
+2026-04-16 01:30:06,736 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:07,249 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.9s — tokens=395, content_len=356
+2026-04-16 01:30:07,250 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [233:243]: 'renforcement du personnel et d'un approfondissement des missions allant ' -> 'ajustement'
+2026-04-16 01:30:07,637 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:07,756 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.5s — tokens=209, content_len=31
+2026-04-16 01:30:07,757 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [0:2]: 'du' -> 'le'
+2026-04-16 01:30:08,294 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:08,831 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.1s — tokens=353, content_len=246
+2026-04-16 01:30:08,832 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [162:170]: 'présent' -> 'utilisés'
+2026-04-16 01:30:09,211 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:09,632 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.8s — tokens=324, content_len=237
+2026-04-16 01:30:09,633 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [184:193]: 'tout au moins' -> 'notamment'
+2026-04-16 01:30:10,057 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:10,234 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.6s — tokens=206, content_len=47
+2026-04-16 01:30:10,235 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected GRAMMAR (guessed) at [0:24]: 'Le Fonds social européen' -> 'Le Fonds européen social'
+2026-04-16 01:30:10,684 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:11,187 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.0s — tokens=256, content_len=129
+2026-04-16 01:30:11,188 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected GRAMMAR (guessed) at [67:72]: 'liens' -> 'liens'
+2026-04-16 01:30:11,553 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:11,730 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.5s — tokens=234, content_len=104
+2026-04-16 01:30:11,730 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [25:34]: 'inquiétud' -> 'questions'
+2026-04-16 01:30:12,134 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:12,228 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.5s — tokens=204, content_len=34
+2026-04-16 01:30:12,228 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [0:4]: 'M' -> 'Nous'
+2026-04-16 01:30:12,666 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:13,111 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.9s — tokens=377, content_len=291
+2026-04-16 01:30:13,111 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [242:248]: 'presqu' -> 'plutôt'
+2026-04-16 01:30:13,698 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:13,867 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.8s — tokens=212, content_len=43
+2026-04-16 01:30:13,867 experiments.pipeline_validation.baselines.unconstrained_inject WARNING B2 verification failed (attempt 1/3): ['Output length ratio suspicious: 4.00 (clean=28, ref=7)', 'Too much text changed (token overlap 0%, need >= 60%)']
+2026-04-16 01:30:14,240 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:14,401 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 0.5s — tokens=262, content_len=23
+2026-04-16 01:30:14,401 experiments.pipeline_validation.baselines.unconstrained_inject WARNING B2 verification failed (attempt 2/3): ['Too much text changed (token overlap 0%, need >= 60%)']
+2026-04-16 01:30:14,766 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:14,869 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 0.5s — tokens=242, content_len=23
+2026-04-16 01:30:14,869 experiments.pipeline_validation.baselines.unconstrained_inject WARNING B2 verification failed (attempt 3/3): ['Too much text changed (token overlap 0%, need >= 60%)']
+2026-04-16 01:30:14,869 experiments.pipeline_validation.track_b.ablation_comparison ERROR B2 failed for segment dgt_tm-050745359214
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 187, in _run_condition_b2
+    modified_text, errors = await inject_unconstrained(seg, llm_config=llm_config)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\unconstrained_inject.py", line 281, in inject_unconstrained
+    raise ValueError(
+ValueError: B2 unconstrained injection failed after 3 attempts. Last errors: ['Too much text changed (token overlap 0%, need >= 60%)']
+2026-04-16 01:30:15,294 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:15,633 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.8s — tokens=287, content_len=156
+2026-04-16 01:30:15,634 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [72:89]: 'd' -> 'similaire à celle'
+2026-04-16 01:30:16,065 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:16,622 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.0s — tokens=278, content_len=163
+2026-04-16 01:30:16,623 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [101:114]: 't' -> 'niveau de vie'
+2026-04-16 01:30:17,033 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:17,304 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.7s — tokens=235, content_len=60
+2026-04-16 01:30:17,304 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [21:40]: 'activité principale' -> 'activité secondaire'
+2026-04-16 01:30:17,803 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:17,878 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.6s — tokens=199, content_len=30
+2026-04-16 01:30:17,879 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [0:2]: 'considérant' -> 'Vu'
+2026-04-16 01:30:18,417 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:18,556 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.7s — tokens=250, content_len=130
+2026-04-16 01:30:18,556 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected STYLE (guessed) at [0:57]: 'Le prochain voyage que le Parlement européen effectuera d' -> 'Le prochain voyage que le Président du Parlement européen'
+2026-04-16 01:30:18,968 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:19,107 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.6s — tokens=211, content_len=48
+2026-04-16 01:30:19,108 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [3:19]: 'qu'a-t-on fait à' -> 'qu'a-t-on décidé'
+2026-04-16 01:30:19,528 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:19,937 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.8s — tokens=366, content_len=200
+2026-04-16 01:30:19,938 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [101:107]: 'c' -> 'divers'
+2026-04-16 01:30:20,340 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:20,670 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.7s — tokens=279, content_len=111
+2026-04-16 01:30:20,670 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [62:66]: 'À L'ÉGA' -> 'POUR'
+2026-04-16 01:30:21,164 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:21,371 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.7s — tokens=272, content_len=141
+2026-04-16 01:30:21,371 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [90:98]: 'réagir c' -> 'répondre'
+2026-04-16 01:30:21,912 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:22,199 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.8s — tokens=262, content_len=160
+2026-04-16 01:30:22,199 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [113:122]: 'dans chaq' -> 'au niveau'
+2026-04-16 01:30:22,618 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 01:30:22,989 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.8s — tokens=300, content_len=224
+2026-04-16 01:30:22,989 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [185:208]: 'Commission forte.' -> 'Commission indépendante'
+2026-04-16 01:30:22,997 experiments.pipeline_validation.track_b.ablation_comparison WARNING track_a.xcomet_scoring not available; using stub
+2026-04-16 01:30:23,004 experiments.pipeline_validation.track_b.ablation_comparison INFO Condition B0_random: 31 items, structural=0.03, gemba=0.00
+2026-04-16 01:30:23,004 experiments.pipeline_validation.track_b.ablation_comparison WARNING track_a.xcomet_scoring not available; using stub
+2026-04-16 01:30:23,018 experiments.pipeline_validation.track_b.ablation_comparison INFO Condition B1_single_step: 29 items, structural=0.72, gemba=0.00
+2026-04-16 01:30:23,018 experiments.pipeline_validation.track_b.ablation_comparison WARNING track_a.xcomet_scoring not available; using stub
+2026-04-16 01:30:23,038 experiments.pipeline_validation.track_b.ablation_comparison INFO Condition B2_unconstrained: 43 items, structural=0.00, gemba=0.00
+2026-04-16 01:30:23,038 experiments.pipeline_validation.track_b.ablation_comparison WARNING track_a.xcomet_scoring not available; using stub
+2026-04-16 01:30:23,061 experiments.pipeline_validation.track_b.ablation_comparison INFO Condition full_pipeline: 45 items, structural=0.53, gemba=0.00
+2026-04-16 01:30:23,064 experiments.pipeline_validation.track_b.ablation_comparison INFO Ablation results saved to C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\results\track_b\ablation_results.json
+2026-04-16 01:30:23,064 runner INFO   B0_random: n=31 struct=3% cat=N/A text=N/A
+2026-04-16 01:30:23,064 runner INFO   B1_single_step: n=29 struct=72% cat=100% text=59%
+2026-04-16 01:30:23,064 runner INFO   B2_unconstrained: n=43 struct=0% cat=N/A text=51%
+2026-04-16 01:30:23,064 runner INFO   full_pipeline: n=45 struct=53% cat=100% text=0%

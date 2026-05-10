@@ -1,0 +1,1427 @@
+{
+  "mean_score_clean": 0.947396,
+  "mean_score_injected": 0.902288,
+  "mean_score_drop": 0.045109,
+  "total_items": 196,
+  "injected_items": 146,
+  "clean_items": 50,
+  "model": "Unbabel/wmt22-comet-da",
+  "by_tom_level": {
+    "2nd_reader": {
+      "count": 37,
+      "mean_score": 0.894087,
+      "mean_drop": 0.06288
+    },
+    "recursive": {
+      "count": 37,
+      "mean_score": 0.884614,
+      "mean_drop": 0.033757
+    },
+    "1st_author": {
+      "count": 34,
+      "mean_score": 0.88427,
+      "mean_drop": 0.074649
+    },
+    "1st_machine": {
+      "count": 38,
+      "mean_score": 0.877718,
+      "mean_drop": 0.07178
+    }
+  },
+  "by_severity": {
+    "major": {
+      "count": 90,
+      "mean_score": 0.884795,
+      "mean_drop": 0.06445
+    },
+    "minor": {
+      "count": 43,
+      "mean_score": 0.896392,
+      "mean_drop": 0.046307
+    },
+    "critical": {
+      "count": 13,
+      "mean_score": 0.850305,
+      "mean_drop": 0.080738
+    }
+  },
+  "clean_stability": {
+    "count": 50,
+    "mean_abs_drop": 0.0,
+    "max_abs_drop": 0.0
+  },
+  "per_item": [
+    {
+      "item_id": "val_0000_dgt_tm-afe8215fb11e",
+      "score_clean": 0.954938,
+      "score_injected": 0.873976,
+      "score_drop": 0.080962,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0001_dgt_tm-2d1730162e46",
+      "score_clean": 0.91693,
+      "score_injected": 0.883443,
+      "score_drop": 0.033487,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0002_dgt_tm-0ad72f415a4a",
+      "score_clean": 0.92767,
+      "score_injected": 0.915407,
+      "score_drop": 0.012263,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0003_dgt_tm-2460e0bd657b",
+      "score_clean": 0.941808,
+      "score_injected": 0.935331,
+      "score_drop": 0.006476,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0004_dgt_tm-f663671a8aa7",
+      "score_clean": 0.923636,
+      "score_injected": 0.859477,
+      "score_drop": 0.064159,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0005_eurlex-45faa8dbead4",
+      "score_clean": 0.909328,
+      "score_injected": 0.877011,
+      "score_drop": 0.032316,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0006_eurlex-6e516401358f",
+      "score_clean": 0.975399,
+      "score_injected": 0.565248,
+      "score_drop": 0.410151,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0007_europarl-cfce360d78d7",
+      "score_clean": 0.943311,
+      "score_injected": 0.887,
+      "score_drop": 0.056311,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0008_dgt_tm-affbc0001356",
+      "score_clean": 0.930984,
+      "score_injected": 0.903326,
+      "score_drop": 0.027658,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0009_europarl-a29c19db9d52",
+      "score_clean": 0.966958,
+      "score_injected": 0.908531,
+      "score_drop": 0.058427,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0010_europarl-3d849bd14842+europarl-b0d5eeb26baa",
+      "score_clean": 0.940152,
+      "score_injected": 0.909246,
+      "score_drop": 0.030906,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0011_dgt_tm-4d1653542064",
+      "score_clean": 0.981432,
+      "score_injected": 0.885655,
+      "score_drop": 0.095777,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0012_europarl-19bc49beb0d0",
+      "score_clean": 0.977279,
+      "score_injected": 0.835048,
+      "score_drop": 0.142231,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0013_dgt_tm-6bf1c9add024",
+      "score_clean": 0.908047,
+      "score_injected": 0.822017,
+      "score_drop": 0.08603,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0014_eurlex-93bc4f57bcaa",
+      "score_clean": 0.977318,
+      "score_injected": 0.91592,
+      "score_drop": 0.061397,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0015_eurlex-48a60d6e2f21",
+      "score_clean": 0.930122,
+      "score_injected": 0.9212,
+      "score_drop": 0.008922,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0016_europarl-1a480052626e+europarl-a4b6358efb81",
+      "score_clean": 0.941349,
+      "score_injected": 0.917065,
+      "score_drop": 0.024284,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0017_dgt_tm-833cce3d3561",
+      "score_clean": 0.980808,
+      "score_injected": 0.89513,
+      "score_drop": 0.085678,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0018_eurlex-4cc5351ba532",
+      "score_clean": 0.988751,
+      "score_injected": 0.809669,
+      "score_drop": 0.179083,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0019_dgt_tm-36fd9d780aaa",
+      "score_clean": 0.985267,
+      "score_injected": 0.941619,
+      "score_drop": 0.043648,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0020_eurlex-ff73456f4e87",
+      "score_clean": 0.981593,
+      "score_injected": 0.920444,
+      "score_drop": 0.061149,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0021_dgt_tm-14ba01751281",
+      "score_clean": 0.970942,
+      "score_injected": 0.929376,
+      "score_drop": 0.041567,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0022_dgt_tm-7c809645d979",
+      "score_clean": 0.982452,
+      "score_injected": 0.962584,
+      "score_drop": 0.019868,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0023_eurlex-1dbf4983bc03",
+      "score_clean": 0.899016,
+      "score_injected": 0.861721,
+      "score_drop": 0.037295,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0024_dgt_tm-641d0a296dc4",
+      "score_clean": 0.913246,
+      "score_injected": 0.900244,
+      "score_drop": 0.013002,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0025_eurlex-c14cceb19e73",
+      "score_clean": 0.945857,
+      "score_injected": 0.785065,
+      "score_drop": 0.160793,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0026_eurlex-e5abb5a658e2",
+      "score_clean": 0.927425,
+      "score_injected": 0.861243,
+      "score_drop": 0.066182,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0027_europarl-77f04687e99a",
+      "score_clean": 0.94402,
+      "score_injected": 0.891475,
+      "score_drop": 0.052545,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0028_europarl-fe604332dfb2",
+      "score_clean": 0.955254,
+      "score_injected": 0.923502,
+      "score_drop": 0.031752,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0029_dgt_tm-2f7a0bc8602e",
+      "score_clean": 0.985806,
+      "score_injected": 0.699063,
+      "score_drop": 0.286743,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0030_europarl-abe48b765077",
+      "score_clean": 0.958033,
+      "score_injected": 0.931627,
+      "score_drop": 0.026405,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0031_dgt_tm-9c48981d8747",
+      "score_clean": 0.980942,
+      "score_injected": 0.953656,
+      "score_drop": 0.027285,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0032_dgt_tm-af6a5bcf3b31",
+      "score_clean": 0.927815,
+      "score_injected": 0.909923,
+      "score_drop": 0.017892,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0033_europarl-8103c5641347",
+      "score_clean": 0.923905,
+      "score_injected": 0.819288,
+      "score_drop": 0.104617,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0034_eurlex-dff673cfd540",
+      "score_clean": 0.921751,
+      "score_injected": 0.876981,
+      "score_drop": 0.04477,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0035_eurlex-a79bab4a5bb8",
+      "score_clean": 0.916938,
+      "score_injected": 0.837162,
+      "score_drop": 0.079776,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0036_eurlex-079915965767",
+      "score_clean": 0.962689,
+      "score_injected": 0.962689,
+      "score_drop": 0.0,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0037_eurlex-89c03f797081",
+      "score_clean": 0.980123,
+      "score_injected": 0.928088,
+      "score_drop": 0.052036,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0038_dgt_tm-2d78b42f8e4d",
+      "score_clean": 0.967685,
+      "score_injected": 0.917883,
+      "score_drop": 0.049801,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0039_dgt_tm-b0817ce4bef1",
+      "score_clean": 0.954208,
+      "score_injected": 0.924267,
+      "score_drop": 0.02994,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0040_europarl-cc7d50e5cb6d",
+      "score_clean": 0.957225,
+      "score_injected": 0.942119,
+      "score_drop": 0.015105,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0041_dgt_tm-7eb80a4adca8",
+      "score_clean": 0.92116,
+      "score_injected": 0.90151,
+      "score_drop": 0.01965,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0042_dgt_tm-81487f28c348",
+      "score_clean": 0.91441,
+      "score_injected": 0.867617,
+      "score_drop": 0.046793,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0043_europarl-2300c03e7888",
+      "score_clean": 0.96033,
+      "score_injected": 0.841558,
+      "score_drop": 0.118773,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0044_eurlex-b872a7935525",
+      "score_clean": 0.979578,
+      "score_injected": 0.979578,
+      "score_drop": 0.0,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0045_eurlex-ef8411546837",
+      "score_clean": 0.925109,
+      "score_injected": 0.897799,
+      "score_drop": 0.027311,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0046_europarl-32e3966ca8f7",
+      "score_clean": 0.936421,
+      "score_injected": 0.916039,
+      "score_drop": 0.020381,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0047_dgt_tm-83fcfd10af57",
+      "score_clean": 0.962534,
+      "score_injected": 0.882476,
+      "score_drop": 0.080058,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0048_dgt_tm-d45870d5b1b4",
+      "score_clean": 0.972795,
+      "score_injected": 0.972795,
+      "score_drop": 0.0,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0049_eurlex-43e8bf2dcb7a",
+      "score_clean": 0.958763,
+      "score_injected": 0.687663,
+      "score_drop": 0.2711,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0050_europarl-f163e9f13d57",
+      "score_clean": 0.909725,
+      "score_injected": 0.887814,
+      "score_drop": 0.021911,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0051_europarl-10ab5d1bb7c6",
+      "score_clean": 0.965245,
+      "score_injected": 0.940688,
+      "score_drop": 0.024557,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0052_eurlex-4b81445a1624",
+      "score_clean": 0.958433,
+      "score_injected": 0.91577,
+      "score_drop": 0.042663,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0053_eurlex-75d135c5de9c",
+      "score_clean": 0.906367,
+      "score_injected": 0.893414,
+      "score_drop": 0.012954,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0054_dgt_tm-502d0f51255b",
+      "score_clean": 0.931199,
+      "score_injected": 0.912945,
+      "score_drop": 0.018253,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0055_dgt_tm-12a5edbd44f0",
+      "score_clean": 0.970663,
+      "score_injected": 0.953479,
+      "score_drop": 0.017184,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0056_dgt_tm-e671a1b9b73e+dgt_tm-92c032308bfe",
+      "score_clean": 0.937247,
+      "score_injected": 0.90932,
+      "score_drop": 0.027927,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0057_eurlex-0378007c5d22",
+      "score_clean": 0.892853,
+      "score_injected": 0.87066,
+      "score_drop": 0.022192,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0058_eurlex-a309de11a392",
+      "score_clean": 0.948208,
+      "score_injected": 0.896988,
+      "score_drop": 0.05122,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0059_dgt_tm-970f8ae00040",
+      "score_clean": 0.985846,
+      "score_injected": 0.934972,
+      "score_drop": 0.050874,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0061_eurlex-9a37616cd12b",
+      "score_clean": 0.853072,
+      "score_injected": 0.839169,
+      "score_drop": 0.013903,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0063_dgt_tm-a698d50a5f02",
+      "score_clean": 0.972262,
+      "score_injected": 0.881523,
+      "score_drop": 0.09074,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0064_eurlex-5a31a3ece133",
+      "score_clean": 0.976979,
+      "score_injected": 0.954614,
+      "score_drop": 0.022365,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0065_dgt_tm-135f8bf96016",
+      "score_clean": 0.976295,
+      "score_injected": 0.950489,
+      "score_drop": 0.025806,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0066_eurlex-fcb6e085b9ac",
+      "score_clean": 0.974536,
+      "score_injected": 0.568777,
+      "score_drop": 0.405759,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0067_dgt_tm-7cac452228f6",
+      "score_clean": 0.914637,
+      "score_injected": 0.859087,
+      "score_drop": 0.05555,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0068_eurlex-cc5adc5f44fd",
+      "score_clean": 0.952202,
+      "score_injected": 0.943668,
+      "score_drop": 0.008535,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0069_eurlex-a92766010d51",
+      "score_clean": 0.937206,
+      "score_injected": 0.90892,
+      "score_drop": 0.028286,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0070_europarl-03ef2894dbbc",
+      "score_clean": 0.927931,
+      "score_injected": 0.744657,
+      "score_drop": 0.183274,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0071_europarl-50f97416364c",
+      "score_clean": 0.865109,
+      "score_injected": 0.821332,
+      "score_drop": 0.043778,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0072_europarl-ba68bbe0625e",
+      "score_clean": 0.945556,
+      "score_injected": 0.905257,
+      "score_drop": 0.0403,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0073_dgt_tm-e837cd40bfe8",
+      "score_clean": 0.934046,
+      "score_injected": 0.901802,
+      "score_drop": 0.032245,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0074_eurlex-92976eebf34c",
+      "score_clean": 0.941293,
+      "score_injected": 0.917788,
+      "score_drop": 0.023506,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0075_eurlex-76f0fa62a10b",
+      "score_clean": 0.963582,
+      "score_injected": 0.913265,
+      "score_drop": 0.050317,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0076_eurlex-6de5ca633e63",
+      "score_clean": 0.950517,
+      "score_injected": 0.928897,
+      "score_drop": 0.02162,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0077_europarl-c7e03dc9e911+europarl-0515ee1eb6f6",
+      "score_clean": 0.935305,
+      "score_injected": 0.92204,
+      "score_drop": 0.013265,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0078_eurlex-45e8127c5eb0",
+      "score_clean": 0.962093,
+      "score_injected": 0.928583,
+      "score_drop": 0.033509,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0079_europarl-1629538b98ed+europarl-3fd51a0dd38f",
+      "score_clean": 0.890023,
+      "score_injected": 0.850139,
+      "score_drop": 0.039884,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0080_dgt_tm-d0e353a5f356",
+      "score_clean": 0.989284,
+      "score_injected": 0.961097,
+      "score_drop": 0.028187,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0081_dgt_tm-79c501f38edd+dgt_tm-aa6a55387617",
+      "score_clean": 0.92183,
+      "score_injected": 0.900924,
+      "score_drop": 0.020906,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0082_europarl-0d49af3ebf89",
+      "score_clean": 0.944172,
+      "score_injected": 0.877329,
+      "score_drop": 0.066843,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0083_dgt_tm-329d334ef1a3",
+      "score_clean": 0.918404,
+      "score_injected": 0.887644,
+      "score_drop": 0.03076,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0084_eurlex-cbcc560c0adc",
+      "score_clean": 0.966647,
+      "score_injected": 0.786937,
+      "score_drop": 0.17971,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0086_europarl-34194dcd04c7",
+      "score_clean": 0.958722,
+      "score_injected": 0.915158,
+      "score_drop": 0.043564,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0087_dgt_tm-4812bc2c5999",
+      "score_clean": 0.96356,
+      "score_injected": 0.942052,
+      "score_drop": 0.021507,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0088_dgt_tm-95b26dfebfb9+dgt_tm-0f92cc8e3309",
+      "score_clean": 0.964407,
+      "score_injected": 0.948079,
+      "score_drop": 0.016328,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0089_dgt_tm-c4e9a0fea8aa",
+      "score_clean": 0.935711,
+      "score_injected": 0.825793,
+      "score_drop": 0.109918,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0090_europarl-b61b8faeb06a",
+      "score_clean": 0.968695,
+      "score_injected": 0.94664,
+      "score_drop": 0.022055,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0091_europarl-20544be58e66",
+      "score_clean": 0.928575,
+      "score_injected": 0.907802,
+      "score_drop": 0.020773,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0092_dgt_tm-3e0b543ddfff",
+      "score_clean": 0.967864,
+      "score_injected": 0.93225,
+      "score_drop": 0.035613,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0094_dgt_tm-5ea21aec52a9+dgt_tm-99e06c7d8fb1",
+      "score_clean": 0.914743,
+      "score_injected": 0.832471,
+      "score_drop": 0.082272,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0095_dgt_tm-55373a33fc16",
+      "score_clean": 0.988915,
+      "score_injected": 0.975316,
+      "score_drop": 0.013599,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0096_dgt_tm-24f676af9a35",
+      "score_clean": 0.930336,
+      "score_injected": 0.86154,
+      "score_drop": 0.068796,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0097_europarl-437f8e7aaee5",
+      "score_clean": 0.955183,
+      "score_injected": 0.944812,
+      "score_drop": 0.010371,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0098_europarl-715b6648620f",
+      "score_clean": 0.933142,
+      "score_injected": 0.794868,
+      "score_drop": 0.138274,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0099_eurlex-12f50319f087",
+      "score_clean": 0.974599,
+      "score_injected": 0.88946,
+      "score_drop": 0.08514,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0100_dgt_tm-f37a349fab32",
+      "score_clean": 0.945597,
+      "score_injected": 0.904393,
+      "score_drop": 0.041204,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0101_dgt_tm-3ea3fb2c6982",
+      "score_clean": 0.978538,
+      "score_injected": 0.928374,
+      "score_drop": 0.050164,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0102_eurlex-af344711d47f",
+      "score_clean": 0.956396,
+      "score_injected": 0.777991,
+      "score_drop": 0.178405,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0103_eurlex-4f6c116ca62d",
+      "score_clean": 0.977112,
+      "score_injected": 0.625849,
+      "score_drop": 0.351263,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0104_dgt_tm-d7b44c61a36e",
+      "score_clean": 0.904935,
+      "score_injected": 0.874168,
+      "score_drop": 0.030767,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0105_europarl-4a783046b990",
+      "score_clean": 0.973283,
+      "score_injected": 0.930826,
+      "score_drop": 0.042457,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0106_eurlex-1db4b9d37fcc",
+      "score_clean": 0.966127,
+      "score_injected": 0.942373,
+      "score_drop": 0.023754,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0107_dgt_tm-d8bc63fce7f1",
+      "score_clean": 0.9012,
+      "score_injected": 0.871517,
+      "score_drop": 0.029682,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0108_europarl-955869388a33+europarl-692f73dfd67f",
+      "score_clean": 0.854578,
+      "score_injected": 0.780288,
+      "score_drop": 0.074289,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0109_europarl-30de85be0ecc",
+      "score_clean": 0.976577,
+      "score_injected": 0.939561,
+      "score_drop": 0.037015,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0110_dgt_tm-5a24fef8df00",
+      "score_clean": 0.939414,
+      "score_injected": 0.91081,
+      "score_drop": 0.028604,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0111_europarl-5b03947e98ec",
+      "score_clean": 0.964997,
+      "score_injected": 0.935163,
+      "score_drop": 0.029834,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0112_dgt_tm-a9101dfa46db",
+      "score_clean": 0.973955,
+      "score_injected": 0.886698,
+      "score_drop": 0.087257,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0113_europarl-a2a23eba548d",
+      "score_clean": 0.951143,
+      "score_injected": 0.910716,
+      "score_drop": 0.040427,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0114_dgt_tm-d37977d4206f",
+      "score_clean": 0.975859,
+      "score_injected": 0.975858,
+      "score_drop": 0.0,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0115_dgt_tm-afddaa388c3e",
+      "score_clean": 0.915028,
+      "score_injected": 0.841663,
+      "score_drop": 0.073365,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0116_europarl-9ef76c3032d4",
+      "score_clean": 0.963474,
+      "score_injected": 0.958301,
+      "score_drop": 0.005173,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0117_europarl-86d15954d8f0",
+      "score_clean": 0.914477,
+      "score_injected": 0.832245,
+      "score_drop": 0.082232,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0118_eurlex-721fc4a4f31b",
+      "score_clean": 0.991758,
+      "score_injected": 0.916864,
+      "score_drop": 0.074895,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0119_europarl-b2a78bc12c98",
+      "score_clean": 0.910339,
+      "score_injected": 0.895812,
+      "score_drop": 0.014527,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0120_europarl-48f446fca1ec",
+      "score_clean": 0.908925,
+      "score_injected": 0.908925,
+      "score_drop": 0.0,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0121_dgt_tm-5f1a28bc91d6",
+      "score_clean": 0.961798,
+      "score_injected": 0.927086,
+      "score_drop": 0.034711,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0122_dgt_tm-9368045ccb33+dgt_tm-1d71680cee21",
+      "score_clean": 0.923545,
+      "score_injected": 0.903254,
+      "score_drop": 0.020291,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0123_eurlex-b4dbb6361d18",
+      "score_clean": 0.969746,
+      "score_injected": 0.949275,
+      "score_drop": 0.020471,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0124_europarl-4fec6bca68a9+europarl-cbd8f24c7867",
+      "score_clean": 0.904033,
+      "score_injected": 0.885814,
+      "score_drop": 0.018218,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0125_dgt_tm-f9585926d6ca",
+      "score_clean": 0.962145,
+      "score_injected": 0.72583,
+      "score_drop": 0.236315,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0126_dgt_tm-f101bc3d0628",
+      "score_clean": 0.985574,
+      "score_injected": 0.897893,
+      "score_drop": 0.08768,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0127_europarl-38d9bd7ca9c5",
+      "score_clean": 0.950552,
+      "score_injected": 0.882289,
+      "score_drop": 0.068263,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0128_eurlex-c311ce97fc7e",
+      "score_clean": 0.941015,
+      "score_injected": 0.81175,
+      "score_drop": 0.129265,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0129_europarl-a2d9b3675ab1",
+      "score_clean": 0.899011,
+      "score_injected": 0.883004,
+      "score_drop": 0.016007,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0130_europarl-b208165329e3",
+      "score_clean": 0.896706,
+      "score_injected": 0.889446,
+      "score_drop": 0.007261,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0131_dgt_tm-f6c2326f2d28",
+      "score_clean": 0.981201,
+      "score_injected": 0.896563,
+      "score_drop": 0.084638,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0132_dgt_tm-40e9c519eed0",
+      "score_clean": 0.930306,
+      "score_injected": 0.923232,
+      "score_drop": 0.007074,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0133_eurlex-52b820db175d",
+      "score_clean": 0.964247,
+      "score_injected": 0.924138,
+      "score_drop": 0.040109,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0134_eurlex-ae745dc4af27",
+      "score_clean": 0.933499,
+      "score_injected": 0.868422,
+      "score_drop": 0.065077,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0135_dgt_tm-8f890ab38129+dgt_tm-3ed15b284919",
+      "score_clean": 0.908403,
+      "score_injected": 0.852321,
+      "score_drop": 0.056083,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0136_dgt_tm-b524c707e8c8+dgt_tm-18249d876669",
+      "score_clean": 0.928463,
+      "score_injected": 0.881774,
+      "score_drop": 0.046689,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0137_eurlex-370b3f5fea9d",
+      "score_clean": 0.984886,
+      "score_injected": 0.919466,
+      "score_drop": 0.06542,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0138_europarl-108dabf52c4f",
+      "score_clean": 0.979807,
+      "score_injected": 0.929704,
+      "score_drop": 0.050103,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0139_eurlex-91fbf5dafb95",
+      "score_clean": 0.934446,
+      "score_injected": 0.889818,
+      "score_drop": 0.044629,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0140_dgt_tm-e1c4154563f7",
+      "score_clean": 0.928082,
+      "score_injected": 0.880139,
+      "score_drop": 0.047943,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0141_dgt_tm-4e8be9ab3349+dgt_tm-483e60b6a975",
+      "score_clean": 0.89395,
+      "score_injected": 0.840786,
+      "score_drop": 0.053164,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0142_dgt_tm-34977d9500b6",
+      "score_clean": 0.962879,
+      "score_injected": 0.924068,
+      "score_drop": 0.038811,
+      "tom_level": "1st_author"
+    },
+    {
+      "item_id": "val_0143_europarl-6d8ed7e1109e",
+      "score_clean": 0.92129,
+      "score_injected": 0.904664,
+      "score_drop": 0.016626,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0144_dgt_tm-197240566a4f",
+      "score_clean": 0.986001,
+      "score_injected": 0.925664,
+      "score_drop": 0.060337,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0145_eurlex-0e14e4eae548",
+      "score_clean": 0.975117,
+      "score_injected": 0.775325,
+      "score_drop": 0.199792,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0146_europarl-e0b6ead0b21b+europarl-5d67fe305a54",
+      "score_clean": 0.933152,
+      "score_injected": 0.904638,
+      "score_drop": 0.028514,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0147_dgt_tm-7514516f8ad6",
+      "score_clean": 0.924579,
+      "score_injected": 0.898867,
+      "score_drop": 0.025713,
+      "tom_level": "recursive"
+    },
+    {
+      "item_id": "val_0148_eurlex-5735e65c5552",
+      "score_clean": 0.980172,
+      "score_injected": 0.874207,
+      "score_drop": 0.105965,
+      "tom_level": "2nd_reader"
+    },
+    {
+      "item_id": "val_0149_europarl-40e21a6c56cd",
+      "score_clean": 0.890627,
+      "score_injected": 0.779582,
+      "score_drop": 0.111045,
+      "tom_level": "1st_machine"
+    },
+    {
+      "item_id": "val_0150_dgt_tm-0fe1eb40d426",
+      "score_clean": 0.970949,
+      "score_injected": 0.970949,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0151_eurlex-98aae85ce52a",
+      "score_clean": 0.970159,
+      "score_injected": 0.970159,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0152_europarl-298bf72eb18a",
+      "score_clean": 0.918806,
+      "score_injected": 0.918806,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0153_eurlex-3ecab937f49e",
+      "score_clean": 0.924976,
+      "score_injected": 0.924976,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0154_dgt_tm-4d66d44a44da",
+      "score_clean": 0.943648,
+      "score_injected": 0.943648,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0155_eurlex-add8fe4d239f",
+      "score_clean": 0.964263,
+      "score_injected": 0.964263,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0156_eurlex-a2b31ad224e3",
+      "score_clean": 0.936303,
+      "score_injected": 0.936303,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0157_dgt_tm-8bb111b0b7bb",
+      "score_clean": 0.943979,
+      "score_injected": 0.943979,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0158_eurlex-75f3ea0e93e1",
+      "score_clean": 0.917819,
+      "score_injected": 0.917819,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0159_eurlex-1f5bc3322341",
+      "score_clean": 0.921995,
+      "score_injected": 0.921995,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0160_dgt_tm-2be6e10d153a",
+      "score_clean": 0.982827,
+      "score_injected": 0.982827,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0161_dgt_tm-2a743251b7c0",
+      "score_clean": 0.99253,
+      "score_injected": 0.99253,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0162_eurlex-8ed9be73fdba",
+      "score_clean": 0.945039,
+      "score_injected": 0.945039,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0163_eurlex-592bf463c631",
+      "score_clean": 0.971964,
+      "score_injected": 0.971964,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0164_europarl-4c2b1761f5d8",
+      "score_clean": 0.874026,
+      "score_injected": 0.874026,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0165_dgt_tm-dc92824953ef",
+      "score_clean": 0.951906,
+      "score_injected": 0.951906,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0166_dgt_tm-9e5f135c69fa",
+      "score_clean": 0.957829,
+      "score_injected": 0.957829,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0167_europarl-4f6bdb041ba6",
+      "score_clean": 0.95105,
+      "score_injected": 0.95105,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0168_eurlex-925faea9c43b",
+      "score_clean": 0.980093,
+      "score_injected": 0.980093,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0169_europarl-b49c18082c05",
+      "score_clean": 0.971804,
+      "score_injected": 0.971803,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0170_europarl-3f3130a0e70a",
+      "score_clean": 0.938426,
+      "score_injected": 0.938426,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0171_eurlex-2ea52549c2e1",
+      "score_clean": 0.989639,
+      "score_injected": 0.989639,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0172_europarl-8427db94f2ef",
+      "score_clean": 0.924743,
+      "score_injected": 0.924743,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0173_eurlex-1471e81a59c3",
+      "score_clean": 0.935623,
+      "score_injected": 0.935623,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0174_europarl-e373a1a6d8fe",
+      "score_clean": 0.948429,
+      "score_injected": 0.948429,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0175_dgt_tm-263c7ffcbe6d",
+      "score_clean": 0.980519,
+      "score_injected": 0.980519,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0176_eurlex-f29ff2a6dc1f",
+      "score_clean": 0.973563,
+      "score_injected": 0.973563,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0177_europarl-b7f9ebcf2554",
+      "score_clean": 0.896162,
+      "score_injected": 0.896162,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0178_dgt_tm-e8e6a3235c42",
+      "score_clean": 0.961798,
+      "score_injected": 0.961798,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0179_eurlex-4b958e10952e",
+      "score_clean": 0.983974,
+      "score_injected": 0.983974,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0180_dgt_tm-c93ba7c62614",
+      "score_clean": 0.990859,
+      "score_injected": 0.990859,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0181_europarl-8f0b78bf75c1",
+      "score_clean": 0.910647,
+      "score_injected": 0.910647,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0182_eurlex-a97cb327a166",
+      "score_clean": 0.897456,
+      "score_injected": 0.897456,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0183_eurlex-f72af103ce60",
+      "score_clean": 0.955808,
+      "score_injected": 0.955808,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0184_eurlex-1148afd84641",
+      "score_clean": 0.983566,
+      "score_injected": 0.983566,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0185_dgt_tm-e35f21422b95",
+      "score_clean": 0.985604,
+      "score_injected": 0.985604,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0186_dgt_tm-07a360780312",
+      "score_clean": 0.979631,
+      "score_injected": 0.979631,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0187_europarl-0034f954d686",
+      "score_clean": 0.923965,
+      "score_injected": 0.923965,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0188_eurlex-cd0c8bfffaf8",
+      "score_clean": 0.928066,
+      "score_injected": 0.928066,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0189_europarl-e8ff80c88c1d",
+      "score_clean": 0.944485,
+      "score_injected": 0.944485,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0190_europarl-1afaf8a25928",
+      "score_clean": 0.989059,
+      "score_injected": 0.989059,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0191_dgt_tm-ddf8ab67aa13",
+      "score_clean": 0.930177,
+      "score_injected": 0.930177,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0192_dgt_tm-4c3f0ef2d564",
+      "score_clean": 0.941469,
+      "score_injected": 0.941469,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0193_eurlex-b048aa3ce72c",
+      "score_clean": 0.972692,
+      "score_injected": 0.972692,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0194_europarl-1cb0f2430250",
+      "score_clean": 0.948704,
+      "score_injected": 0.948704,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0195_eurlex-b08264b83628",
+      "score_clean": 0.991116,
+      "score_injected": 0.991116,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0196_dgt_tm-9dc6b091dd11",
+      "score_clean": 0.983947,
+      "score_injected": 0.983947,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0197_eurlex-a6490c70bec7",
+      "score_clean": 0.951936,
+      "score_injected": 0.951936,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0198_europarl-aa6b29470e35",
+      "score_clean": 0.943345,
+      "score_injected": 0.943345,
+      "score_drop": 0.0,
+      "tom_level": null
+    },
+    {
+      "item_id": "val_0199_dgt_tm-d597e6e133a2",
+      "score_clean": 0.940641,
+      "score_injected": 0.940641,
+      "score_drop": 0.0,
+      "tom_level": null
+    }
+  ]
+}

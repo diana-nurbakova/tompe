@@ -1,0 +1,8 @@
+2026-04-16 01:41:30,990 xcomet INFO Loaded 133 items for xCOMET scoring
+2026-04-16 01:41:30,991 xcomet INFO Loading xCOMET-XL model (this may take a few minutes on first run)...
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]
+C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\huggingface_hub\file_download.py:143: UserWarning: `huggingface_hub` cache-system uses symlinks by default to efficiently store duplicated files but your machine does not support them in C:\Users\dnurb\.cache\huggingface\hub\models--Unbabel--XCOMET-XL. Caching files will still work but in a degraded version that might require more space on your disk. This warning can be disabled by setting the `HF_HUB_DISABLE_SYMLINKS_WARNING` environment variable. For more details, see https://huggingface.co/docs/huggingface_hub/how-to-cache#limitations.
+To support symlinks on Windows, you either need to activate Developer Mode or to run Python as an administrator. In order to activate developer mode, see this article: https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
+  warnings.warn(message)
+2026-04-16 01:42:02,533 experiments.pipeline_validation.track_a.xcomet_scoring WARNING Failed to load xCOMET model 'Unbabel/XCOMET-XL': "Model 'Unbabel/XCOMET-XL' not supported by COMET.". GPU may be required for XCOMET-XL.
+2026-04-16 01:42:02,533 xcomet ERROR Failed to load xCOMET model

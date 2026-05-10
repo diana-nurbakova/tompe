@@ -1,0 +1,1806 @@
+2026-04-16 14:58:43,402 runner INFO Full pipeline items: 60
+2026-04-16 14:58:43,405 experiments.pipeline_validation.track_b.ablation_comparison INFO Starting ablation study on 60 segments
+2026-04-16 14:58:43,405 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [synonym] on segment dgt_tm-afe8215fb11e
+2026-04-16 14:58:43,411 experiments.pipeline_validation.track_b.ablation_comparison ERROR B0 failed for segment dgt_tm-afe8215fb11e
+Traceback (most recent call last):
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 84, in __load
+    root = nltk.data.find(f"{self.subdir}/{zip_name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4.zip/omw-1.4/[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 171, in _run_condition_b0
+    modified_text, errors = await inject_random(seg)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 133, in inject_random
+    new_words, idx, original, injected, tag = _synonym_replace(words)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 95, in _synonym_replace
+    syn = _get_synonym(words[idx])
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 58, in _get_synonym
+    synsets = wordnet.synsets(word, lang=lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1765, in synsets
+    self._load_lang_data(lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1303, in _load_lang_data
+    self.add_omw()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1338, in add_omw
+    self.add_provs(self._omw_reader)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1325, in add_provs
+    fileids = reader.fileids()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 121, in __getattr__
+    self.__load()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 86, in __load
+    raise e
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 81, in __load
+    root = nltk.data.find(f"{self.subdir}/{self.__name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+2026-04-16 14:58:43,533 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment dgt_tm-2460e0bd657b
+2026-04-16 14:58:43,535 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment eurlex-6e516401358f
+2026-04-16 14:58:43,535 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [synonym] on segment europarl-cfce360d78d7
+2026-04-16 14:58:43,541 experiments.pipeline_validation.track_b.ablation_comparison ERROR B0 failed for segment europarl-cfce360d78d7
+Traceback (most recent call last):
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 84, in __load
+    root = nltk.data.find(f"{self.subdir}/{zip_name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4.zip/omw-1.4/[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 171, in _run_condition_b0
+    modified_text, errors = await inject_random(seg)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 133, in inject_random
+    new_words, idx, original, injected, tag = _synonym_replace(words)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 95, in _synonym_replace
+    syn = _get_synonym(words[idx])
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 58, in _get_synonym
+    synsets = wordnet.synsets(word, lang=lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1765, in synsets
+    self._load_lang_data(lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1303, in _load_lang_data
+    self.add_omw()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1338, in add_omw
+    self.add_provs(self._omw_reader)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1325, in add_provs
+    fileids = reader.fileids()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 121, in __getattr__
+    self.__load()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 86, in __load
+    raise e
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 81, in __load
+    root = nltk.data.find(f"{self.subdir}/{self.__name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+2026-04-16 14:58:43,543 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [synonym] on segment dgt_tm-affbc0001356
+2026-04-16 14:58:43,549 experiments.pipeline_validation.track_b.ablation_comparison ERROR B0 failed for segment dgt_tm-affbc0001356
+Traceback (most recent call last):
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 84, in __load
+    root = nltk.data.find(f"{self.subdir}/{zip_name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4.zip/omw-1.4/[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 171, in _run_condition_b0
+    modified_text, errors = await inject_random(seg)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 133, in inject_random
+    new_words, idx, original, injected, tag = _synonym_replace(words)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 95, in _synonym_replace
+    syn = _get_synonym(words[idx])
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 58, in _get_synonym
+    synsets = wordnet.synsets(word, lang=lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1765, in synsets
+    self._load_lang_data(lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1303, in _load_lang_data
+    self.add_omw()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1338, in add_omw
+    self.add_provs(self._omw_reader)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1325, in add_provs
+    fileids = reader.fileids()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 121, in __getattr__
+    self.__load()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 86, in __load
+    raise e
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 81, in __load
+    root = nltk.data.find(f"{self.subdir}/{self.__name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+2026-04-16 14:58:43,550 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment europarl-a29c19db9d52
+2026-04-16 14:58:43,550 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment europarl-19bc49beb0d0
+2026-04-16 14:58:43,551 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment europarl-1a480052626e+europarl-a4b6358efb81
+2026-04-16 14:58:43,551 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment dgt_tm-833cce3d3561
+2026-04-16 14:58:43,551 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment eurlex-ff73456f4e87
+2026-04-16 14:58:43,552 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment eurlex-1dbf4983bc03
+2026-04-16 14:58:43,552 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [synonym] on segment eurlex-c14cceb19e73
+2026-04-16 14:58:43,558 experiments.pipeline_validation.track_b.ablation_comparison ERROR B0 failed for segment eurlex-c14cceb19e73
+Traceback (most recent call last):
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 84, in __load
+    root = nltk.data.find(f"{self.subdir}/{zip_name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4.zip/omw-1.4/[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 171, in _run_condition_b0
+    modified_text, errors = await inject_random(seg)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 133, in inject_random
+    new_words, idx, original, injected, tag = _synonym_replace(words)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 95, in _synonym_replace
+    syn = _get_synonym(words[idx])
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 58, in _get_synonym
+    synsets = wordnet.synsets(word, lang=lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1765, in synsets
+    self._load_lang_data(lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1303, in _load_lang_data
+    self.add_omw()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1338, in add_omw
+    self.add_provs(self._omw_reader)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1325, in add_provs
+    fileids = reader.fileids()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 121, in __getattr__
+    self.__load()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 86, in __load
+    raise e
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 81, in __load
+    root = nltk.data.find(f"{self.subdir}/{self.__name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+2026-04-16 14:58:43,559 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [synonym] on segment eurlex-e5abb5a658e2
+2026-04-16 14:58:43,565 experiments.pipeline_validation.track_b.ablation_comparison ERROR B0 failed for segment eurlex-e5abb5a658e2
+Traceback (most recent call last):
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 84, in __load
+    root = nltk.data.find(f"{self.subdir}/{zip_name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4.zip/omw-1.4/[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 171, in _run_condition_b0
+    modified_text, errors = await inject_random(seg)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 133, in inject_random
+    new_words, idx, original, injected, tag = _synonym_replace(words)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 95, in _synonym_replace
+    syn = _get_synonym(words[idx])
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 58, in _get_synonym
+    synsets = wordnet.synsets(word, lang=lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1765, in synsets
+    self._load_lang_data(lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1303, in _load_lang_data
+    self.add_omw()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1338, in add_omw
+    self.add_provs(self._omw_reader)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1325, in add_provs
+    fileids = reader.fileids()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 121, in __getattr__
+    self.__load()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 86, in __load
+    raise e
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 81, in __load
+    root = nltk.data.find(f"{self.subdir}/{self.__name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+2026-04-16 14:58:43,566 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [synonym] on segment europarl-77f04687e99a
+2026-04-16 14:58:43,572 experiments.pipeline_validation.track_b.ablation_comparison ERROR B0 failed for segment europarl-77f04687e99a
+Traceback (most recent call last):
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 84, in __load
+    root = nltk.data.find(f"{self.subdir}/{zip_name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4.zip/omw-1.4/[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 171, in _run_condition_b0
+    modified_text, errors = await inject_random(seg)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 133, in inject_random
+    new_words, idx, original, injected, tag = _synonym_replace(words)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 95, in _synonym_replace
+    syn = _get_synonym(words[idx])
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 58, in _get_synonym
+    synsets = wordnet.synsets(word, lang=lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1765, in synsets
+    self._load_lang_data(lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1303, in _load_lang_data
+    self.add_omw()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1338, in add_omw
+    self.add_provs(self._omw_reader)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1325, in add_provs
+    fileids = reader.fileids()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 121, in __getattr__
+    self.__load()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 86, in __load
+    raise e
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 81, in __load
+    root = nltk.data.find(f"{self.subdir}/{self.__name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+2026-04-16 14:58:43,573 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [synonym] on segment europarl-fe604332dfb2
+2026-04-16 14:58:43,579 experiments.pipeline_validation.track_b.ablation_comparison ERROR B0 failed for segment europarl-fe604332dfb2
+Traceback (most recent call last):
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 84, in __load
+    root = nltk.data.find(f"{self.subdir}/{zip_name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4.zip/omw-1.4/[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 171, in _run_condition_b0
+    modified_text, errors = await inject_random(seg)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 133, in inject_random
+    new_words, idx, original, injected, tag = _synonym_replace(words)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 95, in _synonym_replace
+    syn = _get_synonym(words[idx])
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 58, in _get_synonym
+    synsets = wordnet.synsets(word, lang=lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1765, in synsets
+    self._load_lang_data(lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1303, in _load_lang_data
+    self.add_omw()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1338, in add_omw
+    self.add_provs(self._omw_reader)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1325, in add_provs
+    fileids = reader.fileids()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 121, in __getattr__
+    self.__load()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 86, in __load
+    raise e
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 81, in __load
+    root = nltk.data.find(f"{self.subdir}/{self.__name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+2026-04-16 14:58:43,580 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment dgt_tm-af6a5bcf3b31
+2026-04-16 14:58:43,581 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment dgt_tm-2d78b42f8e4d
+2026-04-16 14:58:43,581 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment europarl-cc7d50e5cb6d
+2026-04-16 14:58:43,581 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment dgt_tm-7eb80a4adca8
+2026-04-16 14:58:43,581 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment europarl-2300c03e7888
+2026-04-16 14:58:43,582 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment dgt_tm-83fcfd10af57
+2026-04-16 14:58:43,582 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment dgt_tm-d45870d5b1b4
+2026-04-16 14:58:43,582 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment eurlex-75d135c5de9c
+2026-04-16 14:58:43,582 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [synonym] on segment dgt_tm-502d0f51255b
+2026-04-16 14:58:43,587 experiments.pipeline_validation.track_b.ablation_comparison ERROR B0 failed for segment dgt_tm-502d0f51255b
+Traceback (most recent call last):
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 84, in __load
+    root = nltk.data.find(f"{self.subdir}/{zip_name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4.zip/omw-1.4/[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 171, in _run_condition_b0
+    modified_text, errors = await inject_random(seg)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 133, in inject_random
+    new_words, idx, original, injected, tag = _synonym_replace(words)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 95, in _synonym_replace
+    syn = _get_synonym(words[idx])
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 58, in _get_synonym
+    synsets = wordnet.synsets(word, lang=lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1765, in synsets
+    self._load_lang_data(lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1303, in _load_lang_data
+    self.add_omw()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1338, in add_omw
+    self.add_provs(self._omw_reader)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1325, in add_provs
+    fileids = reader.fileids()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 121, in __getattr__
+    self.__load()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 86, in __load
+    raise e
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 81, in __load
+    root = nltk.data.find(f"{self.subdir}/{self.__name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+2026-04-16 14:58:43,588 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment dgt_tm-a698d50a5f02
+2026-04-16 14:58:43,588 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment eurlex-5a31a3ece133
+2026-04-16 14:58:43,589 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment dgt_tm-7cac452228f6
+2026-04-16 14:58:43,589 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment eurlex-cc5adc5f44fd
+2026-04-16 14:58:43,589 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment eurlex-a92766010d51
+2026-04-16 14:58:43,589 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment europarl-03ef2894dbbc
+2026-04-16 14:58:43,590 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment europarl-50f97416364c
+2026-04-16 14:58:43,590 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment europarl-ba68bbe0625e
+2026-04-16 14:58:43,590 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment dgt_tm-e837cd40bfe8
+2026-04-16 14:58:43,591 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment eurlex-92976eebf34c
+2026-04-16 14:58:43,591 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [synonym] on segment europarl-c7e03dc9e911+europarl-0515ee1eb6f6
+2026-04-16 14:58:43,597 experiments.pipeline_validation.track_b.ablation_comparison ERROR B0 failed for segment europarl-c7e03dc9e911+europarl-0515ee1eb6f6
+Traceback (most recent call last):
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 84, in __load
+    root = nltk.data.find(f"{self.subdir}/{zip_name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4.zip/omw-1.4/[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 171, in _run_condition_b0
+    modified_text, errors = await inject_random(seg)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 133, in inject_random
+    new_words, idx, original, injected, tag = _synonym_replace(words)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 95, in _synonym_replace
+    syn = _get_synonym(words[idx])
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 58, in _get_synonym
+    synsets = wordnet.synsets(word, lang=lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1765, in synsets
+    self._load_lang_data(lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1303, in _load_lang_data
+    self.add_omw()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1338, in add_omw
+    self.add_provs(self._omw_reader)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1325, in add_provs
+    fileids = reader.fileids()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 121, in __getattr__
+    self.__load()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 86, in __load
+    raise e
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 81, in __load
+    root = nltk.data.find(f"{self.subdir}/{self.__name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+2026-04-16 14:58:43,598 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment europarl-1629538b98ed+europarl-3fd51a0dd38f
+2026-04-16 14:58:43,598 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment dgt_tm-79c501f38edd+dgt_tm-aa6a55387617
+2026-04-16 14:58:43,598 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment dgt_tm-329d334ef1a3
+2026-04-16 14:58:43,598 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment dgt_tm-4812bc2c5999
+2026-04-16 14:58:43,599 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [synonym] on segment dgt_tm-c4e9a0fea8aa
+2026-04-16 14:58:43,603 experiments.pipeline_validation.track_b.ablation_comparison ERROR B0 failed for segment dgt_tm-c4e9a0fea8aa
+Traceback (most recent call last):
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 84, in __load
+    root = nltk.data.find(f"{self.subdir}/{zip_name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4.zip/omw-1.4/[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 171, in _run_condition_b0
+    modified_text, errors = await inject_random(seg)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 133, in inject_random
+    new_words, idx, original, injected, tag = _synonym_replace(words)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 95, in _synonym_replace
+    syn = _get_synonym(words[idx])
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 58, in _get_synonym
+    synsets = wordnet.synsets(word, lang=lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1765, in synsets
+    self._load_lang_data(lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1303, in _load_lang_data
+    self.add_omw()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1338, in add_omw
+    self.add_provs(self._omw_reader)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1325, in add_provs
+    fileids = reader.fileids()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 121, in __getattr__
+    self.__load()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 86, in __load
+    raise e
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 81, in __load
+    root = nltk.data.find(f"{self.subdir}/{self.__name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+2026-04-16 14:58:43,604 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment europarl-b61b8faeb06a
+2026-04-16 14:58:43,605 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment europarl-20544be58e66
+2026-04-16 14:58:43,605 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment dgt_tm-24f676af9a35
+2026-04-16 14:58:43,605 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment europarl-715b6648620f
+2026-04-16 14:58:43,605 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment dgt_tm-3ea3fb2c6982
+2026-04-16 14:58:43,605 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment eurlex-af344711d47f
+2026-04-16 14:58:43,605 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [synonym] on segment eurlex-4f6c116ca62d
+2026-04-16 14:58:43,611 experiments.pipeline_validation.track_b.ablation_comparison ERROR B0 failed for segment eurlex-4f6c116ca62d
+Traceback (most recent call last):
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 84, in __load
+    root = nltk.data.find(f"{self.subdir}/{zip_name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4.zip/omw-1.4/[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 171, in _run_condition_b0
+    modified_text, errors = await inject_random(seg)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 133, in inject_random
+    new_words, idx, original, injected, tag = _synonym_replace(words)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 95, in _synonym_replace
+    syn = _get_synonym(words[idx])
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 58, in _get_synonym
+    synsets = wordnet.synsets(word, lang=lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1765, in synsets
+    self._load_lang_data(lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1303, in _load_lang_data
+    self.add_omw()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1338, in add_omw
+    self.add_provs(self._omw_reader)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1325, in add_provs
+    fileids = reader.fileids()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 121, in __getattr__
+    self.__load()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 86, in __load
+    raise e
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 81, in __load
+    root = nltk.data.find(f"{self.subdir}/{self.__name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+2026-04-16 14:58:43,612 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [synonym] on segment europarl-30de85be0ecc
+2026-04-16 14:58:43,618 experiments.pipeline_validation.track_b.ablation_comparison ERROR B0 failed for segment europarl-30de85be0ecc
+Traceback (most recent call last):
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 84, in __load
+    root = nltk.data.find(f"{self.subdir}/{zip_name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4.zip/omw-1.4/[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 171, in _run_condition_b0
+    modified_text, errors = await inject_random(seg)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 133, in inject_random
+    new_words, idx, original, injected, tag = _synonym_replace(words)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 95, in _synonym_replace
+    syn = _get_synonym(words[idx])
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 58, in _get_synonym
+    synsets = wordnet.synsets(word, lang=lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1765, in synsets
+    self._load_lang_data(lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1303, in _load_lang_data
+    self.add_omw()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1338, in add_omw
+    self.add_provs(self._omw_reader)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1325, in add_provs
+    fileids = reader.fileids()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 121, in __getattr__
+    self.__load()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 86, in __load
+    raise e
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 81, in __load
+    root = nltk.data.find(f"{self.subdir}/{self.__name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+2026-04-16 14:58:43,619 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment europarl-5b03947e98ec
+2026-04-16 14:58:43,620 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [synonym] on segment dgt_tm-a9101dfa46db
+2026-04-16 14:58:43,620 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment dgt_tm-afddaa388c3e
+2026-04-16 14:58:43,620 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment europarl-48f446fca1ec
+2026-04-16 14:58:43,621 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment eurlex-b4dbb6361d18
+2026-04-16 14:58:43,621 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment europarl-38d9bd7ca9c5
+2026-04-16 14:58:43,622 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment dgt_tm-8f890ab38129+dgt_tm-3ed15b284919
+2026-04-16 14:58:43,622 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment dgt_tm-b524c707e8c8+dgt_tm-18249d876669
+2026-04-16 14:58:43,622 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [delete] on segment eurlex-91fbf5dafb95
+2026-04-16 14:58:43,623 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [synonym] on segment dgt_tm-e1c4154563f7
+2026-04-16 14:58:43,629 experiments.pipeline_validation.track_b.ablation_comparison ERROR B0 failed for segment dgt_tm-e1c4154563f7
+Traceback (most recent call last):
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 84, in __load
+    root = nltk.data.find(f"{self.subdir}/{zip_name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4.zip/omw-1.4/[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 171, in _run_condition_b0
+    modified_text, errors = await inject_random(seg)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 133, in inject_random
+    new_words, idx, original, injected, tag = _synonym_replace(words)
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 95, in _synonym_replace
+    syn = _get_synonym(words[idx])
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\random_perturbation.py", line 58, in _get_synonym
+    synsets = wordnet.synsets(word, lang=lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1765, in synsets
+    self._load_lang_data(lang)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1303, in _load_lang_data
+    self.add_omw()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1338, in add_omw
+    self.add_provs(self._omw_reader)
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\reader\wordnet.py", line 1325, in add_provs
+    fileids = reader.fileids()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 121, in __getattr__
+    self.__load()
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 86, in __load
+    raise e
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\corpus\util.py", line 81, in __load
+    root = nltk.data.find(f"{self.subdir}/{self.__name}")
+  File "C:\Users\dnurb\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\nltk\data.py", line 583, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource [93momw-1.4[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('omw-1.4')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/omw-1.4[0m
+
+  Searched in:
+    - 'C:\\Users\\dnurb/nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\share\\nltk_data'
+    - 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nltk_data'
+    - 'C:\\Users\\dnurb\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+
+2026-04-16 14:58:43,631 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment eurlex-0e14e4eae548
+2026-04-16 14:58:43,631 experiments.pipeline_validation.baselines.random_perturbation INFO B0 random perturbation [swap] on segment dgt_tm-7514516f8ad6
+2026-04-16 14:58:43,634 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 14:58:43,635 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 14:58:44,472 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:58:45,391 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.8s — tokens=465, content_len=407
+2026-04-16 14:58:45,392 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for GRAMMAR/agreement_number: ['Invalid tag/type: TAG/GRAMMAR']
+2026-04-16 14:58:45,996 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:58:47,012 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.6s — tokens=487, content_len=400
+2026-04-16 14:58:47,012 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected GRAMMAR/agreement_number (minor) at [2:20]: 'Font également foi' -> 'Fait également foi'
+2026-04-16 14:58:47,014 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 14:58:47,014 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 14:58:48,013 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:58:49,282 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.3s — tokens=699, content_len=661
+2026-04-16 14:58:49,282 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for MISTRANSLATION/false_cognate: ['Invalid tag/type: TAG/MISTRANSLATION']
+2026-04-16 14:58:49,900 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:58:51,213 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.9s — tokens=723, content_len=657
+2026-04-16 14:58:51,214 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for MISTRANSLATION/false_cognate: ['Invalid tag/type: TAG/MISTRANSLATION']
+2026-04-16 14:58:52,207 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:58:53,595 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 2.4s — tokens=725, content_len=657
+2026-04-16 14:58:53,596 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 3/3) for MISTRANSLATION/false_cognate: ['Invalid tag/type: TAG/MISTRANSLATION']
+2026-04-16 14:58:53,596 experiments.pipeline_validation.track_b.ablation_comparison ERROR B1 failed for segment dgt_tm-2460e0bd657b
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 193, in _run_condition_b1
+    modified_text, errors = await inject_single_step(
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\single_step_inject.py", line 272, in inject_single_step
+    raise ValueError(
+ValueError: B1 single-step injection failed after 3 attempts for MISTRANSLATION/false_cognate. Last errors: ['Invalid tag/type: TAG/MISTRANSLATION']
+2026-04-16 14:58:53,620 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 14:58:53,621 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 14:58:54,173 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:58:54,707 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.1s — tokens=380, content_len=200
+2026-04-16 14:58:54,708 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for MISTRANSLATION/discourse_connective: ['Invalid tag/type: TAG/MISTRANSLATION']
+2026-04-16 14:58:55,354 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:58:55,945 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.2s — tokens=403, content_len=194
+2026-04-16 14:58:55,945 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for MISTRANSLATION/discourse_connective: ['Invalid tag/type: TAG/MISTRANSLATION']
+2026-04-16 14:58:56,541 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:58:57,961 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 2.0s — tokens=406, content_len=204
+2026-04-16 14:58:57,962 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected MISTRANSLATION/discourse_connective (minor) at [10:14]: '(voi' -> 'mais'
+2026-04-16 14:58:57,964 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 14:58:57,965 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 14:58:58,728 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:58:59,258 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.3s — tokens=308, content_len=180
+2026-04-16 14:58:59,258 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for GRAMMAR/relative_pronoun: ['Invalid tag/type: TAG/GRAMMAR']
+2026-04-16 14:58:59,873 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:00,587 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.3s — tokens=339, content_len=215
+2026-04-16 14:59:00,587 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for GRAMMAR/relative_pronoun: ['Invalid tag/type: RELATIVE_PRONOUN/relative_pronoun']
+2026-04-16 14:59:01,249 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:01,792 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 1.2s — tokens=335, content_len=181
+2026-04-16 14:59:01,792 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 3/3) for GRAMMAR/relative_pronoun: ['Invalid tag/type: TAG/GRAMMAR']
+2026-04-16 14:59:01,792 experiments.pipeline_validation.track_b.ablation_comparison ERROR B1 failed for segment europarl-cfce360d78d7
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 193, in _run_condition_b1
+    modified_text, errors = await inject_single_step(
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\single_step_inject.py", line 272, in inject_single_step
+    raise ValueError(
+ValueError: B1 single-step injection failed after 3 attempts for GRAMMAR/relative_pronoun. Last errors: ['Invalid tag/type: TAG/GRAMMAR']
+2026-04-16 14:59:01,795 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 14:59:01,796 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 14:59:02,450 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:03,238 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.4s — tokens=504, content_len=398
+2026-04-16 14:59:03,238 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for STYLE/awkward: ['Invalid tag/type: TAG/STYLE']
+2026-04-16 14:59:03,914 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:04,992 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.8s — tokens=531, content_len=429
+2026-04-16 14:59:04,992 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected STYLE/awkward (minor) at [97:110]: 'figurent dans' -> 'sont figurées'
+2026-04-16 14:59:04,994 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 14:59:04,995 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 14:59:05,640 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:06,121 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.1s — tokens=308, content_len=227
+2026-04-16 14:59:06,122 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected GRAMMAR/relative_pronoun (minor) at [55:58]: 'qui' -> 'que'
+2026-04-16 14:59:06,125 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 14:59:06,126 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 14:59:06,838 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:07,389 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.3s — tokens=288, content_len=175
+2026-04-16 14:59:07,389 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected GRAMMAR/relative_pronoun (minor) at [36:39]: 'je ' -> 'que'
+2026-04-16 14:59:07,391 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 14:59:07,392 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 14:59:08,114 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:08,819 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.4s — tokens=390, content_len=380
+2026-04-16 14:59:08,819 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for GRAMMAR/tense: ['Invalid tag/type: TAG/GRAMMAR']
+2026-04-16 14:59:09,671 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:10,387 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.6s — tokens=413, content_len=388
+2026-04-16 14:59:10,388 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected GRAMMAR/tense (major) at [22:28]: 'avance' -> 'avance'
+2026-04-16 14:59:10,389 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 14:59:10,390 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 14:59:11,016 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:11,922 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.5s — tokens=407, content_len=195
+2026-04-16 14:59:11,923 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected MISTRANSLATION/false_cognate (major) at [12:22]: '10.10.2003' -> '10.10.2003'
+2026-04-16 14:59:11,925 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 14:59:11,926 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 14:59:12,500 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:13,171 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.2s — tokens=383, content_len=227
+2026-04-16 14:59:13,171 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected MISTRANSLATION/false_cognate (critical) at [41:51]: 'capacité d' -> 'adaptation'
+2026-04-16 14:59:13,173 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 14:59:13,174 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 14:59:13,909 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:15,049 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.9s — tokens=390, content_len=436
+2026-04-16 14:59:15,050 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for LOCALE/time_format: ['Invalid tag/type: TAG/LOCALE']
+2026-04-16 14:59:15,843 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:17,053 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.0s — tokens=414, content_len=463
+2026-04-16 14:59:17,053 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for LOCALE/time_format: ['Invalid tag/type: TIME_FORMAT/minor']
+2026-04-16 14:59:17,678 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:18,669 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 1.6s — tokens=413, content_len=445
+2026-04-16 14:59:18,669 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 3/3) for LOCALE/time_format: ['No valid XML error tag found in LLM output']
+2026-04-16 14:59:18,670 experiments.pipeline_validation.track_b.ablation_comparison ERROR B1 failed for segment eurlex-1dbf4983bc03
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 193, in _run_condition_b1
+    modified_text, errors = await inject_single_step(
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\single_step_inject.py", line 272, in inject_single_step
+    raise ValueError(
+ValueError: B1 single-step injection failed after 3 attempts for LOCALE/time_format. Last errors: ['No valid XML error tag found in LLM output']
+2026-04-16 14:59:18,672 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 14:59:18,672 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 14:59:19,296 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:20,607 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.9s — tokens=386, content_len=376
+2026-04-16 14:59:20,607 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected MISTRANSLATION/ambiguity (major) at [91:107]: 'les chances pour' -> 'les opportunités'
+2026-04-16 14:59:20,610 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 14:59:20,611 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 14:59:21,305 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:22,214 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.6s — tokens=424, content_len=467
+2026-04-16 14:59:22,214 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected STYLE/unidiomatic (major) at [181:218]: 'conseillés sur la manière d'améliorer' -> 'conseillés sur la manière d'améliorer'
+2026-04-16 14:59:22,220 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 14:59:22,221 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 14:59:22,906 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:23,724 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.5s — tokens=466, content_len=389
+2026-04-16 14:59:23,724 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for STYLE/information_packaging: ['Invalid tag/type: TAG/STYLE', 'Too much text changed outside error span (token overlap 25%)']
+2026-04-16 14:59:24,564 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:25,405 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.7s — tokens=501, content_len=417
+2026-04-16 14:59:25,406 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for STYLE/information_packaging: ['Too much text changed outside error span (token overlap 16%)']
+2026-04-16 14:59:26,021 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:26,771 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 1.4s — tokens=496, content_len=427
+2026-04-16 14:59:26,771 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 3/3) for STYLE/information_packaging: ['Too much text changed outside error span (token overlap 12%)']
+2026-04-16 14:59:26,772 experiments.pipeline_validation.track_b.ablation_comparison ERROR B1 failed for segment europarl-77f04687e99a
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 193, in _run_condition_b1
+    modified_text, errors = await inject_single_step(
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\single_step_inject.py", line 272, in inject_single_step
+    raise ValueError(
+ValueError: B1 single-step injection failed after 3 attempts for STYLE/information_packaging. Last errors: ['Too much text changed outside error span (token overlap 12%)']
+2026-04-16 14:59:26,775 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 14:59:26,776 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 14:59:27,416 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:28,281 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.5s — tokens=370, content_len=354
+2026-04-16 14:59:28,282 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected MISTRANSLATION/overtranslation (minor) at [181:191]: ' l ' État ' -> 'la liberté'
+2026-04-16 14:59:28,286 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 14:59:28,287 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 14:59:29,572 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:31,938 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.7s — tokens=525, content_len=558
+2026-04-16 14:59:31,939 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected MISTRANSLATION/word_sense (major) at [268:277]: 'formation' -> 'éducation'
+2026-04-16 14:59:31,942 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 14:59:31,943 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 14:59:32,745 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:33,218 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.3s — tokens=298, content_len=176
+2026-04-16 14:59:33,218 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for STYLE/unidiomatic: ['Invalid tag/type: TAG/STYLE']
+2026-04-16 14:59:33,836 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:34,482 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.2s — tokens=327, content_len=199
+2026-04-16 14:59:34,482 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for STYLE/unidiomatic: ['Invalid tag/type: UNIDIOMATIC/unidiomatic']
+2026-04-16 14:59:35,184 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:35,654 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 1.2s — tokens=318, content_len=150
+2026-04-16 14:59:35,654 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 3/3) for STYLE/unidiomatic: ['Invalid tag/type: TAG/STYLE']
+2026-04-16 14:59:35,654 experiments.pipeline_validation.track_b.ablation_comparison ERROR B1 failed for segment dgt_tm-2d78b42f8e4d
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 193, in _run_condition_b1
+    modified_text, errors = await inject_single_step(
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\single_step_inject.py", line 272, in inject_single_step
+    raise ValueError(
+ValueError: B1 single-step injection failed after 3 attempts for STYLE/unidiomatic. Last errors: ['Invalid tag/type: TAG/STYLE']
+2026-04-16 14:59:35,658 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 14:59:35,659 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 14:59:36,369 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:36,845 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.2s — tokens=395, content_len=246
+2026-04-16 14:59:36,845 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for TERMINOLOGY/lexical_cohesion: ['Invalid tag/type: TAG/TERMINOLOGY']
+2026-04-16 14:59:37,631 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:38,762 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.9s — tokens=425, content_len=267
+2026-04-16 14:59:38,763 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected TERMINOLOGY/lexical_cohesion (minor) at [91:101]: 'édifice de' -> 'communauté'
+2026-04-16 14:59:38,766 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 14:59:38,767 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 14:59:39,373 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:41,150 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.4s — tokens=760, content_len=772
+2026-04-16 14:59:41,150 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected TERMINOLOGY/wrong_term (major) at [165:200]: 'la teneur en matière grasse de réfé' -> 'la teneur en protéines de référence'
+2026-04-16 14:59:41,153 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 14:59:41,154 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 14:59:41,770 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:42,471 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.3s — tokens=391, content_len=318
+2026-04-16 14:59:42,471 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for TERMINOLOGY/lexical_cohesion: ['Invalid tag/type: TAG/TERMINOLOGY']
+2026-04-16 14:59:43,211 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:44,084 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.6s — tokens=413, content_len=308
+2026-04-16 14:59:44,084 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected TERMINOLOGY/lexical_cohesion (major) at [65:85]: 'politique écologique' -> 'politique écologique'
+2026-04-16 14:59:44,088 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 14:59:44,089 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 14:59:45,250 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:46,053 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.0s — tokens=313, content_len=210
+2026-04-16 14:59:46,054 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected ADDITION/explicitation (minor) at [44:101]: '' -> 'conformément aux normes ISO 11674, IEC 60945 et IEC 61162'
+2026-04-16 14:59:46,058 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 14:59:46,059 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 14:59:47,367 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:47,749 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.7s — tokens=263, content_len=103
+2026-04-16 14:59:47,749 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for GRAMMAR/word_order: ['Invalid tag/type: TAG/GRAMMAR', 'Too much text changed outside error span (token overlap 0%)']
+2026-04-16 14:59:48,398 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:48,736 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.0s — tokens=299, content_len=103
+2026-04-16 14:59:48,737 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for GRAMMAR/word_order: ['Invalid tag/type: TAG/GRAMMAR', 'Too much text changed outside error span (token overlap 33%)']
+2026-04-16 14:59:49,385 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:49,656 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 0.9s — tokens=299, content_len=106
+2026-04-16 14:59:49,656 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 3/3) for GRAMMAR/word_order: ['Invalid tag/type: TAG/WORD_ORDER', 'Too much text changed outside error span (token overlap 33%)']
+2026-04-16 14:59:49,656 experiments.pipeline_validation.track_b.ablation_comparison ERROR B1 failed for segment dgt_tm-d45870d5b1b4
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 193, in _run_condition_b1
+    modified_text, errors = await inject_single_step(
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\single_step_inject.py", line 272, in inject_single_step
+    raise ValueError(
+ValueError: B1 single-step injection failed after 3 attempts for GRAMMAR/word_order. Last errors: ['Invalid tag/type: TAG/WORD_ORDER', 'Too much text changed outside error span (token overlap 33%)']
+2026-04-16 14:59:49,660 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 14:59:49,661 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 14:59:50,503 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:52,127 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.5s — tokens=624, content_len=586
+2026-04-16 14:59:52,128 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected STYLE/awkward (minor) at [122:275]: 'Rougeur de la surface cutanée, parfois localisée au niveau des oreilles, du cou, des flancs, du périnée, de l'abdomen et de la partie moyenne des cuisses' -> 'Rougeur de la surface cutanée, localisée parfois au niveau des oreilles, du cou, des flancs, du périnée, de l'abdomen et de la partie moyenne des cuisses'
+2026-04-16 14:59:52,131 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 14:59:52,132 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 14:59:52,777 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:54,564 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.4s — tokens=701, content_len=710
+2026-04-16 14:59:54,565 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for MISTRANSLATION/false_cognate: ['Invalid tag/type: TAG/MISTRANSLATION/false_cognate/critical']
+2026-04-16 14:59:55,353 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:56,787 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.2s — tokens=725, content_len=671
+2026-04-16 14:59:56,787 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected MISTRANSLATION/false_cognate (critical) at [299:308]: 'vendues d' -> 'défendues'
+2026-04-16 14:59:56,791 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 14:59:56,792 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 14:59:57,686 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:58,603 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.8s — tokens=285, content_len=173
+2026-04-16 14:59:58,603 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for OMISSION/partial: ['Invalid tag/type: TAG/OMISSION', 'Too much text changed outside error span (token overlap 50%)']
+2026-04-16 14:59:59,438 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 14:59:59,806 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.2s — tokens=307, content_len=119
+2026-04-16 14:59:59,806 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for OMISSION/partial: ['Invalid tag/type: TAG/OMISSION', 'Too much text changed outside error span (token overlap 50%)']
+2026-04-16 15:00:00,581 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:00:00,977 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 1.2s — tokens=312, content_len=140
+2026-04-16 15:00:00,978 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 3/3) for OMISSION/partial: ['Invalid tag/type: TAG/OMISSION']
+2026-04-16 15:00:00,978 experiments.pipeline_validation.track_b.ablation_comparison ERROR B1 failed for segment dgt_tm-a698d50a5f02
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 193, in _run_condition_b1
+    modified_text, errors = await inject_single_step(
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\single_step_inject.py", line 272, in inject_single_step
+    raise ValueError(
+ValueError: B1 single-step injection failed after 3 attempts for OMISSION/partial. Last errors: ['Invalid tag/type: TAG/OMISSION']
+2026-04-16 15:00:00,981 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:00:00,983 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:00:01,856 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:00:02,399 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.4s — tokens=305, content_len=217
+2026-04-16 15:00:02,400 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for TERMINOLOGY/institutional: ['Invalid tag/type: TAG/TERMINOLOGY']
+2026-04-16 15:00:03,117 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:00:03,701 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.3s — tokens=332, content_len=233
+2026-04-16 15:00:03,702 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected TERMINOLOGY/institutional (major) at [75:93]: 'marché du travail.' -> 'secteur du travail'
+2026-04-16 15:00:03,706 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:00:03,707 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:00:04,465 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:00:05,760 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.0s — tokens=617, content_len=579
+2026-04-16 15:00:05,761 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected STYLE/register_formal (minor) at [429:457]: ' p. 18 , doit être intégrée ' -> 'doit être ajoutée à l'accord'
+2026-04-16 15:00:05,765 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:00:05,766 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:00:06,704 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:00:08,025 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.2s — tokens=391, content_len=368
+2026-04-16 15:00:08,026 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for MISTRANSLATION/overly_literal: ['Invalid tag/type: TAG/MISTRANSLATION']
+2026-04-16 15:00:09,222 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:00:10,328 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.3s — tokens=435, content_len=446
+2026-04-16 15:00:10,329 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected MISTRANSLATION/overly_literal (minor) at [169:189]: 'dans le droit fil de' -> 'dans le droit fil de'
+2026-04-16 15:00:10,332 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:00:10,333 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:00:11,722 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:00:12,815 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.5s — tokens=452, content_len=441
+2026-04-16 15:00:12,815 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected MISTRANSLATION/anaphora_resolution (critical) at [154:183]: '' -> 'Leur préparation linguistique'
+2026-04-16 15:00:12,818 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:00:12,818 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:00:13,560 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:00:14,766 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.0s — tokens=402, content_len=371
+2026-04-16 15:00:14,766 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for GRAMMAR/preposition: ['Invalid tag/type: TAG/GRAMMAR/preposition']
+2026-04-16 15:00:15,636 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:00:17,138 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.4s — tokens=423, content_len=365
+2026-04-16 15:00:17,138 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected GRAMMAR/preposition (major) at [58:112]: 'au vu de l' inégalité de traitement avancée par le sec' -> 'dans l' inégalité de traitement avancée par le secteur'
+2026-04-16 15:00:17,142 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:00:17,143 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:00:18,286 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:00:19,487 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.3s — tokens=482, content_len=619
+2026-04-16 15:00:19,487 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected MISTRANSLATION/word_sense (major) at [281:302]: 'une position centrale' -> 'une position centrale'
+2026-04-16 15:00:19,490 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:00:19,491 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:00:20,296 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:00:22,180 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.7s — tokens=357, content_len=315
+2026-04-16 15:00:22,181 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for TERMINOLOGY/institutional: ['Invalid tag/type: TAG/TERMINOLOGY']
+2026-04-16 15:00:22,855 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:00:23,744 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.6s — tokens=384, content_len=333
+2026-04-16 15:00:23,744 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected TERMINOLOGY/institutional (major) at [27:47]: 'les comités de suivi' -> 'les comités de suivi'
+2026-04-16 15:00:23,748 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:00:23,749 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:00:24,460 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:00:25,345 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.6s — tokens=494, content_len=285
+2026-04-16 15:00:25,345 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for GRAMMAR/article: ['Invalid tag/type: TAG/GRAMMAR']
+2026-04-16 15:00:25,970 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:00:27,168 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.8s — tokens=529, content_len=337
+2026-04-16 15:00:27,169 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected GRAMMAR/article (minor) at [42:55]: 'la Commission' -> 'la Commission'
+2026-04-16 15:00:27,172 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:00:27,173 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:00:27,912 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:00:29,121 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.9s — tokens=376, content_len=347
+2026-04-16 15:00:29,122 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for LOCALE/number_format: ['Invalid tag/type: TAG/LOCALE/number_format']
+2026-04-16 15:00:29,933 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:00:31,021 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.9s — tokens=403, content_len=355
+2026-04-16 15:00:31,021 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for LOCALE/number_format: ['Invalid tag/type: TAG/LOCALE']
+2026-04-16 15:00:32,499 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:00:33,606 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 2.6s — tokens=399, content_len=350
+2026-04-16 15:00:33,607 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 3/3) for LOCALE/number_format: ['Invalid tag/type: TAG/LOCALE']
+2026-04-16 15:00:33,607 experiments.pipeline_validation.track_b.ablation_comparison ERROR B1 failed for segment eurlex-92976eebf34c
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 193, in _run_condition_b1
+    modified_text, errors = await inject_single_step(
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\single_step_inject.py", line 272, in inject_single_step
+    raise ValueError(
+ValueError: B1 single-step injection failed after 3 attempts for LOCALE/number_format. Last errors: ['Invalid tag/type: TAG/LOCALE']
+2026-04-16 15:00:33,611 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:00:33,612 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:00:35,444 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:00:36,431 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.8s — tokens=446, content_len=479
+2026-04-16 15:00:36,432 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected OMISSION/discourse_marker (minor) at [170:205]: 'Cette question est indissociable de' -> 'Cette question est indissociable de'
+2026-04-16 15:00:36,440 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:00:36,445 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:00:37,187 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:00:38,633 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.2s — tokens=594, content_len=771
+2026-04-16 15:00:38,634 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for TERMINOLOGY/inconsistent: ['Invalid tag/type: TAG/TERMINOLOGY']
+2026-04-16 15:00:39,529 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:00:41,080 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.5s — tokens=626, content_len=813
+2026-04-16 15:00:41,081 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected TERMINOLOGY/inconsistent (minor) at [173:194]: 'agriculteurs dans la ' -> 'exploitants agricoles'
+2026-04-16 15:00:41,084 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:00:41,085 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:00:41,760 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:00:42,906 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.8s — tokens=463, content_len=346
+2026-04-16 15:00:42,907 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for GRAMMAR/article: ['Invalid tag/type: TAG/GRAMMAR']
+2026-04-16 15:00:43,811 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:00:45,107 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.2s — tokens=488, content_len=366
+2026-04-16 15:00:45,108 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected GRAMMAR/article (minor) at [2:16]: 'À l' article 4' -> 'À l' article 4'
+2026-04-16 15:00:45,113 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:00:45,114 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:00:45,811 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:00:48,120 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.0s — tokens=497, content_len=483
+2026-04-16 15:00:48,121 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected OMISSION/discourse_marker (minor) at [240:254]: 'dans le but d'' -> 'dans le but d''
+2026-04-16 15:00:48,125 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:00:48,126 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:00:48,751 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:00:49,576 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.4s — tokens=374, content_len=272
+2026-04-16 15:00:49,577 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for TERMINOLOGY/inconsistent: ['Invalid tag/type: TAG/TERMINOLOGY']
+2026-04-16 15:00:50,441 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:00:51,200 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.6s — tokens=390, content_len=249
+2026-04-16 15:00:51,201 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected TERMINOLOGY/inconsistent (minor) at [49:76]: 'décision du Comité mixte de' -> 'décision du Comité conjoint'
+2026-04-16 15:00:51,205 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:00:51,206 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:00:51,915 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:00:52,625 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.4s — tokens=351, content_len=217
+2026-04-16 15:00:52,625 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for SPELLING/spelling: ['Invalid tag/type: TAG/SPELLING']
+2026-04-16 15:00:53,293 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:00:53,983 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.3s — tokens=364, content_len=208
+2026-04-16 15:00:53,983 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected SPELLING/spelling (minor) at [40:47]: 'blairea' -> 'blaireu'
+2026-04-16 15:00:53,987 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:00:53,989 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:00:54,632 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:00:55,470 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.5s — tokens=299, content_len=182
+2026-04-16 15:00:55,470 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for GRAMMAR/tense: ['Invalid tag/type: TAG/GRAMMAR']
+2026-04-16 15:00:56,442 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:00:57,347 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.9s — tokens=321, content_len=184
+2026-04-16 15:00:57,347 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected GRAMMAR/tense (major) at [24:27]: 'êtr' -> 'est'
+2026-04-16 15:00:57,352 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:00:57,353 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:00:58,213 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:01:01,062 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.7s — tokens=754, content_len=1125
+2026-04-16 15:01:01,064 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for TERMINOLOGY/institutional: ['Invalid tag/type: TAG/TERMINOLOGY']
+2026-04-16 15:01:01,708 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:01:04,692 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 3.6s — tokens=765, content_len=1070
+2026-04-16 15:01:04,693 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected TERMINOLOGY/institutional (major) at [375:390]: 'l' implantation' -> 'l' implantation'
+2026-04-16 15:01:04,696 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:01:04,697 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:01:09,213 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:01:10,850 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 6.2s — tokens=397, content_len=183
+2026-04-16 15:01:10,850 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for GRAMMAR/tense_sequence: ['Invalid tag/type: TAG/GRAMMAR', 'Too much text changed outside error span (token overlap 0%)']
+2026-04-16 15:01:11,545 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:01:12,162 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.3s — tokens=438, content_len=214
+2026-04-16 15:01:12,164 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for GRAMMAR/tense_sequence: ['Too much text changed outside error span (token overlap 40%)']
+2026-04-16 15:01:12,888 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:01:13,603 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 1.4s — tokens=422, content_len=185
+2026-04-16 15:01:13,603 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 3/3) for GRAMMAR/tense_sequence: ['Invalid tag/type: TAG/GRAMMAR/tense_sequence', 'Too much text changed outside error span (token overlap 40%)']
+2026-04-16 15:01:13,603 experiments.pipeline_validation.track_b.ablation_comparison ERROR B1 failed for segment dgt_tm-24f676af9a35
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 193, in _run_condition_b1
+    modified_text, errors = await inject_single_step(
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\single_step_inject.py", line 272, in inject_single_step
+    raise ValueError(
+ValueError: B1 single-step injection failed after 3 attempts for GRAMMAR/tense_sequence. Last errors: ['Invalid tag/type: TAG/GRAMMAR/tense_sequence', 'Too much text changed outside error span (token overlap 40%)']
+2026-04-16 15:01:13,608 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:01:13,608 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:01:14,370 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:01:15,613 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.0s — tokens=439, content_len=475
+2026-04-16 15:01:15,613 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected LOCALE/time_format (minor) at [274:297]: 'intensivement .' -> 'intensivement à 3:00 PM'
+2026-04-16 15:01:15,618 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:01:15,618 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:01:16,298 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:01:16,928 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.3s — tokens=299, content_len=147
+2026-04-16 15:01:16,928 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected GRAMMAR/word_order (minor) at [9:21]: 'du 16.7.1988' -> 'du 16.1988.7'
+2026-04-16 15:01:16,933 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:01:16,933 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:01:17,844 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:01:18,483 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.5s — tokens=342, content_len=312
+2026-04-16 15:01:18,483 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for STYLE/register_formal: ['Invalid tag/type: TAG/STYLE']
+2026-04-16 15:01:19,272 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:01:19,947 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.5s — tokens=358, content_len=299
+2026-04-16 15:01:19,947 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for STYLE/register_formal: ['Invalid tag/type: REGISTER/register_formal']
+2026-04-16 15:01:20,570 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:01:21,467 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 1.5s — tokens=369, content_len=333
+2026-04-16 15:01:21,468 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected STYLE/register_formal (major) at [96:118]: 'en cas d’urgence ou co' -> 'quand il y en a besoin'
+2026-04-16 15:01:21,471 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:01:21,471 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:01:22,366 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:01:23,161 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.7s — tokens=278, content_len=140
+2026-04-16 15:01:23,163 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected PUNCTUATION/punctuation (minor) at [2:10]: 'Economie' -> 'Economie'
+2026-04-16 15:01:23,167 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:01:23,168 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:01:24,109 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:01:24,874 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.7s — tokens=300, content_len=178
+2026-04-16 15:01:24,874 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for SPELLING/spelling: ['Invalid tag/type: TAG/SPELLING']
+2026-04-16 15:01:25,539 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:01:26,086 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.2s — tokens=323, content_len=188
+2026-04-16 15:01:26,086 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected SPELLING/spelling (minor) at [81:91]: 'frontières' -> 'frontiéres'
+2026-04-16 15:01:26,090 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:01:26,091 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:01:26,794 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:01:27,858 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.8s — tokens=325, content_len=238
+2026-04-16 15:01:27,859 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected STYLE/unidiomatic (minor) at [40:63]: 'rappeler au Parlement c' -> 'rappeler à le Parlement'
+2026-04-16 15:01:27,863 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:01:27,864 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:01:28,552 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:01:29,328 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.5s — tokens=405, content_len=198
+2026-04-16 15:01:29,330 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected MISTRANSLATION/false_cognate (major) at [12:22]: '31.12.1990' -> '31.12.1999'
+2026-04-16 15:01:29,333 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:01:29,334 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:01:29,998 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:01:31,504 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.2s — tokens=579, content_len=567
+2026-04-16 15:01:31,505 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected PUNCTUATION/punctuation (minor) at [410:411]: ',' -> ','
+2026-04-16 15:01:31,508 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:01:31,510 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:01:32,223 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:01:34,225 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.7s — tokens=472, content_len=522
+2026-04-16 15:01:34,225 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected MISTRANSLATION/undertranslation (minor) at [241:328]: 'contenait déjà toutes les propositions contenues dans la résolution établie aujourd'hui' -> 'contenait déjà toutes les propositions de la résolution de la commission des transports'
+2026-04-16 15:01:34,230 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:01:34,231 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:01:34,918 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:01:35,975 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.8s — tokens=365, content_len=322
+2026-04-16 15:01:35,975 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected MISTRANSLATION/word_sense (major) at [82:106]: 'l'enseignement et la for' -> 'l'enseignement supérieur'
+2026-04-16 15:01:35,978 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:01:35,979 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:01:36,724 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:01:37,344 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.4s — tokens=342, content_len=288
+2026-04-16 15:01:37,344 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for MISTRANSLATION/overtranslation: ['Invalid tag/type: TAG/MISTRANSLATION']
+2026-04-16 15:01:38,131 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:01:38,874 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.5s — tokens=367, content_len=294
+2026-04-16 15:01:38,876 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected MISTRANSLATION/overtranslation (minor) at [122:143]: 'un programme .' -> 'un programme détaillé'
+2026-04-16 15:01:38,879 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:01:38,880 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:01:40,568 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:01:42,184 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.3s — tokens=666, content_len=894
+2026-04-16 15:01:42,185 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected MISTRANSLATION/entity (minor) at [187:203]: 'du marché commun' -> 'du marché commun'
+2026-04-16 15:01:42,190 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:01:42,192 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:01:42,911 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:01:43,691 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.5s — tokens=456, content_len=372
+2026-04-16 15:01:43,693 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected MISTRANSLATION/number (major) at [23:25]: '68' -> '67'
+2026-04-16 15:01:43,697 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:01:43,697 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:01:45,903 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:01:46,538 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.8s — tokens=398, content_len=318
+2026-04-16 15:01:46,540 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for MISTRANSLATION/overly_literal: ['Invalid tag/type: TAG/MISTRANSLATION']
+2026-04-16 15:01:47,189 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:01:47,903 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.4s — tokens=434, content_len=369
+2026-04-16 15:01:47,905 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected MISTRANSLATION/overly_literal (major) at [104:127]: 'l’exposition itinérante' -> 'l’exposition itinérante'
+2026-04-16 15:01:47,908 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:01:47,909 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:01:49,660 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:01:50,723 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.8s — tokens=504, content_len=399
+2026-04-16 15:01:50,724 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for SPELLING/spelling: ['Invalid tag/type: TAG/SPELLING']
+2026-04-16 15:01:51,468 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:01:52,995 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.3s — tokens=526, content_len=411
+2026-04-16 15:01:52,995 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected SPELLING/spelling (minor) at [116:124]: 'qualité ' -> 'qualitée'
+2026-04-16 15:01:52,999 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:01:53,001 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:01:53,703 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:01:54,151 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.1s — tokens=294, content_len=210
+2026-04-16 15:01:54,153 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 1/3) for MISTRANSLATION/word_sense: ['Invalid tag/type: TAG/MISTRANSLATION', 'Too much text changed outside error span (token overlap 67%)']
+2026-04-16 15:01:55,705 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:01:56,115 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 2.0s — tokens=325, content_len=178
+2026-04-16 15:01:56,117 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 2/3) for MISTRANSLATION/word_sense: ['Invalid tag/type: TAG/MISTRANSLATION', 'Too much text changed outside error span (token overlap 67%)']
+2026-04-16 15:01:56,933 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:01:57,827 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 1.7s — tokens=334, content_len=203
+2026-04-16 15:01:57,827 experiments.pipeline_validation.baselines.single_step_inject WARNING B1 verification failed (attempt 3/3) for MISTRANSLATION/word_sense: ['Too much text changed outside error span (token overlap 67%)']
+2026-04-16 15:01:57,827 experiments.pipeline_validation.track_b.ablation_comparison ERROR B1 failed for segment eurlex-0e14e4eae548
+Traceback (most recent call last):
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\track_b\ablation_comparison.py", line 193, in _run_condition_b1
+    modified_text, errors = await inject_single_step(
+  File "C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\baselines\single_step_inject.py", line 272, in inject_single_step
+    raise ValueError(
+ValueError: B1 single-step injection failed after 3 attempts for MISTRANSLATION/word_sense. Last errors: ['Too much text changed outside error span (token overlap 67%)']
+2026-04-16 15:01:57,832 tompe.pipeline.codebook INFO Loaded codebook with 8 entries from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\error_codebook_fr_en.json
+2026-04-16 15:01:57,833 tompe.pipeline.codebook INFO Loaded tag schema from C:\Users\dnurb\Documents\critical-thinking\ToM-PE\data\codebook\tag_schema.json
+2026-04-16 15:01:58,684 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:00,187 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.3s — tokens=637, content_len=554
+2026-04-16 15:02:00,187 experiments.pipeline_validation.baselines.single_step_inject INFO B1 injected SPELLING/spelling (minor) at [157:164]: 'sperme ' -> 'spernne'
+2026-04-16 15:02:00,706 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:01,289 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.1s — tokens=402, content_len=294
+2026-04-16 15:02:01,292 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [261:273]: 'tchèqu' -> 'néerlandaise'
+2026-04-16 15:02:01,919 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:03,026 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.7s — tokens=547, content_len=544
+2026-04-16 15:02:03,028 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [271:282]: 'allemande ,' -> 'norvégienne'
+2026-04-16 15:02:03,653 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:04,165 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.1s — tokens=237, content_len=60
+2026-04-16 15:02:04,165 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [0:11]: 'DIFFUS' -> 'PROPAGATION'
+2026-04-16 15:02:04,592 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:04,777 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.6s — tokens=246, content_len=92
+2026-04-16 15:02:04,777 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected GRAMMAR (guessed) at [71:75]: 'vous' -> 'vous'
+2026-04-16 15:02:05,443 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:06,349 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.6s — tokens=446, content_len=327
+2026-04-16 15:02:06,350 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [194:203]: 'réexamin' -> 'modifiées'
+2026-04-16 15:02:06,954 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:07,233 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.9s — tokens=242, content_len=122
+2026-04-16 15:02:07,235 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [62:66]: 'au-d' -> 'dans'
+2026-04-16 15:02:07,780 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:08,067 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.8s — tokens=221, content_len=66
+2026-04-16 15:02:08,068 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [0:8]: 'Tout' -> 'Bien sûr'
+2026-04-16 15:02:08,624 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:09,230 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.2s — tokens=328, content_len=283
+2026-04-16 15:02:09,232 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [220:229]: 'gen' -> 'personnes'
+2026-04-16 15:02:09,838 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:10,346 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.1s — tokens=243, content_len=54
+2026-04-16 15:02:10,347 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [9:19]: 'du 10.10.2' -> 'en date du'
+2026-04-16 15:02:12,234 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:12,439 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.1s — tokens=216, content_len=67
+2026-04-16 15:02:12,440 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [41:52]: 'capac' -> 'flexibilité'
+2026-04-16 15:02:12,904 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:13,308 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.9s — tokens=319, content_len=313
+2026-04-16 15:02:13,309 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [97:112]: 'nationales visa' -> 'internationales'
+2026-04-16 15:02:14,096 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:15,187 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.9s — tokens=293, content_len=198
+2026-04-16 15:02:15,190 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [145:155]: 'les plus a' -> 'appropriés'
+2026-04-16 15:02:15,953 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:16,756 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.6s — tokens=336, content_len=291
+2026-04-16 15:02:16,757 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [196:224]: 'la manière d'' -> 'où trouver des exemples pour'
+2026-04-16 15:02:17,449 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:18,347 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.6s — tokens=315, content_len=227
+2026-04-16 15:02:18,348 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [171:174]: 'leur' -> 'son'
+2026-04-16 15:02:18,838 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:19,345 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.0s — tokens=298, content_len=233
+2026-04-16 15:02:19,347 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [182:195]: 'l ' État de d' -> 'les principes'
+2026-04-16 15:02:19,847 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:20,437 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.1s — tokens=440, content_len=397
+2026-04-16 15:02:20,438 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [318:327]: 'l' -> 'certaines'
+2026-04-16 15:02:20,957 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:21,536 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.1s — tokens=236, content_len=78
+2026-04-16 15:02:21,538 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [25:44]: 'Se' -> 'Produits financiers'
+2026-04-16 15:02:22,106 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:22,859 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.3s — tokens=263, content_len=138
+2026-04-16 15:02:22,861 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [88:95]: 'l' édif' -> 'la base'
+2026-04-16 15:02:23,419 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:25,951 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.1s — tokens=673, content_len=608
+2026-04-16 15:02:25,953 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [244:249]: 'la teneur' -> 'celle'
+2026-04-16 15:02:26,368 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:26,525 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.6s — tokens=242, content_len=126
+2026-04-16 15:02:26,526 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [62:76]: 'la politique é' -> 'la législation'
+2026-04-16 15:02:27,050 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:27,270 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.8s — tokens=234, content_len=58
+2026-04-16 15:02:27,271 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [8:16]: 'pointage' -> 'repérage'
+2026-04-16 15:02:27,820 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:27,966 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.7s — tokens=207, content_len=31
+2026-04-16 15:02:27,966 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [0:9]: 'Sond' -> 'Détecteur'
+2026-04-16 15:02:28,582 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:30,883 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.9s — tokens=564, content_len=485
+2026-04-16 15:02:30,885 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [249:266]: 'partie moyenne de' -> 'partie supérieure'
+2026-04-16 15:02:31,501 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:33,952 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 3.1s — tokens=523, content_len=516
+2026-04-16 15:02:33,954 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [388:403]: 'même s' -> 'à condition qu''
+2026-04-16 15:02:34,620 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:35,045 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.1s — tokens=218, content_len=53
+2026-04-16 15:02:35,046 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [10:38]: 'Appenzell Rhodes-Intérieures' -> 'Appenzell Rhodes-Extérieures'
+2026-04-16 15:02:35,775 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:35,985 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.0s — tokens=240, content_len=110
+2026-04-16 15:02:35,986 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [64:73]: 'besoins d' -> 'exigences'
+2026-04-16 15:02:36,966 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:38,254 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.3s — tokens=557, content_len=484
+2026-04-16 15:02:38,256 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [311:333]: 'des substances dangere' -> 'des produits dangereux'
+2026-04-16 15:02:38,768 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:39,638 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.4s — tokens=323, content_len=270
+2026-04-16 15:02:39,640 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [193:201]: 'stratégi' -> 'nouvelle'
+2026-04-16 15:02:40,124 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:40,521 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.9s — tokens=266, content_len=166
+2026-04-16 15:02:40,523 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [70:79]: 'p' -> 'formation'
+2026-04-16 15:02:41,198 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:42,593 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.1s — tokens=333, content_len=243
+2026-04-16 15:02:42,594 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [216:226]: 'un nouveau' -> 'un rapport'
+2026-04-16 15:02:43,135 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:44,189 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.6s — tokens=394, content_len=432
+2026-04-16 15:02:44,191 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [350:359]: 'l' -> 'certaines'
+2026-04-16 15:02:44,749 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:45,123 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.9s — tokens=283, content_len=173
+2026-04-16 15:02:45,125 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [108:117]: 'concern' -> 'impliqués'
+2026-04-16 15:02:45,589 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:46,451 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.3s — tokens=440, content_len=209
+2026-04-16 15:02:46,455 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [112:120]: 'rect' -> 'modifiée'
+2026-04-16 15:02:47,091 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:47,765 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.3s — tokens=313, content_len=232
+2026-04-16 15:02:47,766 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [161:168]: 'pas per' -> 'souvent'
+2026-04-16 15:02:48,373 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:49,113 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.3s — tokens=371, content_len=320
+2026-04-16 15:02:49,115 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [189:193]: 'indissocia' -> 'liée'
+2026-04-16 15:02:49,685 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:51,708 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.6s — tokens=518, content_len=635
+2026-04-16 15:02:51,709 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [415:417]: 'd' -> 'le'
+2026-04-16 15:02:52,212 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:52,680 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.0s — tokens=406, content_len=262
+2026-04-16 15:02:52,682 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected STYLE (guessed) at [136:161]: 'article 61 , paragraphe 3' -> 'article 61 , paragraphe 2'
+2026-04-16 15:02:56,018 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:56,969 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 4.3s — tokens=432, content_len=352
+2026-04-16 15:02:56,972 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [240:244]: 'dans le but' -> 'afin'
+2026-04-16 15:02:57,530 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:58,026 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.0s — tokens=295, content_len=127
+2026-04-16 15:02:58,027 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [87:89]: '3' -> '28'
+2026-04-16 15:02:58,597 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:02:59,005 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.0s — tokens=288, content_len=152
+2026-04-16 15:02:59,007 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [65:105]: 'pour la brosserie ; déchets de ces soies' -> 'utilisés dans la fabrication de pinceaux'
+2026-04-16 15:02:59,962 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:03:00,182 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.2s — tokens=239, content_len=97
+2026-04-16 15:03:00,183 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [29:37]: 'd' assis' -> 'd' aider'
+2026-04-16 15:03:00,746 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:03:02,660 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 2.5s — tokens=667, content_len=913
+2026-04-16 15:03:02,663 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected GRAMMAR (guessed) at [686:695]: 'nouvelles' -> 'nouvelles'
+2026-04-16 15:03:03,190 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:03:03,421 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.8s — tokens=254, content_len=52
+2026-04-16 15:03:03,422 experiments.pipeline_validation.baselines.unconstrained_inject WARNING B2 verification failed (attempt 1/3): ['Too much text changed (token overlap 40%, need >= 60%)']
+2026-04-16 15:03:04,047 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:03:04,626 tompe.pipeline.llm_client INFO LLM call 2 [openai/gpt-4.1] 1.2s — tokens=292, content_len=52
+2026-04-16 15:03:04,626 experiments.pipeline_validation.baselines.unconstrained_inject WARNING B2 verification failed (attempt 2/3): ['Too much text changed (token overlap 40%, need >= 60%)']
+2026-04-16 15:03:05,252 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:03:05,612 tompe.pipeline.llm_client INFO LLM call 3 [openai/gpt-4.1] 1.0s — tokens=293, content_len=54
+2026-04-16 15:03:05,612 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected STYLE (guessed) at [17:39]: 'benzo[d , e,f]chrysène' -> 'benzo[b , e,f]chrysène'
+2026-04-16 15:03:06,144 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:03:06,710 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.1s — tokens=359, content_len=317
+2026-04-16 15:03:06,712 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [267:279]: 'occupé intensi' -> ' brièvement '
+2026-04-16 15:03:07,274 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:03:07,520 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.8s — tokens=237, content_len=46
+2026-04-16 15:03:07,520 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [5:8]: '187' -> '305'
+2026-04-16 15:03:08,074 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:03:08,657 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.1s — tokens=280, content_len=199
+2026-04-16 15:03:08,660 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [130:141]: 'd' -> 'réservation'
+2026-04-16 15:03:09,227 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:03:09,873 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.2s — tokens=206, content_len=42
+2026-04-16 15:03:09,873 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected STYLE (guessed) at [2:27]: 'Economie de l'énergie' -> 'Economie de l'agriculture'
+2026-04-16 15:03:10,386 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:03:10,744 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.9s — tokens=241, content_len=111
+2026-04-16 15:03:10,745 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [50:62]: 'structure qu' -> 'organisation'
+2026-04-16 15:03:11,332 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:03:11,569 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.8s — tokens=252, content_len=112
+2026-04-16 15:03:11,570 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [62:71]: 'c' -> 'plusieurs'
+2026-04-16 15:03:12,194 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:03:12,533 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.0s — tokens=243, content_len=54
+2026-04-16 15:03:12,535 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [9:19]: 'du 31.12.1' -> 'en date du'
+2026-04-16 15:03:13,045 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:03:13,995 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.5s — tokens=503, content_len=422
+2026-04-16 15:03:13,997 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected STYLE (guessed) at [328:342]: 'de la Républiq' -> 'de la Slovénie'
+2026-04-16 15:03:14,609 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:03:15,410 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.4s — tokens=395, content_len=380
+2026-04-16 15:03:15,411 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [241:257]: 'conte' -> 'mentionnait déjà'
+2026-04-16 15:03:15,891 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:03:16,182 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.8s — tokens=275, content_len=126
+2026-04-16 15:03:16,184 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [82:110]: 'l'enseignement et la formati' -> 'l'enseignement professionnel'
+2026-04-16 15:03:16,707 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:03:17,023 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.8s — tokens=269, content_len=153
+2026-04-16 15:03:17,025 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [62:73]: 'évolution f' -> 'orientation'
+2026-04-16 15:03:17,594 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:03:18,770 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.8s — tokens=575, content_len=696
+2026-04-16 15:03:18,772 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected GRAMMAR (guessed) at [187:203]: 'du marché commun' -> 'du marché commun'
+2026-04-16 15:03:19,302 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:03:19,930 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.2s — tokens=392, content_len=268
+2026-04-16 15:03:19,932 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [156:165]: 'règl' -> 'principes'
+2026-04-16 15:03:20,624 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:03:21,124 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.2s — tokens=327, content_len=221
+2026-04-16 15:03:21,126 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [137:147]: 'suscite' -> 'promouvoir'
+2026-04-16 15:03:21,544 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:03:22,217 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.1s — tokens=444, content_len=320
+2026-04-16 15:03:22,217 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [143:151]: 'certain' -> 'diverses'
+2026-04-16 15:03:22,630 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:03:22,753 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 0.5s — tokens=211, content_len=53
+2026-04-16 15:03:22,755 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [17:21]: 'des ' -> 'pour'
+2026-04-16 15:03:23,179 httpx INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 15:03:23,988 tompe.pipeline.llm_client INFO LLM call 1 [openai/gpt-4.1] 1.2s — tokens=566, content_len=451
+2026-04-16 15:03:23,991 experiments.pipeline_validation.baselines.unconstrained_inject INFO B2 injected MISTRANSLATION (guessed) at [241:247]: 'équ' -> 'canine'
+2026-04-16 15:03:24,054 experiments.pipeline_validation.track_b.ablation_comparison WARNING track_a.xcomet_scoring not available; using stub
+2026-04-16 15:03:24,106 experiments.pipeline_validation.track_b.ablation_comparison INFO Condition B0_random: 47 items, structural=0.00, gemba=0.00
+2026-04-16 15:03:24,106 experiments.pipeline_validation.track_b.ablation_comparison WARNING track_a.xcomet_scoring not available; using stub
+2026-04-16 15:03:24,254 experiments.pipeline_validation.track_b.ablation_comparison INFO Condition B1_single_step: 50 items, structural=0.64, gemba=0.00
+2026-04-16 15:03:24,255 experiments.pipeline_validation.track_b.ablation_comparison WARNING track_a.xcomet_scoring not available; using stub
+2026-04-16 15:03:24,375 experiments.pipeline_validation.track_b.ablation_comparison INFO Condition B2_unconstrained: 60 items, structural=0.00, gemba=0.00
+2026-04-16 15:03:24,377 experiments.pipeline_validation.track_b.ablation_comparison WARNING track_a.xcomet_scoring not available; using stub
+2026-04-16 15:03:24,486 experiments.pipeline_validation.track_b.ablation_comparison INFO Condition full_pipeline: 60 items, structural=0.95, gemba=0.00
+2026-04-16 15:03:24,653 experiments.pipeline_validation.track_b.ablation_comparison INFO Ablation results saved to C:\Users\dnurb\Documents\critical-thinking\ToM-PE\experiments\pipeline_validation\results\track_b\ablation_results.json
+2026-04-16 15:03:24,657 runner INFO RESULT B0_random: n=47 struct=0% cat=N/A text=N/A
+2026-04-16 15:03:24,657 runner INFO RESULT B1_single_step: n=50 struct=64% cat=100% text=88%
+2026-04-16 15:03:24,659 runner INFO RESULT B2_unconstrained: n=60 struct=0% cat=N/A text=78%
+2026-04-16 15:03:24,659 runner INFO RESULT full_pipeline: n=60 struct=95% cat=100% text=90%

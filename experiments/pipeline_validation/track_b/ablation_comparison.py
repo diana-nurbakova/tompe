@@ -94,24 +94,49 @@ def _import_track_a():
 def _text_preservation_ratio(
     reference: str,
     presented: str,
-    error_spans: list[tuple[int, int]],
+    errors: list,
 ) -> float:
-    """Compute SequenceMatcher ratio on the text *outside* injected error spans.
+    """Compute SequenceMatcher ratio on text *outside* injected error spans.
+
+    Both the presented text and the reference are masked: error spans are
+    removed from the presented text, and the corresponding original-text
+    spans are removed from the reference, so the comparison covers only the
+    surrounding (non-error) regions.
 
     Returns a float in [0, 1].  Items pass if ratio >= 0.95.
     """
-    # Build the presented text with error spans masked out
-    chars = list(presented)
-    for start, end in sorted(error_spans, reverse=True):
-        start = max(0, start)
-        end = min(len(chars), end)
-        chars[start:end] = []
-    presented_clean = "".join(chars)
+    from tompe.schemas.error import InjectedError
 
-    if not reference and not presented_clean:
+    if not errors:
+        # No errors — compare the full texts
+        if not reference and not presented:
+            return 1.0
+        return difflib.SequenceMatcher(None, reference, presented).ratio()
+
+    # Remove error spans from the presented text
+    p_chars = list(presented)
+    for err in sorted(errors, key=lambda e: e.span_start, reverse=True):
+        s = max(0, err.span_start)
+        e = min(len(p_chars), err.span_end)
+        p_chars[s:e] = []
+    presented_clean = "".join(p_chars)
+
+    # Remove the original-text regions from the reference.
+    # We locate each original_text in the reference and remove it.
+    ref_clean = reference
+    for err in errors:
+        if not isinstance(err, InjectedError):
+            continue
+        orig = err.original_text
+        if orig:
+            pos = ref_clean.find(orig)
+            if pos >= 0:
+                ref_clean = ref_clean[:pos] + ref_clean[pos + len(orig):]
+
+    if not ref_clean and not presented_clean:
         return 1.0
 
-    return difflib.SequenceMatcher(None, reference, presented_clean).ratio()
+    return difflib.SequenceMatcher(None, ref_clean, presented_clean).ratio()
 
 
 def compute_text_preservation(items: list[AssessmentItem]) -> float:
@@ -121,11 +146,10 @@ def compute_text_preservation(items: list[AssessmentItem]) -> float:
 
     passed = 0
     for item in items:
-        spans = [(e.span_start, e.span_end) for e in item.errors]
         ratio = _text_preservation_ratio(
             item.reference_translation,
             item.presented_text,
-            spans,
+            item.errors,
         )
         if ratio >= 0.95:
             passed += 1
@@ -438,7 +462,16 @@ def save_results(results: AblationResults, output_dir: Path | None = None) -> Pa
     out = (output_dir or RESULTS_DIR / "track_b") / "ablation_results.json"
     out.parent.mkdir(parents=True, exist_ok=True)
 
+    # Save both the comparison table and the per-condition items (for recomputation)
     comparison = compare_conditions(results)
+    # Include serialised items so metrics can be recomputed without re-running
+    conditions_data = []
+    for cond in results.conditions:
+        conditions_data.append({
+            "condition": cond.condition,
+            "items": [item.model_dump(mode="json") for item in cond.items],
+        })
+    comparison["conditions"] = conditions_data
     out.write_text(json.dumps(comparison, indent=2, ensure_ascii=False), encoding="utf-8")
     logger.info("Ablation results saved to %s", out)
     return out

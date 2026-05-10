@@ -504,6 +504,9 @@ async def inject_errors_reference_based(
     error_profile: ErrorProfile,
     llm_config: dict,
     codebook: Optional[Codebook] = None,
+    verify_gemba: bool = False,
+    gemba_llm_config: dict | None = None,
+    gemba_min_detection_rate: float = 0.5,
 ) -> tuple[str, list[InjectedError]]:
     """Inject errors into the human reference translation.
 
@@ -515,6 +518,16 @@ async def inject_errors_reference_based(
         error_profile: Target error profile.
         llm_config: Config for the injection LLM (provider, model, etc.).
         codebook: Optional codebook for few-shot examples. If None, loads default.
+        verify_gemba: If True, run a single GEMBA-MQM detection pass after
+            all errors are injected and raise ValueError when fewer than
+            `gemba_min_detection_rate` of injected errors are independently
+            detected. Spec v1.1 §2.4 calls for QE-gated injection; with
+            xCOMET deferred (GPU), GEMBA is the available gate.
+        gemba_llm_config: LLM config for the GEMBA pass (defaults to
+            `llm_config`). Has no effect unless `verify_gemba=True`.
+        gemba_min_detection_rate: Minimum fraction of injected errors that
+            GEMBA must detect for the item to pass (default 0.5, matching
+            `QEValidationResult.passes_validation`).
 
     Returns:
         Tuple of (modified_text_with_errors, list_of_InjectedError).
@@ -553,6 +566,28 @@ async def inject_errors_reference_based(
     # Realign all spans to the final text
     if len(injected_errors) > 1:
         _realign_spans(current_text, injected_errors)
+
+    if verify_gemba and injected_errors:
+        # Imported here to avoid a circular import at module load time.
+        from tompe.pipeline.qe_validator import validate_item_gemba
+
+        gemba_cfg = gemba_llm_config or llm_config
+        qe_result = await validate_item_gemba(
+            source_text=segment.source_text,
+            reference=segment.reference_translation,
+            injected_text=current_text,
+            injected_errors=injected_errors,
+            llm_config=gemba_cfg,
+            source_lang=segment.source_lang,
+            target_lang=segment.target_lang,
+        )
+        if qe_result.detection_rate < gemba_min_detection_rate:
+            raise ValueError(
+                f"GEMBA-MQM gating failed for segment {segment.segment_id}: "
+                f"detection_rate={qe_result.detection_rate:.2f} < "
+                f"{gemba_min_detection_rate:.2f} "
+                f"({qe_result.gemba_detected}/{qe_result.total_injected} detected)"
+            )
 
     return current_text, injected_errors
 

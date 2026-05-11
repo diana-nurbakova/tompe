@@ -388,6 +388,58 @@ Expect:
 
 ---
 
+## Implementation sprint #3 — Phase 3 (research-scale)
+
+**Date range:** 2026-05-11 →
+**Theme:** Research-scale items from the Phase 3 plan; one item per commit so each can ship to the camera-ready independently.
+
+### What landed
+
+| ID | Item | Status | Files touched |
+|---|---|---|---|
+| 3.2 | Authentic pathway — `detect_authentic_errors` v1 (GEMBA-only; xCOMET deferred) | Done (unit-tested) | [src/tompe/pipeline/authentic_detector.py](../src/tompe/pipeline/authentic_detector.py) |
+
+### Still pending — Phase 3 backlog
+
+| ID | Item | Notes |
+|---|---|---|
+| 3.1 | Codebook coverage 8 → ~30 entries | Scaffolder script + per-entry content authoring. ~3 hrs scaffolder + 11–22 hrs authoring. |
+| 3.3 | `item_builder.build_item` / `build_batch` orchestration | Refactor `generate_batch` into thin CLI around a canonical orchestrator. Cleanest after 3.2 lands. |
+| 3.4 | C1–C4 tagging ablation (`experiments/ablation_tagging.py`) | 4 tag-format variants on the shared 60-segment pool; Table 4. |
+| 3.5 | Strategy 3 LLM context generation for L3 fallback | Only needed if L3 coverage probe shows shortfall. |
+| 3.6 | False-positive analysis script | Categorise human FPs into real-MT vs genuine FP; needs human annotations first. |
+
+### Verification — 3.2 authentic pathway
+
+- [ ] **Mapping helpers (no LLM needed).** Already smoke-tested during the sprint:
+
+  ```bash
+  PYTHONPATH=src python -c "
+  from tompe.pipeline.authentic_detector import _map_gemba_to_taxonomy, _parse_severity, _infer_tom_level, _locate_span
+  from tompe.pipeline.qe_validator import GEMBAError
+  # Mistranslation / false_cognate
+  tag, t = _map_gemba_to_taxonomy(GEMBAError(category='Accuracy', subcategory='Mistranslation', severity='major', span='actuellement', explanation=''))
+  assert tag.value == 'MISTRANSLATION' and t == 'false_cognate', (tag, t)
+  # Spelling
+  tag, t = _map_gemba_to_taxonomy(GEMBAError(category='Fluency', subcategory='Spelling', severity='minor', span='x', explanation=''))
+  assert tag.value == 'SPELLING'
+  print('OK')
+  "
+  ```
+
+  Expect `OK`.
+- [ ] **End-to-end with a real LLM** (costs credits). Pick one segment with a known authentic error in `data/corpora/`; build a `CorpusSegment` + `MTOutput`; call `detect_authentic_errors(segment, mt, llm_config={...})`. Confirm:
+  - `result.detection_method == 'gemba_mqm'`
+  - `result.detected_errors` is non-empty for a known-bad MT output
+  - Each detected error has a non-zero span, a synthesised Layer 1 contrastive explanation, and (when the (tag, type) pair is in the cache) a populated `system_behavior`
+- [ ] **Confidence threshold flagging.** Run the same call with `confidence_threshold=0.99`; expect an `INFO` log line "flagged for review" because the detector's heuristic confidence rarely exceeds 0.95.
+- [ ] **Empty-error case.** Run the detector on a clean reference (pass `mt_output.mt_text == segment.reference_translation`); expect `detected_errors == []` and `confidence_score` ≈ `overall_score / 100`.
+- [ ] **Wire into `build_annotation_set.py` (follow-up).** The 12-item `ANNOTATION_AUTHENTIC` slot is still passed `None` in [build_annotation_set.py](../experiments/pipeline_validation/track_c/build_annotation_set.py); add a `--authentic-source` flag that loads a real-MT corpus and runs the detector before calling `select_annotation_items`.
+
+**What this confirms:** Error-injection §7.2, System §4.5, annotation §4.3 — the controlled-vs-authentic narrative now has a working detector. The remaining work is sourcing real-MT items, not code.
+
+---
+
 ## Deliberate scope decisions (not gaps)
 
 The following items might look like gaps in the per-spec tables but are **intentional design choices**. Do not address as part of "fix the gaps":
@@ -404,7 +456,7 @@ Ordered by impact × leverage. Each item references the per-spec entries that su
 1. ~~**Post-editing flow is broken end-to-end.**~~ **RESOLVED — Sprint #1 (A1).** `pe_proceed_btn` now wired; `edited_text` flows to scoring. Diff visualization is a separate, lower-priority gap.
 2. **Comparison mode (L3 multi-MT, ranking, human-vs-MT) is schema-only.** `comparison_outputs`, `ComparisonType`, `ItemPathway` exist but no pipeline writes them, no UI reads them, no scoring evaluates them. The single biggest scope gap; spans System §3.6/§5/§7.4 + UI §3.5.
 3. **Skill Radar is rendered but inert.** The student UI draws the heptagonal SVG and the teacher heatmap exists, but [`api_get_progress`](../src/tompe/services/api.py#L780) never returns `skill_profile`, so every student sees zeros. Highest "looks done but isn't" risk for an EC-TEL demo. *(Fluency Trap §6.2 + System §3.9)* — **Tier B target.**
-4. **Authentic pathway is a stub.** [`authentic_detector.detect_authentic_errors`](../src/tompe/pipeline/authentic_detector.py#L11) raises `NotImplementedError`. This invalidates the controlled-vs-authentic narrative the paper needs. Cascades into Study spec authentic items, Error Injection §7.2, validation Track C naturalness. *(System §4.5 + Error Injection §7.2 + annotation-tool §4.3)* — **Tier C3.**
+4. ~~**Authentic pathway is a stub.**~~ **RESOLVED (GEMBA-only v1) — Phase 3 (3.2).** [`authentic_detector.detect_authentic_errors`](../src/tompe/pipeline/authentic_detector.py) now runs GEMBA-MQM and maps each detected error to the ToM-PE taxonomy (primary tag, error type, tom_level, skill), synthesises a Layer 1 contrastive explanation from GEMBA fields, and consults the Layer 2a cache for system-behavior text. xCOMET cross-validation deferred (GPU). The controlled-vs-authentic narrative is now coverable end-to-end, though authentic items still need a real-MT source list to populate `ANNOTATION_AUTHENTIC=12`.
 5. **Longitudinal analytics are all `NotImplementedError`.** [`analytics.py`](../src/tompe/services/analytics.py#L6) — `update_student_profile`, `detect_blind_spots`, `compute_class_analytics` — are stubs. The teacher blind-spot view recomputes ad hoc; there's no persistent learner profile for the BKT story. *(System §3.9)* — **Tier C2.**
 6. **BKT mastery + teacher-gated progression is unwired.** [`progression.py:20`](../src/tompe/services/progression.py#L20) is a stub; Scout / Analyst / Expert badges fire on level-int, not on p≥0.98. Spec promises adaptive progression; runtime delivers manual promotion. *(Fluency Trap §2.2 + System §8.3)* — **Tier C1.**
 7. ~~**Single-error validation toggle is not config-driven.**~~ **RESOLVED — Sprint #1 (A4).** `validation_severity_distribution` lives in `settings.yaml`; user/linter further refactored to load from YAML at module-import time.
@@ -656,13 +708,13 @@ Ordered by impact × leverage. Each item references the per-spec entries that su
 | §5.4 | layer2a / layer2b reusable explanation templates (committed) | Implemented | [data/codebook/layer2a_explanations.json](../data/codebook/layer2a_explanations.json), [data/codebook/layer2b_explanations.json](../data/codebook/layer2b_explanations.json), [explanation_generator.py](../src/tompe/pipeline/explanation_generator.py) | Sprint #2 (B6): cache files committed with seed entries; generators consult cache before LLM call. Bulk content authoring still pending (3.1 in Phase 3 plan). |
 | §5.5 | Tagging strategy ablation (C1–C4) | Missing | — | No `experiments/ablation_tagging.py`. |
 | §6 | Justification-before-feedback (cognitive forcing) | Implemented | [interfaces/student_app.py:1](../src/tompe/interfaces/student_app.py#L1) | Justify phase precedes feedback. |
-| §7.2 | Authentic pathway error detection (xCOMET + GEMBA cross-validation) | Missing | [pipeline/authentic_detector.py:11](../src/tompe/pipeline/authentic_detector.py#L11) | `detect_authentic_errors` raises `NotImplementedError`. |
+| §7.2 | Authentic pathway error detection (xCOMET + GEMBA cross-validation) | Implemented (GEMBA-only v1) | [pipeline/authentic_detector.py](../src/tompe/pipeline/authentic_detector.py) | Phase 3 (3.2): `detect_authentic_errors` runs GEMBA-MQM, maps to taxonomy (PrimaryTag, error_type, tom_level, skill), synthesises Layer 1 contrastive + cache-only Layer 2a. xCOMET pass deferred (GPU). |
 | §7.2 | `item_builder` full-pipeline orchestration | Missing | [pipeline/item_builder.py:10](../src/tompe/pipeline/item_builder.py#L10) | `build_item` / `build_batch` raise `NotImplementedError`. |
 
 #### Top 5 gaps (after Sprint #2)
 
 1. **Codebook coverage (§5.2)** — only 8 of the targeted ~37 codebook entries exist. The pipeline runs via the taxonomy fallback, but few-shot quality depends on the codebook; this is the single biggest content gap. *(Phase 3 item 3.1.)*
-2. **Authentic pathway (§7.2)** — `authentic_detector.detect_authentic_errors` is a stub. Without it, the controlled-vs-authentic distinction is purely controlled. *(Phase 3 item 3.2.)*
+2. ~~**Authentic pathway (§7.2)**~~ — **RESOLVED (GEMBA-only v1) — Phase 3 (3.2).** [`authentic_detector.detect_authentic_errors`](../src/tompe/pipeline/authentic_detector.py) maps GEMBA-MQM output to the taxonomy + Layer 1 + cached Layer 2a. xCOMET pass still deferred (GPU).
 3. **`item_builder` orchestration (§7.2)** — `build_item` / `build_batch` raise `NotImplementedError`; the full pipeline is currently driven by `experiments/pipeline_validation/generate_batch.py` rather than the canonical `pipeline/item_builder.py`. *(Phase 3 item 3.3.)*
 4. **Tagging strategy ablation (§5.5)** — no `experiments/ablation_tagging.py`; the C1–C4 ablation that justifies the tag format choice is absent. *(Phase 3 item 3.4.)*
 5. ~~**Pre-curated Layer 2a / 2b explanation templates (§5.4)**~~ — **RESOLVED — Sprint #2 (B6).** Cache files committed; generators consult them before LLM. Curating ~30 entries remains content work; tracked under Phase 3 item 3.1.
@@ -802,7 +854,7 @@ Ordered by impact × leverage. Each item references the per-spec entries that su
 2. ~~**Segment reuse across conditions not enforced (§4.2)**~~ — **RESOLVED — Sprint #2 (B8).** `_baseline_sample(forced_segment_ids=…)` makes B1/B2 reuse B0's chosen segment_ids with stratified fallback for missing items.
 3. **False positive analysis missing (§6.6)** — No `false_positive_analysis.py`. Categorising human FPs into "real MT error" vs "genuine false alarm" is a checklist item that is not implemented. *(Phase 3 item 3.6.)*
 4. ~~**Live timer not animated (§2.4)**~~ — **RESOLVED — Sprint #2 (B3).** `.timer-display` now ticks via `gr.Blocks.load(js=ANNOTATION_TIMER_JS)`; per-item buttons reset the timer. Manual browser check still owed.
-5. **Authentic MT pathway absent (§4.3)** — 12 authentic items budgeted; `authentic_detector.py` is `NotImplementedError`. Either implement, or document the fall-back where authentic count goes to 0 and pipeline items expand. *(Phase 3 item 3.2.)*
+5. **Authentic MT pathway partial (§4.3)** — Phase 3 (3.2) wired `detect_authentic_errors`, so the detector exists. Still pending: a real-MT source list to populate the 12 `ANNOTATION_AUTHENTIC` slots (currently `build_annotation_set.py` passes `authentic_items=None`, so the count goes to 0 and pipeline items expand). Plumb a real-MT corpus into `build_annotation_set.py` to close fully.
 
 ---
 

@@ -103,6 +103,72 @@ Respond with valid JSON only.\
 """
 
 
+def build_step2_system_prompt(tag_format: "TagFormat | None" = None) -> str:
+    """Return the Step 2 system prompt for the given tag format.
+
+    The C4 production prompt is verbatim ``SYSTEM_PROMPT_STEP2``; the
+    C1–C3 ablation variants describe the simpler tag schema and drop
+    rules that don't apply (e.g. C1 has no ``desc`` rule).
+    """
+    from tompe.pipeline.tag_formats import TagFormat
+
+    if tag_format is None or tag_format == TagFormat.C4_FULL:
+        return SYSTEM_PROMPT_STEP2
+
+    if tag_format == TagFormat.C1_BARE:
+        return """\
+You are a translation quality expert. Your task is to produce a modified \
+translation with exactly one error injected and marked with XML annotation.
+
+The XML tag format is:
+<error>error span text</error>
+
+CRITICAL RULES:
+1. Modify ONLY the identified span from the planning step.
+2. Keep ALL other text EXACTLY identical to the original (character-for-character).
+3. The error must be plausible — something a real MT system would produce.
+4. The surrounding text must remain grammatical.
+
+Respond with valid JSON only.\
+"""
+
+    if tag_format == TagFormat.C2_CATEGORICAL:
+        return """\
+You are a translation quality expert. Your task is to produce a modified \
+translation with exactly one error injected and marked with XML annotation.
+
+The XML tag format uses the MQM primary tag as the tag name:
+<TAG_NAME>error span text</TAG_NAME>
+where TAG_NAME is one of: MISTRANSLATION, OMISSION, ADDITION, GRAMMAR, \
+TERMINOLOGY, STYLE, LOCALE, UNTRANSLATED, SPELLING, PUNCTUATION.
+
+CRITICAL RULES:
+1. Modify ONLY the identified span from the planning step.
+2. Keep ALL other text EXACTLY identical to the original (character-for-character).
+3. The error must be plausible — something a real MT system would produce.
+4. The surrounding text must remain grammatical.
+
+Respond with valid JSON only.\
+"""
+
+    # TagFormat.C3_ATTRIBUTED
+    return """\
+You are a translation quality expert. Your task is to produce a modified \
+translation with exactly one error injected and marked with XML annotation.
+
+The XML tag format is:
+<TAG_NAME type="subtype" severity="minor|major|critical">error span text</TAG_NAME>
+
+CRITICAL RULES:
+1. Modify ONLY the identified span from the planning step.
+2. Keep ALL other text EXACTLY identical to the original (character-for-character).
+3. The error must be plausible — something a real MT system would produce.
+4. The surrounding text must remain grammatical.
+
+Respond with valid JSON only.\
+"""
+
+
 def build_step2_prompt(
     reference: str,
     primary_tag: PrimaryTag,
@@ -111,19 +177,36 @@ def build_step2_prompt(
     tom_level: TOMLevel,
     step1_output: dict,
     few_shot_examples: list[CodebookExample] | None = None,
+    tag_format: "TagFormat | None" = None,
 ) -> str:
-    """Build the Step 2 (execution) prompt. From spec v1.1 §2.3."""
+    """Build the Step 2 (execution) prompt. From spec v1.1 §2.3.
+
+    The ``tag_format`` argument selects one of the C1–C4 tagging
+    strategies (spec §5.5); defaults to C4 (the production format).
+    For the C1–C3 ablation conditions the prompt's tag template and
+    the few-shot examples are re-rendered in the matching format so
+    the LLM doesn't see a format mismatch.
+    """
     import json as _json
+    from tompe.pipeline.tag_formats import (
+        TagFormat,
+        reformat_codebook_xml,
+        tag_template_string,
+    )
+
+    if tag_format is None:
+        tag_format = TagFormat.C4_FULL
 
     # Build few-shot section from codebook examples
     examples_text = ""
     if few_shot_examples:
         example_blocks = []
         for i, ex in enumerate(few_shot_examples, 1):
+            injected = reformat_codebook_xml(ex.injected, tag_format)
             example_blocks.append(
                 f"--- Example {i} ({ex.direction}) ---\n"
                 f"Original: {ex.reference}\n"
-                f"Injected: {ex.injected}"
+                f"Injected: {injected}"
             )
         examples_text = (
             "Here are examples of correctly tagged injections:\n\n"
@@ -133,21 +216,32 @@ def build_step2_prompt(
 
     plan_json = _json.dumps(step1_output, ensure_ascii=False, indent=2)
 
+    tag_template = tag_template_string(
+        primary_tag=primary_tag,
+        error_type=error_type,
+        severity=severity,
+        tom_level=tom_level,
+        fmt=tag_format,
+    )
+
+    if tag_format == TagFormat.C1_BARE:
+        annotation_descriptor = "an <error> tag"
+    else:
+        annotation_descriptor = f"a <{primary_tag.value}> tag"
+
     return f"""\
 {examples_text}\
 Now produce the modified translation with the error injected using XML \
 annotation.
 
-Tag to use: <{primary_tag.value} type="{error_type}" \
-severity="{severity.value}" tom="{tom_level.value}" \
-desc="5-15 word explanation">error text</{primary_tag.value}>
+Tag to use: {tag_template}
 
 Original translation: {reference}
 Planned modification: {plan_json}
 
 Respond in JSON:
 {{
-  "injected_translation": "full text with <{primary_tag.value}> annotation inline",
+  "injected_translation": "full text with {annotation_descriptor} inline",
   "error_span_text": "just the error span content (inside the tags)",
   "original_span_text": "what was there before",
   "explanation": {{

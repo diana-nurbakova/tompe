@@ -21,6 +21,7 @@ from tompe.pipeline._injection_prompts import (
     SYSTEM_PROMPT_STEP2,
     build_step1_prompt,
     build_step2_prompt,
+    build_step2_system_prompt,
 )
 from tompe.pipeline.codebook import Codebook, load_default_codebook
 from tompe.pipeline.llm_client import LLMClient, make_client_from_config
@@ -31,6 +32,12 @@ from tompe.pipeline.mqm_taxonomy import (
     get_types_for_tag,
     validate_tag_type,
 )
+from tompe.pipeline.tag_formats import (
+    TagFormat,
+    get_tag_pattern,
+    parse_tags as _parse_tags_fmt,
+    strip_tags as _strip_tags_fmt,
+)
 from tompe.schemas.corpus import CorpusSegment, MTOutput
 from tompe.schemas.enums import PrimaryTag, Severity, SkillID, TOMLevel
 from tompe.schemas.error import ContrastiveExplanation, InjectedError
@@ -40,13 +47,9 @@ logger = logging.getLogger(__name__)
 # Maximum retries per single error injection on verification failure
 _MAX_INJECTION_RETRIES = 3
 
-# Regex to match our XML error tags
-_TAG_PATTERN = re.compile(
-    r'<(\w+)\s+type="([^"]+)"\s+severity="([^"]+)"\s+tom="([^"]+)"\s+desc="([^"]*)">'
-    r'(.*?)'
-    r'</\1>',
-    re.DOTALL,
-)
+# Default tag pattern (C4). Other formats are obtained via
+# `tag_formats.get_tag_pattern(fmt)`.
+_TAG_PATTERN = get_tag_pattern(TagFormat.C4_FULL)
 
 
 class ErrorProfile:

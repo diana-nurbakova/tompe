@@ -398,6 +398,7 @@ Expect:
 | ID | Item | Status | Files touched |
 |---|---|---|---|
 | 3.2 | Authentic pathway — `detect_authentic_errors` v1 (GEMBA-only; xCOMET deferred) | Done (unit-tested) | [src/tompe/pipeline/authentic_detector.py](../src/tompe/pipeline/authentic_detector.py) |
+| 3.4 | C1–C4 tagging ablation — `TagFormat` enum, parameterised injection prompt + verification, ablation runner, Table 4 (Layer 1 metrics) | Done (smoke-tested) | [src/tompe/pipeline/tag_formats.py](../src/tompe/pipeline/tag_formats.py), [src/tompe/pipeline/error_injector.py](../src/tompe/pipeline/error_injector.py), [src/tompe/pipeline/_injection_prompts.py](../src/tompe/pipeline/_injection_prompts.py), [experiments/pipeline_validation/ablation_tagging.py](../experiments/pipeline_validation/ablation_tagging.py), [experiments/pipeline_validation/tables.py](../experiments/pipeline_validation/tables.py) |
 
 ### Still pending — Phase 3 backlog
 
@@ -405,7 +406,7 @@ Expect:
 |---|---|---|
 | 3.1 | Codebook coverage 8 → ~30 entries | Scaffolder script + per-entry content authoring. ~3 hrs scaffolder + 11–22 hrs authoring. |
 | 3.3 | `item_builder.build_item` / `build_batch` orchestration | Refactor `generate_batch` into thin CLI around a canonical orchestrator. Cleanest after 3.2 lands. |
-| 3.4 | C1–C4 tagging ablation (`experiments/ablation_tagging.py`) | 4 tag-format variants on the shared 60-segment pool; Table 4. |
+| 3.4 follow-up | Layer 2 (LLM-as-judge) + Layer 3 (expert review) for the tagging ablation | Needs a calibrated judge prompt and a 30-item/condition human review pass per spec §5.5. |
 | 3.5 | Strategy 3 LLM context generation for L3 fallback | Only needed if L3 coverage probe shows shortfall. |
 | 3.6 | False-positive analysis script | Categorise human FPs into real-MT vs genuine FP; needs human annotations first. |
 
@@ -437,6 +438,51 @@ Expect:
 - [ ] **Wire into `build_annotation_set.py` (follow-up).** The 12-item `ANNOTATION_AUTHENTIC` slot is still passed `None` in [build_annotation_set.py](../experiments/pipeline_validation/track_c/build_annotation_set.py); add a `--authentic-source` flag that loads a real-MT corpus and runs the detector before calling `select_annotation_items`.
 
 **What this confirms:** Error-injection §7.2, System §4.5, annotation §4.3 — the controlled-vs-authentic narrative now has a working detector. The remaining work is sourcing real-MT items, not code.
+
+### Verification — 3.4 tagging ablation (C1–C4)
+
+- [ ] **`TagFormat` module round-trips all four formats.** Already smoke-tested during the sprint:
+
+  ```bash
+  PYTHONPATH=src python -c "
+  from tompe.pipeline.tag_formats import TagFormat, parse_tags, reformat_codebook_xml, render_tag
+  from tompe.schemas.enums import PrimaryTag, Severity, TOMLevel
+  c4 = render_tag(PrimaryTag.MISTRANSLATION, 'false_cognate', Severity.MAJOR,
+                  TOMLevel.FIRST_ORDER_MACHINE, 'long enough description text',
+                  'actuellement', TagFormat.C4_FULL)
+  for fmt in TagFormat:
+      r = reformat_codebook_xml(c4, fmt)
+      tags = parse_tags(r, fmt)
+      assert len(tags) == 1 and tags[0]['span_text'] == 'actuellement', (fmt, tags)
+  print('OK')
+  "
+  ```
+
+  Expect `OK`.
+- [ ] **`_verify_injection` enforces the right rules per format.** Build a response with a deliberately invalid tag for each format and confirm the right error message comes back:
+  - C2 with `<NOTATAG>span</NOTATAG>` → `Invalid tag name`
+  - C3 with `<MISTRANSLATION type="not_a_real_type" severity="major">…</MISTRANSLATION>` → `Invalid tag/type pair`
+  - C4 with a 2-word `desc` → `desc attribute too short`
+- [ ] **CLI exposes all four conditions.**
+
+  ```bash
+  PYTHONPATH=src python -m experiments.pipeline_validation.ablation_tagging --help
+  ```
+
+  Expect `--n-items`, `--conditions`, `--seed`, `--dry-run`, `--llm-provider`, `--llm-model`.
+- [ ] **Dry run reports the right sample size.**
+
+  ```bash
+  PYTHONPATH=src python -m experiments.pipeline_validation.ablation_tagging --dry-run --n-items 8
+  ```
+
+  Expect `Sampled 8 segments (from ~30k available)` and `Total injections would be: 4 × 8 = 32`.
+- [ ] **Full run (manual, costs LLM credits).** Start small (`--n-items 4`); confirm `results/tagging_ablation/tagging_ablation_results.json` is written with four condition entries and that `parse_success_rate` is non-zero for each. Production paper run uses `--n-items 30` per spec §5.5.
+- [ ] **Table 4 renders.** After a run, `python -m experiments.pipeline_validation.tables` should report `Written table4.tex`; inspect the file and confirm rows for C1, C2, C3, C4 with `Parse / Struct. / GEMBA Det. / Cat. Fid. / Text Pres.` columns. `Cat. Fid.` is `--` for C1 (no semantic tag).
+
+**Follow-ups not in this sprint:** Layer 2 LLM-as-judge with a calibrated judge prompt (spec §5.5 — needs prompt-validation against expert ratings before use); Layer 3 expert review of 30 items/condition. Both blocked on a calibrated evaluation prompt + a human reviewer, not on code.
+
+**What this confirms:** Error-injection §5.5 — the tag-format design choice can be empirically defended in the paper using Layer 1 automatic metrics across C1, C2, C3, C4.
 
 ---
 
@@ -706,7 +752,7 @@ Ordered by impact × leverage. Each item references the per-spec entries that su
 | §5.4 | Layer 2a popular-science explanation generator | Implemented | [pipeline/explanation_generator.py:78](../src/tompe/pipeline/explanation_generator.py#L78) | `SystemBehaviorExplanation`. |
 | §5.4 | Layer 2b technical explanation (progressive disclosure) | Implemented | [pipeline/explanation_generator.py:111](../src/tompe/pipeline/explanation_generator.py#L111) | Optional, off by default. |
 | §5.4 | layer2a / layer2b reusable explanation templates (committed) | Implemented | [data/codebook/layer2a_explanations.json](../data/codebook/layer2a_explanations.json), [data/codebook/layer2b_explanations.json](../data/codebook/layer2b_explanations.json), [explanation_generator.py](../src/tompe/pipeline/explanation_generator.py) | Sprint #2 (B6): cache files committed with seed entries; generators consult cache before LLM call. Bulk content authoring still pending (3.1 in Phase 3 plan). |
-| §5.5 | Tagging strategy ablation (C1–C4) | Missing | — | No `experiments/ablation_tagging.py`. |
+| §5.5 | Tagging strategy ablation (C1–C4) | Implemented (Layer 1) | [pipeline/tag_formats.py](../src/tompe/pipeline/tag_formats.py), [pipeline/error_injector.py](../src/tompe/pipeline/error_injector.py), [experiments/pipeline_validation/ablation_tagging.py](../experiments/pipeline_validation/ablation_tagging.py), [tables.py:303](../experiments/pipeline_validation/tables.py#L303) | Phase 3 (3.4): `TagFormat` enum + parameterised `build_step2_prompt` / `_verify_injection` / `inject_errors_reference_based(tag_format=…)`. Runner sweeps all four formats; Table 4 in `tables.py`. Layer 2 (LLM-as-judge) + Layer 3 (expert) follow-ups pending. |
 | §6 | Justification-before-feedback (cognitive forcing) | Implemented | [interfaces/student_app.py:1](../src/tompe/interfaces/student_app.py#L1) | Justify phase precedes feedback. |
 | §7.2 | Authentic pathway error detection (xCOMET + GEMBA cross-validation) | Implemented (GEMBA-only v1) | [pipeline/authentic_detector.py](../src/tompe/pipeline/authentic_detector.py) | Phase 3 (3.2): `detect_authentic_errors` runs GEMBA-MQM, maps to taxonomy (PrimaryTag, error_type, tom_level, skill), synthesises Layer 1 contrastive + cache-only Layer 2a. xCOMET pass deferred (GPU). |
 | §7.2 | `item_builder` full-pipeline orchestration | Missing | [pipeline/item_builder.py:10](../src/tompe/pipeline/item_builder.py#L10) | `build_item` / `build_batch` raise `NotImplementedError`. |
@@ -716,7 +762,7 @@ Ordered by impact × leverage. Each item references the per-spec entries that su
 1. **Codebook coverage (§5.2)** — only 8 of the targeted ~37 codebook entries exist. The pipeline runs via the taxonomy fallback, but few-shot quality depends on the codebook; this is the single biggest content gap. *(Phase 3 item 3.1.)*
 2. ~~**Authentic pathway (§7.2)**~~ — **RESOLVED (GEMBA-only v1) — Phase 3 (3.2).** [`authentic_detector.detect_authentic_errors`](../src/tompe/pipeline/authentic_detector.py) maps GEMBA-MQM output to the taxonomy + Layer 1 + cached Layer 2a. xCOMET pass still deferred (GPU).
 3. **`item_builder` orchestration (§7.2)** — `build_item` / `build_batch` raise `NotImplementedError`; the full pipeline is currently driven by `experiments/pipeline_validation/generate_batch.py` rather than the canonical `pipeline/item_builder.py`. *(Phase 3 item 3.3.)*
-4. **Tagging strategy ablation (§5.5)** — no `experiments/ablation_tagging.py`; the C1–C4 ablation that justifies the tag format choice is absent. *(Phase 3 item 3.4.)*
+4. ~~**Tagging strategy ablation (§5.5)**~~ — **RESOLVED (Layer 1) — Phase 3 (3.4).** Central `TagFormat` enum; `build_step2_prompt`, `build_step2_system_prompt`, `_verify_injection`, and `inject_errors_reference_based` now accept `tag_format=`. Runner at [experiments/pipeline_validation/ablation_tagging.py](../experiments/pipeline_validation/ablation_tagging.py); Table 4 in `tables.py`. Layer 2 (LLM-as-judge with calibrated prompt) and Layer 3 (expert review of 30/condition) still pending — listed as follow-ups in Sprint #3.
 5. ~~**Pre-curated Layer 2a / 2b explanation templates (§5.4)**~~ — **RESOLVED — Sprint #2 (B6).** Cache files committed; generators consult them before LLM. Curating ~30 entries remains content work; tracked under Phase 3 item 3.1.
 
 ---

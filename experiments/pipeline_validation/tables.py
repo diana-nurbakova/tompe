@@ -300,6 +300,76 @@ def table3_agreement_and_explanation(results: dict) -> str:
 
 
 # ---------------------------------------------------------------------------
+# Table 4: Tagging-strategy ablation (C1–C4) — error-injection spec §5.5
+# ---------------------------------------------------------------------------
+
+
+def table4_tagging_ablation(results: dict) -> str:
+    r"""Table 4: tag-format ablation across C1, C2, C3, C4.
+
+    Args:
+        results: Dict matching the output of
+                 `experiments.pipeline_validation.ablation_tagging.save_results`,
+                 with a ``conditions`` list of per-condition dicts.
+
+    Returns:
+        LaTeX table string (booktabs format).
+    """
+    conditions = results.get("conditions", [])
+
+    cond_labels = {
+        "C1": "C1: Bare",
+        "C2": "C2: Categorical",
+        "C3": "C3: Attributed",
+        "C4": r"C4: Full (\textbf{ours})",
+    }
+
+    lines = [
+        r"\begin{table}[t]",
+        r"  \centering",
+        r"  \caption{Tagging-strategy ablation ($N{=}"
+        + str(results.get("n_segments", 0))
+        + r"$ shared segments per condition).}",
+        r"  \label{tab:tagging-ablation}",
+        r"  \small",
+        r"  \begin{tabular}{l c c c c c}",
+        r"    \toprule",
+        r"    \textbf{Condition} & \textbf{Parse} & \textbf{Struct.} & "
+        r"\textbf{GEMBA Det.} & \textbf{Cat.\ Fid.} & \textbf{Text Pres.} \\",
+        r"    \midrule",
+    ]
+
+    pct_suffix = r"\%"
+    for cond in conditions:
+        name = cond.get("condition", "")
+        label = cond_labels.get(name, name)
+        parse_rate = _pct(cond.get("parse_success_rate"))
+        struct_rate = _pct(cond.get("structural_pass_rate"))
+        gemba_rate = _pct(cond.get("gemba_detection_rate"))
+        cat_fid = cond.get("category_fidelity")
+        cat_cell = _pct(cat_fid) + pct_suffix if cat_fid is not None else "--"
+        tp_rate = cond.get("text_preservation_rate")
+        tp_cell = _pct(tp_rate) + pct_suffix if tp_rate is not None else "--"
+
+        lines.append(
+            f"    {label} & "
+            f"{parse_rate}\\% & "
+            f"{struct_rate}\\% & "
+            f"{gemba_rate}\\% & "
+            f"{cat_cell} & "
+            f"{tp_cell} \\\\"
+        )
+
+    lines.extend([
+        r"    \bottomrule",
+        r"  \end{tabular}",
+        r"\end{table}",
+    ])
+
+    return "\n".join(lines)
+
+
+# ---------------------------------------------------------------------------
 # Master generator
 # ---------------------------------------------------------------------------
 
@@ -308,7 +378,7 @@ def generate_all_tables(results_dir: Path, output_dir: Path | None = None) -> No
     """Load results and write .tex files.
 
     Reads from the standard result file locations and writes
-    table1.tex, table2.tex, table3.tex.
+    table1.tex, table2.tex, table3.tex, and (if available) table4.tex.
     """
     ensure_dirs()
     out_dir = output_dir or (results_dir / "tables")
@@ -368,6 +438,20 @@ def generate_all_tables(results_dir: Path, output_dir: Path | None = None) -> No
         logger.info("Written table3.tex")
     else:
         logger.info("No Track C results found; skipping Table 3.")
+
+    # Table 4: Tagging-strategy ablation (C1–C4)
+    tagging_path = results_dir / "tagging_ablation" / "tagging_ablation_results.json"
+    if tagging_path.exists():
+        with open(tagging_path, "r", encoding="utf-8") as f:
+            tagging_data = json.load(f)
+        tex4 = table4_tagging_ablation(tagging_data)
+        (out_dir / "table4.tex").write_text(tex4, encoding="utf-8")
+        logger.info("Written table4.tex")
+    else:
+        logger.info(
+            "No tagging-ablation results found; skipping Table 4 "
+            "(run experiments.pipeline_validation.ablation_tagging first)."
+        )
 
     logger.info("Table generation complete. Output: %s", out_dir)
 

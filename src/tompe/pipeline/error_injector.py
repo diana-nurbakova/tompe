@@ -119,41 +119,38 @@ def _plan_errors(profile: ErrorProfile) -> list[ErrorTypeSpec]:
 # XML Verification (spec v1.1 §2.4)
 # ============================================================================
 
-def _parse_xml_tags(injected_text: str) -> list[dict]:
+def _parse_xml_tags(
+    injected_text: str,
+    tag_format: TagFormat = TagFormat.C4_FULL,
+) -> list[dict]:
     """Parse XML error tags from injected translation text.
 
-    Returns list of dicts with: tag_name, type, severity, tom, desc,
-    span_text, span_start, span_end (in the clean text without tags).
+    Returns list of dicts with at minimum ``tag_name`` and ``span_text``;
+    richer formats also populate ``type``, ``severity``, ``tom``,
+    ``desc``. Missing fields default to ``""``. The dicts also include
+    ``match_start`` / ``match_end`` for downstream offset arithmetic.
     """
-    results = []
-    for match in _TAG_PATTERN.finditer(injected_text):
-        results.append({
-            "tag_name": match.group(1),
-            "type": match.group(2),
-            "severity": match.group(3),
-            "tom": match.group(4),
-            "desc": match.group(5),
-            "span_text": match.group(6),
-            "match_start": match.start(),
-            "match_end": match.end(),
-        })
-    return results
+    return _parse_tags_fmt(injected_text, tag_format)
 
 
-def _strip_xml_tags(injected_text: str) -> str:
-    """Remove XML error tags, keeping only the error span content."""
-    return _TAG_PATTERN.sub(r'\6', injected_text)
+def _strip_xml_tags(
+    injected_text: str,
+    tag_format: TagFormat = TagFormat.C4_FULL,
+) -> str:
+    """Remove XML error tags of the given format, keeping the span content."""
+    return _strip_tags_fmt(injected_text, tag_format)
 
 
-def _get_span_positions(injected_text: str, parsed_tag: dict) -> tuple[int, int]:
-    """Compute character offsets of the error span in the clean (tag-stripped) text.
-
-    The span_start/end are relative to the text with tags removed.
+def _get_span_positions(
+    injected_text: str,
+    parsed_tag: dict,
+    tag_format: TagFormat = TagFormat.C4_FULL,
+) -> tuple[int, int]:
+    """Compute character offsets of the error span in the clean (tag-stripped)
+    text. The span_start/end are relative to the text with tags removed.
     """
-    # Text before the tag match
     before_tag = injected_text[:parsed_tag["match_start"]]
-    # Strip any earlier tags from the before text
-    clean_before = _TAG_PATTERN.sub(r'\6', before_tag)
+    clean_before = _strip_tags_fmt(before_tag, tag_format)
     span_start = len(clean_before)
     span_end = span_start + len(parsed_tag["span_text"])
     return span_start, span_end
@@ -162,14 +159,16 @@ def _get_span_positions(injected_text: str, parsed_tag: dict) -> tuple[int, int]
 def _verify_injection(
     reference: str,
     response: dict,
+    tag_format: TagFormat = TagFormat.C4_FULL,
 ) -> list[str]:
     """Verify an injection response per spec v1.1 §2.4.
 
-    Checks:
-    1. XML tag parsing — valid tag found
-    2. Diff check — non-tagged text identical to reference
-    3. Tag validation — tag name, type, severity, tom in allowed inventory
-    4. Explanation completeness — all 4 fields non-empty, >10 words each
+    Checks applied per format:
+
+      C1 (bare):        parse, diff, explanation completeness, non-trivial change
+      C2 (categorical): + tag_name ∈ PrimaryTag
+      C3 (attributed):  + valid (tag, type) pair, valid severity
+      C4 (full):        + valid tom level, desc length ≥ 3 words
 
     Returns list of error messages (empty = valid).
     """
@@ -177,7 +176,7 @@ def _verify_injection(
     injected_translation = response.get("injected_translation", "")
 
     # 1. Parse XML tags
-    parsed_tags = _parse_xml_tags(injected_translation)
+    parsed_tags = _parse_xml_tags(injected_translation, tag_format)
     if not parsed_tags:
         errors.append("No valid XML error tag found in injected_translation")
         return errors
@@ -188,18 +187,15 @@ def _verify_injection(
     tag = parsed_tags[0]
 
     # 2. Diff check — text outside the tag should match reference
-    clean_text = _strip_xml_tags(injected_translation)
-    # Reconstruct what the reference should look like
-    span_start, span_end = _get_span_positions(injected_translation, tag)
+    clean_text = _strip_xml_tags(injected_translation, tag_format)
+    span_start, span_end = _get_span_positions(injected_translation, tag, tag_format)
     original_span = response.get("original_span_text", "")
 
     import unicodedata
     reconstructed = clean_text[:span_start] + original_span + clean_text[span_end:]
 
-    # Fuzzy comparison: normalize whitespace, ligatures, and minor punctuation
     def _normalize_for_diff(s: str) -> str:
         s = unicodedata.normalize("NFKD", s)
-        # Collapse whitespace around punctuation
         import re
         s = re.sub(r'\s+', ' ', s)
         s = re.sub(r'\s+([.,;:!?\)])', r'\1', s)
@@ -208,11 +204,9 @@ def _verify_injection(
     reconstructed_norm = _normalize_for_diff(reconstructed)
     reference_norm = _normalize_for_diff(reference)
 
-    # Use similarity ratio instead of exact match — allow small LLM drift
     from difflib import SequenceMatcher
     similarity = SequenceMatcher(None, reconstructed_norm, reference_norm).ratio()
-    if similarity < 0.95:  # Allow up to 5% drift in non-error text
-        # Find first difference for the error message
+    if similarity < 0.95:
         min_len = min(len(reconstructed_norm), len(reference_norm))
         for i in range(min_len):
             if reconstructed_norm[i] != reference_norm[i]:
@@ -230,31 +224,44 @@ def _verify_injection(
                     f"reference length ({len(reference_norm)})"
                 )
 
-    # 3. Tag validation
-    if not validate_tag_type(tag["tag_name"], tag["type"]):
-        errors.append(
-            f"Invalid tag/type pair: {tag['tag_name']}/{tag['type']}"
-        )
+    # 3. Tag-level validation (per format)
+    if tag_format == TagFormat.C1_BARE:
+        if tag["tag_name"].lower() != "error":
+            errors.append(
+                f"Invalid C1 tag name: {tag['tag_name']!r} (expected 'error')"
+            )
+    else:
+        # C2 and above require the tag name to be a PrimaryTag value.
+        valid_tag_names = {t.value for t in PrimaryTag}
+        if tag["tag_name"] not in valid_tag_names:
+            errors.append(
+                f"Invalid tag name: {tag['tag_name']!r} "
+                f"(not one of {sorted(valid_tag_names)})"
+            )
 
-    if tag["severity"] not in ("minor", "major", "critical"):
-        errors.append(f"Invalid severity: {tag['severity']}")
+    if tag_format in (TagFormat.C3_ATTRIBUTED, TagFormat.C4_FULL):
+        if not validate_tag_type(tag["tag_name"], tag["type"]):
+            errors.append(
+                f"Invalid tag/type pair: {tag['tag_name']}/{tag['type']}"
+            )
+        if tag["severity"] not in ("minor", "major", "critical"):
+            errors.append(f"Invalid severity: {tag['severity']}")
 
-    if tag["tom"] not in ("1st_machine", "1st_author", "2nd_reader", "recursive"):
-        errors.append(f"Invalid tom level: {tag['tom']}")
+    if tag_format == TagFormat.C4_FULL:
+        if tag["tom"] not in ("1st_machine", "1st_author", "2nd_reader", "recursive"):
+            errors.append(f"Invalid tom level: {tag['tom']}")
+        desc_words = len(tag["desc"].split())
+        if desc_words < 3:
+            errors.append(f"desc attribute too short ({desc_words} words, need ≥5)")
 
-    # 4. Desc attribute check
-    desc_words = len(tag["desc"].split())
-    if desc_words < 3:
-        errors.append(f"desc attribute too short ({desc_words} words, need ≥5)")
-
-    # 5. Explanation completeness
+    # 4. Explanation completeness (response-level, format-independent)
     explanation = response.get("explanation", {})
     for field in ("mt_interpretation", "actual_meaning", "reader_impact", "correction_rationale"):
         value = explanation.get(field, "")
         if not value or len(value.split()) < 5:
             errors.append(f"Explanation field '{field}' too short or empty")
 
-    # 6. Non-trivial change
+    # 5. Non-trivial change
     error_span = response.get("error_span_text", "")
     if error_span == original_span:
         errors.append("No actual change: error_span_text == original_span_text")
@@ -275,11 +282,16 @@ async def _inject_single_error(
     codebook: Optional[Codebook] = None,
     use_few_shot: bool = True,
     direction: str = "both",
+    tag_format: TagFormat = TagFormat.C4_FULL,
 ) -> tuple[str, InjectedError]:
     """Inject a single error using the two-step architecture.
 
     Step 1: LLM plans the error (NL reasoning)
     Step 2: LLM executes the injection (XML tagged output)
+
+    ``tag_format`` selects the C1–C4 tag format (spec §5.5). Defaults to
+    C4 (full) for production use; the ablation runner sweeps the four
+    formats.
     """
     primary_tag = error_spec.primary_tag
     error_type = error_spec.error_type
@@ -338,6 +350,7 @@ async def _inject_single_error(
             tom_level=tom_level,
             step1_output=step1_output,
             few_shot_examples=few_shot_examples if use_few_shot else None,
+            tag_format=tag_format,
         )
 
         # Add correction guidance if retrying
@@ -351,7 +364,7 @@ async def _inject_single_error(
 
         try:
             step2_output = await llm_client.complete_json(
-                system=SYSTEM_PROMPT_STEP2,
+                system=build_step2_system_prompt(tag_format),
                 user=step2_prompt,
                 schema=STEP2_RESPONSE_SCHEMA,
                 temperature=0.3 + (attempt * 0.1),
@@ -364,16 +377,22 @@ async def _inject_single_error(
             continue
 
         # --- Verify ---
-        verification_errors = _verify_injection(current_text, step2_output)
+        verification_errors = _verify_injection(current_text, step2_output, tag_format)
         if not verification_errors:
             # Success — extract span info and build InjectedError
             injected_translation = step2_output["injected_translation"]
-            parsed_tags = _parse_xml_tags(injected_translation)
+            parsed_tags = _parse_xml_tags(injected_translation, tag_format)
             tag = parsed_tags[0]
-            clean_text = _strip_xml_tags(injected_translation)
-            span_start, span_end = _get_span_positions(injected_translation, tag)
+            clean_text = _strip_xml_tags(injected_translation, tag_format)
+            span_start, span_end = _get_span_positions(injected_translation, tag, tag_format)
 
             explanation_data = step2_output.get("explanation", {})
+
+            # C1-C3 tags don't carry a desc attribute, so fall back to a
+            # synthesized brief explanation from the planning step.
+            brief = tag.get("desc") or (
+                f"{primary_tag.value.lower()}/{error_type} error"
+            )
 
             error = InjectedError(
                 error_id=str(uuid.uuid4()),
@@ -396,7 +415,7 @@ async def _inject_single_error(
                     correction_rationale=explanation_data.get("correction_rationale", ""),
                 ),
                 xml_tag=injected_translation,
-                brief_explanation=tag["desc"],
+                brief_explanation=brief,
             )
 
             logger.info(
@@ -510,6 +529,7 @@ async def inject_errors_reference_based(
     verify_gemba: bool = False,
     gemba_llm_config: dict | None = None,
     gemba_min_detection_rate: float = 0.5,
+    tag_format: TagFormat = TagFormat.C4_FULL,
 ) -> tuple[str, list[InjectedError]]:
     """Inject errors into the human reference translation.
 
@@ -562,6 +582,7 @@ async def inject_errors_reference_based(
             codebook=codebook,
             use_few_shot=error_profile.use_few_shot,
             direction=error_profile.direction,
+            tag_format=tag_format,
         )
         # Adjust prior errors' spans for the character delta this injection caused
         injected_errors.append(error)

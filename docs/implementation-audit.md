@@ -400,13 +400,14 @@ Expect:
 | 3.2 | Authentic pathway — `detect_authentic_errors` v1 (GEMBA-only; xCOMET deferred) | Done (unit-tested) | [src/tompe/pipeline/authentic_detector.py](../src/tompe/pipeline/authentic_detector.py) |
 | 3.4 | C1–C4 tagging ablation — `TagFormat` enum, parameterised injection prompt + verification, ablation runner, Table 4 (Layer 1 metrics) | Done (smoke-tested) | [src/tompe/pipeline/tag_formats.py](../src/tompe/pipeline/tag_formats.py), [src/tompe/pipeline/error_injector.py](../src/tompe/pipeline/error_injector.py), [src/tompe/pipeline/_injection_prompts.py](../src/tompe/pipeline/_injection_prompts.py), [experiments/pipeline_validation/ablation_tagging.py](../experiments/pipeline_validation/ablation_tagging.py), [experiments/pipeline_validation/tables.py](../experiments/pipeline_validation/tables.py) |
 | 3.6 | False-positive analysis — categorise human FPs into true_positive / real_mt_error / genuine_false_alarm via IoU + cached GEMBA; per-annotator + by-condition + κ | Done (unit-tested) | [experiments/pipeline_validation/track_c/false_positive_analysis.py](../experiments/pipeline_validation/track_c/false_positive_analysis.py) |
+| 3.3 | `item_builder.build_item` (CONTROLLED + AUTHENTIC pathways) + `build_batch`; canonical pipeline-package orchestrator | Done (unit-tested) | [src/tompe/pipeline/item_builder.py](../src/tompe/pipeline/item_builder.py) |
 
 ### Still pending — Phase 3 backlog
 
 | ID | Item | Notes |
 |---|---|---|
 | 3.1 | Codebook coverage 8 → ~30 entries | Scaffolder script + per-entry content authoring. ~3 hrs scaffolder + 11–22 hrs authoring. |
-| 3.3 | `item_builder.build_item` / `build_batch` orchestration | Refactor `generate_batch` into thin CLI around a canonical orchestrator. Cleanest after 3.2 lands. |
+| 3.3 follow-up | Migrate `experiments/generate_batch.py` to call `build_batch` | The canonical orchestrator exists; `generate_batch` can switch its main loop after the camera-ready batch is locked. Currently both coexist. |
 | 3.4 follow-up | Layer 2 (LLM-as-judge) + Layer 3 (expert review) for the tagging ablation | Needs a calibrated judge prompt and a 30-item/condition human review pass per spec §5.5. |
 | 3.5 | Strategy 3 LLM context generation for L3 fallback | Only needed if L3 coverage probe shows shortfall. |
 | 3.6 follow-up | Run 3.6 against a real annotator pass | Code is wired; needs ≥1 annotator's data on disk to produce real FP categorisation numbers. |
@@ -511,6 +512,47 @@ Expect:
 - [ ] **End-to-end (manual, costs LLM credits + requires annotator data).** Once at least one annotator's per-item JSONs land under `data/annotations/{annotator_id}/`, drop `--dry-run`. First run will pre-compute GEMBA for every touched item; subsequent runs use the cache.
 
 **What this confirms:** Annotation §6.6 — the spec's "real-MT vs genuine FP" checklist item is wired end-to-end. The remaining work is the human annotation run itself, not code.
+
+### Verification — 3.3 item_builder orchestration
+
+- [ ] **Module imports + signatures.**
+
+  ```bash
+  PYTHONPATH=src python -c "
+  import inspect
+  from tompe.pipeline.item_builder import build_item, build_batch
+  for fn in (build_item, build_batch):
+      sig = inspect.signature(fn)
+      print(fn.__name__, '->', list(sig.parameters.keys()))
+  "
+  ```
+
+  `build_item` should expose `segment, llm_config, pathway, mt_system, error_profile, mt_output, codebook, tag_format, scaffolding_level, difficulty_level, estimated_time_minutes, generate_layer1_explanations, generate_layer2a_explanations, item_id`. `build_batch` should expose `segments, llm_config, pathway, error_profile, mt_outputs, mt_system, codebook, tag_format, scaffolding_level, difficulty_level, estimated_time_minutes, generate_layer1_explanations, generate_layer2a_explanations, on_failure`.
+- [ ] **`_compute_clean_spans` covers boundary cases.** Already smoke-tested:
+  - `[]` errors → `[]`
+  - middle error → both pre- and post-spans
+  - error at index 0 → only post-span
+  - error at end → only pre-span
+- [ ] **Error paths fire the right `ValueError`.** Calling `build_item` with `pathway=CONTROLLED` but no `error_profile` raises `ValueError("error_profile is required for the CONTROLLED pathway")`; analogous check for AUTHENTIC without `mt_output`. Same checks at the top of `build_batch`.
+- [ ] **AUTHENTIC pathway inherits `mt_system` from `MTOutput`.** When `mt_system` is left at the default `"reference_perturbed"`, `build_item` overwrites it with `mt_output.mt_system`. Verified by smoke test.
+- [ ] **`tom_profile` + `mqm_profile` populated correctly.** For an item with one MISTRANSLATION/false_cognate at `1st_machine`, the `ItemMetadata` should report `tom_profile["1st_machine"]=1` and `mqm_profile["accuracy"]=1` (via `_PRIMARY_TO_MQM`).
+- [ ] **Real LLM end-to-end (manual, costs LLM credits).**
+
+  ```bash
+  PYTHONPATH=src python -c "
+  import asyncio
+  from tompe.pipeline.item_builder import build_item
+  from tompe.pipeline.error_injector import ErrorProfile
+  from tompe.pipeline.segment_selector import select_segments
+  from tompe.schemas.enums import ItemPathway, PrimaryTag, Severity
+  segs = select_segments(n_segments=1)
+  profile = ErrorProfile([PrimaryTag.MISTRANSLATION], {Severity.MAJOR: 1})
+  item = asyncio.run(build_item(segs[0], {'provider':'openai','model':'gpt-4.1'}, error_profile=profile))
+  print(item.item_id, item.errors[0].error_type if item.errors else 'no errors')
+  "
+  ```
+
+**What this confirms:** Error-injection §7.2 — the canonical pipeline-package orchestrator exists. The experiments-folder `generate_batch.py` can migrate to call `build_batch` after the camera-ready batch is locked; both paths coexist for now.
 
 ---
 
@@ -783,13 +825,13 @@ Ordered by impact × leverage. Each item references the per-spec entries that su
 | §5.5 | Tagging strategy ablation (C1–C4) | Implemented (Layer 1) | [pipeline/tag_formats.py](../src/tompe/pipeline/tag_formats.py), [pipeline/error_injector.py](../src/tompe/pipeline/error_injector.py), [experiments/pipeline_validation/ablation_tagging.py](../experiments/pipeline_validation/ablation_tagging.py), [tables.py:303](../experiments/pipeline_validation/tables.py#L303) | Phase 3 (3.4): `TagFormat` enum + parameterised `build_step2_prompt` / `_verify_injection` / `inject_errors_reference_based(tag_format=…)`. Runner sweeps all four formats; Table 4 in `tables.py`. Layer 2 (LLM-as-judge) + Layer 3 (expert) follow-ups pending. |
 | §6 | Justification-before-feedback (cognitive forcing) | Implemented | [interfaces/student_app.py:1](../src/tompe/interfaces/student_app.py#L1) | Justify phase precedes feedback. |
 | §7.2 | Authentic pathway error detection (xCOMET + GEMBA cross-validation) | Implemented (GEMBA-only v1) | [pipeline/authentic_detector.py](../src/tompe/pipeline/authentic_detector.py) | Phase 3 (3.2): `detect_authentic_errors` runs GEMBA-MQM, maps to taxonomy (PrimaryTag, error_type, tom_level, skill), synthesises Layer 1 contrastive + cache-only Layer 2a. xCOMET pass deferred (GPU). |
-| §7.2 | `item_builder` full-pipeline orchestration | Missing | [pipeline/item_builder.py:10](../src/tompe/pipeline/item_builder.py#L10) | `build_item` / `build_batch` raise `NotImplementedError`. |
+| §7.2 | `item_builder` full-pipeline orchestration | Implemented | [pipeline/item_builder.py](../src/tompe/pipeline/item_builder.py) | Phase 3 (3.3): `build_item` (CONTROLLED + AUTHENTIC pathways) and `build_batch` (iterates over caller-supplied segments) now wire the canonical pipeline package end-to-end; experiments/generate_batch.py still does its own segment stratification but can migrate over time. |
 
 #### Top 5 gaps (after Sprint #2)
 
 1. **Codebook coverage (§5.2)** — only 8 of the targeted ~37 codebook entries exist. The pipeline runs via the taxonomy fallback, but few-shot quality depends on the codebook; this is the single biggest content gap. *(Phase 3 item 3.1.)*
 2. ~~**Authentic pathway (§7.2)**~~ — **RESOLVED (GEMBA-only v1) — Phase 3 (3.2).** [`authentic_detector.detect_authentic_errors`](../src/tompe/pipeline/authentic_detector.py) maps GEMBA-MQM output to the taxonomy + Layer 1 + cached Layer 2a. xCOMET pass still deferred (GPU).
-3. **`item_builder` orchestration (§7.2)** — `build_item` / `build_batch` raise `NotImplementedError`; the full pipeline is currently driven by `experiments/pipeline_validation/generate_batch.py` rather than the canonical `pipeline/item_builder.py`. *(Phase 3 item 3.3.)*
+3. ~~**`item_builder` orchestration (§7.2)**~~ — **RESOLVED — Phase 3 (3.3).** [`pipeline/item_builder.py`](../src/tompe/pipeline/item_builder.py) now implements `build_item` (CONTROLLED via `inject_errors_reference_based`; AUTHENTIC via `detect_authentic_errors`) and `build_batch` (iterates over caller-supplied segments). Segment stratification stays in `experiments/generate_batch.py` until the camera-ready batch ships; both paths coexist.
 4. ~~**Tagging strategy ablation (§5.5)**~~ — **RESOLVED (Layer 1) — Phase 3 (3.4).** Central `TagFormat` enum; `build_step2_prompt`, `build_step2_system_prompt`, `_verify_injection`, and `inject_errors_reference_based` now accept `tag_format=`. Runner at [experiments/pipeline_validation/ablation_tagging.py](../experiments/pipeline_validation/ablation_tagging.py); Table 4 in `tables.py`. Layer 2 (LLM-as-judge with calibrated prompt) and Layer 3 (expert review of 30/condition) still pending — listed as follow-ups in Sprint #3.
 5. ~~**Pre-curated Layer 2a / 2b explanation templates (§5.4)**~~ — **RESOLVED — Sprint #2 (B6).** Cache files committed; generators consult them before LLM. Curating ~30 entries remains content work; tracked under Phase 3 item 3.1.
 

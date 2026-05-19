@@ -1,0 +1,163 @@
+{
+  "version": "draft-1",
+  "language_pair": "en_fr",
+  "_doc": "Seed entries drafted from the taxonomy + spec convention to demonstrate the codebook authoring pattern. These have `_drafted_pending_review: true` so the validator passes them only with `--strict` removed. Each entry's `definition`, `boundary_not`, and examples are LLM-drafted: a human expert reviewer should verify the French translations and the inline XML before merging into the main codebook. Workflow once reviewed: drop the `_drafted_pending_review` flag and merge into error_codebook_fr_en.json.",
+  "entries": [
+    {
+      "codebook_id": "ACC-MIST-WS-001",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "word_sense",
+      "mqm_path": "Accuracy > Mistranslation > Word Sense",
+      "severity_range": ["major"],
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": ["S5"],
+      "directions": ["en_to_fr", "fr_to_en"],
+      "definition": "A polysemous source word is rendered with the wrong sense for its context. The translator picks a valid dictionary equivalent of the source lemma, but the chosen sense does not match the meaning intended in the sentence — for example translating English 'bank' as French 'banque' (financial) when the source refers to a river bank ('rive').",
+      "boundary_not": "Not a false_cognate (the surface forms need not be similar across languages). Not a wrong_term — word_sense covers everyday polysemy, while wrong_term covers domain-specific terminology errors. Not an entity error (proper nouns).",
+      "examples": [
+        {
+          "direction": "en_to_fr",
+          "source": "The committee met on the river bank to inspect the flood damage.",
+          "reference": "Le comité s'est réuni sur la rive pour inspecter les dégâts causés par la crue.",
+          "injected": "Le comité s'est réuni sur la <MISTRANSLATION type=\"word_sense\" severity=\"major\" tom=\"1st_machine\" desc=\"'bank' rendered as financial banque rather than river-side rive\">banque</MISTRANSLATION> pour inspecter les dégâts causés par la crue.",
+          "explanation": {
+            "mt_interpretation": "The MT system selected the most-frequent sense of 'bank' (financial institution) and rendered it as 'banque' without considering the river-bank context.",
+            "actual_meaning": "In the source, 'bank' refers to the side of a river — French 'rive' (or 'berge').",
+            "reader_impact": "A reader would picture the committee meeting at a bank branch, not at the flood site — the sentence becomes incoherent.",
+            "correction_rationale": "Replace 'banque' with 'rive' to select the river-side sense; 'berge' is also acceptable for an embankment context."
+          }
+        },
+        {
+          "direction": "en_to_fr",
+          "source": "The minister will address the assembly tomorrow.",
+          "reference": "Le ministre s'adressera à l'assemblée demain.",
+          "injected": "Le ministre <MISTRANSLATION type=\"word_sense\" severity=\"major\" tom=\"1st_machine\" desc=\"'address' rendered as adressera meaning 'send to' instead of 's'adressera 'speak to'\">adressera l'assemblée</MISTRANSLATION> demain.",
+          "explanation": {
+            "mt_interpretation": "The MT system rendered 'address' as the transitive 'adresser' (to send / direct something to), losing the reflexive pronoun that the speech-act sense requires.",
+            "actual_meaning": "The source uses 'address' in its speech-act sense — French requires the reflexive 's'adresser à'.",
+            "reader_impact": "A French reader would parse 'adressera l'assemblée' as nonsense or read it as 'mail something to the assembly', missing the speech.",
+            "correction_rationale": "Use 's'adressera à l'assemblée' to capture the speech-act sense."
+          }
+        },
+        {
+          "direction": "fr_to_en",
+          "source": "Le règlement n'a pas été observé par les délégations.",
+          "reference": "The regulation was not complied with by the delegations.",
+          "injected": "The regulation was not <MISTRANSLATION type=\"word_sense\" severity=\"major\" tom=\"1st_machine\" desc=\"'observé' rendered as visual observed rather than complied-with sense\">observed</MISTRANSLATION> by the delegations.",
+          "explanation": {
+            "mt_interpretation": "The MT system rendered 'observé' as 'observed' (the visual / monitoring sense), which is a valid lexical equivalent but the wrong sense here.",
+            "actual_meaning": "In French legal register, 'observer un règlement' means to comply with the regulation, not to watch it.",
+            "reader_impact": "An English reader would interpret 'not observed' as 'not noticed', losing the compliance failure that the source describes.",
+            "correction_rationale": "'Complied with' or 'respected' captures the legal-compliance sense; 'observed' is misleading."
+          }
+        }
+      ],
+      "_drafted_pending_review": true
+    },
+    {
+      "codebook_id": "ACC-MIST-NU-001",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "number",
+      "mqm_path": "Accuracy > Mistranslation > Number",
+      "severity_range": ["minor", "major"],
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "directions": ["en_to_fr", "fr_to_en"],
+      "definition": "A numerical value in the translation differs from the source — a digit substitution, a magnitude shift (thousand vs million), or a unit confusion. MT systems can drop, alter, or swap digits, especially when the surrounding sentence is long or when the number appears in a list. Severity scales with how load-bearing the number is for the sentence's claim.",
+      "boundary_not": "Not a locale formatting issue (1,000 vs 1.000) — that is LOCALE > number_format. Not a date / currency formatting error — see LOCALE > date_format / currency_format. The numerical value itself must change.",
+      "examples": [
+        {
+          "direction": "en_to_fr",
+          "source": "The Commission proposes a budget increase of 250 million euros.",
+          "reference": "La Commission propose une augmentation budgétaire de 250 millions d'euros.",
+          "injected": "La Commission propose une augmentation budgétaire de <MISTRANSLATION type=\"number\" severity=\"major\" tom=\"1st_machine\" desc=\"250 million rendered as 25 million; off by one order of magnitude\">25 millions d'euros</MISTRANSLATION>.",
+          "explanation": {
+            "mt_interpretation": "The MT system dropped a digit in the numerical span, producing 25 instead of 250.",
+            "actual_meaning": "The source proposes 250 million euros, ten times the rendered figure.",
+            "reader_impact": "A reader would dramatically under-estimate the proposed budget increase — a load-bearing factual error.",
+            "correction_rationale": "Restore the correct figure '250 millions d'euros'."
+          }
+        },
+        {
+          "direction": "en_to_fr",
+          "source": "The directive applies to vehicles weighing more than 3.5 tonnes.",
+          "reference": "La directive s'applique aux véhicules dont le poids dépasse 3,5 tonnes.",
+          "injected": "La directive s'applique aux véhicules dont le poids dépasse <MISTRANSLATION type=\"number\" severity=\"major\" tom=\"1st_machine\" desc=\"3.5 rendered as 35; decimal point dropped\">35 tonnes</MISTRANSLATION>.",
+          "explanation": {
+            "mt_interpretation": "The MT system dropped the decimal separator, converting 3.5 into 35.",
+            "actual_meaning": "The directive's threshold is 3.5 tonnes, an order of magnitude lower than the rendered value.",
+            "reader_impact": "The rendered threshold would exempt nearly every covered vehicle — a regulatory misstatement.",
+            "correction_rationale": "Use '3,5 tonnes' with the French decimal-comma convention to preserve the threshold."
+          }
+        },
+        {
+          "direction": "fr_to_en",
+          "source": "Le rapport recense 1 200 entreprises concernées par la mesure.",
+          "reference": "The report identifies 1,200 companies affected by the measure.",
+          "injected": "The report identifies <MISTRANSLATION type=\"number\" severity=\"major\" tom=\"1st_machine\" desc=\"1200 rendered as 12000; extra zero added\">12,000</MISTRANSLATION> companies affected by the measure.",
+          "explanation": {
+            "mt_interpretation": "The MT system added a trailing zero to the numerical span, producing 12,000 instead of 1,200.",
+            "actual_meaning": "The source reports 1,200 affected companies, an order of magnitude lower.",
+            "reader_impact": "A reader would over-estimate the scope of the measure by 10x.",
+            "correction_rationale": "Restore '1,200' to match the source count."
+          }
+        }
+      ],
+      "_drafted_pending_review": true
+    },
+    {
+      "codebook_id": "ACC-UNTR-UN-001",
+      "primary_tag": "UNTRANSLATED",
+      "error_type": "untranslated",
+      "mqm_path": "Accuracy > Untranslated > Untranslated",
+      "severity_range": ["minor", "major"],
+      "tom_level": "1st_machine",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "directions": ["en_to_fr", "fr_to_en"],
+      "definition": "Source-language material is copied verbatim into the target translation rather than translated. This frequently happens with rare words, abbreviations, technical terms, or short sentence fragments that the MT system has low confidence on; the system falls back to the source surface form. Common with named entities mis-classified as untranslatables.",
+      "boundary_not": "Not a TERMINOLOGY error (where the wrong target term is used). Not a partial omission. The error must be that source text appears verbatim in the target — even if the target language uses the same word as a loanword, the appropriate sense + register might still require a marked translation.",
+      "examples": [
+        {
+          "direction": "en_to_fr",
+          "source": "The committee adopted the framework regulation last Thursday.",
+          "reference": "Le comité a adopté le règlement-cadre jeudi dernier.",
+          "injected": "Le comité a adopté le <UNTRANSLATED type=\"untranslated\" severity=\"major\" tom=\"1st_machine\" desc=\"'framework regulation' left in English instead of 'règlement-cadre'\">framework regulation</UNTRANSLATED> jeudi dernier.",
+          "explanation": {
+            "mt_interpretation": "The MT system left the multi-word legal compound 'framework regulation' in English, likely because the bilingual training data favored copying for low-confidence multi-word units.",
+            "actual_meaning": "The source refers to a specific EU instrument — 'règlement-cadre' in French.",
+            "reader_impact": "A French reader unfamiliar with the English term would not know which legal instrument is meant.",
+            "correction_rationale": "Use the established French equivalent 'règlement-cadre'."
+          }
+        },
+        {
+          "direction": "en_to_fr",
+          "source": "The Commissioner stressed the need for a sustainable recovery.",
+          "reference": "Le commissaire a souligné la nécessité d'une reprise durable.",
+          "injected": "Le commissaire a souligné la nécessité d'une <UNTRANSLATED type=\"untranslated\" severity=\"minor\" tom=\"1st_machine\" desc=\"'sustainable recovery' left in English instead of 'reprise durable'\">sustainable recovery</UNTRANSLATED>.",
+          "explanation": {
+            "mt_interpretation": "The MT system left the English phrase verbatim — possibly treating it as a fixed expression or low-confidence compound.",
+            "actual_meaning": "The source asks for a 'reprise durable' / 'relance durable' in French.",
+            "reader_impact": "The reader gets the gist (both terms are recognizable English) but the register is broken; the source meaning is conveyed only indirectly.",
+            "correction_rationale": "Translate as 'reprise durable' to keep the register consistent."
+          }
+        },
+        {
+          "direction": "fr_to_en",
+          "source": "Le rapporteur a rappelé l'importance de la subsidiarité dans cette procédure.",
+          "reference": "The rapporteur recalled the importance of subsidiarity in this procedure.",
+          "injected": "The <UNTRANSLATED type=\"untranslated\" severity=\"minor\" tom=\"1st_machine\" desc=\"'rapporteur' left in French though English has 'rapporteur' too the register may require translation\">rapporteur</UNTRANSLATED> recalled the importance of subsidiarity in this procedure.",
+          "explanation": {
+            "mt_interpretation": "The MT system kept 'rapporteur' in its French form. While 'rapporteur' is a loanword in EU English, in non-specialist contexts a translation may be appropriate.",
+            "actual_meaning": "In EU institutional English, 'rapporteur' is the accepted term, so this can be a true positive untranslated only when the target register requires translation (e.g., journalism rather than legal).",
+            "reader_impact": "Depends on the target audience — an EU specialist would not notice; a general reader might.",
+            "correction_rationale": "If the audience is non-specialist, use 'reporter' or 'committee reporter'; otherwise, keeping 'rapporteur' is acceptable."
+          }
+        }
+      ],
+      "_drafted_pending_review": true
+    }
+  ]
+}

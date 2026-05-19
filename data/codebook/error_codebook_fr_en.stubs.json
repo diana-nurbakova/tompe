@@ -1,0 +1,729 @@
+{
+  "version": "stub",
+  "language_pair": "en_fr",
+  "_doc": "Stub codebook entries scaffolded from ERROR_TYPE_SPECS. Each entry needs `definition`, `boundary_not`, and ≥3 `examples` filled in before merging into the main codebook. Drop the `_stub: true` flag once content is reviewed.",
+  "entries": [
+    {
+      "codebook_id": "ACC-MIST-WS-001",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "word_sense",
+      "mqm_path": "Accuracy > Mistranslation > Word Sense",
+      "severity_range": [
+        "major"
+      ],
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [
+        "S5"
+      ],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "ACC-MIST-NU-001",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "number",
+      "mqm_path": "Accuracy > Mistranslation > Number",
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "ACC-MIST-EN-001",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "entity",
+      "mqm_path": "Accuracy > Mistranslation > Entity",
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "ACC-MIST-OL-001",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "overly_literal",
+      "mqm_path": "Accuracy > Mistranslation > Overly Literal",
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [
+        "S6"
+      ],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "ACC-MIST-OV-001",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "overtranslation",
+      "mqm_path": "Accuracy > Mistranslation > Overtranslation",
+      "severity_range": [
+        "minor"
+      ],
+      "tom_level": "1st_author",
+      "primary_skill": "S3",
+      "secondary_skills": [
+        "S4"
+      ],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "ACC-MIST-UN-001",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "undertranslation",
+      "mqm_path": "Accuracy > Mistranslation > Undertranslation",
+      "severity_range": [
+        "minor"
+      ],
+      "tom_level": "1st_author",
+      "primary_skill": "S3",
+      "secondary_skills": [
+        "S4"
+      ],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "ACC-MIST-AM-001",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "ambiguity",
+      "mqm_path": "Accuracy > Mistranslation > Ambiguity",
+      "severity_range": [
+        "major"
+      ],
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "ACC-MIST-NE-001",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "negation",
+      "mqm_path": "Accuracy > Mistranslation > Negation",
+      "severity_range": [
+        "critical"
+      ],
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "ACC-OMIS-MO-001",
+      "primary_tag": "OMISSION",
+      "error_type": "modifier",
+      "mqm_path": "Accuracy > Omission > Modifier",
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "ACC-OMIS-DM-001",
+      "primary_tag": "OMISSION",
+      "error_type": "discourse_marker",
+      "mqm_path": "Accuracy > Omission > Discourse Marker",
+      "severity_range": [
+        "minor"
+      ],
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [
+        "S7"
+      ],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "ACC-OMIS-PA-001",
+      "primary_tag": "OMISSION",
+      "error_type": "partial",
+      "mqm_path": "Accuracy > Omission > Partial",
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "tom_level": "1st_author",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "ACC-ADDI-HA-001",
+      "primary_tag": "ADDITION",
+      "error_type": "hallucination",
+      "mqm_path": "Accuracy > Addition > Hallucination",
+      "severity_range": [
+        "major",
+        "critical"
+      ],
+      "tom_level": "1st_machine",
+      "primary_skill": "S4",
+      "secondary_skills": [
+        "S3"
+      ],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "ACC-ADDI-EX-001",
+      "primary_tag": "ADDITION",
+      "error_type": "explicitation",
+      "mqm_path": "Accuracy > Addition > Explicitation",
+      "severity_range": [
+        "minor"
+      ],
+      "tom_level": "1st_machine",
+      "primary_skill": "S4",
+      "secondary_skills": [
+        "S6"
+      ],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "ACC-ADDI-QU-001",
+      "primary_tag": "ADDITION",
+      "error_type": "qualifier",
+      "mqm_path": "Accuracy > Addition > Qualifier",
+      "severity_range": [
+        "minor"
+      ],
+      "tom_level": "1st_machine",
+      "primary_skill": "S4",
+      "secondary_skills": [
+        "S6"
+      ],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "ACC-UNTR-UN-001",
+      "primary_tag": "UNTRANSLATED",
+      "error_type": "untranslated",
+      "mqm_path": "Accuracy > Untranslated > Untranslated",
+      "severity_range": [
+        "major",
+        "critical"
+      ],
+      "tom_level": "1st_machine",
+      "primary_skill": "S4",
+      "secondary_skills": [],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "FLU-GRAM-AN-001",
+      "primary_tag": "GRAMMAR",
+      "error_type": "agreement_number",
+      "mqm_path": "Linguistic conventions > Grammar > Agreement Number",
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "FLU-GRAM-TE-001",
+      "primary_tag": "GRAMMAR",
+      "error_type": "tense",
+      "mqm_path": "Linguistic conventions > Grammar > Tense",
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "FLU-GRAM-AR-001",
+      "primary_tag": "GRAMMAR",
+      "error_type": "article",
+      "mqm_path": "Linguistic conventions > Grammar > Article",
+      "severity_range": [
+        "minor"
+      ],
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [],
+      "directions": [
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "FLU-GRAM-PR-001",
+      "primary_tag": "GRAMMAR",
+      "error_type": "preposition",
+      "mqm_path": "Linguistic conventions > Grammar > Preposition",
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "FLU-GRAM-WO-001",
+      "primary_tag": "GRAMMAR",
+      "error_type": "word_order",
+      "mqm_path": "Linguistic conventions > Grammar > Word Order",
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "FLU-GRAM-RP-001",
+      "primary_tag": "GRAMMAR",
+      "error_type": "relative_pronoun",
+      "mqm_path": "Linguistic conventions > Grammar > Relative Pronoun",
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "TRM-INC-WT-001",
+      "primary_tag": "TERMINOLOGY",
+      "error_type": "wrong_term",
+      "mqm_path": "Terminology > Terminology > Wrong Term",
+      "severity_range": [
+        "major"
+      ],
+      "tom_level": "2nd_reader",
+      "primary_skill": "S5",
+      "secondary_skills": [
+        "S3"
+      ],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "TRM-INC-IN-001",
+      "primary_tag": "TERMINOLOGY",
+      "error_type": "inconsistent",
+      "mqm_path": "Terminology > Terminology > Inconsistent",
+      "severity_range": [
+        "minor"
+      ],
+      "tom_level": "2nd_reader",
+      "primary_skill": "S5",
+      "secondary_skills": [
+        "S7"
+      ],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "TRM-INC-IN-001",
+      "primary_tag": "TERMINOLOGY",
+      "error_type": "institutional",
+      "mqm_path": "Terminology > Terminology > Institutional",
+      "severity_range": [
+        "major"
+      ],
+      "tom_level": "2nd_reader",
+      "primary_skill": "S5",
+      "secondary_skills": [],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "STY-AWK-AW-001",
+      "primary_tag": "STYLE",
+      "error_type": "awkward",
+      "mqm_path": "Style > Style > Awkward",
+      "severity_range": [
+        "minor"
+      ],
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "STY-AWK-UN-001",
+      "primary_tag": "STYLE",
+      "error_type": "unidiomatic",
+      "mqm_path": "Style > Style > Unidiomatic",
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "STY-AWK-RF-001",
+      "primary_tag": "STYLE",
+      "error_type": "register_formal",
+      "mqm_path": "Style > Style > Register Formal",
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "STY-AWK-RI-001",
+      "primary_tag": "STYLE",
+      "error_type": "register_informal",
+      "mqm_path": "Style > Style > Register Informal",
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "LOC-FMT-DF-001",
+      "primary_tag": "LOCALE",
+      "error_type": "date_format",
+      "mqm_path": "Locale conventions > Locale > Date Format",
+      "severity_range": [
+        "minor"
+      ],
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "LOC-FMT-NF-001",
+      "primary_tag": "LOCALE",
+      "error_type": "number_format",
+      "mqm_path": "Locale conventions > Locale > Number Format",
+      "severity_range": [
+        "minor"
+      ],
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "LOC-FMT-CF-001",
+      "primary_tag": "LOCALE",
+      "error_type": "currency_format",
+      "mqm_path": "Locale conventions > Locale > Currency Format",
+      "severity_range": [
+        "minor"
+      ],
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "LOC-FMT-TF-001",
+      "primary_tag": "LOCALE",
+      "error_type": "time_format",
+      "mqm_path": "Locale conventions > Locale > Time Format",
+      "severity_range": [
+        "minor"
+      ],
+      "tom_level": "2nd_reader",
+      "primary_skill": "S6",
+      "secondary_skills": [],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "FLU-SPEL-SP-001",
+      "primary_tag": "SPELLING",
+      "error_type": "spelling",
+      "mqm_path": "Linguistic conventions > Spelling > Spelling",
+      "severity_range": [
+        "minor"
+      ],
+      "tom_level": "1st_machine",
+      "primary_skill": "S1",
+      "secondary_skills": [],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    },
+    {
+      "codebook_id": "FLU-PUNC-PU-001",
+      "primary_tag": "PUNCTUATION",
+      "error_type": "punctuation",
+      "mqm_path": "Linguistic conventions > Punctuation > Punctuation",
+      "severity_range": [
+        "minor"
+      ],
+      "tom_level": "1st_machine",
+      "primary_skill": "S1",
+      "secondary_skills": [
+        "S6"
+      ],
+      "directions": [
+        "en_to_fr",
+        "fr_to_en"
+      ],
+      "definition": "TODO: ~50-word definition. Explain what this error type is and the MT/LLM mechanism that typically produces it. Reference existing entries (e.g. ACC-MIST-FC-001) for tone + length.",
+      "boundary_not": "TODO: ~30 words on what this error is NOT. Disambiguate against the most likely sibling types.",
+      "examples": [],
+      "_stub": true
+    }
+  ]
+}

@@ -401,12 +401,13 @@ Expect:
 | 3.4 | C1–C4 tagging ablation — `TagFormat` enum, parameterised injection prompt + verification, ablation runner, Table 4 (Layer 1 metrics) | Done (smoke-tested) | [src/tompe/pipeline/tag_formats.py](../src/tompe/pipeline/tag_formats.py), [src/tompe/pipeline/error_injector.py](../src/tompe/pipeline/error_injector.py), [src/tompe/pipeline/_injection_prompts.py](../src/tompe/pipeline/_injection_prompts.py), [experiments/pipeline_validation/ablation_tagging.py](../experiments/pipeline_validation/ablation_tagging.py), [experiments/pipeline_validation/tables.py](../experiments/pipeline_validation/tables.py) |
 | 3.6 | False-positive analysis — categorise human FPs into true_positive / real_mt_error / genuine_false_alarm via IoU + cached GEMBA; per-annotator + by-condition + κ | Done (unit-tested) | [experiments/pipeline_validation/track_c/false_positive_analysis.py](../experiments/pipeline_validation/track_c/false_positive_analysis.py) |
 | 3.3 | `item_builder.build_item` (CONTROLLED + AUTHENTIC pathways) + `build_batch`; canonical pipeline-package orchestrator | Done (unit-tested) | [src/tompe/pipeline/item_builder.py](../src/tompe/pipeline/item_builder.py) |
+| 3.1 | Codebook scaffolder + validator + 3 seed entries (drafted, pending expert review). Bulk content authoring stays on the researcher backlog. | Done (tooling) | [scripts/scaffold_codebook_entries.py](../scripts/scaffold_codebook_entries.py), [scripts/validate_codebook.py](../scripts/validate_codebook.py), [data/codebook/error_codebook_fr_en.drafts.json](../data/codebook/error_codebook_fr_en.drafts.json), [data/codebook/error_codebook_fr_en.stubs.json](../data/codebook/error_codebook_fr_en.stubs.json) |
 
 ### Still pending — Phase 3 backlog
 
 | ID | Item | Notes |
 |---|---|---|
-| 3.1 | Codebook coverage 8 → ~30 entries | Scaffolder script + per-entry content authoring. ~3 hrs scaffolder + 11–22 hrs authoring. |
+| 3.1 follow-up | Researcher content authoring: review 3 drafted seeds + fill ~30 scaffolded stubs | Tooling ready; ~30 entries × 30–45 min/entry = ~11–22 hrs of expert time. After review, drop `_drafted_pending_review` / `_stub` flags and merge into the main codebook. |
 | 3.3 follow-up | Migrate `experiments/generate_batch.py` to call `build_batch` | The canonical orchestrator exists; `generate_batch` can switch its main loop after the camera-ready batch is locked. Currently both coexist. |
 | 3.4 follow-up | Layer 2 (LLM-as-judge) + Layer 3 (expert review) for the tagging ablation | Needs a calibrated judge prompt and a 30-item/condition human review pass per spec §5.5. |
 | 3.5 | Strategy 3 LLM context generation for L3 fallback | Only needed if L3 coverage probe shows shortfall. |
@@ -553,6 +554,53 @@ Expect:
   ```
 
 **What this confirms:** Error-injection §7.2 — the canonical pipeline-package orchestrator exists. The experiments-folder `generate_batch.py` can migrate to call `build_batch` after the camera-ready batch is locked; both paths coexist for now.
+
+### Verification — 3.1 codebook scaffolder + validator + seeds
+
+- [ ] **Scaffolder lists the right gap.**
+
+  ```bash
+  python scripts/scaffold_codebook_entries.py --list-missing
+  ```
+
+  Expect `Codebook coverage: 8 / 42 taxonomy entries.` and the 34 missing `(primary_tag, error_type)` pairs grouped by `tom_level`.
+- [ ] **Scaffolder writes 34 well-formed stubs.**
+
+  ```bash
+  python scripts/scaffold_codebook_entries.py
+  ```
+
+  Should print `Wrote 34 stub entries to data/codebook/error_codebook_fr_en.stubs.json. Coverage: 8 done, 34 missing (8/42).` Inspect a sample stub — `codebook_id` follows the `ACC-MIST-XX-001` convention, `severity_range` / `tom_level` / `primary_skill` are populated from the taxonomy, and `definition` / `boundary_not` / `examples` are TODO placeholders / empty.
+- [ ] **Validator passes the existing codebook at the current convention.**
+
+  ```bash
+  python scripts/validate_codebook.py --min-examples 2
+  ```
+
+  Should report `8 OK, 0 FAIL.` with the 34 missing taxonomy entries listed at the bottom (coverage gap is a warning, not a failure).
+- [ ] **Validator at the strict spec target surfaces the example-count gap.**
+
+  ```bash
+  python scripts/validate_codebook.py
+  ```
+
+  Should report `1 OK, 7 FAIL.` — the 7 failing entries each need a third example to hit the `~3 examples/entry` target from spec §5.2.
+- [ ] **Seed drafts validate cleanly.**
+
+  ```bash
+  python scripts/validate_codebook.py --codebook data/codebook/error_codebook_fr_en.drafts.json
+  ```
+
+  Should report `3 OK, 0 FAIL.` for the `word_sense`, `number`, and `untranslated` drafts.
+- [ ] **`--strict` rejects stubs.**
+
+  ```bash
+  python scripts/validate_codebook.py --codebook data/codebook/error_codebook_fr_en.stubs.json --strict
+  ```
+
+  Should fail every stub with `entry is a stub (_stub: true)` plus the TODO-placeholder + empty-examples problems.
+
+**What this confirms:** Error-injection §5.2 (codebook coverage tooling) and remediation §8.1 (codebook validator). Bulk content authoring is the remaining work — `python scripts/scaffold_codebook_entries.py --list-missing` is the running checklist for that backlog.
 
 ---
 
@@ -817,7 +865,7 @@ Ordered by impact × leverage. Each item references the per-spec entries that su
 | §4.3 | L0–L3 student-facing scaffolding views | Implemented | [interfaces/student_app.py:1](../src/tompe/interfaces/student_app.py#L1) | `AnnotationLevel` enum drives views. |
 | §4.4 | Tag colour scheme (10 colours + clean green) | Implemented | [pipeline/mqm_taxonomy.py:296](../src/tompe/pipeline/mqm_taxonomy.py#L296) | `TAG_COLORS` dict matches hex values. |
 | §5.1 | Codebook entry schema (definition, boundary_not, examples, explanation) | Implemented | [pipeline/codebook.py:42](../src/tompe/pipeline/codebook.py#L42) | `CodebookEntry` pydantic model. |
-| §5.2 | Codebook coverage: 37 types, ~111 examples | Partial | [data/codebook/error_codebook_fr_en.json:6](../data/codebook/error_codebook_fr_en.json#L6) | Only 8 codebook entries present (vs 37 target). |
+| §5.2 | Codebook coverage: 37 types, ~111 examples | Partial (tooling done, content pending) | [data/codebook/error_codebook_fr_en.json](../data/codebook/error_codebook_fr_en.json), [scripts/scaffold_codebook_entries.py](../scripts/scaffold_codebook_entries.py), [data/codebook/error_codebook_fr_en.drafts.json](../data/codebook/error_codebook_fr_en.drafts.json) | Phase 3 (3.1): scaffolder generates 34 stub entries from `ERROR_TYPE_SPECS` to a sibling JSON file; 3 hand-drafted seed entries (word_sense, number, untranslated) demonstrate the pattern but need expert review (`_drafted_pending_review: true`). Bulk content authoring remains the researcher backlog. |
 | §5.4 | Layer 1 contrastive explanation generator | Implemented | [pipeline/explanation_generator.py:39](../src/tompe/pipeline/explanation_generator.py#L39) | LLM call with 4-field schema. |
 | §5.4 | Layer 2a popular-science explanation generator | Implemented | [pipeline/explanation_generator.py:78](../src/tompe/pipeline/explanation_generator.py#L78) | `SystemBehaviorExplanation`. |
 | §5.4 | Layer 2b technical explanation (progressive disclosure) | Implemented | [pipeline/explanation_generator.py:111](../src/tompe/pipeline/explanation_generator.py#L111) | Optional, off by default. |
@@ -829,7 +877,7 @@ Ordered by impact × leverage. Each item references the per-spec entries that su
 
 #### Top 5 gaps (after Sprint #2)
 
-1. **Codebook coverage (§5.2)** — only 8 of the targeted ~37 codebook entries exist. The pipeline runs via the taxonomy fallback, but few-shot quality depends on the codebook; this is the single biggest content gap. *(Phase 3 item 3.1.)*
+1. **Codebook coverage (§5.2)** — *Partially resolved — Phase 3 (3.1).* Scaffolder + validator + 3 seed entries committed; bulk content authoring remains a researcher backlog (~30 entries × ~30–45 min/entry = ~11–22 hours of expert time). Run `python scripts/scaffold_codebook_entries.py --list-missing` for the gap snapshot.
 2. ~~**Authentic pathway (§7.2)**~~ — **RESOLVED (GEMBA-only v1) — Phase 3 (3.2).** [`authentic_detector.detect_authentic_errors`](../src/tompe/pipeline/authentic_detector.py) maps GEMBA-MQM output to the taxonomy + Layer 1 + cached Layer 2a. xCOMET pass still deferred (GPU).
 3. ~~**`item_builder` orchestration (§7.2)**~~ — **RESOLVED — Phase 3 (3.3).** [`pipeline/item_builder.py`](../src/tompe/pipeline/item_builder.py) now implements `build_item` (CONTROLLED via `inject_errors_reference_based`; AUTHENTIC via `detect_authentic_errors`) and `build_batch` (iterates over caller-supplied segments). Segment stratification stays in `experiments/generate_batch.py` until the camera-ready batch ships; both paths coexist.
 4. ~~**Tagging strategy ablation (§5.5)**~~ — **RESOLVED (Layer 1) — Phase 3 (3.4).** Central `TagFormat` enum; `build_step2_prompt`, `build_step2_system_prompt`, `_verify_injection`, and `inject_errors_reference_based` now accept `tag_format=`. Runner at [experiments/pipeline_validation/ablation_tagging.py](../experiments/pipeline_validation/ablation_tagging.py); Table 4 in `tables.py`. Layer 2 (LLM-as-judge with calibrated prompt) and Layer 3 (expert review of 30/condition) still pending — listed as follow-ups in Sprint #3.
@@ -908,7 +956,7 @@ Ordered by impact × leverage. Each item references the per-spec entries that su
 | §3.6 | Updated annotation set with L3 items | Implemented | [track_c/prepare_annotation_set.py:42](../experiments/pipeline_validation/track_c/prepare_annotation_set.py#L42) | `_BASELINE_TOM_QUOTA` includes `recursive=1`. |
 | §4.3 | Reframe ablation narrative (Q1 / Q2 / Q3 in paper) | N/A | — | Narrative is paper text, not code. |
 | §6 | UNPC corpus ingested or removed | Implemented (Option B) | [config.py:31-34](../experiments/pipeline_validation/config.py#L31-L34) | Sprint #2 (B2): `unpc` removed from `CORPORA`; empty `data/corpora/unpc/` kept as placeholder for future re-ingestion. |
-| §8.1 | Codebook validation script | Missing | — | No `data/codebook` validator script committed. |
+| §8.1 | Codebook validation script | Implemented | [scripts/validate_codebook.py](../scripts/validate_codebook.py) | Phase 3 (3.1): per-entry checks for required fields, taxonomy membership, valid enums, ≥3 examples, well-formed inline XML, plus a coverage report. `--strict` rejects `_stub: true` entries; `--min-examples` configurable. |
 
 #### Top 5 gaps (after Sprint #2)
 
@@ -917,7 +965,7 @@ Ordered by impact × leverage. Each item references the per-spec entries that su
 3. **Strategy 3 (LLM context generation) missing (§1.4)** — No fallback when long-segment + adjacency yields too few L3 candidates. Spec marks this as the safety net for L3 coverage. *(Phase 3 item 3.5.)*
 4. ~~**`segment_selector.py` not parameterised by `tom_level` (§1.4)**~~ — **RESOLVED — Sprint #2 (B5).** `select_segments(tom_level=…)` accepts `TOMLevel.RECURSIVE_MULTI` and relaxes token windows; L3 helpers moved into `pipeline/segment_selector.py`.
 5. ~~**UNPC ingestion not actually fixed (§6)**~~ — **RESOLVED (Option B) — Sprint #2 (B2).** `unpc` dropped from `CORPORA`; placeholder dir retained for future re-ingest.
-6. **Codebook validation script (§8.1)** — *Newly elevated.* No `data/codebook` validator script committed. Lower priority than Phase 3 items but worth scaffolding when codebook coverage expands. *(Tracked alongside Phase 3 item 3.1.)*
+6. ~~**Codebook validation script (§8.1)**~~ — **RESOLVED — Phase 3 (3.1).** [`scripts/validate_codebook.py`](../scripts/validate_codebook.py) ships with `--strict` and `--min-examples`; ran clean on the existing codebook at `--min-examples 2` (current authoring convention) and flagged the 7 of 8 entries that need a third example to hit the spec's `~3 examples/entry` target.
 
 ---
 

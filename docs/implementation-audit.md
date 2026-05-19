@@ -399,6 +399,7 @@ Expect:
 |---|---|---|---|
 | 3.2 | Authentic pathway — `detect_authentic_errors` v1 (GEMBA-only; xCOMET deferred) | Done (unit-tested) | [src/tompe/pipeline/authentic_detector.py](../src/tompe/pipeline/authentic_detector.py) |
 | 3.4 | C1–C4 tagging ablation — `TagFormat` enum, parameterised injection prompt + verification, ablation runner, Table 4 (Layer 1 metrics) | Done (smoke-tested) | [src/tompe/pipeline/tag_formats.py](../src/tompe/pipeline/tag_formats.py), [src/tompe/pipeline/error_injector.py](../src/tompe/pipeline/error_injector.py), [src/tompe/pipeline/_injection_prompts.py](../src/tompe/pipeline/_injection_prompts.py), [experiments/pipeline_validation/ablation_tagging.py](../experiments/pipeline_validation/ablation_tagging.py), [experiments/pipeline_validation/tables.py](../experiments/pipeline_validation/tables.py) |
+| 3.6 | False-positive analysis — categorise human FPs into true_positive / real_mt_error / genuine_false_alarm via IoU + cached GEMBA; per-annotator + by-condition + κ | Done (unit-tested) | [experiments/pipeline_validation/track_c/false_positive_analysis.py](../experiments/pipeline_validation/track_c/false_positive_analysis.py) |
 
 ### Still pending — Phase 3 backlog
 
@@ -408,7 +409,7 @@ Expect:
 | 3.3 | `item_builder.build_item` / `build_batch` orchestration | Refactor `generate_batch` into thin CLI around a canonical orchestrator. Cleanest after 3.2 lands. |
 | 3.4 follow-up | Layer 2 (LLM-as-judge) + Layer 3 (expert review) for the tagging ablation | Needs a calibrated judge prompt and a 30-item/condition human review pass per spec §5.5. |
 | 3.5 | Strategy 3 LLM context generation for L3 fallback | Only needed if L3 coverage probe shows shortfall. |
-| 3.6 | False-positive analysis script | Categorise human FPs into real-MT vs genuine FP; needs human annotations first. |
+| 3.6 follow-up | Run 3.6 against a real annotator pass | Code is wired; needs ≥1 annotator's data on disk to produce real FP categorisation numbers. |
 
 ### Verification — 3.2 authentic pathway
 
@@ -483,6 +484,33 @@ Expect:
 **Follow-ups not in this sprint:** Layer 2 LLM-as-judge with a calibrated judge prompt (spec §5.5 — needs prompt-validation against expert ratings before use); Layer 3 expert review of 30 items/condition. Both blocked on a calibrated evaluation prompt + a human reviewer, not on code.
 
 **What this confirms:** Error-injection §5.5 — the tag-format design choice can be empirically defended in the paper using Layer 1 automatic metrics across C1, C2, C3, C4.
+
+### Verification — 3.6 false-positive analysis
+
+- [ ] **Module imports + CLI exposed.**
+
+  ```bash
+  PYTHONPATH=src python -m experiments.pipeline_validation.track_c.false_positive_analysis --help
+  ```
+
+  Expect `--batch-path`, `--annotations-dir`, `--annotators`, `--iou-threshold`, `--no-gemba-precompute`, `--force-refresh-gemba`, `--dry-run`.
+- [ ] **Categorisation logic verified.** Already smoke-tested during the sprint — three synthetic human errors (one overlapping an injected error, one overlapping a GEMBA-only span, one overlapping neither) classified as `true_positive`, `real_mt_error`, and `genuine_false_alarm` respectively.
+- [ ] **Dry-run reports the right state.**
+
+  ```bash
+  PYTHONPATH=src python -m experiments.pipeline_validation.track_c.false_positive_analysis \\
+      --dry-run --batch-path experiments/pipeline_validation/results/batch_200.jsonl
+  ```
+
+  Expect `Batch loaded: N items`, an `Annotators found:` list (`[]` if none yet), and the IoU threshold. No LLM calls in dry-run.
+- [ ] **GEMBA cache reused on re-run.** After the first real run, `data/annotations/_gemba/{item_id}.json` should exist for each touched item. Re-running without `--force-refresh-gemba` should log `cached / 0 called (LLM)`.
+- [ ] **Output JSON shape.** After a real run, inspect `results/track_c/false_positive_analysis.json`:
+  - `per_annotator.<id>` carries `n_errors_flagged`, `n_true_positive`, `n_real_mt_error`, `n_genuine_false_alarm`, `false_positive_rate`, `real_mt_rate_among_fps`.
+  - `aggregate.by_condition.<condition>` reports the same counts split by pipeline/baseline/clean/authentic.
+  - `pairwise_fp_agreement` is populated only when ≥2 annotators flagged overlapping FP spans; `kappa: null` when undefined (single-label degenerate case).
+- [ ] **End-to-end (manual, costs LLM credits + requires annotator data).** Once at least one annotator's per-item JSONs land under `data/annotations/{annotator_id}/`, drop `--dry-run`. First run will pre-compute GEMBA for every touched item; subsequent runs use the cache.
+
+**What this confirms:** Annotation §6.6 — the spec's "real-MT vs genuine FP" checklist item is wired end-to-end. The remaining work is the human annotation run itself, not code.
 
 ---
 
@@ -888,7 +916,7 @@ Ordered by impact × leverage. Each item references the per-spec entries that su
 | §6.3 | Ablation comparison metrics from human annotation | Implemented | [track_b/ablation_comparison.py:267](../experiments/pipeline_validation/track_b/ablation_comparison.py#L267) | Cross-condition table. |
 | §6.4 | Naturalness comparison (Mann-Whitney / Fisher / χ²) | Implemented | [track_c/naturalness_test.py:1](../experiments/pipeline_validation/track_c/naturalness_test.py#L1) | All three tests. |
 | §6.5 | Time analysis | Partial | [track_c/explanation_quality.py:54](../experiments/pipeline_validation/track_c/explanation_quality.py#L54) | Phase B time analysis present; Phase A not separately committed. |
-| §6.6 | False positive analysis (real-MT vs genuine FP categorisation) | Missing | — | No `false_positive_analysis.py`; spec has dedicated checklist item. |
+| §6.6 | False positive analysis (real-MT vs genuine FP categorisation) | Implemented | [track_c/false_positive_analysis.py](../experiments/pipeline_validation/track_c/false_positive_analysis.py) | Phase 3 (3.6): classifies each human-flagged error into true_positive / real_mt_error / genuine_false_alarm via IoU against injected + GEMBA spans; cache at `data/annotations/_gemba/`; pairwise κ on the real_mt vs false_alarm call. Needs ≥1 annotator run on disk to produce real numbers. |
 | §6.7 | Explanation quality aggregate metrics + by ToM | Implemented | [track_c/explanation_quality.py:36](../experiments/pipeline_validation/track_c/explanation_quality.py#L36) | `n_ratings`, `by_tom`, `fully_satisfactory`. |
 | §7.1 | Practice-mode flag (first 3 items excluded from analysis) | Partial | [annotation_app.py:624](../src/tompe/interfaces/annotation_app.py#L624) | `is_practice` flag stored from item, but no UI distinction. |
 | §7.1 | Item randomisation with seed | Partial | [config.py:72](../experiments/pipeline_validation/config.py#L72) | Seed defined; randomisation done at `prepare_annotation_set` time. |
@@ -898,7 +926,7 @@ Ordered by impact × leverage. Each item references the per-spec entries that su
 
 1. ~~**No real `annotation_set.json` file (§4.1)**~~ — **RESOLVED (runner) — Sprint #2 (B7).** `track_c/build_annotation_set.py` orchestrates batch → ablation → annotation_set.json. The file is generated by running the script, not committed (correct).
 2. ~~**Segment reuse across conditions not enforced (§4.2)**~~ — **RESOLVED — Sprint #2 (B8).** `_baseline_sample(forced_segment_ids=…)` makes B1/B2 reuse B0's chosen segment_ids with stratified fallback for missing items.
-3. **False positive analysis missing (§6.6)** — No `false_positive_analysis.py`. Categorising human FPs into "real MT error" vs "genuine false alarm" is a checklist item that is not implemented. *(Phase 3 item 3.6.)*
+3. ~~**False positive analysis missing (§6.6)**~~ — **RESOLVED — Phase 3 (3.6).** [`track_c/false_positive_analysis.py`](../experiments/pipeline_validation/track_c/false_positive_analysis.py) categorises every human-flagged span into true_positive / real_mt_error / genuine_false_alarm via IoU against the injected manifest and a cached GEMBA pass; emits per-annotator + by-condition + by-MQM-category breakdowns plus pairwise κ. Real numbers pending ≥1 expert annotation run.
 4. ~~**Live timer not animated (§2.4)**~~ — **RESOLVED — Sprint #2 (B3).** `.timer-display` now ticks via `gr.Blocks.load(js=ANNOTATION_TIMER_JS)`; per-item buttons reset the timer. Manual browser check still owed.
 5. **Authentic MT pathway partial (§4.3)** — Phase 3 (3.2) wired `detect_authentic_errors`, so the detector exists. Still pending: a real-MT source list to populate the 12 `ANNOTATION_AUTHENTIC` slots (currently `build_annotation_set.py` passes `authentic_items=None`, so the count goes to 0 and pipeline items expand). Plumb a real-MT corpus into `build_annotation_set.py` to close fully.
 

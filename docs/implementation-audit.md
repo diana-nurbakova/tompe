@@ -107,7 +107,7 @@ Static smoke tests passed for everything in "What landed", but each item needs m
 
 **What this confirms:** Fluency Trap §4.1 Clean Sheet now fires (badge logic was complete but `item_results` was never passed).
 
-> **Note — Trap Detector still inert.** The third behaviour badge (Trap Detector, ≥10 correct disputes at L0) requires the L0 Confirm/Dispute UI from A5b, which has not landed. `correct_disputes=0` is currently hardcoded in [api.py](../src/tompe/services/api.py).
+> **Note — Trap Detector resolved in Sprint #4.** The L0 Confirm/Dispute UI now ships; `correct_disputes` is sourced from `score_navigator_response` and plumbed into `process_badges_and_xp`. See Sprint #4 below.
 
 ### A5a — false annotation generator (inert until wired)
 
@@ -604,6 +604,101 @@ Expect:
 
 ---
 
+## Implementation sprint #4 — L0 Trap Detector closure (A5b–A5d + A5a-wiring)
+
+**Date range:** 2026-05-19
+**Theme:** Activate the dead-code L0 false-annotation generator from sprint #1 by wiring Teacher → Exercise → Student → Scoring → Badges.
+
+### What landed
+
+| ID | Item | Status | Files touched |
+|---|---|---|---|
+| A5a-wiring | Teacher exercise-builder L0 mode picker (`llm` / `rule` / `manual` / `none`) + per-item count; runs `generate_false_annotations` on Create and stores results into `exercise.false_annotations[item_id]` | Done (unit-tested) | [src/tompe/interfaces/teacher_app.py](../src/tompe/interfaces/teacher_app.py), [src/tompe/services/api.py](../src/tompe/services/api.py) |
+| A5b | Student-app L0 view: 10 pre-allocated Confirm/Dispute cards with reasoning textbox; show/hide vs. standard span-selection panel based on level=navigator; deterministic per-item shuffle so position can't leak real vs. false | Done (unit-tested) | [src/tompe/interfaces/student_app.py](../src/tompe/interfaces/student_app.py) |
+| A5c | `score_navigator_response` now reports `correct_confirms` / `correct_disputes` / `incorrect_confirms` / `incorrect_disputes`; `SubmitAnnotationsRequest` carries `verification_responses`; `prepare_feedback` recognises navigator mode and renders the right detection state | Done (unit-tested) | [src/tompe/schemas/scoring.py](../src/tompe/schemas/scoring.py), [src/tompe/services/scoring.py](../src/tompe/services/scoring.py), [src/tompe/services/api.py](../src/tompe/services/api.py), [src/tompe/services/feedback.py](../src/tompe/services/feedback.py) |
+| A5d | `item_results[0]["correct_disputes"]` plumbed from `scoring.correct_disputes` into `process_badges_and_xp`; Trap Detector now fires after ≥10 correct disputes at L0 (verified with a 10-iteration smoke test) | Done (unit-tested) | [src/tompe/services/api.py](../src/tompe/services/api.py) |
+
+### Verification — Sprint #4
+
+- [ ] **Scoring smoke test (already run in sprint).** A handcrafted item with 2 real errors + 2 decoys, verified perfectly, yields `correct_confirms=2`, `correct_disputes=2`, `tp=4`, `fp=0`, `fn=0`. Mixed-mistake cases split cleanly into `incorrect_confirms` / `incorrect_disputes`. ✓
+- [ ] **Trap Detector accumulation (already run in sprint).** Calling `process_badges_and_xp` 10× with `item_results=[{"correct_disputes": 1, ...}]` at `scaffolding_level="navigator"` produces `record.correct_disputes == 10` and earns `trap_detector` exactly once. ✓
+- [ ] **Teacher UI sanity (manual).** In the teacher app's Exercise Builder, pick Level = Navigator. Confirm the "False annotation source (L0)" select and "False annotations per item" number input appear; pick `rule`; create an exercise with 1+ L0 items. Reopen the exercise JSON in `data/exercises/` — `false_annotations[item_id]` should contain entries.
+- [ ] **Student L0 flow (manual).** Log in as a student assigned the L0 exercise above. Confirm: (a) Annotate tab shows verification cards instead of the span-selection panel; (b) each card displays the highlighted span text, MQM label, severity; (c) submitting without verifying every card surfaces a "Missing: …" warning; (d) after submitting Confirm/Dispute on every card, the Feedback tab opens directly (no Justify step); (e) per-error feedback cards mark real errors that were *confirmed* as Found and real errors that were *disputed* as Missed.
+- [ ] **End-to-end Trap Detector (manual).** Across one or several L0 exercises, dispute 10 false annotations correctly. Confirm the Trap Detector badge appears in My Progress (when `badges_visible=True`).
+
+### Still pending (Sprint #4 follow-ups)
+
+- **LLM mode operational verification.** Rule mode is fully covered; `llm` mode requires `injection_llm` in `mt_backends.yaml` and a real API key. The teacher app warns and falls back to rule-mode if either is missing. Smoke this with one real LLM call before relying on it in production.
+- **L0 feedback polish.** Summary stats and Layer 1/2 cards work as-is, but the "false annotation reveal" UX (showing which decoys the student should have disputed) isn't broken out into its own panel — it's implicit in the per-error layout. Add a dedicated "decoys you spotted / missed" panel if user-testing flags it.
+
+---
+
+## Remaining work & manual/expert intervention
+
+After sprints #1–#3 the pipeline backbone is paper-ready: every Phase 3 code item (3.1, 3.2, 3.3, 3.4, 3.6) is implemented, and Tracks A/B/C plus the student core loop work end-to-end. What's left splits into three buckets — the first two need human time, the third is engineering follow-up.
+
+### A. Requires expert / manual intervention
+
+These cannot be unblocked by more code. Each row names who is needed and what gets gated until they sign off.
+
+| # | Item | Who | Effort | Unblocks |
+|---|---|---|---|---|
+| A1 | **Codebook content authoring** — review 3 drafted seeds + fill 34 scaffolded stubs in `data/codebook/error_codebook_fr_en.{drafts,stubs}.json`; drop `_drafted_pending_review` / `_stub` flags; run `python scripts/validate_codebook.py` to gate; merge into the main codebook. Workflow: `python scripts/scaffold_codebook_entries.py --list-missing` is the running backlog. | Bilingual MT/PE expert | ~30–45 min/entry × 30 entries ≈ **11–22 hrs** | Few-shot quality for the paper's pipeline-validation claims (§5.2). |
+| A2 | **Verify 3 drafted seed entries** — independently review the French translations and inline XML in [error_codebook_fr_en.drafts.json](../data/codebook/error_codebook_fr_en.drafts.json) for word_sense, number, untranslated. | Bilingual reviewer | ~1 hr | Lets the seeds merge into the main codebook (A1 prerequisite). |
+| A3 | **Expert annotation run on the annotation set** — run `tompe-annotation` against `data/annotations/annotation_set.json` with ≥1 expert annotator (preferably 2–3 for κ). | 1–3 expert FR↔EN translators | Variable; ~5–8 hrs / annotator | All Track C numbers: 3.6 false-positive analysis, `three_way_agreement` (Pipeline × Human × GEMBA), `naturalness_test`, `explanation_quality`. Without this, the whole Track C results section of the paper is empty. |
+| A4 | **xCOMET-XL on GPU** — once a CUDA host is available, switch `XCOMET_MODEL` from `wmt22-comet-da` to `Unbabel/XCOMET-XL` and re-run Track A3 + Track B ablation. Also enables the second branch of `authentic_detector` (currently GEMBA-only). | DevOps / researcher with GPU access | ~half day to switch + re-run | Track A3 score-drop metrics; xCOMET column in Tables 1–2; xCOMET cross-validation in authentic_detector. *(See "Deliberate scope decisions" below — this is deferred by design until GPU lands.)* |
+| A5 | **Layer 2 LLM-as-judge calibration for tagging ablation** — design a judge prompt, validate it against expert ratings on a small sample (compute κ between Layer 2 LLM and Layer 3 expert), then run the judge across all `30 × 4 = 120` injections. | Researcher | ~1–2 days (prompt design + 60-item calibration set + κ analysis) | Spec §5.5 Layer 2 column of the tagging-ablation Table 4. |
+| A6 | **Layer 3 expert review for tagging ablation** — independently rate 30 items × 4 conditions on the four Layer-2 dimensions plus pedagogical utility + difficulty calibration (spec §5.5 Layer 3). | Bilingual expert | ~3–5 hrs (120 ratings) | Spec §5.5 Layer 3 + validates Layer 2 κ. |
+| A7 | **Real-MT corpus sourcing for AUTHENTIC items** — pick 12+ source segments, translate via Google / DeepL / DeepSeek-V3 (without injection), store as `MTOutput`s, and feed into `build_annotation_set.py --authentic-source`. Without this, `ANNOTATION_AUTHENTIC=12` stays at 0 and authentic-vs-controlled comparisons can't run. | Researcher | ~2–4 hrs (translations + JSON assembly) | `naturalness_test`'s authentic arm; the controlled-vs-authentic paper narrative. |
+| A8 | **L3 coverage probe** — quick check whether Strategies 1+2 yield enough L3 candidates for the production batch. Run `python -m experiments.pipeline_validation.generate_batch --dry-run` and count L3 selections vs target. Decides whether item 3.5 (Strategy 3 LLM context fallback) is needed at all. | Researcher | ~10 min | Decision: implement 3.5 (engineering item below) or close it. |
+
+### B. Engineering work still pending
+
+No expert review needed; pure code follow-up. Ordered by paper-readiness leverage. Tier labels match the original audit's prioritisation.
+
+| # | Item | Tier | Effort | Notes |
+|---|---|---|---|---|
+| B1 | **Comparison mode end-to-end (L3 multi-MT, ranking, human-vs-MT)** — `comparison_outputs`, `ComparisonType`, `ItemPathway` are schema-only. Spans System §3.6/§5/§7.4 + UI §3.5. | Tier B | ~3–5 days | Single biggest open scope gap. |
+| B2 | **Skill Radar data source** — wire BKT or detection-rate-based mastery probabilities for S1–S7 into [api.py:780](../src/tompe/services/api.py#L780). UI renders correctly; just needs `skill_profile` in the response. | Tier B | ~half day | Highest "implemented but inert" demo risk. |
+| B3 | **Trap Detector + L0 Confirm/Dispute UI (A5b/c/d)** — student-app UI for Confirm/Dispute buttons, scoring logic that distinguishes correct/incorrect disputes, and a `correct_disputes` counter into `process_badges_and_xp`. | Tier B | ~1–2 days | The false-annotation generator from sprint #1 A5a is dead code until this lands. |
+| B4 | **`analytics.py` longitudinal stubs** — `update_student_profile`, `detect_blind_spots`, `compute_class_analytics` are `NotImplementedError`. Teacher blind-spot view recomputes ad hoc; no persistent learner profile. | Tier C2 | ~2–3 days | Required for the BKT story; the teacher dashboard works without it but the multi-session narrative doesn't. |
+| B5 | **`progression.py` BKT mastery** — Scout / Analyst / Expert badges fire on level-int, not on p≥0.98. `recommend_next_level` is `NotImplementedError`. | Tier C1 | ~2 days | Fluency Trap §2.2 + System §8.3. Adaptive progression vs manual promotion. |
+| B6 | **Migrate `experiments/generate_batch.py` to call `build_batch`** (3.3 follow-up) | Lower | ~half day | Architectural cleanup; do AFTER the camera-ready batch is locked. |
+| B7 | **Strategy 3 LLM context generation for L3 fallback** (3.5; conditional on A8) | Lower | ~4 hrs | Only implement if A8 shows L3 underdelivers. |
+| B8 | **PE diff visualization** (UI §3.4 leftover) — `pe_changes_html` change list with character-level diff. PE flow is wired; this is the polish on top. | Lower | ~4 hrs | |
+| B9 | **First-session tutorial overlay** (UI §3.3.5) | Lower | ~half day | Demo polish; not paper-blocking. |
+| B10 | **`api_credentials` "test connection" button** (UI §4.7.1) — currently a v2 stub. | Lower | ~2 hrs | Operational; not paper-blocking. |
+| B11 | **Corpus upload (TMX/TSV) ingestion in the teacher UI** (UI §4.2.2) — page exists, ingestion is "v2 stub". | Lower | ~1 day | Operational; the corpus ingestion CLI still works. |
+
+### C. Operational tasks (run the pipeline end-to-end)
+
+To produce camera-ready numbers, the following sequence runs on top of the now-complete tooling. Items 1–4 are unattended; 5 is the A3 expert-time bottleneck; 6–7 are unattended again.
+
+1. **Generate the production batch.** `python -m experiments.pipeline_validation.generate_batch --single-error` → `results/batch_200.jsonl`.
+2. **Run Tracks A + B.** `python -m experiments.pipeline_validation.run_all` → fills `results/track_a/`, `results/track_b/`.
+3. **Run the tagging ablation.** `python -m experiments.pipeline_validation.ablation_tagging --n-items 30` → `results/tagging_ablation/tagging_ablation_results.json`. *(Layer 2 / 3 follow-up: A5 + A6.)*
+4. **Build the annotation set.** `python -m experiments.pipeline_validation.track_c.build_annotation_set` → `data/annotations/annotation_set.json`. Feed `--authentic-source` once A7 lands.
+5. **Expert annotation run.** Distribute the annotation tool to annotators (item A3). Wait.
+6. **Run the analysis suite.** Once annotations land:
+   - `python -m experiments.pipeline_validation.track_c.three_way_agreement`
+   - `python -m experiments.pipeline_validation.track_c.naturalness_test`
+   - `python -m experiments.pipeline_validation.track_c.explanation_quality`
+   - `python -m experiments.pipeline_validation.track_c.false_positive_analysis`
+7. **Generate paper tables.** `python -m experiments.pipeline_validation.tables` → `results/tables/table{1,2,3,4}.tex`.
+
+### Summary — what gates the paper
+
+| Bottleneck | Who | Workaround if it doesn't unblock |
+|---|---|---|
+| **A3 expert annotation run** | 1–3 experts | All Track C numbers stay theoretical. No workaround — this is non-negotiable for the validation section. |
+| **A1 codebook authoring** | Bilingual MT expert | Pipeline still runs via taxonomy fallback; few-shot quality is lower; the paper's "rich codebook" claim weakens. |
+| **A4 xCOMET-XL on GPU** | GPU access | Track A3 column / xCOMET cross-validation stays absent; the controlled-vs-authentic narrative survives on GEMBA alone. |
+| **A7 real-MT corpus** | Researcher | `ANNOTATION_AUTHENTIC=12` slot stays at 0; the authentic arm of `naturalness_test` is empty. |
+
+Everything in bucket B is engineering work; everything in bucket C runs by itself once bucket A unblocks. The most efficient unblock order is **A8 → A7 → A2 → A3** (probe coverage, source authentic items, sign off on seeds, then expert annotation) — in parallel, A1 codebook authoring runs as a researcher backlog.
+
+---
+
 ## Deliberate scope decisions (not gaps)
 
 The following items might look like gaps in the per-spec tables but are **intentional design choices**. Do not address as part of "fix the gaps":
@@ -624,7 +719,7 @@ Ordered by impact × leverage. Each item references the per-spec entries that su
 5. **Longitudinal analytics are all `NotImplementedError`.** [`analytics.py`](../src/tompe/services/analytics.py#L6) — `update_student_profile`, `detect_blind_spots`, `compute_class_analytics` — are stubs. The teacher blind-spot view recomputes ad hoc; there's no persistent learner profile for the BKT story. *(System §3.9)* — **Tier C2.**
 6. **BKT mastery + teacher-gated progression is unwired.** [`progression.py:20`](../src/tompe/services/progression.py#L20) is a stub; Scout / Analyst / Expert badges fire on level-int, not on p≥0.98. Spec promises adaptive progression; runtime delivers manual promotion. *(Fluency Trap §2.2 + System §8.3)* — **Tier C1.**
 7. ~~**Single-error validation toggle is not config-driven.**~~ **RESOLVED — Sprint #1 (A4).** `validation_severity_distribution` lives in `settings.yaml`; user/linter further refactored to load from YAML at module-import time.
-8. **Behaviour badges never fire.** *Partially resolved — Sprint #1 (A2):* Clean Sheet now fires (per-item `item_results` plumbed). **Trap Detector still inert** until L0 Confirm/Dispute UI lands (A5b/c/d in progress).
+8. ~~**Behaviour badges never fire.**~~ **RESOLVED — Sprint #1 (A2) + Sprint #4 (A5b–A5d + A5a-wiring).** Clean Sheet fires (per-item `item_results` plumbed); Trap Detector now fires after ≥10 correct disputes at L0 once the Confirm/Dispute UI ships and `score_navigator_response` reports `correct_disputes`.
 
 ### Patterns
 
@@ -802,7 +897,7 @@ Ordered by impact × leverage. Each item references the per-spec entries that su
 | §3.5 | Bronze/Silver/Gold tier visuals | Partial | [student_app.py:335](../src/tompe/interfaces/student_app.py#L335), [:361](../src/tompe/interfaces/student_app.py#L361) | Coloured borders + tier letter overlay; no metallic-frame composites. |
 | §4.1 | False Positive Discipline trigger | Implemented | [services/badges.py:166](../src/tompe/services/badges.py#L166) | L3 + ≥5 items + zero FP check matches spec. |
 | §4.1 | Clean Sheet trigger (repeatable) | Implemented | [services/badges.py:180](../src/tompe/services/badges.py#L180), [services/api.py:731](../src/tompe/services/api.py#L731) | Sprint #1 (A2): `item_results` now assembled at API call site. Needs manual end-to-end check. |
-| §4.1 | Trap Detector trigger (≥10 disputes at L0) | Partial | [services/badges.py:202](../src/tompe/services/badges.py#L202) | Counter plumbing landed (A2); `correct_disputes=0` until L0 Confirm/Dispute UI ships (A5b–A5d). |
+| §4.1 | Trap Detector trigger (≥10 disputes at L0) | Implemented | [services/badges.py:202](../src/tompe/services/badges.py#L202), [services/scoring.py:227](../src/tompe/services/scoring.py#L227), [services/api.py:739](../src/tompe/services/api.py#L739) | Sprint #4 (A5b–A5d + A5a-wiring): L0 Confirm/Dispute UI ships; `score_navigator_response` reports `correct_disputes`; `process_badges_and_xp` accumulates and Trap Detector fires at ≥10. |
 | §5.1 | XP base values (10 / 5 / 3 / −5) | Implemented | [schemas/badges.py:128](../src/tompe/schemas/badges.py#L128) | Constants match spec. |
 | §5.2 | ToM level multipliers (×1.0–×2.0) | Implemented | [schemas/badges.py:113](../src/tompe/schemas/badges.py#L113) | Four levels mapped via legacy ToM names. |
 | §5.2 | Scaffolding multipliers (×0.5–×2.0) | Implemented | [schemas/badges.py:120](../src/tompe/schemas/badges.py#L120) | All four scaffolding tiers mapped. |

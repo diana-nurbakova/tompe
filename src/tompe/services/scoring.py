@@ -228,35 +228,49 @@ def score_navigator_response(
     response: StudentResponse,
     item: AssessmentItem,
 ) -> ScoringResult:
-    """Score a navigator-mode response (verification + classification)."""
+    """Score a navigator-mode response (Confirm/Dispute on pre-annotated spans).
+
+    Convention used by the L0 flow:
+      - Real errors live in `item.errors` (keyed by `error_id`).
+      - False annotations are presented from `exercise.false_annotations` with
+        IDs that are NOT in `item.errors`, so any verification.error_id we don't
+        recognise is treated as a decoy.
+
+    Counts:
+      - correct_confirms  : agreed with a real error      (TP)
+      - correct_disputes  : disputed a false annotation   (TP) — fuels Trap Detector
+      - incorrect_confirms: agreed with a false annotation (FP) — fooled by decoy
+      - incorrect_disputes: disputed a real error         (FN) — missed a real bug
+    """
     verifications = response.verification_responses or []
     ground_truth = {e.error_id if hasattr(e, "error_id") else str(i): e
                     for i, e in enumerate(item.errors)}
 
-    tp = 0
-    fp = 0
-    fn = 0
+    correct_confirms = 0
+    correct_disputes = 0
+    incorrect_confirms = 0
+    incorrect_disputes = 0
 
     verified_ids = set()
     for v in verifications:
         verified_ids.add(v.error_id)
         if v.error_id in ground_truth:
-            # Real error — student should confirm
             if v.agrees_is_error:
-                tp += 1
+                correct_confirms += 1
             else:
-                fn += 1  # Missed (disputed a real error)
+                incorrect_disputes += 1
         else:
-            # False annotation — student should dispute
             if not v.agrees_is_error:
-                tp += 1  # Correctly identified false annotation
+                correct_disputes += 1
             else:
-                fp += 1  # Accepted a false annotation
+                incorrect_confirms += 1
 
-    # Errors not verified at all count as missed
-    for eid in ground_truth:
-        if eid not in verified_ids:
-            fn += 1
+    # Real errors the student never verified count as missed
+    unverified_real = sum(1 for eid in ground_truth if eid not in verified_ids)
+
+    tp = correct_confirms + correct_disputes
+    fp = incorrect_confirms
+    fn = incorrect_disputes + unverified_real
 
     precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0
     recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0
@@ -273,4 +287,8 @@ def score_navigator_response(
         f1=f1,
         detection_by_mqm={},
         detection_by_tom={},
+        correct_confirms=correct_confirms,
+        correct_disputes=correct_disputes,
+        incorrect_confirms=incorrect_confirms,
+        incorrect_disputes=incorrect_disputes,
     )

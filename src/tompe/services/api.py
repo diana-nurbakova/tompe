@@ -14,7 +14,12 @@ from pydantic import BaseModel
 
 from tompe.schemas.enums import AnnotationLevel, MQMCategory, Severity
 from tompe.schemas.item import AssessmentItem
-from tompe.schemas.response import IdentifiedError, Justification, StudentResponse
+from tompe.schemas.response import (
+    IdentifiedError,
+    Justification,
+    StudentResponse,
+    VerificationResponse,
+)
 from tompe.schemas.scoring import ScoringResult
 from tompe.schemas.session import (
     ClassGroup,
@@ -115,6 +120,8 @@ class CreateExerciseRequest(BaseModel):
     justification_type: str = "per_error_short"
     clean_segment_ratio: float = 0.0
     false_annotation_ratio: float = 0.0
+    false_annotation_mode: str = "none"  # none | llm | rule | manual
+    false_annotation_count: int = 2
     item_ordering: str = "manual"
     domain: str = ""
     direction: str = ""
@@ -131,6 +138,7 @@ class SubmitAnnotationsRequest(BaseModel):
     mode: str = "evaluation"
     identified_errors: list[IdentifiedError] = []
     edited_text: str | None = None
+    verification_responses: list[VerificationResponse] = []  # navigator mode
     time_spent_seconds: float = 0.0
 
 
@@ -503,6 +511,8 @@ async def api_create_exercise(req: CreateExerciseRequest):
         justification_type=req.justification_type,
         clean_segment_ratio=req.clean_segment_ratio,
         false_annotation_ratio=req.false_annotation_ratio,
+        false_annotation_mode=req.false_annotation_mode,
+        false_annotation_count=req.false_annotation_count,
         item_ordering=req.item_ordering,
         domain=req.domain,
         direction=req.direction,
@@ -611,6 +621,9 @@ async def api_submit_response(
         time_spent_seconds=req.time_spent_seconds,
         identified_errors=req.identified_errors if req.mode == "evaluation" else None,
         edited_text=req.edited_text if req.mode == "postediting" else None,
+        verification_responses=(
+            req.verification_responses if req.mode == "navigator" else None
+        ),
     )
     responses_store.save(response)
     return {"response_id": response.response_id}
@@ -735,13 +748,13 @@ async def api_get_feedback(response_id: str):
     badges_visible = class_obj.badges_visible if class_obj else True
 
     # Per-item breakdown for Clean Sheet check. Single-item submission, so one entry.
-    # correct_disputes=0 here; populated by L0 Confirm/Dispute flow (A5).
+    # `correct_disputes` fuels the Trap Detector behaviour badge at L0.
     item_results = [{
         "detected": scoring.true_positives,
         "total_errors": scoring.true_positives + scoring.false_negatives,
         "false_positives": scoring.false_positives,
         "category_matches": category_matches,
-        "correct_disputes": 0,
+        "correct_disputes": getattr(scoring, "correct_disputes", 0),
     }]
 
     # Tracking continues regardless of visibility (spec §8.3); response is masked below.

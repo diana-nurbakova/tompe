@@ -27,6 +27,7 @@ def prepare_feedback(
     student_errors = response.identified_errors or []
     ground_truth = item.errors
     item_text = item.presented_text or ""
+    is_navigator = response.mode == "navigator"
 
     # Match student errors to ground truth (same logic as scoring)
     gt_matched_by: dict[int, int] = {}  # gt_idx -> student_idx
@@ -34,32 +35,44 @@ def prepare_feedback(
 
     iou_threshold = 0.3
 
-    for s_idx, s_err in enumerate(student_errors):
-        best_iou = 0.0
-        best_gt_idx = -1
+    if is_navigator:
+        # L0: detection is decided by Confirm verdicts, not span overlap.
+        verifications = response.verification_responses or []
+        confirmed_ids = {v.error_id for v in verifications if v.agrees_is_error}
         for gt_idx, gt_err in enumerate(ground_truth):
-            if gt_idx in gt_matched_by:
-                continue
-            iou = compute_span_iou(
-                (s_err.span_start, s_err.span_end),
-                (gt_err.span_start, gt_err.span_end),
-            )
-            # Text-overlap fallback
-            if iou < iou_threshold:
-                student_text = item_text[s_err.span_start:s_err.span_end].lower().strip()
-                gt_text = ""
-                if hasattr(gt_err, "injected_text") and gt_err.injected_text:
-                    gt_text = gt_err.injected_text.lower().strip()
-                elif hasattr(gt_err, "original_text") and gt_err.original_text:
-                    gt_text = gt_err.original_text.lower().strip()
-                if student_text and gt_text and (student_text in gt_text or gt_text in student_text):
-                    iou = max(iou, iou_threshold)
-            if iou > best_iou:
-                best_iou = iou
-                best_gt_idx = gt_idx
-        if best_iou >= iou_threshold and best_gt_idx >= 0:
-            gt_matched_by[best_gt_idx] = s_idx
-            student_matched[s_idx] = best_gt_idx
+            eid = gt_err.error_id if hasattr(gt_err, "error_id") else f"gt_{gt_idx}"
+            if eid in confirmed_ids:
+                # Synthesize a matched "student error" stub at the gt span
+                stub_idx = len(student_errors)
+                gt_matched_by[gt_idx] = stub_idx
+                student_matched[stub_idx] = gt_idx
+    else:
+        for s_idx, s_err in enumerate(student_errors):
+            best_iou = 0.0
+            best_gt_idx = -1
+            for gt_idx, gt_err in enumerate(ground_truth):
+                if gt_idx in gt_matched_by:
+                    continue
+                iou = compute_span_iou(
+                    (s_err.span_start, s_err.span_end),
+                    (gt_err.span_start, gt_err.span_end),
+                )
+                # Text-overlap fallback
+                if iou < iou_threshold:
+                    student_text = item_text[s_err.span_start:s_err.span_end].lower().strip()
+                    gt_text = ""
+                    if hasattr(gt_err, "injected_text") and gt_err.injected_text:
+                        gt_text = gt_err.injected_text.lower().strip()
+                    elif hasattr(gt_err, "original_text") and gt_err.original_text:
+                        gt_text = gt_err.original_text.lower().strip()
+                    if student_text and gt_text and (student_text in gt_text or gt_text in student_text):
+                        iou = max(iou, iou_threshold)
+                if iou > best_iou:
+                    best_iou = iou
+                    best_gt_idx = gt_idx
+            if best_iou >= iou_threshold and best_gt_idx >= 0:
+                gt_matched_by[best_gt_idx] = s_idx
+                student_matched[s_idx] = best_gt_idx
 
     # Build per-error feedback cards
     error_cards = []
@@ -83,26 +96,43 @@ def prepare_feedback(
         # Student justification (displayed first per cognitive forcing protocol)
         if detected:
             s_idx = gt_matched_by[gt_idx]
-            # Find matching justification
-            matching_justifications = [
-                j for j in response.justifications
-                if j.error_id == card["error_id"] or j.error_id is None
-            ]
-            if matching_justifications:
-                j = matching_justifications[0]
-                card["student_justification"] = {
-                    "format": j.format,
-                    "text": j.text,
-                    "mt_misunderstanding": j.mt_misunderstanding,
-                    "author_intent": j.author_intent,
-                    "reader_impact": j.reader_impact,
-                }
-            # Student's classification
-            s_err = student_errors[s_idx]
-            card["student_classification"] = {
-                "category": s_err.student_mqm_category,
-                "severity": s_err.student_severity,
-            }
+            if is_navigator:
+                # L0: show the student's confirmation reasoning (suggested_correction)
+                matching_v = next(
+                    (v for v in (response.verification_responses or [])
+                     if v.error_id == card["error_id"]),
+                    None,
+                )
+                if matching_v and matching_v.suggested_correction:
+                    card["student_justification"] = {
+                        "format": "free_text",
+                        "text": matching_v.suggested_correction,
+                        "mt_misunderstanding": None,
+                        "author_intent": None,
+                        "reader_impact": None,
+                    }
+            else:
+                # Find matching justification
+                matching_justifications = [
+                    j for j in response.justifications
+                    if j.error_id == card["error_id"] or j.error_id is None
+                ]
+                if matching_justifications:
+                    j = matching_justifications[0]
+                    card["student_justification"] = {
+                        "format": j.format,
+                        "text": j.text,
+                        "mt_misunderstanding": j.mt_misunderstanding,
+                        "author_intent": j.author_intent,
+                        "reader_impact": j.reader_impact,
+                    }
+                # Student's classification — only present for L1+ spans
+                if s_idx < len(student_errors):
+                    s_err = student_errors[s_idx]
+                    card["student_classification"] = {
+                        "category": s_err.student_mqm_category,
+                        "severity": s_err.student_severity,
+                    }
 
         # Layer 1: Contrastive explanation
         if hasattr(gt_err, "explanation") and gt_err.explanation:

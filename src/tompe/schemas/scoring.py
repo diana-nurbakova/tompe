@@ -41,6 +41,12 @@ class ScoringResult(BaseModel):
     unnecessary_edits: Optional[int] = None
     edit_quality: Optional[float] = None
 
+    # Navigator mode breakdown (L0 Confirm/Dispute)
+    correct_confirms: int = 0
+    correct_disputes: int = 0
+    incorrect_confirms: int = 0  # student accepted a false annotation
+    incorrect_disputes: int = 0  # student rejected a real error
+
     # Justification quality
     justification_scores: list[JustificationScore] = []
 

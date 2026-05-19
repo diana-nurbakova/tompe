@@ -1079,6 +1079,67 @@ def _render_published_detail(item: AssessmentItem):
 # ── Exercise Builder ─────────────────────────────────────────────────────────
 
 
+def _populate_false_annotations(
+    exercise: Exercise,
+    item_ids: list[str],
+    mode: str,
+    n_per_item: int,
+) -> None:
+    """Run the L0 false-annotation generator for each item and attach to exercise.
+
+    Mutates `exercise.false_annotations` in place. Errors per item are caught and
+    logged via Streamlit warnings; one bad item doesn't fail the whole exercise.
+    """
+    import asyncio
+
+    from tompe.pipeline.false_annotation_generator import generate_false_annotations
+    from tompe.pipeline.llm_client import make_client_from_config
+
+    llm_client = None
+    if mode == "llm":
+        mt_config = _load_mt_config()
+        injection_cfg = mt_config.get("injection_llm", {})
+        if not injection_cfg.get("provider") or not injection_cfg.get("model"):
+            st.warning(
+                "LLM mode selected but `injection_llm` is missing/incomplete in "
+                "config/mt_backends.yaml — falling back to rule-based decoys."
+            )
+            mode = "rule"
+        else:
+            try:
+                llm_client = make_client_from_config(injection_cfg)
+            except Exception as exc:
+                st.warning(f"Could not build LLM client ({exc}); falling back to rule-based.")
+                mode = "rule"
+                llm_client = None
+
+    loop = asyncio.new_event_loop()
+    try:
+        for iid in item_ids:
+            item = items_store.get(iid, AssessmentItem)
+            if not item:
+                continue
+            excluded = [(int(e.span_start), int(e.span_end)) for e in item.errors]
+            try:
+                decoys = loop.run_until_complete(
+                    generate_false_annotations(
+                        mode=mode,
+                        source_text=item.source_text,
+                        translation=item.presented_text,
+                        excluded_ranges=excluded,
+                        n=n_per_item,
+                        llm_client=llm_client,
+                    )
+                )
+            except Exception as exc:
+                st.warning(f"False-annotation generation failed for item {iid[:8]}: {exc}")
+                decoys = []
+            if decoys:
+                exercise.false_annotations[iid] = decoys
+    finally:
+        loop.close()
+
+
 def _page_exercise_builder():
     st.header("📚 Exercise Builder")
 
@@ -1153,8 +1214,33 @@ def _exercise_create_form():
     # Level-specific options
     if ex_level == "navigator":
         false_ratio = st.slider("False annotation ratio (L0)", 0.0, 0.5, 0.25, 0.05)
+        col_fmode, col_fcount = st.columns(2)
+        with col_fmode:
+            false_mode = st.selectbox(
+                "False annotation source (L0)",
+                ["llm", "rule", "manual", "none"],
+                format_func=lambda x: {
+                    "llm": "LLM-generated (recommended)",
+                    "rule": "Rule-based (cheap, weak distractors)",
+                    "manual": "Teacher-authored via review queue",
+                    "none": "Disabled — no false annotations",
+                }[x],
+                help=(
+                    "Determines how plausible-but-wrong annotations are added to "
+                    "each L0 item so students can practice Confirm/Dispute. "
+                    "LLM mode requires `injection_llm` in mt_backends.yaml."
+                ),
+            )
+        with col_fcount:
+            false_count = st.number_input(
+                "False annotations per item",
+                min_value=0, max_value=5, value=2, step=1,
+                help="Target count per item (the generator may return fewer).",
+            )
     else:
         false_ratio = 0.0
+        false_mode = "none"
+        false_count = 0
 
     if ex_level == "expert":
         clean_ratio = st.slider("Clean segment ratio (L3)", 0.0, 0.4, 0.2, 0.05)
@@ -1186,8 +1272,16 @@ def _exercise_create_form():
             domain=ex_domain,
             direction=ex_direction,
             false_annotation_ratio=false_ratio,
+            false_annotation_mode=false_mode,
+            false_annotation_count=int(false_count),
             clean_segment_ratio=clean_ratio,
         )
+
+        # L0: run the false-annotation generator on each item so verification mode
+        # has decoys to dispute. "manual"/"none" leave exercise.false_annotations empty.
+        if ex_level == "navigator" and false_mode in ("llm", "rule") and int(false_count) > 0:
+            _populate_false_annotations(exercise, selected_ids, false_mode, int(false_count))
+
         exercises_store.save(exercise)
 
         # Assign to class

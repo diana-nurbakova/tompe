@@ -821,68 +821,114 @@ def build_student_app() -> gr.Blocks:
                     chips_html = gr.HTML("")
 
                     # ── Phase panels using Tabs (Gradio 6 compatible) ────
+                    MAX_L0_ANNOTATIONS = 10
+
                     with gr.Tabs(elem_id="phase-tabs") as phase_tabs:
                         # ── Classification panel (Phase 1) ──────────────
                         with gr.TabItem("1. Annotate", id=10) as classification_panel:
-                            # Error Types Guide (collapsible)
+                            # Error Types Guide (collapsible) — useful at every level
                             with gr.Accordion("Error Types Guide", open=False):
                                 gr.HTML(_build_error_guide_html())
 
-                            selection_label = gr.Markdown(
-                                "*Drag and drop text from the translation into the field above, then classify the error.*"
-                            )
+                            selected_category = gr.State(None)
+                            # Per-annotation L0 verification state: list of dicts
+                            # [{annotation_id, agrees_is_error, reasoning, span_text, primary_tag}].
+                            # `agrees_is_error` is the source of truth for Confirm/Dispute.
+                            l0_verifications_state = gr.State([])
+                            # Snapshot of the presented annotations rendered for this item
+                            # (mixes real + false; order matches the L0 card slots).
+                            l0_presented_state = gr.State([])
 
-                            # Category pills with colored dots
-                            gr.Markdown("**Error Category:**")
-                            pill_css_parts = []
-                            for tag in STUDENT_PILL_CATEGORIES:
-                                dot_color = TAG_COLORS.get(tag, {}).get("dot", "#666")
-                                safe_id = tag.replace(".", "_").lower() if isinstance(tag, str) else str(tag).replace(".", "_").lower()
-                                pill_css_parts.append(
-                                    f'#pill-{safe_id} {{ border-left: 4px solid {dot_color} !important; }}'
+                            # ── L0 (Navigator) Confirm/Dispute view ─────
+                            with gr.Column(visible=False) as l0_annotate_view:
+                                gr.Markdown(
+                                    "### Verify the highlighted annotations\n"
+                                    "For each annotation, decide whether it is a real "
+                                    "error or a false alarm. Explain your reasoning."
                                 )
-                            gr.HTML(f'<style>{"".join(pill_css_parts)}</style>')
-
-                            with gr.Row():
-                                cat_buttons = {}
-                                for tag in STUDENT_PILL_CATEGORIES:
-                                    label = TAG_LABELS.get(tag, tag)
-                                    dot_color = TAG_COLORS.get(tag, {}).get("dot", "#666")
-                                    safe_id = tag.replace(".", "_").lower() if isinstance(tag, str) else str(tag).replace(".", "_").lower()
-                                    cat_buttons[tag] = gr.Button(
-                                        f"● {label}",
-                                        size="sm",
-                                        elem_classes=["pill-btn"],
-                                        elem_id=f"pill-{safe_id}",
+                                l0_groups = []
+                                l0_labels = []
+                                l0_choices = []
+                                l0_reasons = []
+                                for i in range(MAX_L0_ANNOTATIONS):
+                                    with gr.Group(visible=False) as grp:
+                                        lbl = gr.HTML("")
+                                        ch = gr.Radio(
+                                            choices=["Confirm (real error)", "Dispute (false alarm)"],
+                                            label="Your verdict",
+                                            value=None,
+                                        )
+                                        rs = gr.Textbox(
+                                            label="Reasoning",
+                                            lines=2,
+                                            placeholder="Why is this a real error / false alarm?",
+                                        )
+                                    l0_groups.append(grp)
+                                    l0_labels.append(lbl)
+                                    l0_choices.append(ch)
+                                    l0_reasons.append(rs)
+                                l0_status = gr.Markdown("")
+                                with gr.Row():
+                                    l0_submit_btn = gr.Button(
+                                        "Submit Verifications & See Feedback",
+                                        variant="primary",
                                     )
 
-                            selected_category = gr.State(None)
-
-                            subtype_label = gr.Markdown("", visible=False)
-                            subtype_dropdown = gr.Dropdown(
-                                label="Subtype", choices=[], visible=False, interactive=True
-                            )
-
-                            severity_radio = gr.Radio(
-                                choices=["minor", "major", "critical"],
-                                label="Severity",
-                                value="major",
-                            )
-
-                            with gr.Row():
-                                add_error_btn = gr.Button("Add Error", variant="primary")
-                                cancel_btn = gr.Button("Cancel")
-
-                            errors_summary_html = gr.HTML(
-                                '<div style="color:#9ca3af;font-size:14px;padding:8px 0;">'
-                                'No errors marked yet. Select text above to annotate.</div>'
-                            )
-
-                            with gr.Row():
-                                proceed_justify_btn = gr.Button(
-                                    "Proceed to Justification ->",
-                                    variant="primary",
+                            # ── L1+/PE standard annotation view ─────────
+                            with gr.Column(visible=True) as std_annotate_view:
+                                selection_label = gr.Markdown(
+                                    "*Drag and drop text from the translation into the field above, then classify the error.*"
                                 )
+
+                                # Category pills with colored dots
+                                gr.Markdown("**Error Category:**")
+                                pill_css_parts = []
+                                for tag in STUDENT_PILL_CATEGORIES:
+                                    dot_color = TAG_COLORS.get(tag, {}).get("dot", "#666")
+                                    safe_id = tag.replace(".", "_").lower() if isinstance(tag, str) else str(tag).replace(".", "_").lower()
+                                    pill_css_parts.append(
+                                        f'#pill-{safe_id} {{ border-left: 4px solid {dot_color} !important; }}'
+                                    )
+                                gr.HTML(f'<style>{"".join(pill_css_parts)}</style>')
+
+                                with gr.Row():
+                                    cat_buttons = {}
+                                    for tag in STUDENT_PILL_CATEGORIES:
+                                        label = TAG_LABELS.get(tag, tag)
+                                        dot_color = TAG_COLORS.get(tag, {}).get("dot", "#666")
+                                        safe_id = tag.replace(".", "_").lower() if isinstance(tag, str) else str(tag).replace(".", "_").lower()
+                                        cat_buttons[tag] = gr.Button(
+                                            f"● {label}",
+                                            size="sm",
+                                            elem_classes=["pill-btn"],
+                                            elem_id=f"pill-{safe_id}",
+                                        )
+
+                                subtype_label = gr.Markdown("", visible=False)
+                                subtype_dropdown = gr.Dropdown(
+                                    label="Subtype", choices=[], visible=False, interactive=True
+                                )
+
+                                severity_radio = gr.Radio(
+                                    choices=["minor", "major", "critical"],
+                                    label="Severity",
+                                    value="major",
+                                )
+
+                                with gr.Row():
+                                    add_error_btn = gr.Button("Add Error", variant="primary")
+                                    cancel_btn = gr.Button("Cancel")
+
+                                errors_summary_html = gr.HTML(
+                                    '<div style="color:#9ca3af;font-size:14px;padding:8px 0;">'
+                                    'No errors marked yet. Select text above to annotate.</div>'
+                                )
+
+                                with gr.Row():
+                                    proceed_justify_btn = gr.Button(
+                                        "Proceed to Justification ->",
+                                        variant="primary",
+                                    )
 
                         # ── Justification panel (Phase 2) ───────────────
                         MAX_PER_ERROR = 8
@@ -1117,10 +1163,87 @@ def build_student_app() -> gr.Blocks:
 
             return html, choices
 
+        def _build_l0_presented(item: dict, exercise: dict) -> list[dict]:
+            """Merge real errors + exercise-level false annotations for L0 verification.
+
+            Returns a list of presented annotations with `_origin` set to "real"
+            or "false". Order is shuffled deterministically by item_id so the
+            student can't infer which is which from position.
+            """
+            import random as _rand
+            ex_false_map = exercise.get("false_annotations", {}) if exercise else {}
+            item_id = item.get("item_id", "")
+            false_anns = list(ex_false_map.get(item_id, []) or item.get("annotations", []))
+            presented: list[dict] = []
+            for err in item.get("errors", []):
+                eid = err.get("error_id") or str(uuid4())
+                presented.append({
+                    "span_start": err.get("span_start", 0),
+                    "span_end": err.get("span_end", 0),
+                    "primary_tag": err.get("primary_tag", ""),
+                    "annotation_id": eid,
+                    "mqm_label": f"{err.get('primary_tag', '')} > {err.get('error_type', '')}",
+                    "severity_label": err.get("severity", ""),
+                    "_origin": "real",
+                })
+            for ann in false_anns:
+                aid = ann.get("annotation_id") or ann.get("error_id") or str(uuid4())
+                presented.append({
+                    "span_start": ann.get("span_start", 0),
+                    "span_end": ann.get("span_end", 0),
+                    "primary_tag": ann.get("primary_tag", ""),
+                    "annotation_id": aid,
+                    "mqm_label": ann.get("mqm_label", "")
+                        or f"{ann.get('primary_tag', '')}",
+                    "severity_label": ann.get("severity_label", "")
+                        or ann.get("severity", ""),
+                    "_origin": "false",
+                })
+            _rand.Random(item_id or "default").shuffle(presented)
+            return presented
+
+        def _l0_slot_updates(presented: list[dict], presented_text: str, *, is_l0: bool) -> list:
+            """Per-slot updates for the MAX_L0_ANNOTATIONS L0 card pre-allocations."""
+            out: list = []
+            for i in range(MAX_L0_ANNOTATIONS):
+                if is_l0 and i < len(presented):
+                    ann = presented[i]
+                    s, e = int(ann["span_start"]), int(ann["span_end"])
+                    span_text = (presented_text[s:e] if 0 <= s < e <= len(presented_text) else "").strip()
+                    tag = ann.get("primary_tag", "") or "—"
+                    tag_color = TAG_COLORS.get(tag, {}).get("dot", "#666")
+                    bg_color = TAG_COLORS.get(tag, {}).get("highlight", "#f0f0f0")
+                    sev = ann.get("severity_label", "") or ""
+                    mqm = ann.get("mqm_label", "") or tag
+                    label_html = (
+                        f'<div style="padding:8px;border-radius:6px;background:{bg_color};'
+                        f'border-left:4px solid {tag_color};margin-bottom:6px;">'
+                        f'<div style="font-weight:600;color:{tag_color};">{i+1}. {mqm}'
+                        + (f' <span style="color:#6b7280;font-weight:400;">[{sev}]</span>' if sev else "")
+                        + '</div>'
+                        + (f'<div style="font-family:Georgia,serif;color:#374151;margin-top:4px;">'
+                           f'"{span_text}"</div>' if span_text else "")
+                        + '</div>'
+                    )
+                    out.extend([
+                        gr.update(visible=True),
+                        gr.update(value=label_html),
+                        gr.update(value=None),
+                        gr.update(value=""),
+                    ])
+                else:
+                    out.extend([
+                        gr.update(visible=False),
+                        gr.update(value=""),
+                        gr.update(value=None),
+                        gr.update(value=""),
+                    ])
+            return out
+
         def handle_start_exercise(selected_json, student_info):
             """Start or continue an exercise."""
             if not selected_json:
-                return [gr.update()] * 18
+                return [gr.update()] * (18 + 5 + MAX_L0_ANNOTATIONS * 4)
 
             data = json.loads(selected_json)
             assignment = data["assignment"]
@@ -1129,7 +1252,7 @@ def build_student_app() -> gr.Blocks:
             item_ids = exercise.get("item_ids", [])
 
             if not item_ids:
-                return [gr.update()] * 18
+                return [gr.update()] * (18 + 5 + MAX_L0_ANNOTATIONS * 4)
 
             # Load the current item
             try:
@@ -1138,7 +1261,7 @@ def build_student_app() -> gr.Blocks:
                 item = None
 
             if not item:
-                return [gr.update()] * 18
+                return [gr.update()] * (18 + 5 + MAX_L0_ANNOTATIONS * 4)
 
             # Update assignment status
             if assignment["status"] == "not_started":
@@ -1189,26 +1312,13 @@ def build_student_app() -> gr.Blocks:
 
             # Level-specific annotations for display
             annotations_for_display = []
+            l0_presented = []  # Snapshot for the L0 verification panel (with id markers)
             if level == "navigator":
-                # L0: Show pre-annotated errors (with some false annotations)
-                for err in item.get("errors", []):
+                l0_presented = _build_l0_presented(item, exercise)
+                # The translation panel highlights every L0 annotation (real + false).
+                for ann in l0_presented:
                     annotations_for_display.append({
-                        "span_start": err.get("span_start", 0),
-                        "span_end": err.get("span_end", 0),
-                        "primary_tag": err.get("primary_tag", ""),
-                        "annotation_id": err.get("error_id", str(uuid4())),
-                        "mqm_label": f"{err.get('primary_tag', '')} > {err.get('error_type', '')}",
-                        "severity_label": err.get("severity", ""),
-                    })
-                # Also add any false annotations from annotation_config
-                for ann in item.get("annotations", []):
-                    annotations_for_display.append({
-                        "span_start": ann.get("span_start", 0),
-                        "span_end": ann.get("span_end", 0),
-                        "primary_tag": ann.get("primary_tag", ""),
-                        "annotation_id": ann.get("error_id", str(uuid4())),
-                        "mqm_label": ann.get("mqm_label", ""),
-                        "severity_label": ann.get("severity_label", ""),
+                        k: v for k, v in ann.items() if not k.startswith("_")
                     })
             elif level == "scout":
                 # L1: Show approximate error regions as yellow highlights
@@ -1240,8 +1350,11 @@ def build_student_app() -> gr.Blocks:
             header = f"**{exercise['name']}** | Level: {level.title()} | Mode: {mode.title()}"
 
             show_pe = mode == "postediting"
+            is_l0 = level == "navigator" and not show_pe
 
-            return (
+            l0_slot_updates = _l0_slot_updates(l0_presented, presented_text, is_l0=is_l0)
+
+            base = (
                 gr.update(selected=1),  # Switch to Exercise tab
                 assignment,  # current_assignment
                 exercise,  # current_exercise
@@ -1262,7 +1375,14 @@ def build_student_app() -> gr.Blocks:
                 "annotate",  # current_phase
                 time.time(),  # item_start_time
                 gr.update(value=_build_errors_summary([])),  # errors_summary_html
+                # L0 view wiring
+                gr.update(visible=is_l0),               # l0_annotate_view
+                gr.update(visible=not is_l0),           # std_annotate_view
+                l0_presented,                            # l0_presented_state
+                [],                                      # l0_verifications_state reset
+                gr.update(value=""),                     # l0_status
             )
+            return base + tuple(l0_slot_updates)
 
         def handle_span_selection(span_data, annotations, current_item):
             """Handle text selection from the span selector JS."""
@@ -1659,19 +1779,130 @@ def build_student_app() -> gr.Blocks:
                 gr.update(),  # phase_html (hidden)
             )
 
+        def handle_l0_submit(*args):
+            """Submit L0 (navigator) Confirm/Dispute verifications.
+
+            Args (positional):
+              [0..MAX_L0_ANNOTATIONS-1]    : radio choice per slot
+              [MAX_L0_ANNOTATIONS..2N-1]   : reasoning per slot
+              [2N]                         : l0_presented_state
+              [2N+1]                       : item_start_time_val
+              [2N+2]                       : current_item
+              [2N+3]                       : current_exercise
+              [2N+4]                       : student_info
+            """
+            N = MAX_L0_ANNOTATIONS
+            choices = list(args[:N])
+            reasons = list(args[N:2 * N])
+            l0_presented = args[2 * N] or []
+            item_start_time_val = args[2 * N + 1]
+            current_item = args[2 * N + 2]
+            current_exercise = args[2 * N + 3]
+            _student_info = args[2 * N + 4] if len(args) > 2 * N + 4 else {}
+
+            if not current_item or not l0_presented:
+                err = '<div style="color:#dc2626;">No annotations to verify.</div>'
+                return (
+                    gr.update(value=err),  # l0_status
+                    gr.Tabs(),              # phase_tabs (no change)
+                    None,                   # current_response_id
+                    gr.update(),            # feedback_html
+                    [],                     # l0_verifications_state
+                    "annotate",             # current_phase
+                )
+
+            verification_responses: list[dict] = []
+            missing: list[int] = []
+            for i, ann in enumerate(l0_presented[:N]):
+                choice = choices[i] if i < len(choices) else None
+                if choice not in ("Confirm (real error)", "Dispute (false alarm)"):
+                    missing.append(i + 1)
+                    continue
+                agrees = choice == "Confirm (real error)"
+                reason = (reasons[i] if i < len(reasons) else "") or ""
+                verification_responses.append({
+                    "error_id": ann.get("annotation_id"),
+                    "agrees_is_error": agrees,
+                    "suggested_correction": reason.strip() or None,
+                })
+
+            if missing:
+                msg = (
+                    '<div style="color:#dc2626;">Please verify every annotation before '
+                    f'submitting. Missing: {", ".join(map(str, missing))}.</div>'
+                )
+                return (
+                    gr.update(value=msg), gr.Tabs(), None, gr.update(), [], "annotate",
+                )
+
+            time_spent = round(time.time() - item_start_time_val, 1) if item_start_time_val else 0.0
+            try:
+                resp = api.submit_response(
+                    item_id=current_item.get("item_id", ""),
+                    mode="navigator",
+                    verification_responses=verification_responses,
+                    time_spent_seconds=time_spent,
+                )
+                response_id = resp.get("response_id")
+            except Exception as e:
+                msg = f'<div style="color:#dc2626;">Submission failed: {e}</div>'
+                return (
+                    gr.update(value=msg), gr.Tabs(), None, gr.update(), verification_responses, "annotate",
+                )
+
+            # Fetch feedback (also triggers scoring + badges server-side)
+            feedback_content = ""
+            if response_id:
+                try:
+                    fb = api.get_feedback(response_id)
+                    feedback_content = _build_feedback_html(fb)
+                    badge_result = fb.get("badges")
+                    if badge_result:
+                        feedback_content += _build_badge_notification_html(badge_result)
+                except Exception as e:
+                    feedback_content = f'<div style="color:#6b7280;">Feedback unavailable: {e}</div>'
+
+            return (
+                gr.update(value=""),                   # l0_status: clear
+                gr.Tabs(selected=12),                  # phase_tabs → Feedback
+                response_id,                            # current_response_id
+                gr.update(value=feedback_content),     # feedback_html
+                verification_responses,                # l0_verifications_state
+                "feedback",                            # current_phase
+            )
+
         def handle_next_item(
             current_item_idx, current_exercise, current_assignment, student_info,
         ):
             """Advance to the next item in the exercise."""
+            n_l0_extras = 5 + MAX_L0_ANNOTATIONS * 4  # see _next_item_outputs
+            total_outputs = (
+                13                                # base outputs (idx through span_output)
+                + 1 + MAX_PER_ERROR + MAX_PER_ERROR * 3 + 1  # justify_text + short + struct + confidence
+                + n_l0_extras
+            )
+
             if not current_exercise:
-                return [gr.update()] * (15 + MAX_PER_ERROR + MAX_PER_ERROR * 3)
+                return [gr.update()] * total_outputs
 
             item_ids = current_exercise.get("item_ids", [])
             next_idx = current_item_idx + 1
 
-            # Number of per-error text fields to reset
-            _n_justify_resets = 1 + MAX_PER_ERROR + MAX_PER_ERROR * 3 + 1
-            # = justify_text + short texts + struct mt/author/reader + confidence
+            level = current_exercise.get("level", "analyst")
+            mode = current_exercise.get("mode", "evaluation")
+            is_l0 = level == "navigator" and mode != "postediting"
+
+            # L0 reset block: hide cards, reset state. Used by both the "exercise
+            # complete" and "load next item" branches.
+            l0_reset_updates = _l0_slot_updates([], "", is_l0=False)
+            l0_block_reset = [
+                gr.update(visible=False),  # l0_annotate_view
+                gr.update(visible=True),    # std_annotate_view
+                [],                          # l0_presented_state
+                [],                          # l0_verifications_state
+                gr.update(value=""),         # l0_status
+                *l0_reset_updates,
+            ]
 
             if next_idx >= len(item_ids):
                 # Exercise complete
@@ -1698,15 +1929,15 @@ def build_student_app() -> gr.Blocks:
                     gr.update(value=_build_errors_summary([])),  # errors_summary_html
                     gr.update(value=""),  # span_output clear
                 ]
-                resets = [gr.update(value="")] * (MAX_PER_ERROR + MAX_PER_ERROR * 3 + 1)  # short + struct + justify_text
+                resets = [gr.update(value="")] * (1 + MAX_PER_ERROR + MAX_PER_ERROR * 3)  # justify_text + short + struct
                 resets.append(gr.update(value=3))  # confidence
-                return tuple(base + resets)
+                return tuple(base + resets + l0_block_reset)
 
             # Load next item
             try:
                 item = api.get_item(item_ids[next_idx])
             except Exception:
-                return [gr.update()] * (15 + MAX_PER_ERROR + MAX_PER_ERROR * 3)
+                return [gr.update()] * total_outputs
 
             # Update assignment
             if current_assignment:
@@ -1722,9 +1953,32 @@ def build_student_app() -> gr.Blocks:
             source = item.get("source_text", "")
             n = len(item_ids)
 
+            # L0 panel updates for the next item (if applicable)
+            if is_l0:
+                l0_presented_next = _build_l0_presented(item, current_exercise)
+                # Show highlights for ALL presented annotations (real + false)
+                anns_for_display = [
+                    {k: v for k, v in a.items() if not k.startswith("_")}
+                    for a in l0_presented_next
+                ]
+                translation_html_val = render_text_with_highlights(
+                    text, anns_for_display, level=level,
+                )
+                l0_block = [
+                    gr.update(visible=True),                                  # l0_annotate_view
+                    gr.update(visible=False),                                  # std_annotate_view
+                    l0_presented_next,                                         # l0_presented_state
+                    [],                                                        # l0_verifications_state
+                    gr.update(value=""),                                       # l0_status
+                    *_l0_slot_updates(l0_presented_next, text, is_l0=True),
+                ]
+            else:
+                translation_html_val = render_text_with_highlights(text, [])
+                l0_block = l0_block_reset
+
             return (
                 next_idx,
-                gr.update(value=render_text_with_highlights(text, [])),
+                gr.update(value=translation_html_val),
                 gr.update(selected=10),  # phase_tabs → Annotate
                 item,
                 gr.update(
@@ -1748,6 +2002,7 @@ def build_student_app() -> gr.Blocks:
                 gr.update(value=""),  # span_output clear
                 *([gr.update(value="")] * (1 + MAX_PER_ERROR + MAX_PER_ERROR * 3)),  # justify_text + short + struct
                 gr.update(value=3),  # confidence_slider
+                *l0_block,
             )
 
         def handle_refresh_progress(student_info):
@@ -1840,6 +2095,13 @@ def build_student_app() -> gr.Blocks:
             ],
         )
 
+        # Build the L0 slot output list once so click + next-item handlers stay in sync.
+        l0_slot_outputs: list = []
+        for _i in range(MAX_L0_ANNOTATIONS):
+            l0_slot_outputs.extend([
+                l0_groups[_i], l0_labels[_i], l0_choices[_i], l0_reasons[_i],
+            ])
+
         start_btn.click(
             handle_start_exercise,
             inputs=[exercise_selector, student_info],
@@ -1850,6 +2112,9 @@ def build_student_app() -> gr.Blocks:
                 progress_html, annotations_state, chips_html,
                 phase_tabs, pe_panel, pe_textbox, current_phase,
                 item_start_time, errors_summary_html,
+                l0_annotate_view, std_annotate_view,
+                l0_presented_state, l0_verifications_state, l0_status,
+                *l0_slot_outputs,
             ],
         )
 
@@ -1944,6 +2209,24 @@ def build_student_app() -> gr.Blocks:
             ],
         )
 
+        # L0 (Navigator) Confirm/Dispute submission
+        _l0_submit_inputs = list(l0_choices) + list(l0_reasons) + [
+            l0_presented_state, item_start_time,
+            current_item, current_exercise, student_info,
+        ]
+        l0_submit_btn.click(
+            handle_l0_submit,
+            inputs=_l0_submit_inputs,
+            outputs=[
+                l0_status,                # error/help text below the cards
+                phase_tabs,                # jump to Feedback tab on success
+                current_response_id,
+                feedback_html,
+                l0_verifications_state,
+                current_phase,
+            ],
+        )
+
         _next_item_outputs = [
             current_item_idx, translation_html,
             phase_tabs, current_item,
@@ -1958,6 +2241,12 @@ def build_student_app() -> gr.Blocks:
         for i in range(MAX_PER_ERROR):
             _next_item_outputs.extend([pe_struct_mt[i], pe_struct_author[i], pe_struct_reader[i]])
         _next_item_outputs.append(confidence_slider)
+        # L0 next-item updates (must match handle_next_item's l0_block layout)
+        _next_item_outputs.extend([
+            l0_annotate_view, std_annotate_view,
+            l0_presented_state, l0_verifications_state, l0_status,
+            *l0_slot_outputs,
+        ])
 
         next_item_btn.click(
             handle_next_item,

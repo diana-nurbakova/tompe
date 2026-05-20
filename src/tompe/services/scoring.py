@@ -292,3 +292,37 @@ def score_navigator_response(
         incorrect_confirms=incorrect_confirms,
         incorrect_disputes=incorrect_disputes,
     )
+
+
+# ── Cross-response aggregation ──────────────────────────────────────────────
+
+# Skills we always report on the radar, even with zero observations.
+_RADAR_SKILLS: tuple[str, ...] = tuple(s.value for s in SkillID)
+
+
+def aggregate_skill_profile(scores: list[ScoringResult]) -> dict[str, float]:
+    """Aggregate per-response `detection_by_skill` into one mastery probability per skill.
+
+    Returns a dict `{"S1": p, ..., "S7": p}` with `p` in [0, 1]. The probability
+    is the pooled detection rate: total detected / total observed across `scores`.
+    Skills with zero observations report 0.0 so the radar still renders all axes.
+
+    Detection-rate-based mastery is a deliberately simple stand-in for BKT
+    (Fluency Trap spec §6.2). When BKT lands in `services/progression.py` the
+    radar consumer can swap to those probabilities without touching the schema.
+    """
+    detected: dict[str, int] = {sk: 0 for sk in _RADAR_SKILLS}
+    total: dict[str, int] = {sk: 0 for sk in _RADAR_SKILLS}
+
+    for s in scores:
+        for skill, cat in (s.detection_by_skill or {}).items():
+            key = skill.value if hasattr(skill, "value") else str(skill)
+            if key not in detected:
+                continue
+            detected[key] += cat.detected
+            total[key] += cat.total
+
+    return {
+        sk: (detected[sk] / total[sk] if total[sk] > 0 else 0.0)
+        for sk in _RADAR_SKILLS
+    }

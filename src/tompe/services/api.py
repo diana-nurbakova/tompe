@@ -54,6 +54,7 @@ from tompe.services.badges import (
 )
 from tompe.services.feedback import prepare_feedback
 from tompe.services.scoring import (
+    aggregate_skill_profile,
     score_evaluation_response,
     score_navigator_response,
     score_postediting_response,
@@ -817,6 +818,10 @@ async def api_get_progress(student_id: str):
         if badges_visible else None
     )
 
+    # Detection-rate-based mastery per skill S1–S7 for the Skill Radar
+    # (Fluency Trap §6.2 placeholder until BKT lands in progression.py).
+    skill_profile = aggregate_skill_profile(student_scores)
+
     return {
         "student_id": student_id,
         "display_name": student.display_name,
@@ -824,6 +829,7 @@ async def api_get_progress(student_id: str):
         "total_sessions": total_sessions,
         "avg_detection_rate": round(avg_f1 * 100, 1),
         "scores": [s.model_dump() for s in student_scores],
+        "skill_profile": skill_profile,
         "badges": badge_summary,
     }
 

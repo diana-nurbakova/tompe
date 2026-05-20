@@ -633,6 +633,32 @@ Expect:
 
 ---
 
+## Implementation sprint #5 — Skill Radar data source (B2)
+
+**Date range:** 2026-05-19
+**Theme:** Make the heptagonal Skill Radar render real values instead of zeros.
+
+### What landed
+
+| ID | Item | Status | Files touched |
+|---|---|---|---|
+| B2 | `aggregate_skill_profile(scores)` pools `detection_by_skill` across a student's responses; `api_get_progress` returns `skill_profile` so the radar reads non-zero values for skills the student has touched | Done (unit-tested) | [src/tompe/services/scoring.py](../src/tompe/services/scoring.py), [src/tompe/services/api.py](../src/tompe/services/api.py) |
+
+Detection-rate-based mastery is a deliberately simple stand-in for BKT (Fluency Trap §6.2). When BKT lands in `services/progression.py` (Tier C1, B5 in the engineering backlog), the radar consumer can swap to those probabilities without touching the schema.
+
+### Verification — Sprint #5
+
+- [ ] **Unit smoke test (already run in sprint).** Confirms (a) empty pool returns all 0.0 with all 7 skill keys; (b) single score with `S3: 2/3` and `S5: 0/1` reports those rates; (c) two scores pool ratios correctly (`S3: (2+1)/(3+1)=0.75`); (d) string-keyed `detection_by_skill` (from `model_dump` round-trip) also aggregates. ✓
+- [ ] **End-to-end (manual).** Log in as a student with completed exercises. Open My Progress. The radar should show non-zero axes for the skills the student has practised; skills with zero observations stay at 0 (radar still renders all 7 axes).
+- [ ] **Backwards compatibility.** A fresh student with zero responses still sees a (zero-valued) radar; the API never returns `skill_profile=None`.
+
+### Still pending (Sprint #5 follow-ups)
+
+- **BKT swap.** Once `services/progression.py` exposes a real Bayesian Knowledge Tracing tracker (B5), replace the detection-rate pooling with the BKT-estimated mastery probability. The radar consumer code doesn't change.
+- **Skill-radar hover/tooltip.** Fluency Trap §7.2 expects hover-tooltips showing BKT prob + observation count per axis. The SVG currently has no `<title>` per data point.
+
+---
+
 ## Remaining work & manual/expert intervention
 
 After sprints #1–#3 the pipeline backbone is paper-ready: every Phase 3 code item (3.1, 3.2, 3.3, 3.4, 3.6) is implemented, and Tracks A/B/C plus the student core loop work end-to-end. What's left splits into three buckets — the first two need human time, the third is engineering follow-up.
@@ -659,7 +685,7 @@ No expert review needed; pure code follow-up. Ordered by paper-readiness leverag
 | # | Item | Tier | Effort | Notes |
 |---|---|---|---|---|
 | B1 | **Comparison mode end-to-end (L3 multi-MT, ranking, human-vs-MT)** — `comparison_outputs`, `ComparisonType`, `ItemPathway` are schema-only. Spans System §3.6/§5/§7.4 + UI §3.5. | Tier B | ~3–5 days | Single biggest open scope gap. |
-| B2 | **Skill Radar data source** — wire BKT or detection-rate-based mastery probabilities for S1–S7 into [api.py:780](../src/tompe/services/api.py#L780). UI renders correctly; just needs `skill_profile` in the response. | Tier B | ~half day | Highest "implemented but inert" demo risk. |
+| ~~B2~~ | ~~**Skill Radar data source**~~ — **RESOLVED — Sprint #5.** `aggregate_skill_profile` pools `detection_by_skill` across the student's responses; `api_get_progress` now returns `skill_profile`. Detection-rate-based for now; swappable for BKT later. | Tier B | done | — |
 | B3 | **Trap Detector + L0 Confirm/Dispute UI (A5b/c/d)** — student-app UI for Confirm/Dispute buttons, scoring logic that distinguishes correct/incorrect disputes, and a `correct_disputes` counter into `process_badges_and_xp`. | Tier B | ~1–2 days | The false-annotation generator from sprint #1 A5a is dead code until this lands. |
 | B4 | **`analytics.py` longitudinal stubs** — `update_student_profile`, `detect_blind_spots`, `compute_class_analytics` are `NotImplementedError`. Teacher blind-spot view recomputes ad hoc; no persistent learner profile. | Tier C2 | ~2–3 days | Required for the BKT story; the teacher dashboard works without it but the multi-session narrative doesn't. |
 | B5 | **`progression.py` BKT mastery** — Scout / Analyst / Expert badges fire on level-int, not on p≥0.98. `recommend_next_level` is `NotImplementedError`. | Tier C1 | ~2 days | Fluency Trap §2.2 + System §8.3. Adaptive progression vs manual promotion. |
@@ -714,7 +740,7 @@ Ordered by impact × leverage. Each item references the per-spec entries that su
 
 1. ~~**Post-editing flow is broken end-to-end.**~~ **RESOLVED — Sprint #1 (A1).** `pe_proceed_btn` now wired; `edited_text` flows to scoring. Diff visualization is a separate, lower-priority gap.
 2. **Comparison mode (L3 multi-MT, ranking, human-vs-MT) is schema-only.** `comparison_outputs`, `ComparisonType`, `ItemPathway` exist but no pipeline writes them, no UI reads them, no scoring evaluates them. The single biggest scope gap; spans System §3.6/§5/§7.4 + UI §3.5.
-3. **Skill Radar is rendered but inert.** The student UI draws the heptagonal SVG and the teacher heatmap exists, but [`api_get_progress`](../src/tompe/services/api.py#L780) never returns `skill_profile`, so every student sees zeros. Highest "looks done but isn't" risk for an EC-TEL demo. *(Fluency Trap §6.2 + System §3.9)* — **Tier B target.**
+3. ~~**Skill Radar is rendered but inert.**~~ **RESOLVED — Sprint #5 (B2).** [`aggregate_skill_profile`](../src/tompe/services/scoring.py) pools `detection_by_skill` across the student's responses and [`api_get_progress`](../src/tompe/services/api.py) now returns `skill_profile`. Detection-rate-based pooling stands in for BKT (Fluency Trap §6.2) until [`services/progression.py`](../src/tompe/services/progression.py) ships; the consumer doesn't change.
 4. ~~**Authentic pathway is a stub.**~~ **RESOLVED (GEMBA-only v1) — Phase 3 (3.2).** [`authentic_detector.detect_authentic_errors`](../src/tompe/pipeline/authentic_detector.py) now runs GEMBA-MQM and maps each detected error to the ToM-PE taxonomy (primary tag, error type, tom_level, skill), synthesises a Layer 1 contrastive explanation from GEMBA fields, and consults the Layer 2a cache for system-behavior text. xCOMET cross-validation deferred (GPU). The controlled-vs-authentic narrative is now coverable end-to-end, though authentic items still need a real-MT source list to populate `ANNOTATION_AUTHENTIC=12`.
 5. **Longitudinal analytics are all `NotImplementedError`.** [`analytics.py`](../src/tompe/services/analytics.py#L6) — `update_student_profile`, `detect_blind_spots`, `compute_class_analytics` — are stubs. The teacher blind-spot view recomputes ad hoc; there's no persistent learner profile for the BKT story. *(System §3.9)* — **Tier C2.**
 6. **BKT mastery + teacher-gated progression is unwired.** [`progression.py:20`](../src/tompe/services/progression.py#L20) is a stub; Scout / Analyst / Expert badges fire on level-int, not on p≥0.98. Spec promises adaptive progression; runtime delivers manual promotion. *(Fluency Trap §2.2 + System §8.3)* — **Tier C1.**
@@ -903,10 +929,10 @@ Ordered by impact × leverage. Each item references the per-spec entries that su
 | §5.2 | Scaffolding multipliers (×0.5–×2.0) | Implemented | [schemas/badges.py:120](../src/tompe/schemas/badges.py#L120) | All four scaffolding tiers mapped. |
 | §5.3 | XP rounding (ceiling) | Implemented | [schemas/badges.py:149](../src/tompe/schemas/badges.py#L149) | `math.ceil` per component. |
 | §6.1 | Skill radar S1–S7 dimensions | Implemented | [student_app.py:460](../src/tompe/interfaces/student_app.py#L460), [schemas/competency.py:47](../src/tompe/schemas/competency.py#L47) | Seven skills wired into radar SVG. |
-| §6.2 | Axis values from BKT mastery (0.98 threshold) | Missing | [services/api.py:780](../src/tompe/services/api.py#L780) | API never sets `skill_profile`; radar always renders zeros. |
+| §6.2 | Axis values from BKT mastery (0.98 threshold) | Partial | [services/scoring.py](../src/tompe/services/scoring.py), [services/api.py](../src/tompe/services/api.py) | Sprint #5 (B2): `aggregate_skill_profile` pools `detection_by_skill` and `api_get_progress` returns `skill_profile`. Detection-rate-based stand-in; BKT swap pending (B5). |
 | §6.3 | Radar visuals (heptagonal, dashed mastery, accent fill) | Implemented | [student_app.py:483](../src/tompe/interfaces/student_app.py#L483) | SVG with mastery dashed circle + level-coloured fill. |
 | §7.1 | Badge Collection panel (Location 1) | Implemented | [student_app.py:292](../src/tompe/interfaces/student_app.py#L292), [:1768](../src/tompe/interfaces/student_app.py#L1768) | Three sections (progression/specialisation/achievements) + XP. |
-| §7.1 | Skill Radar panel (Location 2) | Partial | [student_app.py:1771](../src/tompe/interfaces/student_app.py#L1771) | Renders, but always shows zeros (no BKT data source). |
+| §7.1 | Skill Radar panel (Location 2) | Implemented | [student_app.py:1771](../src/tompe/interfaces/student_app.py#L1771), [services/scoring.py](../src/tompe/services/scoring.py), [services/api.py](../src/tompe/services/api.py) | Sprint #5 (B2): `skill_profile` now sourced from pooled `detection_by_skill`; non-zero axes appear once the student has practice data. |
 | §7.1 | Badge notification toast (Location 3) | Partial | [student_app.py:551](../src/tompe/interfaces/student_app.py#L551), [:1421](../src/tompe/interfaces/student_app.py#L1421) | Renders inline after feedback; no auto-dismiss / queue / Continue logic. |
 | §7.1 | "Show all" toggle for specialisation | Missing | — | All 10 specialisation cells always rendered. |
 | §7.2 | Hover/tap tooltips with progress | Partial | [student_app.py:381](../src/tompe/interfaces/student_app.py#L381), [:431](../src/tompe/interfaces/student_app.py#L431) | HTML `title=` attributes only; no rich tooltip with date earned. |
@@ -924,7 +950,7 @@ Ordered by impact × leverage. Each item references the per-spec entries that su
 
 ### Top 5 gaps
 
-1. **Skill Radar has no data source.** The student UI renders the heptagonal SVG but `api_get_progress` never returns `skill_profile`, so every student sees a blank radar. The most visible "implemented but inert" feature. Wire BKT or detection-rate-based mastery probabilities for S1–S7 into [api.py:780](../src/tompe/services/api.py#L780).
+1. ~~**Skill Radar has no data source.**~~ **RESOLVED — Sprint #5 (B2).** `aggregate_skill_profile` pools `detection_by_skill` across all the student's responses; `api_get_progress` returns `skill_profile`. Detection-rate-based stand-in for BKT (Fluency Trap §6.2) until [`services/progression.py`](../src/tompe/services/progression.py) lands.
 2. **Behaviour badges (Clean Sheet, Trap Detector) never fire.** `process_badges_and_xp` is called from [api.py:731](../src/tompe/services/api.py#L731) without `item_results`, so the per-item loop at [badges.py:180](../src/tompe/services/badges.py#L180) and the dispute counter at [:206](../src/tompe/services/badges.py#L206) never execute. False Positive Discipline works because it reads from `scoring` directly. Build the per-item breakdown dict at the call site.
 3. **Teacher-set threshold overrides and visibility toggle are saved but ignored.** `class_obj.badge_threshold_overrides` and `badges_visible` are persisted ([schemas/session.py:60](../src/tompe/schemas/session.py#L60)) yet `check_specialisation_badges` reads only the global `CATEGORY_THRESHOLDS` and `_build_badge_collection_html` never checks visibility. Plumb the class context through `process_badges_and_xp`.
 4. **Progression beyond Navigator is not gated by mastery.** Spec requires BKT p≥0.98 + teacher unlock; current code awards Scout / Analyst / Expert as soon as the student is *at* that level ([badges.py:63](../src/tompe/services/badges.py#L63)). `progression.py:20` is `NotImplementedError`. Either implement the BKT tracker or gate on a teacher-approval flag on `StudentAccount.allowed_levels`.

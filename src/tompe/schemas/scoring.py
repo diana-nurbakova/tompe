@@ -86,3 +86,26 @@ class StudentProfile(BaseModel):
     tom_performance: dict[TOMLevel, PerformanceTimeSeries] = {}
     blind_spots: list[BlindSpot] = []
     false_positive_rate_history: list[float] = []
+
+
+class BKTSkillState(BaseModel):
+    """Per-skill Bayesian Knowledge Tracing state for one student.
+
+    BKT models the latent probability that the student has mastered the skill
+    (p_mastery). On each observation (correct=True/False), we apply Bayes' rule
+    given p_slip and p_guess, then transition forward via p_transit.
+    """
+
+    p_mastery: float = 0.1  # Prior probability of mastery (p_init)
+    n_observations: int = 0
+    n_correct: int = 0
+    # Compact history for diagnostics: list of (timestamp_iso, correct, p_after).
+    # Capped at HISTORY_CAP entries on update.
+    history: list[tuple[str, bool, float]] = []
+
+
+class StudentBKT(BaseModel):
+    """Per-student BKT state across all S1–S7 skills."""
+
+    student_id: str
+    per_skill: dict[str, BKTSkillState] = {}  # SkillID.value -> state

@@ -56,6 +56,7 @@ from tompe.services.badges import (
     process_badges_and_xp,
 )
 from tompe.services.feedback import prepare_feedback
+from tompe.services.bkt import bkt_skill_profile, update_from_scoring
 from tompe.services.scoring import (
     aggregate_skill_profile,
     score_comparison_response,
@@ -779,6 +780,16 @@ async def api_get_feedback(response_id: str):
         "correct_disputes": getattr(scoring, "correct_disputes", 0),
     }]
 
+    # Update per-skill BKT mastery from this response's detection_by_skill.
+    # Best-effort — a BKT failure must not block feedback.
+    try:
+        update_from_scoring(response.student_id, scoring)
+    except Exception as bkt_exc:  # pragma: no cover - defensive
+        import logging as _logging
+        _logging.getLogger(__name__).warning(
+            "BKT update failed for student %s: %s", response.student_id, bkt_exc,
+        )
+
     # Tracking continues regardless of visibility (spec §8.3); response is masked below.
     badge_result = process_badges_and_xp(
         student_id=response.student_id,
@@ -839,9 +850,15 @@ async def api_get_progress(student_id: str):
         if badges_visible else None
     )
 
-    # Detection-rate-based mastery per skill S1–S7 for the Skill Radar
-    # (Fluency Trap §6.2 placeholder until BKT lands in progression.py).
-    skill_profile = aggregate_skill_profile(student_scores)
+    # Skill Radar values: prefer BKT mastery (Fluency Trap §6.2). For skills
+    # the BKT tracker has no observations on, fall back to the detection-rate
+    # pooling from Sprint #5 so the radar still shows partial activity.
+    bkt_profile = bkt_skill_profile(student_id)
+    fallback = aggregate_skill_profile(student_scores)
+    skill_profile = {
+        sk: (bkt_profile[sk] if bkt_profile.get(sk, 0.0) > 0.0 else fallback.get(sk, 0.0))
+        for sk in fallback
+    }
 
     return {
         "student_id": student_id,

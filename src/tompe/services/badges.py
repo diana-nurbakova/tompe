@@ -59,10 +59,21 @@ def check_progression_badge(
                 "description": "Complete your first exercise at Navigator level",
             }
 
-    # Scout, Analyst, Expert: earned when the level is unlocked (implies mastery + teacher approval)
+    # Scout, Analyst, Expert: gated on BKT mastery of the level's active
+    # skills (spec §8.3 + Fluency Trap §2.2). The student must have BOTH:
+    #   - the teacher's unlock (current_level reflects allowed_levels), AND
+    #   - BKT mastery >= threshold on every active skill for that stage.
+    # Until BKT data is available, the gate fails closed (no auto-promotion).
     if level_int > 0:
+        from tompe.schemas.enums import AnnotationLevel as _AL
+        from tompe.services.progression import is_level_unlocked
+        try:
+            level_enum = _AL(current_level)
+        except ValueError:
+            level_enum = None
+        mastery_ok = bool(level_enum) and is_level_unlocked(student_id, level_enum)
         badge_id, display_name = PROGRESSION_BADGES[level_int]
-        if not record.has_badge(badge_id):
+        if mastery_ok and not record.has_badge(badge_id):
             record.add_badge(badge_id, BadgeTier.NONE, exercise_id)
             badges_store.save(record)
             return {
@@ -70,7 +81,7 @@ def check_progression_badge(
                 "display_name": display_name,
                 "tier": "none",
                 "category": "progression",
-                "description": f"Reach {display_name} level",
+                "description": f"Reach {display_name} level (BKT mastery >= 0.98)",
             }
 
     return None

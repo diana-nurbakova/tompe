@@ -150,6 +150,103 @@ def _build_pill_buttons_html() -> str:
     return '<div style="display:flex;flex-wrap:wrap;gap:2px;">' + "".join(pills) + "</div>"
 
 
+def _build_pe_diff_html(original: str, edited: str) -> str:
+    """Render a side-by-side and inline diff for the post-editing panel.
+
+    Returns an HTML block with:
+      - An inline diff showing deletions (red strikethrough) and insertions (green)
+      - A change-list bullet of contiguous edits (UI §3.4)
+
+    Uses `difflib.SequenceMatcher` for character-level alignment so PE changes
+    are visible to the student while they type.
+    """
+    import difflib
+    import html as _html
+
+    if original is None:
+        original = ""
+    if edited is None:
+        edited = ""
+
+    if original == edited:
+        return (
+            '<div style="color:#9ca3af;font-size:13px;padding:8px 0;">'
+            'No changes yet. Edit the translation above to see the diff.</div>'
+        )
+
+    matcher = difflib.SequenceMatcher(a=original, b=edited, autojunk=False)
+    inline_parts: list[str] = []
+    changes: list[dict] = []
+
+    for tag, i1, i2, j1, j2 in matcher.get_opcodes():
+        if tag == "equal":
+            inline_parts.append(_html.escape(original[i1:i2]))
+        elif tag == "delete":
+            chunk = original[i1:i2]
+            inline_parts.append(
+                f'<span style="background:#fee2e2;color:#b91c1c;text-decoration:line-through;">'
+                f'{_html.escape(chunk)}</span>'
+            )
+            changes.append({"type": "delete", "before": chunk, "after": ""})
+        elif tag == "insert":
+            chunk = edited[j1:j2]
+            inline_parts.append(
+                f'<span style="background:#dcfce7;color:#166534;">{_html.escape(chunk)}</span>'
+            )
+            changes.append({"type": "insert", "before": "", "after": chunk})
+        elif tag == "replace":
+            before = original[i1:i2]
+            after = edited[j1:j2]
+            inline_parts.append(
+                f'<span style="background:#fee2e2;color:#b91c1c;text-decoration:line-through;">'
+                f'{_html.escape(before)}</span>'
+                f'<span style="background:#dcfce7;color:#166534;">{_html.escape(after)}</span>'
+            )
+            changes.append({"type": "replace", "before": before, "after": after})
+
+    inline = (
+        '<div style="font-family:Georgia,serif;font-size:15px;line-height:1.7;'
+        'padding:12px;background:#f9fafb;border-radius:8px;margin-bottom:8px;">'
+        + "".join(inline_parts)
+        + '</div>'
+    )
+
+    if not changes:
+        return inline
+
+    rows = []
+    for i, ch in enumerate(changes, start=1):
+        if ch["type"] == "delete":
+            label = "Deleted"
+            cell = (
+                f'<span style="text-decoration:line-through;color:#b91c1c;">'
+                f'{_html.escape(ch["before"])}</span>'
+            )
+        elif ch["type"] == "insert":
+            label = "Inserted"
+            cell = f'<span style="color:#166534;">{_html.escape(ch["after"])}</span>'
+        else:
+            label = "Replaced"
+            cell = (
+                f'<span style="text-decoration:line-through;color:#b91c1c;">'
+                f'{_html.escape(ch["before"])}</span>'
+                f' &rarr; <span style="color:#166534;">{_html.escape(ch["after"])}</span>'
+            )
+        rows.append(
+            f'<li style="margin-bottom:4px;"><strong>{label}:</strong> {cell}</li>'
+        )
+
+    change_list = (
+        '<details open style="margin-top:4px;">'
+        f'<summary style="cursor:pointer;font-weight:600;font-size:13px;color:#6b7280;">'
+        f'Change list ({len(changes)})</summary>'
+        '<ol style="margin:8px 0 0 16px;font-size:13px;color:#374151;">'
+        + "".join(rows)
+        + '</ol></details>'
+    )
+    return inline + change_list
+
+
 def _build_feedback_html(feedback_data: dict) -> str:
     """Build HTML for the feedback phase (Phase 3)."""
     summary = feedback_data.get("summary", {})
@@ -2186,6 +2283,17 @@ def build_student_app() -> gr.Blocks:
             handle_proceed_to_justify,
             inputs=[annotations_state, current_item, current_exercise, student_info, pe_textbox],
             outputs=_proceed_outputs,
+        )
+
+        def _on_pe_text_change(edited_text: str, current_item_val: dict):
+            original = (current_item_val or {}).get("presented_text", "") if current_item_val else ""
+            return gr.update(value=_build_pe_diff_html(original, edited_text or ""))
+
+        pe_textbox.change(
+            _on_pe_text_change,
+            inputs=[pe_textbox, current_item],
+            outputs=[pe_changes_html],
+            queue=False,
         )
 
         # Build inputs list for submit_justify: global text + per-error short texts + per-error struct fields + rest

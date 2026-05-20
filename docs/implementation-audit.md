@@ -659,6 +659,49 @@ Detection-rate-based mastery is a deliberately simple stand-in for BKT (Fluency 
 
 ---
 
+## Implementation sprint #6 — Quick-wins bundle (B8 + B10 + B11)
+
+**Date range:** 2026-05-20
+**Theme:** Close three "v2 stub" placeholders so the teacher/student demos no longer have dead buttons.
+
+### What landed
+
+| ID | Item | Status | Files touched |
+|---|---|---|---|
+| B8 | PE diff visualization — `_build_pe_diff_html(original, edited)` renders character-level inline diff (deletions strikethrough red, insertions green) + collapsible change list; `pe_textbox.change` updates `pe_changes_html` live as the student types | Done (unit-tested) | [src/tompe/interfaces/student_app.py](../src/tompe/interfaces/student_app.py) |
+| B10 | API credentials test-connection — real call instead of the "v2" stub. Google/DeepL run a tiny "Hello." translation via `translate_segment`; OpenAI/Anthropic/Together hit `LLMClient.complete_text` with a 1-token reply. Per-provider model picker on the LLM panel. Returns a user-facing success/failure message. | Done (smoke-tested) | [src/tompe/interfaces/teacher_app.py](../src/tompe/interfaces/teacher_app.py) |
+| B11 | Corpus TMX/TSV ingestion — new `tompe.pipeline.corpus_ingest` module exposes `parse_tmx`, `parse_tsv`, `write_segments`; teacher "Upload Corpus" page parses uploads, writes JSONL matching the existing `data/corpora/{origin}/segments_en_fr.jsonl` schema, supports append vs. replace, and surfaces per-line warnings without aborting | Done (unit-tested) | [src/tompe/pipeline/corpus_ingest.py](../src/tompe/pipeline/corpus_ingest.py), [src/tompe/interfaces/teacher_app.py](../src/tompe/interfaces/teacher_app.py) |
+
+### Verification — Sprint #6
+
+- [ ] **B8 unit smoke test (already run in sprint).** `_build_pe_diff_html(o, e)` produces:
+  - `"No changes yet."` when `o == e`.
+  - Strikethrough red for deletions; green for insertions; per-edit change list.
+  - "Replaced" entries when adjacent delete+insert occur. ✓
+
+- [ ] **B8 manual.** Launch the student app, start a PE-mode exercise, type edits in `pe_textbox`. Confirm `pe_changes_html` updates as you type; the diff shows both the inline view and the bulleted change list.
+
+- [ ] **B10 unit (mocked).** `_test_mt_provider("Google Translate", "")` returns `(False, "No API key configured.")` without raising. Similar for the LLM helper when the env var is empty. (Real-network tests gated behind API keys — see manual step.)
+
+- [ ] **B10 manual (costs LLM credits).** With `OPENAI_API_KEY` set, open Teacher → Settings → API Credentials → expand "OpenAI (GPT-4.1)", click Test Connection. Expect a green "OK — model replied 'pong'" toast. Toggle the env var off and re-click; expect "No API key configured."
+
+- [ ] **B11 unit (already run in sprint).**
+  - TSV: `"A\\tB\\nC\\tD\\n"` parses to 2 segments with the right `corpus_origin`, `position_in_doc`, and stable `segment_id`s.
+  - TSV warnings: 1-column lines, empty source/target, and 3+-column lines all warn (1-indexed line number) without aborting.
+  - TMX: language tags `en`/`EN-US`/`fr-FR` all match `en`/`fr` case-insensitively; unpaired `<tu>` units (only source or only target) are dropped.
+  - `write_segments` produces a JSONL file at `{corpus_dir}/{origin}/segments_en_fr.jsonl`; `append=True` extends rather than overwrites.
+  - Round-trip: ingest → `write_segments` → `segment_selector.load_corpus` returns the same content. ✓
+
+- [ ] **B11 manual.** Upload a small TMX or TSV file via the Teacher → Upload Corpus page; confirm `data/corpora/{corpus_name}/segments_en_fr.jsonl` exists and `python -c "from tompe.pipeline.segment_selector import load_corpus; ..."` lists the rows.
+
+### Still pending (Sprint #6 follow-ups)
+
+- **B11 — corpus registration.** Newly-uploaded corpora are *not* automatically added to `experiments/pipeline_validation/config.py:CORPORA`. The UI now surfaces this in the success message; a follow-up could rewrite `CORPORA` (or accept it via YAML) so batch runs pick up uploaded corpora without a code change.
+- **B8 — diff polish.** `difflib.SequenceMatcher` is character-level; longer edits can render messy. Token-level alignment (or `diff_match_patch`) would produce cleaner output but adds a dep.
+- **B10 — Ollama / NLLB / Azure.** Only the providers currently mapped in `mt_backends.yaml` and `llm_client._PROVIDER_DEFAULTS` are wired. Add rows for any other configured providers if needed.
+
+---
+
 ## Remaining work & manual/expert intervention
 
 After sprints #1–#3 the pipeline backbone is paper-ready: every Phase 3 code item (3.1, 3.2, 3.3, 3.4, 3.6) is implemented, and Tracks A/B/C plus the student core loop work end-to-end. What's left splits into three buckets — the first two need human time, the third is engineering follow-up.
@@ -691,10 +734,10 @@ No expert review needed; pure code follow-up. Ordered by paper-readiness leverag
 | B5 | **`progression.py` BKT mastery** — Scout / Analyst / Expert badges fire on level-int, not on p≥0.98. `recommend_next_level` is `NotImplementedError`. | Tier C1 | ~2 days | Fluency Trap §2.2 + System §8.3. Adaptive progression vs manual promotion. |
 | B6 | **Migrate `experiments/generate_batch.py` to call `build_batch`** (3.3 follow-up) | Lower | ~half day | Architectural cleanup; do AFTER the camera-ready batch is locked. |
 | B7 | **Strategy 3 LLM context generation for L3 fallback** (3.5; conditional on A8) | Lower | ~4 hrs | Only implement if A8 shows L3 underdelivers. |
-| B8 | **PE diff visualization** (UI §3.4 leftover) — `pe_changes_html` change list with character-level diff. PE flow is wired; this is the polish on top. | Lower | ~4 hrs | |
+| ~~B8~~ | ~~**PE diff visualization**~~ — **RESOLVED — Sprint #6.** `_build_pe_diff_html` + `pe_textbox.change` handler ship; inline diff + collapsible change list update live as the student types. | Lower | done | — |
 | B9 | **First-session tutorial overlay** (UI §3.3.5) | Lower | ~half day | Demo polish; not paper-blocking. |
-| B10 | **`api_credentials` "test connection" button** (UI §4.7.1) — currently a v2 stub. | Lower | ~2 hrs | Operational; not paper-blocking. |
-| B11 | **Corpus upload (TMX/TSV) ingestion in the teacher UI** (UI §4.2.2) — page exists, ingestion is "v2 stub". | Lower | ~1 day | Operational; the corpus ingestion CLI still works. |
+| ~~B10~~ | ~~**`api_credentials` "test connection" button**~~ — **RESOLVED — Sprint #6.** Google/DeepL run a tiny translation via `translate_segment`; OpenAI/Anthropic/Together hit `LLMClient.complete_text`. Returns success/failure inline. | Lower | done | — |
+| ~~B11~~ | ~~**Corpus upload (TMX/TSV) ingestion in the teacher UI**~~ — **RESOLVED — Sprint #6.** New `tompe.pipeline.corpus_ingest` module + wired teacher page writes JSONL matching the existing schema; supports append vs. replace and surfaces per-line warnings. Corpora still need manual registration in `CORPORA` for batch runs. | Lower | done | — |
 
 ### C. Operational tasks (run the pipeline end-to-end)
 
@@ -841,27 +884,27 @@ Ordered by impact × leverage. Each item references the per-spec entries that su
 | §3.3.5 | First-session tutorial overlay | Missing | — | No tutorial in `student_app.py`. |
 | §3.3.6 | Color-coded pill button classification | Implemented | [student_app.py:846](../src/tompe/interfaces/student_app.py#L846), [components/colors.py](../src/tompe/interfaces/components/colors.py) | Pill buttons with coloured dots per category, severity radio. |
 | §3.3.7 | Colorblind-safe palette + tag-color mapping | Implemented | [components/colors.py](../src/tompe/interfaces/components/colors.py) | `TAG_COLORS` used across student & teacher UIs. |
-| §3.4 | Post-editing mode with diff + change list | Partial | [student_app.py:975](../src/tompe/interfaces/student_app.py#L975), [:983](../src/tompe/interfaces/student_app.py#L983) | Sprint #1 (A1): submission flow now wired (`pe_proceed_btn` advances; `edited_text` reaches API). Diff visualization (`pe_changes_html`) + per-edit change list still missing. |
+| §3.4 | Post-editing mode with diff + change list | Implemented | [student_app.py:975](../src/tompe/interfaces/student_app.py#L975), [:983](../src/tompe/interfaces/student_app.py#L983) | Sprint #1 (A1): submission flow wired. Sprint #6 (B8): live diff + change list now populate `pe_changes_html` via `_build_pe_diff_html` + `pe_textbox.change`. |
 | §3.5 | L3 Comparison view (multi-MT, ranking, human-MT discrimination) | Missing | — | No comparison UI; `ItemPathway` / `comparison_outputs` unused at runtime. |
 | §3.6 | My Progress dashboard (radar, by error type, recent sessions) | Partial | [student_app.py:1735](../src/tompe/interfaces/student_app.py#L1735), [:455](../src/tompe/interfaces/student_app.py#L455) | Skill radar + summary cards + recent sessions; no over-editing trend. |
 | §4.2.1 | Browse Corpus filters + selection | Implemented | [teacher_app.py:149](../src/tompe/interfaces/teacher_app.py#L149) | Sources, domain, direction, register, length, search; checkbox selection. |
-| §4.2.2 | Upload Corpus (TMX/TSV) | Missing | [teacher_app.py:272](../src/tompe/interfaces/teacher_app.py#L272) | Page exists but ingestion is "feature coming in v2". |
+| §4.2.2 | Upload Corpus (TMX/TSV) | Implemented | [src/tompe/pipeline/corpus_ingest.py](../src/tompe/pipeline/corpus_ingest.py), [teacher_app.py:272](../src/tompe/interfaces/teacher_app.py#L272) | Sprint #6 (B11): `parse_tmx` / `parse_tsv` / `write_segments`; teacher page writes JSONL matching the existing corpus schema. Append vs. replace + per-line warnings. New corpora still need manual `CORPORA` registration in `experiments/pipeline_validation/config.py`. |
 | §4.2.3 | Generate Translations (multi-MT, manual edit, base-for-injection) | Partial | [teacher_app.py:282](../src/tompe/interfaces/teacher_app.py#L282) | Multi-MT + LLM + injection trigger; no per-row Edit + no base-selection radio. |
 | §4.3 | Review Queue with detail editing + Approve/Reject/Regenerate | Partial | [teacher_app.py:592](../src/tompe/interfaces/teacher_app.py#L592), [:634](../src/tompe/interfaces/teacher_app.py#L634) | Approve / Reject / Save-Reviewed; no Regenerate; no batch operations. |
 | §4.4 | Exercise Builder (level, justification, ordering, clean ratio) | Partial | [teacher_app.py:1094](../src/tompe/interfaces/teacher_app.py#L1094) | Manual selection + config; no AI-suggested-from-blind-spots top section. |
 | §4.5.1 | Student Accounts table + bulk CSV import | Implemented | [teacher_app.py:1272](../src/tompe/interfaces/teacher_app.py#L1272), [:1289](../src/tompe/interfaces/teacher_app.py#L1289) | Add / import / level dropdown / class-move per spec. |
 | §4.5.2 | Level Configuration page with mastery thresholds | Missing | — | No dedicated Level Configuration page; per-student promote button on analytics page only. |
 | §4.6 | Analytics: Class Overview + Individual + Blind Spot heatmap | Implemented | [teacher_app.py:1464](../src/tompe/interfaces/teacher_app.py#L1464), [:1858](../src/tompe/interfaces/teacher_app.py#L1858) | All three analytics tabs + MQM × ToM heatmap with detection rates. |
-| §4.7.1 | API Credentials page with show/hide + test connection | Partial | [teacher_app.py:2634](../src/tompe/interfaces/teacher_app.py#L2634) | Lists providers + env-var status; Test Connection is a stub ("v2"). |
+| §4.7.1 | API Credentials page with show/hide + test connection | Implemented | [teacher_app.py:2634](../src/tompe/interfaces/teacher_app.py#L2634) | Sprint #6 (B10): Test Connection now runs a real provider call (tiny translation for Google/DeepL; 1-token completion for OpenAI/Anthropic/Together) and surfaces success/failure inline. |
 | §4.7.2 | System Configuration + share-link + data export | Partial | [teacher_app.py:2535](../src/tompe/interfaces/teacher_app.py#L2535), [:2696](../src/tompe/interfaces/teacher_app.py#L2696) | Launch Controls + system tabs; no "Export All Data ZIP" or backup. |
 | §6 | Critical-path P0/P1 components (FastAPI, span selector, L2 flow) | Implemented | [services/api.py](../src/tompe/services/api.py), [components/span_selector.py](../src/tompe/interfaces/components/span_selector.py), [student_app.py](../src/tompe/interfaces/student_app.py) | All P0+P1 priorities present. |
 
 #### Top 5 gaps
 
-1. **PE flow stops at the textarea**: `pe_proceed_btn` ([student_app.py:983](../src/tompe/interfaces/student_app.py#L983)) has no event handler, so PE submissions never advance — user-visible blocker.
+1. ~~**PE flow stops at the textarea**~~ **RESOLVED — Sprint #1 (A1) + Sprint #6 (B8).** `pe_proceed_btn` advances PE submissions; Sprint #6 now also renders a live char-level diff + change list in `pe_changes_html` as the student edits.
 2. **L3 Comparison view (multi-MT side-by-side, ranking, human-vs-MT) entirely absent** — single biggest missing student feature.
 3. **L0 Navigator interaction is decorative only**: no Confirm / Dispute buttons per annotation, no false-annotation injector at item-build time.
-4. **Corpus upload (TMX/TSV) is non-functional** ("v2" placeholder), forcing teachers to drop files into the filesystem manually.
+4. ~~**Corpus upload (TMX/TSV) is non-functional**~~ **RESOLVED — Sprint #6 (B11).** New `tompe.pipeline.corpus_ingest` module + the teacher Upload Corpus page now parse TMX and TSV uploads into `data/corpora/{origin}/segments_en_fr.jsonl` (append vs. replace, with per-line warnings). Newly-uploaded corpora still need a manual entry in `experiments/pipeline_validation/config.py:CORPORA` for batch runs.
 5. **No Level Configuration page (§4.5.2) and no AI-suggested exercises (§4.4)** — the "Generate targeted exercise" loop from blind spots back to exercise builder is not wired.
 
 ---

@@ -254,26 +254,110 @@ def _page_upload_corpus():
 
     st.markdown("""
     **Supported formats:**
-    - TMX (Translation Memory Exchange)
-    - TSV (tab-separated: source \\t target)
-    - Aligned text (two files, one line per segment)
+    - **TMX** (Translation Memory Exchange) — segments live in `<tu>` units.
+    - **TSV** — one segment per line, two tab-separated columns: `source\\ttarget`.
     """)
 
-    uploaded = st.file_uploader("Choose file(s)", type=["tmx", "tsv", "txt"], accept_multiple_files=True)
+    uploaded = st.file_uploader(
+        "Choose file(s)", type=["tmx", "tsv", "txt"], accept_multiple_files=True,
+    )
 
     col1, col2 = st.columns(2)
     with col1:
-        corpus_name = st.text_input("Corpus name")
+        corpus_name = st.text_input(
+            "Corpus name", placeholder="e.g. legal_fr_en",
+            help="Lowercase identifier. Becomes the directory name under data/corpora/.",
+        )
         src_lang = st.selectbox("Source language", ["fr", "en"])
+        register = st.selectbox(
+            "Register", ["", "formal", "semi-formal", "informal"],
+            help="Optional. Stored on every segment so segment_selector can filter by register.",
+        )
     with col2:
-        domain_custom = st.text_input("Domain")
+        domain_custom = st.text_input(
+            "Domain", placeholder="e.g. legal", value="general",
+        )
         tgt_lang = st.selectbox("Target language", ["en", "fr"])
+        append_mode = st.checkbox(
+            "Append to existing corpus",
+            value=False,
+            help="If unchecked, replaces any existing segments_en_fr.jsonl for this corpus.",
+        )
 
     if st.button("Upload & Index", type="primary"):
-        if uploaded and corpus_name:
-            st.info(f"Upload processing for '{corpus_name}' — feature coming in v2.")
-        else:
-            st.warning("Please provide file(s) and corpus name.")
+        if not uploaded:
+            st.warning("Please choose at least one file.")
+            return
+        if not corpus_name.strip():
+            st.warning("Please provide a corpus name.")
+            return
+        if src_lang == tgt_lang:
+            st.error("Source and target languages must differ.")
+            return
+
+        from tompe.pipeline.corpus_ingest import (
+            parse_tmx, parse_tsv, write_segments,
+        )
+
+        normalised_name = corpus_name.strip().lower().replace(" ", "_")
+        all_segments: list[dict] = []
+        all_warnings: list[str] = []
+
+        for uf in uploaded:
+            suffix = Path(uf.name).suffix.lower()
+            try:
+                raw = uf.getvalue().decode("utf-8", errors="replace")
+            except Exception as exc:
+                st.error(f"{uf.name}: could not decode as UTF-8 ({exc})")
+                continue
+
+            if suffix == ".tmx":
+                try:
+                    segs = parse_tmx(
+                        raw, src_lang, tgt_lang,
+                        corpus_origin=normalised_name,
+                        domain=domain_custom or "general",
+                        register=register or None,
+                    )
+                except Exception as exc:
+                    st.error(f"{uf.name}: TMX parse failed — {exc}")
+                    continue
+                all_segments.extend(segs)
+                st.write(f"`{uf.name}` → {len(segs)} segments")
+            elif suffix in (".tsv", ".txt"):
+                segs, warns = parse_tsv(
+                    raw, src_lang, tgt_lang,
+                    corpus_origin=normalised_name,
+                    domain=domain_custom or "general",
+                    register=register or None,
+                )
+                all_segments.extend(segs)
+                all_warnings.extend(f"{uf.name}: {w}" for w in warns)
+                st.write(f"`{uf.name}` → {len(segs)} segments")
+            else:
+                st.warning(f"{uf.name}: unsupported extension — skipped.")
+
+        if not all_segments:
+            st.error("No segments parsed from the uploaded files.")
+            if all_warnings:
+                with st.expander(f"Warnings ({len(all_warnings)})"):
+                    for w in all_warnings:
+                        st.write(f"- {w}")
+            return
+
+        out_path = write_segments(
+            DATA_DIR / "corpora", normalised_name, all_segments,
+            append=append_mode,
+        )
+        st.success(
+            f"Wrote {len(all_segments)} segments to `{out_path}`. "
+            f"To use in batch runs, add `{normalised_name}` to "
+            "`experiments/pipeline_validation/config.py:CORPORA`."
+        )
+        if all_warnings:
+            with st.expander(f"Warnings ({len(all_warnings)})"):
+                for w in all_warnings:
+                    st.write(f"- {w}")
 
 
 # ── Generate Translations ────────────────────────────────────────────────────
@@ -2725,6 +2809,73 @@ def _settings_launch_controls():
         st.warning("API server is not running. Start it with: `uv run tompe-api`")
 
 
+def _test_mt_provider(name: str, api_key: str) -> tuple[bool, str]:
+    """Smoke-test an MT provider by translating a tiny string.
+
+    Returns (ok, message). Does not raise: catches every exception and converts
+    to a user-readable message so the teacher UI can surface it.
+    """
+    import asyncio
+
+    from tompe.pipeline.mt_generator import translate_segment
+    from tompe.schemas.corpus import CorpusSegment
+
+    if not api_key:
+        return False, "No API key configured."
+
+    seg = CorpusSegment(
+        segment_id="test-conn",
+        source_text="Hello.",
+        reference_translation="",
+        source_lang="en", target_lang="fr",
+        corpus_origin="test", domain="general",
+        complexity_score=0.0, terminology_density=0.0,
+        register="formal",
+    )
+
+    system_name = "google" if name.startswith("Google") else "deepl"
+    system_cfg = {"type": "google_translate" if system_name == "google" else "deepl"}
+
+    loop = asyncio.new_event_loop()
+    try:
+        mt = loop.run_until_complete(translate_segment(seg, system_name, system_cfg))
+    except Exception as exc:
+        return False, f"{type(exc).__name__}: {exc}"
+    finally:
+        loop.close()
+
+    if mt and mt.mt_text:
+        return True, f"OK — '{seg.source_text}' → '{mt.mt_text}'"
+    return False, "Provider returned an empty translation."
+
+
+def _test_llm_provider(provider: str, model: str) -> tuple[bool, str]:
+    """Smoke-test an LLM provider with a single-token completion."""
+    import asyncio
+
+    from tompe.pipeline.llm_client import make_client
+
+    loop = asyncio.new_event_loop()
+    try:
+        try:
+            client = make_client(provider=provider, model=model, max_tokens=8, max_retries=1)
+        except Exception as exc:
+            return False, f"Client init failed: {exc}"
+
+        try:
+            reply = loop.run_until_complete(
+                client.complete_text(system="Reply with the single word: pong.", user="ping")
+            )
+        except Exception as exc:
+            return False, f"{type(exc).__name__}: {exc}"
+    finally:
+        loop.close()
+
+    if reply and reply.strip():
+        return True, f"OK — model replied '{reply.strip()[:40]}'"
+    return False, "Empty response from model."
+
+
 def _settings_api_credentials():
     """API credentials management."""
     import os
@@ -2749,25 +2900,45 @@ def _settings_api_credentials():
                 st.warning("⚠️ Not configured")
 
             if st.button("Test Connection", key=f"test_{name}"):
-                st.info(f"Testing {name} connection... (feature coming in v2)")
+                with st.spinner(f"Calling {name}..."):
+                    ok, msg = _test_mt_provider(name, env_val)
+                if ok:
+                    st.success(msg)
+                else:
+                    st.error(msg)
 
     st.subheader("LLM Services")
 
+    # (provider_key for make_client, default model, env var name)
     llm_providers = {
-        "OpenAI (GPT-4.1)": {"env": "OPENAI_API_KEY"},
-        "Anthropic (Claude)": {"env": "ANTHROPIC_API_KEY"},
-        "Together.ai": {"env": "TOGETHER_API_KEY"},
+        "OpenAI (GPT-4.1)": ("openai", "gpt-4.1-mini", "OPENAI_API_KEY"),
+        "Anthropic (Claude)": ("anthropic", "claude-haiku-4-5-20251001", "ANTHROPIC_API_KEY"),
+        "Together.ai": ("together", "meta-llama/Llama-3-8b-chat-hf", "TOGETHER_API_KEY"),
     }
 
-    for name, info in llm_providers.items():
+    for name, (prov, default_model, env_var) in llm_providers.items():
         with st.expander(name):
-            env_val = os.environ.get(info["env"], "")
+            env_val = os.environ.get(env_var, "")
             source = "Env var" if env_val else "Not configured"
             st.write(f"**Source:** {source}")
             if env_val:
                 st.success("✓ Configured via environment variable")
             else:
                 st.warning("⚠️ Not configured")
+
+            test_model = st.text_input(
+                "Model for connection test", value=default_model, key=f"llm_model_{name}",
+            )
+            if st.button("Test Connection", key=f"test_llm_{name}"):
+                if not env_val:
+                    st.error("No API key configured — set the env var first.")
+                else:
+                    with st.spinner(f"Calling {name}..."):
+                        ok, msg = _test_llm_provider(prov, test_model.strip() or default_model)
+                    if ok:
+                        st.success(msg)
+                    else:
+                        st.error(msg)
 
 
 def _settings_mt_systems():

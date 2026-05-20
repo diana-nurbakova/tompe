@@ -47,6 +47,13 @@ class ScoringResult(BaseModel):
     incorrect_confirms: int = 0  # student accepted a false annotation
     incorrect_disputes: int = 0  # student rejected a real error
 
+    # Comparison mode (L3) — System §7.4
+    # Skill B (COMPARATIVE_RANKING):
+    ranking_kendall_tau: Optional[float] = None  # [-1, 1]
+    expert_ranking: list[str] = []  # mt_system ids in expected order
+    # Human-vs-MT discrimination:
+    human_pick_correct: Optional[bool] = None  # None if no choice was made
+
     # Justification quality
     justification_scores: list[JustificationScore] = []
 

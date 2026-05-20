@@ -92,6 +92,10 @@ class StudentResponse(BaseModel):
     per_system_evaluations: Optional[list[PerSystemEvaluation]] = None
     system_rankings: Optional[list[SystemRanking]] = None
     pe_worthiness: Optional[dict[str, PEWorthinessVerdict]] = None
+    # L3 Comparison "Which (if any) was produced by a human translator?"
+    # Stores the mt_system id the student picked, or the literal "none" / None.
+    human_pick: Optional[str] = None
+    human_pick_rationale: Optional[str] = None
 
     # Justification (required before seeing feedback)
     justification_format: Literal[

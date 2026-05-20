@@ -177,7 +177,7 @@ def prepare_feedback(
                 "message": "This span does not contain an error.",
             })
 
-    return {
+    payload: dict[str, Any] = {
         "summary": {
             "total_errors": len(ground_truth),
             "detected": scoring.true_positives,
@@ -193,3 +193,39 @@ def prepare_feedback(
         "hter": scoring.hter,
         "unnecessary_edits": scoring.unnecessary_edits,
     }
+
+    # Comparison-mode (L3) breakdown — System §7.4 / UI §3.5 reveal block.
+    if response.mode == "comparison":
+        outputs = item.comparison_outputs or []
+        payload["comparison"] = {
+            "comparison_type": (
+                response.comparison_type.value
+                if response.comparison_type is not None
+                else None
+            ),
+            "system_reveal": [
+                {
+                    "mt_system": o.mt_system,
+                    "system_type": o.system_type,
+                    "is_human_reference": o.is_human_reference,
+                    "quality_score": o.quality_score,
+                    "mt_text": o.mt_text,
+                }
+                for o in outputs
+            ],
+            "student_ranking": [
+                {"mt_system": r.mt_system, "rank": r.rank, "rationale": r.rationale}
+                for r in (response.system_rankings or [])
+            ],
+            "expert_ranking": list(getattr(scoring, "expert_ranking", []) or []),
+            "kendall_tau": getattr(scoring, "ranking_kendall_tau", None),
+            "human_pick": response.human_pick,
+            "human_pick_correct": getattr(scoring, "human_pick_correct", None),
+            "pe_worthiness": {
+                k: v.model_dump() for k, v in (response.pe_worthiness or {}).items()
+            },
+        }
+        # Override the summary score to use the comparison-derived F1 surrogate.
+        payload["summary"]["score_pct"] = round(scoring.f1 * 100)
+
+    return payload

@@ -702,6 +702,52 @@ Detection-rate-based mastery is a deliberately simple stand-in for BKT (Fluency 
 
 ---
 
+## Implementation sprint #7 — L3 Comparison mode end-to-end (B1)
+
+**Date range:** 2026-05-20
+**Theme:** Close the biggest single scope gap from the original audit — L3 multi-MT comparison + ranking + human-vs-MT discrimination, end-to-end (System §3.6 / §5 / §7.4 + UI §3.5).
+
+### What landed
+
+| ID | Item | Status | Files touched |
+|---|---|---|---|
+| B1 / schemas | `MTOutput.mt_system` relaxed to `str` (lets `"human"` be a valid system); added `is_human_reference: bool` + `quality_score: Optional[float]`. `StudentResponse` gains `human_pick` / `human_pick_rationale`. `ScoringResult` gains `ranking_kendall_tau` / `expert_ranking` / `human_pick_correct`. | Done | [src/tompe/schemas/corpus.py](../src/tompe/schemas/corpus.py), [src/tompe/schemas/response.py](../src/tompe/schemas/response.py), [src/tompe/schemas/scoring.py](../src/tompe/schemas/scoring.py) |
+| B1 / pipeline | New module `tompe.pipeline.comparison_builder` exposes `build_comparison_item(segment, mt_outputs, comparison_type, include_human)` and `derive_expert_ranking`. Wraps human reference as an `MTOutput` with `is_human_reference=True`. | Done (unit-tested) | [src/tompe/pipeline/comparison_builder.py](../src/tompe/pipeline/comparison_builder.py) |
+| B1 / scoring | `score_comparison_response` computes Kendall's τ vs expert ranking (derived from `quality_score`) + human-vs-MT discrimination correctness; folds into an F1-style overall score so badges + analytics still work. Stdlib-only Kendall (no scipy dep). | Done (unit-tested) | [src/tompe/services/scoring.py](../src/tompe/services/scoring.py) |
+| B1 / API | `SubmitAnnotationsRequest` carries `comparison_type` / `per_system_evaluations` / `system_rankings` / `pe_worthiness` / `human_pick` / `human_pick_rationale`; `api_submit_response` persists them; `api_get_feedback` dispatches to `score_comparison_response`; `prepare_feedback` adds a `comparison` block to the payload. | Done (unit-tested) | [src/tompe/services/api.py](../src/tompe/services/api.py), [src/tompe/services/feedback.py](../src/tompe/services/feedback.py) |
+| B1 / student UI | New comparison view (sibling to L0 + standard panels) with `MAX_COMPARISON_SYSTEMS=4` pre-allocated cards. Each slot has a rank radio (1–4), a PE-worthiness select (`pe_light` / `pe_full` / `retranslate`), and a rationale textbox. Below the cards: "Which (if any) was produced by a human?" radio + rationale. Submit button posts via `mode="comparison"` and jumps to Feedback. System labels are masked as A/B/C/D in the UI; real `mt_system` ids are revealed only after submission. | Done (unit-tested) | [src/tompe/interfaces/student_app.py](../src/tompe/interfaces/student_app.py) |
+| B1 / feedback UX | `_build_comparison_reveal_html` renders the post-submission reveal block: per-system identity (with HUMAN badge + quality score), student ranking vs expert ranking + Kendall's τ, and the human-pick verdict. | Done (unit-tested) | [src/tompe/interfaces/student_app.py](../src/tompe/interfaces/student_app.py) |
+| B1 / teacher UI | New "L3 Comparison Items" section on the Generate Translations page calls `_run_comparison_pipeline`: for each selected segment, runs every selected MT system and assembles one `AssessmentItem` via `build_comparison_item`. Items are saved as `published` so they appear immediately in the Exercise Builder. | Done | [src/tompe/interfaces/teacher_app.py](../src/tompe/interfaces/teacher_app.py) |
+
+### Scope decisions
+
+- **Skill A (INDEPENDENT_EVAL) deferred.** The schema accepts it (`comparison_type`, `per_system_evaluations`) but per-system error-span scoring needs per-MTOutput error manifests, which only exist for the controlled pathway and only on the primary output. Tracked as a follow-up; Skill B (COMPARATIVE_RANKING) is the supported path end-to-end.
+- **PE-worthiness verdicts are collected but unscored.** No expert triage ground truth exists yet; the verdicts are persisted on the response and surfaced in the reveal panel, but they don't influence the F1 surrogate.
+- **Quality-score-derived expert ranking.** When `MTOutput.quality_score` is None on every output, `derive_expert_ranking` falls back to input order and logs a warning. Production pipelines should populate `quality_score` from COMET / GEMBA-MQM / expert ratings; the teacher pipeline currently leaves them at None, so τ is computed against a heuristic baseline (worth flagging in the UI).
+- **`AssessmentItem.mt_system` for comparison items is the sentinel `"comparison"`.** Real system ids live inside `comparison_outputs[*].mt_system`.
+
+### Verification — Sprint #7
+
+- [ ] **Foundation smoke test (already run in sprint).** Covers (a) `build_comparison_item` with 3 MT + 1 human; (b) `_kendall_tau` for identical / reversed / one-swap / mismatched-set / single-item; (c) `score_comparison_response` perfect / mixed-mistake / human-only / no-human-ref pick=none. ✓
+- [ ] **UI helper smoke test (already run in sprint).** `_build_comparison_reveal_html` renders the HUMAN badge, both rankings, the τ line, and the correct/incorrect verdict. ✓
+- [ ] **End-to-end manual.** With OpenAI + DeepL keys configured:
+  1. Teacher → Browse Corpus → select 3 segments.
+  2. Teacher → Generate Translations → pick ≥ 2 MT systems → "Build Comparison Items".
+  3. Confirm 3 items appear as published, each with 3+ outputs (including 1 human).
+  4. Build an L3 exercise around those items, assign to a student.
+  5. As the student: the Annotate tab shows the cmp cards (masked A/B/C/D), with rank radios + triage selects + the "which is human?" radio.
+  6. Submit → Feedback tab opens; the reveal panel shows real system names, student vs expert ranking, τ, and the human-pick verdict.
+- [ ] **Existing test suite green.** `pytest tests/test_schemas.py tests/test_segment_selector.py tests/test_error_injector.py tests/test_mt_generator.py` → 37 passed. ✓
+
+### Still pending (Sprint #7 follow-ups)
+
+- **Quality-score population.** Wire COMET or GEMBA-MQM in the teacher comparison pipeline so `quality_score` is populated; without it, the expert ranking is just input order and τ is meaningless.
+- **Skill A (INDEPENDENT_EVAL).** Needs per-MTOutput error manifests (either re-using `inject_errors_reference_based` per system, or running `authentic_detector` per system) plus a per-system span-selection UI. Tracked as a Tier-C follow-up.
+- **PE-worthiness scoring.** Needs expert triage ground truth (a label per `(segment, mt_system)` of `pe_light` / `pe_full` / `retranslate`). Once available, fold it into the F1 surrogate.
+- **Comparison analytics.** No teacher dashboard yet — Kendall's τ history per student, ranking-vs-quality scatter, human-pick accuracy. Add to `_analytics_individual_student` once 5+ comparison responses exist.
+
+---
+
 ## Remaining work & manual/expert intervention
 
 After sprints #1–#3 the pipeline backbone is paper-ready: every Phase 3 code item (3.1, 3.2, 3.3, 3.4, 3.6) is implemented, and Tracks A/B/C plus the student core loop work end-to-end. What's left splits into three buckets — the first two need human time, the third is engineering follow-up.
@@ -727,7 +773,7 @@ No expert review needed; pure code follow-up. Ordered by paper-readiness leverag
 
 | # | Item | Tier | Effort | Notes |
 |---|---|---|---|---|
-| B1 | **Comparison mode end-to-end (L3 multi-MT, ranking, human-vs-MT)** — `comparison_outputs`, `ComparisonType`, `ItemPathway` are schema-only. Spans System §3.6/§5/§7.4 + UI §3.5. | Tier B | ~3–5 days | Single biggest open scope gap. |
+| ~~B1~~ | ~~**Comparison mode end-to-end**~~ — **RESOLVED (Skill B + human-vs-MT) — Sprint #7.** New `comparison_builder` pipeline + `score_comparison_response` (Kendall's τ) + student comparison view (4 system cards + ranking + triage + "which is human?") + teacher "Build Comparison Items" pipeline. Skill A (INDEPENDENT_EVAL) and PE-worthiness scoring deferred — see Sprint #7 follow-ups. | Tier B | done | — |
 | ~~B2~~ | ~~**Skill Radar data source**~~ — **RESOLVED — Sprint #5.** `aggregate_skill_profile` pools `detection_by_skill` across the student's responses; `api_get_progress` now returns `skill_profile`. Detection-rate-based for now; swappable for BKT later. | Tier B | done | — |
 | B3 | **Trap Detector + L0 Confirm/Dispute UI (A5b/c/d)** — student-app UI for Confirm/Dispute buttons, scoring logic that distinguishes correct/incorrect disputes, and a `correct_disputes` counter into `process_badges_and_xp`. | Tier B | ~1–2 days | The false-annotation generator from sprint #1 A5a is dead code until this lands. |
 | B4 | **`analytics.py` longitudinal stubs** — `update_student_profile`, `detect_blind_spots`, `compute_class_analytics` are `NotImplementedError`. Teacher blind-spot view recomputes ad hoc; no persistent learner profile. | Tier C2 | ~2–3 days | Required for the BKT story; the teacher dashboard works without it but the multi-session narrative doesn't. |
@@ -782,7 +828,7 @@ The following items might look like gaps in the per-spec tables but are **intent
 Ordered by impact × leverage. Each item references the per-spec entries that surfaced it.
 
 1. ~~**Post-editing flow is broken end-to-end.**~~ **RESOLVED — Sprint #1 (A1).** `pe_proceed_btn` now wired; `edited_text` flows to scoring. Diff visualization is a separate, lower-priority gap.
-2. **Comparison mode (L3 multi-MT, ranking, human-vs-MT) is schema-only.** `comparison_outputs`, `ComparisonType`, `ItemPathway` exist but no pipeline writes them, no UI reads them, no scoring evaluates them. The single biggest scope gap; spans System §3.6/§5/§7.4 + UI §3.5.
+2. ~~**Comparison mode (L3 multi-MT, ranking, human-vs-MT) is schema-only.**~~ **RESOLVED (Skill B + human-vs-MT) — Sprint #7 (B1).** New `tompe.pipeline.comparison_builder` writes `comparison_outputs`; `score_comparison_response` computes Kendall's τ + human-vs-MT discrimination; the student UI ships a 4-card comparison view with reveal-on-feedback; the teacher pipeline builds these items from any selected segments. Skill A (INDEPENDENT_EVAL) + PE-worthiness scoring deferred.
 3. ~~**Skill Radar is rendered but inert.**~~ **RESOLVED — Sprint #5 (B2).** [`aggregate_skill_profile`](../src/tompe/services/scoring.py) pools `detection_by_skill` across the student's responses and [`api_get_progress`](../src/tompe/services/api.py) now returns `skill_profile`. Detection-rate-based pooling stands in for BKT (Fluency Trap §6.2) until [`services/progression.py`](../src/tompe/services/progression.py) ships; the consumer doesn't change.
 4. ~~**Authentic pathway is a stub.**~~ **RESOLVED (GEMBA-only v1) — Phase 3 (3.2).** [`authentic_detector.detect_authentic_errors`](../src/tompe/pipeline/authentic_detector.py) now runs GEMBA-MQM and maps each detected error to the ToM-PE taxonomy (primary tag, error type, tom_level, skill), synthesises a Layer 1 contrastive explanation from GEMBA fields, and consults the Layer 2a cache for system-behavior text. xCOMET cross-validation deferred (GPU). The controlled-vs-authentic narrative is now coverable end-to-end, though authentic items still need a real-MT source list to populate `ANNOTATION_AUTHENTIC=12`.
 5. **Longitudinal analytics are all `NotImplementedError`.** [`analytics.py`](../src/tompe/services/analytics.py#L6) — `update_student_profile`, `detect_blind_spots`, `compute_class_analytics` — are stubs. The teacher blind-spot view recomputes ad hoc; there's no persistent learner profile for the BKT story. *(System §3.9)* — **Tier C2.**
@@ -826,7 +872,7 @@ Ordered by impact × leverage. Each item references the per-spec entries that su
 | §3.3 | `InjectedError` manifest with Layer 1 + Layer 2 explanations | Implemented | [schemas/error.py:47](../src/tompe/schemas/error.py#L47), [:13](../src/tompe/schemas/error.py#L13), [:22](../src/tompe/schemas/error.py#L22) | Plus Layer 2b `TechnicalExplanation` (extension). |
 | §3.4 | `AnnotationLevel` + `ErrorAnnotation` + `AnnotationConfig` | Partial | [schemas/annotation.py:32](../src/tompe/schemas/annotation.py#L32), [schemas/enums.py:61](../src/tompe/schemas/enums.py#L61) | Schema complete; spec name "GUIDED/INDEPENDENT" renamed to "scout/analyst". |
 | §3.5 | Dual pathway (controlled / authentic) | Partial | [schemas/enums.py:70](../src/tompe/schemas/enums.py#L70), [pipeline/authentic_detector.py:27](../src/tompe/pipeline/authentic_detector.py#L27) | Enum + model exist; `authentic_detector` raises `NotImplementedError`. |
-| §3.6 | `AssessmentItem` with `comparison_outputs` / `comparison_type` | Partial | [schemas/item.py:34](../src/tompe/schemas/item.py#L34), [:58](../src/tompe/schemas/item.py#L58) | Schema fields exist; no pipeline or UI populates `comparison_outputs`. |
+| §3.6 | `AssessmentItem` with `comparison_outputs` / `comparison_type` | Implemented | [schemas/item.py:34](../src/tompe/schemas/item.py#L34), [src/tompe/pipeline/comparison_builder.py](../src/tompe/pipeline/comparison_builder.py) | Sprint #7 (B1): `build_comparison_item` populates both fields; teacher "Build Comparison Items" pipeline produces them; student UI consumes them. |
 | §3.7 | `StudentResponse` (eval / PE / navigator / comparison modes) | Partial | [schemas/response.py:72](../src/tompe/schemas/response.py#L72) | Schema covers all 4 modes; runtime only persists eval + PE ([api.py:614](../src/tompe/services/api.py#L614)). |
 | §3.8 | `ScoringResult` with HTER + per-MQM/ToM breakdowns | Implemented | [schemas/scoring.py:22](../src/tompe/schemas/scoring.py#L22), [services/scoring.py:50](../src/tompe/services/scoring.py#L50) | Full scoring engine for eval, PE, navigator. |
 | §3.9 | `StudentProfile` + `BlindSpot` longitudinal model | Partial | [schemas/scoring.py:56](../src/tompe/schemas/scoring.py#L56), [services/analytics.py:6](../src/tompe/services/analytics.py#L6) | Schemas defined; `analytics.py` functions all `NotImplementedError`. |
@@ -852,7 +898,7 @@ Ordered by impact × leverage. Each item references the per-spec entries that su
 
 #### Top 5 gaps
 
-1. **Comparison mode end-to-end** (Skill A independent eval + Skill B ranking + PE-worthiness verdict): missing in pipeline, student app, scoring, and analytics — schema-only.
+1. ~~**Comparison mode end-to-end**~~ **RESOLVED (Skill B + human-vs-MT) — Sprint #7 (B1).** Pipeline, student UI, scoring (Kendall's τ), and feedback reveal all ship. Skill A (INDEPENDENT_EVAL) and PE-worthiness scoring deferred — see Sprint #7 follow-ups.
 2. **`analytics.py` longitudinal functions** (`update_student_profile`, `detect_blind_spots`, `compute_class_analytics`) are all `NotImplementedError`; current blind-spot view recomputes everything ad hoc.
 3. **Authentic error-detection pipeline** (`authentic_detector.py`) is a stub — only the controlled pathway runs end-to-end.
 4. **LLM-based justification quality scoring (§7.5)** absent: `JustificationScore` schema unused, no scorer, no surface / partial / deep ratings shown.
@@ -885,7 +931,7 @@ Ordered by impact × leverage. Each item references the per-spec entries that su
 | §3.3.6 | Color-coded pill button classification | Implemented | [student_app.py:846](../src/tompe/interfaces/student_app.py#L846), [components/colors.py](../src/tompe/interfaces/components/colors.py) | Pill buttons with coloured dots per category, severity radio. |
 | §3.3.7 | Colorblind-safe palette + tag-color mapping | Implemented | [components/colors.py](../src/tompe/interfaces/components/colors.py) | `TAG_COLORS` used across student & teacher UIs. |
 | §3.4 | Post-editing mode with diff + change list | Implemented | [student_app.py:975](../src/tompe/interfaces/student_app.py#L975), [:983](../src/tompe/interfaces/student_app.py#L983) | Sprint #1 (A1): submission flow wired. Sprint #6 (B8): live diff + change list now populate `pe_changes_html` via `_build_pe_diff_html` + `pe_textbox.change`. |
-| §3.5 | L3 Comparison view (multi-MT, ranking, human-MT discrimination) | Missing | — | No comparison UI; `ItemPathway` / `comparison_outputs` unused at runtime. |
+| §3.5 | L3 Comparison view (multi-MT, ranking, human-MT discrimination) | Implemented | [src/tompe/interfaces/student_app.py](../src/tompe/interfaces/student_app.py), [src/tompe/pipeline/comparison_builder.py](../src/tompe/pipeline/comparison_builder.py) | Sprint #7 (B1): 4-card masked view + ranking + triage + "which is human?" + reveal-on-feedback. Skill A path deferred. |
 | §3.6 | My Progress dashboard (radar, by error type, recent sessions) | Partial | [student_app.py:1735](../src/tompe/interfaces/student_app.py#L1735), [:455](../src/tompe/interfaces/student_app.py#L455) | Skill radar + summary cards + recent sessions; no over-editing trend. |
 | §4.2.1 | Browse Corpus filters + selection | Implemented | [teacher_app.py:149](../src/tompe/interfaces/teacher_app.py#L149) | Sources, domain, direction, register, length, search; checkbox selection. |
 | §4.2.2 | Upload Corpus (TMX/TSV) | Implemented | [src/tompe/pipeline/corpus_ingest.py](../src/tompe/pipeline/corpus_ingest.py), [teacher_app.py:272](../src/tompe/interfaces/teacher_app.py#L272) | Sprint #6 (B11): `parse_tmx` / `parse_tsv` / `write_segments`; teacher page writes JSONL matching the existing corpus schema. Append vs. replace + per-line warnings. New corpora still need manual `CORPORA` registration in `experiments/pipeline_validation/config.py`. |
@@ -902,7 +948,7 @@ Ordered by impact × leverage. Each item references the per-spec entries that su
 #### Top 5 gaps
 
 1. ~~**PE flow stops at the textarea**~~ **RESOLVED — Sprint #1 (A1) + Sprint #6 (B8).** `pe_proceed_btn` advances PE submissions; Sprint #6 now also renders a live char-level diff + change list in `pe_changes_html` as the student edits.
-2. **L3 Comparison view (multi-MT side-by-side, ranking, human-vs-MT) entirely absent** — single biggest missing student feature.
+2. ~~**L3 Comparison view (multi-MT side-by-side, ranking, human-vs-MT) entirely absent**~~ **RESOLVED — Sprint #7 (B1).** Student UI ships a 4-card masked view (System A/B/C/D) with ranking + triage + "which is human?" plus a reveal panel showing real system ids, τ, and the human-pick verdict.
 3. **L0 Navigator interaction is decorative only**: no Confirm / Dispute buttons per annotation, no false-annotation injector at item-build time.
 4. ~~**Corpus upload (TMX/TSV) is non-functional**~~ **RESOLVED — Sprint #6 (B11).** New `tompe.pipeline.corpus_ingest` module + the teacher Upload Corpus page now parse TMX and TSV uploads into `data/corpora/{origin}/segments_en_fr.jsonl` (append vs. replace, with per-line warnings). Newly-uploaded corpora still need a manual entry in `experiments/pipeline_validation/config.py:CORPORA` for batch runs.
 5. **No Level Configuration page (§4.5.2) and no AI-suggested exercises (§4.4)** — the "Generate targeted exercise" loop from blind spots back to exercise builder is not wired.

@@ -477,6 +477,124 @@ def _page_generate_translations():
                         error_tags, sev_dist,
                     )
 
+    st.divider()
+    st.subheader("L3 Comparison Items (Skill B + human-vs-MT)")
+    st.caption(
+        "Builds one AssessmentItem per selected segment with multiple MT outputs "
+        "side-by-side. No error injection — students rank the systems and identify "
+        "the human reference. Requires ≥ 2 MT systems selected above."
+    )
+    include_human = st.checkbox(
+        "Include the human reference as one of the choices",
+        value=True,
+        help="Required for the 'which was produced by a human?' discrimination task.",
+    )
+    if st.button("Build Comparison Items", key="build_comparison_items"):
+        if len(selected_systems) < 2:
+            st.warning("Comparison mode needs ≥ 2 MT systems selected above.")
+        else:
+            _run_comparison_pipeline(
+                selected_ids, selected_systems, mt_config, include_human=include_human,
+            )
+
+
+def _run_comparison_pipeline(selected_ids, selected_systems, mt_config, *, include_human: bool):
+    """Run multi-MT translation per segment and build L3 comparison items.
+
+    Calls ``translate_segment`` once per (segment, system), wraps the outputs
+    via ``build_comparison_item``, and saves each AssessmentItem with
+    status="published" so it lands in the exercise builder immediately.
+    """
+    import asyncio
+    from tompe.pipeline.segment_selector import load_corpus, compute_complexity
+    from tompe.pipeline.mt_generator import translate_segment
+    from tompe.pipeline.comparison_builder import build_comparison_item
+    from tompe.schemas.corpus import CorpusSegment
+    from tompe.schemas.enums import ComparisonType
+
+    loop = asyncio.new_event_loop()
+
+    def run_async(coro):
+        return loop.run_until_complete(coro)
+
+    corpus_dir = DATA_DIR / "corpora"
+    all_segments: list[dict] = []
+    for origin in ["europarl", "dgt_tm", "eurlex", "unpc"]:
+        if (corpus_dir / origin / "segments_en_fr.jsonl").exists():
+            all_segments.extend(load_corpus(corpus_dir, origin))
+    selected_raw = [s for s in all_segments if s.get("segment_id") in selected_ids]
+    if not selected_raw:
+        st.error("Could not find selected segments in corpus.")
+        return
+
+    status = st.empty()
+    progress = st.progress(0)
+    log = st.expander("Detailed log", expanded=False)
+    built_ids: list[str] = []
+    failed_ids: list[str] = []
+
+    for idx, raw in enumerate(selected_raw):
+        complexity = compute_complexity(raw["source_text"])
+        segment = CorpusSegment(
+            segment_id=raw["segment_id"],
+            source_text=raw["source_text"],
+            reference_translation=raw["reference_translation"],
+            source_lang=raw["source_lang"],
+            target_lang=raw["target_lang"],
+            corpus_origin=raw["corpus_origin"],
+            domain=raw.get("domain", "general"),
+            complexity_score=complexity,
+            terminology_density=0.0,
+            register=raw.get("register", "formal"),
+        )
+
+        outputs = []
+        for sys_name in selected_systems:
+            sys_cfg = mt_config.get("mt_systems", {}).get(sys_name, {})
+            try:
+                mt = run_async(translate_segment(segment, sys_name, sys_cfg))
+                outputs.append(mt)
+                with log:
+                    st.write(f"  {sys_name}: {mt.mt_text[:80]}...")
+            except Exception as exc:
+                with log:
+                    st.write(f"  {sys_name}: failed — {exc}")
+
+        if len(outputs) < 2:
+            failed_ids.append(segment.segment_id)
+            status.warning(f"Segment {segment.segment_id[:12]}: < 2 successful MT systems, skipped.")
+            progress.progress((idx + 1) / len(selected_raw))
+            continue
+
+        try:
+            item = build_comparison_item(
+                segment, outputs,
+                comparison_type=ComparisonType.COMPARATIVE_RANKING,
+                include_human=include_human,
+                domain=segment.domain,
+            )
+            item.item_status = "published"
+            items_store.save(item)
+            built_ids.append(item.item_id)
+        except Exception as exc:
+            failed_ids.append(segment.segment_id)
+            with log:
+                st.write(f"  build_comparison_item failed: {exc}")
+
+        status.info(f"Built {len(built_ids)}/{len(selected_raw)} comparison items...")
+        progress.progress((idx + 1) / len(selected_raw))
+
+    progress.empty()
+    if built_ids:
+        st.success(
+            f"Built {len(built_ids)} L3 comparison items. They are saved as "
+            "published items and ready to use in the Exercise Builder."
+        )
+    if failed_ids:
+        st.warning(f"Failed: {len(failed_ids)} segment(s). See log for details.")
+
+    loop.close()
+
 
 def _run_translation_pipeline(selected_ids, selected_systems, mt_config, prompt,
                               error_tags=None, severity_dist=None):

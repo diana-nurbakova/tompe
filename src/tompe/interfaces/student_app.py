@@ -645,6 +645,102 @@ def _build_skill_radar_html(skill_data: dict, current_level: str = "navigator") 
     return html
 
 
+def _build_comparison_reveal_html(feedback_data: dict, presented: list[dict]) -> str:
+    """Render the L3 comparison reveal block — System §7.4 / UI §3.5.
+
+    Shows:
+      - Per-system reveal (real mt_system name, human flag, quality_score).
+      - The student's ranking vs. the expert ranking and Kendall's τ.
+      - Human-vs-MT discrimination verdict.
+
+    `presented` is the per-slot snapshot built by `_build_cmp_presented`; we
+    use it to map server-side mt_system ids back to the System A/B/C labels
+    the student saw.
+    """
+    import html as _html
+    cmp = feedback_data.get("comparison") or {}
+    if not cmp:
+        return ""
+
+    # Build a mt_system -> slot_label lookup from the presented snapshot
+    label_by_system: dict[str, str] = {p["mt_system"]: p["slot_label"] for p in presented}
+
+    def _label(sys_id: str) -> str:
+        return f"System {label_by_system.get(sys_id, sys_id)}"
+
+    # Per-system reveal panel
+    reveal_rows = []
+    for sysinfo in cmp.get("system_reveal", []):
+        sysid = sysinfo.get("mt_system", "?")
+        label = _label(sysid)
+        is_human = sysinfo.get("is_human_reference", False)
+        q = sysinfo.get("quality_score")
+        badge = (
+            ' <span style="background:#fef3c7;color:#92400e;padding:2px 6px;'
+            'border-radius:4px;font-size:12px;font-weight:600;">HUMAN</span>'
+            if is_human else ""
+        )
+        q_str = f" (quality={q:.2f})" if isinstance(q, (int, float)) else ""
+        reveal_rows.append(
+            f'<li><strong>{label}</strong> = <code>{_html.escape(sysid)}</code>'
+            f'{badge}{q_str}</li>'
+        )
+    reveal_html = (
+        '<div style="background:#eff6ff;border:1px solid #bae6fd;border-radius:8px;'
+        'padding:14px;margin-bottom:12px;">'
+        '<div style="font-weight:700;margin-bottom:6px;">Reveal</div>'
+        '<ul style="margin:0 0 0 18px;font-size:14px;color:#1e3a8a;">'
+        + "".join(reveal_rows)
+        + '</ul></div>'
+    )
+
+    # Ranking block
+    tau = cmp.get("kendall_tau")
+    student_ranking = cmp.get("student_ranking", [])
+    expert_ranking = cmp.get("expert_ranking", [])
+    if expert_ranking or student_ranking:
+        s_str = " > ".join(_label(r["mt_system"]) for r in sorted(student_ranking, key=lambda r: r["rank"])) or "—"
+        e_str = " > ".join(_label(s) for s in expert_ranking) or "—"
+        tau_str = f"{tau:.2f}" if isinstance(tau, (int, float)) else "—"
+        tau_color = "#16a34a" if isinstance(tau, (int, float)) and tau > 0 else "#dc2626"
+        ranking_html = (
+            '<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;'
+            'padding:14px;margin-bottom:12px;">'
+            '<div style="font-weight:700;margin-bottom:6px;">Ranking</div>'
+            f'<div style="font-size:14px;line-height:1.7;">'
+            f'<div><strong>Your ranking:</strong> {s_str}</div>'
+            f'<div><strong>Expert ranking:</strong> {e_str}</div>'
+            f'<div>Kendall&apos;s tau = <strong style="color:{tau_color};">{tau_str}</strong>'
+            ' (1.00 = perfect, -1.00 = reversed)</div>'
+            '</div></div>'
+        )
+    else:
+        ranking_html = ""
+
+    # Human-vs-MT block
+    pick = cmp.get("human_pick")
+    pick_ok = cmp.get("human_pick_correct")
+    if pick is not None:
+        if pick_ok is True:
+            verdict = '<span style="color:#16a34a;font-weight:600;">Correct ✓</span>'
+        elif pick_ok is False:
+            verdict = '<span style="color:#dc2626;font-weight:600;">Incorrect ✗</span>'
+        else:
+            verdict = '<span style="color:#6b7280;">—</span>'
+        pick_label = _label(pick) if pick != "none" else "None / Can't tell"
+        human_html = (
+            '<div style="background:#fdf4ff;border:1px solid #e9d5ff;border-radius:8px;'
+            'padding:14px;margin-bottom:12px;">'
+            '<div style="font-weight:700;margin-bottom:6px;">Which was the human?</div>'
+            f'<div style="font-size:14px;">You picked <strong>{pick_label}</strong> — {verdict}</div>'
+            '</div>'
+        )
+    else:
+        human_html = ""
+
+    return reveal_html + ranking_html + human_html
+
+
 def _build_badge_notification_html(badge_result: dict) -> str:
     """Build HTML for badge notification toasts after feedback."""
     newly_earned = badge_result.get("newly_earned_badges", [])
@@ -968,6 +1064,75 @@ def build_student_app() -> gr.Blocks:
                                 with gr.Row():
                                     l0_submit_btn = gr.Button(
                                         "Submit Verifications & See Feedback",
+                                        variant="primary",
+                                    )
+
+                            # ── L3 Comparison view (multi-MT, ranking, human-vs-MT) ─
+                            MAX_COMPARISON_SYSTEMS = 4
+                            # Server-side snapshot: list of {mt_system, mt_text,
+                            # is_human_reference, display_label}. Order matches
+                            # the visible slot indices below.
+                            cmp_presented_state = gr.State([])
+
+                            with gr.Column(visible=False) as cmp_annotate_view:
+                                gr.Markdown(
+                                    "### Compare and rank the translations\n"
+                                    "Read each version of the translation below, then:\n"
+                                    "1. **Rank** them from best (1) to worst.\n"
+                                    "2. **Decide** whether each is post-editable, post-editable with effort, or needs full re-translation.\n"
+                                    "3. **Identify** which (if any) was produced by a human translator."
+                                )
+                                cmp_groups = []
+                                cmp_labels = []
+                                cmp_texts = []
+                                cmp_ranks = []
+                                cmp_pe_verdicts = []
+                                cmp_rationales = []
+                                rank_choices = [str(i) for i in range(1, MAX_COMPARISON_SYSTEMS + 1)]
+                                for i in range(MAX_COMPARISON_SYSTEMS):
+                                    with gr.Group(visible=False) as grp:
+                                        lbl = gr.HTML("")
+                                        tx = gr.HTML("")
+                                        with gr.Row():
+                                            rk = gr.Radio(
+                                                choices=rank_choices,
+                                                label="Rank (1 = best)",
+                                                value=None,
+                                            )
+                                            pew = gr.Radio(
+                                                choices=[
+                                                    "pe_light", "pe_full", "retranslate",
+                                                ],
+                                                label="Triage",
+                                                value=None,
+                                            )
+                                        rt = gr.Textbox(
+                                            label="Rationale",
+                                            lines=2,
+                                            placeholder="Why this rank / triage?",
+                                        )
+                                    cmp_groups.append(grp)
+                                    cmp_labels.append(lbl)
+                                    cmp_texts.append(tx)
+                                    cmp_ranks.append(rk)
+                                    cmp_pe_verdicts.append(pew)
+                                    cmp_rationales.append(rt)
+
+                                gr.Markdown("---")
+                                cmp_human_pick = gr.Radio(
+                                    choices=["A", "B", "C", "D", "None / Can't tell"],
+                                    label="Which translation was produced by a human?",
+                                    value=None,
+                                )
+                                cmp_human_rationale = gr.Textbox(
+                                    label="Why did you pick this?",
+                                    lines=2,
+                                    placeholder="Optional — what gave it away?",
+                                )
+                                cmp_status = gr.Markdown("")
+                                with gr.Row():
+                                    cmp_submit_btn = gr.Button(
+                                        "Submit Comparison & See Feedback",
                                         variant="primary",
                                     )
 
@@ -1337,10 +1502,79 @@ def build_student_app() -> gr.Blocks:
                     ])
             return out
 
+        # ── Comparison-mode (L3) helpers ─────────────────────────────────
+        # Display labels A, B, C, D — students never see real mt_system ids
+        # until the feedback reveal.
+        _CMP_LABELS = ["A", "B", "C", "D"]
+
+        def _build_cmp_presented(item: dict) -> list[dict]:
+            """Snapshot of comparison_outputs masked with deterministic A/B/C/D labels.
+
+            Shuffle deterministically by item_id so the human reference doesn't
+            always sit in the same slot, but the order is stable per item across
+            student sessions (useful for replays / re-renders).
+            """
+            import random as _rand
+            outputs = item.get("comparison_outputs", []) or []
+            indices = list(range(len(outputs)))
+            _rand.Random(item.get("item_id", "default") + "::cmp").shuffle(indices)
+            presented: list[dict] = []
+            for slot, idx in enumerate(indices[:MAX_COMPARISON_SYSTEMS]):
+                o = outputs[idx]
+                presented.append({
+                    "slot_label": _CMP_LABELS[slot],
+                    "mt_system": o.get("mt_system", f"unk_{idx}"),
+                    "mt_text": o.get("mt_text", ""),
+                    "is_human_reference": bool(o.get("is_human_reference", False)),
+                })
+            return presented
+
+        def _cmp_slot_updates(presented: list[dict], *, is_cmp: bool) -> list:
+            """Per-slot updates for the MAX_COMPARISON_SYSTEMS cmp card slots.
+
+            Each slot has 6 outputs: group visibility, label HTML, text HTML,
+            rank radio (reset to None), PE-worthiness radio (reset), rationale
+            textbox (reset).
+            """
+            import html as _html
+            out: list = []
+            for i in range(MAX_COMPARISON_SYSTEMS):
+                if is_cmp and i < len(presented):
+                    p = presented[i]
+                    label_html = (
+                        f'<div style="font-weight:700;font-size:15px;color:#1d4ed8;'
+                        f'padding:6px 0;">System {p["slot_label"]}</div>'
+                    )
+                    text_html = (
+                        f'<div style="font-family:Georgia,serif;font-size:15px;'
+                        f'line-height:1.6;padding:10px;background:#f9fafb;'
+                        f'border-left:3px solid #93c5fd;border-radius:6px;">'
+                        + _html.escape(p["mt_text"])
+                        + '</div>'
+                    )
+                    out.extend([
+                        gr.update(visible=True),
+                        gr.update(value=label_html),
+                        gr.update(value=text_html),
+                        gr.update(value=None),
+                        gr.update(value=None),
+                        gr.update(value=""),
+                    ])
+                else:
+                    out.extend([
+                        gr.update(visible=False),
+                        gr.update(value=""),
+                        gr.update(value=""),
+                        gr.update(value=None),
+                        gr.update(value=None),
+                        gr.update(value=""),
+                    ])
+            return out
+
         def handle_start_exercise(selected_json, student_info):
             """Start or continue an exercise."""
             if not selected_json:
-                return [gr.update()] * (18 + 5 + MAX_L0_ANNOTATIONS * 4)
+                return [gr.update()] * (18 + 5 + MAX_L0_ANNOTATIONS * 4 + 5 + MAX_COMPARISON_SYSTEMS * 6)
 
             data = json.loads(selected_json)
             assignment = data["assignment"]
@@ -1349,7 +1583,7 @@ def build_student_app() -> gr.Blocks:
             item_ids = exercise.get("item_ids", [])
 
             if not item_ids:
-                return [gr.update()] * (18 + 5 + MAX_L0_ANNOTATIONS * 4)
+                return [gr.update()] * (18 + 5 + MAX_L0_ANNOTATIONS * 4 + 5 + MAX_COMPARISON_SYSTEMS * 6)
 
             # Load the current item
             try:
@@ -1358,7 +1592,7 @@ def build_student_app() -> gr.Blocks:
                 item = None
 
             if not item:
-                return [gr.update()] * (18 + 5 + MAX_L0_ANNOTATIONS * 4)
+                return [gr.update()] * (18 + 5 + MAX_L0_ANNOTATIONS * 4 + 5 + MAX_COMPARISON_SYSTEMS * 6)
 
             # Update assignment status
             if assignment["status"] == "not_started":
@@ -1448,8 +1682,26 @@ def build_student_app() -> gr.Blocks:
 
             show_pe = mode == "postediting"
             is_l0 = level == "navigator" and not show_pe
+            # Comparison mode = L3 item whose pipeline produced comparison_outputs
+            is_cmp = (
+                level == "expert"
+                and not show_pe
+                and bool(item.get("comparison_outputs"))
+            )
+            # std view: everything that isn't L0 or comparison
+            is_std = not (is_l0 or is_cmp)
+
+            if is_cmp:
+                # Replace the default task text with the comparison instructions.
+                task_text = (
+                    "Read each translation below, rank them from best to worst, "
+                    "decide each one's post-editing triage, and identify which "
+                    "(if any) was produced by a human translator."
+                )
 
             l0_slot_updates = _l0_slot_updates(l0_presented, presented_text, is_l0=is_l0)
+            cmp_presented = _build_cmp_presented(item) if is_cmp else []
+            cmp_slot_updates = _cmp_slot_updates(cmp_presented, is_cmp=is_cmp)
 
             base = (
                 gr.update(selected=1),  # Switch to Exercise tab
@@ -1474,12 +1726,19 @@ def build_student_app() -> gr.Blocks:
                 gr.update(value=_build_errors_summary([])),  # errors_summary_html
                 # L0 view wiring
                 gr.update(visible=is_l0),               # l0_annotate_view
-                gr.update(visible=not is_l0),           # std_annotate_view
+                gr.update(visible=is_std),              # std_annotate_view
                 l0_presented,                            # l0_presented_state
                 [],                                      # l0_verifications_state reset
                 gr.update(value=""),                     # l0_status
             )
-            return base + tuple(l0_slot_updates)
+            cmp_block = (
+                gr.update(visible=is_cmp),              # cmp_annotate_view
+                cmp_presented,                           # cmp_presented_state
+                gr.update(value=""),                     # cmp_status
+                gr.update(value=None),                   # cmp_human_pick reset
+                gr.update(value=""),                     # cmp_human_rationale reset
+            )
+            return base + tuple(l0_slot_updates) + cmp_block + tuple(cmp_slot_updates)
 
         def handle_span_selection(span_data, annotations, current_item):
             """Handle text selection from the span selector JS."""
@@ -1968,15 +2227,146 @@ def build_student_app() -> gr.Blocks:
                 "feedback",                            # current_phase
             )
 
+        def handle_cmp_submit(*args):
+            """Submit L3 comparison-mode response (Skill B + human-vs-MT).
+
+            Positional args:
+              [0..N-1]      : rank radios per slot
+              [N..2N-1]     : pe-worthiness radios per slot
+              [2N..3N-1]    : rationale textboxes per slot
+              [3N]          : human_pick radio
+              [3N+1]        : human_pick_rationale textbox
+              [3N+2]        : cmp_presented_state
+              [3N+3]        : item_start_time
+              [3N+4]        : current_item
+              [3N+5]        : current_exercise
+              [3N+6]        : student_info
+            """
+            N = MAX_COMPARISON_SYSTEMS
+            ranks = list(args[:N])
+            pe_verdicts = list(args[N:2 * N])
+            rationales = list(args[2 * N:3 * N])
+            human_pick_val = args[3 * N]
+            human_rationale = args[3 * N + 1] or ""
+            cmp_presented = args[3 * N + 2] or []
+            item_start_time_val = args[3 * N + 3]
+            current_item = args[3 * N + 4]
+            current_exercise = args[3 * N + 5]
+            _student_info = args[3 * N + 6] if len(args) > 3 * N + 6 else {}
+
+            if not current_item or not cmp_presented:
+                msg = '<div style="color:#dc2626;">No comparison data to submit.</div>'
+                return (
+                    gr.update(value=msg), gr.Tabs(), None, gr.update(), "annotate",
+                )
+
+            # Build system_rankings (unmasks the slot labels back to real mt_system ids)
+            n_systems = len(cmp_presented)
+            system_rankings: list[dict] = []
+            missing_ranks: list[str] = []
+            seen_ranks: set[int] = set()
+            for i, p in enumerate(cmp_presented[:N]):
+                r_str = ranks[i] if i < len(ranks) else None
+                if r_str is None or r_str == "":
+                    missing_ranks.append(p["slot_label"])
+                    continue
+                try:
+                    r_int = int(r_str)
+                except (TypeError, ValueError):
+                    missing_ranks.append(p["slot_label"])
+                    continue
+                if r_int in seen_ranks:
+                    msg = (
+                        '<div style="color:#dc2626;">Each rank must be used exactly once. '
+                        f'Rank {r_int} appears more than once.</div>'
+                    )
+                    return (gr.update(value=msg), gr.Tabs(), None, gr.update(), "annotate")
+                seen_ranks.add(r_int)
+                system_rankings.append({
+                    "mt_system": p["mt_system"],
+                    "rank": r_int,
+                    "rationale": (rationales[i] or "").strip() if i < len(rationales) else "",
+                })
+            if missing_ranks:
+                msg = (
+                    '<div style="color:#dc2626;">Please rank every translation. '
+                    f'Missing: System {", System ".join(missing_ranks)}.</div>'
+                )
+                return (gr.update(value=msg), gr.Tabs(), None, gr.update(), "annotate")
+
+            # Build pe_worthiness — keyed by mt_system. Skip slots that didn't pick.
+            pe_worthiness: dict[str, dict] = {}
+            for i, p in enumerate(cmp_presented[:N]):
+                verdict = pe_verdicts[i] if i < len(pe_verdicts) else None
+                if not verdict:
+                    continue
+                # Heuristic effort label: pe_light=low, pe_full=medium, retranslate=high
+                effort_map = {"pe_light": "low", "pe_full": "medium", "retranslate": "high"}
+                pe_worthiness[p["mt_system"]] = {
+                    "verdict": verdict,
+                    "rationale": (rationales[i] or "").strip() if i < len(rationales) else "",
+                    "estimated_effort": effort_map.get(verdict, "medium"),
+                }
+
+            # Translate human_pick: "A"/"B"/"C"/"D"/"None / Can't tell" → mt_system or "none"
+            human_pick_id: str | None = None
+            if human_pick_val:
+                if human_pick_val.startswith("None"):
+                    human_pick_id = "none"
+                else:
+                    for p in cmp_presented:
+                        if p["slot_label"] == human_pick_val:
+                            human_pick_id = p["mt_system"]
+                            break
+
+            time_spent = round(time.time() - item_start_time_val, 1) if item_start_time_val else 0.0
+            try:
+                resp = api.submit_response(
+                    item_id=current_item.get("item_id", ""),
+                    mode="comparison",
+                    comparison_type=(current_item.get("comparison_type") or "comparative_ranking"),
+                    system_rankings=system_rankings,
+                    pe_worthiness=pe_worthiness,
+                    human_pick=human_pick_id,
+                    human_pick_rationale=human_rationale.strip() or None,
+                    time_spent_seconds=time_spent,
+                )
+                response_id = resp.get("response_id")
+            except Exception as e:
+                msg = f'<div style="color:#dc2626;">Submission failed: {e}</div>'
+                return (gr.update(value=msg), gr.Tabs(), None, gr.update(), "annotate")
+
+            feedback_content = ""
+            if response_id:
+                try:
+                    fb = api.get_feedback(response_id)
+                    feedback_content = _build_feedback_html(fb)
+                    feedback_content += _build_comparison_reveal_html(fb, cmp_presented)
+                    badge_result = fb.get("badges")
+                    if badge_result:
+                        feedback_content += _build_badge_notification_html(badge_result)
+                except Exception as e:
+                    feedback_content = f'<div style="color:#6b7280;">Feedback unavailable: {e}</div>'
+
+            return (
+                gr.update(value=""),                   # cmp_status
+                gr.Tabs(selected=12),                  # phase_tabs → Feedback
+                response_id,                            # current_response_id
+                gr.update(value=feedback_content),     # feedback_html
+                "feedback",                            # current_phase
+            )
+
         def handle_next_item(
             current_item_idx, current_exercise, current_assignment, student_info,
         ):
             """Advance to the next item in the exercise."""
             n_l0_extras = 5 + MAX_L0_ANNOTATIONS * 4  # see _next_item_outputs
+            n_cmp_extras = 5 + MAX_COMPARISON_SYSTEMS * 6
             total_outputs = (
                 13                                # base outputs (idx through span_output)
                 + 1 + MAX_PER_ERROR + MAX_PER_ERROR * 3 + 1  # justify_text + short + struct + confidence
                 + n_l0_extras
+                + n_cmp_extras
             )
 
             if not current_exercise:
@@ -1999,6 +2389,14 @@ def build_student_app() -> gr.Blocks:
                 [],                          # l0_verifications_state
                 gr.update(value=""),         # l0_status
                 *l0_reset_updates,
+            ]
+            cmp_block_reset = [
+                gr.update(visible=False),  # cmp_annotate_view
+                [],                          # cmp_presented_state
+                gr.update(value=""),         # cmp_status
+                gr.update(value=None),       # cmp_human_pick
+                gr.update(value=""),         # cmp_human_rationale
+                *_cmp_slot_updates([], is_cmp=False),
             ]
 
             if next_idx >= len(item_ids):
@@ -2028,7 +2426,7 @@ def build_student_app() -> gr.Blocks:
                 ]
                 resets = [gr.update(value="")] * (1 + MAX_PER_ERROR + MAX_PER_ERROR * 3)  # justify_text + short + struct
                 resets.append(gr.update(value=3))  # confidence
-                return tuple(base + resets + l0_block_reset)
+                return tuple(base + resets + l0_block_reset + cmp_block_reset)
 
             # Load next item
             try:
@@ -2050,7 +2448,13 @@ def build_student_app() -> gr.Blocks:
             source = item.get("source_text", "")
             n = len(item_ids)
 
-            # L0 panel updates for the next item (if applicable)
+            # Decide which annotation view to show for the next item.
+            is_cmp_next = (
+                level == "expert"
+                and mode != "postediting"
+                and bool(item.get("comparison_outputs"))
+            )
+
             if is_l0:
                 l0_presented_next = _build_l0_presented(item, current_exercise)
                 # Show highlights for ALL presented annotations (real + false)
@@ -2069,9 +2473,34 @@ def build_student_app() -> gr.Blocks:
                     gr.update(value=""),                                       # l0_status
                     *_l0_slot_updates(l0_presented_next, text, is_l0=True),
                 ]
+                cmp_block = cmp_block_reset
+            elif is_cmp_next:
+                cmp_presented_next = _build_cmp_presented(item)
+                # For comparison items presented_text is empty; clear the
+                # standard translation panel so nothing leaks through.
+                translation_html_val = (
+                    '<div style="color:#6b7280;font-style:italic;padding:8px;">'
+                    'See the system cards below.</div>'
+                )
+                l0_block = [
+                    gr.update(visible=False),  # l0_annotate_view
+                    gr.update(visible=False),  # std_annotate_view
+                    [], [],
+                    gr.update(value=""),
+                    *_l0_slot_updates([], "", is_l0=False),
+                ]
+                cmp_block = [
+                    gr.update(visible=True),
+                    cmp_presented_next,
+                    gr.update(value=""),
+                    gr.update(value=None),
+                    gr.update(value=""),
+                    *_cmp_slot_updates(cmp_presented_next, is_cmp=True),
+                ]
             else:
                 translation_html_val = render_text_with_highlights(text, [])
                 l0_block = l0_block_reset
+                cmp_block = cmp_block_reset
 
             return (
                 next_idx,
@@ -2100,6 +2529,7 @@ def build_student_app() -> gr.Blocks:
                 *([gr.update(value="")] * (1 + MAX_PER_ERROR + MAX_PER_ERROR * 3)),  # justify_text + short + struct
                 gr.update(value=3),  # confidence_slider
                 *l0_block,
+                *cmp_block,
             )
 
         def handle_refresh_progress(student_info):
@@ -2199,6 +2629,14 @@ def build_student_app() -> gr.Blocks:
                 l0_groups[_i], l0_labels[_i], l0_choices[_i], l0_reasons[_i],
             ])
 
+        # Comparison-view slot outputs (6 controls per slot, see _cmp_slot_updates)
+        cmp_slot_outputs: list = []
+        for _i in range(MAX_COMPARISON_SYSTEMS):
+            cmp_slot_outputs.extend([
+                cmp_groups[_i], cmp_labels[_i], cmp_texts[_i],
+                cmp_ranks[_i], cmp_pe_verdicts[_i], cmp_rationales[_i],
+            ])
+
         start_btn.click(
             handle_start_exercise,
             inputs=[exercise_selector, student_info],
@@ -2212,6 +2650,10 @@ def build_student_app() -> gr.Blocks:
                 l0_annotate_view, std_annotate_view,
                 l0_presented_state, l0_verifications_state, l0_status,
                 *l0_slot_outputs,
+                cmp_annotate_view,
+                cmp_presented_state, cmp_status,
+                cmp_human_pick, cmp_human_rationale,
+                *cmp_slot_outputs,
             ],
         )
 
@@ -2335,6 +2777,26 @@ def build_student_app() -> gr.Blocks:
             ],
         )
 
+        # L3 Comparison submission (Skill B + human-vs-MT)
+        _cmp_submit_inputs = (
+            list(cmp_ranks) + list(cmp_pe_verdicts) + list(cmp_rationales) + [
+                cmp_human_pick, cmp_human_rationale,
+                cmp_presented_state, item_start_time,
+                current_item, current_exercise, student_info,
+            ]
+        )
+        cmp_submit_btn.click(
+            handle_cmp_submit,
+            inputs=_cmp_submit_inputs,
+            outputs=[
+                cmp_status,
+                phase_tabs,
+                current_response_id,
+                feedback_html,
+                current_phase,
+            ],
+        )
+
         _next_item_outputs = [
             current_item_idx, translation_html,
             phase_tabs, current_item,
@@ -2354,6 +2816,12 @@ def build_student_app() -> gr.Blocks:
             l0_annotate_view, std_annotate_view,
             l0_presented_state, l0_verifications_state, l0_status,
             *l0_slot_outputs,
+        ])
+        # Comparison next-item updates (must match handle_next_item's cmp_block layout)
+        _next_item_outputs.extend([
+            cmp_annotate_view, cmp_presented_state, cmp_status,
+            cmp_human_pick, cmp_human_rationale,
+            *cmp_slot_outputs,
         ])
 
         next_item_btn.click(

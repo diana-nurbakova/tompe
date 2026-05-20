@@ -1,8 +1,11 @@
 """Response evaluation and MQM scoring logic.
 
 Implements IoU-based span matching for evaluation mode, HTER for post-editing mode,
-and verification scoring for navigator mode.
+verification scoring for navigator mode, and ranking + human-vs-MT scoring for
+comparison mode.
 """
+
+from typing import Optional
 
 from tompe.schemas.enums import MQMCategory, PrimaryTag, SkillID, TOMLevel
 from tompe.schemas.item import AssessmentItem
@@ -291,6 +294,122 @@ def score_navigator_response(
         correct_disputes=correct_disputes,
         incorrect_confirms=incorrect_confirms,
         incorrect_disputes=incorrect_disputes,
+    )
+
+
+# ── Comparison-mode scoring (System §7.4) ───────────────────────────────────
+
+
+def _kendall_tau(student: list[str], expert: list[str]) -> Optional[float]:
+    """Stdlib-only Kendall's τ for two same-length rankings of the same set.
+
+    Returns a value in [-1, 1] (1 = identical ranking, -1 = reversed).
+    Returns None if the two lists don't cover the same set, or if the lists
+    have fewer than 2 distinct items (τ is undefined).
+    """
+    if len(student) != len(expert) or set(student) != set(expert) or len(student) < 2:
+        return None
+    # Map each system id to its rank position in each list
+    s_rank = {sys: i for i, sys in enumerate(student)}
+    e_rank = {sys: i for i, sys in enumerate(expert)}
+    items = list(s_rank)
+    n = len(items)
+    concordant = 0
+    discordant = 0
+    for i in range(n):
+        for j in range(i + 1, n):
+            a, b = items[i], items[j]
+            sd = s_rank[a] - s_rank[b]
+            ed = e_rank[a] - e_rank[b]
+            if sd * ed > 0:
+                concordant += 1
+            elif sd * ed < 0:
+                discordant += 1
+            # ties (==0) ignored — impossible here because ranks are unique
+    denom = n * (n - 1) / 2
+    return (concordant - discordant) / denom if denom > 0 else None
+
+
+def score_comparison_response(response, item) -> ScoringResult:
+    """Score an L3 comparison-mode response.
+
+    Skill B (COMPARATIVE_RANKING):
+      - Kendall's τ between student ranking and the expert ranking derived
+        from MTOutput.quality_score (descending).
+      - Returns τ=None if the student didn't rank every system.
+
+    Human-vs-MT discrimination:
+      - human_pick_correct = True iff student.human_pick == the mt_system id
+        of the MTOutput with is_human_reference=True, OR student picked "none"
+        and there is no human reference in comparison_outputs.
+
+    Skill A (INDEPENDENT_EVAL) and PE-worthiness scoring are deferred:
+      - Skill A needs per-system error manifests (Tier C follow-up).
+      - PE-worthiness needs expert triage ground truth.
+    """
+    outputs = item.comparison_outputs or []
+    if not outputs:
+        # No comparison outputs — degenerate. Return a zero result.
+        return ScoringResult(
+            response_id=response.response_id,
+            item_id=item.item_id,
+            true_positives=0, false_positives=0, false_negatives=0,
+            precision=0.0, recall=0.0, f1=0.0,
+            detection_by_mqm={}, detection_by_tom={},
+        )
+
+    # ── Skill B: Kendall's τ ────────────────────────────────────────────────
+    expert_ranking_ids: list[str] = []
+    tau: Optional[float] = None
+    if response.system_rankings:
+        # Student ranking: sort by rank ascending (1 = best), then read mt_system
+        student_sorted = sorted(
+            response.system_rankings, key=lambda r: r.rank,
+        )
+        student_ranking_ids = [r.mt_system for r in student_sorted]
+
+        # Expert ranking from quality_score descending; stable on input order
+        scored = [(i, o) for i, o in enumerate(outputs) if o.quality_score is not None]
+        unscored = [(i, o) for i, o in enumerate(outputs) if o.quality_score is None]
+        scored.sort(key=lambda pair: pair[1].quality_score, reverse=True)
+        expert_ranking_ids = [o.mt_system for _, o in scored] + [
+            o.mt_system for _, o in unscored
+        ]
+
+        tau = _kendall_tau(student_ranking_ids, expert_ranking_ids)
+
+    # ── Human-vs-MT discrimination ──────────────────────────────────────────
+    human_pick_correct: Optional[bool] = None
+    if response.human_pick is not None:
+        human_outputs = [o for o in outputs if o.is_human_reference]
+        if not human_outputs:
+            human_pick_correct = response.human_pick.lower() == "none"
+        else:
+            # Could conceivably have >1 human reference; reject ambiguity.
+            human_pick_correct = response.human_pick == human_outputs[0].mt_system
+
+    # ── Synthesise an overall F1-style score so badges + analytics work ─────
+    # tau is in [-1, 1]; map to [0, 1] for the precision/recall slots:
+    overall = 0.5 * ((tau + 1) / 2 if tau is not None else 0.0)
+    if human_pick_correct is True:
+        overall += 0.5
+    elif human_pick_correct is False:
+        overall += 0.0
+    elif human_pick_correct is None and response.human_pick is None:
+        # No human-vs-MT sub-task attempted — Skill B alone scores the item
+        overall = (tau + 1) / 2 if tau is not None else 0.0
+
+    return ScoringResult(
+        response_id=response.response_id,
+        item_id=item.item_id,
+        # Comparison mode has no per-error TP/FP/FN — leave at 0 and use the
+        # comparison-specific fields below.
+        true_positives=0, false_positives=0, false_negatives=0,
+        precision=overall, recall=overall, f1=overall,
+        detection_by_mqm={}, detection_by_tom={},
+        ranking_kendall_tau=tau,
+        expert_ranking=expert_ranking_ids,
+        human_pick_correct=human_pick_correct,
     )
 
 

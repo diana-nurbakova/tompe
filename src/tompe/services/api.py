@@ -12,12 +12,15 @@ from fastapi import Depends, FastAPI, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from tompe.schemas.enums import AnnotationLevel, MQMCategory, Severity
+from tompe.schemas.enums import AnnotationLevel, ComparisonType, MQMCategory, Severity
 from tompe.schemas.item import AssessmentItem
 from tompe.schemas.response import (
     IdentifiedError,
     Justification,
+    PEWorthinessVerdict,
+    PerSystemEvaluation,
     StudentResponse,
+    SystemRanking,
     VerificationResponse,
 )
 from tompe.schemas.scoring import ScoringResult
@@ -55,6 +58,7 @@ from tompe.services.badges import (
 from tompe.services.feedback import prepare_feedback
 from tompe.services.scoring import (
     aggregate_skill_profile,
+    score_comparison_response,
     score_evaluation_response,
     score_navigator_response,
     score_postediting_response,
@@ -140,6 +144,13 @@ class SubmitAnnotationsRequest(BaseModel):
     identified_errors: list[IdentifiedError] = []
     edited_text: str | None = None
     verification_responses: list[VerificationResponse] = []  # navigator mode
+    # comparison mode (L3)
+    comparison_type: ComparisonType | None = None
+    per_system_evaluations: list[PerSystemEvaluation] = []  # Skill A
+    system_rankings: list[SystemRanking] = []  # Skill B
+    pe_worthiness: dict[str, PEWorthinessVerdict] = {}
+    human_pick: str | None = None
+    human_pick_rationale: str | None = None
     time_spent_seconds: float = 0.0
 
 
@@ -612,6 +623,7 @@ async def api_submit_response(
     student: StudentAccount = Depends(verify_token),
 ):
     """Submit a student's annotations for an item."""
+    is_comparison = req.mode == "comparison"
     response = StudentResponse(
         response_id=str(uuid4()),
         session_id=str(uuid4()),  # Simplified: one session per response
@@ -625,6 +637,13 @@ async def api_submit_response(
         verification_responses=(
             req.verification_responses if req.mode == "navigator" else None
         ),
+        # Comparison mode (L3) fields
+        comparison_type=req.comparison_type if is_comparison else None,
+        per_system_evaluations=req.per_system_evaluations if is_comparison else None,
+        system_rankings=req.system_rankings if is_comparison else None,
+        pe_worthiness=req.pe_worthiness if is_comparison else None,
+        human_pick=req.human_pick if is_comparison else None,
+        human_pick_rationale=req.human_pick_rationale if is_comparison else None,
     )
     responses_store.save(response)
     return {"response_id": response.response_id}
@@ -674,6 +693,8 @@ async def api_get_feedback(response_id: str):
         scoring = score_postediting_response(response, item)
     elif response.mode == "navigator":
         scoring = score_navigator_response(response, item)
+    elif response.mode == "comparison":
+        scoring = score_comparison_response(response, item)
     else:
         scoring = score_evaluation_response(response, item)
 

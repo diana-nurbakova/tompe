@@ -28,12 +28,20 @@ class CorpusSegment(BaseModel):
 class MTOutput(BaseModel):
     mt_id: str
     segment_id: str  # FK to CorpusSegment
-    mt_system: Literal["google", "deepl", "nllb", "gpt4", "claude", "deepseek"]
+    mt_system: str  # "google", "deepl", "nllb", "gpt4", "claude", "deepseek", or "human"
     mt_text: str
-    system_type: Literal["dedicated_mt", "general_llm"]
+    system_type: Literal["dedicated_mt", "general_llm", "human"]
     generation_timestamp: datetime
     bleu_score: Optional[float] = None
     comet_score: Optional[float] = None
+    # Optional aggregate quality score in [0, 1] used by comparison-mode scoring
+    # to derive the expert ranking. Populated by the teacher pipeline (e.g. from
+    # COMET, GEMBA-MQM, or expert ratings). Leave None if unknown.
+    quality_score: Optional[float] = None
+    # True when this output is the human reference translation (used in
+    # human-vs-MT discrimination at L3). Always exactly one True per comparison
+    # item; False on every machine-produced output.
+    is_human_reference: bool = False
 
 
 class IATETerm(BaseModel):

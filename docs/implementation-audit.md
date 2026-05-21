@@ -824,6 +824,44 @@ Detection-rate-based mastery is a deliberately simple stand-in for BKT (Fluency 
 
 ---
 
+## Implementation sprint #10 — First-session tutorial overlay (B9)
+
+**Date range:** 2026-05-21
+**Theme:** UI §3.3.5 — show a 60-second guided walkthrough once per student account.
+
+### What landed
+
+| ID | Item | Status | Files touched |
+|---|---|---|---|
+| B9 / schema | Added `tutorial_completed: bool = False` to `StudentAccount`. Backward-compatible (legacy fixtures default to False). | Done (unit-tested) | [src/tompe/schemas/session.py](../src/tompe/schemas/session.py) |
+| B9 / API | `LoginResponse` gains `tutorial_pending: bool` (mirrors `not account.tutorial_completed`). New `POST /api/tutorial/complete` endpoint flips the flag server-side; idempotent (Skip + Done both call it). | Done (unit-tested) | [src/tompe/services/api.py](../src/tompe/services/api.py), [src/tompe/interfaces/api_client.py](../src/tompe/interfaces/api_client.py) |
+| B9 / student UI | New `tutorial_view` Column between consent and main views, with three steps: (1) "drag to select a span" with a yellow-highlight example, (2) "pick the category" showing the colored pill buttons, (3) "justify your reasoning" with an example justification. State variable `tutorial_step` walks 1 → 2 → 3; the "Next →" button auto-relabels to "Done" on step 3. "Skip tutorial" jumps straight to main. Both Skip and Done call `api.complete_tutorial()` so the overlay never reappears. | Done (smoke-tested) | [src/tompe/interfaces/student_app.py](../src/tompe/interfaces/student_app.py) |
+| B9 / routing | `handle_login` now routes consent → tutorial → main in order; `handle_consent_submit` reads `student_info["tutorial_pending"]` and either shows the tutorial or jumps to main accordingly. Existing returning students skip both screens. | Done | [src/tompe/interfaces/student_app.py](../src/tompe/interfaces/student_app.py) |
+
+### Verification — Sprint #10
+
+- [ ] **Schema smoke (already run).** `StudentAccount.tutorial_completed` defaults to False; legacy JSON without the key still parses; round-trip preserves explicit True. ✓
+- [ ] **`LoginResponse` shape smoke (already run).** New field validates as `bool`; legacy clients ignoring it still work. ✓
+- [ ] **Existing test suite green (already run).** 37 passed, 3 skipped, no new regressions. ✓
+- [ ] **End-to-end manual.** With a fresh student account:
+  1. Log in for the first time. Confirm: login → consent → tutorial (step 1) appears in that order.
+  2. Click "Next →" twice — confirm steps 2 and 3 render with the expected colored panels.
+  3. The button on step 3 should read "Done"; clicking it advances to the main view.
+  4. Re-login as the same student — confirm consent + tutorial are skipped and main view appears immediately.
+  5. Reset `tutorial_completed=false` in `data/students/{id}.json`, re-login, and click "Skip tutorial" on step 1 — confirm the overlay disappears and main view appears, then re-login confirms the flag is now True.
+
+### Scope decisions
+
+- **No interactive simulation inside the tutorial.** The spec mockup says "Try it now: select the underlined word above"; we render the highlighted target as a static example rather than wiring an in-tutorial span selector. Cheaper to ship and equally educational — the student exercises the real span selector immediately after.
+- **Server-side flag, not localStorage.** Per spec ("shown once per student"), the flag travels with the account so a student switching devices doesn't re-see the overlay.
+- **Skip ≡ Done.** Both mark `tutorial_completed=True`. The spec doesn't distinguish between "saw all 3 steps" and "opted out"; the goal is just "don't show again".
+
+### Still pending (Sprint #10 follow-ups)
+
+- **Tutorial reset path.** No teacher-facing way to re-trigger the tutorial (e.g. for a returning student who needs a refresher). Could be added as a "Reset tutorial" button in the teacher's student-management view if user-testing requests it.
+
+---
+
 ## Remaining work & manual/expert intervention
 
 After sprints #1–#3 the pipeline backbone is paper-ready: every Phase 3 code item (3.1, 3.2, 3.3, 3.4, 3.6) is implemented, and Tracks A/B/C plus the student core loop work end-to-end. What's left splits into three buckets — the first two need human time, the third is engineering follow-up.
@@ -857,7 +895,7 @@ No expert review needed; pure code follow-up. Ordered by paper-readiness leverag
 | B6 | **Migrate `experiments/generate_batch.py` to call `build_batch`** (3.3 follow-up) | Lower | ~half day | Architectural cleanup; do AFTER the camera-ready batch is locked. |
 | B7 | **Strategy 3 LLM context generation for L3 fallback** (3.5; conditional on A8) | Lower | ~4 hrs | Only implement if A8 shows L3 underdelivers. |
 | ~~B8~~ | ~~**PE diff visualization**~~ — **RESOLVED — Sprint #6.** `_build_pe_diff_html` + `pe_textbox.change` handler ship; inline diff + collapsible change list update live as the student types. | Lower | done | — |
-| B9 | **First-session tutorial overlay** (UI §3.3.5) | Lower | ~half day | Demo polish; not paper-blocking. |
+| ~~B9~~ | ~~**First-session tutorial overlay**~~ — **RESOLVED — Sprint #10.** Three-step overlay (select / classify / justify) routes consent → tutorial → main; `StudentAccount.tutorial_completed` persists "shown once per student"; `POST /api/tutorial/complete` flips the flag. | Lower | done | — |
 | ~~B10~~ | ~~**`api_credentials` "test connection" button**~~ — **RESOLVED — Sprint #6.** Google/DeepL run a tiny translation via `translate_segment`; OpenAI/Anthropic/Together hit `LLMClient.complete_text`. Returns success/failure inline. | Lower | done | — |
 | ~~B11~~ | ~~**Corpus upload (TMX/TSV) ingestion in the teacher UI**~~ — **RESOLVED — Sprint #6.** New `tompe.pipeline.corpus_ingest` module + wired teacher page writes JSONL matching the existing schema; supports append vs. replace and surfaces per-line warnings. Corpora still need manual registration in `CORPORA` for batch runs. | Lower | done | — |
 
@@ -1003,7 +1041,7 @@ Ordered by impact × leverage. Each item references the per-spec entries that su
 | §3.3.4 / L3 | Expert clean spans + "no errors" option + comparison view | Partial | [student_app.py:1227](../src/tompe/interfaces/student_app.py#L1227) | Warning text only; no clean-segment ratio applied; no comparison UI; no human-vs-MT discrimination. |
 | §3.3.4 ② | Justification Mode A (free-text) + Mode B (3-field structured) | Implemented | [student_app.py:901](../src/tompe/interfaces/student_app.py#L901), [:913](../src/tompe/interfaces/student_app.py#L913), [:930](../src/tompe/interfaces/student_app.py#L930) | Mode A (global free), per-error short, per-error structured all wired. |
 | §3.3.4 ③ | Feedback summary + Layer 1 + Layer 2a/2b cards | Implemented | [services/feedback.py:107](../src/tompe/services/feedback.py#L107), [:134](../src/tompe/services/feedback.py#L134), [interfaces/student_app.py:153](../src/tompe/interfaces/student_app.py#L153) | All three layers + student justification echoed first. |
-| §3.3.5 | First-session tutorial overlay | Missing | — | No tutorial in `student_app.py`. |
+| §3.3.5 | First-session tutorial overlay | Implemented | [src/tompe/interfaces/student_app.py](../src/tompe/interfaces/student_app.py), [src/tompe/services/api.py](../src/tompe/services/api.py) | Sprint #10 (B9): three-step overlay between consent and main views; `StudentAccount.tutorial_completed` persists across sessions; Skip and Done both call `POST /api/tutorial/complete`. |
 | §3.3.6 | Color-coded pill button classification | Implemented | [student_app.py:846](../src/tompe/interfaces/student_app.py#L846), [components/colors.py](../src/tompe/interfaces/components/colors.py) | Pill buttons with coloured dots per category, severity radio. |
 | §3.3.7 | Colorblind-safe palette + tag-color mapping | Implemented | [components/colors.py](../src/tompe/interfaces/components/colors.py) | `TAG_COLORS` used across student & teacher UIs. |
 | §3.4 | Post-editing mode with diff + change list | Implemented | [student_app.py:975](../src/tompe/interfaces/student_app.py#L975), [:983](../src/tompe/interfaces/student_app.py#L983) | Sprint #1 (A1): submission flow wired. Sprint #6 (B8): live diff + change list now populate `pe_changes_html` via `_build_pe_diff_html` + `pe_textbox.change`. |

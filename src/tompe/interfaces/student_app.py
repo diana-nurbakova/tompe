@@ -955,6 +955,36 @@ def build_student_app() -> gr.Blocks:
                     elem_classes=["phase-indicator"],
                 )
 
+        # ── Tutorial overlay (UI §3.3.5) — shown once per student ────────
+        # Three short steps: (1) select a span, (2) classify it, (3) write
+        # a justification. "Skip" + "Done" both mark tutorial_completed=True
+        # so the overlay never reappears for this account.
+        tutorial_step = gr.State(1)
+
+        with gr.Column(visible=False) as tutorial_view:
+            gr.Markdown("### Quick tutorial — about 60 seconds")
+            tutorial_progress = gr.Markdown("**Step 1 of 3**")
+            tutorial_body = gr.HTML(
+                # Step 1 body — content swaps in tutorial_next() on Next →
+                '<div style="background:#eff6ff;border:1px solid #bae6fd;'
+                'border-radius:8px;padding:18px;margin-top:8px;">'
+                '<p style="margin:0 0 8px 0;font-weight:600;">1. Mark an error by '
+                'clicking and dragging over the translation</p>'
+                '<div style="font-family:Georgia,serif;font-size:16px;line-height:1.8;'
+                'padding:12px;background:#ffffff;border-radius:6px;border:1px solid #e5e7eb;">'
+                '"The Minister of '
+                '<span style="background:#fde68a;padding:0 2px;border-radius:3px;">Health</span>'
+                ' announced new measures."'
+                '</div>'
+                '<p style="margin:10px 0 0 0;color:#1d4ed8;font-size:14px;">'
+                'Try it now: drag your cursor over a word in any translation panel '
+                'to select it. The selected text appears in the "Selected text" field below.'
+                '</p></div>'
+            )
+            with gr.Row():
+                tutorial_skip_btn = gr.Button("Skip tutorial", size="sm")
+                tutorial_next_btn = gr.Button("Next →", variant="primary")
+
         # ── Main view ────────────────────────────────────────────────────
         with gr.Column(visible=False) as main_view:
             # Header
@@ -1302,15 +1332,12 @@ def build_student_app() -> gr.Blocks:
         # ── Event handlers ───────────────────────────────────────────────
 
         def handle_login(username, password):
-            """Handle login attempt. Routes to consent form if first login."""
-            no_change = (
-                gr.update(), gr.update(), gr.update(), gr.update(),
-                None, {}, gr.update(), gr.update(), gr.update(), gr.update(),
-            )
+            """Handle login attempt. Routes to consent → tutorial → main."""
             if not username or not password:
                 return (
                     gr.update(),  # login_view
                     gr.update(),  # consent_view
+                    gr.update(),  # tutorial_view
                     gr.update(),  # main_view
                     gr.update(value="*Please enter both username and password.*", visible=True),
                     None,  # session_token
@@ -1325,7 +1352,7 @@ def build_student_app() -> gr.Blocks:
             except (APIError, Exception) as e:
                 msg = e.detail if isinstance(e, APIError) else str(e)
                 return (
-                    gr.update(), gr.update(), gr.update(),
+                    gr.update(), gr.update(), gr.update(), gr.update(),
                     gr.update(value=f"*Login failed: {msg}*", visible=True),
                     None, {}, gr.update(), gr.update(), gr.update(), gr.update(),
                 )
@@ -1336,23 +1363,24 @@ def build_student_app() -> gr.Blocks:
                 "current_level": data["current_level"],
                 "allowed_levels": data["allowed_levels"],
                 "token": data["token"],
+                "tutorial_pending": bool(data.get("tutorial_pending", False)),
             }
 
-            # Check if consent is pending
+            # Routing priority: consent → tutorial → main.
             consent_pending = data.get("consent_pending", False)
+            tutorial_pending = info["tutorial_pending"]
 
             if consent_pending:
-                # Load consent text from API
                 consent_md = ""
                 try:
                     consent_data = api.get_consent_text()
                     consent_md = consent_data.get("text", "")
                 except Exception:
                     consent_md = "*Could not load consent form. Please contact your instructor.*"
-
                 return (
                     gr.update(visible=False),  # hide login
-                    gr.update(visible=True),  # show consent
+                    gr.update(visible=True),   # show consent
+                    gr.update(visible=False),  # hide tutorial
                     gr.update(visible=False),  # hide main
                     gr.update(visible=False),  # hide error
                     data["token"],
@@ -1360,19 +1388,31 @@ def build_student_app() -> gr.Blocks:
                     gr.update(),  # header_user (not visible yet)
                     gr.update(),  # exercises_html
                     gr.update(),  # exercise_selector
-                    gr.update(value=consent_md),  # consent text
+                    gr.update(value=consent_md),
                 )
 
-            # No consent needed — go straight to main
-            exercises_content, choices = _load_exercises(info)
+            if tutorial_pending:
+                # Skip consent (already done), go straight to tutorial overlay.
+                return (
+                    gr.update(visible=False), gr.update(visible=False),
+                    gr.update(visible=True),                  # show tutorial
+                    gr.update(visible=False),                 # hide main
+                    gr.update(visible=False),                 # hide error
+                    data["token"], info,
+                    gr.update(value=f"**{data['display_name']}** ({data['current_level']})"),
+                    gr.update(), gr.update(),
+                    gr.update(),
+                )
 
+            # Consent + tutorial both done — go straight to main.
+            exercises_content, choices = _load_exercises(info)
             return (
                 gr.update(visible=False),  # hide login
                 gr.update(visible=False),  # hide consent
-                gr.update(visible=True),  # show main
+                gr.update(visible=False),  # hide tutorial
+                gr.update(visible=True),   # show main
                 gr.update(visible=False),  # hide error
-                data["token"],
-                info,
+                data["token"], info,
                 gr.update(value=f"**{data['display_name']}** ({data['current_level']})"),
                 gr.update(value=exercises_content),
                 gr.update(choices=choices),
@@ -1380,22 +1420,169 @@ def build_student_app() -> gr.Blocks:
             )
 
         def handle_consent_submit(tier1, tier2, student_info):
-            """Submit consent decision and transition to main view."""
-            # Submit consent to API (whether they checked anything or not)
+            """Submit consent decision. Then route to tutorial (if pending) or main."""
             try:
                 api.submit_consent(tier1, tier2)
             except Exception:
                 pass  # Consent submission failure shouldn't block platform use
 
-            # Load exercises and proceed to main view
-            exercises_content, choices = _load_exercises(student_info)
+            tutorial_pending = bool(student_info.get("tutorial_pending", False))
+            if tutorial_pending:
+                return (
+                    gr.update(visible=False),  # hide consent
+                    gr.update(visible=True),   # show tutorial
+                    gr.update(visible=False),  # main stays hidden
+                    gr.update(value=f"**{student_info.get('display_name', '')}** ({student_info.get('current_level', '')})"),
+                    gr.update(),  # exercises_html (no change yet)
+                    gr.update(),  # exercise_selector (no change yet)
+                )
 
+            exercises_content, choices = _load_exercises(student_info)
             return (
                 gr.update(visible=False),  # hide consent
-                gr.update(visible=True),  # show main
+                gr.update(visible=False),  # hide tutorial
+                gr.update(visible=True),   # show main
                 gr.update(value=f"**{student_info.get('display_name', '')}** ({student_info.get('current_level', '')})"),
                 gr.update(value=exercises_content),
                 gr.update(choices=choices),
+            )
+
+        # ── Tutorial overlay handlers ────────────────────────────────────
+
+        _TUTORIAL_STEPS: list[tuple[str, str]] = [
+            (
+                "**Step 1 of 3**",
+                '<div style="background:#eff6ff;border:1px solid #bae6fd;'
+                'border-radius:8px;padding:18px;margin-top:8px;">'
+                '<p style="margin:0 0 8px 0;font-weight:600;">1. Mark an error by '
+                'clicking and dragging over the translation</p>'
+                '<div style="font-family:Georgia,serif;font-size:16px;line-height:1.8;'
+                'padding:12px;background:#ffffff;border-radius:6px;border:1px solid #e5e7eb;">'
+                '"The Minister of '
+                '<span style="background:#fde68a;padding:0 2px;border-radius:3px;">Health</span>'
+                ' announced new measures."'
+                '</div>'
+                '<p style="margin:10px 0 0 0;color:#1d4ed8;font-size:14px;">'
+                'Try it now: drag your cursor over a word in any translation panel '
+                'to select it. The selected text appears in the "Selected text" field below.'
+                '</p></div>'
+            ),
+            (
+                "**Step 2 of 3**",
+                '<div style="background:#fdf4ff;border:1px solid #e9d5ff;'
+                'border-radius:8px;padding:18px;margin-top:8px;">'
+                '<p style="margin:0 0 8px 0;font-weight:600;">2. Pick the error category</p>'
+                '<div style="display:flex;flex-wrap:wrap;gap:6px;margin:8px 0;">'
+                '<span style="border-left:4px solid #ef4444;padding:4px 10px;'
+                'border-radius:4px;background:#f3f4f6;">● Mistranslation</span>'
+                '<span style="border-left:4px solid #f59e0b;padding:4px 10px;'
+                'border-radius:4px;background:#f3f4f6;">● Grammar</span>'
+                '<span style="border-left:4px solid #8b5cf6;padding:4px 10px;'
+                'border-radius:4px;background:#f3f4f6;">● Style</span>'
+                '<span style="color:#9ca3af;align-self:center;">… plus 7 more</span>'
+                '</div>'
+                '<p style="margin:10px 0 0 0;color:#7c3aed;font-size:14px;">'
+                'Pick the category, then severity (minor / major / critical), '
+                'and click <strong>Add Error</strong>. The selected span turns into '
+                'a colored highlight you can remove with the × button.'
+                '</p></div>'
+            ),
+            (
+                "**Step 3 of 3**",
+                '<div style="background:#f0fdf4;border:1px solid #86efac;'
+                'border-radius:8px;padding:18px;margin-top:8px;">'
+                '<p style="margin:0 0 8px 0;font-weight:600;">3. Justify your reasoning</p>'
+                '<p style="margin:0 0 8px 0;font-size:14px;color:#374151;">'
+                'Before you see the system\'s feedback, you\'ll be asked to explain '
+                '<em>why</em> each annotation is an error. This is the '
+                '<strong>cognitive forcing</strong> step — it asks you to articulate '
+                'the gap between what the MT produced and what the author meant.'
+                '</p>'
+                '<div style="background:#ffffff;border:1px solid #e5e7eb;'
+                'border-radius:6px;padding:10px;font-size:13px;color:#1f2937;">'
+                '<em>Example justification:</em><br>'
+                '"The MT translated <strong>actuellement</strong> as '
+                '<strong>actually</strong>, a false cognate — it should be '
+                '<strong>currently</strong>. A reader would interpret this as the '
+                'opposite of the author\'s intent."'
+                '</div>'
+                '<p style="margin:10px 0 0 0;color:#16a34a;font-size:14px;font-weight:600;">'
+                'You\'re ready. Click <strong>Done</strong> below to start your first exercise.'
+                '</p></div>'
+            ),
+        ]
+
+        def _finish_tutorial(student_info_val):
+            """Mark tutorial done server-side and route to main."""
+            try:
+                api.complete_tutorial()
+            except Exception:
+                pass  # don't block the student if the call fails
+            info = dict(student_info_val or {})
+            info["tutorial_pending"] = False
+            exercises_content, choices = _load_exercises(info)
+            return (
+                gr.update(visible=False),  # hide tutorial
+                gr.update(visible=True),   # show main
+                gr.update(value=exercises_content),
+                gr.update(choices=choices),
+                1,                          # reset tutorial_step
+                info,                       # updated student_info
+            )
+
+        def handle_tutorial_next(step, student_info_val):
+            """Click handler for "Next →" / "Done" — advances or finishes.
+
+            Always returns 9 outputs to match `tutorial_btn_outputs`:
+              0: tutorial_view (visibility)
+              1: main_view (visibility)
+              2: exercises_html
+              3: exercise_selector
+              4: tutorial_step (state)
+              5: student_info (state)
+              6: tutorial_progress
+              7: tutorial_body
+              8: tutorial_next_btn label
+            """
+            try:
+                step_int = int(step)
+            except (TypeError, ValueError):
+                step_int = 1
+            step_int = max(1, min(step_int, len(_TUTORIAL_STEPS)))
+
+            # On the last step, "Next" acts as Done → finish + route to main.
+            if step_int >= len(_TUTORIAL_STEPS):
+                tv, mv, ex_html, ex_sel, reset_step, info = _finish_tutorial(student_info_val)
+                return (
+                    tv, mv, ex_html, ex_sel, reset_step, info,
+                    gr.update(value="**Step 1 of 3**"),       # reset for next student
+                    gr.update(value=_TUTORIAL_STEPS[0][1]),    # reset body
+                    gr.update(value="Next →"),                  # reset button
+                )
+
+            next_step = step_int + 1
+            label, body_html = _TUTORIAL_STEPS[next_step - 1]
+            btn_label = "Done" if next_step == len(_TUTORIAL_STEPS) else "Next →"
+            return (
+                gr.update(),                # tutorial_view (stay)
+                gr.update(),                # main_view (stay hidden)
+                gr.update(),                # exercises_html (no change)
+                gr.update(),                # exercise_selector (no change)
+                next_step,                  # tutorial_step
+                student_info_val,           # student_info (no change)
+                gr.update(value=label),     # tutorial_progress
+                gr.update(value=body_html), # tutorial_body
+                gr.update(value=btn_label), # tutorial_next_btn
+            )
+
+        def handle_tutorial_skip(student_info_val):
+            """Skip — finish server-side and route to main."""
+            tv, mv, ex_html, ex_sel, reset_step, info = _finish_tutorial(student_info_val)
+            return (
+                tv, mv, ex_html, ex_sel, reset_step, info,
+                gr.update(value="**Step 1 of 3**"),
+                gr.update(value=_TUTORIAL_STEPS[0][1]),
+                gr.update(value="Next →"),
             )
 
         def _load_exercises(info: dict) -> tuple[str, list]:
@@ -2591,25 +2778,22 @@ def build_student_app() -> gr.Blocks:
 
         # ── Wire up events ───────────────────────────────────────────────
 
+        _login_outputs = [
+            login_view, consent_view, tutorial_view, main_view, login_error,
+            session_token, student_info, header_user,
+            exercises_html, exercise_selector, consent_text_display,
+        ]
         login_btn.click(
             handle_login,
             inputs=[login_username, login_password],
-            outputs=[
-                login_view, consent_view, main_view, login_error,
-                session_token, student_info, header_user,
-                exercises_html, exercise_selector, consent_text_display,
-            ],
+            outputs=_login_outputs,
         )
 
         # Also login on Enter key in password field
         login_password.submit(
             handle_login,
             inputs=[login_username, login_password],
-            outputs=[
-                login_view, consent_view, main_view, login_error,
-                session_token, student_info, header_user,
-                exercises_html, exercise_selector, consent_text_display,
-            ],
+            outputs=_login_outputs,
         )
 
         # Consent form submission
@@ -2617,9 +2801,26 @@ def build_student_app() -> gr.Blocks:
             handle_consent_submit,
             inputs=[consent_tier1, consent_tier2, student_info],
             outputs=[
-                consent_view, main_view, header_user,
+                consent_view, tutorial_view, main_view, header_user,
                 exercises_html, exercise_selector,
             ],
+        )
+
+        # Tutorial overlay buttons (UI §3.3.5)
+        _tutorial_btn_outputs = [
+            tutorial_view, main_view, exercises_html, exercise_selector,
+            tutorial_step, student_info,
+            tutorial_progress, tutorial_body, tutorial_next_btn,
+        ]
+        tutorial_next_btn.click(
+            handle_tutorial_next,
+            inputs=[tutorial_step, student_info],
+            outputs=_tutorial_btn_outputs,
+        )
+        tutorial_skip_btn.click(
+            handle_tutorial_skip,
+            inputs=[student_info],
+            outputs=_tutorial_btn_outputs,
         )
 
         # Build the L0 slot output list once so click + next-item handlers stay in sync.

@@ -46,6 +46,10 @@ class StudentAccount(BaseModel):
     # Research consent
     consent: Optional[ResearchConsent] = None  # None = not yet shown the form
 
+    # UI §3.3.5 first-session tutorial overlay — shown once per student.
+    # Flips to True when the student finishes or skips the 3-step walkthrough.
+    tutorial_completed: bool = False
+
 
 class ClassGroup(BaseModel):
     """A class group managed by a teacher."""

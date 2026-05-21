@@ -92,6 +92,16 @@ class ToMPEClient:
             )
         return self._handle_response(resp)
 
+    # ── Tutorial ──────────────────────────────────────────────────────────
+
+    def complete_tutorial(self) -> dict:
+        """Mark the first-session tutorial as completed or skipped."""
+        with httpx.Client(timeout=10) as client:
+            resp = client.post(
+                self._url("/api/tutorial/complete"), headers=self._headers,
+            )
+        return self._handle_response(resp)
+
     # ── Assignments & Exercises ───────────────────────────────────────────
 
     def get_assignments(self, student_id: str) -> list[dict]:

@@ -96,6 +96,7 @@ class LoginResponse(BaseModel):
     current_level: str
     allowed_levels: list[str]
     consent_pending: bool  # True if consent form has not been shown yet
+    tutorial_pending: bool  # True if the first-session tutorial hasn't been shown/skipped
 
 
 class CreateStudentRequest(BaseModel):
@@ -207,6 +208,7 @@ async def login(req: LoginRequest):
         current_level=account.current_level,
         allowed_levels=[lvl for lvl in account.allowed_levels],
         consent_pending=account.consent is None,
+        tutorial_pending=not account.tutorial_completed,
     )
 
 
@@ -304,6 +306,30 @@ async def api_withdraw_consent(
     if not updated:
         raise HTTPException(status_code=404, detail="Student not found")
     return {"status": "consent_withdrawn"}
+
+
+# ── Tutorial endpoints (UI §3.3.5) ───────────────────────────────────────────
+
+
+@app.post("/api/tutorial/complete")
+async def api_complete_tutorial(
+    student: StudentAccount = Depends(verify_token),
+):
+    """Mark the first-session tutorial as completed (or skipped) for this student.
+
+    Idempotent: re-flipping the flag is a no-op. The endpoint accepts both
+    "finished all 3 steps" and "skip tutorial" because the spec treats them
+    identically — the goal is that the overlay never reappears for that
+    account.
+    """
+    from tompe.services.datastore import students_store
+
+    updated = students_store.update(
+        student.student_id, StudentAccount, {"tutorial_completed": True},
+    )
+    if not updated:
+        raise HTTPException(status_code=404, detail="Student not found")
+    return {"status": "ok", "tutorial_completed": True}
 
 
 # ── Student endpoints ────────────────────────────────────────────────────────

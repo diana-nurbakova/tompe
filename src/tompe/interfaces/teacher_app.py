@@ -1365,6 +1365,59 @@ def _exercise_create_form():
         st.info("No published items available. Publish items from the Review Queue first.")
         return
 
+    # ── AI-suggested from blind spots (Sprint #9, B5 follow-up) ────────────
+    # Picks a target student, builds the profile, runs recommend_exercises,
+    # and pre-fills the item multiselect with the suggested ids.
+    with st.expander("AI-suggested items from a student's blind spots", expanded=False):
+        st.caption(
+            "Pick a target student to surface published items whose error types overlap "
+            "their detected blind spots (MQM × ToM cells with <50% detection)."
+        )
+        classes_avail = list_classes()
+        suggested_ids: list[str] = []
+        suggest_label_by_id: dict[str, str] = {}
+        if classes_avail:
+            cls_opts = {c.class_name: c.class_id for c in classes_avail}
+            sel_cls = st.selectbox(
+                "Class", list(cls_opts.keys()), key="ex_builder_suggest_class",
+            )
+            target_students = list_students(cls_opts[sel_cls])
+            if target_students:
+                stu_opts = {s.display_name: s.student_id for s in target_students}
+                sel_stu = st.selectbox(
+                    "Student", list(stu_opts.keys()), key="ex_builder_suggest_stu",
+                )
+                target_sid = stu_opts[sel_stu]
+                if st.button("Compute suggestions", key="ex_builder_compute_sug"):
+                    try:
+                        from tompe.services.analytics import build_profile_from_store
+                        from tompe.services.progression import recommend_exercises
+                        profile = build_profile_from_store(target_sid, display_name=sel_stu)
+                        item_dicts = [i.model_dump() for i in items]
+                        suggested_ids = recommend_exercises(
+                            profile, item_dicts, max_recommendations=10,
+                        )
+                        st.session_state["ex_builder_suggested_ids"] = suggested_ids
+                    except Exception as exc:
+                        st.error(f"Could not compute suggestions: {exc}")
+                else:
+                    suggested_ids = st.session_state.get("ex_builder_suggested_ids", [])
+            else:
+                st.caption("No students in this class.")
+        else:
+            st.caption("No classes yet.")
+
+        if suggested_ids:
+            # Build a label index so the multiselect below can show them as defaults.
+            by_id = {i.item_id: i for i in items}
+            suggest_label_by_id = {
+                iid: f"{iid[:8]} | {by_id[iid].domain} | {len(by_id[iid].errors)} errors | Diff {by_id[iid].difficulty_level}"
+                for iid in suggested_ids if iid in by_id
+            }
+            st.write(f"**{len(suggest_label_by_id)} suggested item(s):**")
+            for iid, lbl in suggest_label_by_id.items():
+                st.write(f"- {lbl}")
+
     # Item selection
     st.subheader("Select Items")
     col_filter, col_items = st.columns([1, 2])
@@ -1381,7 +1434,15 @@ def _exercise_create_form():
             f"{i.item_id[:8]} | {i.domain} | {len(i.errors)} errors | Diff {i.difficulty_level}": i.item_id
             for i in filtered_items
         }
-        selected = st.multiselect("Items", list(item_options.keys()))
+        # Default the multiselect to AI suggestions (if any) so the teacher can
+        # accept-and-tweak rather than re-pick from scratch.
+        default_labels = [
+            lbl for iid, lbl in (suggest_label_by_id or {}).items()
+            if iid in {v for v in item_options.values()}
+        ]
+        # Make sure the default labels are valid keys of item_options
+        default_labels = [lbl for lbl in default_labels if lbl in item_options]
+        selected = st.multiselect("Items", list(item_options.keys()), default=default_labels)
         selected_ids = [item_options[s] for s in selected]
 
     st.divider()
@@ -2123,32 +2184,148 @@ def _analytics_individual_student():
             "Wasserstein transport visualization will appear as the student completes more exercises."
         )
 
-    # Level progression recommendation
+    # ── Skill Mastery (BKT) ────────────────────────────────────────────────
+    st.subheader("Skill Mastery (BKT)")
+    st.caption(
+        "Per-skill mastery probabilities from Bayesian Knowledge Tracing. "
+        "Spec §6.2 mastery threshold is p≥0.98."
+    )
+    try:
+        from tompe.schemas.scoring import StudentBKT
+        from tompe.services.bkt import bkt_skill_profile
+        from tompe.services.datastore import bkt_store
+
+        bkt_prof = bkt_skill_profile(student_id)
+        bkt_record = bkt_store.get(student_id, StudentBKT)
+        per_skill_state = (bkt_record.per_skill if bkt_record else {}) or {}
+
+        SKILL_NAMES = {
+            "S1": "Surface", "S2": "Grammar", "S3": "Meaning",
+            "S4": "Completeness", "S5": "Terminology",
+            "S6": "Pragmatic/Style", "S7": "Discourse",
+        }
+        rows = []
+        for sk in ("S1", "S2", "S3", "S4", "S5", "S6", "S7"):
+            p = bkt_prof.get(sk, 0.0)
+            n = per_skill_state.get(sk).n_observations if per_skill_state.get(sk) else 0
+            badge = "Mastered" if p >= 0.98 and n >= 6 else ("Practising" if n > 0 else "Untouched")
+            rows.append({
+                "Skill": f"{sk} — {SKILL_NAMES[sk]}",
+                "p(mastery)": f"{p:.2f}",
+                "Observations": n,
+                "Status": badge,
+            })
+        st.dataframe(rows, hide_index=True, use_container_width=True)
+    except Exception as exc:
+        st.caption(f"BKT mastery unavailable: {exc}")
+
+    # ── Blind spots (analytics §3.9) ───────────────────────────────────────
+    st.subheader("Blind Spots")
+    st.caption(
+        "(MQM × ToM) cells where this student's joint detection rate is below 50% "
+        "across ≥3 sessions. Click an example item id to inspect it."
+    )
+    try:
+        from tompe.services.analytics import build_profile_from_store
+        profile = build_profile_from_store(student_id, display_name=sel_student)
+        if profile.blind_spots:
+            spot_rows = []
+            for s in profile.blind_spots:
+                mqm = s.mqm_category.value if hasattr(s.mqm_category, "value") else str(s.mqm_category)
+                tom = s.tom_level.value if hasattr(s.tom_level, "value") else str(s.tom_level)
+                examples = ", ".join(
+                    f"`{iid[:8]}`" for iid in (s.example_item_ids or [])[:3]
+                ) or "—"
+                spot_rows.append({
+                    "MQM": mqm.title(),
+                    "ToM": tom,
+                    "Detection rate": f"{s.detection_rate:.1%}",
+                    "Sessions": s.sessions_observed,
+                    "Example items": examples,
+                })
+            st.dataframe(spot_rows, hide_index=True, use_container_width=True)
+            # Store for the Exercise Builder convenience link
+            st.session_state["last_student_with_blind_spots"] = student_id
+        else:
+            st.success("No systematic blind spots detected at the 50% threshold.")
+    except Exception as exc:
+        st.caption(f"Blind-spot analysis unavailable: {exc}")
+
+    # ── Level progression recommendation (BKT-gated) ───────────────────────
     st.subheader("Level Progression")
     student = next((s for s in students if s.student_id == student_id), None)
     if student:
         st.write(f"**Current level:** {student.current_level}")
         st.write(f"**Allowed levels:** {', '.join(student.allowed_levels)}")
 
-        if avg_f1 >= 0.8 and len(student_scores) >= 3:
-            level_order = [l.value for l in AnnotationLevel]
-            current_idx = level_order.index(student.current_level) if student.current_level in level_order else 0
-            if current_idx < len(level_order) - 1:
-                next_level = level_order[current_idx + 1]
-                st.success(
-                    f"System recommends promoting to **{next_level}** "
-                    f"(F1 >= 80% over {len(student_scores)} responses)"
+        # New BKT-gated recommendation (Sprint #8): replaces the old F1>=0.8 heuristic.
+        try:
+            from tompe.schemas.scoring import StudentProfile as _SP
+            from tompe.services.progression import (
+                recommend_next_level, is_level_unlocked, _prerequisite_skills_for,
+                DEFAULT_MASTERY_THRESHOLD,
+            )
+            level_order_enum = list(AnnotationLevel)
+            cur_lvl_enum = AnnotationLevel(student.current_level) if student.current_level in {l.value for l in level_order_enum} else AnnotationLevel.NAVIGATOR
+            stage_int = level_order_enum.index(cur_lvl_enum) + 1
+            sp = _SP(student_id=student_id, display_name=sel_student, current_difficulty_level=stage_int)
+            recommendation = recommend_next_level(sp)
+        except Exception as exc:
+            recommendation = None
+            st.caption(f"recommend_next_level unavailable: {exc}")
+
+        if recommendation is not None:
+            next_lvl = recommendation.value
+            st.success(
+                f"BKT recommends promoting to **{next_lvl}** "
+                f"(mastery ≥ {DEFAULT_MASTERY_THRESHOLD:.2f} on all prerequisite skills)."
+            )
+            if st.button(
+                f"Approve promotion to {next_lvl}",
+                type="primary", key=f"promote_btn_{student_id}",
+            ):
+                level_order = [l.value for l in AnnotationLevel]
+                next_idx = level_order.index(next_lvl)
+                update_student_levels(
+                    student_id,
+                    current_level=AnnotationLevel(next_lvl),
+                    allowed_levels=[AnnotationLevel(l) for l in level_order[:next_idx + 1]],
                 )
-                if st.button(f"Approve promotion to {next_level}", type="primary", key="promote_btn"):
-                    update_student_levels(
-                        student_id,
-                        current_level=AnnotationLevel(next_level),
-                        allowed_levels=[AnnotationLevel(l) for l in level_order[:current_idx + 2]],
-                    )
-                    st.success(f"Promoted {sel_student} to {next_level}!")
-                    st.rerun()
-        elif avg_f1 < 0.5 and len(student_scores) >= 3:
-            st.warning("Performance below 50%. Consider providing additional support.")
+                st.success(f"Promoted {sel_student} to {next_lvl}!")
+                st.rerun()
+        else:
+            # Show *why* the recommendation is held back — surface the failing
+            # prerequisite skills so the teacher can target them.
+            try:
+                from tompe.services.bkt import bkt_skill_profile
+                from tompe.services.progression import _prerequisite_skills_for, DEFAULT_MASTERY_THRESHOLD, DEFAULT_MIN_OBSERVATIONS
+
+                level_order = [l.value for l in AnnotationLevel]
+                cur_idx = level_order.index(student.current_level) if student.current_level in level_order else 0
+                if cur_idx + 1 < len(level_order):
+                    next_lvl = level_order[cur_idx + 1]
+                    prereqs = _prerequisite_skills_for(AnnotationLevel(next_lvl))
+                    prof = bkt_skill_profile(student_id)
+                    bkt_record = bkt_store.get(student_id, StudentBKT)
+                    per_skill_state = (bkt_record.per_skill if bkt_record else {}) or {}
+                    blocked: list[str] = []
+                    for sk in prereqs:
+                        skey = sk.value
+                        p = prof.get(skey, 0.0)
+                        n = per_skill_state.get(skey).n_observations if per_skill_state.get(skey) else 0
+                        if p < DEFAULT_MASTERY_THRESHOLD or n < DEFAULT_MIN_OBSERVATIONS:
+                            blocked.append(f"{skey} (p={p:.2f}, n={n})")
+                    if blocked:
+                        st.info(
+                            f"Not ready to promote to **{next_lvl}** — prerequisite skills below "
+                            f"the threshold: {', '.join(blocked)}."
+                        )
+                    else:
+                        st.info(f"Promotion to {next_lvl} pending — no BKT-blocking skills.")
+                else:
+                    st.info("Student is already at the highest level.")
+            except Exception:
+                st.info("Not enough BKT data yet to recommend promotion.")
 
 
 def _analytics_blindspot():

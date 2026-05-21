@@ -786,9 +786,41 @@ Detection-rate-based mastery is a deliberately simple stand-in for BKT (Fluency 
 ### Still pending (Sprint #8 follow-ups)
 
 - **Per-skill BKT parameter calibration** from pilot data (different priors for surface vs. discourse skills).
-- **Hook `recommend_next_level` into the teacher dashboard** so the "promote" button surfaces it as a suggestion (currently the function exists but no UI calls it).
-- **Surface `BlindSpot.example_item_ids`** in the teacher individual-student view + use `recommend_exercises` to suggest targeted items from the Exercise Builder.
-- **Persistent `StudentProfile` reads.** `build_profile_from_store` writes the profile to `data/profiles/` but no consumer currently reads it — analytics is recomputed live each time. Wire it into the teacher dashboard as a cache.
+- ~~**Hook `recommend_next_level` into the teacher dashboard**~~ **RESOLVED — Sprint #9.**
+- ~~**Surface `BlindSpot.example_item_ids`** + use `recommend_exercises` in the Exercise Builder.~~ **RESOLVED — Sprint #9.**
+- **Persistent `StudentProfile` reads.** `build_profile_from_store` writes the profile to `data/profiles/` and Sprint #9's individual-student view now invokes it on every render — but no caching layer reads the persisted JSON; if the call is expensive at scale, add one.
+
+---
+
+## Implementation sprint #9 — Sprint #8 follow-ups: surface BKT + analytics in the teacher UI
+
+**Date range:** 2026-05-21
+**Theme:** Make Sprint #8's BKT tracker, analytics, and recommendations *visible* in the teacher dashboard.
+
+### What landed
+
+| ID | Item | Status | Files touched |
+|---|---|---|---|
+| Sprint #8 follow-up | Replaced the F1≥0.8 heuristic in the "Level Progression" panel with `recommend_next_level(profile)`. The "Approve promotion" button now fires only when BKT mastery + observation thresholds pass. When the recommendation is held back, the UI surfaces *which* prerequisite skills are still below the threshold (with their p(mastery) and observation count). | Done (smoke-tested) | [src/tompe/interfaces/teacher_app.py](../src/tompe/interfaces/teacher_app.py) |
+| Sprint #8 follow-up | Added a "Skill Mastery (BKT)" table to the individual-student view: per-skill p(mastery), observation count, and a Mastered/Practising/Untouched label. Sources from `bkt_skill_profile` + `StudentBKT.per_skill`. | Done (smoke-tested) | [src/tompe/interfaces/teacher_app.py](../src/tompe/interfaces/teacher_app.py) |
+| Sprint #8 follow-up | Added a "Blind Spots" table to the individual-student view rendering every `BlindSpot` returned by `build_profile_from_store(student_id)`, with up to 3 example item ids per row. Empty case shows a positive "no systematic blind spots" message. | Done (smoke-tested) | [src/tompe/interfaces/teacher_app.py](../src/tompe/interfaces/teacher_app.py) |
+| Sprint #8 follow-up | "AI-suggested items from a student's blind spots" expander in the Exercise Builder. Picks a target student, runs `recommend_exercises(profile, items, max_recommendations=10)`, lists the suggestions, and pre-fills the item multiselect as the default. The teacher can accept-and-tweak rather than re-pick from scratch — closes the "Generate targeted exercise" UI loop from §4.4. | Done (smoke-tested) | [src/tompe/interfaces/teacher_app.py](../src/tompe/interfaces/teacher_app.py) |
+
+### Verification — Sprint #9
+
+- [ ] **Byte-compile + existing test suite (already run).** No regressions; 37 passed, 3 skipped. ✓
+- [ ] **Empty-profile smoke test (already run).** `build_profile_from_store('stu_empty')` returns a clean StudentProfile with 0 sessions and 0 blind spots; `recommend_exercises` returns `[]`. The Streamlit fallback messages ("No systematic blind spots detected" / "Not enough BKT data yet") render correctly. ✓
+- [ ] **End-to-end manual.** Log in as teacher → Analytics → Individual Student → pick a student with ≥3 completed exercises:
+  - Confirm the "Skill Mastery (BKT)" table shows 7 rows with non-zero p(mastery) for any skill the student has practised.
+  - Confirm the "Blind Spots" table shows the (MQM × ToM) cells below 50% over ≥3 sessions, with up to 3 example item ids each.
+  - Confirm "Level Progression" either offers a promotion (with the BKT mastery rationale) or surfaces the blocking skills (e.g., `S3 (p=0.42, n=12)`).
+  - Open Exercise Builder → "AI-suggested items from a student's blind spots" → pick the same student → "Compute suggestions". Confirm the multiselect below is pre-filled with the recommended items.
+  - Press "Create Exercise" — the suggested items get bundled into the exercise.
+
+### Scope decisions
+
+- **No persistent cache reads yet.** `build_profile_from_store` writes a `StudentProfile` JSON under `data/profiles/`, but the teacher view still rebuilds on every render. With current data sizes this is fast; a cache-read layer is tracked as a residual follow-up.
+- **Suggestion expander uses live `recommend_exercises` rather than pre-computed lists.** The function is fast (linear in `len(available_items) × len(blind_spots)`); no caching needed at the current scale.
 
 ---
 
@@ -930,12 +962,12 @@ Ordered by impact × leverage. Each item references the per-spec entries that su
 | §5 / §3.7 | Comparison mode (Skill A indep eval / Skill B ranking) | Missing | — | No comparison UI; no rankings; no PE-worthiness verdict. |
 | §5.2 | Student dashboard (radar, history, over-editing trend) | Partial | [student_app.py:1735](../src/tompe/interfaces/student_app.py#L1735), [:455](../src/tompe/interfaces/student_app.py#L455) | Skill radar + recent scores; no over-editing / FP trend chart. |
 | §6.2 | Teacher item review queue (approve/reject/edit) | Implemented | [teacher_app.py:592](../src/tompe/interfaces/teacher_app.py#L592), [:634](../src/tompe/interfaces/teacher_app.py#L634) | Two-column layout, error-card editing, status transitions. |
-| §6.3 | Exercise builder (level, justification, ordering) | Partial | [teacher_app.py:1094](../src/tompe/interfaces/teacher_app.py#L1094) | Manual selection + assignment; no AI-suggested-from-blind-spots flow. |
+| §6.3 | Exercise builder (level, justification, ordering) | Implemented | [teacher_app.py:1094](../src/tompe/interfaces/teacher_app.py#L1094) | Sprint #9: AI-suggested-from-blind-spots expander now pre-fills the item multiselect via `recommend_exercises`. |
 | §6.4 | Class Overview + Individual Student + Blind Spot views | Implemented | [teacher_app.py:1464](../src/tompe/interfaces/teacher_app.py#L1464), [:1858](../src/tompe/interfaces/teacher_app.py#L1858) | All three analytics tabs with charts + heatmap. |
 | §7.1–7.4 | Scoring (IoU eval / HTER PE / Navigator) | Partial | [services/scoring.py:50](../src/tompe/services/scoring.py#L50), [:170](../src/tompe/services/scoring.py#L170), [:227](../src/tompe/services/scoring.py#L227) | Eval, PE, navigator scoring done; comparison-mode scoring (§7.4) absent. |
 | §7.5 | LLM-based justification quality scoring | Missing | — | `JustificationScore` schema exists ([scoring.py:16](../src/tompe/schemas/scoring.py#L16)); no scorer. |
 | §7.6 | Cognitive forcing protocol (justification before feedback) | Implemented | [services/feedback.py:16](../src/tompe/services/feedback.py#L16), [interfaces/student_app.py:824](../src/tompe/interfaces/student_app.py#L824) | Phase tabs gate Feedback behind Justification submission. |
-| §8.2 | Teacher-controlled progression with recommendations | Implemented | [teacher_app.py:1830](../src/tompe/interfaces/teacher_app.py#L1830), [src/tompe/services/progression.py](../src/tompe/services/progression.py) | Sprint #8 (B5): `recommend_next_level` + `recommend_exercises` ship; teacher's promote button still controls allowed_levels but can consult these as suggestions (UI surfacing tracked as a Sprint #8 follow-up). |
+| §8.2 | Teacher-controlled progression with recommendations | Implemented | [teacher_app.py:1830](../src/tompe/interfaces/teacher_app.py#L1830), [src/tompe/services/progression.py](../src/tompe/services/progression.py) | Sprint #8 (B5) + Sprint #9: `recommend_next_level` now drives the "Approve promotion" button; held-back promotions list the blocking prerequisite skills with their p(mastery)/n_obs. |
 | §8.3 | Adaptive progression (BKT mastery thresholds) | Implemented | [src/tompe/services/bkt.py](../src/tompe/services/bkt.py), [src/tompe/services/progression.py](../src/tompe/services/progression.py), [src/tompe/services/badges.py](../src/tompe/services/badges.py) | Sprint #8 (B5): Corbett-Anderson BKT tracker; `is_level_unlocked` gates on mastery ≥ 0.98 of prerequisite skills; `check_progression_badge` honours the gate so Scout / Analyst / Expert no longer fire on level-int alone. |
 | §9 | Multi-tenancy fields (`teacher_id`, `class_id`) | Partial | [schemas/session.py:31](../src/tompe/schemas/session.py#L31), [:50](../src/tompe/schemas/session.py#L50) | `class_id` present; `teacher_id` defaulted; no multi-teacher auth. |
 | §11 | FastAPI service layer wired up | Implemented | [services/api.py:175](../src/tompe/services/api.py#L175) | All major endpoint groups (auth, items, exercises, responses, feedback, analytics). |
@@ -981,7 +1013,7 @@ Ordered by impact × leverage. Each item references the per-spec entries that su
 | §4.2.2 | Upload Corpus (TMX/TSV) | Implemented | [src/tompe/pipeline/corpus_ingest.py](../src/tompe/pipeline/corpus_ingest.py), [teacher_app.py:272](../src/tompe/interfaces/teacher_app.py#L272) | Sprint #6 (B11): `parse_tmx` / `parse_tsv` / `write_segments`; teacher page writes JSONL matching the existing corpus schema. Append vs. replace + per-line warnings. New corpora still need manual `CORPORA` registration in `experiments/pipeline_validation/config.py`. |
 | §4.2.3 | Generate Translations (multi-MT, manual edit, base-for-injection) | Partial | [teacher_app.py:282](../src/tompe/interfaces/teacher_app.py#L282) | Multi-MT + LLM + injection trigger; no per-row Edit + no base-selection radio. |
 | §4.3 | Review Queue with detail editing + Approve/Reject/Regenerate | Partial | [teacher_app.py:592](../src/tompe/interfaces/teacher_app.py#L592), [:634](../src/tompe/interfaces/teacher_app.py#L634) | Approve / Reject / Save-Reviewed; no Regenerate; no batch operations. |
-| §4.4 | Exercise Builder (level, justification, ordering, clean ratio) | Partial | [teacher_app.py:1094](../src/tompe/interfaces/teacher_app.py#L1094) | Manual selection + config; no AI-suggested-from-blind-spots top section. |
+| §4.4 | Exercise Builder (level, justification, ordering, clean ratio) | Implemented | [teacher_app.py:1094](../src/tompe/interfaces/teacher_app.py#L1094) | Sprint #9: AI-suggested-from-blind-spots expander at the top runs `recommend_exercises` and pre-fills the item multiselect for the picked student. |
 | §4.5.1 | Student Accounts table + bulk CSV import | Implemented | [teacher_app.py:1272](../src/tompe/interfaces/teacher_app.py#L1272), [:1289](../src/tompe/interfaces/teacher_app.py#L1289) | Add / import / level dropdown / class-move per spec. |
 | §4.5.2 | Level Configuration page with mastery thresholds | Missing | — | No dedicated Level Configuration page; per-student promote button on analytics page only. |
 | §4.6 | Analytics: Class Overview + Individual + Blind Spot heatmap | Implemented | [teacher_app.py:1464](../src/tompe/interfaces/teacher_app.py#L1464), [:1858](../src/tompe/interfaces/teacher_app.py#L1858) | All three analytics tabs + MQM × ToM heatmap with detection rates. |
@@ -995,7 +1027,7 @@ Ordered by impact × leverage. Each item references the per-spec entries that su
 2. ~~**L3 Comparison view (multi-MT side-by-side, ranking, human-vs-MT) entirely absent**~~ **RESOLVED — Sprint #7 (B1).** Student UI ships a 4-card masked view (System A/B/C/D) with ranking + triage + "which is human?" plus a reveal panel showing real system ids, τ, and the human-pick verdict.
 3. **L0 Navigator interaction is decorative only**: no Confirm / Dispute buttons per annotation, no false-annotation injector at item-build time.
 4. ~~**Corpus upload (TMX/TSV) is non-functional**~~ **RESOLVED — Sprint #6 (B11).** New `tompe.pipeline.corpus_ingest` module + the teacher Upload Corpus page now parse TMX and TSV uploads into `data/corpora/{origin}/segments_en_fr.jsonl` (append vs. replace, with per-line warnings). Newly-uploaded corpora still need a manual entry in `experiments/pipeline_validation/config.py:CORPORA` for batch runs.
-5. **No Level Configuration page (§4.5.2) and no AI-suggested exercises (§4.4)** — the "Generate targeted exercise" loop from blind spots back to exercise builder is not wired.
+5. **Partial — Level Configuration page (§4.5.2) is still absent**, but ~~the AI-suggested exercises loop~~ **RESOLVED — Sprint #9** (Exercise Builder now runs `recommend_exercises` and pre-fills the item multiselect from a target student's blind spots).
 
 ---
 

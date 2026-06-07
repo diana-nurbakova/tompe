@@ -204,6 +204,17 @@ class LLMClient:
 
         async with httpx.AsyncClient(timeout=timeout) as client:
             async with client.stream("POST", url, headers=headers, json=payload) as resp:
+                if resp.status_code >= 400:
+                    # On a streaming response the body isn't read yet, so
+                    # raise_for_status() alone yields a generic message. Read
+                    # the body first and log the provider's actual error detail
+                    # (e.g. an invalid response_format schema -> 400).
+                    body = await resp.aread()
+                    logger.error(
+                        "LLM HTTP %d from %s: %s",
+                        resp.status_code, url,
+                        body.decode("utf-8", "replace")[:1000],
+                    )
                 resp.raise_for_status()
                 async for raw_line in resp.aiter_lines():
                     if not raw_line:

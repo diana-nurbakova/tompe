@@ -93,7 +93,7 @@
   "difficulty_level": 3,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": null,
+  "teacher_notes": "[QE] GEMBA: acceptable (0.7/100) | Detected: 2/2 | Extra: 2 | Status: passed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -123,6 +123,7 @@
       "mt_system_specific": "Dedicated MT systems like DeepL rely more on their training data and may miss subtle context, while large language models (LLMs) can sometimes do better by reasoning about the broader situation, but both can make this kind of mistake."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

@@ -5,10 +5,13 @@ under `data/`. Provides generic CRUD operations parameterized by Pydantic models
 """
 
 import json
+import logging
 from pathlib import Path
 from typing import Any, Callable, Optional, TypeVar
 
 from pydantic import BaseModel
+
+logger = logging.getLogger(__name__)
 
 T = TypeVar("T", bound=BaseModel)
 
@@ -79,8 +82,18 @@ class JsonStore:
                 obj = model_class.model_validate(data)
                 if filter_fn is None or filter_fn(obj):
                     results.append(obj)
-            except Exception:
-                continue  # Skip malformed files
+            except Exception as exc:
+                # Don't let one malformed file make the whole listing vanish,
+                # but make the skip visible — a silent `continue` here once hid
+                # an assignment whose `status` value failed validation, so the
+                # student saw an empty exercise list with no error anywhere.
+                logger.warning(
+                    "Skipping malformed %s file %s: %s",
+                    model_class.__name__,
+                    path.name,
+                    exc,
+                )
+                continue
         return results
 
     def update(self, obj_id: str, model_class: type[T], patch: dict[str, Any]) -> Optional[T]:

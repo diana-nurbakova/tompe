@@ -195,7 +195,7 @@
   "difficulty_level": 5,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": null,
+  "teacher_notes": "[QE] GEMBA: acceptable (70/100) | Detected: 1/5 | Extra: 3 | Status: failed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -261,6 +261,7 @@
       "mt_system_specific": "Dedicated MT systems are usually more focused on faithful translation and may be less likely to add unnecessary qualifiers, while general-purpose LLMs like GPT-4 sometimes 'overdo it' by trying to make the text sound complete or natural."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

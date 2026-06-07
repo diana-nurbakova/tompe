@@ -193,7 +193,7 @@
   "difficulty_level": 5,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": null,
+  "teacher_notes": "[QE] GEMBA: poor (2/100) | Detected: 4/5 | Extra: 2 | Status: passed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -259,6 +259,7 @@
       "mt_system_specific": "Dedicated MT systems like DeepL may leave words untranslated if they're out-of-vocabulary, while LLMs (like ChatGPT) might try to invent a translation even for unknown words."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

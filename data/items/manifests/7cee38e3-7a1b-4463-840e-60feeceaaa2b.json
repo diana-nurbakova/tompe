@@ -92,7 +92,7 @@
   "difficulty_level": 3,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": null,
+  "teacher_notes": "[QE] GEMBA: good (0.9/100) | Detected: 0/2 | Extra: 2 | Status: failed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -122,6 +122,7 @@
       "mt_system_specific": "Dedicated MT systems are often better at handling word order because they're trained specifically for translation, while general-purpose LLMs like Claude may make more word order mistakes."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

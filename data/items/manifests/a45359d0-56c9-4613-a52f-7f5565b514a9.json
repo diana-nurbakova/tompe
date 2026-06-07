@@ -128,7 +128,7 @@
   "difficulty_level": 4,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": null,
+  "teacher_notes": "[QE] GEMBA: good (85/100) | Detected: 2/3 | Extra: 1 | Status: passed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -170,6 +170,7 @@
       "mt_system_specific": "Dedicated MT systems like DeepL are trained to produce fluent translations and may add qualifiers for smoothness, while large language models might do this even more because they're designed to be even more conversational and context-aware."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

@@ -1003,6 +1003,7 @@ def build_student_app() -> gr.Blocks:
                             interactive=True,
                         )
                         start_btn = gr.Button("Open Exercise", variant="primary")
+                    refresh_exercises_btn = gr.Button("Refresh Exercises", size="sm")
 
                 # ── Exercise Item Tab ────────────────────────────────────
                 with gr.TabItem("Exercise", id=1) as exercise_tab:
@@ -2719,6 +2720,20 @@ def build_student_app() -> gr.Blocks:
                 *cmp_block,
             )
 
+        def handle_refresh_exercises(student_info):
+            """Reload the exercise list + selector for the Exercises tab.
+
+            Lets a student pick up exercises the teacher assigned after they
+            logged in, without needing to log out and back in.
+            """
+            if not student_info or "student_id" not in student_info:
+                return (
+                    gr.update(value="<p>Log in to see your exercises.</p>"),
+                    gr.update(choices=[]),
+                )
+            exercises_content, choices = _load_exercises(student_info)
+            return gr.update(value=exercises_content), gr.update(choices=choices)
+
         def handle_refresh_progress(student_info):
             """Load and render the My Progress tab content."""
             if not student_info or "student_id" not in student_info:
@@ -3031,22 +3046,32 @@ def build_student_app() -> gr.Blocks:
             outputs=_next_item_outputs,
         )
 
+        refresh_exercises_btn.click(
+            handle_refresh_exercises,
+            inputs=[student_info],
+            outputs=[exercises_html, exercise_selector],
+        )
+
         refresh_progress_btn.click(
             handle_refresh_progress,
             inputs=[student_info],
             outputs=[progress_content],
         )
 
-        # Auto-load progress when My Progress tab is selected
+        # Auto-refresh a tab's content when it is selected.
         def _on_tab_select(student_info_val, evt: gr.SelectData):
+            # outputs: [exercises_html, exercise_selector, progress_content]
+            if evt.index == 0:  # Exercises tab
+                ex_html, ex_sel = handle_refresh_exercises(student_info_val)
+                return ex_html, ex_sel, gr.update()
             if evt.index == 2:  # My Progress tab
-                return handle_refresh_progress(student_info_val)
-            return gr.update()
+                return gr.update(), gr.update(), handle_refresh_progress(student_info_val)
+            return gr.update(), gr.update(), gr.update()
 
         main_tabs.select(
             _on_tab_select,
             inputs=[student_info],
-            outputs=[progress_content],
+            outputs=[exercises_html, exercise_selector, progress_content],
         )
 
     return app

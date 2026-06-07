@@ -1,21 +1,23 @@
 {
   "student_id": "1a133069-aee9-4328-bcd8-63348d2e9a56",
   "display_name": "Test Fluency Trap",
-  "sessions_completed": 3,
+  "sessions_completed": 4,
   "current_difficulty_level": 1,
   "mqm_performance": {
     "accuracy": {
       "session_ids": [
         "9a45075e-aa23-498d-bcce-adb827e51975",
         "677b0f9a-9fe6-49f6-8bd7-fce89afa2c11",
-        "23b309fb-afbd-464c-815e-36f38988ca47"
+        "23b309fb-afbd-464c-815e-36f38988ca47",
+        "fd024bbb-0c03-4123-991b-0b1577632622"
       ],
       "detection_rates": [
         0.6666666666666666,
         1.0,
-        0.0
+        0.0,
+        1.0
       ],
-      "trend": "declining"
+      "trend": "stable"
     },
     "style": {
       "session_ids": [
@@ -27,6 +29,15 @@
         0.0
       ],
       "trend": "stable"
+    },
+    "fluency": {
+      "session_ids": [
+        "fd024bbb-0c03-4123-991b-0b1577632622"
+      ],
+      "detection_rates": [
+        0.5
+      ],
+      "trend": "stable"
     }
   },
   "tom_performance": {
@@ -34,12 +45,14 @@
       "session_ids": [
         "9a45075e-aa23-498d-bcce-adb827e51975",
         "677b0f9a-9fe6-49f6-8bd7-fce89afa2c11",
-        "23b309fb-afbd-464c-815e-36f38988ca47"
+        "23b309fb-afbd-464c-815e-36f38988ca47",
+        "fd024bbb-0c03-4123-991b-0b1577632622"
       ],
       "detection_rates": [
         0.5,
         1.0,
-        0.0
+        0.0,
+        0.6666666666666666
       ],
       "trend": "declining"
     },
@@ -68,6 +81,7 @@
   "false_positive_rate_history": [
     0.0,
     0.0,
-    1.0
+    1.0,
+    0.0
   ]
 }

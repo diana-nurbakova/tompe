@@ -93,7 +93,7 @@
   "difficulty_level": 3,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": null,
+  "teacher_notes": "[QE] GEMBA: poor (45/100) | Detected: 2/2 | Extra: 4 | Status: passed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -123,6 +123,7 @@
       "mt_system_specific": "Dedicated machine translation systems are often better at keeping these connecting words, since they're trained specifically for translation, while general-purpose language models like GPT-4 may overlook them more often."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

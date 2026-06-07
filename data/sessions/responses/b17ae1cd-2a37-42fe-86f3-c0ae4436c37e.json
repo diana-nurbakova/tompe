@@ -1,0 +1,56 @@
+{
+  "response_id": "b17ae1cd-2a37-42fe-86f3-c0ae4436c37e",
+  "session_id": "fd024bbb-0c03-4123-991b-0b1577632622",
+  "item_id": "0005f83e-7258-4638-81cd-b4f97ae5a42c",
+  "student_id": "1a133069-aee9-4328-bcd8-63348d2e9a56",
+  "mode": "evaluation",
+  "timestamp": "2026-06-07T11:02:15.914788",
+  "time_spent_seconds": 197.4,
+  "identified_errors": [
+    {
+      "span_start": 3,
+      "span_end": 17,
+      "student_mqm_category": "accuracy",
+      "student_severity": "major",
+      "confidence": "medium"
+    },
+    {
+      "span_start": 49,
+      "span_end": 69,
+      "student_mqm_category": "accuracy",
+      "student_severity": "major",
+      "confidence": "medium"
+    }
+  ],
+  "edited_text": null,
+  "verification_responses": null,
+  "comparison_type": null,
+  "per_system_evaluations": null,
+  "system_rankings": null,
+  "pe_worthiness": null,
+  "human_pick": null,
+  "human_pick_rationale": null,
+  "justification_format": "per_error_short",
+  "justifications": [
+    {
+      "error_id": "9d6a16d8-33b7-448a-88cc-6ef70d98ba6c",
+      "format": "per_error_short",
+      "text": "\"les Assemblées\" is used in plural while \"the House\" is in singular",
+      "mt_misunderstanding": null,
+      "author_intent": null,
+      "reader_impact": null,
+      "tom_perspective": null,
+      "prompt_shown": "Why is this a problem?"
+    },
+    {
+      "error_id": "56de053f-5bc5-4341-b6dd-3f5625e36b66",
+      "format": "per_error_short",
+      "text": "the original text doesn't specify if the suggestion was a recommendation",
+      "mt_misunderstanding": null,
+      "author_intent": null,
+      "reader_impact": null,
+      "tom_perspective": null,
+      "prompt_shown": "Why is this a problem?"
+    }
+  ]
+}

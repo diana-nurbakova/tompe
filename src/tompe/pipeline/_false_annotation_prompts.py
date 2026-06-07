@@ -63,10 +63,14 @@ RESPONSE_SCHEMA = {
                     "span_text", "span_start", "span_end",
                     "primary_tag", "severity", "plausible_reasoning",
                 ],
+                # OpenAI strict json_schema mode requires this on every object,
+                # otherwise the request is rejected with a 400 Bad Request.
+                "additionalProperties": False,
             },
         },
     },
     "required": ["decoys"],
+    "additionalProperties": False,
 }
 
 

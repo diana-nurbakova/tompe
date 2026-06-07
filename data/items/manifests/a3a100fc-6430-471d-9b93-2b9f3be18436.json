@@ -126,7 +126,7 @@
   "difficulty_level": 4,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": null,
+  "teacher_notes": "[QE] GEMBA: poor (35/100) | Detected: 3/3 | Extra: 2 | Status: passed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -168,6 +168,7 @@
       "mt_system_specific": "Dedicated MT systems are often trained more specifically on translation tasks, so they may handle agreement errors slightly better than general-purpose LLMs like Claude, which are trained on a wider range of text."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

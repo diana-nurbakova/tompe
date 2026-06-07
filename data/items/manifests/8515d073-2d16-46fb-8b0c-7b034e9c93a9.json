@@ -128,7 +128,7 @@
   "difficulty_level": 4,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": null,
+  "teacher_notes": "[QE] GEMBA: good (0.9/100) | Detected: 1/3 | Extra: 1 | Status: failed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -170,6 +170,7 @@
       "mt_system_specific": "LLMs like Claude, which are trained for general language tasks, may omit details more often than dedicated MT systems, which are fine-tuned to capture all information in translation."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

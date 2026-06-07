@@ -1,0 +1,39 @@
+{
+  "response_id": "b5b9a76e-4729-4237-9b29-c57c33036682",
+  "session_id": "665cbb7e-4344-431b-b620-bbd293d1cd36",
+  "item_id": "0005f83e-7258-4638-81cd-b4f97ae5a42c",
+  "student_id": "6fff32b4-b5a5-45fe-a78c-babb2be16f02",
+  "mode": "evaluation",
+  "timestamp": "2026-06-07T12:16:24.398298",
+  "time_spent_seconds": 171.0,
+  "identified_errors": [
+    {
+      "span_start": 3,
+      "span_end": 17,
+      "student_mqm_category": "accuracy",
+      "student_severity": "major",
+      "confidence": "medium"
+    }
+  ],
+  "edited_text": null,
+  "verification_responses": null,
+  "comparison_type": null,
+  "per_system_evaluations": null,
+  "system_rankings": null,
+  "pe_worthiness": null,
+  "human_pick": null,
+  "human_pick_rationale": null,
+  "justification_format": "per_error_short",
+  "justifications": [
+    {
+      "error_id": "5965fa82-8056-4afe-a98e-aa45219a3593",
+      "format": "per_error_structured",
+      "text": null,
+      "mt_misunderstanding": "The MT system likely interpreted 'the House' as referring to multiple assemblies, leading it to use the plural form 'les Assemblées' and plural verb agreement.",
+      "author_intent": "The source refers specifically to a single legislative body, 'the House,' meaning only one assembly is being addressed.",
+      "reader_impact": "that there are several assemblies",
+      "tom_perspective": null,
+      "prompt_shown": null
+    }
+  ]
+}

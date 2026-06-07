@@ -126,7 +126,7 @@
   "difficulty_level": 4,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": null,
+  "teacher_notes": "[QE] GEMBA: good (0.85/100) | Detected: 1/3 | Extra: 1 | Status: failed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -168,6 +168,7 @@
       "mt_system_specific": "LLMs like Claude may struggle more with register because they’re trained on a wide mix of text, while dedicated MT systems can be tuned for specific formal styles."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

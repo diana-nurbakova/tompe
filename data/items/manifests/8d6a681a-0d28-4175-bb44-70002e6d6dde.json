@@ -128,7 +128,7 @@
   "difficulty_level": 4,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": null,
+  "teacher_notes": "[QE] GEMBA: poor (3/100) | Detected: 2/3 | Extra: 2 | Status: passed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -170,6 +170,7 @@
       "mt_system_specific": "Dedicated MT systems trained on lots of translation examples may handle prepositions a bit better than general LLMs, but both can struggle when context is tricky or the phrase is unusual."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

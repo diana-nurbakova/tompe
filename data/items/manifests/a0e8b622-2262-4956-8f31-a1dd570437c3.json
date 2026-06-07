@@ -94,7 +94,7 @@
   "difficulty_level": 3,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": null,
+  "teacher_notes": "[QE] GEMBA: poor (2/100) | Detected: 2/2 | Extra: 2 | Status: passed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -124,6 +124,7 @@
       "mt_system_specific": "Dedicated MT systems like DeepL are a bit more consistent with relative pronouns than general-purpose LLMs, but both can make these mistakes when the sentence structure is tricky."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

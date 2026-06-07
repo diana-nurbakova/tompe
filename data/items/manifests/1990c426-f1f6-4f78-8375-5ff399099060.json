@@ -195,7 +195,7 @@
   "difficulty_level": 5,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": "[QE] GEMBA: error (0.0/100) | Detected: 0/5 | Extra: 0 | Status: failed",
+  "teacher_notes": "[QE] GEMBA: poor (2/100) | Detected: 3/5 | Extra: 1 | Status: passed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -261,6 +261,7 @@
       "mt_system_specific": "Dedicated MT systems are sometimes better at handling rare words because they've been trained on more translation pairs, while general LLMs might leave more untranslated words since they haven't focused as much on direct translation."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

@@ -128,7 +128,7 @@
   "difficulty_level": 4,
   "domain": "parliamentary",
   "item_status": "published",
-  "teacher_notes": "[QE] GEMBA: error (0.0/100) | Detected: 0/3 | Extra: 0 | Status: failed",
+  "teacher_notes": "[QE] GEMBA: acceptable (0.7/100) | Detected: 3/3 | Extra: 1 | Status: passed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -170,6 +170,7 @@
       "mt_system_specific": "Dedicated MT systems like DeepL are trained specifically for translation, so they often make fewer preposition mistakes than general-purpose language models, but they can still struggle with tricky or rare cases."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

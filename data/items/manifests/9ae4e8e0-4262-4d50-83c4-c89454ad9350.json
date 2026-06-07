@@ -125,7 +125,7 @@
   "difficulty_level": 4,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": null,
+  "teacher_notes": "[QE] GEMBA: acceptable (70/100) | Detected: 2/3 | Extra: 0 | Status: passed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -167,6 +167,7 @@
       "mt_system_specific": "Dedicated MT systems like DeepL are trained mainly for general use, so they may miss subtle clues about formality. Large language models (LLMs) can sometimes adjust style better if you give clear instructions, but both systems can slip into informal language."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

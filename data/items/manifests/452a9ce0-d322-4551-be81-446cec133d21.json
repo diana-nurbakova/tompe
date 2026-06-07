@@ -194,7 +194,7 @@
   "difficulty_level": 5,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": null,
+  "teacher_notes": "[QE] GEMBA: acceptable (0.7/100) | Detected: 1/5 | Extra: 2 | Status: failed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -260,6 +260,7 @@
       "mt_system_specific": "General-purpose LLMs like GPT-4 are more likely to make this mistake than dedicated translation systems, because they haven't been trained as deeply on parallel texts and may miss the specific meaning needed for accurate translation."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

@@ -93,7 +93,7 @@
   "difficulty_level": 3,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": "[QE] GEMBA: error (0.0/100) | Detected: 0/2 | Extra: 0 | Status: failed",
+  "teacher_notes": "[QE] GEMBA: good (0.85/100) | Detected: 1/2 | Extra: 1 | Status: passed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -123,6 +123,7 @@
       "mt_system_specific": "Large language models like GPT-4 may make more of these errors compared to specialized translation systems, because they are trained on a wider range of texts and may not focus as much on picking the right meaning for translation tasks."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

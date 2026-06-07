@@ -94,7 +94,7 @@
   "difficulty_level": 3,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": "[QE] GEMBA: error (0.0/100) | Detected: 0/2 | Extra: 0 | Status: failed",
+  "teacher_notes": "[QE] GEMBA: good (0.9/100) | Detected: 1/2 | Extra: 0 | Status: passed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -124,6 +124,7 @@
       "mt_system_specific": "Dedicated MT systems trained specifically for translation may make this mistake less often than general-purpose models like LLMs, because they are more focused on language pairs and their unique quirks."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

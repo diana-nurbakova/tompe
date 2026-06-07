@@ -127,7 +127,7 @@
   "difficulty_level": 4,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": null,
+  "teacher_notes": "[QE] GEMBA: poor (2/100) | Detected: 3/3 | Extra: 4 | Status: passed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -169,6 +169,7 @@
       "mt_system_specific": "Dedicated MT systems like DeepL may be more prone to this error than LLM-based systems, because they rely heavily on their training data and may not adapt as flexibly to different styles or registers."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

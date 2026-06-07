@@ -126,7 +126,7 @@
   "difficulty_level": 4,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": null,
+  "teacher_notes": "[QE] GEMBA: acceptable (70/100) | Detected: 2/3 | Extra: 2 | Status: passed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -168,6 +168,7 @@
       "mt_system_specific": "General-purpose LLMs like GPT-4 are more likely to make this error than specialized MT systems, because they haven't been trained specifically to handle tricky translation cases and idioms."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

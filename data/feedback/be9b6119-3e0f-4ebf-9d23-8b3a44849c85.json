@@ -1,0 +1,57 @@
+{
+  "response_id": "be9b6119-3e0f-4ebf-9d23-8b3a44849c85",
+  "item_id": "2b7b69cf-d456-4a6a-981d-3520ec047d3c",
+  "true_positives": 1,
+  "false_positives": 0,
+  "false_negatives": 2,
+  "precision": 1.0,
+  "recall": 0.3333333333333333,
+  "f1": 0.5,
+  "detection_by_mqm": {
+    "accuracy": {
+      "detected": 1,
+      "total": 1,
+      "detection_rate": 1.0
+    },
+    "style": {
+      "detected": 0,
+      "total": 2,
+      "detection_rate": 0.0
+    }
+  },
+  "detection_by_tom": {
+    "1st_machine": {
+      "detected": 1,
+      "total": 1,
+      "detection_rate": 1.0
+    },
+    "2nd_reader": {
+      "detected": 0,
+      "total": 2,
+      "detection_rate": 0.0
+    }
+  },
+  "detection_by_skill": {
+    "S3": {
+      "detected": 1,
+      "total": 1,
+      "detection_rate": 1.0
+    },
+    "S6": {
+      "detected": 0,
+      "total": 2,
+      "detection_rate": 0.0
+    }
+  },
+  "hter": null,
+  "unnecessary_edits": null,
+  "edit_quality": null,
+  "correct_confirms": 0,
+  "correct_disputes": 0,
+  "incorrect_confirms": 0,
+  "incorrect_disputes": 0,
+  "ranking_kendall_tau": null,
+  "expert_ranking": [],
+  "human_pick_correct": null,
+  "justification_scores": []
+}

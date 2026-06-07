@@ -1,0 +1,78 @@
+{
+  "student_id": "6fff32b4-b5a5-45fe-a78c-babb2be16f02",
+  "display_name": "demo_CIKM",
+  "sessions_completed": 3,
+  "current_difficulty_level": 1,
+  "mqm_performance": {
+    "accuracy": {
+      "session_ids": [
+        "253b1565-5a1e-456b-9db5-dcb47049d841",
+        "665cbb7e-4344-431b-b620-bbd293d1cd36",
+        "4aa40810-681c-421b-aa50-2ee285b15a3e"
+      ],
+      "detection_rates": [
+        0.5,
+        0.0,
+        1.0
+      ],
+      "trend": "improving"
+    },
+    "fluency": {
+      "session_ids": [
+        "665cbb7e-4344-431b-b620-bbd293d1cd36"
+      ],
+      "detection_rates": [
+        0.5
+      ],
+      "trend": "stable"
+    },
+    "style": {
+      "session_ids": [
+        "4aa40810-681c-421b-aa50-2ee285b15a3e"
+      ],
+      "detection_rates": [
+        0.0
+      ],
+      "trend": "stable"
+    }
+  },
+  "tom_performance": {
+    "1st_author": {
+      "session_ids": [
+        "253b1565-5a1e-456b-9db5-dcb47049d841"
+      ],
+      "detection_rates": [
+        0.0
+      ],
+      "trend": "stable"
+    },
+    "1st_machine": {
+      "session_ids": [
+        "253b1565-5a1e-456b-9db5-dcb47049d841",
+        "665cbb7e-4344-431b-b620-bbd293d1cd36",
+        "4aa40810-681c-421b-aa50-2ee285b15a3e"
+      ],
+      "detection_rates": [
+        1.0,
+        0.3333333333333333,
+        1.0
+      ],
+      "trend": "stable"
+    },
+    "2nd_reader": {
+      "session_ids": [
+        "4aa40810-681c-421b-aa50-2ee285b15a3e"
+      ],
+      "detection_rates": [
+        0.0
+      ],
+      "trend": "stable"
+    }
+  },
+  "blind_spots": [],
+  "false_positive_rate_history": [
+    0.0,
+    0.0,
+    0.0
+  ]
+}

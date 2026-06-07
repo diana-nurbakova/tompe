@@ -193,7 +193,7 @@
   "difficulty_level": 5,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": null,
+  "teacher_notes": "[QE] GEMBA: poor (35/100) | Detected: 4/5 | Extra: 2 | Status: passed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -259,6 +259,7 @@
       "mt_system_specific": "Large language models like GPT-4 are more prone to this error than dedicated MT systems, since they focus on general language patterns rather than strict translation rules."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

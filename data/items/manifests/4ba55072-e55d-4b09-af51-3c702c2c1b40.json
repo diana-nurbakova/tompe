@@ -94,7 +94,7 @@
   "difficulty_level": 3,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": null,
+  "teacher_notes": "[QE] GEMBA: good (0.85/100) | Detected: 0/2 | Extra: 2 | Status: failed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -124,6 +124,7 @@
       "mt_system_specific": "Dedicated MT systems like DeepL may omit details to keep translations fluent, while LLMs (like ChatGPT) often try to include everything, sometimes at the cost of sounding less natural."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

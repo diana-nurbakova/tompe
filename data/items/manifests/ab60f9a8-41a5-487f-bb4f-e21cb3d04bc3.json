@@ -192,7 +192,7 @@
   "difficulty_level": 5,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": null,
+  "teacher_notes": "[QE] GEMBA: poor (40/100) | Detected: 3/5 | Extra: 0 | Status: passed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -258,6 +258,7 @@
       "mt_system_specific": "LLMs like Claude may be even more likely to skip these words than dedicated MT systems, because they focus on overall meaning rather than precise sentence structure."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

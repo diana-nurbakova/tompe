@@ -194,7 +194,7 @@
   "difficulty_level": 5,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": "[QE] GEMBA: error (0.0/100) | Detected: 0/5 | Extra: 0 | Status: failed",
+  "teacher_notes": "[QE] GEMBA: acceptable (0.7/100) | Detected: 2/5 | Extra: 2 | Status: failed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -260,6 +260,7 @@
       "mt_system_specific": "Dedicated MT systems are usually trained to translate every detail, so they tend to omit less than general LLMs like Claude, which sometimes focus more on overall meaning than on strict completeness."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

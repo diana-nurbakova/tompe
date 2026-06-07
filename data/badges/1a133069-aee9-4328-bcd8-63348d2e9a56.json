@@ -10,7 +10,7 @@
       "count": 1
     }
   ],
-  "total_xp": 58,
+  "total_xp": 88,
   "xp_history": [
     {
       "exercise_id": "2ab9ed9f-0982-44a9-91c8-0b651f7a3951",
@@ -46,6 +46,19 @@
         "detection_xp": 30,
         "category_xp": 0,
         "severity_xp": 5,
+        "fp_penalty": 0,
+        "tom_multiplier": 1.0,
+        "scaffolding_multiplier": 1.5
+      }
+    },
+    {
+      "exercise_id": "7e5388e3-f13b-4423-a798-147b4fa653a6",
+      "xp_earned": 30,
+      "timestamp": "2026-06-07T11:02:20.608566",
+      "breakdown": {
+        "detection_xp": 30,
+        "category_xp": 0,
+        "severity_xp": 0,
         "fp_penalty": 0,
         "tom_multiplier": 1.0,
         "scaffolding_multiplier": 1.5

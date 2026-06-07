@@ -92,7 +92,7 @@
   "difficulty_level": 4,
   "domain": "parliamentary",
   "item_status": "published",
-  "teacher_notes": "",
+  "teacher_notes": "[QE] GEMBA: poor (40/100) | Detected: 1/2 | Extra: 2 | Status: passed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -134,6 +134,7 @@
       "mt_system_specific": "General-purpose LLMs like GPT-4 are more likely to make these errors than dedicated translation systems, which are usually better at spotting and preserving names."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

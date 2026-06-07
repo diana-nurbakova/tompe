@@ -1,0 +1,39 @@
+{
+  "response_id": "be9b6119-3e0f-4ebf-9d23-8b3a44849c85",
+  "session_id": "4aa40810-681c-421b-aa50-2ee285b15a3e",
+  "item_id": "2b7b69cf-d456-4a6a-981d-3520ec047d3c",
+  "student_id": "6fff32b4-b5a5-45fe-a78c-babb2be16f02",
+  "mode": "evaluation",
+  "timestamp": "2026-06-07T12:18:43.500523",
+  "time_spent_seconds": 103.4,
+  "identified_errors": [
+    {
+      "span_start": 31,
+      "span_end": 52,
+      "student_mqm_category": "accuracy",
+      "student_severity": "minor",
+      "confidence": "medium"
+    }
+  ],
+  "edited_text": null,
+  "verification_responses": null,
+  "comparison_type": null,
+  "per_system_evaluations": null,
+  "system_rankings": null,
+  "pe_worthiness": null,
+  "human_pick": null,
+  "human_pick_rationale": null,
+  "justification_format": "per_error_short",
+  "justifications": [
+    {
+      "error_id": "9aae233c-2a8d-4962-81be-9401ede6d447",
+      "format": "per_error_structured",
+      "text": null,
+      "mt_misunderstanding": "The MT system likely interpreted 'the next few days' as referring to a single upcoming day, rendering it as 'le prochain jour' (the next day) instead of the plural 'les prochains jours.'",
+      "author_intent": "to say that the debates will be ogranised shortly",
+      "reader_impact": "that the debates will be organised on the next day",
+      "tom_perspective": null,
+      "prompt_shown": null
+    }
+  ]
+}

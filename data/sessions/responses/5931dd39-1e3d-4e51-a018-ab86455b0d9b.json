@@ -1,0 +1,39 @@
+{
+  "response_id": "5931dd39-1e3d-4e51-a018-ab86455b0d9b",
+  "session_id": "253b1565-5a1e-456b-9db5-dcb47049d841",
+  "item_id": "463439f7-3856-4d0c-9533-dad59e92df94",
+  "student_id": "6fff32b4-b5a5-45fe-a78c-babb2be16f02",
+  "mode": "evaluation",
+  "timestamp": "2026-06-07T12:20:50.774588",
+  "time_spent_seconds": 113.1,
+  "identified_errors": [
+    {
+      "span_start": 52,
+      "span_end": 62,
+      "student_mqm_category": "accuracy",
+      "student_severity": "major",
+      "confidence": "medium"
+    }
+  ],
+  "edited_text": null,
+  "verification_responses": null,
+  "comparison_type": null,
+  "per_system_evaluations": null,
+  "system_rankings": null,
+  "pe_worthiness": null,
+  "human_pick": null,
+  "human_pick_rationale": null,
+  "justification_format": "per_error_short",
+  "justifications": [
+    {
+      "error_id": "d9d20221-616b-4d54-a448-2070239580a3",
+      "format": "per_error_structured",
+      "text": null,
+      "mt_misunderstanding": "it dropped \"concerning inadmissibility\"",
+      "author_intent": "to specify which part of the Rule 143 was problematic for the speaker",
+      "reader_impact": "that a question is about the whole Rule 143 and not the specific part",
+      "tom_perspective": null,
+      "prompt_shown": null
+    }
+  ]
+}

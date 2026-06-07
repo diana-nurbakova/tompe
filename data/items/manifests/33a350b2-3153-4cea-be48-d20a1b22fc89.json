@@ -127,7 +127,7 @@
   "difficulty_level": 4,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": "[QE] GEMBA: error (0.0/100) | Detected: 0/3 | Extra: 0 | Status: failed",
+  "teacher_notes": "[QE] GEMBA: acceptable (0.7/100) | Detected: 2/3 | Extra: 1 | Status: passed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -169,6 +169,7 @@
       "mt_system_specific": "General-purpose LLMs like GPT-4 are more prone to overtranslation than dedicated MT systems, because they are trained to be helpful and chatty, not just accurate."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

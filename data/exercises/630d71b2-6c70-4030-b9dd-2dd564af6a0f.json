@@ -1,0 +1,23 @@
+{
+  "exercise_id": "630d71b2-6c70-4030-b9dd-2dd564af6a0f",
+  "name": "test_exercise_navigator",
+  "description": "",
+  "mode": "both",
+  "level": "navigator",
+  "item_ids": [
+    "0005f83e-7258-4638-81cd-b4f97ae5a42c",
+    "463439f7-3856-4d0c-9533-dad59e92df94"
+  ],
+  "justification_type": "per_error_short",
+  "clean_segment_ratio": 0.0,
+  "false_annotation_ratio": 0.25,
+  "false_annotation_mode": "llm",
+  "false_annotation_count": 2,
+  "false_annotations": {},
+  "item_ordering": "manual",
+  "assigned_to_class": null,
+  "assigned_to_students": [],
+  "domain": "",
+  "direction": "",
+  "created_at": "2026-06-07T10:51:06.676097"
+}

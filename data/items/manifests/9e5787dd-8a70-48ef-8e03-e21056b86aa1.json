@@ -93,7 +93,7 @@
   "difficulty_level": 3,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": null,
+  "teacher_notes": "[QE] GEMBA: good (0.9/100) | Detected: 1/2 | Extra: 1 | Status: passed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -123,6 +123,7 @@
       "mt_system_specific": "General-purpose LLMs like GPT-4 are even more prone to this than dedicated MT systems, because they aren't trained specifically to handle the quirks of translation between languages."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

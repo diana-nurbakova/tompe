@@ -190,7 +190,7 @@
   "difficulty_level": 5,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": "[QE] GEMBA: error (0.0/100) | Detected: 0/5 | Extra: 0 | Status: failed",
+  "teacher_notes": "[QE] GEMBA: poor (40/100) | Detected: 3/5 | Extra: 1 | Status: passed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -256,6 +256,7 @@
       "mt_system_specific": "Dedicated MT systems like DeepL are trained to translate as accurately as possible, but they may miss out on the latest slang or conversational styles that LLMs, which are exposed to more varied text, might pick up."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

@@ -194,7 +194,7 @@
   "difficulty_level": 5,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": "[QE] GEMBA: error (0.0/100) | Detected: 0/5 | Extra: 0 | Status: failed",
+  "teacher_notes": "[QE] GEMBA: poor (35/100) | Detected: 4/5 | Extra: 1 | Status: passed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -260,6 +260,7 @@
       "mt_system_specific": "Dedicated MT systems are usually more focused on translating only what's there, while general LLMs like GPT-4 are more likely to elaborate or add information, since they're trained to generate text in many situations."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

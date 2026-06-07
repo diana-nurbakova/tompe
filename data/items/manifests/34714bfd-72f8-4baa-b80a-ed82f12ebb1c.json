@@ -193,7 +193,7 @@
   "difficulty_level": 5,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": "[QE] GEMBA: error (0.0/100) | Detected: 0/5 | Extra: 0 | Status: failed",
+  "teacher_notes": "[QE] GEMBA: acceptable (70/100) | Detected: 4/5 | Extra: 1 | Status: passed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -259,6 +259,7 @@
       "mt_system_specific": "Large language models like GPT-4, which are trained on vast amounts of general text, may be more likely to make this error than systems trained specifically for translation, which may have more safeguards against false friends."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

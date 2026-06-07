@@ -1,0 +1,52 @@
+{
+  "response_id": "b5b9a76e-4729-4237-9b29-c57c33036682",
+  "item_id": "0005f83e-7258-4638-81cd-b4f97ae5a42c",
+  "true_positives": 1,
+  "false_positives": 0,
+  "false_negatives": 2,
+  "precision": 1.0,
+  "recall": 0.3333333333333333,
+  "f1": 0.5,
+  "detection_by_mqm": {
+    "fluency": {
+      "detected": 1,
+      "total": 2,
+      "detection_rate": 0.5
+    },
+    "accuracy": {
+      "detected": 0,
+      "total": 1,
+      "detection_rate": 0.0
+    }
+  },
+  "detection_by_tom": {
+    "1st_machine": {
+      "detected": 1,
+      "total": 3,
+      "detection_rate": 0.3333333333333333
+    }
+  },
+  "detection_by_skill": {
+    "S2": {
+      "detected": 1,
+      "total": 2,
+      "detection_rate": 0.5
+    },
+    "S4": {
+      "detected": 0,
+      "total": 1,
+      "detection_rate": 0.0
+    }
+  },
+  "hter": null,
+  "unnecessary_edits": null,
+  "edit_quality": null,
+  "correct_confirms": 0,
+  "correct_disputes": 0,
+  "incorrect_confirms": 0,
+  "incorrect_disputes": 0,
+  "ranking_kendall_tau": null,
+  "expert_ranking": [],
+  "human_pick_correct": null,
+  "justification_scores": []
+}

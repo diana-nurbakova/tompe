@@ -195,7 +195,7 @@
   "difficulty_level": 5,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": null,
+  "teacher_notes": "[QE] GEMBA: poor (2/100) | Detected: 2/5 | Extra: 1 | Status: failed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -261,6 +261,7 @@
       "mt_system_specific": "Large language models like Claude may make more of these errors than dedicated MT systems, because they are trained on broader data and might not focus as much on natural phrasing in specific language pairs."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

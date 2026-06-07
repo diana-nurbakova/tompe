@@ -1,9 +1,51 @@
 {
   "student_id": "6fff32b4-b5a5-45fe-a78c-babb2be16f02",
   "earned_badges": [],
-  "total_xp": 0,
-  "xp_history": [],
-  "detection_counts": {},
+  "total_xp": 53,
+  "xp_history": [
+    {
+      "exercise_id": "44f53e0b-ee43-4e23-9850-23e453ff72f8",
+      "xp_earned": 5,
+      "timestamp": "2026-06-07T12:16:29.333979",
+      "breakdown": {
+        "detection_xp": 5,
+        "category_xp": 0,
+        "severity_xp": 0,
+        "fp_penalty": 0,
+        "tom_multiplier": 1.0,
+        "scaffolding_multiplier": 0.5
+      }
+    },
+    {
+      "exercise_id": "2ab9ed9f-0982-44a9-91c8-0b651f7a3951",
+      "xp_earned": 23,
+      "timestamp": "2026-06-07T12:18:48.268189",
+      "breakdown": {
+        "detection_xp": 23,
+        "category_xp": 0,
+        "severity_xp": 0,
+        "fp_penalty": 0,
+        "tom_multiplier": 1.5,
+        "scaffolding_multiplier": 1.5
+      }
+    },
+    {
+      "exercise_id": "2ab9ed9f-0982-44a9-91c8-0b651f7a3951",
+      "xp_earned": 25,
+      "timestamp": "2026-06-07T12:20:55.650663",
+      "breakdown": {
+        "detection_xp": 19,
+        "category_xp": 0,
+        "severity_xp": 6,
+        "fp_penalty": 0,
+        "tom_multiplier": 1.25,
+        "scaffolding_multiplier": 1.5
+      }
+    }
+  ],
+  "detection_counts": {
+    "MISTRANSLATION": 1
+  },
   "clean_sheet_count": 0,
   "correct_disputes": 0
 }

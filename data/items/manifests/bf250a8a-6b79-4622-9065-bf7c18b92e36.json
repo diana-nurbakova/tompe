@@ -194,7 +194,7 @@
   "difficulty_level": 5,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": null,
+  "teacher_notes": "[QE] GEMBA: poor (45/100) | Detected: 3/5 | Extra: 2 | Status: passed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -260,6 +260,7 @@
       "mt_system_specific": "Dedicated MT systems are often trained with more parallel translation data, sometimes making them a bit better at catching false friends. General LLMs like GPT-4 may be more prone to this error since they rely more on general language patterns than on specific translation experience."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

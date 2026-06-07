@@ -94,7 +94,7 @@
   "difficulty_level": 3,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": "[QE] GEMBA: error (0.0/100) | Detected: 0/2 | Extra: 0 | Status: failed",
+  "teacher_notes": "[QE] GEMBA: poor (40/100) | Detected: 2/2 | Extra: 3 | Status: passed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -124,6 +124,7 @@
       "mt_system_specific": "Dedicated MT systems are often trained with more focus on grammar rules and may handle tense a bit better, while general-purpose language models like GPT-4 can be more prone to these mistakes because they aim for fluency over strict accuracy."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

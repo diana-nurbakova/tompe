@@ -10,6 +10,13 @@
   "allowed_levels": [
     "navigator"
   ],
-  "consent": null,
-  "tutorial_completed": false
+  "consent": {
+    "consent_version": "1.0",
+    "tier1_research_data": true,
+    "tier2_publication_excerpts": true,
+    "timestamp": "2026-06-07T12:02:17.743438",
+    "withdrawn": false,
+    "withdrawn_at": null
+  },
+  "tutorial_completed": true
 }

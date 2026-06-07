@@ -128,7 +128,7 @@
   "difficulty_level": 4,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": null,
+  "teacher_notes": "[QE] GEMBA: acceptable (0.7/100) | Detected: 2/3 | Extra: 3 | Status: passed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -170,6 +170,7 @@
       "mt_system_specific": "Dedicated MT systems like DeepL are trained to produce smooth translations and may drop details to keep sentences clear, while LLMs might keep more modifiers but risk awkward phrasing."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

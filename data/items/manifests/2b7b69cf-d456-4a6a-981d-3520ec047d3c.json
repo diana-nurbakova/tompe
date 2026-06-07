@@ -125,7 +125,7 @@
   "difficulty_level": 4,
   "domain": "parliamentary",
   "item_status": "published",
-  "teacher_notes": "[QE] GEMBA: error (0.0/100) | Detected: 0/3 | Extra: 0 | Status: failed",
+  "teacher_notes": "[QE] GEMBA: poor (35/100) | Detected: 2/3 | Extra: 2 | Status: passed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -167,6 +167,7 @@
       "mt_system_specific": "Dedicated MT systems like DeepL may struggle more than LLMs, since LLMs are sometimes better at picking up subtle cues about formality from instructions or context."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

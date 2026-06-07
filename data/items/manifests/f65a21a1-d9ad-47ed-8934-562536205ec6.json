@@ -127,7 +127,7 @@
   "difficulty_level": 4,
   "domain": "parliamentary",
   "item_status": "draft",
-  "teacher_notes": null,
+  "teacher_notes": "[QE] GEMBA: acceptable (70/100) | Detected: 1/3 | Extra: 3 | Status: failed",
   "iate_terms": [],
   "explanations_layer1": [
     {
@@ -169,6 +169,7 @@
       "mt_system_specific": "Large language models like Claude may make this mistake more often than dedicated translation systems, because they are trained on a wider range of text and may not focus as much on strict grammar rules between languages."
     }
   ],
+  "explanations_layer2b": [],
   "metadata": {
     "tom_profile": {},
     "mqm_profile": {},

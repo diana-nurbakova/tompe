@@ -36,6 +36,7 @@ from tompe.pipeline.error_injector import (
 )
 from tompe.pipeline.explanation_generator import (
     generate_layer2a_explanation,
+    generate_layer2b_explanation,
     generate_contrastive_explanation,
 )
 from tompe.pipeline.tag_formats import TagFormat
@@ -52,6 +53,7 @@ from tompe.schemas.error import (
     DetectedError,
     InjectedError,
     SystemBehaviorExplanation,
+    TechnicalExplanation,
 )
 from tompe.schemas.item import AssessmentItem, ItemMetadata
 
@@ -158,6 +160,7 @@ async def build_item(
     estimated_time_minutes: float = 2.0,
     generate_layer1_explanations: bool = False,
     generate_layer2a_explanations: bool = False,
+    generate_layer2b_explanations: bool = False,
     item_id: Optional[str] = None,
 ) -> AssessmentItem:
     """Build one ``AssessmentItem`` end-to-end.
@@ -186,11 +189,12 @@ async def build_item(
         difficulty_level: 1–5; surfaced to the teacher UI for filtering.
         estimated_time_minutes: Surfaced on item card and used for
             exercise sizing; not auto-computed yet.
-        generate_layer1_explanations / generate_layer2a_explanations:
+        generate_layer1_explanations / generate_layer2a_explanations /
+        generate_layer2b_explanations:
             When True, run the corresponding per-error LLM call (Layer 2a
-            also consults the committed cache first). Default False to
-            keep build_item cheap; explanations can be generated lazily
-            by the feedback service.
+            and 2b also consult the committed cache first). Default False to
+            keep build_item cheap; Layer 2b (technical NLP depth) is opt-in
+            for advanced/progressive-disclosure items.
         item_id: Optional override; auto-generated when None.
 
     Returns:
@@ -234,6 +238,7 @@ async def build_item(
     # carry one — InjectedError always does; DetectedError might).
     layer1_list: list[ContrastiveExplanation] = []
     layer2a_list: list[SystemBehaviorExplanation] = []
+    layer2b_list: list[TechnicalExplanation] = []
     for err in errors:
         if generate_layer1_explanations:
             existing = getattr(err, "explanation", None)
@@ -272,6 +277,24 @@ async def build_item(
         if getattr(err, "system_behavior", None) is not None:
             layer2a_list.append(err.system_behavior)
 
+        if generate_layer2b_explanations:
+            existing_2b = getattr(err, "technical_explanation", None)
+            if existing_2b is None:
+                try:
+                    layer2b = await generate_layer2b_explanation(
+                        error=err,
+                        mt_system=mt_system,
+                        llm_config=llm_config,
+                    )
+                    err.technical_explanation = layer2b
+                except Exception:
+                    logger.exception(
+                        "Layer 2b generation failed for %s/%s",
+                        err.primary_tag, err.error_type,
+                    )
+        if getattr(err, "technical_explanation", None) is not None:
+            layer2b_list.append(err.technical_explanation)
+
     direction = f"{segment.source_lang}->{segment.target_lang}"
     is_clean = not errors
     metadata = _build_metadata(
@@ -303,6 +326,7 @@ async def build_item(
         domain=segment.domain,
         explanations_layer1=layer1_list,
         explanations_layer2=layer2a_list,
+        explanations_layer2b=layer2b_list,
         metadata=metadata,
     )
 
@@ -336,6 +360,7 @@ async def build_batch(
     estimated_time_minutes: float = 2.0,
     generate_layer1_explanations: bool = False,
     generate_layer2a_explanations: bool = False,
+    generate_layer2b_explanations: bool = False,
     on_failure: str = "skip",
 ) -> list[AssessmentItem]:
     """Build a batch of ``AssessmentItem``\\ s by iterating over ``segments``.
@@ -360,7 +385,8 @@ async def build_batch(
             skipped with a warning.
         mt_system, codebook, tag_format, scaffolding_level,
         difficulty_level, estimated_time_minutes,
-        generate_layer1_explanations, generate_layer2a_explanations:
+        generate_layer1_explanations, generate_layer2a_explanations,
+        generate_layer2b_explanations:
             Forwarded to each ``build_item`` call.
         on_failure: ``"skip"`` (default) logs the exception and moves
             on; ``"raise"`` re-raises the first failure.
@@ -406,6 +432,7 @@ async def build_batch(
                 estimated_time_minutes=estimated_time_minutes,
                 generate_layer1_explanations=generate_layer1_explanations,
                 generate_layer2a_explanations=generate_layer2a_explanations,
+                generate_layer2b_explanations=generate_layer2b_explanations,
             )
             items.append(item)
         except Exception:

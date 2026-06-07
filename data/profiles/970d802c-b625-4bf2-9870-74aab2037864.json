@@ -1,0 +1,48 @@
+{
+  "student_id": "970d802c-b625-4bf2-9870-74aab2037864",
+  "display_name": "Alice",
+  "sessions_completed": 2,
+  "current_difficulty_level": 1,
+  "mqm_performance": {
+    "fluency": {
+      "session_ids": [
+        "61414e2c-7c4a-4fd0-80b4-7225bba42182",
+        "28849ddd-52f1-4649-9e80-6bc59f84a904"
+      ],
+      "detection_rates": [
+        1.0,
+        1.0
+      ],
+      "trend": "stable"
+    },
+    "accuracy": {
+      "session_ids": [
+        "61414e2c-7c4a-4fd0-80b4-7225bba42182",
+        "28849ddd-52f1-4649-9e80-6bc59f84a904"
+      ],
+      "detection_rates": [
+        1.0,
+        1.0
+      ],
+      "trend": "stable"
+    }
+  },
+  "tom_performance": {
+    "1st_machine": {
+      "session_ids": [
+        "61414e2c-7c4a-4fd0-80b4-7225bba42182",
+        "28849ddd-52f1-4649-9e80-6bc59f84a904"
+      ],
+      "detection_rates": [
+        1.0,
+        1.0
+      ],
+      "trend": "stable"
+    }
+  },
+  "blind_spots": [],
+  "false_positive_rate_history": [
+    0.0,
+    0.0
+  ]
+}

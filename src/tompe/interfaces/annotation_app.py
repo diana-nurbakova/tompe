@@ -1045,30 +1045,17 @@ def build_annotation_app(annotator_id: str = "annotator_1") -> gr.Blocks:
                 "</div>"
             )
 
-        # Wire the done view to display the summary when Phase B finishes.
-        # We use an additional event: when done_view becomes visible, populate it.
-        def _show_done(idx_b: int, ann_id: str) -> str:
-            return _build_completion_summary(ann_id)
-
-        done_view.select(
-            fn=_show_done,
-            inputs=[current_index_b, annotator_input],
-            outputs=[done_html],
-        )
-
-        # Also populate done_html on the submit that transitions to done_view.
-        # We attach a secondary handler via .then() on submit_expl_btn.
-        # Gradio does not support .select on Column, so we populate inline.
-        # Instead, update done_html inside _submit_explanation by adding it
-        # to the outputs. Let's add a load event as a workaround:
+        # Populate the completion summary into done_html. Gradio 6 has no
+        # `.select` event on Column, so we can't lazily fill done_html when
+        # done_view becomes visible. Instead we keep done_html empty on load
+        # and (re)build the summary on every Phase B submit; the value is
+        # already in place by the time the final submit reveals done_view.
         app.load(
             fn=lambda: "",
             inputs=[],
             outputs=[done_html],
         )
 
-        # Override: populate done_html whenever phase_b finishes.
-        # We do this by chaining a .then() after submit_expl_btn.
         submit_expl_btn.click(
             fn=lambda ann_id: _build_completion_summary(ann_id),
             inputs=[annotator_input],

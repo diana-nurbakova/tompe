@@ -18,6 +18,7 @@ from tompe.schemas.error import (
     DetectedError,
     InjectedError,
     SystemBehaviorExplanation,
+    TechnicalExplanation,
 )
 
 
@@ -52,6 +53,7 @@ class AssessmentItem(BaseModel):
     iate_terms: list[IATETerm] = []
     explanations_layer1: list[ContrastiveExplanation] = []
     explanations_layer2: list[SystemBehaviorExplanation] = []
+    explanations_layer2b: list[TechnicalExplanation] = []
     metadata: ItemMetadata
 
     # For comparison exercises

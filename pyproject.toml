@@ -4,6 +4,12 @@ version = "0.1.0"
 description = "Theory of Mind-Informed Platform for Scaffolded MT Post-Editing Training"
 readme = "README.md"
 requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+    { name = "Diana Nurbakova", email = "diananurbakova@gmail.com" },
+    { name = "Liana Ermakova" },
+]
 dependencies = [
     "fastapi>=0.115",
     "uvicorn[standard]>=0.34",

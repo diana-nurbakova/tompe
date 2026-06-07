@@ -366,9 +366,10 @@ def _page_upload_corpus():
 def _page_generate_translations():
     st.header("🔄 Generate Translations & Inject Errors")
     st.caption(
-        "This pipeline: (1) translates selected segments with MT systems, "
-        "(2) injects controlled MQM errors into translations, and "
-        "(3) generates pedagogical explanations for each error."
+        "This pipeline: (1) injects controlled MQM errors into the human "
+        "reference translation, and (2) generates pedagogical explanations "
+        "for each error. The selected MT system labels each item; actual MT "
+        "translations are only generated for the L3 Comparison exercises below."
     )
 
     selected_ids = st.session_state.get("selected_segment_ids", [])
@@ -383,6 +384,18 @@ def _page_generate_translations():
     mt_systems = mt_config.get("mt_systems", {})
 
     st.subheader("MT Systems")
+    st.info(
+        "**How the selected MT system is used**\n\n"
+        "- **Injection exercises** (below): errors are injected into the "
+        "**human reference translation**, not the MT output. The MT system "
+        "name is attached to each item as a label and used to contextualize "
+        "the pedagogical explanations (*\"a system like X would plausibly make "
+        "this error\"*). The MT translation text itself is **not** shown to "
+        "students, and is not generated for injection-only runs.\n"
+        "- **Comparison exercises** (L3, bottom of page): the actual MT "
+        "translations **are** shown to students side-by-side for ranking and "
+        "human-vs-MT discrimination."
+    )
     env_keys = {
         "google": "GOOGLE_TRANSLATE_API_KEY",
         "deepl": "DEEPL_AUTH_KEY",
@@ -601,7 +614,6 @@ def _run_translation_pipeline(selected_ids, selected_systems, mt_config, prompt,
     """Run MT generation + error injection for selected segments."""
     import asyncio
     from tompe.pipeline.segment_selector import load_corpus, compute_complexity
-    from tompe.pipeline.mt_generator import translate_segment
     from tompe.pipeline.error_injector import inject_errors_reference_based, ErrorProfile
     from tompe.pipeline.explanation_generator import generate_all_explanations
 
@@ -666,23 +678,19 @@ def _run_translation_pipeline(selected_ids, selected_systems, mt_config, prompt,
         )
 
         for system_name in selected_systems:
-            system_config = mt_config.get("mt_systems", {}).get(system_name, {})
             done += 1
             pct = done / total
             progress.progress(pct)
             status_text.info(
-                f"**[{done}/{total}]** Translating with **{system_name}** — "
+                f"**[{done}/{total}]** Injecting errors (labeled **{system_name}**) — "
                 f"segment `{segment.segment_id[:12]}...` "
                 f"({done * 100 // total}% complete)"
             )
 
             try:
-                # Translate
-                with log_expander:
-                    st.write(f"Step 1/3: Translating with {system_name}...")
-                mt_output = run_async(translate_segment(segment, system_name, system_config))
-
-                # Inject errors into reference (controlled pathway)
+                # Controlled pathway: errors are injected into the human
+                # reference, not the MT output. The MT system is only a label
+                # here, so we skip the (otherwise discarded) translation call.
                 injection_config = mt_config.get("injection_llm", {})
                 error_profile = ErrorProfile(
                     primary_tags=error_tags or [PrimaryTag.MISTRANSLATION, PrimaryTag.GRAMMAR, PrimaryTag.OMISSION],
@@ -690,19 +698,20 @@ def _run_translation_pipeline(selected_ids, selected_systems, mt_config, prompt,
                     direction=f"{segment.source_lang}2{segment.target_lang}",
                 )
                 with log_expander:
-                    st.write(f"Step 2/3: Injecting errors...")
+                    st.write(f"Step 1/2: Injecting errors...")
                 presented_text, injected_errors = run_async(
                     inject_errors_reference_based(segment, error_profile, injection_config)
                 )
                 with log_expander:
                     st.write(f"  Injected {len(injected_errors)} errors")
 
-                # Generate explanations (Layer 1 + 2a)
+                # Generate explanations (Layer 1 + 2a + 2b)
                 explanations_l1 = []
                 explanations_l2 = []
+                explanations_l2b = []
                 try:
                     with log_expander:
-                        st.write(f"Step 3/3: Generating explanations...")
+                        st.write(f"Step 2/2: Generating explanations...")
                     explanation_tuples = run_async(
                         generate_all_explanations(
                             source_text=segment.source_text,
@@ -710,16 +719,20 @@ def _run_translation_pipeline(selected_ids, selected_systems, mt_config, prompt,
                             errors=injected_errors,
                             mt_system=system_name,
                             llm_config=injection_config,
+                            include_layer2b=True,
                         )
                     )
-                    for l1, l2a, _l2b in explanation_tuples:
+                    for l1, l2a, l2b in explanation_tuples:
                         explanations_l1.append(l1)
                         explanations_l2.append(l2a)
+                        if l2b is not None:
+                            explanations_l2b.append(l2b)
                         # Attach explanation to error object
                     for i_err, err in enumerate(injected_errors):
                         if i_err < len(explanation_tuples):
                             err.explanation = explanation_tuples[i_err][0]
                             err.system_behavior = explanation_tuples[i_err][1]
+                            err.technical_explanation = explanation_tuples[i_err][2]
                 except Exception as expl_err:
                     st.warning(f"Explanation generation failed: {expl_err}")
 
@@ -745,6 +758,7 @@ def _run_translation_pipeline(selected_ids, selected_systems, mt_config, prompt,
                     item_status="draft",
                     explanations_layer1=explanations_l1,
                     explanations_layer2=explanations_l2,
+                    explanations_layer2b=explanations_l2b,
                     metadata=ItemMetadata(
                         tom_profile={},
                         mqm_profile={},

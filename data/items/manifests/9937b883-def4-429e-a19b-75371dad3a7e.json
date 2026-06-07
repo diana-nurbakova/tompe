@@ -1,0 +1,198 @@
+{
+  "item_id": "9937b883-def4-429e-a19b-75371dad3a7e",
+  "segment_id": "europarl-8e6885093c5e",
+  "source_text": "You have requested a debate on this subject in the course of the next few days , during this part-session .",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Vous avez souhaité un débat à ce sujet dans le prochain jour , au cours de cette partie-session .",
+  "reference_translation": "Vous avez souhaité un débat à ce sujet dans les prochains jours , au cours de cette période de session .",
+  "mt_system": "gpt4",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "2760d490-4534-4322-8863-203693dde4f6",
+      "span_start": 81,
+      "span_end": 95,
+      "original_text": "période de session",
+      "injected_text": "partie-session",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "overly_literal",
+      "severity": "minor",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [
+        "S6"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely identified 'part-session' as a compositional term and translated it literally as 'partie-session', following a word-for-word approach.",
+        "actual_meaning": "The source refers to the specific period or span of parliamentary sessions, commonly rendered in French as 'période de session'.",
+        "reader_impact": "A French reader may find 'partie-session' confusing or unnatural, as this is not an established term, potentially causing uncertainty about the timing or structure of the session.",
+        "correction_rationale": "'Période de session' is the idiomatic and standard French expression for this context, ensuring clarity and naturalness for the target audience."
+      },
+      "system_behavior": {
+        "error_mechanism": "Machine translation systems often translate word-for-word, like someone following a recipe without understanding the dish’s taste. They may miss the meaning behind phrases, leading to translations that sound odd or miss the real message.",
+        "architectural_cause": "These systems learn by matching patterns in huge amounts of text, but they don’t truly understand context or intent. They often pick the most common or direct meaning of a word, rather than considering if a more natural or idiomatic translation is needed.",
+        "pattern_generalization": "You’ll see this kind of mistake with idioms, sayings, or phrases that don’t translate directly between languages. Watch for it especially when the original sentence uses expressions that mean more than the sum of their words.",
+        "mt_system_specific": "General-purpose systems like GPT-4 are more likely to be literal, while specialized translation tools are sometimes better at spotting and adapting idioms, but both can make this mistake."
+      },
+      "technical_explanation": {
+        "technical_description": "Overly literal mistranslation occurs when a machine translation (MT) system produces output that adheres too closely to the source language's lexical or syntactic structure, neglecting idiomatic or contextually appropriate target language expressions. This is often a consequence of insufficient modeling of cross-lingual equivalence at the phrase or discourse level, causing the system to prefer word-for-word translations. Neural MT models may exhibit this behavior when their attention mechanisms or training data distributions fail to sufficiently capture non-literal mappings. Such errors reduce translation fluency and may impede meaning transfer, especially for idioms, collocations, or culturally specific expressions.",
+        "key_concepts": [
+          "literal translation bias",
+          "cross-lingual equivalence",
+          "context modeling",
+          "attention mechanisms",
+          "phrase-level translation"
+        ],
+        "references": [
+          "Koehn & Knowles 2017: \"Six Challenges for Neural Machine Translation\"",
+          "Bentivogli et al. 2016: \"Neural versus Phrase-Based Machine Translation Quality: A Case Study\"",
+          "Bahdanau et al. 2015: \"Neural Machine Translation by Jointly Learning to Align and Translate\""
+        ]
+      },
+      "xml_tag": "Vous avez souhaité un débat à ce sujet dans les prochains jours , au cours de cette <MISTRANSLATION type=\"overly_literal\" severity=\"minor\" tom=\"1st_machine\" desc=\"5-15 word explanation\">partie-session</MISTRANSLATION> .",
+      "brief_explanation": "5-15 word explanation"
+    },
+    {
+      "error_id": "e3584aa3-0b82-4166-b1da-8f7a98d41af9",
+      "span_start": 44,
+      "span_end": 60,
+      "original_text": "les prochains jours",
+      "injected_text": "le prochain jour",
+      "primary_tag": "GRAMMAR",
+      "error_type": "agreement_number",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted \"the next few days\" as referring to a single day, rendering it as \"le prochain jour\" (the next day) instead of the intended plural form.",
+        "actual_meaning": "The source refers to a period spanning several days, not just one, indicating that the debate could happen on any of the upcoming days within the session.",
+        "reader_impact": "A reader would mistakenly believe that the debate is scheduled for only one specific day, rather than being possible on multiple days, which could lead to confusion about the timing and flexibility of the debate.",
+        "correction_rationale": "The correct translation, \"les prochains jours,\" accurately reflects the plural nature of the original phrase and ensures that the temporal scope matches the source, conveying the intended meaning of multiple possible days."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up singular and plural forms because they focus on matching words that seem to fit together, a bit like someone guessing the next word in a sentence without fully understanding the whole story. If the sentence is long or complicated, the system might lose track of whether it started with one thing or many.",
+        "architectural_cause": "Inside, the system works by predicting each word based on the ones before it, rather like building a sentence one block at a time. If it misses a clue earlier in the sentence about whether something is singular or plural, it can easily pick the wrong form later on.",
+        "pattern_generalization": "You’re most likely to see these mistakes in longer sentences or when there are several words between the subject and the verb. Watch out for sentences where the number (one or many) isn’t repeated clearly.",
+        "mt_system_specific": "Dedicated MT systems are often trained specifically to handle grammar rules of each language, so they may make fewer of these errors compared to general-purpose LLMs like GPT-4, which focus more on general language patterns."
+      },
+      "technical_explanation": {
+        "technical_description": "Number agreement errors in machine translation (MT) occur when the generated target language output fails to maintain morphological concord between syntactically related elements, such as subject and verb or noun and modifier, with respect to grammatical number (singular/plural). Such errors often arise due to insufficient modeling of long-distance dependencies or inadequate contextual representations within the neural MT architecture. These issues can be exacerbated by subword tokenization methods, which may obscure morpheme-level number markers, and by limited explicit syntactic encoding in standard sequence-to-sequence models. Addressing number agreement requires improved context modeling, explicit morphological awareness, or integration of syntactic constraints during decoding.",
+        "key_concepts": [
+          "Morphological agreement",
+          "Long-distance dependencies",
+          "Subword tokenization",
+          "Contextual embeddings",
+          "Syntactic constraints"
+        ],
+        "references": [
+          "Koehn, P., & Knowles, R. (2017). Six Challenges for Neural Machine Translation. ACL.",
+          "Burlot, F., & Yvon, F. (2017). Evaluating the Morphological Competence of Machine Translation Systems. WMT.",
+          "Voita, E., Serdyukov, P., Sennrich, R., & Titov, I. (2019). Context-Aware Neural Machine Translation Learns Anaphora Resolution. ACL."
+        ]
+      },
+      "xml_tag": "Vous avez souhaité un débat à ce sujet dans <GRAMMAR type=\"agreement_number\" severity=\"major\" tom=\"1st_machine\" desc=\"Number agreement error: singular instead of plural\">le prochain jour</GRAMMAR> , au cours de cette partie-session .",
+      "brief_explanation": "Number agreement error: singular instead of plural"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "analyst",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 3,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system likely identified 'part-session' as a compositional term and translated it literally as 'partie-session', following a word-for-word approach.",
+      "actual_meaning": "The source refers to the specific period or span of parliamentary sessions, commonly rendered in French as 'période de session'.",
+      "reader_impact": "A French reader may find 'partie-session' confusing or unnatural, as this is not an established term, potentially causing uncertainty about the timing or structure of the session.",
+      "correction_rationale": "'Période de session' is the idiomatic and standard French expression for this context, ensuring clarity and naturalness for the target audience."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted \"the next few days\" as referring to a single day, rendering it as \"le prochain jour\" (the next day) instead of the intended plural form.",
+      "actual_meaning": "The source refers to a period spanning several days, not just one, indicating that the debate could happen on any of the upcoming days within the session.",
+      "reader_impact": "A reader would mistakenly believe that the debate is scheduled for only one specific day, rather than being possible on multiple days, which could lead to confusion about the timing and flexibility of the debate.",
+      "correction_rationale": "The correct translation, \"les prochains jours,\" accurately reflects the plural nature of the original phrase and ensures that the temporal scope matches the source, conveying the intended meaning of multiple possible days."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "Machine translation systems often translate word-for-word, like someone following a recipe without understanding the dish’s taste. They may miss the meaning behind phrases, leading to translations that sound odd or miss the real message.",
+      "architectural_cause": "These systems learn by matching patterns in huge amounts of text, but they don’t truly understand context or intent. They often pick the most common or direct meaning of a word, rather than considering if a more natural or idiomatic translation is needed.",
+      "pattern_generalization": "You’ll see this kind of mistake with idioms, sayings, or phrases that don’t translate directly between languages. Watch for it especially when the original sentence uses expressions that mean more than the sum of their words.",
+      "mt_system_specific": "General-purpose systems like GPT-4 are more likely to be literal, while specialized translation tools are sometimes better at spotting and adapting idioms, but both can make this mistake."
+    },
+    {
+      "error_mechanism": "MT systems often mix up singular and plural forms because they focus on matching words that seem to fit together, a bit like someone guessing the next word in a sentence without fully understanding the whole story. If the sentence is long or complicated, the system might lose track of whether it started with one thing or many.",
+      "architectural_cause": "Inside, the system works by predicting each word based on the ones before it, rather like building a sentence one block at a time. If it misses a clue earlier in the sentence about whether something is singular or plural, it can easily pick the wrong form later on.",
+      "pattern_generalization": "You’re most likely to see these mistakes in longer sentences or when there are several words between the subject and the verb. Watch out for sentences where the number (one or many) isn’t repeated clearly.",
+      "mt_system_specific": "Dedicated MT systems are often trained specifically to handle grammar rules of each language, so they may make fewer of these errors compared to general-purpose LLMs like GPT-4, which focus more on general language patterns."
+    }
+  ],
+  "explanations_layer2b": [
+    {
+      "technical_description": "Overly literal mistranslation occurs when a machine translation (MT) system produces output that adheres too closely to the source language's lexical or syntactic structure, neglecting idiomatic or contextually appropriate target language expressions. This is often a consequence of insufficient modeling of cross-lingual equivalence at the phrase or discourse level, causing the system to prefer word-for-word translations. Neural MT models may exhibit this behavior when their attention mechanisms or training data distributions fail to sufficiently capture non-literal mappings. Such errors reduce translation fluency and may impede meaning transfer, especially for idioms, collocations, or culturally specific expressions.",
+      "key_concepts": [
+        "literal translation bias",
+        "cross-lingual equivalence",
+        "context modeling",
+        "attention mechanisms",
+        "phrase-level translation"
+      ],
+      "references": [
+        "Koehn & Knowles 2017: \"Six Challenges for Neural Machine Translation\"",
+        "Bentivogli et al. 2016: \"Neural versus Phrase-Based Machine Translation Quality: A Case Study\"",
+        "Bahdanau et al. 2015: \"Neural Machine Translation by Jointly Learning to Align and Translate\""
+      ]
+    },
+    {
+      "technical_description": "Number agreement errors in machine translation (MT) occur when the generated target language output fails to maintain morphological concord between syntactically related elements, such as subject and verb or noun and modifier, with respect to grammatical number (singular/plural). Such errors often arise due to insufficient modeling of long-distance dependencies or inadequate contextual representations within the neural MT architecture. These issues can be exacerbated by subword tokenization methods, which may obscure morpheme-level number markers, and by limited explicit syntactic encoding in standard sequence-to-sequence models. Addressing number agreement requires improved context modeling, explicit morphological awareness, or integration of syntactic constraints during decoding.",
+      "key_concepts": [
+        "Morphological agreement",
+        "Long-distance dependencies",
+        "Subword tokenization",
+        "Contextual embeddings",
+        "Syntactic constraints"
+      ],
+      "references": [
+        "Koehn, P., & Knowles, R. (2017). Six Challenges for Neural Machine Translation. ACL.",
+        "Burlot, F., & Yvon, F. (2017). Evaluating the Morphological Competence of Machine Translation Systems. WMT.",
+        "Voita, E., Serdyukov, P., Sennrich, R., & Titov, I. (2019). Context-Aware Neural Machine Translation Learns Anaphora Resolution. ACL."
+      ]
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "analyst",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

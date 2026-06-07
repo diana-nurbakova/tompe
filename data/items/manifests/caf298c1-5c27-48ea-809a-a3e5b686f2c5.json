@@ -1,0 +1,199 @@
+{
+  "item_id": "caf298c1-5c27-48ea-809a-a3e5b686f2c5",
+  "segment_id": "europarl-8e6885093c5e",
+  "source_text": "You have requested a debate on this subject in the course of the next few days , during this part-session .",
+  "source_lang": "en",
+  "target_lang": "fr",
+  "presented_text": "Vous souhaitiez un débat à ce sujet dans les prochains jours , au cours de cette partie de session .",
+  "reference_translation": "Vous avez souhaité un débat à ce sujet dans les prochains jours , au cours de cette période de session .",
+  "mt_system": "claude",
+  "pathway": "controlled",
+  "errors": [
+    {
+      "error_id": "29122b8a-4959-4cc3-b78d-f3ac9f627dc6",
+      "span_start": 81,
+      "span_end": 98,
+      "original_text": "période de session",
+      "injected_text": "partie de session",
+      "primary_tag": "MISTRANSLATION",
+      "error_type": "word_sense",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S3",
+      "secondary_skills": [
+        "S5"
+      ],
+      "severity_range": [
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system interpreted 'part-session' literally, translating it as 'partie de session,' assuming it referred to a physical or logical 'part' of a session.",
+        "actual_meaning": "The source refers to a specific period within the parliamentary session, not a fraction or segment of a session. The intended meaning is the official timeframe known as the 'période de session.'",
+        "reader_impact": "A reader may misunderstand 'partie de session' as referring to a segment or portion of a session, which is not a standard term and could cause confusion about the timing or structure of the event.",
+        "correction_rationale": "'Période de session' is the established term in French for an official session period, accurately conveying the institutional context and avoiding ambiguity."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often misunderstand words that have several meanings, like 'part' in 'part-session.' It's like a person who knows many definitions for a word but picks the wrong one because the clues in the sentence aren't clear enough. The system may latch onto the most common meaning it has seen before, even if it doesn't fit the context.",
+        "architectural_cause": "Internally, the system relies on patterns it has learned from large amounts of text, matching words and phrases it has seen together before. If it hasn't seen 'part-session' used in the right context, it may break the phrase down and translate each word literally, rather than finding the correct meaning as a whole.",
+        "pattern_generalization": "Students can expect similar errors whenever a word or phrase has multiple possible meanings, especially for terms that are rare or used differently in specialized contexts. Be extra careful with compound words or phrases that don't translate directly word-for-word.",
+        "mt_system_specific": "LLMs like Claude may be more prone to this type of error than dedicated MT systems, because they haven't been specifically trained on large amounts of parallel translation data and may not recognize specialized terms as well."
+      },
+      "technical_explanation": {
+        "technical_description": "This error arises from incorrect word sense disambiguation (WSD) during translation. The MT system failed to select the appropriate sense of 'part-session' in context, instead producing a literal translation that does not convey the intended meaning. This typically occurs when the model relies on surface forms or frequency-based mappings rather than leveraging contextual cues to determine the correct semantic interpretation. Such errors highlight challenges in modeling lexical ambiguity and context-sensitive translation within neural MT architectures.",
+        "key_concepts": [
+          "word sense disambiguation (WSD)",
+          "contextual embeddings",
+          "lexical ambiguity",
+          "neural machine translation (NMT)",
+          "literal translation"
+        ],
+        "references": [
+          "Carpuat & Wu 2007: Improving Statistical Machine Translation using Word Sense Disambiguation",
+          "Raganato et al. 2017: Neural Sequence Learning Models for Word Sense Disambiguation",
+          "Koehn & Knowles 2017: Six Challenges for Neural Machine Translation"
+        ]
+      },
+      "xml_tag": "Vous avez souhaité un débat à ce sujet dans les prochains jours , au cours de cette <MISTRANSLATION type=\"word_sense\" severity=\"major\" tom=\"1st_machine\" desc=\"Literal translation of 'part-session' as 'partie de session' is incorrect in context\">partie de session</MISTRANSLATION> .",
+      "brief_explanation": "Literal translation of 'part-session' as 'partie de session' is incorrect in context"
+    },
+    {
+      "error_id": "e25131d1-d575-466c-99a5-cb1fbe962a0d",
+      "span_start": 0,
+      "span_end": 15,
+      "original_text": "Vous avez souhaité",
+      "injected_text": "Vous souhaitiez",
+      "primary_tag": "GRAMMAR",
+      "error_type": "tense",
+      "severity": "major",
+      "tom_level": "1st_machine",
+      "primary_skill": "S2",
+      "secondary_skills": [
+        "S3"
+      ],
+      "severity_range": [
+        "minor",
+        "major"
+      ],
+      "direction": "both",
+      "explanation": {
+        "mt_interpretation": "The MT system likely interpreted 'have requested' as an ongoing or habitual past action, leading it to choose the imparfait 'souhaitiez'.",
+        "actual_meaning": "The source indicates a completed action: the audience has already made the request for a debate, and this is being acknowledged.",
+        "reader_impact": "A reader would interpret 'Vous souhaitiez' as referring to a past intention or an ongoing wish, rather than a completed request, which could create confusion about whether the request is still relevant or has been acted upon.",
+        "correction_rationale": "The passé composé 'Vous avez souhaité' correctly conveys a completed action in the past, matching the English present perfect and clarifying that the request was made and is now being addressed."
+      },
+      "system_behavior": {
+        "error_mechanism": "MT systems often mix up tenses like imparfait and passé composé because, like someone learning a new language, they rely on patterns from their training. If the context isn't crystal clear, they may grab the wrong tense, just as someone might choose 'was eating' instead of 'ate' when telling a story.",
+        "architectural_cause": "Internally, the system doesn't truly 'understand' the story's timeline. It looks at surrounding words and patterns it has seen before, so if past actions often appear with imparfait in its training data, it might default to that even when passé composé is needed.",
+        "pattern_generalization": "Students can expect similar errors whenever the source text describes a completed action in the past, especially if the sentence structure could also fit a background or ongoing action.",
+        "mt_system_specific": "General-purpose LLMs like Claude may be even more prone to this confusion than specialized MT systems, since they are trained on a wider variety of texts and may not focus as closely on translation rules."
+      },
+      "technical_explanation": {
+        "technical_description": "This error arises from the machine translation system's incorrect mapping of source tense to target tense, specifically selecting the French imparfait instead of the passé composé for a completed action. Such errors often result from insufficient temporal disambiguation in the encoder-decoder architecture, where contextual cues indicating aspectual completeness are not adequately modeled. Neural MT systems may underrepresent subtle distinctions in aspect and tense due to limitations in their context window, training data bias, or insufficient explicit linguistic supervision. This leads to an aspectual mismatch, impacting both grammaticality and semantic fidelity of the translation.",
+        "key_concepts": [
+          "tense-aspect disambiguation",
+          "contextual representation",
+          "encoder-decoder architecture",
+          "training data bias",
+          "aspectual mismatch"
+        ],
+        "references": [
+          "Koehn & Knowles 2017. 'Six Challenges for Neural Machine Translation.'",
+          "Sennrich et al. 2016. 'Neural Machine Translation of Rare Words with Subword Units.'",
+          "Bentivogli et al. 2016. 'Neural versus Phrase-Based Machine Translation Quality: A Case Study.'"
+        ]
+      },
+      "xml_tag": "<GRAMMAR type=\"tense\" severity=\"major\" tom=\"1st_machine\" desc=\"Imparfait used instead of passé composé for completed action\">Vous souhaitiez</GRAMMAR> un débat à ce sujet dans les prochains jours , au cours de cette partie de session .",
+      "brief_explanation": "Imparfait used instead of passé composé for completed action"
+    }
+  ],
+  "clean_spans": [],
+  "annotations": [],
+  "annotation_config": {
+    "level": "analyst",
+    "show_mqm_labels": false,
+    "show_severity": false,
+    "show_tom_hints": false,
+    "show_guiding_questions": false,
+    "show_region_highlights": false,
+    "show_hint_text": false,
+    "include_clean_spans": false,
+    "include_multi_system": false
+  },
+  "difficulty_level": 3,
+  "domain": "parliamentary",
+  "item_status": "draft",
+  "teacher_notes": null,
+  "iate_terms": [],
+  "explanations_layer1": [
+    {
+      "mt_interpretation": "The MT system interpreted 'part-session' literally, translating it as 'partie de session,' assuming it referred to a physical or logical 'part' of a session.",
+      "actual_meaning": "The source refers to a specific period within the parliamentary session, not a fraction or segment of a session. The intended meaning is the official timeframe known as the 'période de session.'",
+      "reader_impact": "A reader may misunderstand 'partie de session' as referring to a segment or portion of a session, which is not a standard term and could cause confusion about the timing or structure of the event.",
+      "correction_rationale": "'Période de session' is the established term in French for an official session period, accurately conveying the institutional context and avoiding ambiguity."
+    },
+    {
+      "mt_interpretation": "The MT system likely interpreted 'have requested' as an ongoing or habitual past action, leading it to choose the imparfait 'souhaitiez'.",
+      "actual_meaning": "The source indicates a completed action: the audience has already made the request for a debate, and this is being acknowledged.",
+      "reader_impact": "A reader would interpret 'Vous souhaitiez' as referring to a past intention or an ongoing wish, rather than a completed request, which could create confusion about whether the request is still relevant or has been acted upon.",
+      "correction_rationale": "The passé composé 'Vous avez souhaité' correctly conveys a completed action in the past, matching the English present perfect and clarifying that the request was made and is now being addressed."
+    }
+  ],
+  "explanations_layer2": [
+    {
+      "error_mechanism": "MT systems often misunderstand words that have several meanings, like 'part' in 'part-session.' It's like a person who knows many definitions for a word but picks the wrong one because the clues in the sentence aren't clear enough. The system may latch onto the most common meaning it has seen before, even if it doesn't fit the context.",
+      "architectural_cause": "Internally, the system relies on patterns it has learned from large amounts of text, matching words and phrases it has seen together before. If it hasn't seen 'part-session' used in the right context, it may break the phrase down and translate each word literally, rather than finding the correct meaning as a whole.",
+      "pattern_generalization": "Students can expect similar errors whenever a word or phrase has multiple possible meanings, especially for terms that are rare or used differently in specialized contexts. Be extra careful with compound words or phrases that don't translate directly word-for-word.",
+      "mt_system_specific": "LLMs like Claude may be more prone to this type of error than dedicated MT systems, because they haven't been specifically trained on large amounts of parallel translation data and may not recognize specialized terms as well."
+    },
+    {
+      "error_mechanism": "MT systems often mix up tenses like imparfait and passé composé because, like someone learning a new language, they rely on patterns from their training. If the context isn't crystal clear, they may grab the wrong tense, just as someone might choose 'was eating' instead of 'ate' when telling a story.",
+      "architectural_cause": "Internally, the system doesn't truly 'understand' the story's timeline. It looks at surrounding words and patterns it has seen before, so if past actions often appear with imparfait in its training data, it might default to that even when passé composé is needed.",
+      "pattern_generalization": "Students can expect similar errors whenever the source text describes a completed action in the past, especially if the sentence structure could also fit a background or ongoing action.",
+      "mt_system_specific": "General-purpose LLMs like Claude may be even more prone to this confusion than specialized MT systems, since they are trained on a wider variety of texts and may not focus as closely on translation rules."
+    }
+  ],
+  "explanations_layer2b": [
+    {
+      "technical_description": "This error arises from incorrect word sense disambiguation (WSD) during translation. The MT system failed to select the appropriate sense of 'part-session' in context, instead producing a literal translation that does not convey the intended meaning. This typically occurs when the model relies on surface forms or frequency-based mappings rather than leveraging contextual cues to determine the correct semantic interpretation. Such errors highlight challenges in modeling lexical ambiguity and context-sensitive translation within neural MT architectures.",
+      "key_concepts": [
+        "word sense disambiguation (WSD)",
+        "contextual embeddings",
+        "lexical ambiguity",
+        "neural machine translation (NMT)",
+        "literal translation"
+      ],
+      "references": [
+        "Carpuat & Wu 2007: Improving Statistical Machine Translation using Word Sense Disambiguation",
+        "Raganato et al. 2017: Neural Sequence Learning Models for Word Sense Disambiguation",
+        "Koehn & Knowles 2017: Six Challenges for Neural Machine Translation"
+      ]
+    },
+    {
+      "technical_description": "This error arises from the machine translation system's incorrect mapping of source tense to target tense, specifically selecting the French imparfait instead of the passé composé for a completed action. Such errors often result from insufficient temporal disambiguation in the encoder-decoder architecture, where contextual cues indicating aspectual completeness are not adequately modeled. Neural MT systems may underrepresent subtle distinctions in aspect and tense due to limitations in their context window, training data bias, or insufficient explicit linguistic supervision. This leads to an aspectual mismatch, impacting both grammaticality and semantic fidelity of the translation.",
+      "key_concepts": [
+        "tense-aspect disambiguation",
+        "contextual representation",
+        "encoder-decoder architecture",
+        "training data bias",
+        "aspectual mismatch"
+      ],
+      "references": [
+        "Koehn & Knowles 2017. 'Six Challenges for Neural Machine Translation.'",
+        "Sennrich et al. 2016. 'Neural Machine Translation of Rare Words with Subword Units.'",
+        "Bentivogli et al. 2016. 'Neural versus Phrase-Based Machine Translation Quality: A Case Study.'"
+      ]
+    }
+  ],
+  "metadata": {
+    "tom_profile": {},
+    "mqm_profile": {},
+    "estimated_time_minutes": 3.0,
+    "has_clean_segments": false,
+    "scaffolding_level": "analyst",
+    "pathway": "controlled",
+    "translation_direction": "en→fr"
+  },
+  "comparison_outputs": null,
+  "comparison_type": null
+}

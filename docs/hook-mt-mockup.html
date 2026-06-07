@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hook mockup — fluency trap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,18..72,400;0,18..72,500;1,18..72,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --orange:#E69F00; --skyblue:#56B4E9; --green:#009E73; --yellow:#F0E442;
+    --blue:#0072B2; --vermillion:#D55E00; --purple:#CC79A7;
+    --ink:#14181d; --ink-soft:#4a525c; --line:#e4e7ec; --line-soft:#eef1f4;
+    --paper:#ffffff; --bg1:#f4f6f9; --bg2:#eef1f6;
+    --radius:18px;
+    --ui:"Hanken Grotesk",system-ui,sans-serif;
+    --serif:"Newsreader",Georgia,serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{
+    font-family:var(--ui); color:var(--ink);
+    background:
+      radial-gradient(1200px 600px at 15% -10%, #ffffff 0%, rgba(255,255,255,0) 60%),
+      radial-gradient(1000px 700px at 110% 120%, #e8eef7 0%, rgba(232,238,247,0) 55%),
+      linear-gradient(160deg,var(--bg1),var(--bg2));
+    display:flex; align-items:center; justify-content:center;
+    min-height:100vh; padding:48px 32px; -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important} }
+
+  .stage{ width:min(1120px,100%); }
+
+  .bar{ display:flex; align-items:center; justify-content:space-between; margin-bottom:22px; padding:0 4px;}
+  .brand{ display:flex; align-items:center; gap:12px; font-weight:800; font-size:22px; letter-spacing:-.02em;}
+  .brand .mark{
+    width:34px;height:34px;border-radius:10px;
+    background:conic-gradient(from 210deg, var(--blue), var(--skyblue), var(--green), var(--blue));
+    box-shadow:0 6px 16px rgba(0,114,178,.28); position:relative;
+  }
+  .brand .mark::after{content:"";position:absolute;inset:9px;border-radius:4px;background:#fff;opacity:.92}
+  .langs{ display:flex; align-items:center; gap:10px; font-weight:600; font-size:15px; color:var(--ink-soft);}
+  .langs .lang{ background:#fff;border:1px solid var(--line); padding:9px 16px;border-radius:999px; color:var(--ink); box-shadow:0 1px 0 rgba(20,24,29,.03)}
+  .langs .arrow{ color:var(--blue); font-size:18px}
+
+  .card{
+    background:var(--paper); border:1px solid var(--line);
+    border-radius:var(--radius); overflow:hidden;
+    box-shadow:0 24px 60px -28px rgba(22,33,52,.40), 0 2px 6px rgba(22,33,52,.05);
+  }
+  .panels{ display:grid; grid-template-columns:1fr 1fr; }
+  .panel{ padding:30px 32px 22px; min-height:230px; position:relative; }
+  .panel.src{ border-right:1px solid var(--line-soft); }
+  .panel .head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;}
+  .panel .head .name{ font-weight:700; font-size:14px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft);}
+  .pill{ font-size:13px; font-weight:700; padding:6px 12px; border-radius:999px; display:inline-flex; align-items:center; gap:7px; }
+  .pill.fluent{ color:#04684f; background:rgba(0,158,115,.13); opacity:0; transform:translateY(-4px); transition:.4s ease;}
+  .pill.flagged{ color:#8a3500; background:rgba(213,94,0,.14); opacity:0; transform:translateY(-4px); transition:.4s ease;}
+  .stage[data-stage="translated"] .pill.fluent{ opacity:1; transform:none;}
+  .stage[data-stage="inspected"] .pill.flagged{ opacity:1; transform:none;}
+  .stage[data-stage="inspected"] .pill.fluent{ display:none;}
+
+  .text{ font-family:var(--serif); font-size:30px; line-height:1.5; color:var(--ink); letter-spacing:.005em; min-height:96px; }
+  .text.muted{ color:#aeb6c0; font-style:italic; }
+  .caret{ display:inline-block; width:2px; height:.95em; background:var(--blue); margin-left:1px; vertical-align:-2px; animation:blink 1s steps(1) infinite;}
+  @keyframes blink{50%{opacity:0}}
+  #target.hidden{ opacity:0; }
+  #target{ transition:opacity .5s ease;}
+
+  .foot{ position:absolute; left:32px; bottom:16px; right:32px; display:flex; gap:16px; color:#c2c9d2;}
+  .foot svg{width:20px;height:20px}
+
+  .cog{ position:relative; }
+  .stage[data-stage="translated"] .cog,
+  .stage[data-stage="inspected"] .cog{ text-decoration:underline dotted; text-underline-offset:5px; text-decoration-color:#c2b07a; cursor:pointer;}
+  .stage[data-stage="inspected"] .cog{
+    background:linear-gradient(transparent 62%, rgba(230,159,0,.45) 0);
+    text-decoration:none; border-radius:3px; padding:0 2px; box-shadow:0 0 0 1px rgba(213,94,0,.25);
+  }
+
+  .loader{ display:none; gap:7px; align-items:center; height:96px;}
+  .stage[data-stage="translating"] #target{display:none}
+  .stage[data-stage="translating"] .loader{display:flex}
+  .loader i{ width:9px;height:9px;border-radius:50%; background:var(--skyblue); animation:bounce 1s infinite ease-in-out;}
+  .loader i:nth-child(2){animation-delay:.15s;background:var(--blue)}
+  .loader i:nth-child(3){animation-delay:.3s;background:var(--green)}
+  @keyframes bounce{0%,80%,100%{transform:scale(.6);opacity:.5}40%{transform:scale(1);opacity:1}}
+
+  .reveal{ border-top:1px solid var(--line-soft); background:linear-gradient(180deg,#fff, #fbfcfe); max-height:0; overflow:hidden; transition:max-height .55s cubic-bezier(.2,.8,.2,1); }
+  .stage[data-stage="inspected"] .reveal{ max-height:520px; }
+  .reveal-inner{ padding:26px 32px 30px; }
+  .verdict{ display:flex; align-items:center; gap:12px; margin-bottom:20px;}
+  .verdict .tag{ font-weight:800; font-size:13px; letter-spacing:.07em; text-transform:uppercase; color:#fff; background:var(--vermillion); padding:7px 13px; border-radius:8px; }
+  .verdict h2{ font-family:var(--ui); font-size:21px; margin:0; font-weight:700; letter-spacing:-.01em;}
+  .glosses{ display:grid; grid-template-columns:1fr auto 1fr; gap:18px; align-items:stretch; }
+  .gloss{ border:1px solid var(--line); border-radius:14px; padding:18px 20px; background:#fff;}
+  .gloss .w{ font-family:var(--serif); font-size:24px; font-weight:500; margin-bottom:6px;}
+  .gloss .w small{ font-family:var(--ui); font-size:12px; font-weight:700; color:var(--ink-soft); letter-spacing:.06em; text-transform:uppercase; margin-left:8px;}
+  .gloss .means{ font-size:16px; color:var(--ink-soft); line-height:1.45;}
+  .gloss .means b{ color:var(--ink); font-weight:600;}
+  .gloss.en{ border-color:rgba(0,114,178,.4); box-shadow:0 8px 20px -16px rgba(0,114,178,.5)}
+  .gloss.fr{ border-color:rgba(213,94,0,.45); box-shadow:0 8px 20px -16px rgba(213,94,0,.5)}
+  .neq{ display:flex; align-items:center; justify-content:center; font-size:30px; font-weight:800; color:var(--vermillion); font-family:var(--ui);}
+  .takeaway{ margin-top:20px; font-size:17px; line-height:1.55; color:var(--ink); border-left:4px solid var(--orange); padding:4px 0 4px 16px; }
+  .takeaway b{ font-weight:700; } .takeaway .fix{ color:var(--green); font-weight:700; }
+
+  .controls{ display:flex; align-items:center; gap:16px; margin-top:24px; padding:0 4px;}
+  .btn{ font-family:var(--ui); font-weight:700; font-size:17px; border:none; cursor:pointer; padding:15px 30px; border-radius:12px; color:#fff; letter-spacing:.01em; background:var(--blue); box-shadow:0 12px 24px -12px rgba(0,114,178,.7); transition:transform .12s ease, box-shadow .2s; }
+  .btn:hover{ transform:translateY(-1px); } .btn:active{ transform:translateY(0); }
+  .btn.ghost{ background:#fff; color:var(--ink); border:1px solid var(--line); box-shadow:none; font-weight:600; font-size:15px;}
+  .hint{ color:var(--ink-soft); font-size:14px; font-weight:500; margin-left:auto;}
+  .hint kbd{ font-family:var(--ui); font-weight:700; background:#fff;border:1px solid var(--line); border-bottom-width:2px; border-radius:6px; padding:2px 8px; font-size:13px;}
+
+  /* ---------- TITLE CARD (the screen the hook cuts to) ---------- */
+  .titlecard{
+    position:fixed; inset:0; z-index:50; display:flex; align-items:center;
+    opacity:0; visibility:hidden; transition:opacity .6s ease;
+    background:
+      radial-gradient(900px 520px at 82% 18%, rgba(0,114,178,.30), transparent 60%),
+      radial-gradient(820px 600px at 8% 92%, rgba(0,158,115,.18), transparent 55%),
+      linear-gradient(160deg,#0d1117,#131b27 60%,#0d1117);
+    color:#fff; padding:6vh 7vw;
+  }
+  .titlecard.show{ opacity:1; visibility:visible; }
+  .tc-grid{ display:grid; grid-template-columns:1.35fr .85fr; gap:48px; align-items:center; width:100%; max-width:1200px; margin:auto;}
+  .tc-kicker{ font-weight:700; font-size:14px; letter-spacing:.2em; text-transform:uppercase; color:var(--skyblue); margin-bottom:20px;}
+  .tc-name{ font-weight:800; font-size:82px; line-height:.95; letter-spacing:-.03em; margin:0 0 16px;}
+  .tc-name .pe{ color:var(--orange); }
+  .tc-title{ font-family:var(--serif); font-size:29px; line-height:1.32; color:#dee5ef; font-weight:400; max-width:19ch; margin:0 0 20px;}
+  .tc-tag{ font-family:var(--serif); font-style:italic; font-size:19px; color:#94a8bf; margin:0 0 32px;}
+  .tc-authors{ font-weight:600; font-size:19px; color:#fff; margin-bottom:7px;}
+  .tc-aff{ font-size:13.5px; color:#8a99ad; line-height:1.55; max-width:48ch;}
+  .tc-venue{ margin-top:28px; display:inline-flex; gap:9px; align-items:center; font-weight:700; font-size:15px; color:#cfe0f2; border:1px solid rgba(255,255,255,.18); padding:9px 16px; border-radius:999px;}
+  .tc-rings{ justify-self:center; }
+  .tc-rings svg{ width:min(36vw,400px); height:auto; }
+  .tc-rings text{ font-family:var(--ui); fill:#cdd8e6; font-weight:600; }
+  .tc-right{ display:flex; flex-direction:column; align-items:center; gap:24px; }
+  .tc-rings svg{ width:min(26vw,300px); }
+  .tc-qr{ background:#fff; border-radius:16px; padding:16px 16px 13px; text-align:center; box-shadow:0 16px 40px -18px rgba(0,0,0,.5); }
+  .tc-qr img{ display:block; width:148px; height:148px; }
+  .tc-qr-label{ font-family:var(--ui); font-weight:700; font-size:11.5px; letter-spacing:.05em; text-transform:uppercase; color:#4a525c; margin-top:11px; }
+  .tc-qr-url{ font-family:var(--ui); font-weight:600; font-size:13px; color:#0072B2; margin-top:2px; }
+</style>
+</head>
+<body>
+<div class="stage" id="stage" data-stage="idle">
+
+  <div class="bar">
+    <div class="brand"><span class="mark" aria-hidden="true"></span> Neural Translate</div>
+    <div class="langs" aria-label="Translating English to French">
+      <span class="lang">English</span><span class="arrow" aria-hidden="true">&rarr;</span><span class="lang">Fran&ccedil;ais</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="panels">
+      <div class="panel src">
+        <div class="head"><span class="name">English</span></div>
+        <div class="text" id="source" lang="en"><span class="ph muted">Type a sentence&hellip;</span></div>
+        <div class="foot" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10v4h4l5 5V5L7 10H3z"/><path d="M16 8a5 5 0 0 1 0 8"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+        </div>
+      </div>
+      <div class="panel tgt">
+        <div class="head">
+          <span class="name">Fran&ccedil;ais</span>
+          <span class="pill fluent" id="pillFluent">&#10003; Fluent</span>
+          <span class="pill flagged" id="pillFlag">&#9888; False cognate</span>
+        </div>
+        <div class="loader" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="text hidden" id="target" lang="fr"></div>
+        <div class="foot" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10v4h4l5 5V5L7 10H3z"/><path d="M16 8a5 5 0 0 1 0 8"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal" id="reveal">
+      <div class="reveal-inner">
+        <div class="verdict"><span class="tag">Trap</span><h2>It reads perfectly &mdash; and it says the opposite.</h2></div>
+        <div class="glosses">
+          <div class="gloss en">
+            <div class="w">eventually <small>English</small></div>
+            <div class="means">in the end; sooner or later. The agreement <b>will</b> take effect.</div>
+          </div>
+          <div class="neq" aria-hidden="true">&ne;</div>
+          <div class="gloss fr">
+            <div class="w">&eacute;ventuellement <small>Fran&ccedil;ais</small></div>
+            <div class="means">possibly; perhaps; if needed. The agreement <b>might</b> take effect.</div>
+          </div>
+        </div>
+        <p class="takeaway">
+          A <b>false cognate</b>: identical-looking words, opposite meanings. The fluent French quietly
+          weakened a certainty into a maybe. The correct word was <span class="fix">finalement</span>.
+          We read it, it looked right, and we approved it. That is the fluency trap.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="btn" id="primary">Translate</button>
+    <button class="btn ghost" id="reset">Reset</button>
+    <span class="hint">Press <kbd>Space</kbd> to advance &middot; <kbd>T</kbd> title card &middot; <kbd>R</kbd> reset</span>
+  </div>
+</div>
+
+<!-- ====== TITLE CARD ====== -->
+<div class="titlecard" id="titlecard">
+  <div class="tc-grid">
+    <div class="tc-text">
+      <div class="tc-kicker">CIKM 2026 &middot; Demonstration</div>
+      <h1 class="tc-name">ToM-<span class="pe">PE</span></h1>
+      <p class="tc-title">A Theory of Mind Platform for Machine Translation Post-Editing Training</p>
+      <div class="tc-authors">Diana Nurbakova<sup>1</sup> &middot; Liana Ermakova<sup>2</sup></div>
+      <div class="tc-aff">
+        <sup>1</sup>&nbsp;INSA Lyon, CNRS, Universit&eacute; Claude Bernard Lyon 1, LIRIS (UMR 5205), France<br>
+        <sup>2</sup>&nbsp;HCTI, University of Brest, Brest, France
+      </div>
+      <div class="tc-venue">&#9670;&nbsp; CIKM 2026 &middot; Rome, Italy</div>
+    </div>
+    <div class="tc-right">
+      <div class="tc-rings" aria-hidden="true">
+      <svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="180" cy="180" r="160" fill="none" stroke="#D55E00" stroke-width="2" opacity=".55"/>
+        <circle cx="180" cy="180" r="120" fill="none" stroke="#E69F00" stroke-width="2" opacity=".7"/>
+        <circle cx="180" cy="180" r="80"  fill="none" stroke="#009E73" stroke-width="2.5" opacity=".85"/>
+        <circle cx="180" cy="180" r="40"  fill="#0072B2" opacity=".9"/>
+        <text x="180" y="184" text-anchor="middle" font-size="13" fill="#fff">MT</text>
+        <text x="180" y="88"  text-anchor="middle" font-size="12.5">+ author</text>
+        <text x="180" y="48"  text-anchor="middle" font-size="12.5">+ reader</text>
+        <text x="180" y="9"   text-anchor="middle" font-size="12.5" opacity=".8">recursive</text>
+      </svg>
+    </div>
+      <div class="tc-qr">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABDgAAAQ4AQMAAADW3v7MAAAABlBMVEUUGB3////PfYxRAAAEhUlEQVR42u3dS27jMBAFwMbc/86TWQ0EsV/rm8SL0sKwZYoqgKsHssn6+xlXcXBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHAcOaq7dv/+/7793DVrXjP2/O/6U59xcXBwcHBwcHBwcHB8rmOfX9bc0WaQ7V+7FNM2m3uWXzg4ODg4ODg4ODg47uWXFFLaO7vYkgLL0LP8wsHBwcHBwcHBwcHxbn5p2wyNd53LLxwcHBwcHBwcHBwcP5Nf1p9tRcyaWapbYya/cHBwcHBwcHBwcHC8lV+GOxUmZdKMzPmejQsHBwcHBwcHBwcHx9X80jZ45XN+tXHh4ODg4ODg4ODg4LiUX+Imy13Ny1wLkyZi0mVcODg4ODg4ODg4ODhu5JeUQWqsiEmPrD3ILxwcHBwcHBwcHBwc7+aXNYPMaWV9ZN2RbIgwxoWDg4ODg4ODg4OD41J+qbBdWB0d6ZJ+Hp4LI79wcHBwcHBwcHBwcDzML+05lfPZLmmB2RB55BcODg4ODg4ODg4Ojtv5pV1Flk5yOaz0Xx/f3ZRfODg4ODg4ODg4ODie55caF4ytZS9D2f7wr/zCwcHBwcHBwcHBwfEkv6TEMS8JG76sL2r7MS4cHBwcHBwcHBwcHJfyS40V+u3uymnJWfo3vcu4cHBwcHBwcHBwcHBcyi+pjGUt7T98/OpfxoWDg4ODg4ODg4OD41J+qVD2UsuWyO1Ks+qOuUyxpcy/cHBwcHBwcHBwcHA8zi/tl3bapfKhlmlFWYVSGuPCwcHBwcHBwcHBwXEpvxwe+FLnKl9S5Fn7kV84ODg4ODg4ODg4OO7ll+2dysvA1mbzCTLVrSIr8y8cHBwcHBwcHBwcHA/yS6rNb5+qsCqsfXyYu5FfODg4ODg4ODg4ODhu5JfKBfhpd+V2YuVMz/ILBwcHBwcHBwcHB8eT/DIvIVt/Vt5a+XwpjfzCwcHBwcHBwcHBwXEjv1S3JKzNLHMeqYsLzOQXDg4ODg4ODg4ODo6r+SVtobxtXOOKsl3LlFzkFw4ODg4ODg4ODg6Ot/LLyQfbjFPd8rPDEhjjwsHBwcHBwcHBwcFxKb+k6DGUvdS4tXLlrQDK/AsHBwcHBwcHBwcHx4P8MuwYVt2ysdTVmmIOX21cODg4ODg4ODg4ODhu55ehSL/CvmRrz22ukV84ODg4ODg4ODg4OJ7nl9SgjnZIPjODs4Yd+YWDg4ODg4ODg4OD40l+SduRzQ12XVXYb3kIO8aFg4ODg4ODg4ODg+NGftn+Vd08S0orqcC/fWOZf+Hg4ODg4ODg4ODg+Ib8Ussky7bBfDNtaGb+hYODg4ODg4ODg4Pjm/LLLqcc1ubPj5TzXzg4ODg4ODg4ODg43sgvh/Uv6TOtN2u3MpNfODg4ODg4ODg4ODge5pfUoL3T7p+c5mtSP/ILBwcHBwcHBwcHB8eN/PKLFwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwdHd30BolZDkEHRZ2QAAAAASUVORK5CYII=" alt="QR code linking to the ToM-PE repository at github.com/diana-nurbakova/tompe" width="148" height="148">
+        <div class="tc-qr-label">Scan for code</div>
+        <div class="tc-qr-url">github.com/diana-nurbakova/tompe</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const SRC = "The agreement will eventually enter into force.";
+  const SRC_HTML = 'The agreement will <span class="cog">eventually</span> enter into force.';
+  const TGT_HTML = "L'accord entrera <span class=\"cog\">&eacute;ventuellement</span> en vigueur.";
+
+  const stage   = document.getElementById('stage');
+  const source  = document.getElementById('source');
+  const target  = document.getElementById('target');
+  const primary = document.getElementById('primary');
+  const resetBtn= document.getElementById('reset');
+  const reveal  = document.getElementById('reveal');
+  const titlecard = document.getElementById('titlecard');
+
+  let typing = null;
+
+  function typeSource(cb){
+    clearInterval(typing);
+    source.innerHTML = '<span lang="en"></span><span class="caret"></span>';
+    const slot = source.firstChild; let i = 0;
+    typing = setInterval(()=>{
+      slot.textContent = SRC.slice(0, ++i);
+      if(i >= SRC.length){ clearInterval(typing); source.innerHTML = SRC_HTML; if(cb) cb(); }
+    }, 42);
+  }
+
+  function toIdle(){
+    stage.dataset.stage = 'idle';
+    target.classList.add('hidden'); target.innerHTML = '';
+    primary.textContent = 'Translate'; primary.onclick = translate;
+    primary.disabled=false; primary.style.opacity=1; primary.style.cursor='pointer';
+    typeSource();
+  }
+
+  function translate(){
+    if(stage.dataset.stage==='idle' && !source.querySelector('.cog')) return;
+    stage.dataset.stage = 'translating'; target.classList.add('hidden');
+    setTimeout(()=>{
+      target.innerHTML = TGT_HTML; stage.dataset.stage = 'translated';
+      target.classList.remove('hidden'); bindCognates();
+      primary.textContent = 'Inspect the meaning'; primary.onclick = inspect;
+    }, 950);
+  }
+
+  function inspect(){
+    stage.dataset.stage = 'inspected';
+    primary.textContent = '&rarr; Title card';
+    primary.innerHTML = '&rarr; Title card'; primary.onclick = showTitle;
+    reveal.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+
+  function bindCognates(){
+    document.querySelectorAll('.cog').forEach(el=>{
+      el.onclick = ()=>{ if(stage.dataset.stage==='translated') inspect(); };
+    });
+  }
+
+  function showTitle(){ titlecard.classList.add('show'); }
+  function hideTitle(){ titlecard.classList.remove('show'); }
+  function toggleTitle(){ titlecard.classList.toggle('show'); }
+
+  function reset(){ hideTitle(); toIdle(); }
+
+  function advance(){
+    if(titlecard.classList.contains('show')) return;
+    const s = stage.dataset.stage;
+    if(s==='idle') translate();
+    else if(s==='translated') inspect();
+    else if(s==='inspected') showTitle();
+  }
+  document.addEventListener('keydown', e=>{
+    if(e.code==='Space'){ e.preventDefault(); advance(); }
+    else if(e.key==='r'||e.key==='R'){ reset(); }
+    else if(e.key==='t'||e.key==='T'){ toggleTitle(); }
+  });
+
+  primary.onclick = translate;
+  resetBtn.onclick = reset;
+  toIdle();
+</script>
+</body>
+</html>
